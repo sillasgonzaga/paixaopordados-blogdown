@@ -14,9 +14,9 @@ paginate = 10
 [params]
   # Shown in the home page
   subtitle = "Sillas Teixeira Gonzaga"
-  brand = "Paixão por Dados"
-  googleAnalytics = "Your Google Analytics tracking ID"
-  disqus = "Your Disqus shortname"
+  brand = ""
+  googleAnalytics = "UA-110050805-1"
+  disqus = "sillastg"
   # CSS name for highlight.js
   highlightjs = "androidstudio"
   dateFormat = "02 Jan 2006"
@@ -55,4 +55,4 @@ paginate = 10
   github = "sillasgonzaga"
   # stackoverflow = "*"
   linkedin = "sillasgonzaga"
-  email = "sillas.gonzaga@gmail.com"
+  #email = "sillas.gonzaga@gmail.com"
