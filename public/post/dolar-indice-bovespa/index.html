@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.31" />
+
+  <title>Correlação entre o dólar e ações de empresas do Índice Bovespa &middot; Paixão por Dados</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="/">Paixão por Dados</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://twitter.com/*" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
+    </li>
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://facebook.com/sillast" target="_blank"><i class="fa fa-facebook-square fa-fw"></i>Facebook</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://linkedin.com/in/sillasgonzaga" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/sillasgonzaga" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://stackoverflow.com/users/*" target="_blank"><i class="fa fa-stack-overflow fa-fw"></i>Stack Overflow</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2016. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>Correlação entre o dólar e ações de empresas do Índice Bovespa</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>07 Nov 2015</time>
+  </div>
+
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/series-temporais">series temporais</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  
+
+<h2 id="introdução">Introdução</h2>
+
+<p>Este projeto surgiu de uma situação que eu estou lidando no momento: digamos que você deseja investir dinheiro para fazer uma viagem internacional durante suas férias daqui a 5 anos. Como os gastos da viagem serão indexados pelo dólar, não basta apenas escolher um bom investimento como títulos do tesouro ou outras modalidades de renda fixa. Por mais que os rendimentos deles possam apresentar enormes vantagens para seus investidores, eles precisam ser maiores que a valorização do dólar, caso contrário você correrá o risco de chegar no fim desse período de 5 anos sem o dinheiro necessário para realizar seu sonho. Se já é muito difícil prever quanto custará o dólar na próxima semana, prever seu valor em 5 anos é impossível.</p>
+
+<p>Independentemente se você deseja realizar uma viagem internacional ou não, muitas pessoas certamente já desejaram saber como o desempenho do dólar afeta o rendimento de ações na bolsa. É disto que o post inaugural deste blog se trata: talvez seja uma boa decisão investir em ações de empresas que acompanhem o comportamento do dólar, isto é, que aumentem quando o dólar aumenta. Em estatística, isso é chamado de correlação:</p>
+
+<blockquote>
+<p>Diz-se que existe correlação entre duas ou mais variáveis quando as alterações sofridas por uma delas são acompanhadas por modificações nas outras. Ou seja, no caso de duas variáveis x e y os aumentos (ou diminuições) em x correspondem a aumentos (ou diminuições) em y. Assim, a correlação revela se existe uma relação funcional entre uma variável e as restantes.</p>
+</blockquote>
+
+<h2 id="programação-e-resultados">Programação e resultados</h2>
+
+<p>Todo o processo de análise foi feito no R, usando dados de cotações obtidos no Yahoo Finance. Segue abaixo o código</p>
+
+<pre><code class="language-r">#1 Baixar série historica do dolar de 2 anos
+library(quantmod)
+library(plyr)
+library(dplyr)
+library(corrplot)
+library(ggplot2)
+library(reshape2)
+library(lubridate)
+</code></pre>
+
+<p>Após carregar as bibliotecas que serão usadas no código, é usado o pacote quantmod para baixar e plotar uma série histórica do dólar. Por tentativa e erro, defini que o período de análise seria entre 25 de agosto de 2013 até 01 de agosto de 2015.</p>
+
+<pre><code class="language-r">datainicial = &quot;2013-08-25&quot;
+datafinal = &quot;2015-08-01&quot;
+cotacoes = getFX(&quot;USD/BRL&quot;, from=datainicial, to=datafinal, env=NULL)
+lineChart(cotacoes)
+</code></pre>
+
+<p><img src="https://i.imgur.com/WafbcTd.png" alt="center" /></p>
+
+<p>Um pouco de transformação de dados (o famoso Data Wrangling) necessária para transformar a variável cotacoes de classe xts em dataframes:</p>
+
+<pre><code class="language-r">cotacoes = as.data.frame(cotacoes)
+cotacoes$Data = rownames(cotacoes)
+rownames(cotacoes) = NULL
+</code></pre>
+
+<p>Agora já podemos baixar as cotações das empresas. Já que existem centenas de empresas listadas , eu escolhi apenas as que compõem o Índice Bovespa. Para isso, eu salvei a lista das empresas em um arquivo csv e a carreguei no R.</p>
+
+<pre><code class="language-r">ibovespa &lt;- read.csv2(&quot;https://raw.githubusercontent.com/sillasgonzaga/sillasgonzaga.github.io/master/data/ibovespa.csv&quot;)
+suffix = as.data.frame(replicate(nrow(ibovespa), &quot;.SA&quot;)) 
+
+#Um pouco de Data Wrangling para concatenar os códigos das empresas com o sufixo.
+
+temp = cbind(ibovespa, suffix)
+ibovespa = apply(temp, 1,
+               function(x) paste0(toString(x[1]), toString(x[2]))
+               )
+</code></pre>
+
+<p>Depois de carregar os códigos das empresas e adicionar o sufixo .SA (sufixo que identifica as ações da Bovespa), hora de baixar as séries históricas de cotações de cada empresa.</p>
+
+<pre><code class="language-r">#Baixar cotacões
+getSymbols(ibovespa[1:36], auto.assign = TRUE, from=datainicial, to=datafinal) #O 37(IBOV.SA) dá problema
+</code></pre>
+
+<pre><code class="language-r">##  [1] &quot;ABEV3.SA&quot; &quot;BBAS3.SA&quot; &quot;BBDC3.SA&quot; &quot;BBDC4.SA&quot; &quot;BBSE3.SA&quot; &quot;BRAP4.SA&quot;
+##  [7] &quot;BRFS3.SA&quot; &quot;BRKM5.SA&quot; &quot;BRML3.SA&quot; &quot;BRPR3.SA&quot; &quot;BVMF3.SA&quot; &quot;CCRO3.SA&quot;
+## [13] &quot;CESP6.SA&quot; &quot;CIEL3.SA&quot; &quot;CMIG4.SA&quot; &quot;CPFE3.SA&quot; &quot;CPLE6.SA&quot; &quot;CRUZ3.SA&quot;
+## [19] &quot;CSAN3.SA&quot; &quot;CSNA3.SA&quot; &quot;CTIP3.SA&quot; &quot;CYRE3.SA&quot; &quot;DTEX3.SA&quot; &quot;ECOR3.SA&quot;
+## [25] &quot;ELET3.SA&quot; &quot;ELET6.SA&quot; &quot;EMBR3.SA&quot; &quot;ENBR3.SA&quot; &quot;ESTC3.SA&quot; &quot;FIBR3.SA&quot;
+## [31] &quot;GFSA3.SA&quot; &quot;GGBR4.SA&quot; &quot;GOAU4.SA&quot; &quot;GOLL4.SA&quot; &quot;HGTX3.SA&quot; &quot;HYPE3.SA&quot;
+</code></pre>
+
+<pre><code class="language-r">getSymbols(ibovespa[38:40], auto.assign = TRUE, from=datainicial, to=datafinal) #O 41(IBOV.SA) dá problema
+</code></pre>
+
+<pre><code class="language-r">## [1] &quot;ITSA4.SA&quot; &quot;ITUB4.SA&quot; &quot;JBSS3.SA&quot;
+</code></pre>
+
+<pre><code class="language-r">getSymbols(ibovespa[42:56], auto.assign = TRUE, from=datainicial, to=datafinal) #O 57(IBOV.SA) dá problema
+</code></pre>
+
+<pre><code class="language-r">##  [1] &quot;KROT3.SA&quot; &quot;LAME4.SA&quot; &quot;LREN3.SA&quot; &quot;MRFG3.SA&quot; &quot;MRVE3.SA&quot; &quot;MULT3.SA&quot;
+##  [7] &quot;NATU3.SA&quot; &quot;OIBR4.SA&quot; &quot;PCAR4.SA&quot; &quot;PETR3.SA&quot; &quot;PETR4.SA&quot; &quot;POMO4.SA&quot;
+## [13] &quot;QUAL3.SA&quot; &quot;RENT3.SA&quot; &quot;RUMO3.SA&quot;
+</code></pre>
+
+<pre><code class="language-r">getSymbols(ibovespa[58:length(ibovespa)], auto.assign = TRUE, from=datainicial, to=datafinal)
+</code></pre>
+
+<pre><code class="language-r">##  [1] &quot;SBSP3.SA&quot; &quot;SMLE3.SA&quot; &quot;SUZB5.SA&quot; &quot;TBLE3.SA&quot; &quot;TIMP3.SA&quot; &quot;UGPA3.SA&quot;
+##  [7] &quot;USIM5.SA&quot; &quot;VALE3.SA&quot; &quot;VALE5.SA&quot; &quot;VIVT4.SA&quot;
+</code></pre>
+
+<p>Como exemplo, esta é o arquivo de cotações da Petrobras baixado, seguido por um gráfico:</p>
+
+<pre><code class="language-r">head(PETR3.SA)
+</code></pre>
+
+<pre><code class="language-r">##            PETR3.SA.Open PETR3.SA.High PETR3.SA.Low PETR3.SA.Close
+## 2013-08-26         17.50         17.69        17.14          17.14
+## 2013-08-27         16.98         17.12        16.53          16.57
+## 2013-08-28         16.60         16.75        16.10          16.17
+## 2013-08-29         16.26         16.49        15.96          15.97
+## 2013-08-30         16.26         16.49        15.71          16.05
+## 2013-09-02         16.38         16.43        16.05          16.15
+##            PETR3.SA.Volume PETR3.SA.Adjusted
+## 2013-08-26         6789100          16.53003
+## 2013-08-27        10819800          15.98032
+## 2013-08-28         7769900          15.59455
+## 2013-08-29         6036800          15.40167
+## 2013-08-30        13563200          15.47882
+## 2013-09-02         6689200          15.57526
+</code></pre>
+
+<pre><code class="language-r">lineChart(PETR3.SA)
+</code></pre>
+
+<p><img src="https://i.imgur.com/3KuiJ0k.png" alt="" /></p>
+
+<p>As variáveis criadas pelo quantmod com as cotações baixadas do Yahoo Finance são da classe xts. Além disso, é apenas na última coluna (Adjusted) que estamos interessados, além, claro, da coluna referente às datas. Portanto, foi criada uma função que transforma a variável em dataframe e extrai apenas a coluna referente ao Adjusted:</p>
+
+<pre><code class="language-r">f = function(x) {
+  temp = as.data.frame(x)
+  result = as.data.frame(temp[,6])
+  names(result) = names(temp)[6]
+  result$Data = rownames(temp)
+  return(result)
+}
+</code></pre>
+
+<p>Criada a função, basta aplicá-la em cada uma das variáveis. Infelizmente, tive de fazer isso uma por uma, manualmente, porque não consiga pensar em um for loop que iterasse em todos os arquivos da classe xts. Sugestões são muito bem vindas.</p>
+
+<pre><code class="language-r">ABEV3.SA = f(ABEV3.SA)
+BBAS3.SA = f(BBAS3.SA)
+BBDC3.SA = f(BBDC3.SA)
+BBDC4.SA = f(BBDC4.SA)
+BBSE3.SA = f(BBSE3.SA)
+BRAP4.SA = f(BRAP4.SA)
+BRFS3.SA = f(BRFS3.SA) 
+BRKM5.SA = f(BRKM5.SA)
+BRML3.SA = f(BRML3.SA)
+BRPR3.SA = f(BRPR3.SA)
+BVMF3.SA = f(BVMF3.SA)
+CCRO3.SA = f(CCRO3.SA)
+CESP6.SA = f(CESP6.SA)
+CIEL3.SA = f(CIEL3.SA)
+CMIG4.SA = f(CMIG4.SA)
+CPFE3.SA = f(CPFE3.SA)
+CPLE6.SA = f(CPLE6.SA)
+CRUZ3.SA = f(CRUZ3.SA)
+CSAN3.SA = f(CSAN3.SA)
+CSNA3.SA = f(CSNA3.SA)
+CTIP3.SA = f(CTIP3.SA)
+CYRE3.SA = f(CYRE3.SA)
+DTEX3.SA = f(DTEX3.SA)
+ECOR3.SA = f(ECOR3.SA)
+ELET3.SA = f(ELET3.SA)
+ELET6.SA = f(ELET6.SA)
+EMBR3.SA = f(EMBR3.SA)
+ENBR3.SA = f(ENBR3.SA)
+ESTC3.SA = f(ESTC3.SA)
+FIBR3.SA = f(FIBR3.SA)
+GFSA3.SA = f(GFSA3.SA)
+GGBR4.SA = f(GGBR4.SA)
+GOAU4.SA = f(GOAU4.SA)
+GOLL4.SA = f(GOLL4.SA)
+HGTX3.SA = f(HGTX3.SA)
+HYPE3.SA = f(HYPE3.SA)
+ITSA4.SA = f(ITSA4.SA)
+ITUB4.SA = f(ITUB4.SA)
+JBSS3.SA = f(JBSS3.SA)
+KROT3.SA = f(KROT3.SA)
+LAME4.SA = f(LAME4.SA)
+LREN3.SA = f(LREN3.SA)
+MRFG3.SA = f(MRFG3.SA)
+MRVE3.SA = f(MRVE3.SA)
+MULT3.SA = f(MULT3.SA)
+NATU3.SA = f(NATU3.SA)
+OIBR4.SA = f(OIBR4.SA)
+PCAR4.SA = f(PCAR4.SA)
+PETR3.SA = f(PETR3.SA)
+PETR4.SA = f(PETR4.SA)
+POMO4.SA = f(POMO4.SA)
+QUAL3.SA = f(QUAL3.SA)
+RENT3.SA = f(RENT3.SA)
+RUMO3.SA = f(RUMO3.SA)
+SBSP3.SA = f(SBSP3.SA)
+SMLE3.SA = f(SMLE3.SA)
+SUZB5.SA = f(SUZB5.SA)
+TBLE3.SA = f(TBLE3.SA)
+TIMP3.SA = f(TIMP3.SA)
+UGPA3.SA = f(UGPA3.SA)
+USIM5.SA = f(USIM5.SA)
+VALE3.SA = f(VALE3.SA)
+VALE5.SA = f(VALE5.SA)
+VIVT4.SA = f(VIVT4.SA)
+</code></pre>
+
+<p>O último passo da etapa de transformação de dados consiste em juntar todas as ações das empresas, além das cotações do dólar, em uma variável só, chamada de df_final. Nesta etapa, tive um problema semelhante à anterior: não sabia muito bem como criar um for loop para não ter de escrever as variáveis manualmente. Ainda bem que o iBovespa só é composto por 67 empresas.</p>
+
+<pre><code class="language-r">df_final = join_all(dfs=list(cotacoes,
+                              ABEV3.SA,BBAS3.SA,BBDC3.SA,BBDC4.SA,BBSE3.SA,BRAP4.SA,BRFS3.SA,BRKM5.SA,BRML3.SA,
+                              BRPR3.SA,BVMF3.SA,CCRO3.SA,CESP6.SA,CIEL3.SA,CMIG4.SA,CPFE3.SA,CPLE6.SA,CRUZ3.SA,
+                              CSAN3.SA,CSNA3.SA,CTIP3.SA,CYRE3.SA,DTEX3.SA,ECOR3.SA,ELET3.SA,ELET6.SA,EMBR3.SA,
+                              ENBR3.SA,ESTC3.SA,FIBR3.SA,GFSA3.SA,GGBR4.SA,GOAU4.SA,GOLL4.SA,HGTX3.SA,HYPE3.SA,
+                              ITSA4.SA,ITUB4.SA,JBSS3.SA,KROT3.SA,LAME4.SA,LREN3.SA,MRFG3.SA,MRVE3.SA,MULT3.SA,
+                              NATU3.SA,OIBR4.SA,PCAR4.SA,PETR3.SA,PETR4.SA,POMO4.SA,QUAL3.SA,RENT3.SA,RUMO3.SA,
+                              SBSP3.SA,SMLE3.SA,SUZB5.SA,TBLE3.SA,TIMP3.SA,UGPA3.SA,USIM5.SA,VALE3.SA,VALE5.SA,
+                              VIVT4.SA), by=&quot;Data&quot;)
+</code></pre>
+
+<p>Agora, um novo dataframe sem a coluna de data é criado. Isso é necessário para criar a matriz de correlação, que só aceita como argumento um dataframe 100% composto de elementos numéricos.</p>
+
+<pre><code class="language-r">df_final2 = na.omit(df_final)
+df_final2 = select(df_final2, -Data)
+</code></pre>
+
+<p>Finalmente, podemos prosseguir com a criação da matriz de correlação usando a função base cor():</p>
+
+<pre><code class="language-r">m = cor(df_final2)
+</code></pre>
+
+<p>Como a matriz resultante m é muito grande (64 linhas e 64 colunas), vou mostrar apenas uma parte dela:</p>
+
+<pre><code class="language-r">m[1:5,1:5]
+</code></pre>
+
+<pre><code class="language-r">##                        USD.BRL ABEV3.SA.Adjusted BBAS3.SA.Adjusted
+## USD.BRL            1.000000000       0.006523715        -0.7834658
+## ABEV3.SA.Adjusted  0.006523715       1.000000000         0.2606677
+## BBAS3.SA.Adjusted -0.783465819       0.260667660         1.0000000
+## BBDC3.SA.Adjusted -0.559099285       0.338385543         0.7049489
+## BBDC4.SA.Adjusted -0.772544701       0.236813392         0.9015431
+##                   BBDC3.SA.Adjusted BBDC4.SA.Adjusted
+## USD.BRL                  -0.5590993        -0.7725447
+## ABEV3.SA.Adjusted         0.3383855         0.2368134
+## BBAS3.SA.Adjusted         0.7049489         0.9015431
+## BBDC3.SA.Adjusted         1.0000000         0.8857323
+## BBDC4.SA.Adjusted         0.8857323         1.0000000
+</code></pre>
+
+<p>Os rótulos das linhas e colunas são referentes aos, digamos, indicadores (USD.BRL é a cotação do dólar). Os números dentro da matriz correspondem a correlação entre a variável da linha e a da coluna. Apenas com esta pequena fração da matriz, já é possível observar algumas correlações muito interessantes:
+- O dólar apresenta correlações negativas muito fortes (-0,77 e -0,75) com as ações do Banco do Brasil ON (BBAS3) e Bradesco (BBDC4), respectivamente. Ou seja, na maioria das vezes quando o dólar sobe, as ações desses dois bancos caem e vice-versa. Será uma tendência com todos os bancos listados na bolsa?<br />
+- Existe uma correlação positiva muito forte (0,90) entre as ações do Bradesco e do Banco do Brasil.</p>
+
+<p>Além disso, é possível saber facilmente qual a correlação negativa mais forte dentre as cotações analisadas:</p>
+
+<pre><code class="language-r">min(m)
+</code></pre>
+
+<pre><code class="language-r">## [1] -0.882108
+</code></pre>
+
+<pre><code class="language-r">which(m == min(m), arr.ind=TRUE)
+</code></pre>
+
+<pre><code class="language-r">##                   row col
+## OIBR4.SA.Adjusted  48  29
+## ENBR3.SA.Adjusted  29  48
+</code></pre>
+
+<p>A correlação negativa mais forte (-0,88), sabe-se lá o porquê, é entre a Oi e a EDP Energias do Brasil. Para comprovar este fato, veja este gráfico gerado com o ggplot2:</p>
+
+<pre><code class="language-r">temp = select(df_final, Data, OIBR4.SA.Adjusted, ENBR3.SA.Adjusted)
+temp = na.omit(temp)
+temp = melt(temp, &quot;Data&quot;)
+levels(temp$variable) = c(&quot;Oi&quot;, &quot;EDP Energias\n do Brasil&quot;)
+ggplot(temp, aes(x=ymd(Data), value)) +  geom_line() +
+  facet_grid(variable~., scales=&quot;free&quot;) +
+  labs(title=&quot;Comparacão entre açoes da Oi e da EDP&quot;, x=&quot;Data&quot;, y=&quot;Valor&quot;)
+</code></pre>
+
+<p><img src="https://i.imgur.com/fD18Svj.png" alt="" /></p>
+
+<p>Olhando o gráfico, pode-se inferir que a existência de outliers (comportamento anômalo) de subida e descida bruscas que as ações da Oi tiveram no fim de 2014 pode ter influenciado no cálculo da correlação. A título de curiosidade, vamos fazer a mesma análise com a segunda correlação negativa mais forte:</p>
+
+<pre><code class="language-r">which(m == min( m[m!=min(m)] ), arr.ind=TRUE)
+</code></pre>
+
+<pre><code class="language-r">##                   row col
+## BVMF3.SA.Adjusted  12   1
+## USD.BRL             1  12
+</code></pre>
+
+<pre><code class="language-r">temp = select(df_final, Data, USD.BRL, BVMF3.SA.Adjusted)
+temp = na.omit(temp)
+temp = melt(temp, &quot;Data&quot;)
+levels(temp$variable) = c(&quot;Dólar&quot;, &quot;BM&amp;F Bovespa&quot;)
+ggplot(temp, aes(x=ymd(Data), value)) +  geom_line() +
+  facet_grid(variable~., scales=&quot;free&quot;) +
+  labs(title=&quot;Comparacão entre dólar e açoes da BM&amp;F Bovespa&quot;, x=&quot;Data&quot;, y=&quot;Valor&quot;)
+</code></pre>
+
+<p><img src="https://i.imgur.com/y7MgZNM.png" alt="center" /></p>
+
+<p>Agora sim fica fácil percer a correlação negativa entre as variáveis: nos períodos quando o dólar sobe, as ações da BMF Bovespa caem (com algumas exceções) e vice-versa.</p>
+
+<p>Existe um método ainda mais fácil de observar correlações entre um maior número de variáveis, como o do nosso exemplo(64): o gráfico de correlação, também chamado de correlograma.</p>
+
+<p>Na verdade, 64 variáveis ainda é um número alto para se plotar em um gráfico. Por tentativa e erro, definir que o correlograma irá exibir apenas 15 indicadores, sendo eles o dólar e outros 14 selecionados aleatoriamente.</p>
+
+<pre><code class="language-r">m2 = (df_final2[, c(1, runif(9,min=2, max=65))])
+m2 = cor(m2)
+corrplot(m2, method=&quot;color&quot;, tl.cex = 1, type=&quot;full&quot;, addCoef.col = &quot;white&quot;)
+</code></pre>
+
+<p><img src="https://i.imgur.com/MH9ueK2.png" alt="" /></p>
+
+<p>Aliás, é bom que se diga que eu só selecionei a seed 123 (que fixa a escolha de números aleatórios pelo R), ou seja, se você tentar esse mesmo código, provavelmente sua matriz não terá os mesmos indicadores da mostrada aqui.</p>
+
+<p>Dois pontos interessantes:</p>
+
+<ul>
+<li>Existe uma correlação positiva altísssima (0,96, sendo que o máximo é 1) entre o dólar e as ações da Suzano Papel e Celulose(SUZB5), o que pode ser interpretado como natural dado a importância da exportação para a empresa.</li>
+<li>A maior correlação negativa entre o dólar e um dos indicadores dessa fração da matriz original - no caso, a BRMalls (BRML3) é de -0,71.</li>
+</ul>
+
+<p>Essas duas observações são investigadas no gráfico abaixo.</p>
+
+<pre><code class="language-r">temp &lt;- df_final %&gt;%
+  select(Data, USD.BRL, BRML3.SA.Adjusted, SUZB5.SA.Adjusted) %&gt;%
+  na.omit() %&gt;%
+  melt(&quot;Data&quot;)
+
+levels(temp$variable) = c(&quot;Dolar&quot;, &quot;BRMalls&quot;, &quot;Suzano Papel\n e Celulose&quot;)
+ggplot(temp, aes(x=ymd(Data), value)) + geom_line() + facet_grid(variable~., scales=&quot;free&quot;)
+</code></pre>
+
+<p><img src="https://i.imgur.com/I42xNqE.png" alt="" /></p>
+
+<p>A tendência mostrada no gráfico é clara: quando o dólar sobe, os papéis da Suzano acompanham a subida, inversamente aos da BRMalls.</p>
+
+<h2 id="conclusão">Conclusão</h2>
+
+<p>Se por um lado houve o foco apenas no dólar, este mesmo código possibilita a análise de correlações não apenas entre o dólar e ações de empresas mas também entre ações em si.</p>
+
+<p>Além disso, embora os gráficos – tanto os de linha quanto o correlograma – mostrados aqui confirmam as correlações obtidas na matriz de correlação, é bom ressaltar que, no período analisado, o dólar praticamente só subiu. Para uma análise mais profunda (e exata), seria necessário selecionar um período de tempo maior ou pelo menos um onde o dólar tenha tanto caído quanto subido.</p>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="/post/2015-07-23-r-rmarkdown/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="/post/2015-07-23-r-rmarkdown/">Hello R Markdown</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
+</div>
+
+
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'Your Disqus shortname';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</div>
+
+</div>
+</div>
+<script src="/js/ui.js"></script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'Your Google Analytics tracking ID', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,130 @@
+---
+title: 'Meta-análise R (2): Analisando Pacotes R como indivíduos em uma rede social'
+author: ''
+date: '2016-05-30'
+slug: meta-analise-r-02
+categories:
+  - R
+tags:
+  - sna
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+O objetivo deste segundo post da série sobre meta-análise de pacotes R é testar a utilização de diferentes pacotes voltados para a análise de redes sociais (SNA). Existem dezenas de opções disponíveis para se fazer esta análise e os usados neste post são:
+
+
+Da [Wikipedia](https://pt.wikipedia.org/wiki/An%C3%A1lise_de_Redes_Sociais):
+
+> As Redes Sociais consistem em estruturas que representam pessoas ou organizações (atores) e as relações entre si. A Análise de Redes Sociais perceciona as relações sociais em termos da Teoria de Redes. Permite estudar, através da identificação dos atores e suas ligações, as relações entre os mesmos de forma a poder identificar as formas de interação entre si, contribuindo para o conhecimento sobre a rede social e o seu desenvolvimento. A Análise de Redes Sociais (ARS) permite representar as redes sociais através da representação dos nós e das ligações entre eles. Os nós da rede social representam os atores dessa rede (indivíduos ou organizações). As ligações representam as relações entre os atores componentes da rede representada.
+
+Não sou nem de longe um especialista nesse tema, mas tenho uma grande curiosidade sobre ele e já li alguns artigos e documentações de pacotes R sobre SNA.
+
+```{r pacotes}
+suppressMessages(library(igraph))
+suppressMessages(library(miniCRAN))
+suppressMessages(library(magrittr))
+suppressMessages(library(keyplayer))
+suppressMessages(library(dplyr))
+library(feather)
+suppressMessages(library(visNetwork))
+library(knitr)
+suppressMessages(library(DT))
+```
+
+Para este post, vou usar, arbitrariamente, os 50 pacotes R mais baixados, que são: 
+
+```{r ler df_pkgs}
+df_pkgs <- read_feather("/home/sillas/R/data/df_pkgs.feather")
+df_pkgs %<>% top_n(50, wt = downloads)
+(list_pkgs <- df_pkgs$package)
+g <- makeDepGraph(list_pkgs, suggests = FALSE)
+
+plot(g, main = "")
+
+plot.igraph(g, vertex.size=10, layout = layout_with_fr(g)) 
+```
+
+O número de pacotes selecionados para a análise dificultou a leitura da visualização do grafo, mas servirá para analisar diferentes métricas associadas à ARS.  
+
+Como homenagem ao Hadley Wickham, os pacotes pertencentes ao Hadleyverse (lista de pacotes R criados ou que tiveram contribuição de Wickham) serão destacados no grafo. O código abaixo foi tirado deste [ótimo artigo](http://adolfoalvarez.cl/the-hitchhikers-guide-to-the-hadleyverse/) sobre o Hadleyverse.
+
+```{r baixar-pacotes, eval=FALSE}
+# baixar lista de pacotes disponíveis no CRAN
+download.file("http://cran.r-project.org/web/packages/packages.rds", "/home/sillas/R/data/packages.rds") #cerca de 3 MB
+
+```
+
+
+
+```{r definir hadleyverse}
+# baixar lista de pacotes disponíveis no CRAN
+rds <- readRDS(file = "/home/sillas/R/data/packages.rds")
+data <- as.data.frame(rds, stringsAsFactors = FALSE)
+
+# Limpar os dados
+data <- data[,!duplicated(names(data))]
+names(data) <- gsub(" ","_", names(data))
+names(data) <- gsub("/","_", names(data))
+names(data) <- gsub("@","_", names(data))
+
+# Filtrar pacotes do Hadley
+hadley <- data %>%
+  filter(grepl("Hadley Wickham|Hadley\nWickham", Author)) %>%
+  select(Package, Author, Depends, Imports, Suggests, LinkingTo, Enhances)
+
+#Adicionar atributo de grupo aos vértices do grafo
+V(g)$group <- ifelse(V(g)$name %in% hadley$Package, "hadleyverse", "no_hadley")
+
+```
+
+Como estou escrevendo para um blog e não para um artigo, acredito que um grafo interativo seja melhor do que um estático. Para plotar uma rede interativa, existe o excelente pacote `visNetwork`. Use o mouse para controlar o grafo abaixo, seja arrastando os vértices ou dando zoom.
+
+```{r}
+
+visIgraph(g, physics = TRUE, smooth = TRUE, type = "full", randomSeed = 123) %>%
+  visOptions(width = "100%", height = "90%",
+             highlightNearest = list(enabled = TRUE, degree = 1, hover = TRUE),
+             nodesIdSelection = list(enabled = TRUE)) %>%
+  visInteraction(hover = TRUE, navigationButtons = TRUE) %>%
+  visGroups()
+
+```
+
+Outra atividade comumente feita em SNA é calcular diversas métricas de rede. As principais são:
+
+- **Indegree**: Mede quantas pessoas interagem diretamente com o indivíduo;  
+- **Outdegree**: Mede com quantas pessoas o indivíduo interage diretamente;  
+- **Closeness**: é a média da distância geodésica entre um dado vértice (ou ponto da rede) e todos os outros vértices que podem ser alcançados a partir do ponto. Ela é uma espécie de menor caminho médio, mas geodésicas dão valores maiores para indivíduos mais centrais. A closeness pode ser dividida em dois tipos: in (que corresponde ao número médio de passo entre um dado vértice para todos os vértices alcanlçáveis na rede) e out(a mesma coisa do in mas com direção contrária);  
+- **Betweenness**: mede o número de menores caminhos que passam por um dado vértice;  
+- **Autovetor**: calcula valores maiores para um indivídu que está conectado a outros indivíduos altamente conectados. Por exemplo, um vértice que está conectado com 5 outros vértices bem conectados terá um valor de autovetor maior que um que esteja conectado com cinco vértices de baixa conectividade.
+
+[Fonte](http://lib.stat.cmu.edu/~brian/780/stanford%20social%20network%20labs/04%20Centralities%20and%20Their%20Interrelation/lab_4.R).  
+
+Todas as métricas acima podem ser calculadas com o pacote `igraph`.
+
+```{r}
+indegree <- degree(g, mode = "in")
+outdegree <- degree(g, mode = "out")
+incloseness <- closeness(g, mode = "in") %>% round(6)
+outcloseness <- closeness(g, mode = "out") %>% round(6)
+betweenness <- betweenness(g) %>% round(1)
+eigenvector <- eigen_centrality(g, directed = FALSE) %$% vector %>% round(3)
+
+df_sna <- data.frame(indegree, outdegree, incloseness, outcloseness, betweenness, eigenvector)
+# criar tabela interativa com pacote DT
+datatable(df_sna)
+```
+  
+  
+    
+# Conclusões:      
+        
+Com a tabela acima, podemos ter alguns aprendizados:  
+- Os pacotes de maior *indegree* são `NMF` e `Hmisc`, que curiosamente têm *outdegree* baixo. Isso significa que eles importam muitos pacotes mas não são importados por muitos;  
+- O pacote `Rcpp` tem os maiores níveis de *outdegree* e *autovetor*, o que mostra sua importância para o desenvolvimento de pacotes R.   
+- O fato do `ggplot2` apresentar o maior *betweenness* é curioso. Deixo o significado disso para interpretação do leitor.

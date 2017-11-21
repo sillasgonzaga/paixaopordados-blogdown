@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Series Temporais on Paixão por Dados</title>
+    <link>/tags/series-temporais/</link>
+    <description>Recent content in Series Temporais on Paixão por Dados</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2016. All rights reserved.</copyright>
+    <lastBuildDate>Sat, 07 Nov 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/series-temporais/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Correlação entre o dólar e ações de empresas do Índice Bovespa</title>
+      <link>/post/2015-11-07-dolar-indice-bovespa/</link>
+      <pubDate>Sat, 07 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2015-11-07-dolar-indice-bovespa/</guid>
+      <description>Introdução Este projeto surgiu de uma situação que eu estou lidando no momento: digamos que você deseja investir dinheiro para fazer uma viagem internacional durante suas férias daqui a 5 anos. Como os gastos da viagem serão indexados pelo dólar, não basta apenas escolher um bom investimento como títulos do tesouro ou outras modalidades de renda fixa. Por mais que os rendimentos deles possam apresentar enormes vantagens para seus investidores, eles precisam ser maiores que a valorização do dólar, caso contrário você correrá o risco de chegar no fim desse período de 5 anos sem o dinheiro necessário para realizar seu sonho.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -13,7 +13,7 @@ paginate = 10
 
 [params]
   # Shown in the home page
-  subtitle = "Sillas Teixeira Gonzaga: sillas.gonzaga@gmail.com"
+  subtitle = "Sillas Teixeira Gonzaga"
   brand = "Paixão por Dados"
   googleAnalytics = "Your Google Analytics tracking ID"
   disqus = "Your Disqus shortname"

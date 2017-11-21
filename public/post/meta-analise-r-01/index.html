@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.31" />
+
+  <title>Meta-análise R (1): Quais são os pacotes mais baixados? &middot; Paixão por Dados</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="/">Paixão por Dados</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://twitter.com/*" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
+    </li>
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://facebook.com/sillast" target="_blank"><i class="fa fa-facebook-square fa-fw"></i>Facebook</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://linkedin.com/in/sillasgonzaga" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/sillasgonzaga" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://stackoverflow.com/users/*" target="_blank"><i class="fa fa-stack-overflow fa-fw"></i>Stack Overflow</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2016. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>Meta-análise R (1): Quais são os pacotes mais baixados?</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>25 May 2016</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/sna">sna</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p>Este é o primeiro post de uma nova série sobre meta-análises de pacotes R. Com o pacote <code>miniCRAN</code> é possível baixar logs de downloads de pacotes de R por meio do <a href="https://cran.rstudio.com/">espelho (mirror) do RStudio do CRAN</a>. Cada linha nesses logs representa um download de um pacote por um usuário.</p>
+<p>O objetivo desta série é analisar os dados gerados por esses logs.</p>
+<p>Para este primeiro post, é mostrado:<br />
+- Como baixar os logs de downloads de pacotes do CRAN do RStudio de forma automatizada com o pacote <code>miniCRAN</code>;<br />
+- Como selecionar os pacotes R mais populares pelo <a href="https://pt.wikipedia.org/wiki/Princ%C3%ADpio_de_Pareto">Princípio de Pareto</a>;<br />
+- Os 20 pacotes mais populares;<br />
+- Um grafo de redes criado a partir dos pacotes mais populares filtrados e suas dependências.</p>
+<p>Os pacotes usados neste post são:</p>
+<pre class="r"><code>suppressMessages(library(dplyr)) # Usado para agregar os dados em pacotes
+suppressMessages(library(igraph)) # Usado para plotar o grafo criado pelo miniCRAN
+library(miniCRAN)
+library(installr)
+library(ggplot2) 
+library(ggthemes)
+library(scales)
+library(feather) # Usado para carregar arquivos</code></pre>
+<p>As linhas abaixo mostram como eu baixei os logs da mirror do RStudio do CRAN para o período entre 24 de Abril de 2016 a 24 de Maio a 2016. Os logs de cada dia desse período são salvos na pasta indicada no argumento <code>log_folder</code>, totalizando cerca de 250 MB. O dataframe gerado com o código gerado é enorme, por isso é recomendável removê-lo da memória após realizar os filtros desejados a partir dele.</p>
+<pre class="r"><code>temp_dir &lt;- download_RStudio_CRAN_data(START = &#39;2016-04-24&#39;,END = &#39;2016-05-24&#39;, log_folder=&quot;/home/sillas/R/data&quot;)
+df_cran &lt;- read_RStudio_CRAN_data(&quot;/home/sillas/R/data&quot;)
+write_feather(df_cran, &quot;/home/sillas/R/data/df_cran.feather&quot;)
+#save(df_cran, file = &quot;/home/sillas/R/data/df_cran.Rdata&quot;)
+#load(&quot;/home/sillas/R/data/df_cran.Rdata&quot;)
+
+# Agregar logs por pacote:
+
+# df_pkgs &lt;- df_cran %&gt;%
+#   group_by(package) %&gt;%
+#   summarise(downloads = n()) %&gt;%
+#   arrange(desc(downloads)) %&gt;%
+#   mutate(downloads_acum = cumsum(downloads))
+
+#rm(df_cran)</code></pre>
+<pre class="r"><code>df_pkgs &lt;- df_cran %&gt;%
+  group_by(package) %&gt;%
+  summarise(downloads = n()) %&gt;%
+  arrange(desc(downloads)) %&gt;%
+  mutate(downloads_acum = cumsum(downloads))
+
+write_feather(df_pkgs, &quot;/home/sillas/R/data/df_pkgs.feather&quot;)</code></pre>
+<p>Para não ter de carregar o objeto <code>df_cran</code> toda vez que eu renderizo o arquivo markdown deste post, salvei uma cópia em disco do dataframe <code>df_pkgs</code>. Para isso, usei o pacote <code>feather</code>, que torna os processos de escrita e leitura de arquivos no R <a href="https://blog.rstudio.org/2016/03/29/feather/">muito rápidas</a>.</p>
+<pre class="r"><code>df_pkgs &lt;- read_feather(&quot;/home/sillas/R/data/df_pkgs.feather&quot;)
+head(df_pkgs, 10)</code></pre>
+<pre><code>## # A tibble: 10 x 3
+##          package downloads downloads_acum
+##            &lt;chr&gt;     &lt;int&gt;          &lt;int&gt;
+##  1 RcppArmadillo    425443         425443
+##  2          Rcpp    285869         711312
+##  3       ggplot2    246536         957848
+##  4        digest    210749        1168597
+##  5       stringr    207837        1376434
+##  6          plyr    203498        1579932
+##  7       stringi    202125        1782057
+##  8      magrittr    195198        1977255
+##  9        scales    194719        2171974
+## 10      reshape2    182363        2354337</code></pre>
+<pre class="r"><code>dim(df_pkgs)</code></pre>
+<pre><code>## [1] 9236    3</code></pre>
+<p>Temos que 9236 diferentes pacotes foram baixados no período analisado.</p>
+<p>Para determinar a quantidade de pacotes a serem analisados como membros de uma rede, usei o Princípio de Pareto:</p>
+<pre class="r"><code>(total_downloads &lt;- sum(df_pkgs$downloads))</code></pre>
+<pre><code>## [1] 17491320</code></pre>
+<pre class="r"><code>(limite80 &lt;- total_downloads * 0.80)</code></pre>
+<pre><code>## [1] 13993056</code></pre>
+<pre class="r"><code>df_pkgs_pareto &lt;- filter(df_pkgs, downloads_acum &lt;= limite80)
+
+nrow(df_pkgs_pareto)</code></pre>
+<pre><code>## [1] 335</code></pre>
+<pre class="r"><code>100*nrow(df_pkgs_pareto)/nrow(df_pkgs)</code></pre>
+<pre><code>## [1] 3.627111</code></pre>
+<p>Temos que 335 pacotes, cerca de 3,6% do total, equivalem a 80% de todos os downloads de pacotes nos últimos 30 dias, o que mostra que a regra de Pareto é aplicável aqui e que, apesar de haver milhares de pacotes disponíveis no CRAN, a grande maioria deles não são baixados muitas vezes, como mostram as seguintes estatísticas:</p>
+<pre class="r"><code>summary(df_pkgs$downloads)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##       1     137     182    1894     315  425443</code></pre>
+<p>O número mediano de downloads por usuário é de 182, muito distante dos 10 mais populares mostrados acima.</p>
+<p>Os vinte pacotes mais baixados são:</p>
+<pre class="r"><code>df_pkgs_pareto %&gt;%
+  top_n(20, wt = downloads) %&gt;%
+  ggplot(aes(x = reorder(package, downloads), y = downloads)) +
+    geom_bar(stat = &quot;identity&quot;, fill = &quot;#014d64&quot;) +
+    labs(x = &quot;&quot;, y = &quot;Quantidade de downloads\n entre Abril e Maio/2016&quot;) +
+    scale_y_continuous(labels = comma) +
+    coord_flip() +
+    theme_economist() </code></pre>
+<p><img src="/post/2016-05-25-meta-analise-r-01_files/figure-html/top-20-pkgs-1.png" width="672" /></p>
+<p>Pessoalmente, não fiquei surpreso ao ver que, dos 6 pacotes mais baixados, 3 (ggplot2, stringr e plyr) fazem parte do Hadleyverse, ou seja, foram criados pelo gênio Hadley Wickham, que revolucionou o modo como o R é usado e é ídolo para muitos usuários da linguagem, como eu :).</p>
+<p>Após filtrar os pacotes que entrarão na análise, o pacote miniCRAN é usado para extrair as dependências de cada um e formar uma rede deles. A função <code>makeDepGraph</code> extrai as dependências dos pacotes indicados na função e cria um grafo. Por exemplo:</p>
+<pre class="r"><code>pkgDep(&quot;ggplot2&quot;)</code></pre>
+<pre><code>##  [1] &quot;ggplot2&quot;       &quot;digest&quot;        &quot;gtable&quot;        &quot;MASS&quot;         
+##  [5] &quot;plyr&quot;          &quot;reshape2&quot;      &quot;scales&quot;        &quot;tibble&quot;       
+##  [9] &quot;lazyeval&quot;      &quot;Rcpp&quot;          &quot;stringr&quot;       &quot;RColorBrewer&quot; 
+## [13] &quot;dichromat&quot;     &quot;munsell&quot;       &quot;labeling&quot;      &quot;R6&quot;           
+## [17] &quot;viridisLite&quot;   &quot;rlang&quot;         &quot;colorspace&quot;    &quot;stringi&quot;      
+## [21] &quot;magrittr&quot;      &quot;jsonlite&quot;      &quot;rex&quot;           &quot;httr&quot;         
+## [25] &quot;crayon&quot;        &quot;withr&quot;         &quot;mime&quot;          &quot;curl&quot;         
+## [29] &quot;openssl&quot;       &quot;lattice&quot;       &quot;survival&quot;      &quot;Formula&quot;      
+## [33] &quot;latticeExtra&quot;  &quot;cluster&quot;       &quot;rpart&quot;         &quot;nnet&quot;         
+## [37] &quot;acepack&quot;       &quot;foreign&quot;       &quot;gridExtra&quot;     &quot;data.table&quot;   
+## [41] &quot;htmlTable&quot;     &quot;viridis&quot;       &quot;htmltools&quot;     &quot;base64enc&quot;    
+## [45] &quot;knitr&quot;         &quot;checkmate&quot;     &quot;htmlwidgets&quot;   &quot;Matrix&quot;       
+## [49] &quot;backports&quot;     &quot;yaml&quot;          &quot;evaluate&quot;      &quot;highr&quot;        
+## [53] &quot;markdown&quot;      &quot;maps&quot;          &quot;sp&quot;            &quot;nlme&quot;         
+## [57] &quot;mvtnorm&quot;       &quot;TH.data&quot;       &quot;sandwich&quot;      &quot;codetools&quot;    
+## [61] &quot;zoo&quot;           &quot;praise&quot;        &quot;SparseM&quot;       &quot;MatrixModels&quot; 
+## [65] &quot;rprojroot&quot;     &quot;gdtools&quot;       &quot;BH&quot;            &quot;covr&quot;         
+## [69] &quot;ggplot2movies&quot; &quot;hexbin&quot;        &quot;Hmisc&quot;         &quot;mapproj&quot;      
+## [73] &quot;maptools&quot;      &quot;mgcv&quot;          &quot;multcomp&quot;      &quot;testthat&quot;     
+## [77] &quot;quantreg&quot;      &quot;rmarkdown&quot;     &quot;svglite&quot;</code></pre>
+<pre class="r"><code>makeDepGraph(&quot;ggplot2&quot;)</code></pre>
+<pre><code>## IGRAPH 8db7e3d DN-- 79 149 -- 
+## + attr: name (v/c), type (e/c)
+## + edges from 8db7e3d (vertex names):
+##  [1] magrittr    -&gt;rex          lazyeval    -&gt;rex         
+##  [3] jsonlite    -&gt;httr         mime        -&gt;httr        
+##  [5] curl        -&gt;httr         openssl     -&gt;httr        
+##  [7] R6          -&gt;httr         lattice     -&gt;withr       
+##  [9] lattice     -&gt;latticeExtra RColorBrewer-&gt;latticeExtra
+## [11] gtable      -&gt;gridExtra    stringr     -&gt;htmlTable   
+## [13] knitr       -&gt;htmlTable    magrittr    -&gt;htmlTable   
+## [15] checkmate   -&gt;htmlTable    htmlwidgets -&gt;htmlTable   
+## + ... omitted several edges</code></pre>
+<p>Assim, dos 335 pacotes mais populares, são gerados dois grafos: o da esquerda, com o método <code>plot</code> com as modificações nativas realizadas pelo <code>miniCRAN</code> e o da direita, feita pelo pacote <code>igraph</code>.</p>
+<pre class="r"><code>set.seed(123)
+list_pkgs &lt;- df_pkgs_pareto$package
+g &lt;- makeDepGraph(list_pkgs)
+
+par(mfrow=(c(1,2)))
+plot(g, vertex.size=10, cex=0.7, main = &quot;&quot;) # método plot.pkgDepGraph
+
+plot.igraph(g)</code></pre>
+<p><img src="/post/2016-05-25-meta-analise-r-01_files/figure-html/makeDepGraph-1.png" width="672" /></p>
+<p>Como pode-se ver, ambos os gráficos acima são visualmente poluídos e não dá para aprender muita coisa a partir deles. Além disso, a fim de analisar a centralidade de um pacote em um grafo, é importante saber o que o argumento <code>suggests</code> da função <code>makeDepGraph</code> significa. Segundo <a href="http://r-pkgs.had.co.nz/description.html">Hadley Wickham</a>, quando o pacote A sugere um outro pacote B, significa que o A <em>pode</em> usar o pacote B, mas ele não é requerido. Este pode ser usado para rodar testes, montar vignettes (tutoriais de pacotes), etc.</p>
+<p>Vamos, então, como fica o grafo dos 20 pacotes mais populares, com e sem <code>suggests</code>, com o pacote <code>ggplot2</code> destacado:</p>
+<pre class="r"><code>list_pkgs &lt;- df_pkgs$package[1:20]
+
+par(mfrow=(c(1,2)))
+g &lt;- makeDepGraph(list_pkgs, enhances = FALSE, suggests = FALSE)
+set.seed(123)
+plot(g, pkgsToHighlight = &quot;ggplot2&quot;,vertex.size=20, cex=1, main = &quot;Argumento suggests = FALSE&quot;, legendPosition = NULL)
+
+g &lt;- makeDepGraph(list_pkgs, enhances = FALSE, suggests = TRUE)
+set.seed(123)
+plot(g, pkgsToHighlight = &quot;ggplot2&quot;, vertex.size=20, cex=1, main = &quot;Argumento suggests = TRUE&quot;, legendPosition = c(-1, -1))</code></pre>
+<p><img src="/post/2016-05-25-meta-analise-r-01_files/figure-html/grafo%20top-20-1.png" width="672" /></p>
+<p>Agora sim já é possível aprender algumas coisas a partir do grafo. O sentido da linha vermelha indica que, por exemplo, o <code>ggplot2</code> importa vários pacotes(<code>digest</code>, <code>gtable</code>, <code>MASS</code>, <code>reshape2</code>, <code>plyr</code> e <code>scales</code>), mas não é importado por nenhum outro. Já o grafo da direita mostra que o <code>ggplot2</code> sugere muitos outros, o que aumenta sua centralidade na rede.</p>
+<p>Conclusão: para realizar análises de centralidade de pacotes R, é necessário deixar o argumento <code>suggests</code> como <code>FALSE</code>.</p>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="/post/transparencia-07/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="/post/transparencia-07/">Transparência (7): Os famosos Cargos Comissionados</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="next">
+      <a href="/post/meta-analise-r-02/">Meta-análise R (2): Analisando Pacotes R como indivíduos em uma rede social</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="/post/meta-analise-r-02/"><i class="fa fa-chevron-right"></i></a>
+    
+  </div>
+</div>
+
+
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'Your Disqus shortname';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</div>
+
+</div>
+</div>
+<script src="/js/ui.js"></script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'Your Google Analytics tracking ID', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+</body>
+</html>
+

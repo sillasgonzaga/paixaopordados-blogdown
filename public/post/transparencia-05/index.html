@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.31" />
+
+  <title>Transparência (5): Trabalhando com datas &middot; Paixão por Dados</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="/">Paixão por Dados</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://twitter.com/*" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
+    </li>
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://facebook.com/sillast" target="_blank"><i class="fa fa-facebook-square fa-fw"></i>Facebook</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://linkedin.com/in/sillasgonzaga" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/sillasgonzaga" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://stackoverflow.com/users/*" target="_blank"><i class="fa fa-stack-overflow fa-fw"></i>Stack Overflow</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2016. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>Transparência (5): Trabalhando com datas</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>18 Jan 2016</time>
+  </div>
+
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/transparencia">transparencia</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="/tags/servidores-publicos">servidores publicos</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  
+
+<h1 id="transparência-5-trabalhando-com-datas">Transparência (5): Trabalhando com datas</h1>
+
+<p>O dataset do Portal da Transparência traz três colunas relacionadas com datas: <em>DATA_INGRESSO_CARGOFUNCAO</em>, <em>DATA_INGRESSO_ORGAO</em> e <em>DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO</em>, as quais geram umas análises curiosas, principalmente se relacionadas com a variável salário.</p>
+
+<pre><code class="language-r">library(treemap)
+library(dplyr)
+library(ggplot2)
+library(ggrepel)
+library(ggthemes)
+library(lubridate)
+df &lt;- read.csv2(&quot;/home/sillas/R/data/transparenciaComSalarios.csv&quot;, stringsAsFactors = FALSE, fileEncoding = &quot;ISO-8859-15&quot;)
+</code></pre>
+
+<p>Primeiro, as datas vêm neste formato:</p>
+
+<pre><code class="language-r">df %&gt;%
+  select(DATA_INGRESSO_CARGOFUNCAO, DATA_INGRESSO_ORGAO, DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO) %&gt;%
+  head()
+</code></pre>
+
+<pre><code class="language-r">##   DATA_INGRESSO_CARGOFUNCAO DATA_INGRESSO_ORGAO
+## 1                01/07/2006          01/01/1984
+## 2                22/10/2014          20/10/2014
+## 3                      &lt;NA&gt;          01/08/2015
+## 4                30/11/2014          03/09/2014
+## 5                19/05/2010          19/05/2010
+## 6                02/02/2009          30/12/2008
+##   DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO
+## 1                           01/06/1984
+## 2                           17/02/2010
+## 3                           01/08/2015
+## 4                           28/06/2006
+## 5                           19/05/2010
+## 6                           30/12/2008
+</code></pre>
+
+<p>O R, nativamente, não reconhece este formato como data e sim como texto. O formato de datas que o R aceita é o americano, YYYYMMDD. Felizmente, o package <em>lubridate</em> torna muito fácil converter as datas:</p>
+
+<pre><code class="language-r">df &lt;- df %&gt;%
+  mutate(dataCargo = dmy(DATA_INGRESSO_CARGOFUNCAO),
+         dataOrgao = dmy(DATA_INGRESSO_ORGAO),
+         dataServico = dmy(DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO))
+</code></pre>
+
+<p>Essas três variáveis nos dão o dia em que os servidores começaram a trabalhar. Para termos a quantidade de tempo que se passou desde então, criei duas funções que fazem esse cálculo:</p>
+
+<pre><code class="language-r">CalcMeses &lt;- function(t0, t=today()) {
+    x &lt;- interval(t0, t)
+    x &lt;- as.period(x)
+    x &lt;- year(x)*12 + month(x)
+    return(x)
+}
+
+CalcAnos &lt;- function(t0, t=today()) {
+    x &lt;- interval(t0, t)
+    x &lt;- as.period(x)
+    x &lt;- ceiling(year(x) + month(x)/12)
+    return(x)
+}
+
+df$meses.no.cargo &lt;- CalcMeses(df$dataCargo)
+df$meses.no.orgao &lt;- CalcMeses(df$dataOrgao)
+df$meses.como.servidor &lt;- CalcMeses(df$dataServico)
+
+df$anos.no.cargo &lt;- CalcAnos(df$dataCargo)
+df$anos.no.orgao &lt;- CalcAnos(df$dataOrgao)
+df$anos.como.servidor &lt;- CalcAnos(df$dataServico)
+</code></pre>
+
+<p>Agora podemos começar a fazer algumas perguntas aos nossos dados:</p>
+
+<h3 id="1-qual-o-tempo-médio-em-meses-dos-servidores-no-brasil">1. Qual o tempo médio (em meses) dos servidores no Brasil?</h3>
+
+<pre><code class="language-r">ggplot(df, aes(x=anos.como.servidor)) +
+  geom_histogram(binwidth=1) +
+  scale_x_continuous(breaks=c(1, seq(5, max(df$anos.como.servidor, na.rm=T)+1, by=5))) +
+  theme_bw() +
+  labs(title = &quot;Tempo em que os servidores federais estão trabalhando no Estado&quot;,
+       x = &quot;Tempo no serviço público em anos&quot;, y = &quot;Número de servidores&quot;)
+</code></pre>
+
+<p><img src="/figs/transparenciaParte5/unnamed-chunk-4-1.png" alt="center" /></p>
+
+<p><strong>Observações</strong>:<br />
+* A maioria dos servidores tomou posse há 3 anos.<br />
+* Existe um número absurdamente grande de servidores com mais de 30 anos no serviço público. Na verdade, é mais comum encontrar um servidor que tenha mais de 30 anos de serviço do que entre 15 a 25.<br />
+* Existem alguns outliers que têm mais de 55 anos que causaram a distorção do histograma.</p>
+
+<p>Separado por região e excluindo os outliers:</p>
+
+<pre><code class="language-r">escala = c(1, seq(5, max(df$anos.como.servidor, na.rm=T)+1, by=5))
+
+ggplot(subset(df, anos.como.servidor &lt;= 50), aes(x=anos.como.servidor)) +
+  geom_histogram(binwidth=1) +
+  scale_x_continuous(breaks = escala) +
+  facet_grid(REGIAO~., scales=&quot;free&quot;) +
+  theme_bw() +
+  labs(title = &quot;Tempo em que os servidores federais estão trabalhando no Estado&quot;,
+       x = &quot;Tempo no serviço público em anos&quot;, y = &quot;Número de servidores&quot;)
+</code></pre>
+
+<p><img src="/figs/transparenciaParte5/unnamed-chunk-5-1.png" alt="center" /></p>
+
+<p>Fica muito fácil detectar a anomalia nos dados: o número de servidores que são funcionários do governo há mais de 35 anos na região Norte é assustador. São mais de 6000, muito mais do que em qualquer região. Na verdade, essa é a faixa de idade com mais pessoas dessa região.</p>
+
+<p>Separado por região, mas mostrado por boxplots:</p>
+
+<pre><code class="language-r">#Boxplot
+# Regiões
+ggplot(data=df, aes(x=REGIAO, y=anos.como.servidor, fill=REGIAO)) +
+    geom_boxplot() +
+    scale_fill_brewer(palette=&quot;Set1&quot;) +
+    guides(fill=FALSE) +
+    scale_y_continuous(breaks=escala) +
+    labs(title = &quot;Distribuição do tempo no serviço público de acordo com a região&quot;, x = &quot;Região&quot;, y = &quot;Anos como servidor&quot;) +
+    theme_bw()
+</code></pre>
+
+<p><img src="/figs/transparenciaParte5/unnamed-chunk-6-1.png" alt="center" /></p>
+
+<p>Depois do gráfico acima, acredito que não restam mais dúvidas que o Boxplot é uma ferramenta muito superior ao histograma quando o objetivo é comparar a distribuição de uma mesma variável numérica de acordo com outra variável categórica. Aqui, é muito mais fácil detectar que existe algo muito estranho no Norte: Os servidores de lá têm, em média, 25 anos de serviço público. A diferença para as outras regiões é colossal.</p>
+
+<p>As diferenças ficam ainda mais gritantes quando se faz a estratificação por estado. A linha verde horizontal representa a mediana geral do tempo em que as pessoas do dataset estão trabalhando para o governo:</p>
+
+<pre><code class="language-r">#: Agrupar estados por região
+ 
+#Vetor de cores:
+coresEstados &lt;- c(
+  #Norte
+  &quot;AM&quot; = &quot;#8dd3c7&quot;, &quot;AP&quot;=&quot;#ffffb3&quot;, &quot;AC&quot; = &quot;#bebada&quot;,
+  &quot;PA&quot; = &quot;#fb8072&quot;, &quot;RO&quot; = &quot;#80b1d3&quot;, &quot;RR&quot; = &quot;#fdb462&quot;,
+  #Nordeste
+  &quot;AL&quot; = &quot;#8dd3c7&quot;, &quot;BA&quot; = &quot;#ffffb3&quot;, &quot;CE&quot; = &quot;#bebada&quot;,
+  &quot;MA&quot; = &quot;#fb8072&quot;, &quot;PB&quot; = &quot;#80b1d3&quot;, &quot;PE&quot; = &quot;#fdb462&quot;,
+  &quot;PI&quot; = &quot;#b3de69&quot;, &quot;RN&quot; = &quot;#fccde5&quot;, &quot;SE&quot; = &quot;#d9d9d9&quot;, &quot;TO&quot; = &quot;#bc80bd&quot;,
+  #CO
+  &quot;DF&quot; = &quot;#8dd3c7&quot;, &quot;GO&quot; = &quot;#ffffb3&quot;, &quot;MS&quot; = &quot;#bebada&quot;, &quot;MT&quot; = &quot;#fb8072&quot;,
+  #SUDESTE
+  &quot;SP&quot; = &quot;#8dd3c7&quot;, &quot;RJ&quot; = &quot;#ffffb3&quot;, &quot;ES&quot; = &quot;#bebada&quot;, &quot;MG&quot; = &quot;#fb8072&quot;,
+  #SUL
+  &quot;PR&quot; = &quot;#b3de69&quot;, &quot;SC&quot; = &quot;#fccde5&quot;, &quot;RS&quot; = &quot;#d9d9d9&quot;
+  )
+
+
+ggplot(data=df, aes(x=UF_EXERCICIO, y=anos.como.servidor, fill=UF_EXERCICIO)) +
+  geom_boxplot() +
+  facet_grid(. ~ REGIAO, scales=&quot;free&quot;) +
+  scale_y_continuous(breaks=escala) +
+  labs(title=&quot;Tempo médio dos servidores no\n funcionalismo público por estado&quot;, x=&quot;Estado&quot;, y=&quot;Tempo como servidor em anos&quot;) +
+  scale_fill_manual(values= coresEstados) +
+  guides(fill=FALSE) + 
+  geom_hline(aes(yintercept = median(df$anos.como.servidor, na.rm = TRUE)), color = &quot;green&quot;) +
+  theme(axis.text.x=element_text(angle=45)) +
+  theme_bw()
+</code></pre>
+
+<p><img src="/figs/transparenciaParte5/unnamed-chunk-7-1.png" alt="center" /></p>
+
+<p><strong>Parem e percebam o quão absurda é a situação em Amapá</strong>, que merece dois comentários a parte:<br />
+* A mediana é igual a cerca de 37 anos. Na verdade, a distribuição é tão bagunçada que a mediana deixa de fazer sentido aqui nesse contexto.<br />
+* Os servidores com menos de 11 anos, que é a mediana geral, são considerados anomalia no estado.<br />
+* Em comparação, Tocantins parece ser uma situação oposta ao estado do Norte.</p>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="/post/transparencia-04/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="/post/transparencia-04/">Transparência(4): Análise de salários usando Treemaps</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="next">
+      <a href="/post/transparencia-06/">Transparência (6): Quem são os 1% do funcionalismo público?</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="/post/transparencia-06/"><i class="fa fa-chevron-right"></i></a>
+    
+  </div>
+</div>
+
+
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'Your Disqus shortname';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</div>
+
+</div>
+</div>
+<script src="/js/ui.js"></script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'Your Google Analytics tracking ID', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+</body>
+</html>
+

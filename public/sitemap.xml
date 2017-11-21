@@ -3,13 +3,53 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/post/creating-a-new-theme/</loc>
-    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
+    <loc>/post/meta-analise-r-02/</loc>
+    <lastmod>2016-05-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/migrate-from-jekyll/</loc>
-    <lastmod>2014-03-10T00:00:00+00:00</lastmod>
+    <loc>/post/meta-analise-r-01/</loc>
+    <lastmod>2016-05-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/transparencia-07/</loc>
+    <lastmod>2016-02-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/transparencia-06/</loc>
+    <lastmod>2016-01-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/transparencia-05/</loc>
+    <lastmod>2016-01-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/transparencia-04/</loc>
+    <lastmod>2016-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/transparencia-03/</loc>
+    <lastmod>2016-01-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/transparencia-2-qual-o-sal%C3%A1rio-m%C3%A9dio-dos-servidores-federais/</loc>
+    <lastmod>2016-01-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/transparencia-01/</loc>
+    <lastmod>2015-11-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2015-11-07-dolar-indice-bovespa/</loc>
+    <lastmod>2015-11-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -28,42 +68,8 @@
   </url>
   
   <url>
-    <loc>/post/goisforlovers/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/hugoisforlovers/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/development/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/go/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/golang/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/hugo/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/</loc>
-    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
+    <lastmod>2016-05-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -75,7 +81,7 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
+    <lastmod>2016-05-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -92,25 +98,37 @@
   </url>
   
   <url>
+    <loc>/tags/series-temporais/</loc>
+    <lastmod>2015-11-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/servidores-publicos/</loc>
+    <lastmod>2016-02-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/sna/</loc>
+    <lastmod>2016-05-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/templates/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/themes/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+    <lastmod>2015-07-23T21:13:14-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/topics/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/transparencia/</loc>
+    <lastmod>2016-02-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
