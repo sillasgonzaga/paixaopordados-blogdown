@@ -2,7 +2,7 @@
 title: 'O Sensacionalista e Text Mining: Análise de sentimento usando o lexiconPT'
 author: ''
 date: '2017-09-23'
-slug: o-sensacionalista-e-text-mining-análise-de-sentimento-usando-o-lexiconpt
+slug: o-sensacionalista-e-text-mining
 categories:
   - R
 tags:
@@ -12,7 +12,7 @@ tags:
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.width = 14)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
 
 De volta à ativa no blog!
@@ -218,7 +218,7 @@ head(df_comments_unnested)
 O gráfico de pontos abaixo mostra a distribuição de polaridade para cada léxico:
 
 ```{r}
-p <- df_comments_unnested %>% 
+df_comments_unnested %>% 
   ggplot(aes(x = comment_sentiment_op, y = comment_sentiment_lex)) +
     geom_point(aes(color = n_words)) + 
     scale_color_continuous(low = "green", high = "red") +
@@ -227,7 +227,6 @@ p <- df_comments_unnested %>%
     geom_vline(xintercept = 0, linetype = "dashed") +
     geom_hline(yintercept = 0, linetype = "dashed")
 
-p
 
 ```
 

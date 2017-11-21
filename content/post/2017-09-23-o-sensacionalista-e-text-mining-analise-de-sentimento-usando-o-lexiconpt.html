@@ -2,7 +2,7 @@
 title: 'O Sensacionalista e Text Mining: Análise de sentimento usando o lexiconPT'
 author: ''
 date: '2017-09-23'
-slug: o-sensacionalista-e-text-mining-análise-de-sentimento-usando-o-lexiconpt
+slug: o-sensacionalista-e-text-mining
 categories:
   - R
 tags:
@@ -264,7 +264,7 @@ head(df_comments_unnested)</code></pre>
     #geom_smooth(method = &quot;lm&quot;) +
     geom_vline(xintercept = 0, linetype = &quot;dashed&quot;) +
     geom_hline(yintercept = 0, linetype = &quot;dashed&quot;)</code></pre>
-<p><img src="2017-09-23-o-sensacionalista-e-text-mining-an%C3%A1lise-de-sentimento-usando-o-lexiconpt_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="/post/2017-09-23-o-sensacionalista-e-text-mining-analise-de-sentimento-usando-o-lexiconpt_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>Existem pelo menos três outliers nos dados, todos causados pela grande quantidade de palavras do comentário, o que pode ser um indício de que simplesmente somar a polaridade de cada palavra do comentário pode não ser um bom método. Outra informação revelada pelo gráfico é que existem palavras que possuem sentimentos diferentes de acordo com o léxico usado. Ter isso em mente é fundamental para a análise.</p>
 <p>Após remover os outliers, já é possível descobrir quais os comentários mais positivos e mais negativos da amostra coletada:</p>
 <pre class="r"><code>df_comments_unnested %&lt;&gt;% filter(between(comment_sentiment_op, -10, 10))
@@ -436,7 +436,7 @@ head(df_comments_wide) %&gt;% knitr::kable()</code></pre>
     scale_y_continuous(breaks = seq(-60, 60, 20), limits = c(-60, 60)) +
     labs(x = &quot;Índice da publicação&quot;, y = &quot;Sentimento&quot;,
          fill = NULL, title = &quot;Evolução do sentimento em publicações do Sensacionalista&quot;)</code></pre>
-<p><img src="2017-09-23-o-sensacionalista-e-text-mining-an%C3%A1lise-de-sentimento-usando-o-lexiconpt_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="/post/2017-09-23-o-sensacionalista-e-text-mining-analise-de-sentimento-usando-o-lexiconpt_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>Uma possível interpretação do gráfico é que a série temporal não possui uma clara tendência, apesar de os picos de negatividade serem bem mais frequentes que os de positividade.</p>
 <p>Outra análise que dá para fazer é investigar o nível de sentimento de comentários associados a determinadas palavras. Por exemplo, o quão negativo costuma ser um comentário quando ele menciona a palavra <strong>bolsonaro</strong>?</p>
 <pre class="r"><code># qual o sentimento mais associado a palavras em especifico
@@ -458,7 +458,7 @@ df_comments %&gt;%
   summarise(sentiment = mean(sentiment)) %&gt;% 
   ggplot(aes(x = termo, y = sentiment)) + 
     geom_col(fill = &quot;#C10534&quot;)</code></pre>
-<p><img src="2017-09-23-o-sensacionalista-e-text-mining-an%C3%A1lise-de-sentimento-usando-o-lexiconpt_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="/post/2017-09-23-o-sensacionalista-e-text-mining-analise-de-sentimento-usando-o-lexiconpt_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>Temer e Dilma, os dois presidentes com os piores níveis de popularidade de República, estarem associados a comentários positivos é bem surpreendente. Na verdade, isso ocorre porque a própria palavra <strong>temer</strong> possui polaridade positiva. Para consultar a polaridade de uma palavra nos datasets presentes no <code>lexiconPT</code>, use a função <code>lexiconPT::get_word_sentiment()</code>.</p>
 <pre class="r"><code>get_word_sentiment(&quot;temer&quot;)</code></pre>
 <pre><code>## $oplexicon_v2.1

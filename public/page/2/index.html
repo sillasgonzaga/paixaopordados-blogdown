@@ -111,10 +111,6 @@
     
 
     
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://twitter.com/*" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
-    </li>
-    
 
     
 
@@ -177,10 +173,6 @@
     
 
     
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://stackoverflow.com/users/*" target="_blank"><i class="fa fa-stack-overflow fa-fw"></i>Stack Overflow</a>
-    </li>
-    
 
     
 
@@ -226,6 +218,52 @@
 </div>
 
 <div class="content">
+  
+    <article>
+  <header>
+    <h2><a href="/post/olx01/">Como usar o R para escolher um lugar para morar(1) - Web Scraping e Data Cleaning</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>17 Nov 2016</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/web-scraping">web scraping</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="/tags/olx">olx</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  Introdução Imagine-se na seguinte situação: você foi convidado a se mudar para a cidade do Rio de Janeiro a trabalho e precisa procurar um lugar para morar. Pessoas normais resolveriam esse problema pesquisando preços de apartamentos ou quartos para alugar em sites como OLX ou AirBNB. Mas como alguém fascinado em programação e análise resolveria?
+Nesta série de posts, mostro como o R pode ser usado tomar a decisão sobre escolher um apartamento ou quarto para alugar.
+  </p>
+
+  
+  <footer>
+    <a href="/post/olx01/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
   
     <article>
   <header>
@@ -651,53 +689,6 @@ df %&gt;% select(DATA_INGRESSO_CARGOFUNCAO, DATA_INGRESSO_ORGAO, DATA_DIPLOMA_IN
   
   <footer>
     <a href="/post/transparencia-05/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="/post/transparencia-04/">Transparência(4): Análise de salários usando Treemaps</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>17 Jan 2016</time>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="/tags/transparencia">transparencia</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="/tags/servidores-publicos">servidores publicos</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  Transparência(4): Análise de salários usando Treemaps library(treemap) library(dplyr) library(ggplot2) library(ggrepel) library(ggthemes) df &lt;- read.csv2(&quot;/home/sillas/R/data/transparenciaComSalarios.csv&quot;, stringsAsFactors = FALSE, fileEncoding = &quot;ISO-8859-15&quot;)  Para este post, continuaremos analisando os salários dos servidores federais, mas agora usando uma visualização chamada Treemap ou Mapa de árvores.
-Por exemplo, o gráfico abaixo compara diferentes órgãos públicos de acordo com a quantidade de servidores e o salário médio dos mesmos.
-aggSetor &lt;-df %&gt;% group_by(ORG_LOTACAO) %&gt;% summarise(quantidade = n(), salarioMedio = median(SALARIO)) aggSetor$escala &lt;- scale(aggSetor$salarioMedio) #necessário para criar valores negativos para deixar as disparidades mais evidentes x &lt;- treemap(aggSetor, index = &quot;ORG_LOTACAO&quot;, vSize = &quot;quantidade&quot;, vColor = &quot;escala&quot;, type = &quot;value&quot;, palette = &quot;-RdGy&quot;, lowerbound.
-  </p>
-
-  
-  <footer>
-    <a href="/post/transparencia-04/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>
