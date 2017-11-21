@@ -1,0 +1,375 @@
+---
+title: 'O Sensacionalista e Text Mining: Análise de sentimento usando o lexiconPT'
+author: ''
+date: '2017-09-23'
+slug: o-sensacionalista-e-text-mining-análise-de-sentimento-usando-o-lexiconpt
+categories:
+  - R
+tags:
+  - text mining
+  - lexiconPT
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.width = 14)
+```
+
+De volta à ativa no blog!
+
+Recentemente, quando precisei fazer pela primeira vez algum tipo de análise em cima de textos (o chamado Text Mining ou Mineração de Texto) em Português, senti falta de ter um acesso fácil a um léxico na linguagem. O R já tem a sua disposição vários recursos para quem quer fazer Text Mining em inglês, como os pacotes `tokenizer`, `tidytext`, `tm` e `lexicon`, além de vários blog posts sobre Sentiment Analysis que você encontra no R-bloggers. Contudo, existe uma séria escassez de material de referência na língua portuguesa.
+
+O pacote [`lexiconPT`](https://github.com/sillasgonzaga/lexiconPT), que eu lancei em 20/09/2017 no Github (e em breve no CRAN também) nasceu para resolver parte desse problema. Até o momento, o `lexiconPT` possui três datasets de léxicos: o OpLexicon (versões 2.1 e 3.0) e o SentiLex-PT02. Não pretendo (nem tenho competência para tal, pois sou iniciante em Text Mining - sem falsa modéstia) destrinchar como cada um deles funciona e em quê eles diferem. Para isso, sugiro ler as referências citadas na documentação dos próprios datasets (ex.: `help("oplexicon_v2.1")`).
+
+Mas ter o léxico em mãos só resolve parte dos problemas: ainda faltam os textos em si para serem analisados. Algumas ideias de datasets poderiam ser notícias, letras de músicas, livros (tem vários em Domínio Público), tweets, etc. Para demonstrar um simples uso do pacote, eu decidi por analisar comentários feitos por usuários na página do [Sensacionalista](https://www.facebook.com/sensacionalista/), uma das mais populares do Facebook. A coleta dos dados foi relativamente fácil graças ao pacote `Rfacebook`.
+
+Com o pacote `lexiconPT`, podemos responder a perguntas como:  
+* Os comentários no Sensacionalista são mais negativos ou positivos?  
+* Qual termo está mais associado a comentários negativos? PT ou PSDB? Temer ou Dilma? Bolsonaro ou Lula?  
+* Qual o comentário feito por um usuário mais negativo da história do Sensacionalista (dentro da amostra coletada)? E qual o mais positivo?  
+
+Vamos ao código.
+
+
+## Coleta dos dados
+
+```{r}
+library(Rfacebook) # usado para extrair dados do facebook
+library(tidyverse) # pq nao da pra viver sem
+library(ggExtra)
+library(magrittr) # <3
+library(lubridate)
+library(stringr) # essencial para trabalhar com textos
+library(tidytext) # um dos melhores pacotes para text mining
+library(lexiconPT)
+```
+
+Este post só foi possível graças ao `Rfacebook`. Para aprender como ele funciona, leia a documentação presente em seu [repo](https://github.com/pablobarbera/Rfacebook) no Github. Para este primeiro, primeiro usei a função `getPage()` para extrair as últimas 5000 publicações do Sensacionalista.
+
+```{r, eval=FALSE}
+# token que eu gerei com minha API key.
+# Essa parte vc obviamente nao vai conseguir reproduzir.
+# leia o README do Rfacebook para saber como obter seu token
+fb_token <- readRDS("/home/sillas/R/data/facebook_token.Rds") 
+
+# demora cerca de 10 min pra rodar:
+pg <- getPage("sensacionalista", fb_token, n = 5000)
+
+
+```
+
+```{r, include=FALSE}
+pg <- readRDS("/home/sillas/R/data/getPageSensacionalista.Rds")
+
+```
+
+É necessário corrigir o encoding do corpo da publicação para o R parar de reclamar sobre isso:
+
+```{r}
+# corrigir encoding do texto do post
+pg$message %<>% iconv(to = "ASCII//TRANSLIT")
+# remover emojis
+pg$message %<>% iconv(sub="", 'UTF-8', 'ASCII')
+# visualizar dataframe
+glimpse(pg)
+```
+
+Só esse dataset por si só já renderia (e renderá) análises interessantes, mas vou as deixar para um futuro post para não deixar este aqui grande demais.
+
+A coluna `id` é a que usaremos como referência como input na função `getPost()` para extrair os comentários dos usuários na publicação. Infelizmente, a API do Facebook apresenta uma certa instabilidade para requests de dados muito grandes. Em várias tentativas que fiz, o máximo de dados que consegui extrair foram 200 comentários de 500 publicações da página. Portanto, vou usar esses parâmetros:
+
+```{r, eval = FALSE}
+# roda em cerca de 8 minutos:
+df_posts <- pg$id[1:500] %>% map(getPost, fb_token, n = 200, comments = TRUE, likes = FALSE,
+                            reactions = FALSE)
+
+```
+
+```{r, include = FALSE}
+df_posts <- readRDS("/home/sillas/R/data/posts_sensacionalista.Rds")
+```
+
+A função `getPost()` fornece o seguinte output:
+
+```{r, error = TRUE}
+str(df_posts)
+```
+
+Para extrair os dataframes relativos aos comentários e aos metadados das publicações, o `purrr` é uma mão na roda: 
+
+```{r}
+
+df_comments <- df_posts %>% map_df("comments")
+df_posts <- df_posts %>% map_df("post")
+# repetir procedimento de consertar o encoding
+df_comments$message %<>% iconv(to = "ASCII//TRANSLIT") %>% iconv(sub="", 'UTF-8', 'ASCII')
+df_posts$message %<>% iconv(to = "ASCII//TRANSLIT") %>% iconv(sub="", 'UTF-8', 'ASCII')
+# por questoes de anonimizacao, vou remover os dados pessoais referentes aos usuarios
+df_comments %<>% select(-from_id, -from_name)
+
+# olhar estrutura dos dataframes
+str(df_comments)
+str(df_posts)
+
+
+```
+
+Só pode ser trollagem da API do Facebook retornar aquela mensagem logo no topo do dataframe, mas enfim.
+
+O dataframe `df_comments`, o objeto da nossa análise, não possui alguns dados que serão valiosos para a análise, como o link para o artigo no site do Sensacionalista. Por isso, vamos um `left_join` com o `df_posts`.
+
+Percebeu que nas colunas `df_comments$id` e `df_posts$id` existe um traço separando dois conjuntos numéricos? Por alguma razão que beira a imbecilidade, não é possível combinar imediatamente essas duas colunas para formatar um dataframe só com o `left_join`. A sintaxe de identificação do Facebook funciona assim: O post é identificado `IDPAGINA_IDPUBLICAÇÃO` e o comentário na publicação é identificado como `IDPUBLICAÇÃO_IDCOMENTÁRIO`. Ou seja, para poder juntar os dois dataframes, vamos ter que combinar a sequência númerica à esquerda do underline (acho que esse traço tem algum outro nome, mas não me lembro no momento) em `df_comments$id` e à direita em `df_posts$id`.
+
+```{r}
+# consertar colunas de id: no df_comments, deixar à esquerda do underline. no df_posts, deixar à direita.
+df_comments$id_post_real <- df_comments$id
+df_comments$id %<>% str_replace_all("_.*", "")
+df_posts$id %<>% str_replace_all(".*_", "")
+
+# juntar as duas tabelas
+df_posts %<>% dplyr::select(id, post_message = message, horario_post = created_time,
+                     type, post_comments_count = comments_count, post_link = link,
+                     post_type = type, post_likes_count = likes_count)
+df_comments %<>% rename(horario_comentario = created_time)
+
+df_comments %<>% left_join(df_posts, by = "id")
+# remover NAs (nao sao muitos casos)
+df_comments %<>% filter(!is.na(horario_post))
+# converter colunas de horario
+df_comments$horario_comentario %<>% str_sub(1, 19) %>% str_replace_all("T", "") %>% ymd_hms()
+df_comments$horario_post %<>% str_sub(1, 19) %>% str_replace_all("T", "") %>% ymd_hms()
+# Como ficou:
+glimpse(df_comments)
+```
+
+## Uso do lexiconPT
+
+Agora temos o dataset em mãos para usar o `lexiconPT`. Acho muito importante ressaltar que Text Mining é uma atividade razoavelmente complexa que envolve uma extensa etapa de limpeza e tratamento de dados, como remover (ou não) acentos e corrigir palavras com letras duplicadas (trist*ee*) ou erros gramaticais (infelismente).  Para fins de simplicidade, não vou me ater muito a esses detalhes e pular direto para a utilização dos léxicos portugueses e apresentação dos resultados.
+
+```{r}
+# carregar datasets
+data("oplexicon_v3.0")
+data("sentiLex_lem_PT02")
+
+op30 <- oplexicon_v3.0
+sent <- sentiLex_lem_PT02
+
+glimpse(op30)
+glimpse(sent)
+
+```
+
+Ambos os datasets possuem colunas de polaridade de sentimento, que é a que usaremos para quantificar o quão negativo ou positivo é um comentário.
+
+```{r}
+# criar ID unica para cada comentario
+df_comments %<>% mutate(comment_id = row_number())
+# usar funçao do tidytext para criar uma linha para cada palavra de um comentario
+df_comments_unnested <- df_comments %>% unnest_tokens(term, message)
+
+df_comments_unnested %>%
+  select(comment_id, term) %>%
+  head(20)
+
+```
+
+*De novo esse comentário... *
+
+Enfim, veja que foi criada uma linha para cada palavra presetnte no comentário. Será essa nova coluna `term` que usaremos como referência para quantificar o sentimento de um comentário.
+
+```{r}
+df_comments_unnested %>% 
+  left_join(op30, by = "term") %>% 
+  left_join(sent %>% select(term, lex_polarity = polarity), by = "term") %>% 
+  select(comment_id, term, polarity, lex_polarity) %>% 
+  head(10)
+
+```
+
+A amostra acima mostra que nem toads as palavras possuem uma polaridade registrada nos léxicos. Não só isso, mas algumas palavras (como **faltar**, **ligar** e **levar**) estão presentes no OpLexicon mas não no SentiLex. A polaridade 1 em faltar significa que, de acordo com esse léxico, a palavra está associada a comentários positivos. Saber essa diferença é fundamental, pois a escolha do léxico pode ter uma grande influência nos resultados da análise.
+
+Vamos então manter no dataframe apenas as palavras que possuem polaridade tanto no OpLexicon como no SentiLex:
+
+```{r}
+
+df_comments_unnested <- df_comments_unnested %>% 
+  inner_join(op30, by = "term") %>% 
+  inner_join(sent %>% select(term, lex_polarity = polarity), by = "term") %>% 
+  group_by(comment_id) %>% 
+  summarise(
+    comment_sentiment_op = sum(polarity),
+    comment_sentiment_lex = sum(lex_polarity),
+    n_words = n()
+    ) %>% 
+  ungroup() %>% 
+  rowwise() %>% 
+  mutate(
+    most_neg = min(comment_sentiment_lex, comment_sentiment_op),
+    most_pos = max(comment_sentiment_lex, comment_sentiment_op)
+  )
+
+head(df_comments_unnested)
+
+```
+
+
+## Apresentação dos resultados
+
+O gráfico de pontos abaixo mostra a distribuição de polaridade para cada léxico:
+
+```{r}
+p <- df_comments_unnested %>% 
+  ggplot(aes(x = comment_sentiment_op, y = comment_sentiment_lex)) +
+    geom_point(aes(color = n_words)) + 
+    scale_color_continuous(low = "green", high = "red") +
+    labs(x = "Polaridade no OpLexicon", y = "Polaridade no SentiLex") +
+    #geom_smooth(method = "lm") +
+    geom_vline(xintercept = 0, linetype = "dashed") +
+    geom_hline(yintercept = 0, linetype = "dashed")
+
+p
+
+```
+
+
+Existem pelo menos três outliers nos dados, todos causados pela grande quantidade de palavras do comentário, o que pode ser um indício de que simplesmente somar a polaridade de cada palavra do comentário pode não ser um bom método.  Outra informação revelada pelo gráfico é que existem palavras que possuem sentimentos diferentes de acordo com o léxico usado. Ter isso em mente é fundamental para a análise.
+
+Após remover os outliers, já é possível descobrir quais os comentários mais positivos e mais negativos da amostra coletada:
+
+
+```{r}
+df_comments_unnested %<>% filter(between(comment_sentiment_op, -10, 10))
+
+# comentario mais positivo da historia do sensacionalista
+most_pos <- which.max(df_comments_unnested$most_pos)
+most_neg <- which.min(df_comments_unnested$most_neg)
+
+# mais positivo
+cat(df_comments$message[df_comments$comment_id == df_comments_unnested$comment_id[most_pos]])
+# mais negativo
+cat(df_comments$message[df_comments$comment_id == df_comments_unnested$comment_id[most_neg]])
+
+
+```
+
+Por incrível que pareça, tanto o comentário mais positivo quanto o mais negativo falam sobre a esquerda.
+
+Para prosseguir com a análise, usaremos o léxico OpLexicon para a análise de sentimento:
+
+```{r}
+
+df_comments %<>% inner_join(
+  df_comments_unnested %>% select(comment_id, sentiment = comment_sentiment_op),
+  by = "comment_id"
+  )
+# criar coluna de data (variavel da classe Date)
+df_comments$data <- as.Date(df_comments$horario_post)
+
+```
+
+Agora sim podemos demonstrar uma visualização de uma análise básica de sentimento: Como tem sido o sentimento geral dos comentários no Sensacionalista ao longo do tempo?
+
+```{r}
+
+df_comments_wide <- df_comments %>% 
+  # filtrar fora palavras neutras
+  filter(sentiment != 0) %>% 
+  # converter numerico para categorico
+  mutate(sentiment = ifelse(sentiment < 0, "negativo", "positivo")) %>% 
+  # agrupar os dados
+  count(data, post_link, post_type, sentiment) %>% 
+  # converter para formato wide
+  spread(sentiment, n, fill = 0) %>% 
+  mutate(sentimento = positivo - negativo) %>% 
+  ungroup() %>% 
+  arrange(data)
+
+head(df_comments_wide) %>% knitr::kable()
+
+```
+
+Por exemplo, o primeiro link coletado na amostra, uma foto, teve 9 palavras contadas como negativas e 13 como positivas. O score geral dos comentários nessa publicação foi 13 - 9 = 4.
+
+Qual a publicação do Sensacionalista com maior nível de "positividade"? E o de "negatividade"?
+
+```{r}
+
+df_comments_wide %>% 
+  arrange(sentimento) %>% 
+  filter(row_number() == 1 | row_number() == nrow(df_comments_wide)) %>% 
+   knitr::kable()
+  
+
+```
+
+A publicação que mais recebeu comentários negativos (não tenho certeza se é essa a interpretação mais correta dos resultados, mas enfim) é um link sobre o MBL, enquanto o mais positivo é sobre o famoso caso do "E se der errado".
+
+O gráfico abaixo mostra a evolução do sentimento dos comentários nas publicações do Sensacionalista ao longo do tempo:
+
+```{r}
+df_comments_wide %>% 
+  mutate(index = row_number()) %>% 
+  ggplot(aes(x = index, y = sentimento)) +
+    geom_col(aes(fill = post_type)) +
+    scale_y_continuous(breaks = seq(-60, 60, 20), limits = c(-60, 60)) +
+    labs(x = "Índice da publicação", y = "Sentimento",
+         fill = NULL, title = "Evolução do sentimento em publicações do Sensacionalista")
+
+```
+
+Uma possível interpretação do gráfico é que a série temporal não possui uma clara tendência, apesar de os picos de negatividade serem bem mais frequentes que os de positividade.
+
+Outra análise que dá para fazer é investigar o nível de sentimento de comentários associados a determinadas palavras. Por exemplo, o quão negativo costuma ser um comentário quando ele menciona a palavra **bolsonaro**?
+
+```{r}
+# qual o sentimento mais associado a palavras em especifico
+df_comments %>% 
+  mutate(
+    temer = str_detect(str_to_lower(message), "temer"),
+    lula = str_detect(str_to_lower(message), "lula"),
+    pmdb = str_detect(str_to_lower(message), "pmdb"),
+    psdb = str_detect(str_to_lower(message), "psdb"),
+    pt = str_detect(str_to_lower(message), "pt"),
+    dilma = str_detect(str_to_lower(message), "dilma"),
+    doria = str_detect(str_to_lower(message), "doria"),
+    governo = str_detect(str_to_lower(message), "governo"),
+    bolsonaro = str_detect(str_to_lower(message), "bolsonaro")
+  ) %>% 
+  gather(termo, eh_presente, temer:bolsonaro) %>% 
+  filter(eh_presente) %>% 
+  group_by(termo) %>% 
+  summarise(sentiment = mean(sentiment)) %>% 
+  ggplot(aes(x = termo, y = sentiment)) + 
+    geom_col(fill = "#C10534")
+
+
+
+```
+
+Temer e Dilma, os dois presidentes com os piores níveis de popularidade de República, estarem associados a comentários positivos é bem surpreendente. Na verdade, isso ocorre porque a própria palavra **temer** possui polaridade positiva. Para consultar a polaridade de uma palavra nos datasets presentes no `lexiconPT`, use a função `lexiconPT::get_word_sentiment()`.
+
+```{r}
+
+get_word_sentiment("temer")
+
+```
+
+
+
+## Conclusão e chamada para futuros trabalhos
+
+O pacote `lexiconPT`, apesar de simples, tem um enorme potencial para enriquecer o conteúdo de Text Mining em Português na comunidade brasileira de R. O exemplo dado nesse post pode ser considerado deveras simplório. Muitas etapas foram puladas ou desconsideradas com o intuito de fornecer a você uma rápida introdução às possibilidades criadas pelo pacote. Espero que o leitor deste post tenha se sentido motivado a fazer suas próprias análises de sentimento. As possibilidade são incontáveis. 
+
+## Referências
+
+- [Text Mining with R - A Tidy Approach](http://tidytextmining.com/): Livro online gratuito sobre Text Mining feito pela autora do pacote `tidytext`;  
+- [Single Word Analysis of Early 19th Century Poetry Using tidytext](http://blog.eighty20.co.za//package%20exploration/2017/06/12/sentiment-blog-post/);  
+- [Texto no R](https://github.com/leobarone/FLS6397/blob/master/tutorials/tutorial11.Rmd);  
+- [ A Fixação de Colbert ](http://ctlente.com/pt/trump-colbert/);  
+- [Mineração de Texto - Prof. Walmes M. Zeviani](http://leg.ufpr.br/~walmes/ensino/mintex/);   
+- [Pacote tidytext](https://github.com/juliasilge/tidytext);  
+- [Text Mining of Stack Overflow Questions](https://juliasilge.com/blog/text-mining-stack-overflow/);
+- [Women in film](https://github.com/juliasilge/women-in-film)  
+
+
+

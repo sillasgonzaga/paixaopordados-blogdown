@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.31" />
+
+  <title>Como usar o R para escolher um lugar para morar (3) - Converter CEP em coordenadas geográficas &middot; Paixão por Dados</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="/">Paixão por Dados</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://twitter.com/*" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
+    </li>
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://facebook.com/sillast" target="_blank"><i class="fa fa-facebook-square fa-fw"></i>Facebook</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://linkedin.com/in/sillasgonzaga" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/sillasgonzaga" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://stackoverflow.com/users/*" target="_blank"><i class="fa fa-stack-overflow fa-fw"></i>Stack Overflow</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2016. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>Como usar o R para escolher um lugar para morar (3) - Converter CEP em coordenadas geográficas</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>17 Nov 2016</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/olx">olx</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="/tags/web-scraping">web scraping</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p>No primeiro e segundo post desta série, mostrei como obter dados de apartamentos para alugar a partir do site da OLX e analisá-los, mas ainda não temos a resposta definita para a pergunta que motivou esta série: Como o R pode ajudar a escolher um lugar para morar?</p>
+<p>Uma boa ideia seria plotar os imóveis em um mapa, não? No terceiro post da série, mostrarei como fazer isso, além de como extrair os CEPs dos imóveis (novamente por web scraping) e converter os CEPs para endereços, que serão usados para obter as coordenadas geográficas dos apartamentos. É mostrado no final um simples gráfico feito com o pacote <code>ggmap</code>.</p>
+<pre class="r"><code>library(magrittr)
+library(dplyr)
+library(rvest)
+library(curl)
+library(readr)
+library(stringr)
+library(ggmap)</code></pre>
+<div id="extrair-cep-do-imovel-com-web-scraping" class="section level1">
+<h1>Extrair CEP do imóvel com web scraping</h1>
+<p>Para plotar os imóveis em um mapa, precisamos de suas coordenadas geográficas. Tais dados podem ser obtidos com a função <code>geocode</code> do pacote <code>ggmap</code>. Essa função aceita um endereço (ou parte de um) como input e retorna a latitude e a longitude. Por exemplo, para o CEP do estádio Maracanã, no Rio de Janeiro:</p>
+<pre class="r"><code>geocode(&quot;20271110&quot;)</code></pre>
+<p>Contudo, você deve se lembrar que não possuímos até o momento nenhum dado sobre o endereço dos imóveis. Vamos dar uma olhada novamente nos dados gerados no primeiro post:</p>
+<pre class="r"><code>df &lt;- read.csv2(&quot;/home/sillas/R/Projetos/olx/data/post1-df-olx.csv&quot;, stringsAsFactors = FALSE)
+head(df)</code></pre>
+<pre><code>##                                                                                                      link
+## 1        http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/excelente-quarto-e-sala-mobiliado-267207757
+## 2                         http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/assuncao-450-313-238033660
+## 3       http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/excelente-apartamento-no-pechincha-269066615
+## 4                  http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/apartamento-em-botafogo-257852884
+## 5 http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/apto-2-quadras-da-praia-primeira-locacao-265081945
+## 6        http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/excelente-apartamento-pe-na-areia-196737787
+##                                      titulo preco         cidade
+## 1         Excelente quarto e sala mobiliado  1600 Rio de Janeiro
+## 2                         Assunção, 450/313  2300 Rio de Janeiro
+## 3        Excelente apartamento no pechincha  1100 Rio de Janeiro
+## 4                   Apartamento em Botafogo  4900 Rio de Janeiro
+## 5 Apto 2 quadras da praia. Primeira locação   800 Rio de Janeiro
+## 6         Excelente apartamento pé na areia  2600 Rio de Janeiro
+##                      bairro
+## 1                    Centro
+## 2                  Botafogo
+## 3                 Pechincha
+## 4                  Botafogo
+## 5  Recreio Dos Bandeirantes
+## 6                Copacabana
+##                                            adicional tem_quarto tem_area
+## 1              1 quarto | 40 m² | Condomínio: RS 370       TRUE     TRUE
+## 2     1 quarto | 45 m² | Condomínio: RS 375 | 1 vaga       TRUE     TRUE
+## 3     1 quarto | 40 m² | Condomínio: RS 480 | 1 vaga       TRUE     TRUE
+## 4  4 quarto | 120 m² | Condomínio: RS 1200 | 2 vagas       TRUE     TRUE
+## 5               1 quarto | 35 m² | Condomínio: RS 50       TRUE     TRUE
+## 6              2 quarto | 62 m² | Condomínio: RS 950       TRUE     TRUE
+##   tem_taxa tem_garagem qtd_quarto taxa_condominio area_condominio garagem
+## 1     TRUE       FALSE          1             370              40      NA
+## 2     TRUE        TRUE          1             375              45       1
+## 3     TRUE        TRUE          1             480              40       1
+## 4     TRUE        TRUE          4            1200             120       2
+## 5     TRUE       FALSE          1              50              35      NA
+## 6     TRUE       FALSE          2             950              62      NA</code></pre>
+<p>Como eu disse, não temos nenhum dado sobre a localização do imóvel - além do bairro, o que é muito pouco. Isso acontece porque a página que lista os apartamentos não informa esses dados, como se vê na imagem abaixo:</p>
+<div class="figure">
+<img src="http://i.imgur.com/4mXiS3M.png" />
+
+</div>
+<p>Dentro da página do imóvel, já conseguimos ter pelo menos seu CEP:</p>
+<div class="figure">
+<img src="http://i.imgur.com/3XF4XS9.png" />
+
+</div>
+<p>Ou seja: para extrair o CEP do imóvel, é necessário entrar em sua página! Isso aumenta a complexidade do código em n vezes porque agora teremos de fazer o scraping não de 245 páginas mas sim de mais de 10000.</p>
+<p>Para extrair o CEP, a lógica é a mesma da mostrada no primeiro post desta série. Como vamos extrair apenas este único dado da página, vou mostrar o passo-a-passo do scraping mais detalhadamente.</p>
+<p>Primeiramente, nós precisamos saber qual é o elemento HTML (chamado de tag) que identifica o CEP no código fonte da página. Não precisa ser expert em HTML para saber isso (eu mesmo não sei nada), basta utilizar as ferramentas do Firefox ou do Chrome para inspecionar a página e descobrir a tag do elemento desejado.</p>
+<p>Abra <a href="http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/excelente-quarto-e-sala-mobiliado-267207757">esta página</a>, clique com o botão direito no CEP e clique em Inspecionar elemento (ou algo semelhante). Será aberto um menu na parte inferior do browser com o código fonte da página. Passe o mouse nas diferentes linhas e veja os elementos que correspondem às tags do código.</p>
+<div class="figure">
+<img src="http://i.imgur.com/IuhcpEJ.png" />
+
+</div>
+<p>Na imagem acima, veja que o CEP está dentro do bloco (não sei se é assim mesmo que isso é chamado) da localização do apartamento, cuja tag é indicada pelo string <code>OLXad-location-map mb20px</code>. Na verdade, após fazer alguns testes, descobri que usamos o string <code>.OLXad-location-map</code> para localizar a tag da localização do imóvel. Como não conheço HTML, não sei explicar o porquê disso acontecer. Web scraping tem muito de tentar diversos inputs até conseguir o resultado desejado.</p>
+<p>Vamos usar essa informação em nosso código:</p>
+<pre class="r"><code>url &lt;- &quot;http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/excelente-quarto-e-sala-mobiliado-267207757&quot;
+mycurl &lt;- curl(url, handle = curl::new_handle(&quot;useragent&quot; = &quot;Mozilla/5.0&quot;))
+url &lt;- read_html(mycurl, encoding = &quot;ISO8859-1&quot;)
+# Localizando a tag de localização do imóvel
+x &lt;- url %&gt;% html_nodes(&quot;.OLXad-location-map&quot;)
+# Imprimir o elemento x em formato de texto:
+print(x)</code></pre>
+<pre><code>## {xml_nodeset (0)}</code></pre>
+<pre class="r"><code>html_text(x)</code></pre>
+<pre><code>## character(0)</code></pre>
+<p>Podemos ver que, conforme o esperado, o CEP está dentro do bloco de localização. Só isso já seria necessário para extrair o CEP, mas nós conseguimos melhorar isso para facilitar o processo de data cleaning posteriormente.</p>
+<p>Perceba que dentro da tag <code>OLXad-location-map mb20px</code>, existe uma subtag <code>p</code> que identifica apenas o CEP do imóvel.</p>
+<pre class="r"><code>url %&gt;% html_nodes(&quot;.OLXad-location-map&quot;) %&gt;% html_nodes(&quot;p&quot;)</code></pre>
+<pre><code>## {xml_nodeset (0)}</code></pre>
+<p>O output gerado é da classe <code>xml_nodeset</code> e tem três elementos: o município, o CEP e o bairro. Estamos interessados apenas no CEP, portanto:</p>
+<pre class="r"><code>#html_text serve para converter um objeto xml_nodeset em texto
+x &lt;- url %&gt;% html_nodes(&quot;.OLXad-location-map&quot;) %&gt;% html_nodes(&quot;p&quot;) %&gt;% .[2] %&gt;% html_text()
+x</code></pre>
+<pre><code>## character(0)</code></pre>
+<p>Agora precisamos fazer um pouco de data cleaning. É necessário apenas remover o caractere <code>-</code> e extrair os algarismos do string. Fazer isso é muito fácil graças ao pacote <code>stringr</code>.</p>
+<pre class="r"><code>x %&lt;&gt;% str_replace_all(&quot;-&quot;, &quot;&quot;)
+x</code></pre>
+<pre><code>## character(0)</code></pre>
+<pre class="r"><code>x %&lt;&gt;% parse_number()
+x</code></pre>
+<pre><code>## numeric(0)</code></pre>
+<p>Finalmente, conseguimos extrair o CEP do imóvel. Vamos então aplicar esse mesmo procedimento para os outros apartamentos do data frame. Para automatizar esse processo, criei a função <code>extrairCEP()</code>, que usa uma outra função chamada <code>limparString()</code>. Os códigos de ambas são mostrados abaixo.</p>
+<pre class="r"><code># definir função para limpar strings coletadas
+limparString &lt;- function(x) {
+  # x = string coletado do olx
+  x %&lt;&gt;% str_replace_all(&quot;[\t]&quot;, &quot;&quot;)
+  x %&lt;&gt;% str_replace_all(&quot;[\n]&quot;, &quot;&quot;)
+  x %&lt;&gt;% str_replace_all(&quot;Apartamentos&quot;, &quot;&quot;)
+  x %&lt;&gt;% str_replace_all(&quot;Anúncio Profissional&quot;, &quot;&quot;)
+  x %&lt;&gt;% str_replace(&quot;-&quot;, &quot;&quot;)
+  x %&lt;&gt;% str_replace_all(&quot;[R$]&quot;, &quot;&quot;)
+  x %&lt;&gt;% str_replace_all(&quot;[.]&quot;, &quot;&quot;)
+  x %&lt;&gt;% str_trim()
+  return(x)
+}
+
+
+extrairCEP &lt;- function(url) {
+  # url = url de um quarto
+  mycurl &lt;- curl(url, handle = curl::new_handle(&quot;useragent&quot; = &quot;Mozilla/5.0&quot;))
+  url &lt;- read_html(mycurl, encoding = &quot;ISO8859-1&quot;)
+  #url &lt;- read_html(url, encoding = &quot;ISO8859-1&quot;)
+  #url &lt;- html_nodes(url, &quot;.OLXad-location-map&quot;) deprecated
+  
+  # if clause para pegar casos em que o node id é diferente
+  if (length(html_nodes(url, &quot;.OLXad-location-map&quot;)) &gt; 0) {
+    url %&lt;&gt;% html_nodes(&quot;.OLXad-location-map&quot;)
+  } else {
+    url %&lt;&gt;% html_nodes(&quot;.OLXad-location&quot;)
+  }
+  
+  url &lt;- html_nodes(url, &quot;p&quot;)
+  url &lt;- url[2]
+  url &lt;- html_text(url)
+  cep &lt;- limparString(url)
+  cep &lt;- readr::parse_number(cep)
+  return(cep)
+}</code></pre>
+<p>Para algumas páginas, a tag de identificação do bloco da localização do apartamento não é <code>.OLXad-location-map</code> mas sim <code>.OLXad-location</code>, por isso a necessidade da if clause na função <code>extrairCEP()</code>.</p>
+<p>Outro problema é que, em alguns casos, o CEP do imóvel não é informado, fazendo necessário usar a função <code>tryCatch()</code> para retornar <code>NA</code> em caso de erro:</p>
+<pre class="r"><code>system.time(ceps &lt;- unname(sapply(df$link, function(i) tryCatch({extrairCEP(i)}, error = function(e){NA}))))</code></pre>
+<pre><code>##   usuário   sistema decorrido 
+##    10.968     0.360    31.447</code></pre>
+<pre class="r"><code>ceps</code></pre>
+<pre><code>## [[1]]
+## numeric(0)
+## 
+## [[2]]
+## numeric(0)
+## 
+## [[3]]
+## numeric(0)
+## 
+## [[4]]
+## numeric(0)
+## 
+## [[5]]
+## numeric(0)
+## 
+## [[6]]
+## numeric(0)
+## 
+## [[7]]
+## numeric(0)
+## 
+## [[8]]
+## numeric(0)
+## 
+## [[9]]
+## numeric(0)
+## 
+## [[10]]
+## numeric(0)
+## 
+## [[11]]
+## numeric(0)
+## 
+## [[12]]
+## numeric(0)
+## 
+## [[13]]
+## numeric(0)
+## 
+## [[14]]
+## numeric(0)
+## 
+## [[15]]
+## numeric(0)
+## 
+## [[16]]
+## numeric(0)
+## 
+## [[17]]
+## numeric(0)
+## 
+## [[18]]
+## numeric(0)
+## 
+## [[19]]
+## numeric(0)
+## 
+## [[20]]
+## numeric(0)
+## 
+## [[21]]
+## numeric(0)
+## 
+## [[22]]
+## [1] 22471120
+## 
+## [[23]]
+## numeric(0)
+## 
+## [[24]]
+## numeric(0)
+## 
+## [[25]]
+## numeric(0)
+## 
+## [[26]]
+## numeric(0)
+## 
+## [[27]]
+## numeric(0)
+## 
+## [[28]]
+## numeric(0)
+## 
+## [[29]]
+## numeric(0)
+## 
+## [[30]]
+## numeric(0)
+## 
+## [[31]]
+## numeric(0)
+## 
+## [[32]]
+## numeric(0)
+## 
+## [[33]]
+## numeric(0)
+## 
+## [[34]]
+## numeric(0)
+## 
+## [[35]]
+## numeric(0)
+## 
+## [[36]]
+## numeric(0)
+## 
+## [[37]]
+## numeric(0)
+## 
+## [[38]]
+## numeric(0)
+## 
+## [[39]]
+## numeric(0)
+## 
+## [[40]]
+## numeric(0)
+## 
+## [[41]]
+## numeric(0)
+## 
+## [[42]]
+## numeric(0)
+## 
+## [[43]]
+## numeric(0)
+## 
+## [[44]]
+## numeric(0)
+## 
+## [[45]]
+## numeric(0)
+## 
+## [[46]]
+## numeric(0)
+## 
+## [[47]]
+## numeric(0)</code></pre>
+<pre class="r"><code># incorporar ao data frame
+df$cep &lt;- ceps</code></pre>
+</div>
+<div id="obter-endereco-a-partir-do-cep" class="section level1">
+<h1>Obter endereço a partir do CEP</h1>
+<p>Como eu mostrei no início do post, seria possível conseguir as coordenadas do imóvel (ou pelo menos da rua dele) a partir do CEP. Entretanto, em alguns testes que eu fiz, percebi que em alguns casos a acurácia não era muito grande. Sabemos que quanto mais dados de endereço o Google tiver, mais precisas serão as coordenadas. Por isso, é importante ter não somente o CEP mas também o nome da rua, bairro, cidade e estado.</p>
+<p>Para conseguir esses dados a partir do CEP, usei uma função criada e postada no grupo <a href="https://www.facebook.com/groups/1410023525939155/">R Brasil - Programadores</a> pelo membro José de Jesus Filho. Segue seu código:</p>
+<pre class="r"><code>postal&lt;-function(cep){
+  # converter cep em endereço
+  library(httr)
+  l&lt;-list()
+  for(i in seq_along(cep)){
+    cep &lt;- stringr::str_replace(cep,&quot;\\D&quot;,&quot;&quot;)
+    cep &lt;- stringr::str_pad(cep,8,side=&quot;left&quot;,pad=&quot;0&quot;)
+    cep &lt;- as.character(cep)
+    url &lt;- paste0(&quot;http://correiosapi.apphb.com/cep/&quot;,cep)
+    a &lt;- GET(url[i])
+    b &lt;- content(a,as=&quot;parsed&quot;)
+    l[[i]] &lt;- b
+  }
+  x &lt;- as.data.frame(do.call(&quot;rbind&quot;,l))
+  for (col in 1:ncol(x)) {x[, col] &lt;- as.character(x[, col])}
+  return(x)
+}</code></pre>
+<p>Por exemplo, continuando com o CEP do Maracanã, a função <code>postal()</code> retorna:</p>
+<pre class="r"><code>postal(20271110)</code></pre>
+<pre><code>##                    message
+## 1 Endereço não encontrado!</code></pre>
+<p>Como se vê, a função funciona muito bem, então podemos a aplicar para os outros imóveis:</p>
+<pre class="r"><code>system.time(df.endereco &lt;- postal(df$cep))
+# é criado um data frame. 
+head(df.endereco)
+# vamos juntar as colunas do data frame de endereços em uma só
+# primeiro </code></pre>
+<p>É necessário juntar todas as colunas do data frame de endereços em uma só. Para juntar diferentes strings com um separador em comum (vírgula, por exemplo), é recomendável usar a função <code>str_c()</code> do pacote <code>stringr</code>.</p>
+<pre class="r"><code>df.endereco$endereco_completo &lt;- df.endereco %$% str_c(logradouro, cep, bairro, cidade, estado, sep = &quot;, &quot;)
+df.endereco$endereco_completo &lt;- df.endereco %$% str_c(tipoDeLogradouro, endereco_completo, sep = &quot; &quot;)
+# exemplo de como ficou:
+df.endereco$endereco_completo[1:5]</code></pre>
+<pre><code>## [1] &quot;Rua Riachuelo, 20230010, Centro, Rio de Janeiro, RJ&quot;                       
+## [2] &quot;Rua Assunção, 22251030, Botafogo, Rio de Janeiro, RJ&quot;                      
+## [3] &quot;Estrada do Tindiba, 22740360, Pechincha, Rio de Janeiro, RJ&quot;               
+## [4] &quot;Rua Marquês de Olinda, 22251040, Botafogo, Rio de Janeiro, RJ&quot;             
+## [5] &quot;Rua Risoleta Neves, 22795105, Recreio dos Bandeirantes, Rio de Janeiro, RJ&quot;</code></pre>
+<pre class="r"><code># incorporando a coluna de endereço completo no data frame principal
+df$endereco_completo &lt;- df.endereco$endereco_completo</code></pre>
+</div>
+<div id="obter-coordenadas-a-partir-do-endereco" class="section level1">
+<h1>Obter coordenadas a partir do endereço</h1>
+<p>Finalmente, podemos extrair do Google as coordenadas do endereço do imóvel com a função <code>geocode()</code>. Antes de usar a função, porém, é importante lembrar que a API do Google tem um limite de consultas por dia. Você pode checar seu limite com a função <code>geocodeQueryCheck()</code>.</p>
+<pre class="r"><code>geocodeQueryCheck()</code></pre>
+<p>Assim, já podemos obter as coordenadas geográficas dos imóveis:</p>
+<pre class="r"><code>x &lt;- geocode(df$endereco_completo)</code></pre>
+<pre class="r"><code># incorporando ao data frame
+
+df$lat &lt;- x$lat
+df$lon &lt;- x$lon</code></pre>
+<p>Uma opção para plotar os imóveis em um mapa seria com o próprio pacote <code>ggmap</code>:</p>
+<pre class="r"><code>qmplot(lon, lat, data = df, size = preco, color = &quot;red&quot;) + labs(size = &quot;Aluguel&quot;)</code></pre>
+<p><img src="/post/2016-11-17-olx03_files/figure-html/grafico%20ggmap-1.png" width="672" /></p>
+<p>Mesmo o gráfico acima sendo uma ótima visualização, é possível fazer melhor. No próximo post, mostrarei como plotar os pontos em um mapa interativo usando o pacote <code>leaflet</code>.</p>
+</div>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="/post/olx01/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="/post/olx01/">Como usar o R para escolher um lugar para morar(1) - Web Scraping e Data Cleaning</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="next">
+      <a href="/post/olx02/">Como usar o R para escolher um lugar para morar (2) - Análise dos dados</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="/post/olx02/"><i class="fa fa-chevron-right"></i></a>
+    
+  </div>
+</div>
+
+
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'Your Disqus shortname';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</div>
+
+</div>
+</div>
+<script src="/js/ui.js"></script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'Your Google Analytics tracking ID', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.31" />
+
+  <title>Meu primeiro pacote R: aplicação para série temporal do varejo &middot; Paixão por Dados</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="/">Paixão por Dados</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://twitter.com/*" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
+    </li>
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://facebook.com/sillast" target="_blank"><i class="fa fa-facebook-square fa-fw"></i>Facebook</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://linkedin.com/in/sillasgonzaga" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/sillasgonzaga" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://stackoverflow.com/users/*" target="_blank"><i class="fa fa-stack-overflow fa-fw"></i>Stack Overflow</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2016. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>Meu primeiro pacote R: aplicação para série temporal do varejo</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>27 Oct 2016</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/series-temporais">series temporais</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="/tags/mafs">mafs</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p>Depois de um longo hiato devido à falta de tempo, o blog está de volta à ativa.</p>
+<p>Um dos (muitos) motivos de minha ausência tem sido a elaboração do meu TCC, que é sobre previsão de demanda. Eu desenvolvi um sistema que seleciona automaticamente o melhor modelo de previsão dentre os disponíveis no pacote <a href="https://cran.r-project.org/web/packages/forecast/index.html">forecast</a> para uma dada série temporal de acordo com a métrica de erro escolhida pelo usuário. O nome do pacote é <code>mafs</code> e já está disponível em meu <a href="https://github.com/sillasgonzaga/mafs">Github</a> para ser baixado e instalado gratuitamente. Notem, porém, que este é meu primeiro pacote R e eu provavelmente acabei cometendo muitos erros de principiante. Por isso, o pacote ainda é limitado e pode não funcionar em algumas situações que eu não vislumbrei. Uma possível limitação do pacote, por exemplo, é que ele só foi testado para séries mensais e não de outros períodos, como semanais, diárias ou trimestrais.</p>
+<div id="demonstracao-do-pacote" class="section level1">
+<h1>Demonstração do pacote</h1>
+<div id="apresentacao-e-analise-exploratoria-dos-dados" class="section level2">
+<h2>Apresentação e análise exploratória dos dados</h2>
+<p>Para demonstrar na prática como funciona o pacote, irei analisar neste post uma série temporal de periodicidade mensal referente ao volume de vendas do varejo, tema que tenho pesquisado recentemente e obtida no site do <a href="http://seriesestatisticas.ibge.gov.br/series.aspx?no=2&amp;op=0&amp;vcodigo=MC73&amp;t=volume-vendas-varejo-indice-base-fixa">IBGE</a>. O dataset será disponibilizado no <a href="https://github.com/sillasgonzaga/sillasgonzaga.github.io">repositório do blog</a>.</p>
+<pre class="r"><code># carregar bibliotecas importantes
+library(mafs)
+library(magrittr)
+library(forecast)
+library(ggplot2)
+# importar dados
+varejo &lt;- read.csv2(&quot;https://raw.githubusercontent.com/sillasgonzaga/sillasgonzaga.github.io/master/data/varejo.csv&quot;,
+                    stringsAsFactors = FALSE)
+# exibir dados
+head(varejo); tail(varejo)</code></pre>
+<pre><code>##   Período Moveis.e.eletrodomesticos
+## 1  jan/00                      29.5
+## 2  fev/00                      28.4
+## 3  mar/00                      30.1
+## 4  abr/00                      28.8
+## 5  mai/00                      34.8
+## 6  jun/00                      30.5</code></pre>
+<pre><code>##     Período Moveis.e.eletrodomesticos
+## 185  mai/15                     103.8
+## 186  jun/15                      91.6
+## 187  jul/15                      94.3
+## 188  ago/15                      91.1
+## 189  set/15                      90.2
+## 190                                NA</code></pre>
+<pre class="r"><code># retirar última linha, que veio em branco
+varejo &lt;- varejo[1:(nrow(varejo)-1), ]</code></pre>
+<p>Como pode-se ver, a série temporal vai desde Janeiro de 2000 a Setembro de 2015. Essa informação é importante para criar um objeto da class <code>ts</code> que será usado como input das funções do pacote <code>mafs</code>.</p>
+<pre class="r"><code># transformar para série temporal
+varejo &lt;- ts(varejo[, 2], start = c(2000, 1), frequency = 12)
+# Visualizar série
+plot(varejo)</code></pre>
+<p><img src="/post/2016-10-27-mafs01_files/figure-html/criar%20ts-1.png" width="1248" /></p>
+<pre class="r"><code># Visualizar decomposição sazonal da série
+varejo %&gt;% decompose %&gt;% plot</code></pre>
+<p><img src="/post/2016-10-27-mafs01_files/figure-html/criar%20ts-2.png" width="1248" /></p>
+<p>O gráfico da série decomposta mostra que há fortes componentes de tendência e sazonalidade na série. O componente aleatório possui média de 0,13, o que, por ser próxima a zero, nos leva a acreditar que a decomposição foi bem sucedida. O elemento sazonal da série também pode ser analisado nos gráficos a seguir.</p>
+<pre class="r"><code># função ggmonthplot do pacote forecast
+ggmonthplot(varejo)</code></pre>
+<p><img src="/post/2016-10-27-mafs01_files/figure-html/graficos-1.png" width="1248" /></p>
+<pre class="r"><code># estratificação por mês
+ggseasonplot(varejo, year.labels = TRUE) + geom_point() + theme_bw()</code></pre>
+<p><img src="/post/2016-10-27-mafs01_files/figure-html/graficos-2.png" width="1248" /></p>
+<p>A partir dos dois gráficos é possível fazer uma observação interessante: A tendência é praticamente alternada. A série sempre cai de Janeiro a Fevereiro, sobe em Março, cai em Abril, sobe em Maio, cai em Junho, sobe ou se mantém estável em Julho, sobe em Agosto, cai ou se mantém estável em Setembro, e sobe de Outubro a Dezembro. A diferença mais evidente ocorrente entre os meses de Novembro e Dezembro.</p>
+<p>Poderiam ser feitas mais algumas análises exploratórias, mas eu acabaria fugindo do escopo do post.</p>
+</div>
+<div id="aplicacao-do-modelo." class="section level2">
+<h2>Aplicação do modelo.</h2>
+<p>O pacote <code>mafs</code> é um wrapper de diversos modelos presentes no pacote <code>forecast</code>, que são:</p>
+<pre class="r"><code>available_models()</code></pre>
+<pre><code>##  [1] &quot;auto.arima&quot; &quot;ets&quot;        &quot;nnetar&quot;     &quot;tbats&quot;      &quot;bats&quot;      
+##  [6] &quot;stlm_ets&quot;   &quot;stlm_arima&quot; &quot;StructTS&quot;   &quot;meanf&quot;      &quot;naive&quot;     
+## [11] &quot;snaive&quot;     &quot;rwf&quot;        &quot;rwf_drift&quot;  &quot;splinef&quot;    &quot;thetaf&quot;    
+## [16] &quot;croston&quot;    &quot;tslm&quot;       &quot;hybrid&quot;</code></pre>
+<p>Cada um desses modelos pode ser aplicado à série temporal analisada por meio da função <code>mafs::apply_selected_model()</code>. Por exemplo, para o modelo de redes neurais, temos:</p>
+<pre class="r"><code>apply_selected_model(varejo, &quot;nnetar&quot;, horizon = 6) %&gt;% forecast(h  = 6) %&gt;% plot</code></pre>
+<p><img src="/post/2016-10-27-mafs01_files/figure-html/apply_selected_model-1.png" width="1248" /></p>
+<p>Imagine-se agora na situação onde vocë é um analista de previsão e precisa realizar, periodicamente, projeções de centenas ou milhares de séries temporais. Seria impraticável testar todos esses 18 modelos disponíveis, não seria? Pensando nisso, a principal função do <code>mafs</code>, chamada <code>select_forecast()</code> automatiza esse processo. Ela depende de quatro parâmetros:<br />
+* <code>x</code>, que é a série temporal de input;<br />
+* <code>test_size</code>, que é o tamanho da série de teste a ser usado para mensurar a acurácia das previsões obtidas;<br />
+* <code>horizon</code>, o tamanho do horizonte de previsão; * <code>error</code>, a métrica de erro para definir o melhor modelo.</p>
+<p>O código da função pode ser conferido <a href="https://github.com/sillasgonzaga/mafs/blob/master/R/main.R#L133-L219">aqui</a>. Resumidamente, ela separa a série de input em duas: a série de treino, usada para construir o ajuste dos modelos, e a série de teste, usada para mensurar a previsão obtida com os ajustes nas séries de treino em comparação com a série original. A partir das previsões obtidas, a de melhor acurácia (de acordo com a métrica escolhida pelo usuário) é selecionada para prever os valores futuros da série.</p>
+<p>Após fazer tudo isso, a função retorna como output três objetos, como pode ser conferido em sua documentação (<code>help(&quot;select_forecast&quot;)</code>).</p>
+<pre class="r"><code>output &lt;- select_forecast(varejo, test_size = 6, horizon = 6, error = &quot;MAPE&quot;)
+# output com resultado de modelos
+output$df_models</code></pre>
+<pre><code>##         model        ME     RMSE       MAE       MPE     MAPE     MASE
+## 1  auto.arima -11.87629 12.25375 11.876285 -12.63291 12.63291 1.683951
+## 2        bats -14.05779 14.38923 14.057791 -15.05612 15.05612 1.993269
+## 3     croston -22.86110 23.31736 22.861101 -24.61078 24.61078 3.241499
+## 4         ets -10.50871 11.15770 10.508709 -11.27795 11.27795 1.490041
+## 5      hybrid -14.06093 14.34473 14.060933 -15.01467 15.01467 1.993714
+## 6       meanf  25.49699 25.90687 25.496995  26.97627 26.97627 3.615245
+## 7       naive  -9.45000 10.50579  9.583333 -10.30420 10.43265 1.358831
+## 8      nnetar -19.77968 22.52728 19.779681 -20.68638 20.68638 2.804582
+## 9         rwf  -9.45000 10.50579  9.583333 -10.30420 10.43265 1.358831
+## 10  rwf_drift -10.87115 11.95716 10.871154 -11.83788 11.83788 1.541432
+## 11     snaive -18.16667 18.49784 18.166667 -19.29829 19.29829 2.575871
+## 12    splinef -26.14144 26.54988 26.141436 -28.11256 28.11256 3.706622
+## 13 stlm_arima -21.31549 21.63862 21.315487 -22.84688 22.84688 3.022345
+## 14   stlm_ets -17.70250 18.02916 17.702498 -18.98920 18.98920 2.510056
+## 15   StructTS -14.82386 15.16935 14.823861 -15.77388 15.77388 2.101891
+## 16      tbats -13.34142 13.85944 13.341419 -14.26644 14.26644 1.891694
+## 17     thetaf -14.75199 15.18143 14.751994 -15.76853 15.76853 2.091701
+## 18       tslm -25.84932 26.10141 25.849322 -27.70415 27.70415 3.665202
+##           ACF1 best_model runtime_model
+## 1  -0.24342789      naive         1.471
+## 2   0.36081896      naive         3.064
+## 3  -0.21035874      naive         0.975
+## 4   0.40036466      naive         1.547
+## 5   0.11501661      naive         9.041
+## 6  -0.21035874      naive         0.003
+## 7  -0.21035874      naive         0.004
+## 8  -0.09009255      naive         0.984
+## 9  -0.21035874      naive         0.002
+## 10 -0.06220684      naive         0.004
+## 11 -0.25244021      naive         0.003
+## 12 -0.18889000      naive         0.437
+## 13  0.50840456      naive         0.103
+## 14  0.50385963      naive         0.029
+## 15 -0.26397115      naive         0.430
+## 16  0.30026636      naive         6.824
+## 17  0.19311316      naive         0.011
+## 18  0.50145846      naive         0.003</code></pre>
+<pre class="r"><code># output com valores previstos e reais
+output$df_comparison</code></pre>
+<pre><code>##         time forecasted observed
+## 1 2015-04-03      103.4     92.7
+## 2 2015-05-03      103.4    103.8
+## 3 2015-06-02      103.4     91.6
+## 4 2015-07-03      103.4     94.3
+## 5 2015-08-02      103.4     91.1
+## 6 2015-09-02      103.4     90.2</code></pre>
+<pre class="r"><code># output com valores previstos, incluindo o intervalo de confiança de 80 e de 95%
+output$best_forecast</code></pre>
+<pre><code>##          Point Forecast    Lo 80    Hi 80    Lo 95    Hi 95
+## Oct 2015           90.2 72.52035 107.8796 63.16131 117.2387
+## Nov 2015           90.2 65.19720 115.2028 51.96152 128.4385
+## Dec 2015           90.2 59.57795 120.8220 43.36762 137.0324
+## Jan 2016           90.2 54.84070 125.5593 36.12262 144.2774
+## Feb 2016           90.2 50.66710 129.7329 29.73965 150.6603
+## Mar 2016           90.2 46.89388 133.5061 23.96901 156.4310</code></pre>
+<p>O output de <code>output$df_models</code> mostra que o modelo de menor MAPE foi curiosamente o naive, que corresponde simplesmente a usar o último valor observado como previsão dos próximos valores. Tal previsão pode ser conferida visualmente com outra função do <code>mafs</code>, chamada <code>gg_fit()</code></p>
+<pre class="r"><code>gg_fit(varejo, 6, &quot;naive&quot;) + theme_bw() + theme(legend.position = &quot;bottom&quot;)</code></pre>
+<p><img src="/post/2016-10-27-mafs01_files/figure-html/gg_fit-1.png" width="1248" /></p>
+<p>Para avaliar a eficiência do meu método, pode-se calcular o MAPE real, isto é, o erro relativo médio entre os valores previstos e os reais, presentes no objeto <code>output$df_comparison</code></p>
+<pre class="r"><code>x &lt;- output$df_comparison
+# Calcular MAPE real
+mape_real &lt;- 100 * abs(x$forecasted - x$observed)/x$observed
+# mostrar mape mês a mês
+mape_real</code></pre>
+<pre><code>## [1] 11.5426106  0.3853565 12.8820961  9.6500530 13.5016465 14.6341463</code></pre>
+<pre class="r"><code># mostrar mape médio
+mean(mape_real)</code></pre>
+<pre><code>## [1] 10.43265</code></pre>
+<p>Obtivemos um MAPE médio de 10,43%.</p>
+</div>
+</div>
+<div id="ideias-para-o-futuro" class="section level1">
+<h1>Ideias para o futuro</h1>
+<p>Devido à automatização possibilitada pelo pacote, é possível pensar em diversas outras análises e testes de hipóteses. Por exemplo: o tamanho da série influencia o desempenho do sistema? Isso poderia ser feito variando o argumento <code>test_size</code>, calculando o MAPE real para cada valor do argumento e depois comparando os resultados. Talvez isso tema de um futuro post.</p>
+</div>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="/post/censo-da-educa%C3%A7%C3%A3o-superior-02/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="/post/censo-da-educa%C3%A7%C3%A3o-superior-02/">Censo da Educação Superior (2): Como plotar o movimento migratório universitário no Brasil em um mapa</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="next">
+      <a href="/post/olx01/">Como usar o R para escolher um lugar para morar(1) - Web Scraping e Data Cleaning</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="/post/olx01/"><i class="fa fa-chevron-right"></i></a>
+    
+  </div>
+</div>
+
+
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'Your Disqus shortname';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</div>
+
+</div>
+</div>
+<script src="/js/ui.js"></script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'Your Google Analytics tracking ID', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+</body>
+</html>
+

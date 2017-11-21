@@ -1,0 +1,180 @@
+---
+title: Como usar o R para escolher um lugar para morar (4) - Mapa interativo
+author: ''
+date: '2016-11-18'
+slug: olx04
+categories:
+  - R
+tags:
+  - olx
+  - mapas
+---
+
+
+
+<p>No post anterior da série, mostrei como fazer um gráfico em um mapa a partir das coordenadas geográficas dos imóveis. Neste post, a grande sacada da série: um mapa interativo em que é possível visualizar diversas dimensões de cada um dos apartamentos, como o preço do aluguel, a proximidade em relação a um ponto de interesse, etc.</p>
+<p>Dessa vez, vou usar o data frame que contem todos os apartamentos listados no OLX que eu não mostrei (exatamente) como obter e nem posso compartilhar em respeito ao OLX.</p>
+<pre class="r"><code>library(magrittr)
+library(dplyr)
+library(leaflet)
+library(stringr)
+library(RColorBrewer)</code></pre>
+<pre class="r"><code># carregar arquivo com apartamentos
+df.apt &lt;- read.csv2(&quot;/home/sillas/R/Projetos/olx/data/post4-df.apt.csv&quot;, stringsAsFactors = FALSE)
+
+# carregar arquivos com coordenadas
+df.coord &lt;- read.csv2(&quot;/home/sillas/R/Projetos/olx/data/post4-coordenadas.csv&quot;, stringsAsFactors = FALSE)
+head(df.coord)</code></pre>
+<pre><code>##        cep
+## 1 20550018
+## 2 22411030
+## 3 20751010
+## 4 22081025
+## 5 21863000
+## 6 22050011
+##                                                             ender_completo_cep
+## 1 Rua São Francisco Xavier, 20550018, São Francisco Xavier, Rio de Janeiro, RJ
+## 2                 Rua Alberto de Campos, 22411030, Ipanema, Rio de Janeiro, RJ
+## 3                     Rua Silva Xavier, 20751010, Abolição, Rio de Janeiro, RJ
+## 4             Rua Júlio de Castilhos, 22081025, Copacabana, Rio de Janeiro, RJ
+## 5                          Avenida Brasil, 21863000, Bangu, Rio de Janeiro, RJ
+## 6              Rua Domingos Ferreira, 22050011, Copacabana, Rio de Janeiro, RJ
+##         lat       lon
+## 1 -22.91664 -43.22569
+## 2 -22.98111 -43.20309
+## 3 -22.88317 -43.30166
+## 4 -22.98421 -43.19162
+## 5 -22.85579 -43.49151
+## 6 -22.97227 -43.18664</code></pre>
+<pre class="r"><code># Juntar arquivos em um só
+df.apt$cep %&lt;&gt;% as.character()
+df.apt %&lt;&gt;% left_join(df.coord, by = &quot;cep&quot;)
+rm(df.coord)</code></pre>
+<p>Além de apartamentos, eu tenho também os dados de <a href="http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/aluguel/aluguel-de-quartos">quartos para alugar</a> no OLX, que apesar de eu não ter mostrado no blog o procedimento para os conseguir, ele é basicamente o mesmo do que eu mostrei para os apartamentos.</p>
+<pre class="r"><code>df.quartos &lt;- read.csv2(&quot;/home/sillas/R/Projetos/olx/data/post4-quartos.csv&quot;, stringsAsFactors = FALSE)
+head(df.quartos)</code></pre>
+<pre><code>##                                                                                                                                                     link
+## 1                                                   http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/oportunidade-no-engenho-novo-1-quarto-268551811
+## 2                                                                           http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/alugo-kitnets-268550116
+## 3                             http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/quarto-equipado-p-vagas-metro-s-pena-250m-todos-os-direitos-266676832
+## 4 http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/quarto-para-mocas-que-trabalhem-fora-fica-no-pechincha-r-450-00-mensais-mais-1-2-da-luz-268539233
+## 5                   http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/para-estudantes-moca-vaga-em-residencia-praca-saens-pena-metro-a-200m-265331246
+## 6                                           http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/kitinetes-em-sepetiba-sem-fiador-nem-deposito-242529872
+##                                                                                      titulo
+## 1                                                     Oportunidade no Engenho Novo 1 Quarto
+## 2                                                                             Alugo kitnets
+## 3                         Quarto Equipado P/Vagas - Metrô S Pena (250m) - Todos os Direitos
+## 4 Quarto para moças que trabalhem fora. Fica no Pechincha. R 450,00 mensais mais 1/2 da luz
+## 5              Para Estudantes ( Moça) Vaga em Residência : Praça Saens Pena (Metrô a 200m)
+## 6                                             Kitinetes em Sepetiba sem fiador nem depósito
+##   preco         cidade        bairro      cep
+## 1   750 Rio de Janeiro  Engenho Novo 20710280
+## 2   500 Rio de Janeiro      Flamengo 22230040
+## 3   330 Rio de Janeiro        Tijuca 20511240
+## 4   450 Rio de Janeiro       Taquara 22770640
+## 5   330 Rio de Janeiro        Tijuca 20511240
+## 6   340 Rio de Janeiro  Campo Grande 23070180
+##                                                   endereco_completo
+## 1 Rua Condessa Belmonte, 20710280, Engenho Novo, Rio de Janeiro, RJ
+## 2       Rua Fernando Osório, 22230040, Flamengo, Rio de Janeiro, RJ
+## 3     Rua Pinto de Figueiredo, 20511240, Tijuca, Rio de Janeiro, RJ
+## 4         Rua Oswaldo Lussac, 22770640, Taquara, Rio de Janeiro, RJ
+## 5     Rua Pinto de Figueiredo, 20511240, Tijuca, Rio de Janeiro, RJ
+## 6             Rua Tapes, 23070180, Campo Grande, Rio de Janeiro, RJ
+##         lat       lon
+## 1 -22.90869 -43.27106
+## 2 -22.93636 -43.17645
+## 3 -22.92492 -43.23611
+## 4 -22.93931 -43.36200
+## 5 -22.92492 -43.23611
+## 6 -22.90321 -43.57095</code></pre>
+<p>Já temos tudo o que precisamos para plotar os apartamentos em um mapa. Isso é feito muito facilmente com o pacote <code>leaflet</code>. Eu comento abaixo o passo-a-passo do código para plotar o mapa.</p>
+<pre class="r"><code># Remover os apartamentos sem coordenadas
+df.apt %&lt;&gt;% filter(!is.na(lat))
+df.quartos %&lt;&gt;% filter(!is.na(lat))
+# Para distinguir os apartamentos no mapa pelo preço, usamos a função colorBin para criar intervalos de cores
+# Qual seria um bom intervalo?
+aluguel &lt;- c(df.apt$preco, df.quartos$preco)
+aluguel %&lt;&gt;% na.omit()
+quantile(aluguel, seq(0, 1,  0.05))</code></pre>
+<pre><code>##         0%         5%        10%        15%        20%        25% 
+##        1.0      450.0      580.0      700.0      780.0      850.0 
+##        30%        35%        40%        45%        50%        55% 
+##      936.0     1000.0     1100.0     1200.0     1300.0     1495.4 
+##        60%        65%        70%        75%        80%        85% 
+##     1600.0     1799.3     1950.0     2100.0     2400.0     2700.0 
+##        90%        95%       100% 
+##     3200.0     4498.9 21750000.0</code></pre>
+<pre class="r"><code># 90% dos preços estão abaixo de R$3200
+intervalo &lt;- seq(0, 3200, 400)
+# criar palette para colorir os pontos no mapa: verde significa aluguel baixo, vermelho aluguel caro
+palette_rev &lt;- rev(brewer.pal(length(intervalo), &quot;RdYlGn&quot;))
+
+# O vetor de cores é criado com a função colorBin
+vetorCoresApt &lt;- colorBin(palette_rev, domain = df.apt$preco, bins = intervalo, na.color = &quot;black&quot;)
+vetorCoresQuarto &lt;- colorBin(palette_rev, domain = df.quartos$preco, bins = intervalo, na.color = &quot;black&quot;)
+
+# Criar função para exibir texto ao clicar em um imóvel
+html_link &lt;- function(link) paste0(&#39;&lt;a href=&quot;&#39;, link, &#39;&quot;&gt;Link&lt;/a&gt;&#39;)
+
+textoPopup &lt;- function(data, tipo) {
+  # tipo = quarto ou Apartamento
+  if (!tipo %in% c(&quot;apartamento&quot;, &quot;quarto&quot;)) stop(&quot;Input errado.&quot;)
+   x = paste0(
+     &quot;Tipo do imóvel: &quot;, tipo, &quot;&lt;br&gt;&quot;,
+     &quot;Url: &quot;, html_link(data$link), &quot;&lt;br&gt;&quot;,
+     &quot;Título: &quot;, data$titulo, &quot;&lt;br&gt;&quot;,
+     &quot;Preço: R$&quot;, data$preco, &quot;&lt;br&gt;&quot;
+     )
+   
+   if (tipo == &quot;apartamento&quot;) {
+     x = paste0(
+       x,
+       &quot;Condomínio: R$&quot;, data$taxa_condominio, &quot;&lt;br&gt;&quot;,
+       &quot;Quartos: &quot;, data$qtd_quarto, &quot;&lt;br&gt;&quot;,
+       &quot;Área (m²): &quot;, data$area_condominio, &quot;&lt;br&gt;&quot;,
+       &quot;Garagem: &quot;, data$garagem, &quot;&lt;br&gt;&quot;
+     )
+   }
+   return(x)
+}
+
+# adicionar ruído aleatório para fazer com que pontos em uma mesma rua se dispersem
+set.seed(123)
+jit &lt;- 40
+df.apt$lat &lt;- jitter(df.apt$lat, jit)
+df.apt$lon &lt;- jitter(df.apt$lon, jit) 
+
+df.quartos$lat %&lt;&gt;% jitter(jit)
+df.quartos$lon %&lt;&gt;% jitter(jit)</code></pre>
+<pre class="r"><code> # iniciar objeto leaflet
+
+
+map &lt;- leaflet() %&gt;%
+  addTiles() %&gt;%
+  addProviderTiles(&quot;OpenStreetMap.BlackAndWhite&quot;) %&gt;%
+  # coordenadas de um ponto em específico para exemplo
+  addMarkers(lng = -43.183447, lat = -22.913912) %&gt;% 
+  # plotar apartamentos
+  addCircleMarkers(data = df.apt,
+                   lng = ~lon, lat = ~lat,
+                   color = ~vetorCoresApt(preco),
+                   opacity = 1.5,
+                   popup = textoPopup(df.apt, &quot;apartamento&quot;),
+                   # Definir nome do grupo para ser usado na camada
+                   group = &quot;Apartamentos&quot;) %&gt;%
+  # plotar quartos
+  addCircleMarkers(data = df.quartos,
+                   lng = ~lon, lat = ~lat,
+                   color = ~vetorCoresQuarto(preco),
+                   opacity = 1.5,
+                   popup = textoPopup(df.quartos, &quot;quarto&quot;),
+                   group = &quot;Quartos&quot;) %&gt;%
+  addLayersControl(
+    overlayGroups = c(&quot;Apartamentos&quot;, &quot;Quartos&quot;),
+    options = layersControlOptions(collapsed = FALSE)
+  ) %&gt;%
+  addLegend(pal = vetorCoresApt, values = df.apt$preco)</code></pre>
+<p>Clique na imagem abaixo para abrir o produto final:</p>
+<p><a href="http://i.imgur.com/dDpeckS.png" class="uri">http://i.imgur.com/dDpeckS.png</a></p>
+<p><a href="https://sillasgonzaga.shinyapps.io/aptsnorio/"><img src="http://i.imgur.com/dDpeckS.png"></a></p>

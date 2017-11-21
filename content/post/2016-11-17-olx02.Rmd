@@ -1,0 +1,369 @@
+---
+title: Como usar o R para escolher um lugar para morar (2) - Análise dos dados
+author: ''
+date: '2016-11-17'
+slug: olx02
+categories:
+  - R
+tags:
+  - olx
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.width=12)
+```
+
+No post anterior, mostramos como obter os dados de apartamentos para aluguel no Rio de Janeiro do site do OLX. Neste post, vamos analisar esses dados e ver se descobrimos algo interessante. Algumas das perguntas que podemos responder com os dados que temos são:  
+
+* Quais as principais diferenças entre os apartamentos nas cidades do Rio de Janeiro e Niterói?  
+* Quantos quartos os apartamentos têm em média?  
+* Quais os bairros com os aluguéis mais caros?  
+* A oferta de apartamentos de um bairro influencia o preço médio do aluguel?  
+* Existe relação entre o preço do aluguel de um imóvel e outras variáveis, como a taxa de condomínio?
+
+Ressalto que no post anterior eu mostrei como obter dados de uma amostra de 50 apartamentos (os da primeira página). Aqui, eu estou usando os dados de todos os apartamentos (mais de 10000) do site do OLX que eu não posso disponibilizar por motivos legais (já que eles pertencem ao OLX, que é uma empresa privada).
+
+```{r pacotes}
+library(magrittr) # não vivo sem esse pacote
+library(tidyr) # data cleaning
+library(dplyr) # data cleaning
+library(ggplot2) # graficos
+library(RColorBrewer)
+library(stringr)
+library(plotly)
+azul = "#01a2d9" # definir cor para usar nos gráficos
+devtools::source_gist("ae62d57836c37ebff4a5f7a8dc32eeb7", filename = "meu_tema.R") # carregar meu tema personalizado para gráficos no ggplot2
+```
+
+```{r carregar dados}
+load("/home/sillas/R/Projetos/olx/data/post2-df_apt.rdata")
+df$bairro %<>% str_trim()
+```
+
+# Análise geral
+
+### Valor do aluguel
+
+A melhor forma de mostrar a distribuição do preço do aluguel dos apartamentos no Rio de Janeiro é por meio de um histograma:
+
+```{r}
+
+ggplot(df, aes(preco)) +
+  geom_histogram(binwidth = 1000, fill = azul) +
+  meu_tema() +
+  labs(x = "Aluguel (R$)", y = "Quantidade de apartamentos")
+
+```
+
+O histograma acima ficou muito distorcido devido à presença de alguns imóveis cujo valor do aluguel chega a mais de R\$1.500.000. É necessário, portanto, remover as anomalias do dataset. Como existem apenas 34 imóveis (menos de 1% do total) cujo aluguel é superior a R\$20000, decidi usar esse valor como limite máximo para a remoção de anomalias.
+
+```{r}
+df2 <- df %>% filter(preco <= 20000)
+
+ggplot(df2, aes(preco)) +
+  geom_histogram(breaks = seq(0, 20000, 500), fill = azul) +
+  meu_tema() +
+  scale_x_continuous(breaks  = seq(0, 20000, 1000)) +
+  labs(x = "Aluguel (R$)", y = "Quantidade de apartamentos")
+
+
+```
+
+O histograma acima mostra que a maior parte dos apartamentos está no intervalo entre R\$500,01 a R\$1000,00. Contudo, aumentar o número de intervalos do histograma pode nos ajudar a encontrar conclusões ainda melhores. Veja o que encontramos ao reduzir a "espessura" de cada bloco do histograma de 500 para 100:
+
+
+```{r}
+
+ggplot(df2, aes(preco)) +
+  geom_histogram(breaks = seq(0, 20000, 100), fill = azul) +
+  meu_tema() +
+  coord_cartesian(xlim = c(0, 5000)) +
+  scale_x_continuous(breaks  = seq(0, 20000, 500)) +
+  labs(x = "Aluguel (R$)", y = "Quantidade de apartamentos")
+
+```
+
+Uma possível conclusão do gráfico acima é que os locadores tendem a precificar seus apartamentos em um valor "fechado" a cada R\$500,00, como R\$500, R\$1000, R\$1500, etc. Além disso, o fato de existirem mais apartamentos à esquerda de cada "pico" ao invés de à direita mostra que os proprietários preferem "arredondar" os valores para cima, nunca para baixo. Em outras palavras: a decisão sobre o preço do aluguel de um apartamento é enviesada e não segue uma lógica racional. Novamente, isso é apenas uma conclusão pessoal minha.
+
+Para ser mais preciso, confira a quantidade numérica de apartamentos agrupados em intervalos de preço de aluguel de R$100:
+
+```{r}
+
+df2 %>% filter(between(preco, 1900, 3100)) %>% count(cut_interval(preco, length = 100, dig.lab = 5))
+
+```
+
+Temos, por exemplo, que existe um brusco aumento na quantidade de apartamentos no intervalo entre R\$2301 a R\$2400 e R\$2401 a R\$2500 e uma brusca redução entre este último intervalo e o seguinte (R\$2501 a R\$2600.)
+
+### Área do condomínio
+
+De forma semelhante ao preço do aluguel, vamos analisar a distribuição das áreas dos condomínios por meio de um histograma.
+
+```{r}
+
+ggplot(df2, aes(x = area_condominio)) +
+  geom_histogram(fill = azul) +
+  meu_tema() +
+  labs(x = "Área do condomínio (m²)", y = NULL)
+
+df2 %>% filter(area_condominio > 7000)
+
+```
+
+Novamente, o gráfico foi distorcido devido à presença de anomalias. Existe até apartamento cuja área informada é de [mais de 57 mil m²](http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/alugo-apartamento-campo-grande-254728943)! Precisamos, novamente, remover essas anomalias dos nossos dados, mas qual seria um bom valor para o limite máximo da área? Podemos responder a essa pergunta analisando os percentis:
+
+```{r}
+quantile(df2$area_condominio, seq(0, 1, 0.01), na.rm = TRUE)
+```
+
+Vemos que apenas 1% dos apartamentos possui área informada superior a 300m². Portanto, esse será o nosso valor máximo para definir as anomalias.
+
+```{r}
+df2 %<>% filter(area_condominio <= 300)
+
+ggplot(df2, aes(x = area_condominio)) +
+  geom_histogram(breaks = seq(0, 300, 10), fill = azul) +
+  meu_tema() +
+  labs(x = "Área do condomínio (m²)", y = NULL) +
+  scale_x_continuous(breaks = seq(0, 300, 50))
+
+```
+
+A maior parte dos condomínios têm área entre 41 a 70m².
+
+### Taxa do condomínio
+
+De forma semelhante ao preço do aluguel, vamos analisar a distribuição das áreas dos condomínios por meio de um histograma.
+
+```{r}
+
+limite <- max(df2$taxa_condominio, na.rm = TRUE)
+
+ggplot(df2, aes(x = taxa_condominio)) +
+  geom_histogram(breaks = seq(0, limite, 100), fill = azul) +
+  meu_tema() +
+  labs(x = "Taxa do condomínio (R$)", y = NULL) +
+  scale_x_continuous(breaks = seq(0, limite, 500))
+
+# Reduzindo o comprimento dos intervalos
+ggplot(df2, aes(x = taxa_condominio)) +
+  geom_histogram(breaks = seq(0, limite, 50), fill = azul) +
+  meu_tema() +
+  labs(x = "Taxa do condomínio (R$)", y = NULL) +
+  scale_x_continuous(breaks = seq(0, limite, 500))
+
+```
+
+Nota-se que a taxa de condomínio apresenta o mesmo comportamento que o preço do aluguel.
+
+### Quartos
+
+Quantos quartos têm em média os apartamentos?
+
+```{r}
+
+ggplot(df, aes(x = qtd_quarto)) +
+  geom_bar(fill = azul) +
+  meu_tema() +
+  labs(x = "Quartos", y = "Quantidade de apartamentos")
+
+
+```
+
+
+
+# Análise Rio de Janeiro x Niterói
+
+Agora, vamos analisar como diferentes variáveis diferem de acordo com a cidade. Primeiramente, quantos bairros diferentes temos no dataset?
+
+```{r}
+
+df %>%
+  group_by(cidade) %>%
+  summarise(qtd_bairros = n_distinct(bairro),
+            qtd_apartamentos = n())
+
+```
+
+Temos mais de 154 bairros no Rio de Janeiro, o que mostra que o OLX cobre praticamente toda a cidade.
+
+## Aluguel
+
+Espera-se que a diferença do aluguel seja diferente para as duas cidades, correto?
+
+```{r}
+
+ggplot(df2, aes(x = cidade, y = preco)) + 
+  geom_boxplot() +
+  meu_tema() +
+  labs(x = NULL, y = "Aluguel (R$)")
+
+
+```
+
+Aparentemente, Niteroi e Rio de Janeiro possuem a mesma mediana do preço de aluguel. A quantidade de apartamentos anormalmente caros é mais comum no Rio de Janeiro. Para confirmar isso:
+
+```{r}
+# utilizando o data frame inteiro e não o filtrado
+df %>%
+  group_by(cidade) %>%
+  summarise(aluguel_mediano = median(preco, na.rm = TRUE),
+            aluguel_medio = mean(preco, na.rm = TRUE))
+
+```
+
+Muito surpreendetemente, Rio de Janeiro e Niterói apresentam exatamente o mesmo aluguel mediano. A existência de muitas anomalias no Rio de Janeiro fazem com que ela apresente um aluguel médio cerca de R$300 maior que Niterói. Será que essa diferença é estatisticamente significante?
+
+```{r}
+
+aov(preco ~ cidade, data = df) %>% summary()
+
+```
+
+O valor p é superior a 0,05, então não podemos afirmar que há uma diferença significativa nos preços de aluguel entre o Rio de Janeiro e Niterói.
+
+## Quartos
+
+Em relação ao número de quartos:
+
+```{r}
+df2 %>%
+  group_by(cidade, qtd_quarto) %>%
+  #summarise(n = n()) %>%
+  ggplot(aes(x = qtd_quarto, fill = cidade)) +
+    geom_bar(position = "fill") +
+    meu_tema() +
+    scale_y_continuous(breaks = seq(0, 1, 0.1)) +
+    labs(x = "Quartos", y = "Porcentual", fill = NULL) +
+    theme(legend.position = "bottom")
+
+df2 %>%
+  filter(tem_quarto) %>%
+  group_by(cidade, qtd_quarto) %>%
+  #summarise(n = n()) %>%
+  ggplot(aes(fill = as.character(qtd_quarto), x = cidade)) +
+    geom_bar(position = "fill") +
+    meu_tema() +
+    scale_fill_manual(values = brewer.pal(5, "Reds")) +
+    scale_y_continuous(breaks = seq(0, 1, 0.1)) +
+    labs(x = NULL, y = "Porcentual")
+
+
+```
+
+Os dois gráficos acima mostram que os apartamentos para aluguel do Rio de Janeiro costumam ter menos quartos: Cerca de 30% dos imóveis da cidade possuem apenas 1 quarto. A proporção de apartamentos com 2 ou 3 quartos é maior em Niterói do que na capital do estado.
+
+
+# Análise de bairros do Rio de Janeiro
+
+Para esta análise, vamos considerar apenas a cidade do Rio de Janeiro.
+
+Quais os bairros com mais ofertas de apartamento? Quais os com os aluguéis mais caros?
+
+```{r}
+df.rio <- df %>% filter(cidade == "Rio de Janeiro" & preco < 20000)
+
+
+temp <- df.rio %>%
+  group_by(cidade, bairro) %>%
+  summarise(qtd_apt = n(),
+            aluguel_mediano = median(preco, na.rm = TRUE),
+            area_mediana = median(area_condominio, na.rm = TRUE)) %>%
+  arrange(desc(qtd_apt)) %>%
+  ungroup 
+
+head(temp, 10)
+```
+
+São mais de 150 bairros, então não dá para mostrar todos em uma tabela aqui no post. Talvez uma boa forma de visualizar esses dados seja por meio de um gráfico:
+
+```{r, eval = FALSE}
+y <- list(title = "Preço mediano do aluguel (R$)")
+x <- list(title = "Quantidade de apts. para aluguel")
+
+
+plot_ly(temp, x = ~qtd_apt, y = ~aluguel_mediano, size = ~area_mediana,
+        text = ~paste("Bairro: ", bairro)) %>%
+  layout(title = "Análise de apartamentos para alugar por bairro", xaxis = x, yaxis = y) -> p
+
+
+```
+
+Clique na imagem abaixo para conferir o gráfico interativo.
+
+[<img src="http://i.imgur.com/vc9MMhr.png">](https://plot.ly/~sillas.gonzaga/1/analise-de-apartamentos-para-alugar-por-bairro/)
+
+Conforme mostra o gráfico acima, não dá para dizer que existe relação entre a quantidade de apartamentos disponíveis para alugar em um bairro e o preço do aluguel.
+
+Vamos então mostrar um boxplot com a distribuição de preço de aluguel para os 20 bairros com mais oferta de apartamentos. 
+
+```{r, fig.width=12}
+
+temp <- df.rio %>%
+  group_by(cidade, bairro) %>%
+  summarise(qtd_imoveis = n(),
+            aluguel_mediano = median(preco, na.rm = TRUE)) %>%
+  arrange(desc(qtd_imoveis)) %>%
+  ungroup %>%
+  top_n(20, qtd_imoveis)
+
+df.rio %>%
+  filter(bairro %in% temp$bairro) %>%
+  ggplot(aes(x = reorder(bairro, preco, FUN = median), y = preco)) +
+    geom_boxplot() + geom_point(color = "blue", alpha = 5/100) +
+    meu_tema(axis.text.size = 9) +
+    coord_flip() +
+    scale_y_continuous(breaks = seq(0, 20000, 1000)) +
+    theme(legend.position = "bottom") +
+    labs(x = NULL, y = "Aluguel (R$)")
+      
+```
+
+
+Com o gráfico acima, aprendemos que:  
+* O aluguel mediano de um apartamento no Leblon é maior que R$4000,00. Contudo, ainda assim é possível encontrar apartamentos cujo valor é o mesmo do mediano encontrado em bairros menos ricos;  
+* Existem apenas três bairros (dentre os 20 mais populares) onde o preço mediano do aluguel é menor que R$1000,00;  
+* O bairro onde existe o maior número de anomalias é a Barra da Tijuca. Isso significa que nesse bairro, o valor mediano do aluguel não é um dado muito útil por causa da má-distribuição dos valores e da quantidade de pontos fora da curva.  
+
+Em relação à área dos apartamentos, temos:
+
+```{r, fig.width=12}
+
+df.rio %>%
+  filter(bairro %in% temp$bairro & area_condominio < 300) %>%
+  ggplot(aes(x = reorder(bairro, area_condominio, FUN = median), y = area_condominio)) +
+    geom_boxplot() + geom_point(color = "blue", alpha = 5/100) +
+    meu_tema(axis.text.size = 9) +
+    coord_flip() +
+    scale_y_continuous(breaks = seq(0, 300, 50)) +
+    theme(legend.position = "bottom") +
+    labs(x = NULL, y = "Aluguel (R$)")
+```
+
+
+# Análise de regressão: O que determina o preço de um aluguel?
+
+Já que temos dados tão legais em mãos, por que não levar a análise a um passo adiante e aplicar uma técnica estatística para tentar explicar o preço do aluguel de um apartamento por meio de variáveis independentes?
+
+Para não ter a complicação de usar uma variável categórica com vários valores diferentes (bairro) em um modelo de regressão, eu construí o modelo apenas para os apartamentos do Centro do Rio de Janeiro.
+
+```{r}
+temp <- df2 %>% select(preco, cidade, bairro, qtd_quarto, taxa_condominio, area_condominio)
+temp %<>% filter(cidade == "Rio de Janeiro" & bairro == "Centro")
+
+
+
+summary(temp)
+z <- lm(preco ~ qtd_quarto + taxa_condominio + area_condominio, data = temp)
+summary(z)
+
+```
+Alguns comentários sobre o resultado da regressão:  
+*  O valor do R² é de 0,4838, não muito alto;  
+* A taxa do condomínio, surpreendentemente, não influencia grandemente o valor do aluguel.  
+
+
+# Considerações finais
+Ainda assim, não respondemos a principal pergunta desta série de posts: como escolho um lugar para morar a partir desses dados? Com as análises acima, conseguimos descobrir algumas coisas interessantes sobre o Rio de Janeiro, mas isso não nos ajuda muito a escolher um lugar para morar. Isso vai ficar para os próximos dois posts. 
+

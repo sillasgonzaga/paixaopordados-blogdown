@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Text Mining on Paixão por Dados</title>
+    <link>/tags/text-mining/</link>
+    <description>Recent content in Text Mining on Paixão por Dados</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2016. All rights reserved.</copyright>
+    <lastBuildDate>Sun, 15 Oct 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/text-mining/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mineração de textos em notícias de G1: O que diferencia notícias sobre Rio de Janeiro e São Paulo?</title>
+      <link>/post/analise-g1-01/</link>
+      <pubDate>Sun, 15 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/analise-g1-01/</guid>
+      <description>library(rvest) library(tidyverse) library(magrittr) library(stringr) library(Rfacebook) library(tidytext) library(tm) Motivação para o post Apesar de hoje em dia eu morar no Rio de Janeiro, morei e vivi (quase) a vida toda em Aracaju, a capital do menor estado do Brasil. Devido à irrelevância que a cidade tem (desculpa mas é verdade) no cenário político e econômico do país, era (e ainda é) muito raro ver qualquer notícia em um veículo de audiência nacional (como o Jornal Nacional ou a homepage do G1 ou Estadão) relacionada a Aracaju ou a Sergipe que não seja desgraça ou por um acontecimento inusitadamente ruim.</description>
+    </item>
+    
+    <item>
+      <title>O Sensacionalista e Text Mining: Análise de sentimento usando o lexiconPT</title>
+      <link>/post/o-sensacionalista-e-text-mining-an%C3%A1lise-de-sentimento-usando-o-lexiconpt/</link>
+      <pubDate>Sat, 23 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/o-sensacionalista-e-text-mining-an%C3%A1lise-de-sentimento-usando-o-lexiconpt/</guid>
+      <description>De volta à ativa no blog!
+Recentemente, quando precisei fazer pela primeira vez algum tipo de análise em cima de textos (o chamado Text Mining ou Mineração de Texto) em Português, senti falta de ter um acesso fácil a um léxico na linguagem. O R já tem a sua disposição vários recursos para quem quer fazer Text Mining em inglês, como os pacotes tokenizer, tidytext, tm e lexicon, além de vários blog posts sobre Sentiment Analysis que você encontra no R-bloggers.</description>
+    </item>
+    
+  </channel>
+</rss>

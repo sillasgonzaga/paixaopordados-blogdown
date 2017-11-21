@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Olx on Paixão por Dados</title>
+    <link>/tags/olx/</link>
+    <description>Recent content in Olx on Paixão por Dados</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2016. All rights reserved.</copyright>
+    <lastBuildDate>Fri, 18 Nov 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/olx/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Como usar o R para escolher um lugar para morar (4) - Mapa interativo</title>
+      <link>/post/olx04/</link>
+      <pubDate>Fri, 18 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/post/olx04/</guid>
+      <description>No post anterior da série, mostrei como fazer um gráfico em um mapa a partir das coordenadas geográficas dos imóveis. Neste post, a grande sacada da série: um mapa interativo em que é possível visualizar diversas dimensões de cada um dos apartamentos, como o preço do aluguel, a proximidade em relação a um ponto de interesse, etc.
+Dessa vez, vou usar o data frame que contem todos os apartamentos listados no OLX que eu não mostrei (exatamente) como obter e nem posso compartilhar em respeito ao OLX.</description>
+    </item>
+    
+    <item>
+      <title>Como usar o R para escolher um lugar para morar (2) - Análise dos dados</title>
+      <link>/post/olx02/</link>
+      <pubDate>Thu, 17 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/post/olx02/</guid>
+      <description>No post anterior, mostramos como obter os dados de apartamentos para aluguel no Rio de Janeiro do site do OLX. Neste post, vamos analisar esses dados e ver se descobrimos algo interessante. Algumas das perguntas que podemos responder com os dados que temos são:
+ Quais as principais diferenças entre os apartamentos nas cidades do Rio de Janeiro e Niterói?
+ Quantos quartos os apartamentos têm em média?
+ Quais os bairros com os aluguéis mais caros?</description>
+    </item>
+    
+    <item>
+      <title>Como usar o R para escolher um lugar para morar (3) - Converter CEP em coordenadas geográficas</title>
+      <link>/post/olx03/</link>
+      <pubDate>Thu, 17 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/post/olx03/</guid>
+      <description>No primeiro e segundo post desta série, mostrei como obter dados de apartamentos para alugar a partir do site da OLX e analisá-los, mas ainda não temos a resposta definita para a pergunta que motivou esta série: Como o R pode ajudar a escolher um lugar para morar?
+Uma boa ideia seria plotar os imóveis em um mapa, não? No terceiro post da série, mostrarei como fazer isso, além de como extrair os CEPs dos imóveis (novamente por web scraping) e converter os CEPs para endereços, que serão usados para obter as coordenadas geográficas dos apartamentos.</description>
+    </item>
+    
+    <item>
+      <title>Como usar o R para escolher um lugar para morar(1) - Web Scraping e Data Cleaning</title>
+      <link>/post/olx01/</link>
+      <pubDate>Thu, 17 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/post/olx01/</guid>
+      <description>Introdução Imagine-se na seguinte situação: você foi convidado a se mudar para a cidade do Rio de Janeiro a trabalho e precisa procurar um lugar para morar. Pessoas normais resolveriam esse problema pesquisando preços de apartamentos ou quartos para alugar em sites como OLX ou AirBNB. Mas como alguém fascinado em programação e análise resolveria?
+Nesta série de posts, mostro como o R pode ser usado tomar a decisão sobre escolher um apartamento ou quarto para alugar.</description>
+    </item>
+    
+  </channel>
+</rss>

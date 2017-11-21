@@ -1,0 +1,230 @@
+---
+title: Como usar o R para escolher um lugar para morar(1) - Web Scraping e Data Cleaning
+author: ''
+date: '2016-11-17'
+slug: olx01
+categories:
+  - R
+tags:
+  - web scraping
+  - olx
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+# Introdução
+Imagine-se na seguinte situação: você foi convidado a se mudar para a cidade do Rio de Janeiro a trabalho e precisa procurar um lugar para morar. Pessoas normais resolveriam esse problema pesquisando preços de apartamentos ou quartos para alugar em sites como OLX ou AirBNB. Mas como alguém fascinado em programação e análise resolveria? 
+
+Nesta série de posts, mostro como o R pode ser usado tomar a decisão sobre escolher um apartamento ou quarto para alugar. No OLX, a formatação HTML das páginas de apartamentos são diferentes das de quartos. Neste post, eu mostro como fazer o web scraping, por meio do pacote `rvest`, apenas de apartamentos, mas o mesmo procedimento (com pequenas modificações) pode ser feito também para quartos.
+
+As bibliotecas usadas serão:
+
+```{r pacotes e funções}
+library(magrittr) # não vivo sem esse pacote
+library(rvest) # principal pacote para web-scraping
+library(readr) # usado para extrair numeros de texto
+library(stringr) # usado para o data cleaning
+library(curl) # usado como suporte para o rvest
+library(tidyr) # data cleaning
+library(dplyr) # data cleaning
+source("/home/sillas/R/Projetos/olx/funcoes.R") # algumas funcoes que criei para auxiliar o data cleaning
+```
+
+# Web scraping
+
+A primeira etapa é obter os dados. Até a data de hoje (12 de Novembro de 2016), o [OLX](http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/aluguel/apartamentos) listava um pouco mais de 12000 apartamentos para alugar, com 245 páginas e 50 apartamentos em cada página. 
+
+```{r web-scraping}
+
+url_apt <- "http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/aluguel/apartamentos"
+number_pages <- 245 #hard coded
+# Criar vetor com todos os urls para as páginas do olx
+lista_urls <- paste0(url_apt, "?o=", 1:number_pages)
+
+
+```
+
+A seguir, eu uso uma função para extrair as informações importantes de cada anúncio, que são: o link para o anúncio, o título, o preço, o bairro e mais algumas informações adicionais, como número de vagas de garagem e o valor da taxa de condomínio. Explicar o passo-a-passo do web scraping e explicar como o código fonte das páginas do OLX funciona está fora do escopo deste post, mas acredito que basta ler o código da função extrairAnuncios() para entender o que o script faz. Caso o leitor deseje saber mais sobre web scraping, o post 3 da série traz um tutorial de web scraping bem detalhado.
+
+```{r print codigo da funcao}
+
+extrairAnuncios <- function(url_pagina, info_adicional) {
+  ### INPUTS:
+  # url_pagina: url de uma pagina do olx com uma lista de links de anúncios.
+  # info_adicional: variavel booleana. se verdadeiro, faz o scraping de dados adicionais do anuncio
+  # ... deve ser usado apenas para apartamentos, pois a sintaxe do html para quartos é diferente
+  mycurl <- curl(url_pagina, handle = curl::new_handle("useragent" = "Mozilla/5.0"))
+  mycurl <- read_html(mycurl)
+
+  x <- mycurl %>% html_nodes(".OLXad-list-link")
+  
+  # extrair link do anuncio
+  col_links <- mycurl %>% html_nodes(".OLXad-list-link") %>% html_attr("href")
+  # extrair titulo do anuncio
+  col_titles <- mycurl %>% html_nodes(".OLXad-list-link") %>% html_attr("title")
+  # extrair preço
+  precos <- lapply(x, . %>% html_nodes(".col-3"))
+  precos %<>% lapply(html_text)
+  precos %<>% unlist()
+  precos %<>% limparString()
+  precos %<>% as.numeric()
+  col_precos <- precos
+  # extrair bairros
+  bairros <- mycurl %>% html_nodes(".OLXad-list-line-2") %>% html_text()
+  bairros %<>% str_replace_all("[\t]", "")
+  bairros %<>% str_replace_all("[\n]", "")
+  bairros %<>% str_replace_all("Apartamentos", "")
+  bairros %<>% str_replace_all("Aluguel de quartos", "")
+  bairros %<>% str_replace_all("Anúncio Profissional", "")
+  bairros %<>% str_replace("-", "")
+  bairros %<>% str_trim()
+  col_bairros <- bairros
+  # extrair informações adicionais de apartamento
+  
+  if (info_adicional) {
+    adicional <- mycurl %>% html_nodes(".mt5px") %>% html_text()
+    adicional %<>% str_replace_all("[\t]", "")
+    adicional %<>% str_replace_all("[\n]", "")
+    col_adicionais <- adicional
+    
+  }
+    return(data.frame(link = col_links,
+                    titulo = col_titles,
+                    preco = col_precos,
+                    bairro = col_bairros,
+                    adicional = col_adicionais,
+                    stringsAsFactors = FALSE))
+}
+
+
+```
+
+Agora já podemos aplicar a função `extrairAnuncios()` no vetor da lista de urls para baixar os dados. Para fins de demonstração, vou executar o procedimento apenas para a primeira página.
+
+```{r, eval=FALSE, include=FALSE}
+df <- lapply(lista_urls, extrairAnuncios, info_adicional = TRUE) # output is a list object
+df <- plyr::rbind.fill(df)
+```
+
+
+```{r aplicar funcao de extrair anuncios}
+url_teste <- lista_urls[1]
+system.time(df <- extrairAnuncios(url_teste, info_adicional = TRUE))
+# Vamos dar uma olhada nos dados
+head(df) %>% knitr::kable()
+
+```
+
+# Data Cleaning
+
+Pode-se ver que o web scraping (ao menos para esses 5 exemplos) foi bem feito pois os os dados foram extraídos adequadamente. Contudo, é evidente a necessidade de se limpar os dados para poder os analisar. A coluna de informações adicionais, por exemplo, informa dados de até quatro variáveis: quantidade de quartos, quantidade de vagas de garagem, área e o preço da taxa de condomínio. Para deixar o processo de limpeza ainda mais difícil, nem todos os anúncios fornecem dados dessas quatro variáveis.
+
+Antes de partir para esse problema, vamos separa a coluna de bairro em duas: uma de cidade e outra de bairro. Removi os imóveis que não são do Rio de Janeiro ou de Niterói para fins de simplicidade.
+
+```{r}
+# remover os que nao sao do RJ ou de niteroi
+df %<>% filter(str_detect(bairro, "Niterói") | str_detect(bairro, "Rio de Janeiro"))
+df %<>% separate(bairro, c("cidade", "bairro"), sep = ",")
+head(df) %>% knitr::kable()
+```
+
+Agora podemos partir para a limpeza da coluna de adicionais. Primeiramente, vamos ver quantos anúncios possuem as quatro variáveis adicionais:
+
+```{r}
+# substituir quartos por quarto
+df$adicional %<>% str_replace_all("quartos", "quarto")
+df %<>% mutate(
+  tem_quarto = str_detect(adicional, "quarto"),
+  tem_area = str_detect(adicional, "m²"),
+  tem_taxa = str_detect(adicional, "Condomínio"),
+  tem_garagem = str_detect(adicional, "vaga")
+)
+
+x <- round(apply(df[, 7:10], 2, mean), 3) * 100
+print(x)
+```
+
+
+Assim, `r unname(x[1])`% dos apartamentos (dessa amostra de 50 apartamentos) têm informação sobre a quantidade de quartos, `r unname(x[2])`%  sobre área, `r unname(x[3])`% informam a taxa de condomínio e `r unname(x[4])`% têm vaga de garagem.  
+
+É necessário usar o pacote `stringr` para observar a posição dos termos que identificam a variável:  
+* O substring "quarto" indica a presença de informação sobre quantidade de quartos;  
+* O substring "Condomínio: R$" indica a presença de informação sobre taxa do condomínio;  
+* O substring "m²" indica a presença de informação sobre área;  
+* O substring "vaga" indica a presença de informação sobre vagas de garagem.
+
+
+O desafio aqui é criar colunas adicionais para cada uma dessas categorias de informação adicional. A seguir, eu comento linha a linha o procedimento necessário para realizar essa tarefa, que é basicamente o mesmo para as variáveis.  
+
+
+```{r}
+# COLUNA DE QUANTIDADE DE QUARTOS
+# Quarto: pegar posicao inicial e final do string quarto
+# Localizar trecho dentro do string referente a quartos
+matriz_posicao <- str_locate(df$adicional, "quarto")
+# Voltar 2 posições no string para pegar o número (ex: 2 quarto)
+matriz_posicao[,1] <- matriz_posicao[,1] - 2
+# extrair string com posições iniciais e finais
+vetor_quartos <- str_sub(df$adicional, matriz_posicao[,1], matriz_posicao[,2])
+# extrair apenas número (primeiro caractere do string) e converter para numeric
+vetor_quartos <- str_sub(vetor_quartos, 1, 1)
+vetor_quartos %<>% as.numeric()
+# adicionar ao data frame
+df$qtd_quarto <- vetor_quartos
+
+
+# Condominio
+# retirar cifrao pra ficar mais facil
+df$adicional %<>% str_replace_all("\\$", "S")
+matriz_posicao <- str_locate(df$adicional, "Condomínio: RS ")
+# mover cinco posicoes para pegar algarismos após o RS
+vetor_taxa <- str_sub(df$adicional, matriz_posicao[, 2], matriz_posicao[, 2] + 4)
+# extrair apenas numeros
+vetor_taxa %<>% parse_number()
+# vendo se funcionou
+data.frame(df$adicional, vetor_taxa) %>% head(20)
+# Funcionou! Incorporar vetor ao data frame
+df$taxa_condominio <- vetor_taxa
+
+
+# Área
+matriz_posicao <- str_locate(df$adicional, " m²")
+# voltar quatro posições
+vetor_area <- str_sub(df$adicional, matriz_posicao[,1] - 4, matriz_posicao[, 1])
+# converter para numerico
+vetor_area %<>% parse_number()
+# vendo se funcionou
+data.frame(df$adicional, vetor_area) %>% head(20)
+# Funcionou! Incorporar ao data frame
+df$area_condominio <- vetor_area
+
+
+# Garagem
+matriz_posicao <- str_locate(df$adicional, " vaga")
+# voltar quatro posições
+vetor_garagem <- str_sub(df$adicional, matriz_posicao[,1] - 2, matriz_posicao[, 1])
+# converter para numerico
+vetor_garagem %<>% readr::parse_number()
+# vendo se funcionou
+data.frame(df$adicional, vetor_garagem) %>% head(20)
+# Funcionou! Incorporar ao data frame
+df$garagem <- vetor_garagem
+
+# Remover objetos desnecessários
+rm(matriz_posicao, vetor_adicional, vetor_area, vetor_garagem, vetor_quartos, vetor_taxa)
+```
+
+Vamos ver como ficou o data frame final
+
+```{r}
+head(df) %>% knitr::kable()
+```
+
+# Conclusão
+
+No próximo post, analisaremos os dados obtidos aqui.
+
+

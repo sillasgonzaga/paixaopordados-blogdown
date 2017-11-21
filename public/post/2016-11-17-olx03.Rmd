@@ -1,0 +1,283 @@
+---
+title: Como usar o R para escolher um lugar para morar (3) - Converter CEP em coordenadas
+  geográficas
+author: ''
+date: '2016-11-17'
+slug: olx03
+categories:
+  - R
+tags:
+  - olx
+  - web scraping
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+No primeiro e segundo post desta série, mostrei como obter dados de apartamentos para alugar a partir do site da OLX e analisá-los, mas ainda não temos a resposta definita para a pergunta que motivou esta série: Como o R pode ajudar a escolher um lugar para morar? 
+
+Uma boa ideia seria plotar os imóveis em um mapa, não? No terceiro post da série, mostrarei como fazer isso, além de como extrair os CEPs dos imóveis (novamente por web scraping) e converter os CEPs para endereços, que serão usados para obter as coordenadas geográficas dos apartamentos. É mostrado no final um simples gráfico feito com o pacote `ggmap`. 
+
+
+```{r pacotes}
+library(magrittr)
+library(dplyr)
+library(rvest)
+library(curl)
+library(readr)
+library(stringr)
+library(ggmap)
+```
+
+
+# Extrair CEP do imóvel com web scraping
+
+Para plotar os imóveis em um mapa, precisamos de suas coordenadas geográficas. Tais dados podem ser obtidos com a função `geocode` do pacote `ggmap`. Essa função aceita um endereço (ou parte de um) como input e retorna a latitude e a longitude. Por exemplo, para o CEP do estádio  Maracanã, no Rio de Janeiro:
+
+```{r exemplo geocode, eval=FALSE}
+geocode("20271110")
+```
+
+Contudo, você deve se lembrar que não possuímos até o momento nenhum dado sobre o endereço dos imóveis. Vamos dar uma olhada novamente nos dados gerados no primeiro post:
+
+```{r}
+
+df <- read.csv2("/home/sillas/R/Projetos/olx/data/post1-df-olx.csv", stringsAsFactors = FALSE)
+head(df)
+
+```
+
+
+Como eu disse, não temos nenhum dado sobre a localização do imóvel - além do bairro, o que é muito pouco. Isso acontece porque a página que lista os apartamentos não informa esses dados, como se vê na imagem abaixo:
+
+![](http://i.imgur.com/4mXiS3M.png)
+
+Dentro da página do imóvel, já conseguimos ter pelo menos seu CEP:
+
+
+![](http://i.imgur.com/3XF4XS9.png)
+
+Ou seja: para extrair o CEP do imóvel, é necessário entrar em sua página! Isso aumenta a complexidade do código em n vezes porque agora teremos de fazer o scraping não de 245 páginas mas sim de mais de 10000.
+
+Para extrair o CEP, a lógica é a mesma da mostrada no primeiro post desta série. Como vamos extrair apenas este único dado da página, vou mostrar o passo-a-passo do scraping mais detalhadamente.
+
+Primeiramente, nós precisamos saber qual é o elemento HTML (chamado de tag) que identifica o CEP no código fonte da página. Não precisa ser expert em HTML para saber isso (eu mesmo não sei nada), basta utilizar as ferramentas do Firefox ou do Chrome para inspecionar a página e descobrir a tag do elemento desejado.
+
+Abra [esta página](http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/excelente-quarto-e-sala-mobiliado-267207757), clique com o botão direito no CEP e clique em Inspecionar elemento (ou algo semelhante). Será aberto um menu na parte inferior do browser com o código fonte da página. Passe o mouse nas diferentes linhas e veja os elementos que correspondem às tags do código.
+
+
+![](http://i.imgur.com/IuhcpEJ.png)
+
+Na imagem acima, veja que o CEP está dentro do bloco (não sei se é assim mesmo que isso é chamado) da localização do apartamento, cuja tag é indicada pelo string `OLXad-location-map mb20px`. Na verdade, após fazer alguns testes, descobri que usamos o string `.OLXad-location-map` para localizar a tag da localização do imóvel. Como não conheço HTML, não sei explicar o porquê disso acontecer. Web scraping tem muito de tentar diversos inputs até conseguir o resultado desejado.
+
+Vamos usar essa informação em nosso código:
+
+```{r}
+url <- "http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/excelente-quarto-e-sala-mobiliado-267207757"
+mycurl <- curl(url, handle = curl::new_handle("useragent" = "Mozilla/5.0"))
+url <- read_html(mycurl, encoding = "ISO8859-1")
+# Localizando a tag de localização do imóvel
+x <- url %>% html_nodes(".OLXad-location-map")
+# Imprimir o elemento x em formato de texto:
+print(x)
+html_text(x)
+```
+
+Podemos ver que, conforme o esperado, o CEP está dentro do bloco de localização. Só isso já seria necessário para extrair o CEP, mas nós conseguimos melhorar isso para facilitar o processo de data cleaning posteriormente.
+
+Perceba que dentro da tag `OLXad-location-map mb20px`, existe uma subtag `p` que identifica apenas o CEP do imóvel. 
+
+```{r}
+url %>% html_nodes(".OLXad-location-map") %>% html_nodes("p")
+```
+
+O output gerado é da classe `xml_nodeset` e tem três elementos: o município, o CEP e o bairro. Estamos interessados apenas no CEP, portanto:
+
+```{r}
+#html_text serve para converter um objeto xml_nodeset em texto
+x <- url %>% html_nodes(".OLXad-location-map") %>% html_nodes("p") %>% .[2] %>% html_text()
+x
+```
+Agora precisamos fazer um pouco de data cleaning. É necessário apenas remover o caractere `-` e extrair os algarismos do string. Fazer isso é muito fácil graças ao pacote `stringr`.
+
+```{r}
+x %<>% str_replace_all("-", "")
+x
+x %<>% parse_number()
+x
+```
+
+Finalmente, conseguimos extrair o CEP do imóvel. Vamos então aplicar esse mesmo procedimento para os outros apartamentos do data frame. Para automatizar esse processo, criei a função `extrairCEP()`, que usa uma outra função chamada `limparString()`. Os códigos de ambas são mostrados abaixo.
+
+```{r}
+# definir função para limpar strings coletadas
+limparString <- function(x) {
+  # x = string coletado do olx
+  x %<>% str_replace_all("[\t]", "")
+  x %<>% str_replace_all("[\n]", "")
+  x %<>% str_replace_all("Apartamentos", "")
+  x %<>% str_replace_all("Anúncio Profissional", "")
+  x %<>% str_replace("-", "")
+  x %<>% str_replace_all("[R$]", "")
+  x %<>% str_replace_all("[.]", "")
+  x %<>% str_trim()
+  return(x)
+}
+
+
+extrairCEP <- function(url) {
+  # url = url de um quarto
+  mycurl <- curl(url, handle = curl::new_handle("useragent" = "Mozilla/5.0"))
+  url <- read_html(mycurl, encoding = "ISO8859-1")
+  #url <- read_html(url, encoding = "ISO8859-1")
+  #url <- html_nodes(url, ".OLXad-location-map") deprecated
+  
+  # if clause para pegar casos em que o node id é diferente
+  if (length(html_nodes(url, ".OLXad-location-map")) > 0) {
+    url %<>% html_nodes(".OLXad-location-map")
+  } else {
+    url %<>% html_nodes(".OLXad-location")
+  }
+  
+  url <- html_nodes(url, "p")
+  url <- url[2]
+  url <- html_text(url)
+  cep <- limparString(url)
+  cep <- readr::parse_number(cep)
+  return(cep)
+}
+
+```
+
+Para algumas páginas, a tag de identificação do bloco da localização do apartamento não é `.OLXad-location-map` mas sim `.OLXad-location`, por isso a necessidade da if clause na função `extrairCEP()`.
+
+Outro problema é que, em alguns casos, o CEP do imóvel não é informado, fazendo necessário usar a função `tryCatch()` para retornar `NA` em caso de erro:
+
+```{r extrair cep dos outros imoveis}
+
+system.time(ceps <- unname(sapply(df$link, function(i) tryCatch({extrairCEP(i)}, error = function(e){NA}))))
+ceps
+# incorporar ao data frame
+df$cep <- ceps
+```
+
+# Obter endereço a partir do CEP
+
+Como eu mostrei no início do post, seria possível conseguir as coordenadas do imóvel (ou pelo menos da rua dele) a partir do CEP. Entretanto, em alguns testes que eu fiz, percebi que em alguns casos a acurácia não era muito grande. Sabemos que quanto mais dados de endereço o Google tiver, mais precisas serão as coordenadas. Por isso, é importante ter não somente o CEP mas também o nome da rua, bairro, cidade e estado.
+
+Para conseguir esses dados a partir do CEP, usei uma função criada e postada no grupo [R Brasil - Programadores](https://www.facebook.com/groups/1410023525939155/) pelo membro José de Jesus Filho. Segue seu código:
+
+```{r}
+
+postal<-function(cep){
+  # converter cep em endereço
+  library(httr)
+  l<-list()
+  for(i in seq_along(cep)){
+    cep <- stringr::str_replace(cep,"\\D","")
+    cep <- stringr::str_pad(cep,8,side="left",pad="0")
+    cep <- as.character(cep)
+    url <- paste0("http://correiosapi.apphb.com/cep/",cep)
+    a <- GET(url[i])
+    b <- content(a,as="parsed")
+    l[[i]] <- b
+  }
+  x <- as.data.frame(do.call("rbind",l))
+  for (col in 1:ncol(x)) {x[, col] <- as.character(x[, col])}
+  return(x)
+}
+```
+
+Por exemplo, continuando com o CEP do Maracanã, a função `postal()` retorna:
+
+```{r}
+
+postal(20271110)
+
+```
+
+Como se vê, a função funciona muito bem, então podemos a aplicar para os outros imóveis:
+
+```{r, eval = FALSE}
+
+system.time(df.endereco <- postal(df$cep))
+# é criado um data frame. 
+head(df.endereco)
+# vamos juntar as colunas do data frame de endereços em uma só
+# primeiro 
+
+```
+
+```{r, include=FALSE, eval=FALSE}
+# salvar df endereço para usar depois
+save(df.endereco, file = "/home/sillas/R/Projetos/olx/data/post3-df.endereco.rdata")
+
+```
+
+```{r, include=FALSE}
+# CARREGAR DF ENDEREÇO
+load("/home/sillas/R/Projetos/olx/data/post3-df.endereco.rdata")
+```
+
+É necessário juntar todas as colunas do data frame de endereços em uma só.  Para juntar diferentes strings com um separador em comum (vírgula, por exemplo), é recomendável usar a função `str_c()` do pacote `stringr`.
+
+```{r}
+
+df.endereco$endereco_completo <- df.endereco %$% str_c(logradouro, cep, bairro, cidade, estado, sep = ", ")
+df.endereco$endereco_completo <- df.endereco %$% str_c(tipoDeLogradouro, endereco_completo, sep = " ")
+# exemplo de como ficou:
+df.endereco$endereco_completo[1:5]
+# incorporando a coluna de endereço completo no data frame principal
+df$endereco_completo <- df.endereco$endereco_completo
+
+```
+
+
+# Obter coordenadas a partir do endereço
+
+Finalmente, podemos extrair do Google as coordenadas do endereço do imóvel com a função `geocode()`. Antes de usar a função, porém, é importante lembrar que a API do Google tem um limite de consultas por dia. Você pode checar seu limite com a função `geocodeQueryCheck()`.
+
+```{r}
+geocodeQueryCheck()
+```
+
+Assim, já podemos obter as coordenadas geográficas dos imóveis:
+
+```{r geocode NAO EXECUTAR, eval = FALSE}
+x <- geocode(df$endereco_completo)
+
+```
+
+
+```{r, include=FALSE, eval=FALSE}
+# salvar df endereço para usar depois
+save(x, file = "/home/sillas/R/Projetos/olx/data/post3-coordenadas-teste.rdata")
+
+```
+
+```{r, include=FALSE}
+# CARREGAR DF ENDEREÇO
+load("/home/sillas/R/Projetos/olx/data/post3-coordenadas-teste.rdata")
+```
+
+
+```{r}
+# incorporando ao data frame
+
+df$lat <- x$lat
+df$lon <- x$lon
+
+```
+
+
+Uma opção para plotar os imóveis em um mapa seria com o próprio pacote `ggmap`:
+
+```{r grafico ggmap}
+qmplot(lon, lat, data = df, size = preco, color = "red") + labs(size = "Aluguel")
+
+```
+
+
+Mesmo o gráfico acima sendo uma ótima visualização, é possível fazer melhor. No próximo post, mostrarei como plotar os pontos em um mapa interativo usando o pacote `leaflet`.

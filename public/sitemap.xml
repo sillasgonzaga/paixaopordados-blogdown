@@ -3,6 +3,76 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/analise-g1-01/</loc>
+    <lastmod>2017-10-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/o-sensacionalista-e-text-mining-an%C3%A1lise-de-sentimento-usando-o-lexiconpt/</loc>
+    <lastmod>2017-09-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/</loc>
+    <lastmod>2017-05-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/analytics-em-tudo/</loc>
+    <lastmod>2017-02-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/mafs02/</loc>
+    <lastmod>2017-01-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/rbloggers/</loc>
+    <lastmod>2016-12-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/olx04/</loc>
+    <lastmod>2016-11-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/olx02/</loc>
+    <lastmod>2016-11-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/olx03/</loc>
+    <lastmod>2016-11-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/olx01/</loc>
+    <lastmod>2016-11-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/mafs01/</loc>
+    <lastmod>2016-10-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/censo-da-educa%C3%A7%C3%A3o-superior-02/</loc>
+    <lastmod>2016-07-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/clusteriza%C3%A7%C3%A3o-no-r-como-segmentar-pa%C3%ADses-de-acordo-com-indicadores-economicos/</loc>
+    <lastmod>2016-06-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/censo-da-educacao-superior-01/</loc>
+    <lastmod>2016-06-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/meta-analise-r-02/</loc>
     <lastmod>2016-05-30T00:00:00+00:00</lastmod>
   </url>
@@ -68,8 +138,56 @@
   </url>
   
   <url>
+    <loc>/tags/censo-educacao/</loc>
+    <lastmod>2016-07-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/cluster/</loc>
+    <lastmod>2016-06-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/eventos/</loc>
+    <lastmod>2017-05-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/lexiconpt/</loc>
+    <lastmod>2017-09-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/mafs/</loc>
+    <lastmod>2017-01-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/mapas/</loc>
+    <lastmod>2016-11-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/olx/</loc>
+    <lastmod>2016-11-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/</loc>
-    <lastmod>2016-05-30T00:00:00+00:00</lastmod>
+    <lastmod>2017-10-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/palestras/</loc>
+    <lastmod>2017-05-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -81,7 +199,7 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2016-05-30T00:00:00+00:00</lastmod>
+    <lastmod>2017-10-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -99,7 +217,7 @@
   
   <url>
     <loc>/tags/series-temporais/</loc>
-    <lastmod>2015-11-07T00:00:00+00:00</lastmod>
+    <lastmod>2017-01-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -117,7 +235,13 @@
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2015-07-23T21:13:14-05:00</lastmod>
+    <lastmod>2016-07-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/text-mining/</loc>
+    <lastmod>2017-10-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -129,6 +253,18 @@
   <url>
     <loc>/tags/transparencia/</loc>
     <lastmod>2016-02-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/unsupervised/</loc>
+    <lastmod>2016-06-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/web-scraping/</loc>
+    <lastmod>2017-10-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

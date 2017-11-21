@@ -7,10 +7,30 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 07 Nov 2015 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 29 Jan 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/series-temporais/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>mafs: Analisando a eficácia dos modelos preditivos usados no pacote</title>
+      <link>/post/mafs02/</link>
+      <pubDate>Sun, 29 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mafs02/</guid>
+      <description>Lancei recentemente a versão 0.0.2 do pacote mafs tanto no CRAN como no Github. Adicionei dois novos recursos:
+* No data frame df_models criado, foi acrescentada uma variável referente ao tempo de execução (runtime) do modelo para a série temporal de input. Isso foi uma necessidade devido ao fato de alguns modelos levarem muito tempo para rodar. Esse dado será importante para ser levado em consideração no segundo recurso adicionado:</description>
+    </item>
+    
+    <item>
+      <title>Meu primeiro pacote R: aplicação para série temporal do varejo</title>
+      <link>/post/mafs01/</link>
+      <pubDate>Thu, 27 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mafs01/</guid>
+      <description>Depois de um longo hiato devido à falta de tempo, o blog está de volta à ativa.
+Um dos (muitos) motivos de minha ausência tem sido a elaboração do meu TCC, que é sobre previsão de demanda. Eu desenvolvi um sistema que seleciona automaticamente o melhor modelo de previsão dentre os disponíveis no pacote forecast para uma dada série temporal de acordo com a métrica de erro escolhida pelo usuário. O nome do pacote é mafs e já está disponível em meu Github para ser baixado e instalado gratuitamente.</description>
+    </item>
     
     <item>
       <title>Correlação entre o dólar e ações de empresas do Índice Bovespa</title>

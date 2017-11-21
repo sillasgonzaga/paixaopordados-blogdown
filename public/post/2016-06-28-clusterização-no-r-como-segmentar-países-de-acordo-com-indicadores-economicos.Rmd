@@ -1,0 +1,209 @@
+---
+title: 'Clusterização no R: Como segmentar países de acordo com indicadores econômicos'
+author: ''
+date: '2016-06-28'
+slug: clusterização-no-r-como-segmentar-países-de-acordo-com-indicadores-economicos
+categories:
+  - R
+tags:
+  - cluster
+  - unsupervised
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+Neste post, eu mostro como:  
+- Baixar dados de indicadores macroecômicos de todos os países usando a API do World Bank;  
+- Clusterizar países de acordo com esses indicadores usando o algoritmo *k-means*;  
+- O Brasil está mais próximo de Serra Leoa e Zimbábue que dos Estados Unidos e Noruega
+
+```{r}
+library(WDI) # baixar os dados do World Bank
+library(magrittr)
+library(formattable)
+```
+
+## Importação dos dados
+
+Felizmente, o processo de importação dos dados do World Bank é feito de maneira automatizada pelo pacote [`WDI`](https://github.com/vincentarelbundock/WDI) usando a função `WDI()`. Como é necessário inserir o código do indicador, usei a função  `WDIsearch()` para buscar o código do indicador relacionado a, por exemplo, inflação:
+
+```{r}
+WDIsearch("Inflation")
+```
+
+Portanto, o código do indicador de inflação é "FP.CPI.TOTL.ZG". Repeti o mesmo para outros indicadores que escolhi para esta análise:
+
+
+```{r}
+# lista de indicadores para baixar:
+lista_indicadores <- c("FP.CPI.TOTL.ZG", # inflação (%)
+                       "NY.GDP.PCAP.CD", # Pib per capita (USD)
+                       "NY.GDP.MKTP.KD.ZG", # crescimento do PIB anual (%),
+                       "SL.UEM.TOTL.ZS" # Desemprego (%)
+)  
+# Usei 2014 como ano de referência pois os resultados de alguns indicadores de 2015 ainda não foram disponibilizados
+df <- WDI(indicator = lista_indicadores, country =  "all", start = 2014, end = 2014, extra = TRUE)
+str(df)
+
+```
+
+O output acima mostra que o data frame não contém dados apenas de países mas também de unidades agregadas, como o mundo, mundo árabe, América Latina, etc. Por isso, removi as unidades agregadas:
+```{r}
+df$region %<>% as.character
+# remover agregados
+df <- subset(df, region != "Aggregates")
+```
+
+Abaixo eu crio um novo dataframe apenas com as variáveis de interesse:
+
+```{r}
+df2 <- df[, lista_indicadores]
+row.names(df2) <- df$country
+colnames(df2) <- c("inflacao", "pib_per_capita", "crescimento_pib", "desemprego")
+summary(df2)
+```
+
+Duas observações importantes sobre o output acima:  
+- Para facilitar a interpretação dos resultados da análise, transformei a taxa de desemprego em taxa de emprego, pois assim temos três indicadores que. quanto maior seus valores, mais pujante é a Economia de seus países;  
+- Alguns países não contém dados para alguns dos indicadores. Não há informação, por exemplo, sobre desemprego em 38 países.
+
+Para resolver o problema dos valores ausentes (os `NA`), poderia ser aplicada uma técnica robusta, mas como esta é uma análise simples ou optei por remover os países que tinham algum dado faltando.
+
+```{r}
+df2 <- na.omit(df2)
+df2$desemprego <- 100 - df2$desemprego
+names(df2)[4] <- "emprego"
+```
+
+## Clusterização
+
+Para usar o algoritmo *k-means* para clusterizar os países, é necessário:  
+- Calcular a distância (dissimilaridade) entre os países;  
+- Escolher o número de clusteres.
+
+Para o cálculo da distância, temos um problema: as escalas das colunas são diferentes. Enquanto o PIB per capita é dado em dólares por pessoa  e vão de 255 a 116,613, os outros são dados em porcentagem. Se não for feita nenhuma transformação dos dados, o PIB per capita terá um peso muito maior na clusterização dos dados que os outros indicadores.
+
+Por isso, é necessário convertes todos os indicadores a uma escala única de média 0:
+```{r}
+df2_escala <- scale(df2)
+# Conferindo o output para o Brasil
+df2_escala["Brazil", ]
+```
+Na nova escala, temos que o Brasil apresenta inflação acima da média, PIB per capita abaixo da média, Crescimento do PIB abaixo da média (e olha que isso foi em 2014...) e taxa de emprego acima da média. 
+
+A determinação da quantidade de clusteres não segue uma regra pré-definida e deve ser pensada pelo responsável pela análise. Cada projeto de clusterização tem suas próprias particularidades. Contudo, alguns métodos analíticos podem ajudar nessa escolha, seja pela minização da
+soma dos quadrados dos clusteres ou pelo auxílio visual de um dendograma.
+
+Para determinar o número de clusteres pelo primeiro método, observe o gráfico abaixo:
+```{r, fig.width=12, fig.height=12}
+# referencia: http://www.statmethods.net/advstats/cluster.html
+wss <- (nrow(df2_escala)-1)*sum(apply(df2_escala,2,var))
+for (i in 2:15) wss[i] <- sum(kmeans(df2_escala,
+   centers=i)$withinss)
+plot(1:15, wss, type="b", xlab="Número of Clusters",
+  ylab="Soma dos quadrados dentro dos clusteres") 
+
+
+```
+
+A soma dos quadrados dos clusteres se mantem estável a partir de 8 segmentos. Contudo, é preciso pensar qual a interpretação que teríamos disso. Quer dizer, posso dizer que dividi os dados em 8 clusteres, mas... e daí? O que seria aprendido por meio desses 8 clusteres?
+
+Pelo segundo método, um dendograma é criado:
+
+```{r, fig.width=12, fig.height=12}
+dendo <- df2_escala %>% dist %>% hclust
+plot(dendo)
+rect.hclust(dendo, k = 3, border = "blue")
+rect.hclust(dendo, k = 4, border = "red")
+```
+
+A posição de cada país no dendograma é determinada pela dissimilaridade entre cada um dos outros países. Veja que a opção de 4 segmentos divide um dos segmentos da opção de 3 ao meio. Portanto, 4 parece ser uma boa escolha para a quantidade de clusteres do modelo desta análise.
+
+Por exemplo, esta é a distância entre o Brasil e alguns outros países:
+
+```{r}
+df2_escala[c("Brazil", "Sierra Leone", "Zimbabwe", "Norway", "United States"),] %>% dist
+```
+
+Dá para ver que o Brasil tem uma distância euclidiana de 1,90 em relação a Serra Leoa, 2,06 ao Zimbábue, 2,33 aos Estados Unidos e 4,06 a Noruega. Ou seja, levando em conta os indicadores macroeconômicos considerados nesta análise, é possível dizer que o Brasil é mais similar com países miseráveis do que com países ricos (Veja como os EUA são menos distantes em relação a Noruega do que ao Zimbábue).
+
+Podemos também ver qual a distribuição do grau de dissimularidade do Brasil com o resto do mundo:
+```{r}
+mat_brasil <- df2_escala %>% dist(diag = TRUE, upper = TRUE) %>% as.matrix
+# 5 países com menor dissimilaridade
+mat_brasil[, "Brazil"] %>% sort() %>% head(6)
+# 5 países com MAIOR dissimilaridade
+mat_brasil[, "Brazil"] %>% sort() %>% tail(5)
+```
+O resultado dos 5 países mais distantes do Brasil é curioso: dentre eles, há 2 países ricos (Qatar e Luxemburgo) e três pobres (Malawi, Mauritânia e Sudão). Ou seja, não é necessariamente verdade que o Brasil é mais similar a países pobres da África que países ricos. ~~Esse é o tipo de coisa que, se eu fosse um jornalista sensacionalista, omitiria~~.
+
+Brincadeiras a parte, já podemos pular para a parte de criar os segmentos:
+
+```{r}
+# fixar uma seed para garantir a reproducibilidade da análise:
+set.seed(123) 
+# criar os clusteres
+lista_clusteres <- kmeans(df2_escala, centers = 4)$cluster
+```
+
+
+```{r}
+# função customizada para calcular a média dos indicadores para cada cluster
+cluster.summary <- function(data, groups) {
+  x <- round(aggregate(data, list(groups), mean), 2)
+  x$qtd <- as.numeric(table(groups))
+  # colocar coluna de quantidade na segunda posição
+  x <- x[, c(1, 6, 2, 3, 4, 5)]
+  return(x)
+}
+
+(tabela <- cluster.summary(df2, lista_clusteres))
+```
+
+Para melhorar a apresentação visual do output acima, usei o pacote `formattable` junto com uma função que criei para colorir de verde o valor caso seja superior ou igual à média do indicador e vermelho caso contrário. 
+
+```{r}
+colorir.valor <- function(x) ifelse(x >= mean(x), style(color = "green"), style(color = "red"))
+
+nome_colunas <-  c("Cluster", "Quantidade de países do cluster", "Taxa de Inflação (%)",
+                "PIB Per Capita (US$)","Crescimento anual do PIB (%)", "Taxa de Emprego (%)")
+  
+formattable(
+  tabela,
+  list(
+    pib_per_capita = formatter("span", style = x ~ colorir.valor(x)),
+    crescimento_pib = formatter("span", style = x ~ colorir.valor(x)),
+    emprego = formatter("span", style = x ~ colorir.valor(x))
+  ),  col.names = nome_colunas, format = "markdown", pad = 0
+  )
+
+
+```
+
+Temos, então, 4 grupos de países distintos:  
+- Cluster 1: Inflação acima da média, PIB per capita abaixo, crescimento acima, emprego acima: países em desenvolvimento;  
+- Cluster 2: Inflação abaixo da média, PIB per capita **muito** acima, crescimento abaixo, emprego acima: países ricos;  
+- Cluster 3: Inflação abaixo da média, PIB per capita abaixo, crescimento abaixo, semprego acima: países relativamente pobres, piores que os do Cluster 1;  
+- Cluster 4: Inflação abaixo da média, PIB per capita abaixo, crescimento abaixo, emprego **muito** abaixo: países pobres.
+
+Para finalizar, qual é o cluster do Brasil e quais os outros países que estão no mesmo segmento?
+```{r}
+df2$cluster <- lista_clusteres
+df2["Brazil",]
+cl_brasil <- df2["Brazil", ]$cluster
+
+x <- df2[df2$cluster == cl_brasil, ]
+
+x[order(-x$pib_per_capita),] %>% knitr::kable()
+
+```
+
+Dá para perceber que existe um problema com nosso resultado: No mesmo segmento, estão presentes a Coreia do Sul e países como Haiti e Zimbábue. Isso pode ser explicado por uma série de razões, como:  
+- O número e perfil dos indicadores macroeconômicos escolhidos não é bom o suficiente para determinar uma segmentação eficiente dos países;  
+- O número de clusteres deveria ser maior;  
+- Deveriam ser feitas apenas interações (escolhendo valores diferentes como argumento de `set.seed()`)
+- O erro se deve a um erro aleatório, também chamado de ruído, do algoritmo k-means. Afinal de contas, como sabemos, nenhum modelo é perfeito.
+

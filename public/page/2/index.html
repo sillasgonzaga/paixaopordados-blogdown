@@ -229,13 +229,13 @@
   
     <article>
   <header>
-    <h2><a href="/post/2015-07-23-r-rmarkdown/">Hello R Markdown</a></h2>
+    <h2><a href="/post/mafs01/">Meu primeiro pacote R: aplicação para série temporal do varejo</a></h2>
 
     <div class="post-meta">
 
   <div>
     <i class="fa fa-calendar fa-fw"></i>
-    <time>23 Jul 2015</time>
+    <time>27 Oct 2016</time>
   </div>
 
   
@@ -248,11 +248,9 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="/tags/r-markdown">R Markdown</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="/tags/series-temporais">series temporais</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="/tags/plot">plot</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="/tags/regression">regression</a>
+      <a class="post-taxonomy-tag" href="/tags/mafs">mafs</a>
     
   </div>
   
@@ -263,14 +261,443 @@
   </header>
 
   <p>
-  R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.
+  Depois de um longo hiato devido à falta de tempo, o blog está de volta à ativa.
+Um dos (muitos) motivos de minha ausência tem sido a elaboração do meu TCC, que é sobre previsão de demanda. Eu desenvolvi um sistema que seleciona automaticamente o melhor modelo de previsão dentre os disponíveis no pacote forecast para uma dada série temporal de acordo com a métrica de erro escolhida pelo usuário. O nome do pacote é mafs e já está disponível em meu Github para ser baixado e instalado gratuitamente.
   </p>
 
   
   <footer>
-    <a href="/post/2015-07-23-r-rmarkdown/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+    <a href="/post/mafs01/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
+  
+    <article>
+  <header>
+    <h2><a href="/post/censo-da-educa%C3%A7%C3%A3o-superior-02/">Censo da Educação Superior (2): Como plotar o movimento migratório universitário no Brasil em um mapa</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>08 Jul 2016</time>
+  </div>
+
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/censo-educacao">censo-educacao</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  No primeiro post sobre os microdados do Censo da Educação Superior, falei sobre as cidades e estados que mais atraem universitários de fora. Neste segundo post, discutirei mais a fundo este movimento migratório universitário, incluindo a elaboração de um rebusco mapa de fluxo migratório.
+library(stringr) library(tidyr) library(magrittr) library(dplyr) library(feather) library(maptools) library(maps) library(geosphere) library(knitr)  Importação dos dados Para plotar em um mapa os universitários que estudam em uma cidade diferente da que nasceram, precisamos de dois tipos de dados: - Dados espaciais dos municípios brasileiros;
+  </p>
+
+  
+  <footer>
+    <a href="/post/censo-da-educa%C3%A7%C3%A3o-superior-02/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
+  
+    <article>
+  <header>
+    <h2><a href="/post/clusteriza%C3%A7%C3%A3o-no-r-como-segmentar-pa%C3%ADses-de-acordo-com-indicadores-economicos/">Clusterização no R: Como segmentar países de acordo com indicadores econômicos</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>28 Jun 2016</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/cluster">cluster</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="/tags/unsupervised">unsupervised</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  Neste post, eu mostro como:
+- Baixar dados de indicadores macroecômicos de todos os países usando a API do World Bank;
+- Clusterizar países de acordo com esses indicadores usando o algoritmo k-means;
+- O Brasil está mais próximo de Serra Leoa e Zimbábue que dos Estados Unidos e Noruega
+library(WDI) # baixar os dados do World Bank library(magrittr) library(formattable) Importação dos dados Felizmente, o processo de importação dos dados do World Bank é feito de maneira automatizada pelo pacote WDI usando a função WDI().
+  </p>
+
+  
+  <footer>
+    <a href="/post/clusteriza%C3%A7%C3%A3o-no-r-como-segmentar-pa%C3%ADses-de-acordo-com-indicadores-economicos/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
+  
+    <article>
+  <header>
+    <h2><a href="/post/censo-da-educacao-superior-01/">Censo da Educação Superior (1) - Quais são as cidades mais universitárias do Brasil?</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>07 Jun 2016</time>
+  </div>
+
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/censo-educacao">censo-educacao</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  Recentemente, discuti com um amigo meu que afirmou que Aracaju, cidade onde moramos, é uma capital universitária - ou seja, uma cidade que atrai muitos estudantes de fora -, que eu não acredito que seja verdade. Mas não há melhor maneira de responder a isso senão com análise de dados, não é mesmo?
+library(data.table) library(dplyr) library(magrittr) library(gdata) library(feather) library(ggplot2) library(ggthemes) library(stringr) library(tidyr) library(microbenchmark) library(gridExtra) library(scales) library(cowplot) library(gtable) library(grid) library(ggrepel) setwd(&quot;/home/sillas/R/Projetos/CensoEducSuperior/Dados&quot;)  Introdução Os dados que podem tirar essa dúvida, além de trazer a luz muitas outras informações interessantes, são os microdados do Censo da Educação Superior, disponibilizados pelo Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira, o Inep.
+  </p>
+
+  
+  <footer>
+    <a href="/post/censo-da-educacao-superior-01/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
+  
+    <article>
+  <header>
+    <h2><a href="/post/meta-analise-r-02/">Meta-análise R (2): Analisando Pacotes R como indivíduos em uma rede social</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>30 May 2016</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/sna">sna</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  O objetivo deste segundo post da série sobre meta-análise de pacotes R é testar a utilização de diferentes pacotes voltados para a análise de redes sociais (SNA). Existem dezenas de opções disponíveis para se fazer esta análise e os usados neste post são:
+Da Wikipedia:
+ As Redes Sociais consistem em estruturas que representam pessoas ou organizações (atores) e as relações entre si. A Análise de Redes Sociais perceciona as relações sociais em termos da Teoria de Redes.
+  </p>
+
+  
+  <footer>
+    <a href="/post/meta-analise-r-02/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
+  
+    <article>
+  <header>
+    <h2><a href="/post/meta-analise-r-01/">Meta-análise R (1): Quais são os pacotes mais baixados?</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>25 May 2016</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/sna">sna</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  Este é o primeiro post de uma nova série sobre meta-análises de pacotes R. Com o pacote miniCRAN é possível baixar logs de downloads de pacotes de R por meio do espelho (mirror) do RStudio do CRAN. Cada linha nesses logs representa um download de um pacote por um usuário.
+O objetivo desta série é analisar os dados gerados por esses logs.
+Para este primeiro post, é mostrado:
+- Como baixar os logs de downloads de pacotes do CRAN do RStudio de forma automatizada com o pacote miniCRAN;
+  </p>
+
+  
+  <footer>
+    <a href="/post/meta-analise-r-01/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
+  
+    <article>
+  <header>
+    <h2><a href="/post/transparencia-07/">Transparência (7): Os famosos Cargos Comissionados</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>03 Feb 2016</time>
+  </div>
+
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/servidores-publicos">servidores publicos</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="/tags/transparencia">transparencia</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  Transparência (7): Os famosos Cargos Comissionados No quarto post da minha série sobre dados do Portal da Transparência, eu introduzi um tema interessante a ser olhado a fundo: os servidores cujo vínculo com o Estado é descrito como cargo comissionado. Vimos que, no Ceará, o salário médio de um servidor é muito alto. E nos outros estados?
+library(ggplot2) library(dplyr) library(ggthemes) library(ggrepel) library(reshape2) df &lt;- read.csv2(&quot;/home/sillas/R/data/transparenciaComSalarios.csv&quot;, stringsAsFactors = FALSE, fileEncoding = &quot;ISO-8859-15&quot;) cor1 &lt;- &quot;#C10534&quot; #cor das barras  Para começar, quais são os 10 tipos de vínculo mais comuns?
+  </p>
+
+  
+  <footer>
+    <a href="/post/transparencia-07/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
+  
+    <article>
+  <header>
+    <h2><a href="/post/transparencia-06/">Transparência (6): Quem são os 1% do funcionalismo público?</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>24 Jan 2016</time>
+  </div>
+
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/transparencia">transparencia</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="/tags/servidores-publicos">servidores publicos</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  Transparência (6): Quem são os 1% mais ricos do funcionalismo público? Para quem não entendeu a referência.
+library(ggplot2) library(dplyr) library(reshape2) library(lubridate) library(htmlTable) df &lt;- read.csv2(&quot;/home/sillas/R/data/transparenciaComSalarios.csv&quot;, stringsAsFactors = FALSE, fileEncoding = &quot;ISO-8859-15&quot;)  Você já teve curiosidade em saber quem são os funcionários públicos mais ricos do Brasil? O sexto post da série de artigos sobre dados do Portal da Transparência será dedicado a eles.
+Primeiramente, quantos servidores compõem o 1%?
+  </p>
+
+  
+  <footer>
+    <a href="/post/transparencia-06/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
+  
+    <article>
+  <header>
+    <h2><a href="/post/transparencia-05/">Transparência (5): Trabalhando com datas</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>18 Jan 2016</time>
+  </div>
+
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/transparencia">transparencia</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="/tags/servidores-publicos">servidores publicos</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  Transparência (5): Trabalhando com datas O dataset do Portal da Transparência traz três colunas relacionadas com datas: DATA_INGRESSO_CARGOFUNCAO, DATA_INGRESSO_ORGAO e DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO, as quais geram umas análises curiosas, principalmente se relacionadas com a variável salário.
+library(treemap) library(dplyr) library(ggplot2) library(ggrepel) library(ggthemes) library(lubridate) df &lt;- read.csv2(&quot;/home/sillas/R/data/transparenciaComSalarios.csv&quot;, stringsAsFactors = FALSE, fileEncoding = &quot;ISO-8859-15&quot;)  Primeiro, as datas vêm neste formato:
+df %&gt;% select(DATA_INGRESSO_CARGOFUNCAO, DATA_INGRESSO_ORGAO, DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO) %&gt;% head()  ## DATA_INGRESSO_CARGOFUNCAO DATA_INGRESSO_ORGAO ## 1 01/07/2006 01/01/1984 ## 2 22/10/2014 20/10/2014 ## 3 &lt;NA&gt; 01/08/2015 ## 4 30/11/2014 03/09/2014 ## 5 19/05/2010 19/05/2010 ## 6 02/02/2009 30/12/2008 ## DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO ## 1 01/06/1984 ## 2 17/02/2010 ## 3 01/08/2015 ## 4 28/06/2006 ## 5 19/05/2010 ## 6 30/12/2008  O R, nativamente, não reconhece este formato como data e sim como texto.
+  </p>
+
+  
+  <footer>
+    <a href="/post/transparencia-05/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
+  
+    <article>
+  <header>
+    <h2><a href="/post/transparencia-04/">Transparência(4): Análise de salários usando Treemaps</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>17 Jan 2016</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/transparencia">transparencia</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="/tags/servidores-publicos">servidores publicos</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  Transparência(4): Análise de salários usando Treemaps library(treemap) library(dplyr) library(ggplot2) library(ggrepel) library(ggthemes) df &lt;- read.csv2(&quot;/home/sillas/R/data/transparenciaComSalarios.csv&quot;, stringsAsFactors = FALSE, fileEncoding = &quot;ISO-8859-15&quot;)  Para este post, continuaremos analisando os salários dos servidores federais, mas agora usando uma visualização chamada Treemap ou Mapa de árvores.
+Por exemplo, o gráfico abaixo compara diferentes órgãos públicos de acordo com a quantidade de servidores e o salário médio dos mesmos.
+aggSetor &lt;-df %&gt;% group_by(ORG_LOTACAO) %&gt;% summarise(quantidade = n(), salarioMedio = median(SALARIO)) aggSetor$escala &lt;- scale(aggSetor$salarioMedio) #necessário para criar valores negativos para deixar as disparidades mais evidentes x &lt;- treemap(aggSetor, index = &quot;ORG_LOTACAO&quot;, vSize = &quot;quantidade&quot;, vColor = &quot;escala&quot;, type = &quot;value&quot;, palette = &quot;-RdGy&quot;, lowerbound.
+  </p>
+
+  
+  <footer>
+    <a href="/post/transparencia-04/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>
@@ -284,9 +711,9 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
   
   <a href="/"><i class="fa fa-chevron-left"></i></a>
   
-  <span>&nbsp;2 / 2&nbsp;</span>
+  <span>&nbsp;2 / 3&nbsp;</span>
   
-  <i class="fa fa-chevron-right"></i>
+  <a href="/page/3/"><i class="fa fa-chevron-right"></i></a>
   
 </nav>
 

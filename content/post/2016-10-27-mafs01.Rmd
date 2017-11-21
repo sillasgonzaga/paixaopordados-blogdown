@@ -1,0 +1,131 @@
+---
+title: 'Meu primeiro pacote R: aplicação para série temporal do varejo'
+author: ''
+date: '2016-10-27'
+slug: mafs01
+categories:
+  - R
+tags:
+  - series temporais
+  - mafs
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, fig.width = 13)
+```
+
+Depois de um longo hiato devido à falta de tempo, o blog está de volta à ativa. 
+
+Um dos (muitos) motivos de minha ausência tem sido a elaboração do meu TCC, que é sobre previsão de demanda. Eu desenvolvi um sistema que seleciona automaticamente o melhor modelo de previsão dentre os disponíveis no pacote [forecast](https://cran.r-project.org/web/packages/forecast/index.html) para uma dada série temporal de acordo com a métrica de erro escolhida pelo usuário. O nome do pacote é `mafs` e já está disponível em meu [Github](https://github.com/sillasgonzaga/mafs) para ser baixado e instalado gratuitamente. Notem, porém, que este é meu primeiro pacote R e eu provavelmente acabei cometendo muitos erros de principiante. Por isso, o pacote ainda é limitado e pode não funcionar em algumas situações que eu não vislumbrei. Uma possível limitação do pacote, por exemplo, é que ele só foi testado para séries mensais e não de outros períodos, como semanais, diárias ou trimestrais.
+
+# Demonstração do pacote
+
+## Apresentação e análise exploratória dos dados
+
+Para demonstrar na prática como funciona o pacote, irei analisar neste post uma série temporal de periodicidade mensal referente ao volume de vendas do varejo, tema que tenho pesquisado recentemente e obtida no site do [IBGE](http://seriesestatisticas.ibge.gov.br/series.aspx?no=2&op=0&vcodigo=MC73&t=volume-vendas-varejo-indice-base-fixa). O dataset será disponibilizado no [repositório do blog](https://github.com/sillasgonzaga/sillasgonzaga.github.io).
+
+```{r pacotes e dados}
+# carregar bibliotecas importantes
+library(mafs)
+library(magrittr)
+library(forecast)
+library(ggplot2)
+# importar dados
+varejo <- read.csv2("https://raw.githubusercontent.com/sillasgonzaga/sillasgonzaga.github.io/master/data/varejo.csv",
+                    stringsAsFactors = FALSE)
+# exibir dados
+head(varejo); tail(varejo)
+# retirar última linha, que veio em branco
+varejo <- varejo[1:(nrow(varejo)-1), ]
+```
+
+Como pode-se ver, a série temporal vai desde Janeiro de 2000 a Setembro de 2015. Essa informação é importante para criar um objeto da class `ts` que será usado como input das funções do pacote `mafs`.
+
+```{r criar ts}
+# transformar para série temporal
+varejo <- ts(varejo[, 2], start = c(2000, 1), frequency = 12)
+# Visualizar série
+plot(varejo)
+# Visualizar decomposição sazonal da série
+varejo %>% decompose %>% plot
+```
+
+O gráfico da série decomposta mostra que há fortes componentes de tendência e sazonalidade na série. O componente aleatório possui média de 0,13, o que, por ser próxima a zero, nos leva a acreditar que a decomposição foi bem sucedida. O elemento sazonal da série também pode ser analisado nos gráficos a seguir.
+
+```{r graficos} 
+# função ggmonthplot do pacote forecast
+ggmonthplot(varejo)
+# estratificação por mês
+ggseasonplot(varejo, year.labels = TRUE) + geom_point() + theme_bw()
+
+```
+
+A partir dos dois gráficos é possível fazer uma observação interessante: A tendência é praticamente alternada. A série sempre cai de Janeiro a Fevereiro, sobe em Março, cai em Abril, sobe em Maio, cai em Junho, sobe ou se mantém estável em Julho, sobe em Agosto, cai ou se mantém estável em Setembro, e sobe de Outubro a Dezembro. A diferença mais evidente ocorrente entre os meses de Novembro e Dezembro. 
+
+Poderiam ser feitas mais algumas análises exploratórias, mas eu acabaria fugindo do escopo do post.
+
+## Aplicação do modelo.
+
+O pacote `mafs` é um wrapper de diversos modelos presentes no pacote `forecast`, que são:
+```{r avaliable_models}
+available_models()
+```
+
+Cada um desses modelos pode ser aplicado à série temporal analisada por meio da função `mafs::apply_selected_model()`. Por exemplo, para o modelo de redes neurais, temos:
+
+```{r apply_selected_model}
+apply_selected_model(varejo, "nnetar", horizon = 6) %>% forecast(h  = 6) %>% plot
+
+```
+
+
+Imagine-se agora na situação onde vocë é um analista de previsão e precisa realizar, periodicamente, projeções de centenas ou milhares de séries temporais. Seria impraticável testar todos esses 18 modelos disponíveis, não seria? Pensando nisso, a principal função do `mafs`, chamada `select_forecast()` automatiza esse processo. Ela depende de quatro parâmetros:  
+* `x`, que é a série temporal de input;  
+* `test_size`, que é o tamanho da série de teste a ser usado para mensurar a acurácia das previsões obtidas;  
+* `horizon`, o tamanho do horizonte de previsão;
+* `error`, a métrica de erro para definir o melhor modelo.
+
+O código da função pode ser conferido [aqui](https://github.com/sillasgonzaga/mafs/blob/master/R/main.R#L133-L219). Resumidamente, ela separa a série de input em duas: a série de treino, usada para construir o ajuste dos modelos, e a série de teste, usada para mensurar a previsão obtida com os ajustes nas séries de treino em comparação com a série original. A partir das previsões obtidas, a de melhor acurácia (de acordo com a métrica escolhida pelo usuário) é selecionada para prever os valores futuros da série.  
+
+Após fazer tudo isso, a função retorna como output três objetos, como pode ser conferido em sua documentação (`help("select_forecast")`). 
+
+```{r fitar modelos}
+output <- select_forecast(varejo, test_size = 6, horizon = 6, error = "MAPE")
+# output com resultado de modelos
+output$df_models
+# output com valores previstos e reais
+output$df_comparison
+# output com valores previstos, incluindo o intervalo de confiança de 80 e de 95%
+output$best_forecast
+
+
+```
+
+O output de `output$df_models` mostra que o modelo de menor MAPE foi curiosamente o naive, que corresponde simplesmente a usar o último valor observado como previsão dos próximos valores. Tal previsão pode ser conferida visualmente com outra função do `mafs`, chamada `gg_fit()`
+
+```{r gg_fit}
+
+gg_fit(varejo, 6, "naive") + theme_bw() + theme(legend.position = "bottom")
+
+```
+
+Para avaliar a eficiência do meu método, pode-se calcular o MAPE real, isto é, o erro relativo médio entre os valores previstos e os reais, presentes no objeto `output$df_comparison`
+
+```{r df_comparison}
+
+x <- output$df_comparison
+# Calcular MAPE real
+mape_real <- 100 * abs(x$forecasted - x$observed)/x$observed
+# mostrar mape mês a mês
+mape_real
+# mostrar mape médio
+mean(mape_real)
+```
+
+Obtivemos um MAPE médio de 10,43%.
+
+# Ideias para o futuro
+
+Devido à automatização possibilitada pelo pacote, é possível pensar em diversas outras análises e testes de hipóteses. Por exemplo: o tamanho da série influencia o desempenho do sistema? Isso poderia ser feito variando o argumento `test_size`, calculando o MAPE real para cada valor do argumento e depois comparando os resultados. Talvez isso tema de um futuro post.

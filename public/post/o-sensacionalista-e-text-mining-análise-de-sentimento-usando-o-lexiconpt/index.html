@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.31" />
+
+  <title>O Sensacionalista e Text Mining: Análise de sentimento usando o lexiconPT &middot; Paixão por Dados</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="/">Paixão por Dados</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://twitter.com/*" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
+    </li>
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://facebook.com/sillast" target="_blank"><i class="fa fa-facebook-square fa-fw"></i>Facebook</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://linkedin.com/in/sillasgonzaga" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/sillasgonzaga" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://stackoverflow.com/users/*" target="_blank"><i class="fa fa-stack-overflow fa-fw"></i>Stack Overflow</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2016. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>O Sensacionalista e Text Mining: Análise de sentimento usando o lexiconPT</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>23 Sep 2017</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/text-mining">text mining</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="/tags/lexiconpt">lexiconPT</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p>De volta à ativa no blog!</p>
+<p>Recentemente, quando precisei fazer pela primeira vez algum tipo de análise em cima de textos (o chamado Text Mining ou Mineração de Texto) em Português, senti falta de ter um acesso fácil a um léxico na linguagem. O R já tem a sua disposição vários recursos para quem quer fazer Text Mining em inglês, como os pacotes <code>tokenizer</code>, <code>tidytext</code>, <code>tm</code> e <code>lexicon</code>, além de vários blog posts sobre Sentiment Analysis que você encontra no R-bloggers. Contudo, existe uma séria escassez de material de referência na língua portuguesa.</p>
+<p>O pacote <a href="https://github.com/sillasgonzaga/lexiconPT"><code>lexiconPT</code></a>, que eu lancei em 20/09/2017 no Github (e em breve no CRAN também) nasceu para resolver parte desse problema. Até o momento, o <code>lexiconPT</code> possui três datasets de léxicos: o OpLexicon (versões 2.1 e 3.0) e o SentiLex-PT02. Não pretendo (nem tenho competência para tal, pois sou iniciante em Text Mining - sem falsa modéstia) destrinchar como cada um deles funciona e em quê eles diferem. Para isso, sugiro ler as referências citadas na documentação dos próprios datasets (ex.: <code>help(&quot;oplexicon_v2.1&quot;)</code>).</p>
+<p>Mas ter o léxico em mãos só resolve parte dos problemas: ainda faltam os textos em si para serem analisados. Algumas ideias de datasets poderiam ser notícias, letras de músicas, livros (tem vários em Domínio Público), tweets, etc. Para demonstrar um simples uso do pacote, eu decidi por analisar comentários feitos por usuários na página do <a href="https://www.facebook.com/sensacionalista/">Sensacionalista</a>, uma das mais populares do Facebook. A coleta dos dados foi relativamente fácil graças ao pacote <code>Rfacebook</code>.</p>
+<p>Com o pacote <code>lexiconPT</code>, podemos responder a perguntas como:<br />
+* Os comentários no Sensacionalista são mais negativos ou positivos?<br />
+* Qual termo está mais associado a comentários negativos? PT ou PSDB? Temer ou Dilma? Bolsonaro ou Lula?<br />
+* Qual o comentário feito por um usuário mais negativo da história do Sensacionalista (dentro da amostra coletada)? E qual o mais positivo?</p>
+<p>Vamos ao código.</p>
+<div id="coleta-dos-dados" class="section level2">
+<h2>Coleta dos dados</h2>
+<pre class="r"><code>library(Rfacebook) # usado para extrair dados do facebook
+library(tidyverse) # pq nao da pra viver sem
+library(ggExtra)
+library(magrittr) # &lt;3
+library(lubridate)
+library(stringr) # essencial para trabalhar com textos
+library(tidytext) # um dos melhores pacotes para text mining
+library(lexiconPT)</code></pre>
+<p>Este post só foi possível graças ao <code>Rfacebook</code>. Para aprender como ele funciona, leia a documentação presente em seu <a href="https://github.com/pablobarbera/Rfacebook">repo</a> no Github. Para este primeiro, primeiro usei a função <code>getPage()</code> para extrair as últimas 5000 publicações do Sensacionalista.</p>
+<pre class="r"><code># token que eu gerei com minha API key.
+# Essa parte vc obviamente nao vai conseguir reproduzir.
+# leia o README do Rfacebook para saber como obter seu token
+fb_token &lt;- readRDS(&quot;/home/sillas/R/data/facebook_token.Rds&quot;) 
+
+# demora cerca de 10 min pra rodar:
+pg &lt;- getPage(&quot;sensacionalista&quot;, fb_token, n = 5000)</code></pre>
+<p>É necessário corrigir o encoding do corpo da publicação para o R parar de reclamar sobre isso:</p>
+<pre class="r"><code># corrigir encoding do texto do post
+pg$message %&lt;&gt;% iconv(to = &quot;ASCII//TRANSLIT&quot;)
+# remover emojis
+pg$message %&lt;&gt;% iconv(sub=&quot;&quot;, &#39;UTF-8&#39;, &#39;ASCII&#39;)
+# visualizar dataframe
+glimpse(pg)</code></pre>
+<pre><code>## Observations: 4,666
+## Variables: 11
+## $ from_id        &lt;chr&gt; &quot;108175739225302&quot;, &quot;108175739225302&quot;, &quot;10817573...
+## $ from_name      &lt;chr&gt; &quot;Sensacionalista&quot;, &quot;Sensacionalista&quot;, &quot;Sensacio...
+## $ message        &lt;chr&gt; &quot;Apos liminar da Justica do DF permitir o trata...
+## $ created_time   &lt;chr&gt; &quot;2017-09-18T18:58:53+0000&quot;, &quot;2017-09-18T17:25:0...
+## $ type           &lt;chr&gt; &quot;link&quot;, &quot;link&quot;, &quot;link&quot;, &quot;link&quot;, &quot;video&quot;, &quot;link&quot;...
+## $ link           &lt;chr&gt; &quot;http://www.sensacionalista.com.br/2017/09/18/l...
+## $ id             &lt;chr&gt; &quot;108175739225302_1638598099516384&quot;, &quot;1081757392...
+## $ story          &lt;chr&gt; NA, NA, NA, NA, &quot;Sensacionalista shared Gshow -...
+## $ likes_count    &lt;dbl&gt; 10172, 2162, 2503, 5793, 4676, 2585, 821, 766, ...
+## $ comments_count &lt;dbl&gt; 230, 164, 285, 221, 329, 104, 32, 58, 493, 586,...
+## $ shares_count   &lt;dbl&gt; 2290, 453, 410, 2751, 0, 930, 26, 36, 900, 92, ...</code></pre>
+<p>Só esse dataset por si só já renderia (e renderá) análises interessantes, mas vou as deixar para um futuro post para não deixar este aqui grande demais.</p>
+<p>A coluna <code>id</code> é a que usaremos como referência como input na função <code>getPost()</code> para extrair os comentários dos usuários na publicação. Infelizmente, a API do Facebook apresenta uma certa instabilidade para requests de dados muito grandes. Em várias tentativas que fiz, o máximo de dados que consegui extrair foram 200 comentários de 500 publicações da página. Portanto, vou usar esses parâmetros:</p>
+<pre class="r"><code># roda em cerca de 8 minutos:
+df_posts &lt;- pg$id[1:500] %&gt;% map(getPost, fb_token, n = 200, comments = TRUE, likes = FALSE,
+                            reactions = FALSE)</code></pre>
+<p>A função <code>getPost()</code> fornece o seguinte output:</p>
+<pre class="r"><code>str(df_posts)</code></pre>
+<pre><code>## List of 500
+##  $ :List of 2
+##   ..$ post    :&#39;data.frame&#39;: 1 obs. of  10 variables:
+##   .. ..$ from_id       : chr &quot;108175739225302&quot;
+##   .. ..$ from_name     : chr &quot;Sensacionalista&quot;
+##   .. ..$ message       : chr &quot;Após liminar da Justiça do DF permitir o tratamento da homossexualidade como doença&quot;
+##   .. ..$ created_time  : chr &quot;2017-09-18T18:58:53+0000&quot;
+##   .. ..$ type          : chr &quot;link&quot;
+##   .. ..$ link          : chr &quot;http://www.sensacionalista.com.br/2017/09/18/liminar-que-chancela-cura-gay-permite-tratar-justica-brasileira-como-doenca/&quot;
+##   .. ..$ id            : chr &quot;108175739225302_1638598099516384&quot;
+##   .. ..$ likes_count   : num 11340
+##   .. ..$ comments_count: num 248
+##   .. ..$ shares_count  : num 2590
+##   ..$ comments:&#39;data.frame&#39;: 200 obs. of  7 variables:
+##   .. ..$ from_id       : chr [1:200] &quot;1437254732976789&quot; &quot;1445900342154501&quot; &quot;10209941046899919&quot; &quot;173469923210786&quot; ...
+##   .. ..$ from_name     : chr [1:200] &quot;Sérgio Henrique Reis&quot; &quot;Renata Gil&quot; &quot;Lucas Ferreira&quot; &quot;Leonardo Wesley&quot; ...
+##   .. ..$ message       :</code></pre>
+<pre><code>## Error in strtrim(encodeString(object, quote = &quot;\&quot;&quot;, na.encode = FALSE), : string multibyte inválida em &#39;&lt;a0&gt;&lt;be&gt;\xed&lt;b4&gt;\u0094  Ahh do Distrito Federal.... Quando Juscelino Kubitschek fundou Brasília, será que ele tinha a mínima ideia do que sairia de lá?&quot;&#39;</code></pre>
+<p>Para extrair os dataframes relativos aos comentários e aos metadados das publicações, o <code>purrr</code> é uma mão na roda:</p>
+<pre class="r"><code>df_comments &lt;- df_posts %&gt;% map_df(&quot;comments&quot;)
+df_posts &lt;- df_posts %&gt;% map_df(&quot;post&quot;)
+# repetir procedimento de consertar o encoding
+df_comments$message %&lt;&gt;% iconv(to = &quot;ASCII//TRANSLIT&quot;) %&gt;% iconv(sub=&quot;&quot;, &#39;UTF-8&#39;, &#39;ASCII&#39;)
+df_posts$message %&lt;&gt;% iconv(to = &quot;ASCII//TRANSLIT&quot;) %&gt;% iconv(sub=&quot;&quot;, &#39;UTF-8&#39;, &#39;ASCII&#39;)
+# por questoes de anonimizacao, vou remover os dados pessoais referentes aos usuarios
+df_comments %&lt;&gt;% select(-from_id, -from_name)
+
+# olhar estrutura dos dataframes
+str(df_comments)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    72100 obs. of  5 variables:
+##  $ message       : chr  &quot;Entao pode faltar no servico, ligar pro chefe(a), levar atestado e dizer que acordou com vontade de chupar rola?&quot; &quot;Nunca o sensacionalista foi tao verdadeiro. Pq a justica brasileira se demonstrou uma verdadeira praga na socie&quot;| __truncated__ &quot;O unico que precisa de tratamento e o sr juiz que autorizou.&quot; &quot;Isso viola todas os acordos internacionais e uma aberracao contra qqr liberdade individual e humana. Logo essa liminar cai.&quot; ...
+##  $ created_time  : chr  &quot;2017-09-18T19:01:21+0000&quot; &quot;2017-09-18T19:03:57+0000&quot; &quot;2017-09-18T19:01:26+0000&quot; &quot;2017-09-18T19:00:54+0000&quot; ...
+##  $ likes_count   : num  575 392 270 227 310 145 113 73 38 50 ...
+##  $ comments_count: num  58 5 4 3 12 16 10 0 0 8 ...
+##  $ id            : chr  &quot;1638598099516384_1638600206182840&quot; &quot;1638598099516384_1638602159515978&quot; &quot;1638598099516384_1638600266182834&quot; &quot;1638598099516384_1638599869516207&quot; ...</code></pre>
+<pre class="r"><code>str(df_posts)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    500 obs. of  10 variables:
+##  $ from_id       : chr  &quot;108175739225302&quot; &quot;108175739225302&quot; &quot;108175739225302&quot; &quot;108175739225302&quot; ...
+##  $ from_name     : chr  &quot;Sensacionalista&quot; &quot;Sensacionalista&quot; &quot;Sensacionalista&quot; &quot;Sensacionalista&quot; ...
+##  $ message       : chr  &quot;Apos liminar da Justica do DF permitir o tratamento da homossexualidade como doenca&quot; &quot;Ja recebeu encomendas de quarteis&quot; &quot;Aparelho esta sendo oferecido por importadores por ate 6 mil reais&quot; &quot;Temer desembarcou nos Estados Unidos para jantar com Trump e participacao na Assembleia Geral da ONU&quot; ...
+##  $ created_time  : chr  &quot;2017-09-18T18:58:53+0000&quot; &quot;2017-09-18T17:25:00+0000&quot; &quot;2017-09-18T17:05:41+0000&quot; &quot;2017-09-18T17:00:02+0000&quot; ...
+##  $ type          : chr  &quot;link&quot; &quot;link&quot; &quot;link&quot; &quot;link&quot; ...
+##  $ link          : chr  &quot;http://www.sensacionalista.com.br/2017/09/18/liminar-que-chancela-cura-gay-permite-tratar-justica-brasileira-como-doenca/&quot; &quot;http://www.sensacionalista.com.br/2017/09/18/fabricante-de-pau-de-arara-comemora-falta-de-resposta-a-general-qu&quot;| __truncated__ &quot;http://www.sensacionalista.com.br/2017/09/18/empresa-lanca-servico-de-escolta-armada-para-quem-comprar-o-iphone-x/&quot; &quot;http://www.sensacionalista.com.br/2017/09/18/coreia-do-norte-nega-ter-lancado-temer-nos-eua/&quot; ...
+##  $ id            : chr  &quot;108175739225302_1638598099516384&quot; &quot;108175739225302_1638510679525126&quot; &quot;108175739225302_1638503796192481&quot; &quot;108175739225302_1638456466197214&quot; ...
+##  $ likes_count   : num  11340 2271 2826 6361 4990 ...
+##  $ comments_count: num  248 167 315 242 347 106 32 58 494 590 ...
+##  $ shares_count  : num  2590 478 441 3008 0 ...</code></pre>
+<p>Só pode ser trollagem da API do Facebook retornar aquela mensagem logo no topo do dataframe, mas enfim.</p>
+<p>O dataframe <code>df_comments</code>, o objeto da nossa análise, não possui alguns dados que serão valiosos para a análise, como o link para o artigo no site do Sensacionalista. Por isso, vamos um <code>left_join</code> com o <code>df_posts</code>.</p>
+<p>Percebeu que nas colunas <code>df_comments$id</code> e <code>df_posts$id</code> existe um traço separando dois conjuntos numéricos? Por alguma razão que beira a imbecilidade, não é possível combinar imediatamente essas duas colunas para formatar um dataframe só com o <code>left_join</code>. A sintaxe de identificação do Facebook funciona assim: O post é identificado <code>IDPAGINA_IDPUBLICAÇÃO</code> e o comentário na publicação é identificado como <code>IDPUBLICAÇÃO_IDCOMENTÁRIO</code>. Ou seja, para poder juntar os dois dataframes, vamos ter que combinar a sequência númerica à esquerda do underline (acho que esse traço tem algum outro nome, mas não me lembro no momento) em <code>df_comments$id</code> e à direita em <code>df_posts$id</code>.</p>
+<pre class="r"><code># consertar colunas de id: no df_comments, deixar à esquerda do underline. no df_posts, deixar à direita.
+df_comments$id_post_real &lt;- df_comments$id
+df_comments$id %&lt;&gt;% str_replace_all(&quot;_.*&quot;, &quot;&quot;)
+df_posts$id %&lt;&gt;% str_replace_all(&quot;.*_&quot;, &quot;&quot;)
+
+# juntar as duas tabelas
+df_posts %&lt;&gt;% dplyr::select(id, post_message = message, horario_post = created_time,
+                     type, post_comments_count = comments_count, post_link = link,
+                     post_type = type, post_likes_count = likes_count)
+df_comments %&lt;&gt;% rename(horario_comentario = created_time)
+
+df_comments %&lt;&gt;% left_join(df_posts, by = &quot;id&quot;)
+# remover NAs (nao sao muitos casos)
+df_comments %&lt;&gt;% filter(!is.na(horario_post))
+# converter colunas de horario
+df_comments$horario_comentario %&lt;&gt;% str_sub(1, 19) %&gt;% str_replace_all(&quot;T&quot;, &quot;&quot;) %&gt;% ymd_hms()
+df_comments$horario_post %&lt;&gt;% str_sub(1, 19) %&gt;% str_replace_all(&quot;T&quot;, &quot;&quot;) %&gt;% ymd_hms()
+# Como ficou:
+glimpse(df_comments)</code></pre>
+<pre><code>## Observations: 71,891
+## Variables: 12
+## $ message             &lt;chr&gt; &quot;Entao pode faltar no servico, ligar pro c...
+## $ horario_comentario  &lt;dttm&gt; 2017-09-18 19:01:21, 2017-09-18 19:03:57,...
+## $ likes_count         &lt;dbl&gt; 575, 392, 270, 227, 310, 145, 113, 73, 38,...
+## $ comments_count      &lt;dbl&gt; 58, 5, 4, 3, 12, 16, 10, 0, 0, 8, 69, 3, 0...
+## $ id                  &lt;chr&gt; &quot;1638598099516384&quot;, &quot;1638598099516384&quot;, &quot;1...
+## $ id_post_real        &lt;chr&gt; &quot;1638598099516384_1638600206182840&quot;, &quot;1638...
+## $ post_message        &lt;chr&gt; &quot;Apos liminar da Justica do DF permitir o ...
+## $ horario_post        &lt;dttm&gt; 2017-09-18 18:58:53, 2017-09-18 18:58:53,...
+## $ post_type           &lt;chr&gt; &quot;link&quot;, &quot;link&quot;, &quot;link&quot;, &quot;link&quot;, &quot;link&quot;, &quot;l...
+## $ post_comments_count &lt;dbl&gt; 248, 248, 248, 248, 248, 248, 248, 248, 24...
+## $ post_link           &lt;chr&gt; &quot;http://www.sensacionalista.com.br/2017/09...
+## $ post_likes_count    &lt;dbl&gt; 11340, 11340, 11340, 11340, 11340, 11340, ...</code></pre>
+</div>
+<div id="uso-do-lexiconpt" class="section level2">
+<h2>Uso do lexiconPT</h2>
+<p>Agora temos o dataset em mãos para usar o <code>lexiconPT</code>. Acho muito importante ressaltar que Text Mining é uma atividade razoavelmente complexa que envolve uma extensa etapa de limpeza e tratamento de dados, como remover (ou não) acentos e corrigir palavras com letras duplicadas (trist<em>ee</em>) ou erros gramaticais (infelismente). Para fins de simplicidade, não vou me ater muito a esses detalhes e pular direto para a utilização dos léxicos portugueses e apresentação dos resultados.</p>
+<pre class="r"><code># carregar datasets
+data(&quot;oplexicon_v3.0&quot;)
+data(&quot;sentiLex_lem_PT02&quot;)
+
+op30 &lt;- oplexicon_v3.0
+sent &lt;- sentiLex_lem_PT02
+
+glimpse(op30)</code></pre>
+<pre><code>## Observations: 32,191
+## Variables: 4
+## $ term              &lt;chr&gt; &quot;=[&quot;, &quot;=@&quot;, &quot;=p&quot;, &quot;=P&quot;, &quot;=x&quot;, &quot;=d&quot;, &quot;=D&quot;, &quot;;...
+## $ type              &lt;chr&gt; &quot;emot&quot;, &quot;emot&quot;, &quot;emot&quot;, &quot;emot&quot;, &quot;emot&quot;, &quot;emo...
+## $ polarity          &lt;int&gt; -1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, -1, ...
+## $ polarity_revision &lt;chr&gt; &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;,...</code></pre>
+<pre class="r"><code>glimpse(sent)</code></pre>
+<pre><code>## Observations: 7,014
+## Variables: 5
+## $ term                    &lt;chr&gt; &quot;a-vontade&quot;, &quot;abafado&quot;, &quot;abafante&quot;, &quot;a...
+## $ grammar_category        &lt;chr&gt; &quot;N&quot;, &quot;Adj&quot;, &quot;Adj&quot;, &quot;Adj&quot;, &quot;Adj&quot;, &quot;Adj&quot;...
+## $ polarity                &lt;dbl&gt; 1, -1, -1, -1, -1, 1, -1, 1, 1, -1, -1...
+## $ polarity_target         &lt;chr&gt; &quot;N0&quot;, &quot;N0&quot;, &quot;N0&quot;, &quot;N0&quot;, &quot;N0&quot;, &quot;N0&quot;, &quot;N...
+## $ polarity_classification &lt;chr&gt; &quot;MAN&quot;, &quot;JALC&quot;, &quot;MAN&quot;, &quot;JALC&quot;, &quot;JALC&quot;, ...</code></pre>
+<p>Ambos os datasets possuem colunas de polaridade de sentimento, que é a que usaremos para quantificar o quão negativo ou positivo é um comentário.</p>
+<pre class="r"><code># criar ID unica para cada comentario
+df_comments %&lt;&gt;% mutate(comment_id = row_number())
+# usar funçao do tidytext para criar uma linha para cada palavra de um comentario
+df_comments_unnested &lt;- df_comments %&gt;% unnest_tokens(term, message)
+
+df_comments_unnested %&gt;%
+  select(comment_id, term) %&gt;%
+  head(20)</code></pre>
+<pre><code>##      comment_id     term
+## 1             1    entao
+## 1.1           1     pode
+## 1.2           1   faltar
+## 1.3           1       no
+## 1.4           1  servico
+## 1.5           1    ligar
+## 1.6           1      pro
+## 1.7           1    chefe
+## 1.8           1        a
+## 1.9           1    levar
+## 1.10          1 atestado
+## 1.11          1        e
+## 1.12          1    dizer
+## 1.13          1      que
+## 1.14          1  acordou
+## 1.15          1      com
+## 1.16          1  vontade
+## 1.17          1       de
+## 1.18          1   chupar
+## 1.19          1     rola</code></pre>
+<p><em>De novo esse comentário… </em></p>
+<p>Enfim, veja que foi criada uma linha para cada palavra presetnte no comentário. Será essa nova coluna <code>term</code> que usaremos como referência para quantificar o sentimento de um comentário.</p>
+<pre class="r"><code>df_comments_unnested %&gt;% 
+  left_join(op30, by = &quot;term&quot;) %&gt;% 
+  left_join(sent %&gt;% select(term, lex_polarity = polarity), by = &quot;term&quot;) %&gt;% 
+  select(comment_id, term, polarity, lex_polarity) %&gt;% 
+  head(10)</code></pre>
+<pre><code>##    comment_id    term polarity lex_polarity
+## 1           1   entao       NA           NA
+## 2           1    pode       NA           NA
+## 3           1  faltar        1           NA
+## 4           1      no       NA           NA
+## 5           1 servico       NA           NA
+## 6           1   ligar       -1           NA
+## 7           1     pro       NA           NA
+## 8           1   chefe       NA           NA
+## 9           1       a       NA           NA
+## 10          1   levar       -1           NA</code></pre>
+<p>A amostra acima mostra que nem toads as palavras possuem uma polaridade registrada nos léxicos. Não só isso, mas algumas palavras (como <strong>faltar</strong>, <strong>ligar</strong> e <strong>levar</strong>) estão presentes no OpLexicon mas não no SentiLex. A polaridade 1 em faltar significa que, de acordo com esse léxico, a palavra está associada a comentários positivos. Saber essa diferença é fundamental, pois a escolha do léxico pode ter uma grande influência nos resultados da análise.</p>
+<p>Vamos então manter no dataframe apenas as palavras que possuem polaridade tanto no OpLexicon como no SentiLex:</p>
+<pre class="r"><code>df_comments_unnested &lt;- df_comments_unnested %&gt;% 
+  inner_join(op30, by = &quot;term&quot;) %&gt;% 
+  inner_join(sent %&gt;% select(term, lex_polarity = polarity), by = &quot;term&quot;) %&gt;% 
+  group_by(comment_id) %&gt;% 
+  summarise(
+    comment_sentiment_op = sum(polarity),
+    comment_sentiment_lex = sum(lex_polarity),
+    n_words = n()
+    ) %&gt;% 
+  ungroup() %&gt;% 
+  rowwise() %&gt;% 
+  mutate(
+    most_neg = min(comment_sentiment_lex, comment_sentiment_op),
+    most_pos = max(comment_sentiment_lex, comment_sentiment_op)
+  )
+
+head(df_comments_unnested)</code></pre>
+<pre><code>## # A tibble: 6 x 6
+##   comment_id comment_sentiment_op comment_sentiment_lex n_words most_neg
+##        &lt;int&gt;                &lt;int&gt;                 &lt;dbl&gt;   &lt;int&gt;    &lt;dbl&gt;
+## 1          2                    0                     0       2        0
+## 2          7                   -2                    -3       3       -3
+## 3          8                    1                     1       2        1
+## 4          9                    0                     0       3        0
+## 5         11                   -1                    -1       3       -1
+## 6         12                   -3                    -3       3       -3
+## # ... with 1 more variables: most_pos &lt;dbl&gt;</code></pre>
+</div>
+<div id="apresentacao-dos-resultados" class="section level2">
+<h2>Apresentação dos resultados</h2>
+<p>O gráfico de pontos abaixo mostra a distribuição de polaridade para cada léxico:</p>
+<pre class="r"><code>p &lt;- df_comments_unnested %&gt;% 
+  ggplot(aes(x = comment_sentiment_op, y = comment_sentiment_lex)) +
+    geom_point(aes(color = n_words)) + 
+    scale_color_continuous(low = &quot;green&quot;, high = &quot;red&quot;) +
+    labs(x = &quot;Polaridade no OpLexicon&quot;, y = &quot;Polaridade no SentiLex&quot;) +
+    #geom_smooth(method = &quot;lm&quot;) +
+    geom_vline(xintercept = 0, linetype = &quot;dashed&quot;) +
+    geom_hline(yintercept = 0, linetype = &quot;dashed&quot;)
+
+p</code></pre>
+<p><img src="2017-09-23-o-sensacionalista-e-text-mining-an%C3%A1lise-de-sentimento-usando-o-lexiconpt_files/figure-html/unnamed-chunk-14-1.png" width="1344" /></p>
+<p>Existem pelo menos três outliers nos dados, todos causados pela grande quantidade de palavras do comentário, o que pode ser um indício de que simplesmente somar a polaridade de cada palavra do comentário pode não ser um bom método. Outra informação revelada pelo gráfico é que existem palavras que possuem sentimentos diferentes de acordo com o léxico usado. Ter isso em mente é fundamental para a análise.</p>
+<p>Após remover os outliers, já é possível descobrir quais os comentários mais positivos e mais negativos da amostra coletada:</p>
+<pre class="r"><code>df_comments_unnested %&lt;&gt;% filter(between(comment_sentiment_op, -10, 10))
+
+# comentario mais positivo da historia do sensacionalista
+most_pos &lt;- which.max(df_comments_unnested$most_pos)
+most_neg &lt;- which.min(df_comments_unnested$most_neg)
+
+# mais positivo
+cat(df_comments$message[df_comments$comment_id == df_comments_unnested$comment_id[most_pos]])</code></pre>
+<pre><code>## O mundo a esquerda e sempre melhor. A musica, o pincel, a pena e a talha. Sempre esteve para a esquerda. As grandes mentes criativas, os grandes pensadores, os humanistas, os geniais. Tudo que e original e belo e oriundo da esquerda.
+## E tendencia natural do ser humano, ao passo q alcanca um minimo de consciencia critica do mundo sempre tender a esquerda.
+## Todavia o mundo tambem precisa de mentes computacionais, a esse papel a direita tem seu valor. A direita funciona bem quando o objetivo e produzir o fisico, o tangivel e operacional. Embora isso tambem pudesse ser feito por maquinas, robos, ou mesmo por animais adestrados.
+## A exemplo, os EUA, onde o cidadao comum e um ser vegetativo, destinado a operar, produzir e consumir. Sao seres incapazes de formular um pensamento critico e original. Uma nacao que por forca do capital tem seu vies ideologico voltado pra direita. Ainda q por vezes elejam um presidente com vies de esquerda, nunca irao evoluir sua consciencia. Sera sempre uma nacao de dementes e ignorantes.
+## Nao por acaso que o capital, na sua forma economica ou politica sempre se poe sobre a direita quando tem por objetivo o ganho, financeiro ou de poder. E sobre a direita q se faz os movimentos de massa imbecilizada, pois como seres roboticos sao facilmente levados aonde se quer levar.
+## A esquerda liga-se ao mundo das ideias, ao pensamento critico, a modelagem do ser humano como ser consciente. A esquerda e a construcao do pensamento, e o
+## individuo pensante e critico, tudo que evolui e eleva o ser humano a um patamar de consciencia superior, provem da esquerda.
+## Nacoes capitalistas, ainda q direitista, mas q sua massa possui em sua construcao um vies ideologico de esquerda serao sempre nacoes ricas financeiramente e ricas de estado de consciencia critica. Observa se isto em paises europeus, onde o
+## capital existe por forca do consumo, mas coexiste com o estado de bem estar social, com a beleza das artes e com tudo aquilo e natural da esquerda, enquanto consciencia e beleza.
+## A direita tem por tendencia natural, o simples, o computacional e robotizado. O argumento da direita e sempre algoritmo, linear e raso. A direita sera sempre um universo de seres ocos, massivos e imbecilizados.
+## A.L.C.</code></pre>
+<pre class="r"><code># mais negativo
+cat(df_comments$message[df_comments$comment_id == df_comments_unnested$comment_id[most_neg]])</code></pre>
+<pre><code>## No ultimo domingo foi ao ar o programa do Silvio Santos, onde Maisa foi ridiculamente feita de idiota por duas pessoas na frente do Brasil todo. Onde mesmo ela pedindo pra parar, nao pararam. Mas eu to aqui apenas pra falar a verdade sobre uma dessas pessoas: DUDU CAMARGO. 
+## Muitos o conhecem como o cara chato que apresenta o jornal da manha, mas eu o conheco como o EX ABUSIVO QUE FEZ COISAS IMPERDOAVEIS. 
+## Tudo comecou quando nos conhecemos na escola, quando ele fez de tudo pra me conquistar, e eu era bobo. Cai. Comecamos a namorar e era tudo incrivel e flores, mesmo com o preconceito, era bom ter alguem com quem contar e gostar. 
+## As coisas foram andando, e mesmo com todas as pessoas dizendo pra eu nao continuar esse relacionamento, eu continuei. Meus professores, meus amigos, e ate gente desconhecida tentaram abrir meus olhos. Mas ja era tarde. Eu estava apaixonado! Ia fazer de tudo pra ficar com ele!
+## O terror comeca. 
+## Estava tudo bem, ate ele comecar a ser agressivo e babaca. Gritava, ficava de cara feia, falava merda, e eu tambem, mas ele foi ao extremo. Ele estava vidrado em ser um astro da tv que esqueceu que tinha um relacionamento e comecou a me tratar como lixo, ate que ele me machucou feio, arranhou meu braco e deixou uma cicatriz em uma de nossas brigas. Nao sou santo, claro que tentei revidar para me defender. Mas apenas UMA vez.
+## As brigas e abusos tornaram-se serios, ele cada dia era mais estourado, e nao so comigo, com todos, ate com a familia, que por sinal sempre o apoiou. Mas ele sempre queria ser mais que todos.
+## Nao contente em 1, ele bateu 2, 3, 4... Varias vezes. Ja cheguei em casa com o rosto machucado e tive que mentir pra minha mae, mas ela nao era e nem e burra, sabia o que tinha acontecido. 
+## Na escola, todos perguntavam e eu mentia, achando que estava tudo bem, mas nao estava. Eu estava tao apaixonado que nao conseguia sair daquele pesadelo.
+## Outro ponto: ABUSO SEXUAL. Isso e bem serio, e se fosse brincadeira, eu nao estaria me expondo assim. Em um relacionamento voce consequentemente transa com a pessoa, e no comeco era bom, era normal. Mas depois das agressoes, eu fiquei tao em choque que inventava que estava doente para nao ter que fazer nada com ele. E ele reclamava, e bla bla bla, e dizia que sexo nao era nada, mas era. Ate que ele comecou a falar coisas horriveis para mim, comecou ficar tao frustrado que comecou a forcar coisas dizendo que se eu nao fizesse, era pra eu ir embora e nunca mais voltar, e que se eu voltasse, ele me trataria pior do que ja estava tratando. Mas eu fiquei, nao sei o porque, mas fiquei, com todo o medo e receio. 
+## Toda vez que eu queria conversar com ele sobre algo, ele ia direto me mandando ficar quieto e me chamava pra fazer coisas... Quando ele nao estava no instagram ou implorando para alguma aparicao na tv. 
+## Eu estava louco e assustado, a escola chamou minha mae pra conversar pois estavam com medo de que eu fizesse algo comigo mesmo, meu psicologico estava destruido e eu fiquei com depressao. 
+## Algumas pessoas vao dizer que eu quem quis, ja que nao fui embora, mas nao e bem assim. 
+## Nao tenho tudo registrado, - e acho que nem preciso - mas eu vivi, as pessoas viram e tentaram me ajudar, mas eu recusei, com medo. 
+## Passei muitas coisas boas no comeco, mas depois eu vi o monstro que ele era/e. Ele pode se fazer de santo na tv, mas muita gente sabe quem ele realmente e. E eu sei o que eu sofri. 
+## Vao dizer que e tudo mentira, e que eu quero fama. Talvez que sou louco, mas felizmente tenho testemunhas e nao tenho mais medo de me esconder. Depois de domingo, ele provou ser a pessoa mais falsa e artificial que existe. Engessado, segundo a Maisa. 
+## Nao e porque ele e uma pessoa publica que pode fazer o que quer sem pagar. Sei das consequencias que posso ter, mas nada tira a paz que sinto sabendo que tenho pessoas incriveis que me apoiaram e apoiam ate hoje. 
+## Espero que entendam e ajudem as pessoas que precisam. Se voce sabe alguem que esteja nessa vida, ajude-a a sair... Nao importa quem seja. Chega de abuso!</code></pre>
+<p>Por incrível que pareça, tanto o comentário mais positivo quanto o mais negativo falam sobre a esquerda.</p>
+<p>Para prosseguir com a análise, usaremos o léxico OpLexicon para a análise de sentimento:</p>
+<pre class="r"><code>df_comments %&lt;&gt;% inner_join(
+  df_comments_unnested %&gt;% select(comment_id, sentiment = comment_sentiment_op),
+  by = &quot;comment_id&quot;
+  )
+# criar coluna de data (variavel da classe Date)
+df_comments$data &lt;- as.Date(df_comments$horario_post)</code></pre>
+<p>Agora sim podemos demonstrar uma visualização de uma análise básica de sentimento: Como tem sido o sentimento geral dos comentários no Sensacionalista ao longo do tempo?</p>
+<pre class="r"><code>df_comments_wide &lt;- df_comments %&gt;% 
+  # filtrar fora palavras neutras
+  filter(sentiment != 0) %&gt;% 
+  # converter numerico para categorico
+  mutate(sentiment = ifelse(sentiment &lt; 0, &quot;negativo&quot;, &quot;positivo&quot;)) %&gt;% 
+  # agrupar os dados
+  count(data, post_link, post_type, sentiment) %&gt;% 
+  # converter para formato wide
+  spread(sentiment, n, fill = 0) %&gt;% 
+  mutate(sentimento = positivo - negativo) %&gt;% 
+  ungroup() %&gt;% 
+  arrange(data)
+
+head(df_comments_wide) %&gt;% knitr::kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">data</th>
+<th align="left">post_link</th>
+<th align="left">post_type</th>
+<th align="right">negativo</th>
+<th align="right">positivo</th>
+<th align="right">sentimento</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">2017-04-13</td>
+<td align="left"><a href="https://www.facebook.com/sensacionalista/photos/a.187587037950838.39557.108175739225302/1460990897277106/?type=3" class="uri">https://www.facebook.com/sensacionalista/photos/a.187587037950838.39557.108175739225302/1460990897277106/?type=3</a></td>
+<td align="left">photo</td>
+<td align="right">7</td>
+<td align="right">17</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">2017-04-13</td>
+<td align="left"><a href="http://www.sensacionalista.com.br/2017/04/13/temer-lula-e-fhc-articulam-pacto-de-nao-rir-de-brasileiro-que-desfez-amizade-no-facebook-por-politica/" class="uri">http://www.sensacionalista.com.br/2017/04/13/temer-lula-e-fhc-articulam-pacto-de-nao-rir-de-brasileiro-que-desfez-amizade-no-facebook-por-politica/</a></td>
+<td align="left">link</td>
+<td align="right">32</td>
+<td align="right">34</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">2017-04-14</td>
+<td align="left"><a href="https://www.facebook.com/sensacionalista/photos/a.187587037950838.39557.108175739225302/1462221330487396/?type=3" class="uri">https://www.facebook.com/sensacionalista/photos/a.187587037950838.39557.108175739225302/1462221330487396/?type=3</a></td>
+<td align="left">photo</td>
+<td align="right">42</td>
+<td align="right">22</td>
+<td align="right">-20</td>
+</tr>
+<tr class="even">
+<td align="left">2017-04-15</td>
+<td align="left"><a href="https://www.facebook.com/sensacionalista/photos/a.187587037950838.39557.108175739225302/1463589740350555/?type=3" class="uri">https://www.facebook.com/sensacionalista/photos/a.187587037950838.39557.108175739225302/1463589740350555/?type=3</a></td>
+<td align="left">photo</td>
+<td align="right">7</td>
+<td align="right">27</td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="left">2017-04-16</td>
+<td align="left"><a href="https://www.sensacionalista.com.br/2016/03/25/laja-jato-diz-que-lula-comprou-ovo-da-kopenhagen-em-nome-de-amigo/" class="uri">https://www.sensacionalista.com.br/2016/03/25/laja-jato-diz-que-lula-comprou-ovo-da-kopenhagen-em-nome-de-amigo/</a></td>
+<td align="left">link</td>
+<td align="right">23</td>
+<td align="right">35</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">2017-04-16</td>
+<td align="left"><a href="http://www.sensacionalista.com.br/2017/04/10/as-18-melhores-coisas-com-sentimentos-a-nova-obsessao-da-internet/" class="uri">http://www.sensacionalista.com.br/2017/04/10/as-18-melhores-coisas-com-sentimentos-a-nova-obsessao-da-internet/</a></td>
+<td align="left">link</td>
+<td align="right">17</td>
+<td align="right">16</td>
+<td align="right">-1</td>
+</tr>
+</tbody>
+</table>
+<p>Por exemplo, o primeiro link coletado na amostra, uma foto, teve 9 palavras contadas como negativas e 13 como positivas. O score geral dos comentários nessa publicação foi 13 - 9 = 4.</p>
+<p>Qual a publicação do Sensacionalista com maior nível de “positividade”? E o de “negatividade”?</p>
+<pre class="r"><code>df_comments_wide %&gt;% 
+  arrange(sentimento) %&gt;% 
+  filter(row_number() == 1 | row_number() == nrow(df_comments_wide)) %&gt;% 
+   knitr::kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">data</th>
+<th align="left">post_link</th>
+<th align="left">post_type</th>
+<th align="right">negativo</th>
+<th align="right">positivo</th>
+<th align="right">sentimento</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">2017-09-11</td>
+<td align="left"><a href="http://www.sensacionalista.com.br/2017/09/11/projeto-do-mbl-pretende-vestir-obras-de-arte-em-museus-ao-redor-do-mundo/" class="uri">http://www.sensacionalista.com.br/2017/09/11/projeto-do-mbl-pretende-vestir-obras-de-arte-em-museus-ao-redor-do-mundo/</a></td>
+<td align="left">link</td>
+<td align="right">95</td>
+<td align="right">39</td>
+<td align="right">-56</td>
+</tr>
+<tr class="even">
+<td align="left">2017-06-05</td>
+<td align="left"><a href="http://www.sensacionalista.com.br/2017/06/05/festa-se-nada-der-certo-em-colegio-debocha-de-garis-e-faxineiras-e-mostra-que-ja-deu-tudo-errado/" class="uri">http://www.sensacionalista.com.br/2017/06/05/festa-se-nada-der-certo-em-colegio-debocha-de-garis-e-faxineiras-e-mostra-que-ja-deu-tudo-errado/</a></td>
+<td align="left">link</td>
+<td align="right">29</td>
+<td align="right">86</td>
+<td align="right">57</td>
+</tr>
+</tbody>
+</table>
+<p>A publicação que mais recebeu comentários negativos (não tenho certeza se é essa a interpretação mais correta dos resultados, mas enfim) é um link sobre o MBL, enquanto o mais positivo é sobre o famoso caso do “E se der errado”.</p>
+<p>O gráfico abaixo mostra a evolução do sentimento dos comentários nas publicações do Sensacionalista ao longo do tempo:</p>
+<pre class="r"><code>df_comments_wide %&gt;% 
+  mutate(index = row_number()) %&gt;% 
+  ggplot(aes(x = index, y = sentimento)) +
+    geom_col(aes(fill = post_type)) +
+    scale_y_continuous(breaks = seq(-60, 60, 20), limits = c(-60, 60)) +
+    labs(x = &quot;Índice da publicação&quot;, y = &quot;Sentimento&quot;,
+         fill = NULL, title = &quot;Evolução do sentimento em publicações do Sensacionalista&quot;)</code></pre>
+<p><img src="2017-09-23-o-sensacionalista-e-text-mining-an%C3%A1lise-de-sentimento-usando-o-lexiconpt_files/figure-html/unnamed-chunk-19-1.png" width="1344" /></p>
+<p>Uma possível interpretação do gráfico é que a série temporal não possui uma clara tendência, apesar de os picos de negatividade serem bem mais frequentes que os de positividade.</p>
+<p>Outra análise que dá para fazer é investigar o nível de sentimento de comentários associados a determinadas palavras. Por exemplo, o quão negativo costuma ser um comentário quando ele menciona a palavra <strong>bolsonaro</strong>?</p>
+<pre class="r"><code># qual o sentimento mais associado a palavras em especifico
+df_comments %&gt;% 
+  mutate(
+    temer = str_detect(str_to_lower(message), &quot;temer&quot;),
+    lula = str_detect(str_to_lower(message), &quot;lula&quot;),
+    pmdb = str_detect(str_to_lower(message), &quot;pmdb&quot;),
+    psdb = str_detect(str_to_lower(message), &quot;psdb&quot;),
+    pt = str_detect(str_to_lower(message), &quot;pt&quot;),
+    dilma = str_detect(str_to_lower(message), &quot;dilma&quot;),
+    doria = str_detect(str_to_lower(message), &quot;doria&quot;),
+    governo = str_detect(str_to_lower(message), &quot;governo&quot;),
+    bolsonaro = str_detect(str_to_lower(message), &quot;bolsonaro&quot;)
+  ) %&gt;% 
+  gather(termo, eh_presente, temer:bolsonaro) %&gt;% 
+  filter(eh_presente) %&gt;% 
+  group_by(termo) %&gt;% 
+  summarise(sentiment = mean(sentiment)) %&gt;% 
+  ggplot(aes(x = termo, y = sentiment)) + 
+    geom_col(fill = &quot;#C10534&quot;)</code></pre>
+<p><img src="2017-09-23-o-sensacionalista-e-text-mining-an%C3%A1lise-de-sentimento-usando-o-lexiconpt_files/figure-html/unnamed-chunk-20-1.png" width="1344" /></p>
+<p>Temer e Dilma, os dois presidentes com os piores níveis de popularidade de República, estarem associados a comentários positivos é bem surpreendente. Na verdade, isso ocorre porque a própria palavra <strong>temer</strong> possui polaridade positiva. Para consultar a polaridade de uma palavra nos datasets presentes no <code>lexiconPT</code>, use a função <code>lexiconPT::get_word_sentiment()</code>.</p>
+<pre class="r"><code>get_word_sentiment(&quot;temer&quot;)</code></pre>
+<pre><code>## $oplexicon_v2.1
+##        term type polarity
+## 28711 temer   vb        1
+## 
+## $oplexicon_v3.0
+##        term type polarity polarity_revision
+## 30160 temer   vb        1                 A
+## 
+## $sentilex
+##       term grammar_category polarity polarity_target
+## 6546 temer                V       -1           N0:N1
+##      polarity_classification
+## 6546                     MAN</code></pre>
+</div>
+<div id="conclusao-e-chamada-para-futuros-trabalhos" class="section level2">
+<h2>Conclusão e chamada para futuros trabalhos</h2>
+<p>O pacote <code>lexiconPT</code>, apesar de simples, tem um enorme potencial para enriquecer o conteúdo de Text Mining em Português na comunidade brasileira de R. O exemplo dado nesse post pode ser considerado deveras simplório. Muitas etapas foram puladas ou desconsideradas com o intuito de fornecer a você uma rápida introdução às possibilidades criadas pelo pacote. Espero que o leitor deste post tenha se sentido motivado a fazer suas próprias análises de sentimento. As possibilidade são incontáveis.</p>
+</div>
+<div id="referencias" class="section level2">
+<h2>Referências</h2>
+<ul>
+<li><a href="http://tidytextmining.com/">Text Mining with R - A Tidy Approach</a>: Livro online gratuito sobre Text Mining feito pela autora do pacote <code>tidytext</code>;<br />
+</li>
+<li><a href="http://blog.eighty20.co.za//package%20exploration/2017/06/12/sentiment-blog-post/">Single Word Analysis of Early 19th Century Poetry Using tidytext</a>;<br />
+</li>
+<li><a href="https://github.com/leobarone/FLS6397/blob/master/tutorials/tutorial11.Rmd">Texto no R</a>;<br />
+</li>
+<li><a href="http://ctlente.com/pt/trump-colbert/">A Fixação de Colbert</a>;<br />
+</li>
+<li><a href="http://leg.ufpr.br/~walmes/ensino/mintex/">Mineração de Texto - Prof. Walmes M. Zeviani</a>;<br />
+</li>
+<li><a href="https://github.com/juliasilge/tidytext">Pacote tidytext</a>;<br />
+</li>
+<li><a href="https://juliasilge.com/blog/text-mining-stack-overflow/">Text Mining of Stack Overflow Questions</a>;</li>
+<li><a href="https://github.com/juliasilge/women-in-film">Women in film</a></li>
+</ul>
+</div>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="/post/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="/post/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/">Slides da minha apresentação no SER 2017</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="next">
+      <a href="/post/analise-g1-01/">Mineração de textos em notícias de G1: O que diferencia notícias sobre Rio de Janeiro e São Paulo?</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="/post/analise-g1-01/"><i class="fa fa-chevron-right"></i></a>
+    
+  </div>
+</div>
+
+
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'Your Disqus shortname';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</div>
+
+</div>
+</div>
+<script src="/js/ui.js"></script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'Your Google Analytics tracking ID', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,150 @@
+---
+title: Como usar o R para escolher um lugar para morar (4) - Mapa interativo
+author: ''
+date: '2016-11-18'
+slug: olx04
+categories:
+  - R
+tags:
+  - olx
+  - mapas
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+No post anterior da série, mostrei como fazer um gráfico em um mapa a partir das coordenadas geográficas dos imóveis. Neste post, a grande sacada da série: um mapa interativo em que é possível visualizar diversas dimensões de cada um dos apartamentos, como o preço do aluguel, a proximidade em relação a um ponto de interesse, etc.
+
+Dessa vez, vou usar o data frame que contem todos os apartamentos listados no OLX que eu não mostrei (exatamente) como obter e nem posso compartilhar em respeito ao OLX.
+
+```{r}
+library(magrittr)
+library(dplyr)
+library(leaflet)
+library(stringr)
+library(RColorBrewer)
+```
+
+
+```{r}
+# carregar arquivo com apartamentos
+df.apt <- read.csv2("/home/sillas/R/Projetos/olx/data/post4-df.apt.csv", stringsAsFactors = FALSE)
+
+# carregar arquivos com coordenadas
+df.coord <- read.csv2("/home/sillas/R/Projetos/olx/data/post4-coordenadas.csv", stringsAsFactors = FALSE)
+head(df.coord)
+
+# Juntar arquivos em um só
+df.apt$cep %<>% as.character()
+df.apt %<>% left_join(df.coord, by = "cep")
+rm(df.coord)
+```
+
+Além de apartamentos, eu tenho também os dados de [quartos para alugar](http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/aluguel/aluguel-de-quartos) no OLX, que apesar de eu não ter mostrado no blog o procedimento para os conseguir, ele é basicamente o mesmo do que eu mostrei para os apartamentos.
+
+```{r arquivos de quartos}
+df.quartos <- read.csv2("/home/sillas/R/Projetos/olx/data/post4-quartos.csv", stringsAsFactors = FALSE)
+head(df.quartos)
+
+
+```
+
+Já temos tudo o que precisamos para plotar os apartamentos em um mapa. Isso é feito muito facilmente com o pacote `leaflet`. Eu comento abaixo o passo-a-passo do código para plotar o mapa.
+
+```{r}
+# Remover os apartamentos sem coordenadas
+df.apt %<>% filter(!is.na(lat))
+df.quartos %<>% filter(!is.na(lat))
+# Para distinguir os apartamentos no mapa pelo preço, usamos a função colorBin para criar intervalos de cores
+# Qual seria um bom intervalo?
+aluguel <- c(df.apt$preco, df.quartos$preco)
+aluguel %<>% na.omit()
+quantile(aluguel, seq(0, 1,  0.05))
+# 90% dos preços estão abaixo de R$3200
+intervalo <- seq(0, 3200, 400)
+# criar palette para colorir os pontos no mapa: verde significa aluguel baixo, vermelho aluguel caro
+palette_rev <- rev(brewer.pal(length(intervalo), "RdYlGn"))
+
+# O vetor de cores é criado com a função colorBin
+vetorCoresApt <- colorBin(palette_rev, domain = df.apt$preco, bins = intervalo, na.color = "black")
+vetorCoresQuarto <- colorBin(palette_rev, domain = df.quartos$preco, bins = intervalo, na.color = "black")
+
+# Criar função para exibir texto ao clicar em um imóvel
+html_link <- function(link) paste0('<a href="', link, '">Link</a>')
+
+textoPopup <- function(data, tipo) {
+  # tipo = quarto ou Apartamento
+  if (!tipo %in% c("apartamento", "quarto")) stop("Input errado.")
+   x = paste0(
+     "Tipo do imóvel: ", tipo, "<br>",
+     "Url: ", html_link(data$link), "<br>",
+     "Título: ", data$titulo, "<br>",
+     "Preço: R$", data$preco, "<br>"
+     )
+   
+   if (tipo == "apartamento") {
+     x = paste0(
+       x,
+       "Condomínio: R$", data$taxa_condominio, "<br>",
+       "Quartos: ", data$qtd_quarto, "<br>",
+       "Área (m²): ", data$area_condominio, "<br>",
+       "Garagem: ", data$garagem, "<br>"
+     )
+   }
+   return(x)
+}
+
+# adicionar ruído aleatório para fazer com que pontos em uma mesma rua se dispersem
+set.seed(123)
+jit <- 40
+df.apt$lat <- jitter(df.apt$lat, jit)
+df.apt$lon <- jitter(df.apt$lon, jit) 
+
+df.quartos$lat %<>% jitter(jit)
+df.quartos$lon %<>% jitter(jit)
+
+```
+
+```{r}
+ # iniciar objeto leaflet
+
+
+map <- leaflet() %>%
+  addTiles() %>%
+  addProviderTiles("OpenStreetMap.BlackAndWhite") %>%
+  # coordenadas de um ponto em específico para exemplo
+  addMarkers(lng = -43.183447, lat = -22.913912) %>% 
+  # plotar apartamentos
+  addCircleMarkers(data = df.apt,
+                   lng = ~lon, lat = ~lat,
+                   color = ~vetorCoresApt(preco),
+                   opacity = 1.5,
+                   popup = textoPopup(df.apt, "apartamento"),
+                   # Definir nome do grupo para ser usado na camada
+                   group = "Apartamentos") %>%
+  # plotar quartos
+  addCircleMarkers(data = df.quartos,
+                   lng = ~lon, lat = ~lat,
+                   color = ~vetorCoresQuarto(preco),
+                   opacity = 1.5,
+                   popup = textoPopup(df.quartos, "quarto"),
+                   group = "Quartos") %>%
+  addLayersControl(
+    overlayGroups = c("Apartamentos", "Quartos"),
+    options = layersControlOptions(collapsed = FALSE)
+  ) %>%
+  addLegend(pal = vetorCoresApt, values = df.apt$preco)
+
+```
+
+Clique na imagem abaixo para abrir o produto final:
+
+http://i.imgur.com/dDpeckS.png
+
+[<img src="http://i.imgur.com/dDpeckS.png">](https://sillasgonzaga.shinyapps.io/aptsnorio/)
+
+
+
+

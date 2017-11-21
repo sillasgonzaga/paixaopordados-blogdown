@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cluster on Paixão por Dados</title>
+    <link>/tags/cluster/</link>
+    <description>Recent content in Cluster on Paixão por Dados</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2016. All rights reserved.</copyright>
+    <lastBuildDate>Tue, 28 Jun 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/cluster/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Clusterização no R: Como segmentar países de acordo com indicadores econômicos</title>
+      <link>/post/clusteriza%C3%A7%C3%A3o-no-r-como-segmentar-pa%C3%ADses-de-acordo-com-indicadores-economicos/</link>
+      <pubDate>Tue, 28 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/post/clusteriza%C3%A7%C3%A3o-no-r-como-segmentar-pa%C3%ADses-de-acordo-com-indicadores-economicos/</guid>
+      <description>Neste post, eu mostro como:
+- Baixar dados de indicadores macroecômicos de todos os países usando a API do World Bank;
+- Clusterizar países de acordo com esses indicadores usando o algoritmo k-means;
+- O Brasil está mais próximo de Serra Leoa e Zimbábue que dos Estados Unidos e Noruega
+library(WDI) # baixar os dados do World Bank library(magrittr) library(formattable) Importação dos dados Felizmente, o processo de importação dos dados do World Bank é feito de maneira automatizada pelo pacote WDI usando a função WDI().</description>
+    </item>
+    
+  </channel>
+</rss>
