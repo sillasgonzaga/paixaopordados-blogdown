@@ -134,20 +134,20 @@ Um dos (muitos) motivos de minha ausência tem sido a elaboração do meu TCC, q
     
     <item>
       <title>Censo da Educação Superior (2): Como plotar o movimento migratório universitário no Brasil em um mapa</title>
-      <link>/post/censo-da-educa%C3%A7%C3%A3o-superior-02/</link>
+      <link>/post/censo-da-educacao-superior-02/</link>
       <pubDate>Fri, 08 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/censo-da-educa%C3%A7%C3%A3o-superior-02/</guid>
+      <guid>/post/censo-da-educacao-superior-02/</guid>
       <description>No primeiro post sobre os microdados do Censo da Educação Superior, falei sobre as cidades e estados que mais atraem universitários de fora. Neste segundo post, discutirei mais a fundo este movimento migratório universitário, incluindo a elaboração de um rebusco mapa de fluxo migratório.
 library(stringr) library(tidyr) library(magrittr) library(dplyr) library(feather) library(maptools) library(maps) library(geosphere) library(knitr)  Importação dos dados Para plotar em um mapa os universitários que estudam em uma cidade diferente da que nasceram, precisamos de dois tipos de dados: - Dados espaciais dos municípios brasileiros;</description>
     </item>
     
     <item>
       <title>Clusterização no R: Como segmentar países de acordo com indicadores econômicos</title>
-      <link>/post/clusteriza%C3%A7%C3%A3o-no-r-como-segmentar-pa%C3%ADses-de-acordo-com-indicadores-economicos/</link>
+      <link>/post/clusterizacao-r-paises/</link>
       <pubDate>Tue, 28 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/clusteriza%C3%A7%C3%A3o-no-r-como-segmentar-pa%C3%ADses-de-acordo-com-indicadores-economicos/</guid>
+      <guid>/post/clusterizacao-r-paises/</guid>
       <description>Neste post, eu mostro como:
 - Baixar dados de indicadores macroecômicos de todos os países usando a API do World Bank;
 - Clusterizar países de acordo com esses indicadores usando o algoritmo k-means;
@@ -288,11 +288,9 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
       <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>Hugo is a static site engine written in Go.
-It makes use of a variety of open source projects including:
- Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub.
-Setup Some fun facts about Hugo:
- Built in Go Loosely inspired by Jekyll Primarily developed by spf13 on the train while commuting to and from Manhattan. Coded in Vim using spf13-vim  Have questions or suggestions?</description>
+      <description>Sobre mim Formação  Graduação em Engenharia de Produção, pela Universidade Federal de Sergipe (03/2011 a 11/ 2016);
+ Intercâmbio acadêmico na KAIST, Coreia do Sul, pelo programa Ciência sem Fronteiras (08/2013 - 08/2014);
+  Descrição Engenheiro de produção de formação, venho me especializando em programação voltada a Data Science, Machine Learning e Business Intelligence. Atualmente sou Analista Senior de Planejamento e Soluções Analíticas da Casa e Vídeo e contribuidor do Instituto Brasileiro de Pesquisa e Análise de Dados, o IBPAD.</description>
     </item>
     
     <item>

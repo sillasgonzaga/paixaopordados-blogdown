@@ -2,7 +2,7 @@
 title: 'Clusterização no R: Como segmentar países de acordo com indicadores econômicos'
 author: ''
 date: '2016-06-28'
-slug: clusterização-no-r-como-segmentar-países-de-acordo-com-indicadores-economicos
+slug: clusterizacao-r-paises
 categories:
   - R
 tags:
@@ -98,7 +98,7 @@ A determinação da quantidade de clusteres não segue uma regra pré-definida e
 soma dos quadrados dos clusteres ou pelo auxílio visual de um dendograma.
 
 Para determinar o número de clusteres pelo primeiro método, observe o gráfico abaixo:
-```{r, fig.width=12, fig.height=12}
+```{r, fig.width=7, fig.height=7}
 # referencia: http://www.statmethods.net/advstats/cluster.html
 wss <- (nrow(df2_escala)-1)*sum(apply(df2_escala,2,var))
 for (i in 2:15) wss[i] <- sum(kmeans(df2_escala,
@@ -113,7 +113,7 @@ A soma dos quadrados dos clusteres se mantem estável a partir de 8 segmentos. C
 
 Pelo segundo método, um dendograma é criado:
 
-```{r, fig.width=12, fig.height=12}
+```{r, fig.width=7, fig.height=7}
 dendo <- df2_escala %>% dist %>% hclust
 plot(dendo)
 rect.hclust(dendo, k = 3, border = "blue")

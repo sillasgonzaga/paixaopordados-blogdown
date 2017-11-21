@@ -134,20 +134,20 @@ Um dos (muitos) motivos de minha ausência tem sido a elaboração do meu TCC, q
     
     <item>
       <title>Censo da Educação Superior (2): Como plotar o movimento migratório universitário no Brasil em um mapa</title>
-      <link>/post/censo-da-educa%C3%A7%C3%A3o-superior-02/</link>
+      <link>/post/censo-da-educacao-superior-02/</link>
       <pubDate>Fri, 08 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/censo-da-educa%C3%A7%C3%A3o-superior-02/</guid>
+      <guid>/post/censo-da-educacao-superior-02/</guid>
       <description>No primeiro post sobre os microdados do Censo da Educação Superior, falei sobre as cidades e estados que mais atraem universitários de fora. Neste segundo post, discutirei mais a fundo este movimento migratório universitário, incluindo a elaboração de um rebusco mapa de fluxo migratório.
 library(stringr) library(tidyr) library(magrittr) library(dplyr) library(feather) library(maptools) library(maps) library(geosphere) library(knitr)  Importação dos dados Para plotar em um mapa os universitários que estudam em uma cidade diferente da que nasceram, precisamos de dois tipos de dados: - Dados espaciais dos municípios brasileiros;</description>
     </item>
     
     <item>
       <title>Clusterização no R: Como segmentar países de acordo com indicadores econômicos</title>
-      <link>/post/clusteriza%C3%A7%C3%A3o-no-r-como-segmentar-pa%C3%ADses-de-acordo-com-indicadores-economicos/</link>
+      <link>/post/clusterizacao-r-paises/</link>
       <pubDate>Tue, 28 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/clusteriza%C3%A7%C3%A3o-no-r-como-segmentar-pa%C3%ADses-de-acordo-com-indicadores-economicos/</guid>
+      <guid>/post/clusterizacao-r-paises/</guid>
       <description>Neste post, eu mostro como:
 - Baixar dados de indicadores macroecômicos de todos os países usando a API do World Bank;
 - Clusterizar países de acordo com esses indicadores usando o algoritmo k-means;

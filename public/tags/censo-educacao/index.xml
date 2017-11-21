@@ -14,10 +14,10 @@
     
     <item>
       <title>Censo da Educação Superior (2): Como plotar o movimento migratório universitário no Brasil em um mapa</title>
-      <link>/post/censo-da-educa%C3%A7%C3%A3o-superior-02/</link>
+      <link>/post/censo-da-educacao-superior-02/</link>
       <pubDate>Fri, 08 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/censo-da-educa%C3%A7%C3%A3o-superior-02/</guid>
+      <guid>/post/censo-da-educacao-superior-02/</guid>
       <description>No primeiro post sobre os microdados do Censo da Educação Superior, falei sobre as cidades e estados que mais atraem universitários de fora. Neste segundo post, discutirei mais a fundo este movimento migratório universitário, incluindo a elaboração de um rebusco mapa de fluxo migratório.
 library(stringr) library(tidyr) library(magrittr) library(dplyr) library(feather) library(maptools) library(maps) library(geosphere) library(knitr)  Importação dos dados Para plotar em um mapa os universitários que estudam em uma cidade diferente da que nasceram, precisamos de dois tipos de dados: - Dados espaciais dos municípios brasileiros;</description>
     </item>

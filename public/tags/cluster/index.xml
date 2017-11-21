@@ -14,10 +14,10 @@
     
     <item>
       <title>Clusterização no R: Como segmentar países de acordo com indicadores econômicos</title>
-      <link>/post/clusteriza%C3%A7%C3%A3o-no-r-como-segmentar-pa%C3%ADses-de-acordo-com-indicadores-economicos/</link>
+      <link>/post/clusterizacao-r-paises/</link>
       <pubDate>Tue, 28 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/clusteriza%C3%A7%C3%A3o-no-r-como-segmentar-pa%C3%ADses-de-acordo-com-indicadores-economicos/</guid>
+      <guid>/post/clusterizacao-r-paises/</guid>
       <description>Neste post, eu mostro como:
 - Baixar dados de indicadores macroecômicos de todos os países usando a API do World Bank;
 - Clusterizar países de acordo com esses indicadores usando o algoritmo k-means;

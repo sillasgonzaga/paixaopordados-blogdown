@@ -3,7 +3,7 @@ title: 'Censo da Educação Superior (2): Como plotar o movimento migratório un
   no Brasil em um mapa'
 author: ''
 date: '2016-07-08'
-slug: censo-da-educação-superior-02
+slug: censo-da-educacao-superior-02
 categories:
   - R
 tags:
@@ -41,7 +41,7 @@ Para poder localizar os municípios brasileiros em um mapa, precisamos de dados 
 
 
 
-{% highlight r %}
+```r
 df_coord <- read.csv2("https://raw.githubusercontent.com/sillasgonzaga/sillasgonzaga.github.io/master/data/coordenadas_BR.csv",
                       stringsAsFactors = FALSE, header = FALSE)
 
@@ -51,7 +51,7 @@ head(df_coord, 10)
 
 
 
-{% highlight text %}
+```r
 ##                   V1                                             V2
 ## 1                                                                  
 ## 2                                                                  
@@ -89,7 +89,7 @@ head(df_coord, 10)
 
 
 
-{% highlight r %}
+```r
 # Acrescentar nomes de colunas
 names(df_coord) <- c("municipio", "uf", "municipio_localidade", "coordenadas")
 # Remover duas primeiras linhas
@@ -113,7 +113,7 @@ head(df_coord)
 
 
 
-{% highlight text %}
+```r
 ##         municipio                lon                lat
 ## 1 BARRA DO QUARAI  -57.5570603248122  -30.2110754071007
 ## 2      URUGUAIANA  -57.0818249090229  -29.7598231712009
@@ -125,7 +125,7 @@ head(df_coord)
 
 
 
-{% highlight r %}
+```r
 # Precisamos de uma coluna com o código do município.
 # Para isso, usamos o arquivo df_cidades usado no post1 que eu disponibilizei tbm no github
 df_cidades <- read.csv2("https://raw.githubusercontent.com/sillasgonzaga/sillasgonzaga.github.io/master/data/municipiosBR.csv")
@@ -140,7 +140,7 @@ head(df_cidades)
 
 
 
-{% highlight text %}
+```r
 ##   uf cod_municipio               municipio       lon        lat
 ## 2 RO       1100379 ALTO ALEGRE DOS PARECIS -61.85308 -12.131777
 ## 3 RO       1100403            ALTO PARAISO -53.73289 -23.508131
@@ -152,7 +152,7 @@ head(df_cidades)
 
 
 
-{% highlight r %}
+```r
 # Importar o shapefile
 # disponível em https://github.com/sillasgonzaga/sillasgonzaga.github.io/raw/master/data/estados_2010.shp
 estados <- readShapePoly("/home/sillas/R/Projetos/CensoEducSuperior/Dados/shapefiles/estados_2010/estados_2010.shp")
@@ -164,28 +164,28 @@ O `DM_ALUNO.csv`, tratado no post anterior, e filtrado para os casos em que o mu
 
 
 
-{% highlight r %}
+```r
 # importar df original
 system.time(df <- read_feather("/home/sillas/R/Projetos/CensoEducSuperior/Dados/dm_aluno_tratado.feather"))
 ```
 
 
 
-{% highlight text %}
+```r
 ##    user  system elapsed 
 ##   4.516   0.892   6.141
 ```
 
 
 
-{% highlight r %}
+```r
 df %<>% filter(municipio_diferente == 1)
 # excluir cidades que não estão presentes no df_cidades
 df %<>% filter(CO_MUNICIPIO_NASCIMENTO %in% df_cidades$cod_municipio & CO_MUNICIPIO_IES %in% df_cidades$cod_municipio)
 ```
 
 
-{% highlight r %}
+```r
 # selecionar apenas colunas referentes às cidades
 df_agg <- df %>%
   select(cod_mun_aluno = CO_MUNICIPIO_NASCIMENTO, nome_mun_aluno =  municipioNascimento,
@@ -220,7 +220,7 @@ Uma curiosidade sobre o primeiro lugar da lista: o fluxo Aracaju > São Cristóv
 Finalmente, vamos o código para plotar o mapa. O código abaixo foi "inspirado" [deste post do Flowing Data](http://flowingdata.com/2011/05/11/how-to-map-connections-with-great-circles/), um ótimo blog sobre visualização de dados. Adaptar o código do artigo não foi tão direto como eu imaginava, por isso fiz questão de documentar todos os passos e explicar o que eles fazem. 
 
 
-{% highlight r %}
+```r
 # Para deixar mais fortes os fluxos mais frequentes, precisamos classificar os dados em ordem crescente de frequência
 df_agg %<>% arrange(qtd)
 
@@ -265,10 +265,15 @@ for (i in 1:nrow(df_agg)) {
   lines(inter, col = mycol, lwd = 0.8)
 }
 ```
+Clique na imagem abaixo para ver em alta definição.
 
-<img src="/figs/censo_educ_superior2/plotar mapa-2.png" title="center" alt="center" style="display: block; margin: auto;" />
 
-{% highlight r %}
+[![](/figs/censo_educ_superior2/plotar mapa-1.png)](https://i.imgur.com/gvCCHSN.png)
+
+
+
+
+```r
 #dev.off()
 t2 <- proc.time()
 # Tempo necessário para construir o mapa (em segundos)
@@ -277,7 +282,7 @@ t2 - t1
 
 
 
-{% highlight text %}
+```r
 ##    user  system elapsed 
 ## 322.500   3.436 375.426
 ```

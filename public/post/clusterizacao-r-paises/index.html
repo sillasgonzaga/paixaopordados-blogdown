@@ -1,18 +1,245 @@
----
-title: 'Clusterização no R: Como segmentar países de acordo com indicadores econômicos'
-author: ''
-date: '2016-06-28'
-slug: clusterização-no-r-como-segmentar-países-de-acordo-com-indicadores-economicos
-categories:
-  - R
-tags:
-  - cluster
-  - unsupervised
----
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.31" />
+
+  <title>Clusterização no R: Como segmentar países de acordo com indicadores econômicos &middot; Paixão por Dados</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
 
 
+<body>
+<div id="layout">
 
-<p>Neste post, eu mostro como:<br />
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="/">Paixão por Dados</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://facebook.com/sillast" target="_blank"><i class="fa fa-facebook-square fa-fw"></i>Facebook</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://linkedin.com/in/sillasgonzaga" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/sillasgonzaga" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2016. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>Clusterização no R: Como segmentar países de acordo com indicadores econômicos</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>28 Jun 2016</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/cluster">cluster</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="/tags/unsupervised">unsupervised</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p>Neste post, eu mostro como:<br />
 - Baixar dados de indicadores macroecômicos de todos os países usando a API do World Bank;<br />
 - Clusterizar países de acordo com esses indicadores usando o algoritmo <em>k-means</em>;<br />
 - O Brasil está mais próximo de Serra Leoa e Zimbábue que dos Estados Unidos e Noruega</p>
@@ -97,14 +324,14 @@ for (i in 2:15) wss[i] &lt;- sum(kmeans(df2_escala,
    centers=i)$withinss)
 plot(1:15, wss, type=&quot;b&quot;, xlab=&quot;Número of Clusters&quot;,
   ylab=&quot;Soma dos quadrados dentro dos clusteres&quot;) </code></pre>
-<p><img src="2016-06-28-clusteriza%C3%A7%C3%A3o-no-r-como-segmentar-pa%C3%ADses-de-acordo-com-indicadores-economicos_files/figure-html/unnamed-chunk-8-1.png" width="1152" /></p>
+<p><img src="/post/2016-06-28-clusterizacao-r-paises_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>A soma dos quadrados dos clusteres se mantem estável a partir de 8 segmentos. Contudo, é preciso pensar qual a interpretação que teríamos disso. Quer dizer, posso dizer que dividi os dados em 8 clusteres, mas… e daí? O que seria aprendido por meio desses 8 clusteres?</p>
 <p>Pelo segundo método, um dendograma é criado:</p>
 <pre class="r"><code>dendo &lt;- df2_escala %&gt;% dist %&gt;% hclust
 plot(dendo)
 rect.hclust(dendo, k = 3, border = &quot;blue&quot;)
 rect.hclust(dendo, k = 4, border = &quot;red&quot;)</code></pre>
-<p><img src="2016-06-28-clusteriza%C3%A7%C3%A3o-no-r-como-segmentar-pa%C3%ADses-de-acordo-com-indicadores-economicos_files/figure-html/unnamed-chunk-9-1.png" width="1152" /></p>
+<p><img src="/post/2016-06-28-clusterizacao-r-paises_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>A posição de cada país no dendograma é determinada pela dissimilaridade entre cada um dos outros países. Veja que a opção de 4 segmentos divide um dos segmentos da opção de 3 ao meio. Portanto, 4 parece ser uma boa escolha para a quantidade de clusteres do modelo desta análise.</p>
 <p>Por exemplo, esta é a distância entre o Brasil e alguns outros países:</p>
 <pre class="r"><code>df2_escala[c(&quot;Brazil&quot;, &quot;Sierra Leone&quot;, &quot;Zimbabwe&quot;, &quot;Norway&quot;, &quot;United States&quot;),] %&gt;% dist</code></pre>
@@ -1025,3 +1252,83 @@ x[order(-x$pib_per_capita),] %&gt;% knitr::kable()</code></pre>
 - O número de clusteres deveria ser maior;<br />
 - Deveriam ser feitas apenas interações (escolhendo valores diferentes como argumento de <code>set.seed()</code>) - O erro se deve a um erro aleatório, também chamado de ruído, do algoritmo k-means. Afinal de contas, como sabemos, nenhum modelo é perfeito.</p>
 </div>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="/post/censo-da-educacao-superior-01/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="/post/censo-da-educacao-superior-01/">Censo da Educação Superior (1) - Quais são as cidades mais universitárias do Brasil?</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="next">
+      <a href="/post/censo-da-educacao-superior-02/">Censo da Educação Superior (2): Como plotar o movimento migratório universitário no Brasil em um mapa</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="/post/censo-da-educacao-superior-02/"><i class="fa fa-chevron-right"></i></a>
+    
+  </div>
+</div>
+
+
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'Your Disqus shortname';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</div>
+
+</div>
+</div>
+<script src="/js/ui.js"></script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'Your Google Analytics tracking ID', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+</body>
+</html>
+

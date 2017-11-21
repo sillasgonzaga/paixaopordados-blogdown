@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.31" />
+
+  <title>Censo da Educação Superior (2): Como plotar o movimento migratório universitário no Brasil em um mapa &middot; Paixão por Dados</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="/">Paixão por Dados</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://facebook.com/sillast" target="_blank"><i class="fa fa-facebook-square fa-fw"></i>Facebook</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://linkedin.com/in/sillasgonzaga" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/sillasgonzaga" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2016. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>Censo da Educação Superior (2): Como plotar o movimento migratório universitário no Brasil em um mapa</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>08 Jul 2016</time>
+  </div>
+
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/censo-educacao">censo-educacao</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  
+
+<p>No primeiro post sobre os microdados do Censo da Educação Superior, falei sobre as cidades e estados que mais atraem universitários de fora. Neste segundo post, discutirei mais a fundo este movimento migratório universitário, incluindo a elaboração de um rebusco mapa de fluxo migratório.</p>
+
+<pre><code class="language-r">library(stringr)
+library(tidyr)
+library(magrittr)
+library(dplyr)
+library(feather)
+library(maptools)
+library(maps)
+library(geosphere)
+library(knitr)
+</code></pre>
+
+<h1 id="importação-dos-dados">Importação dos dados</h1>
+
+<p>Para plotar em um mapa os universitários que estudam em uma cidade diferente da que nasceram, precisamos de dois tipos de dados:
+- Dados espaciais dos municípios brasileiros;<br />
+- Um <a href="https://pt.wikipedia.org/wiki/Shapefile">shapefile</a> dos estados brasileiros
+- Dados de universitários que estudam em uma cidade diferente da que nasceram;</p>
+
+<h2 id="dados-espaciais">Dados espaciais</h2>
+
+<p>Para poder localizar os municípios brasileiros em um mapa, precisamos de dados sobre suas latitudes e longitudes. Em minhas pesquisas, a melhor fonte que eu encontrei foi <a href="http://www.monolitonimbus.com.br/coordenadas-geograficas-das-cidades-do-brasil/">neste site</a>, que fornece o link para baixar um arquivo KML contendo os dados que precisamos. Para fazer a conversão de KML para um formato tratável pelo R, usei comandos em linux, como indicado pelo próprio site.</p>
+
+<p><strong>ATENÇÃO</strong>: Eu baixei o KML descrito acima em 08/06/2016, mas no momento que escrevo este post, o ftp do IBGE para baixar esse arquivo está fora do ar. Por isso, eu disponibilizei os arquivos KML e CSV no <a href="https://github.com/sillasgonzaga/sillasgonzaga.github.io/tree/master/data">meu Github</a>.</p>
+
+<pre><code class="language-r">df_coord &lt;- read.csv2(&quot;https://raw.githubusercontent.com/sillasgonzaga/sillasgonzaga.github.io/master/data/coordenadas_BR.csv&quot;,
+                      stringsAsFactors = FALSE, header = FALSE)
+
+# Ver estrutura do arquivo
+head(df_coord, 10)
+</code></pre>
+
+<pre><code class="language-r">##                   V1                                             V2
+## 1                                                                  
+## 2                                                                  
+## 3    BARRA DO QUARAÍ                              RIO GRANDE DO SUL
+## 4         URUGUAIANA                              RIO GRANDE DO SUL
+## 5             QUARAÍ                              RIO GRANDE DO SUL
+## 6          SANT&amp;apos                              ANA DO LIVRAMENTO
+## 7  ANA DO LIVRAMENTO -55.5348142679597,-30.8893840103812,200.677824
+## 8             ITAQUI                              RIO GRANDE DO SUL
+## 9           ALEGRETE                              RIO GRANDE DO SUL
+## 10         MAÇAMBARÁ                              RIO GRANDE DO SUL
+##                   V3
+## 1                   
+## 2                   
+## 3    BARRA DO QUARAÍ
+## 4         URUGUAIANA
+## 5             QUARAÍ
+## 6  RIO GRANDE DO SUL
+## 7                   
+## 8             ITAQUI
+## 9           ALEGRETE
+## 10         MAÇAMBARÁ
+##                                                        V4
+## 1                                                        
+## 2                                                        
+## 3             -57.5570603248122,-30.2110754071007,42.0408
+## 4   -57.0818249090229,-29.7598231712009,78.23018999999999
+## 5          -56.4536470403836,-30.3828679600575,118.674261
+## 6                                               SANT&amp;apos
+## 7                                                        
+## 8           -56.55713349703041,-29.128636898258,62.084645
+## 9  -55.7958701453331,-29.78204320831051,94.73120299999999
+## 10         -56.06361348173561,-29.146144198381,104.458392
+</code></pre>
+
+<pre><code class="language-r"># Acrescentar nomes de colunas
+names(df_coord) &lt;- c(&quot;municipio&quot;, &quot;uf&quot;, &quot;municipio_localidade&quot;, &quot;coordenadas&quot;)
+# Remover duas primeiras linhas
+df_coord &lt;- df_coord[-(1:2),]
+# Remover linha na coluna uf se contém número
+df_coord &lt;- df_coord[!grepl(&quot;\\d&quot;, df_coord$uf),]
+# Remover linha na coluna coordenadas se NAO contem numero
+df_coord &lt;- df_coord[grepl(&quot;\\d&quot;, df_coord$coordenadas),]
+# Separar coluna de coordenadas em três e remover a última
+df_coord %&lt;&gt;% separate(coordenadas, into = c('x1', 'x2', 'x3'), sep = &quot;,&quot;)
+
+df_coord %&lt;&gt;% filter(municipio == municipio_localidade)
+# remover última coluna
+df_coord %&lt;&gt;% select(-x3, -municipio_localidade, -uf) %&gt;% rename(lat = x2, lon = x1)
+# remover acentos da coluna de municipio_localidade
+df_coord$municipio %&lt;&gt;% iconv(to = &quot;ASCII//TRANSLIT&quot;)
+# remover duplicatas
+df_coord %&lt;&gt;% distinct(municipio)
+head(df_coord)
+</code></pre>
+
+<pre><code class="language-r">##         municipio                lon                lat
+## 1 BARRA DO QUARAI  -57.5570603248122  -30.2110754071007
+## 2      URUGUAIANA  -57.0818249090229  -29.7598231712009
+## 3          QUARAI  -56.4536470403836  -30.3828679600575
+## 4          ITAQUI -56.55713349703041   -29.128636898258
+## 5        ALEGRETE  -55.7958701453331 -29.78204320831051
+## 6       MACAMBARA -56.06361348173561   -29.146144198381
+</code></pre>
+
+<pre><code class="language-r"># Precisamos de uma coluna com o código do município.
+# Para isso, usamos o arquivo df_cidades usado no post1 que eu disponibilizei tbm no github
+df_cidades &lt;- read.csv2(&quot;https://raw.githubusercontent.com/sillasgonzaga/sillasgonzaga.github.io/master/data/municipiosBR.csv&quot;)
+names(df_cidades) &lt;- c(&quot;uf&quot;, &quot;cod_municipio&quot;, &quot;municipio&quot;)  
+df_cidades$municipio  %&lt;&gt;% iconv(to = &quot;ASCII//TRANSLIT&quot;) %&gt;% str_to_upper()
+df_cidades %&lt;&gt;% left_join(df_coord, by = 'municipio')
+df_cidades %&lt;&gt;% na.omit()
+df_cidades$lon %&lt;&gt;% as.numeric()
+df_cidades$lat %&lt;&gt;% as.numeric()
+head(df_cidades)
+</code></pre>
+
+<pre><code class="language-r">##   uf cod_municipio               municipio       lon        lat
+## 2 RO       1100379 ALTO ALEGRE DOS PARECIS -61.85308 -12.131777
+## 3 RO       1100403            ALTO PARAISO -53.73289 -23.508131
+## 5 RO       1100023               ARIQUEMES -63.03327  -9.908463
+## 6 RO       1100452                 BURITIS -63.82968 -10.209805
+## 7 RO       1100031                  CABIXI -60.54431 -13.499763
+## 8 RO       1100601             CACAULANDIA -62.90319 -10.338873
+</code></pre>
+
+<pre><code class="language-r"># Importar o shapefile
+# disponível em https://github.com/sillasgonzaga/sillasgonzaga.github.io/raw/master/data/estados_2010.shp
+estados &lt;- readShapePoly(&quot;/home/sillas/R/Projetos/CensoEducSuperior/Dados/shapefiles/estados_2010/estados_2010.shp&quot;)
+</code></pre>
+
+<h2 id="dados-de-universitários">Dados de universitários</h2>
+
+<p>O <code>DM_ALUNO.csv</code>, tratado no post anterior, e filtrado para os casos em que o município de nascimento não é o mesmo do município da IES:</p>
+
+<pre><code class="language-r"># importar df original
+system.time(df &lt;- read_feather(&quot;/home/sillas/R/Projetos/CensoEducSuperior/Dados/dm_aluno_tratado.feather&quot;))
+</code></pre>
+
+<pre><code class="language-r">##    user  system elapsed 
+##   4.516   0.892   6.141
+</code></pre>
+
+<pre><code class="language-r">df %&lt;&gt;% filter(municipio_diferente == 1)
+# excluir cidades que não estão presentes no df_cidades
+df %&lt;&gt;% filter(CO_MUNICIPIO_NASCIMENTO %in% df_cidades$cod_municipio &amp; CO_MUNICIPIO_IES %in% df_cidades$cod_municipio)
+</code></pre>
+
+<pre><code class="language-r"># selecionar apenas colunas referentes às cidades
+df_agg &lt;- df %&gt;%
+  select(cod_mun_aluno = CO_MUNICIPIO_NASCIMENTO, nome_mun_aluno =  municipioNascimento,
+         cod_mun_ies = CO_MUNICIPIO_IES, nome_mun_ies = municipioIES) %&gt;%
+  group_by(cod_mun_aluno, nome_mun_aluno, cod_mun_ies, nome_mun_ies) %&gt;%
+  tally(sort = TRUE) %&gt;%
+  ungroup() %&gt;%
+  rename(qtd = n)
+
+# Os 10 fluxos migratórios mais comuns
+df_agg %&gt;% top_n(n = 10, wt = qtd) %&gt;% select(nome_mun_aluno, nome_mun_ies, qtd) %&gt;% kable()
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left">nome_mun_aluno</th>
+<th align="left">nome_mun_ies</th>
+<th align="right">qtd</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Aracaju (SE)</td>
+<td align="left">Săo Cristóvăo (SE)</td>
+<td align="right">17574</td>
+</tr>
+
+<tr>
+<td align="left">Contagem (MG)</td>
+<td align="left">Belo Horizonte (MG)</td>
+<td align="right">11023</td>
+</tr>
+
+<tr>
+<td align="left">Niterói (RJ)</td>
+<td align="left">Rio de Janeiro (RJ)</td>
+<td align="right">16817</td>
+</tr>
+
+<tr>
+<td align="left">Rio de Janeiro (RJ)</td>
+<td align="left">Duque de Caxias (RJ)</td>
+<td align="right">12676</td>
+</tr>
+
+<tr>
+<td align="left">Rio de Janeiro (RJ)</td>
+<td align="left">Săo Gonçalo (RJ)</td>
+<td align="right">11029</td>
+</tr>
+
+<tr>
+<td align="left">São Bernardo do Campo (SP)</td>
+<td align="left">Săo Paulo (SP)</td>
+<td align="right">10811</td>
+</tr>
+
+<tr>
+<td align="left">São Paulo (SP)</td>
+<td align="left">Guarulhos (SP)</td>
+<td align="right">14762</td>
+</tr>
+
+<tr>
+<td align="left">São Paulo (SP)</td>
+<td align="left">Săo Bernardo do Campo (SP)</td>
+<td align="right">15408</td>
+</tr>
+
+<tr>
+<td align="left">Porto Alegre (RS)</td>
+<td align="left">Indaial (SC)</td>
+<td align="right">11902</td>
+</tr>
+
+<tr>
+<td align="left">Porto Alegre (RS)</td>
+<td align="left">Canoas (RS)</td>
+<td align="right">12571</td>
+</tr>
+</tbody>
+</table>
+
+<p>Uma curiosidade sobre o primeiro lugar da lista: o fluxo Aracaju &gt; São Cristóvão é devido ao fato de a única universidade pública de Sergipe, a Universidade Federal de Sergipe (UFS), estar localizado em São Cristóvão, mas como a UFS é muito próxima a Sergipe, os universitários aracajuanos vão à UFS e voltam para casa no mesmo dia.</p>
+
+<p>Finalmente, vamos o código para plotar o mapa. O código abaixo foi &ldquo;inspirado&rdquo; <a href="http://flowingdata.com/2011/05/11/how-to-map-connections-with-great-circles/">deste post do Flowing Data</a>, um ótimo blog sobre visualização de dados. Adaptar o código do artigo não foi tão direto como eu imaginava, por isso fiz questão de documentar todos os passos e explicar o que eles fazem.</p>
+
+<pre><code class="language-r"># Para deixar mais fortes os fluxos mais frequentes, precisamos classificar os dados em ordem crescente de frequência
+df_agg %&lt;&gt;% arrange(qtd)
+
+# Criar dataframes separados para os municipios do aluno (origem ou org) e da IES (destino ou dest)
+df_org &lt;- select(df_agg, org = cod_mun_aluno)
+df_dest &lt;- select(df_agg, dest = cod_mun_ies)
+# criar variáveis para a quantidade de cada fluxo
+qtd &lt;- df_agg$qtd
+maxqtd &lt;- max(qtd)
+# acrescentar latitude e longitude para cada cidade dois dataframes
+df_org %&lt;&gt;% left_join(df_cidades, by = c('org' = 'cod_municipio'))
+df_dest %&lt;&gt;% left_join(df_cidades, by = c('dest' = 'cod_municipio'))
+
+# para ver quanto tempo levou para gerar o mapa
+t1 &lt;- proc.time()
+
+# Para salvar em um PNG de alta resolução, desmarque as duas linhas abaixo, além da dev.off()
+#myPng &lt;- function(..., width=13, height=13, res=300) {png(..., width=width*res, height=height*res, res=res)}
+#myPng(&quot;mapa.png&quot;)
+
+# Para deixar o gráfico bonito, usaremos um fundo preto
+map(estados, col=&quot;#191919&quot;, fill=TRUE, bg=&quot;#000000&quot;)
+# além de um escala que vai de preto (valores menores) a azul (valores maiores)
+pal &lt;- colorRampPalette(c(&quot;#333333&quot;, &quot;white&quot;, &quot;#1292db&quot;))
+colors &lt;- pal(100)
+# título
+title(&quot;Mapeamento do movimento migratório \nuniversitário no Brasil&quot;, col.main = &quot;white&quot;, cex.main = 1)
+# referencia abaixo do mapa
+mtext(&quot;Fonte: Censo do Ensino Superior 2014 \n Autor: Sillas Gonzaga (sillasgonzaga.github.io)&quot;,
+      col = &quot;white&quot;, side = 1, line = 1, cex = 1)
+# Para gerar as linhas, a função gcIntermediate é necessária,
+# porém dois dos argumentos dela, p1 e p2, só podem ser vetores de tamanho 2
+# portanto, preciamos fazer um for loop para plotar cada linha de df_org e df_dest individualmente
+# ao final do loop, todas as linhas estarão plotadas no mapa
+for (i in 1:nrow(df_agg)) {
+  p1 = c(df_org[i, ]$lon, df_org[i, ]$lat)
+  p2 = c(df_dest[i, ]$lon, df_dest[i, ]$lat)
+  inter &lt;- gcIntermediate(p1, p2, n = 100, addStartEnd = TRUE)
+  # determinar cor de cada fluxo
+  colindex &lt;- ((qtd[i]/maxqtd)*length(colors)) %&gt;% round
+  mycol = colors[colindex]
+  lines(inter, col = mycol, lwd = 0.8)
+}
+</code></pre>
+
+<p>Clique na imagem abaixo para ver em alta definição.</p>
+
+<p><a href="https://i.imgur.com/gvCCHSN.png"><img src="/figs/censo_educ_superior2/plotar mapa-1.png" alt="" /></a></p>
+
+<pre><code class="language-r">#dev.off()
+t2 &lt;- proc.time()
+# Tempo necessário para construir o mapa (em segundos)
+t2 - t1
+</code></pre>
+
+<pre><code class="language-r">##    user  system elapsed 
+## 322.500   3.436 375.426
+</code></pre>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="/post/clusterizacao-r-paises/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="/post/clusterizacao-r-paises/">Clusterização no R: Como segmentar países de acordo com indicadores econômicos</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="next">
+      <a href="/post/mafs01/">Meu primeiro pacote R: aplicação para série temporal do varejo</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="/post/mafs01/"><i class="fa fa-chevron-right"></i></a>
+    
+  </div>
+</div>
+
+
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'Your Disqus shortname';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</div>
+
+</div>
+</div>
+<script src="/js/ui.js"></script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'Your Google Analytics tracking ID', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+</body>
+</html>
+
