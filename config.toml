@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "http://www.sillasgonzaga.com/"
 languageCode = "en-us"
 title = "Paixão por Dados"
 theme = "blackburn"
