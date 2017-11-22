@@ -1,0 +1,321 @@
+---
+title: Anunciando o lançamento de literaturaBR
+author: Sillas Teixeira Gonzaga
+date: '2017-11-21'
+slug: literaturaBR-01
+categories:
+  - R
+tags:
+  - text mining
+---
+
+
+
+<div id="paixao-por-dados-de-cara-nova" class="section level2">
+<h2>Paixão por Dados de cara nova!</h2>
+<p>O blog está de cara nova! O <a href="www.sillasgonzaga.github.io">endereço antigo</a> do blog começou a apresentar alguns bugs bem chatos, então tomei a decisão de finalmente migrar para uma nova plataforma, utilizando o pacote <code>blogdown</code>, a mesma que o pessoal do Curso-R usa no site deles. Para comemorar essa migração, anuncio o lançamento do meu terceiro pacote R: o <code>literaturaBR</code>.</p>
+</div>
+<div id="literaturabr-o-mais-novo-pacote-da-comunidade-r-brasil" class="section level2">
+<h2>literaturaBR, o mais novo pacote da comunidade R Brasil</h2>
+<p>Após lançar o pacote <a href="www.github.com/sillasgonzaga/lexiconPT"><code>lexiconPT</code></a>, senti que a carência de datasets textuais na língua portuguesa poderia restringir seu potencial de alcance de desenvolvedores e cientistas de dados interessados em usar os léxicos para fazer análise de sentimento. Apesar de ter feito um post mostrando seu uso em <a href="http://www.sillasgonzaga.com/post/o-sensacionalista-e-text-mining/">dados obtidos do Facebook</a>, eu admito que é complicado ter que fazer web scraping de algum site toda vez que se deseja praticar ou ensinar mineração de texto com textos em Português.</p>
+<p>Esse problema me inspirou a desenvolver mais um pacote R para facilitar pequenas demonstrações de Text Mining. Assim como a Julia Silge criou o <a href="https://github.com/juliasilge/janeaustenr"><code>janeaustenr</code></a> com livros clássicos da Jane Austen, eu criei o <a href="https://github.com/sillasgonzaga/literaturaBR"><code>literaturaBR</code></a>, um <em>data package</em> criado para disponibilizar livros clássicos da literatura brasileira já prontos para serem importados e manuseados no R. Para saber quais livros estão disponíveis na versão atual do pacote e outras informações úteis, visite seu repositório.</p>
+<p>Este post se destina a apresentar algumas exemplos simples de tarefas de Text Mining, como:<br />
+* Análise de Sentimento;<br />
+* Complexidade Léxica;<br />
+* Analise de ocorrência de palavras em específico.</p>
+</div>
+<div id="introducao" class="section level2">
+<h2>Introdução</h2>
+<p>Os pacotes usados neste post são:</p>
+<pre class="r"><code>library(literaturaBR) # meio obvio
+library(tidytext) # excelente pacote de text mining
+library(tidyverse) # &lt;3
+library(stringr) # indispensavel para manipulacao de texto
+library(quanteda) # otimas funcoes para analise quantitativa de texto
+library(qdap) # similar ao quanteda, embo ra eu nao me lembre exatamente se eu o uso neste post
+library(forcats) # manipulacao de fatores
+library(ggthemes) # temas para o ggplot2
+library(lexiconPT)</code></pre>
+<p>Vamos então importar os datasets presentes no <code>literaturaBR</code> na data de hoje e os transformar em um dataset só:</p>
+<pre class="r"><code>data(&quot;memorias_de_um_sargento_de_milicias&quot;)
+data(&quot;memorias_postumas_bras_cubas&quot;)
+data(&quot;alienista&quot;)
+data(&quot;escrava_isaura&quot;)
+data(&quot;ateneu&quot;)
+
+df &lt;- bind_rows(memorias_de_um_sargento_de_milicias,
+                memorias_postumas_bras_cubas,
+                alienista,
+                escrava_isaura,
+                ateneu)
+
+
+# Olhando a estrutura do dataframe
+glimpse(df)</code></pre>
+<pre><code>## Observations: 5,149
+## Variables: 5
+## $ book_name        &lt;chr&gt; &quot;Memórias de um Sargento de Milícias&quot;, &quot;Memór...
+## $ chapter_name     &lt;chr&gt; &quot;Capítulo 1 - Origem, nascimento e batismo&quot;, ...
+## $ url              &lt;chr&gt; &quot;https://pt.wikisource.org/wiki/Mem%C3%B3rias...
+## $ paragraph_number &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, ...
+## $ text             &lt;chr&gt; &quot;Era no tempo do rei.&quot;, &quot;Uma das quatro esqui...</code></pre>
+<p><strong>Todos</strong> os datasets fornecidos pelo <code>literaturaBR</code> possuem a mesma estrutura, onde cada linha corresponde a um parágrafo de um livro e contêm 5 variáveis:<br />
+* <code>book_name</code>: Nome original do livro;<br />
+* <code>chapter_name</code>: Nome original do capítulo do livro do parágrafo;<br />
+* <code>url</code>: Link para artigo do Wikisouce de onde o capítulo do parágrafo foi extraído;<br />
+* <code>paragraph_number</code>: Ordem do parágrafo em seu capítulo;<br />
+* <code>text</code>: Texto do parágrafo. Contem acentos e pontuação.</p>
+<p>Um rápido adendo: os nomes das colunas está em inglês porque só tomei a decisão de escrever toda a documentação do pacote em Português meio tardiamente.</p>
+<div id="analise-basica" class="section level3">
+<h3>Análise básica</h3>
+<p>Para usar (parte) das funções do pacote <code>quanteda</code>, precisamos converter o dataframe dos livros em um objeto do tipo <code>corpus</code>.</p>
+<pre class="r"><code>df_corpus &lt;- df %&gt;% 
+  # agrupar por livro
+  group_by(book_name) %&gt;% 
+  # formatar o dataframe para que so tenha uma linha por livro
+  summarise(text = paste0(text, sep = &quot;&quot;, collapse = &quot;. &quot;))
+
+dim(df_corpus)</code></pre>
+<pre><code>## [1] 5 2</code></pre>
+<pre class="r"><code>meu_corpus &lt;- quanteda::corpus(df_corpus$text, docnames = df_corpus$book_name)
+summary(meu_corpus)</code></pre>
+<pre><code>## Corpus consisting of 5 documents:
+## 
+##                                 Text Types Tokens Sentences
+##                     A escrava Isaura  9349  64929      1751
+##  Memórias de um Sargento de Milícias  8703  71391      2287
+##      Memórias Póstumas de Brás Cubas 11058  74223      3199
+##                          O Alienista  4387  19977       770
+##                             O Ateneu 15341  73063      3551
+## 
+## Source:  /home/sillas/R/Projetos/paixaopordados-blogdown/content/post/* on x86_64 by sillas
+## Created: Tue Nov 21 23:30:32 2017
+## Notes:</code></pre>
+<p>Como vemos, a função <code>quanteda::corpus()</code> identificou a quantidade de <em>Types</em> (número de palavras distintas em um corpus), <em>Tokens</em> (número total de palavras em um corpus) e <em>Sentences</em> (frases) em cada livro.</p>
+<p>Vamos então criar uma <em>document-feature matrix</em> a partir desse corpus criado, tomando o cuidade de remover pontuações e stopwords:</p>
+<pre class="r"><code>corpus_dfm &lt;- dfm(meu_corpus, remove_punct = TRUE,
+                  remove = quanteda::stopwords(&quot;portuguese&quot;),
+                  groups = df_corpus$book_name)
+
+# Analisando as 15 palavras mais comuns no geral por livro
+dfm_sort(corpus_dfm)[, 1:15]</code></pre>
+<pre><code>## Document-feature matrix of: 5 documents, 15 features (5.33% sparse).
+## 5 x 15 sparse Matrix of class &quot;dfm&quot;
+##                                      features
+## docs                                    é casa tempo ainda tudo bem todos
+##   A escrava Isaura                    424   98    81   121   78 175    78
+##   Memórias de um Sargento de Milícias 305  193   207   131  192 126   139
+##   Memórias Póstumas de Brás Cubas     492  107   108    89   98  65    69
+##   O Alienista                          88  108    20    29   26  10    37
+##   O Ateneu                            199   51    56    97   56  56    91
+##                                      features
+## docs                                  tão ser havia   d leonardo coisa
+##   A escrava Isaura                    137  96    56  20        0    35
+##   Memórias de um Sargento de Milícias  63  75   153 194      366   128
+##   Memórias Póstumas de Brás Cubas      95  97    53  83        0   140
+##   O Alienista                          31  25     7  44        0    23
+##   O Ateneu                             47  78   101  26        0    38
+##                                      features
+## docs                                  disse dia
+##   A escrava Isaura                       67  41
+##   Memórias de um Sargento de Milícias   119 128
+##   Memórias Póstumas de Brás Cubas       130  89
+##   O Alienista                            30  21
+##   O Ateneu                               11  77</code></pre>
+<p>A função <code>dfm_sort()</code> retorna a ocorrência de cada palavra (também chamado de token ou feature) em cada livro. Para pesquisar a ocorrência de alguma palavra específica nos documentos, use a função <code>dfm_select()</code>:</p>
+<pre class="r"><code># ocorrencias da palavra amor
+dfm_select(corpus_dfm, &quot;amor&quot;)</code></pre>
+<pre><code>## Document-feature matrix of: 5 documents, 1 feature (0% sparse).
+## 5 x 1 sparse Matrix of class &quot;dfm&quot;
+##                                      features
+## docs                                  amor
+##   A escrava Isaura                      71
+##   Memórias de um Sargento de Milícias   30
+##   Memórias Póstumas de Brás Cubas       53
+##   O Alienista                            3
+##   O Ateneu                              45</code></pre>
+<p>Curioso para saber o contexto em que essa palavra aparece? Você pode usar a função <code>kwic()</code> para isso:</p>
+<pre class="r"><code># usar a função head() para o output nao ficar mt grande
+kwic(meu_corpus, &quot;amor&quot;) %&gt;% head()</code></pre>
+<pre><code>##                                                              
+##  [A escrava Isaura, 2011]    , bem pode conquistar o | amor |
+##  [A escrava Isaura, 5090]    não se havia casado por | amor |
+##  [A escrava Isaura, 5173]     o mais cego e violento | amor |
+##  [A escrava Isaura, 6555] pudesse obter também o teu | amor |
+##  [A escrava Isaura, 7215]          Ora, senhor, pelo | amor |
+##  [A escrava Isaura, 7686]  disputar com o senhor por | amor |
+##                         
+##  de algum guapo mocetão,
+##  , sentimento esse a que
+##  , que de dia em        
+##  !... És                
+##  de Deus!..             
+##  de uma escrava..</code></pre>
+<p>Para saber as palavras mais usadas, dentre os vários métodos possíveis para isso, pode-se usar a função <code>topfeatures()</code></p>
+<pre class="r"><code>topfeatures(corpus_dfm, groups = df_corpus$book_name)</code></pre>
+<pre><code>## $`A escrava Isaura`
+##       é  isaura  senhor leôncio  álvaro escrava     bem     tão     pai 
+##     424     344     243     205     188     180     175     137     127 
+##   ainda 
+##     121 
+## 
+## $`Memórias de um Sargento de Milícias`
+## leonardo        é    maria  comadre    tempo    porém        d     casa 
+##      366      305      231      209      207      205      194      193 
+##     tudo    major 
+##      192      179 
+## 
+## $`Memórias Póstumas de Brás Cubas`
+##        é virgília    coisa    olhos    disse     nada    outro    outra 
+##      492      199      140      138      130      125      122      116 
+##     vida   porque 
+##      116      113 
+## 
+## $`O Alienista`
+##      casa alienista         é     verde bacamarte  barbeiro    câmara 
+##       108       106        88        77        59        54        52 
+##   itaguaí     simão  evarista 
+##        49        49        45 
+## 
+## $`O Ateneu`
+##         é     sobre aristarco   diretor     havia     ainda    ateneu 
+##       199       167       148       104       101        97        93 
+##     todos       ser      dois 
+##        91        78        77</code></pre>
+</div>
+<div id="analise-comparativa-entre-os-livros" class="section level3">
+<h3>Análise comparativa entre os livros</h3>
+<p>Algo interessante a se fazer é quantificar a similaridade e a dissimilaridade ou distância entre os livros. As funções <code>textstat_simil</code> e <code>textstat_dist</code> implementam diversas técnicas e algoritmos para isso. Sugiro ler a documentação completa das funções e ler as referências indicadas para conhecer melhor os métodos de cálculo.</p>
+<p>Vamos então calcular a similaridade entre os livros presentes no pacote:</p>
+<pre class="r"><code># normalizar os livros pelo seu tamanho
+corpus_dfm_norm &lt;- dfm_weight(corpus_dfm, &quot;relfreq&quot;)
+corpus_simil &lt;- textstat_simil(corpus_dfm_norm, method = &quot;correlation&quot;,
+                               margin = &quot;documents&quot;, upper = TRUE,
+                               diag = FALSE)
+# ver os resultados individualmente para cada livro
+round(corpus_simil, 3)</code></pre>
+<pre><code>##                                     A escrava Isaura
+## A escrava Isaura                                    
+## Memórias de um Sargento de Milícias            0.524
+## Memórias Póstumas de Brás Cubas                0.625
+## O Alienista                                    0.431
+## O Ateneu                                       0.512
+##                                     Memórias de um Sargento de Milícias
+## A escrava Isaura                                                  0.524
+## Memórias de um Sargento de Milícias                                    
+## Memórias Póstumas de Brás Cubas                                   0.642
+## O Alienista                                                       0.502
+## O Ateneu                                                          0.550
+##                                     Memórias Póstumas de Brás Cubas
+## A escrava Isaura                                              0.625
+## Memórias de um Sargento de Milícias                           0.642
+## Memórias Póstumas de Brás Cubas                                    
+## O Alienista                                                   0.585
+## O Ateneu                                                      0.631
+##                                     O Alienista O Ateneu
+## A escrava Isaura                          0.431    0.512
+## Memórias de um Sargento de Milícias       0.502    0.550
+## Memórias Póstumas de Brás Cubas           0.585    0.631
+## O Alienista                                        0.450
+## O Ateneu                                  0.450</code></pre>
+<p>Alguns resultados são bem interessantes. O Alienista é mais diferente de todos, tendo uma correlação superior a 0,51 apenas com o livro Memórias Póstumas de Brás Cubas, coincidentemente ou não ambos do mesmo autor. A maior correlação pertence aos livros Memórias Póstumas de Brás Cubas e Memórias de um Sargento de Milícias.</p>
+<p>Passemos então para a análise da dissimilaridade ou distância entre os livros, com o auxílio de um dendograma:</p>
+<pre class="r"><code>corpus_dist &lt;- textstat_dist(corpus_dfm_norm, method = &quot;euclidean&quot;,
+                               margin = &quot;documents&quot;, upper = TRUE,
+                               diag = FALSE)
+# ver os resultados individualmente para cada livro
+plot(hclust(corpus_dist))</code></pre>
+<p><img src="/post/2017-11-21-literaturaBR-01_files/figure-html/dist-1.png" width="672" /></p>
+</div>
+<div id="analise-de-sentimento" class="section level3">
+<h3>Análise de Sentimento</h3>
+<p>Como já publiquei no blog um post sobre Análise de Sentimento, não vou me alongar em repetir conceitos sobre o tema. Segue o código comentado:</p>
+<pre class="r"><code># Criar um dataframe em que cada linha corresponda a uma unica palavra
+df.token &lt;- df %&gt;%
+  unnest_tokens(term, text)
+
+glimpse(df.token)</code></pre>
+<pre><code>## Observations: 252,299
+## Variables: 5
+## $ book_name        &lt;chr&gt; &quot;Memórias de um Sargento de Milícias&quot;, &quot;Memór...
+## $ chapter_name     &lt;chr&gt; &quot;Capítulo 1 - Origem, nascimento e batismo&quot;, ...
+## $ url              &lt;chr&gt; &quot;https://pt.wikisource.org/wiki/Mem%C3%B3rias...
+## $ paragraph_number &lt;int&gt; 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, ...
+## $ term             &lt;chr&gt; &quot;era&quot;, &quot;no&quot;, &quot;tempo&quot;, &quot;do&quot;, &quot;rei&quot;, &quot;uma&quot;, &quot;da...</code></pre>
+<pre class="r"><code># importar lexico de sentimentos
+data(&quot;oplexicon_v3.0&quot;)
+df.token &lt;- df.token %&gt;%
+  inner_join(oplexicon_v3.0, by = &quot;term&quot;)</code></pre>
+<p>Um pergunta muito interessante a se fazer é se o sentimento varia ao longo dos capítulos dos livros. Os livros ficam mais (ou menos) positivos a medida em que se aproximam do final?</p>
+<p>Para isso, primeiro precisamos normalizar os livros, visto que eles apresentam tamanhos e quantidades de capítulos diferentes.</p>
+<pre class="r"><code># extrair capitulos de cada livro
+df_chapter_number &lt;- df.token %&gt;%
+  distinct(book_name, chapter_name) %&gt;%
+  group_by(book_name) %&gt;%
+  # normalizar capitulo de acordo com sua posicao no livro
+  mutate(chapter_number_norm = row_number()/max(row_number()))
+
+glimpse(df_chapter_number)</code></pre>
+<pre><code>## Observations: 252
+## Variables: 3
+## $ book_name           &lt;chr&gt; &quot;Memórias de um Sargento de Milícias&quot;, &quot;Me...
+## $ chapter_name        &lt;chr&gt; &quot;Capítulo 1 - Origem, nascimento e batismo...
+## $ chapter_number_norm &lt;dbl&gt; 0.02083333, 0.04166667, 0.06250000, 0.0833...</code></pre>
+<p>Agora calculamos o sentimento de cada capítulo, que corresponde à soma da polaridade de suas palavras:</p>
+<pre class="r"><code>df.sentiment &lt;- df.token %&gt;%
+  # calcular sentimento por capitulo
+  group_by(book_name, chapter_name) %&gt;%
+  summarise(polarity = sum(polarity, na.rm = TRUE)) %&gt;%
+  ungroup() %&gt;%
+  # retornar posicao relativa (ou normalizada) do capitulo de cada livro
+  left_join(df_chapter_number) %&gt;%
+  arrange(book_name, chapter_number_norm)
+
+# grafico
+df.sentiment %&gt;%
+  ggplot(aes(x = chapter_number_norm, y = polarity)) +
+    geom_line() +
+    facet_wrap(~ book_name, ncol = 5, labeller = label_wrap_gen(20)) +
+    labs(x = &quot;Posição relativa no livro&quot;, y = &quot;Sentimento&quot;) +
+    theme_bw()</code></pre>
+<p><img src="/post/2017-11-21-literaturaBR-01_files/figure-html/sentimento%20por%20capitulo-1.png" width="768" /></p>
+<p>Os resultados são muito interessantes: De acordo com esse método, <strong>A Escrava Isaura</strong> e <strong>O Ateneu</strong> são verdadeiras montanhas-russas de emoções, enquanto que livros os “dois Memórias” são mais estáveis. <strong>O Alienista</strong> apresenta um sentimento que tem uma tendência decrescente até a metade e crescente após ela.</p>
+</div>
+<div id="complexidade-lexica-e-ocorrencia-de-palavras" class="section level3">
+<h3>Complexidade léxica e ocorrência de palavras</h3>
+<p>A função <code>textstat_lexdiv</code> traz várias métricas de complexidade e diversidade léxicas. Novamente, recomendo a leitura de sua documentação para conhecer as métricas disponíveis.</p>
+<pre class="r"><code># aplicando a funcao no objeto sem stopwords e pontuação
+lexdiv &lt;- textstat_lexdiv(corpus_dfm, measure = &quot;TTR&quot;)
+lexdiv</code></pre>
+<pre><code>##                    A escrava Isaura Memórias de um Sargento de Milícias 
+##                           0.3062233                           0.2517707 
+##     Memórias Póstumas de Brás Cubas                         O Alienista 
+##                           0.3139269                           0.4291334 
+##                            O Ateneu 
+##                           0.4134223</code></pre>
+<pre class="r"><code>#grafico
+lexdiv %&gt;% 
+  as.data.frame() %&gt;% 
+  magrittr::set_colnames(&quot;TTR&quot;) %&gt;% 
+  tibble::rownames_to_column(&quot;livro&quot;) %&gt;% 
+  mutate(livro = forcats::fct_reorder(livro, TTR)) %&gt;% 
+  ggplot(aes(x = livro, y = TTR)) + 
+    geom_col(fill = &quot;cadetblue4&quot;) +
+    coord_flip() + 
+    labs(x = NULL, y = &quot;TTR&quot;) +
+    theme_minimal()</code></pre>
+<p><img src="/post/2017-11-21-literaturaBR-01_files/figure-html/plot%20ttr-1.png" width="672" /></p>
+<p>O livro que apresenta a maior diversidade léxica, de acordo com a métrica <em>Type-Token Ratio</em> (TTR), é <strong>O Alienista</strong>. <strong>Memórias de um Sargento de Milícias</strong> vem bem atrás dos demais.</p>
+<p>De todas os gráficos que apresentei neste post, o mais legal vem a seguir. É possível plotar a ocorrência de uma determinada palavra ao longo dos livros analisados. Por exemplo, a ocorrência da palavra amor é uniformemente distribuída nos livros?</p>
+<pre class="r"><code>kwic(meu_corpus, &quot;amor&quot;) %&gt;% textplot_xray(scale = &quot;relative&quot;)</code></pre>
+<p><img src="/post/2017-11-21-literaturaBR-01_files/figure-html/plot%20xray-1.png" width="672" /></p>
+<p>Com o gráfico acima, é possível ver que a palavra amor aparece, no livro Ateneu, muito mais frequentemente na primeira metade do que na segunda. Nos demais livros, a ocorrência da palavra é mais uniforme.</p>
+<p>Outro exemplo interessante surge com a busca da palavra fogo. Quem já leu O Ateneu já consegue imaginar como serão os resultados:</p>
+<pre class="r"><code>kwic(meu_corpus, &quot;fogo&quot;) %&gt;% textplot_xray(scale = &quot;relative&quot;)</code></pre>
+<p><img src="/post/2017-11-21-literaturaBR-01_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+</div>
+<div id="conclusao" class="section level2">
+<h2>Conclusão</h2>
+<p>Eu realmente torço para que o <code>literaturaBR</code> e o <code>lexiconPT</code> atinjam seus potenciais e sejam dois grandes marcos em pesquisas em Text Mining com textos em português. Toda sugestão ou pedido de melhorias serão muitíssimos bem-vindos.</p>
+</div>

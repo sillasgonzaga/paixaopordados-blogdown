@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 15 Oct 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 21 Nov 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/text-mining/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Anunciando o lançamento de literaturaBR</title>
+      <link>/post/literaturabr-01/</link>
+      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/literaturabr-01/</guid>
+      <description>Paixão por Dados de cara nova! O blog está de cara nova! O endereço antigo do blog começou a apresentar alguns bugs bem chatos, então tomei a decisão de finalmente migrar para uma nova plataforma, utilizando o pacote blogdown, a mesma que o pessoal do Curso-R usa no site deles. Para comemorar essa migração, anuncio o lançamento do meu terceiro pacote R: o literaturaBR.
+ literaturaBR, o mais novo pacote da comunidade R Brasil Após lançar o pacote lexiconPT, senti que a carência de datasets textuais na língua portuguesa poderia restringir seu potencial de alcance de desenvolvedores e cientistas de dados interessados em usar os léxicos para fazer análise de sentimento.</description>
+    </item>
     
     <item>
       <title>Mineração de textos em notícias de G1: O que diferencia notícias sobre Rio de Janeiro e São Paulo?</title>

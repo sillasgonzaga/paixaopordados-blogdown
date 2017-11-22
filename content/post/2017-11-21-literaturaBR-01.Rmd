@@ -1,0 +1,263 @@
+---
+title: Anunciando o lançamento de literaturaBR
+author: Sillas Teixeira Gonzaga
+date: '2017-11-21'
+slug: literaturaBR-01
+categories:
+  - R
+tags:
+  - text mining
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+
+## Paixão por Dados de cara nova!
+
+O blog está de cara nova! O [endereço antigo](www.sillasgonzaga.github.io) do blog começou a apresentar alguns bugs bem chatos, então tomei a decisão de finalmente migrar para uma nova plataforma, utilizando o pacote `blogdown`, a mesma que o pessoal do Curso-R usa no site deles. Para comemorar essa migração, anuncio o lançamento do meu terceiro pacote R: o `literaturaBR`.
+
+## literaturaBR, o mais novo pacote da comunidade R Brasil
+
+Após lançar o pacote [`lexiconPT`](www.github.com/sillasgonzaga/lexiconPT), senti que a carência de datasets textuais na língua portuguesa poderia restringir seu potencial de alcance de desenvolvedores e cientistas de dados interessados em usar os léxicos para fazer análise de sentimento. Apesar de ter feito um post mostrando seu uso em [dados obtidos do Facebook](http://www.sillasgonzaga.com/post/o-sensacionalista-e-text-mining/), eu admito que é complicado ter que fazer web scraping de algum site toda vez que se deseja praticar ou ensinar mineração de texto com textos em Português.
+
+Esse problema me inspirou a desenvolver mais um pacote R para facilitar pequenas demonstrações de Text Mining. Assim como a Julia Silge criou o [`janeaustenr`](https://github.com/juliasilge/janeaustenr) com livros clássicos da Jane Austen, eu criei o [`literaturaBR`](https://github.com/sillasgonzaga/literaturaBR), um *data package* criado para disponibilizar livros clássicos da literatura brasileira já prontos para serem importados e manuseados no R. Para saber quais livros estão disponíveis na versão atual do pacote e outras informações úteis, visite seu repositório.
+
+Este post se destina a apresentar algumas exemplos simples de tarefas de Text Mining, como:  
+* Análise de Sentimento;  
+* Complexidade Léxica;  
+* Analise de ocorrência de palavras em específico.  
+
+## Introdução
+
+Os pacotes usados neste post são:  
+
+```{r pacotes}
+library(literaturaBR) # meio obvio
+library(tidytext) # excelente pacote de text mining
+library(tidyverse) # <3
+library(stringr) # indispensavel para manipulacao de texto
+library(quanteda) # otimas funcoes para analise quantitativa de texto
+library(qdap) # similar ao quanteda, embo ra eu nao me lembre exatamente se eu o uso neste post
+library(forcats) # manipulacao de fatores
+library(ggthemes) # temas para o ggplot2
+library(lexiconPT)
+```
+
+Vamos então importar os datasets presentes no `literaturaBR` na data de hoje e os transformar em um dataset só:  
+
+```{r importar dados}
+data("memorias_de_um_sargento_de_milicias")
+data("memorias_postumas_bras_cubas")
+data("alienista")
+data("escrava_isaura")
+data("ateneu")
+
+df <- bind_rows(memorias_de_um_sargento_de_milicias,
+                memorias_postumas_bras_cubas,
+                alienista,
+                escrava_isaura,
+                ateneu)
+
+
+# Olhando a estrutura do dataframe
+glimpse(df)
+```
+
+**Todos** os datasets fornecidos pelo `literaturaBR` possuem a mesma estrutura, onde cada linha corresponde a um parágrafo de um livro e contêm 5 variáveis:  
+* `book_name`: Nome original do livro;  
+* `chapter_name`: Nome original do capítulo do livro do parágrafo;  
+* `url`: Link para artigo do Wikisouce de onde o capítulo do parágrafo foi extraído;  
+* `paragraph_number`: Ordem do parágrafo em seu capítulo;  
+* `text`: Texto do parágrafo. Contem acentos e pontuação.  
+
+Um rápido adendo: os nomes das colunas está em inglês porque só tomei a decisão de escrever toda a documentação do pacote em Português meio tardiamente.  
+
+### Análise básica
+
+Para usar (parte) das funções do pacote `quanteda`, precisamos converter o dataframe dos livros em um objeto do tipo `corpus`.
+
+```{r transformar df em corpus}
+df_corpus <- df %>% 
+  # agrupar por livro
+  group_by(book_name) %>% 
+  # formatar o dataframe para que so tenha uma linha por livro
+  summarise(text = paste0(text, sep = "", collapse = ". "))
+
+dim(df_corpus)
+
+meu_corpus <- quanteda::corpus(df_corpus$text, docnames = df_corpus$book_name)
+summary(meu_corpus)
+```
+
+Como vemos, a função `quanteda::corpus()` identificou a quantidade de *Types* (número de palavras distintas em um corpus), *Tokens* (número total de palavras em um corpus) e *Sentences* (frases) em cada livro.
+
+Vamos então criar uma *document-feature matrix* a partir desse corpus criado, tomando o cuidade de remover pontuações e stopwords:
+
+```{r criar dfm}
+corpus_dfm <- dfm(meu_corpus, remove_punct = TRUE,
+                  remove = quanteda::stopwords("portuguese"),
+                  groups = df_corpus$book_name)
+
+# Analisando as 15 palavras mais comuns no geral por livro
+dfm_sort(corpus_dfm)[, 1:15]
+
+```
+
+A função `dfm_sort()` retorna a ocorrência de cada palavra (também chamado de token ou feature) em cada livro. Para pesquisar a ocorrência de alguma palavra específica nos documentos, use a função `dfm_select()`:
+
+```{r dfm_select}
+# ocorrencias da palavra amor
+dfm_select(corpus_dfm, "amor")
+```
+
+Curioso para saber o contexto em que essa palavra aparece? Você pode usar a função `kwic()` para isso:
+
+```{r kwic}
+# usar a função head() para o output nao ficar mt grande
+kwic(meu_corpus, "amor") %>% head()
+```
+
+Para saber as palavras mais usadas, dentre os vários métodos possíveis para isso, pode-se usar a função `topfeatures()`
+
+```{r topfeatures}
+topfeatures(corpus_dfm, groups = df_corpus$book_name)
+```
+
+### Análise comparativa entre os livros
+
+Algo interessante a se fazer é quantificar a similaridade e a dissimilaridade ou distância entre os livros. As funções `textstat_simil` e `textstat_dist` implementam diversas técnicas e algoritmos para isso. Sugiro ler a documentação completa das funções e ler as referências indicadas para conhecer melhor os métodos de cálculo.
+
+Vamos então calcular a similaridade entre os livros presentes no pacote:
+
+```{r simil}
+# normalizar os livros pelo seu tamanho
+corpus_dfm_norm <- dfm_weight(corpus_dfm, "relfreq")
+corpus_simil <- textstat_simil(corpus_dfm_norm, method = "correlation",
+                               margin = "documents", upper = TRUE,
+                               diag = FALSE)
+# ver os resultados individualmente para cada livro
+round(corpus_simil, 3)
+```
+
+Alguns resultados são bem interessantes. O Alienista é mais diferente de todos, tendo uma correlação superior a 0,51 apenas com o livro Memórias Póstumas de Brás Cubas, coincidentemente ou não ambos do mesmo autor. A maior correlação pertence aos livros Memórias Póstumas de Brás Cubas e Memórias de um Sargento de Milícias.
+
+Passemos então para a análise da dissimilaridade ou distância entre os livros, com o auxílio de um dendograma:  
+
+```{r dist}
+corpus_dist <- textstat_dist(corpus_dfm_norm, method = "euclidean",
+                               margin = "documents", upper = TRUE,
+                               diag = FALSE)
+# ver os resultados individualmente para cada livro
+plot(hclust(corpus_dist))
+```
+
+### Análise de Sentimento
+
+Como já publiquei no blog um post sobre Análise de Sentimento, não vou me alongar em repetir conceitos sobre o tema. Segue o código comentado:
+
+
+```{r criar df.token}
+# Criar um dataframe em que cada linha corresponda a uma unica palavra
+df.token <- df %>%
+  unnest_tokens(term, text)
+
+glimpse(df.token)
+
+# importar lexico de sentimentos
+data("oplexicon_v3.0")
+df.token <- df.token %>%
+  inner_join(oplexicon_v3.0, by = "term")
+
+```
+
+Um pergunta muito interessante a se fazer é se o sentimento varia ao longo dos capítulos dos livros. Os livros ficam mais (ou menos) positivos a medida em que se aproximam do final?
+
+Para isso, primeiro precisamos normalizar os livros, visto que eles apresentam tamanhos e quantidades de capítulos diferentes.
+
+```{r df_chapter_number}
+# extrair capitulos de cada livro
+df_chapter_number <- df.token %>%
+  distinct(book_name, chapter_name) %>%
+  group_by(book_name) %>%
+  # normalizar capitulo de acordo com sua posicao no livro
+  mutate(chapter_number_norm = row_number()/max(row_number()))
+
+glimpse(df_chapter_number)
+```
+
+Agora calculamos o sentimento de cada capítulo, que corresponde à soma da polaridade de suas palavras:
+
+```{r sentimento por capitulo, fig.width=  8}
+
+df.sentiment <- df.token %>%
+  # calcular sentimento por capitulo
+  group_by(book_name, chapter_name) %>%
+  summarise(polarity = sum(polarity, na.rm = TRUE)) %>%
+  ungroup() %>%
+  # retornar posicao relativa (ou normalizada) do capitulo de cada livro
+  left_join(df_chapter_number) %>%
+  arrange(book_name, chapter_number_norm)
+
+# grafico
+df.sentiment %>%
+  ggplot(aes(x = chapter_number_norm, y = polarity)) +
+    geom_line() +
+    facet_wrap(~ book_name, ncol = 5, labeller = label_wrap_gen(20)) +
+    labs(x = "Posição relativa no livro", y = "Sentimento") +
+    theme_bw()
+
+```
+
+Os resultados são muito interessantes: De acordo com esse método, **A Escrava Isaura** e **O Ateneu** são verdadeiras montanhas-russas de emoções, enquanto que livros os "dois Memórias" são mais estáveis. **O Alienista** apresenta um sentimento que tem uma tendência decrescente até a metade e crescente após ela.
+
+### Complexidade léxica e ocorrência de palavras
+
+A função `textstat_lexdiv` traz várias métricas de complexidade e diversidade léxicas. Novamente, recomendo a leitura de sua documentação para conhecer as métricas disponíveis.
+
+```{r plot ttr}
+# aplicando a funcao no objeto sem stopwords e pontuação
+lexdiv <- textstat_lexdiv(corpus_dfm, measure = "TTR")
+lexdiv
+
+#grafico
+lexdiv %>% 
+  as.data.frame() %>% 
+  magrittr::set_colnames("TTR") %>% 
+  tibble::rownames_to_column("livro") %>% 
+  mutate(livro = forcats::fct_reorder(livro, TTR)) %>% 
+  ggplot(aes(x = livro, y = TTR)) + 
+    geom_col(fill = "cadetblue4") +
+    coord_flip() + 
+    labs(x = NULL, y = "TTR") +
+    theme_minimal()
+
+
+```
+
+
+O livro que apresenta a maior diversidade léxica, de acordo com a métrica *Type-Token Ratio* (TTR), é **O Alienista**. **Memórias de um Sargento de Milícias** vem bem atrás dos demais.
+
+De todas os gráficos que apresentei neste post, o mais legal vem a seguir. É possível plotar a ocorrência de uma determinada palavra ao longo dos livros analisados. Por exemplo, a ocorrência da palavra amor é uniformemente distribuída nos livros?
+
+```{r plot xray}
+kwic(meu_corpus, "amor") %>% textplot_xray(scale = "relative")
+```
+
+
+Com o gráfico acima, é possível ver que a palavra amor aparece, no livro Ateneu, muito mais frequentemente na primeira metade do que na segunda. Nos demais livros, a ocorrência da palavra é mais uniforme.
+
+Outro exemplo interessante surge com a busca da palavra fogo. Quem já leu O Ateneu já consegue imaginar como serão os resultados:
+
+```{r}
+kwic(meu_corpus, "fogo") %>% textplot_xray(scale = "relative")
+```
+
+## Conclusão
+
+Eu realmente torço para que o `literaturaBR` e o `lexiconPT` atinjam seus potenciais e sejam dois grandes marcos em pesquisas em Text Mining com textos em português. Toda sugestão ou pedido de melhorias serão muitíssimos bem-vindos.
+
+
+

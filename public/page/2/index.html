@@ -219,6 +219,52 @@
   
     <article>
   <header>
+    <h2><a href="/post/olx03/">Como usar o R para escolher um lugar para morar (3) - Converter CEP em coordenadas geográficas</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>17 Nov 2016</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/olx">olx</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="/tags/web-scraping">web scraping</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  No primeiro e segundo post desta série, mostrei como obter dados de apartamentos para alugar a partir do site da OLX e analisá-los, mas ainda não temos a resposta definita para a pergunta que motivou esta série: Como o R pode ajudar a escolher um lugar para morar?
+Uma boa ideia seria plotar os imóveis em um mapa, não? No terceiro post da série, mostrarei como fazer isso, além de como extrair os CEPs dos imóveis (novamente por web scraping) e converter os CEPs para endereços, que serão usados para obter as coordenadas geográficas dos apartamentos.
+  </p>
+
+  
+  <footer>
+    <a href="/post/olx03/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
+  
+    <article>
+  <header>
     <h2><a href="/post/olx01/">Como usar o R para escolher um lugar para morar(1) - Web Scraping e Data Cleaning</a></h2>
 
     <div class="post-meta">
@@ -637,56 +683,6 @@ Primeiramente, quantos servidores compõem o 1%?
   
   <footer>
     <a href="/post/transparencia-06/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="/post/transparencia-05/">Transparência (5): Trabalhando com datas</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>18 Jan 2016</time>
-  </div>
-
-  
-
-  
-  
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="/tags/transparencia">transparencia</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="/tags/servidores-publicos">servidores publicos</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  Transparência (5): Trabalhando com datas O dataset do Portal da Transparência traz três colunas relacionadas com datas: DATA_INGRESSO_CARGOFUNCAO, DATA_INGRESSO_ORGAO e DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO, as quais geram umas análises curiosas, principalmente se relacionadas com a variável salário.
-library(treemap) library(dplyr) library(ggplot2) library(ggrepel) library(ggthemes) library(lubridate) df &lt;- read.csv2(&quot;/home/sillas/R/data/transparenciaComSalarios.csv&quot;, stringsAsFactors = FALSE, fileEncoding = &quot;ISO-8859-15&quot;)  Primeiro, as datas vêm neste formato:
-df %&gt;% select(DATA_INGRESSO_CARGOFUNCAO, DATA_INGRESSO_ORGAO, DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO) %&gt;% head()  ## DATA_INGRESSO_CARGOFUNCAO DATA_INGRESSO_ORGAO ## 1 01/07/2006 01/01/1984 ## 2 22/10/2014 20/10/2014 ## 3 &lt;NA&gt; 01/08/2015 ## 4 30/11/2014 03/09/2014 ## 5 19/05/2010 19/05/2010 ## 6 02/02/2009 30/12/2008 ## DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO ## 1 01/06/1984 ## 2 17/02/2010 ## 3 01/08/2015 ## 4 28/06/2006 ## 5 19/05/2010 ## 6 30/12/2008  O R, nativamente, não reconhece este formato como data e sim como texto.
-  </p>
-
-  
-  <footer>
-    <a href="/post/transparencia-05/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>
