@@ -357,7 +357,7 @@ get_word_sentiment("temer")
 
 ## Conclusão e chamada para futuros trabalhos
 
-O pacote `lexiconPT`, apesar de simples, tem um enorme potencial para enriquecer o conteúdo de Text Mining em Português na comunidade brasileira de R. O exemplo dado nesse post pode ser considerado deveras simplório. Muitas etapas foram puladas ou desconsideradas com o intuito de fornecer a você uma rápida introdução às possibilidades criadas pelo pacote. Espero que o leitor deste post tenha se sentido motivado a fazer suas próprias análises de sentimento. As possibilidade são incontáveis. 
+O pacote `lexiconPT`, apesar de simples, tem um enorme potencial para enriquecer o conteúdo de Text Mining em Português na comunidade brasileira de R. O exemplo dado nesse post pode ser considerado deveras simplório. Muitas etapas foram puladas ou desconsideradas com o intuito de fornecer a você uma rápida introdução às possibilidades criadas pelo pacote. Espero que o leitor deste post tenha se sentido motivado a fazer suas próprias análises de sentimento. As possibilidade são incontáveis.  
 
 ## Referências
 

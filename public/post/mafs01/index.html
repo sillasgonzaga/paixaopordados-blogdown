@@ -21,13 +21,13 @@
   <!--<![endif]-->
 
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu-old-ie.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="/css/side-menu.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu.css">
   <!--<![endif]-->
 
-  <link rel="stylesheet" href="/css/blackburn.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/blackburn.css">
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,7 +45,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
   
 
-  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="http://www.sillasgonzaga.com/img/favicon.ico" type="image/x-icon" />
 
   
   
@@ -70,25 +70,25 @@
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/"><i class='fa fa-home fa-fw'></i>Home</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
       
         </li>
       
@@ -227,9 +227,9 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="/tags/series-temporais">series temporais</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/series-temporais">series temporais</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="/tags/mafs">mafs</a>
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/mafs">mafs</a>
     
   </div>
   
@@ -275,17 +275,17 @@ varejo &lt;- varejo[1:(nrow(varejo)-1), ]</code></pre>
 varejo &lt;- ts(varejo[, 2], start = c(2000, 1), frequency = 12)
 # Visualizar série
 plot(varejo)</code></pre>
-<p><img src="/post/2016-10-27-mafs01_files/figure-html/criar%20ts-1.png" width="1248" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2016-10-27-mafs01_files/figure-html/criar%20ts-1.png" width="1248" /></p>
 <pre class="r"><code># Visualizar decomposição sazonal da série
 varejo %&gt;% decompose %&gt;% plot</code></pre>
-<p><img src="/post/2016-10-27-mafs01_files/figure-html/criar%20ts-2.png" width="1248" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2016-10-27-mafs01_files/figure-html/criar%20ts-2.png" width="1248" /></p>
 <p>O gráfico da série decomposta mostra que há fortes componentes de tendência e sazonalidade na série. O componente aleatório possui média de 0,13, o que, por ser próxima a zero, nos leva a acreditar que a decomposição foi bem sucedida. O elemento sazonal da série também pode ser analisado nos gráficos a seguir.</p>
 <pre class="r"><code># função ggmonthplot do pacote forecast
 ggmonthplot(varejo)</code></pre>
-<p><img src="/post/2016-10-27-mafs01_files/figure-html/graficos-1.png" width="1248" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2016-10-27-mafs01_files/figure-html/graficos-1.png" width="1248" /></p>
 <pre class="r"><code># estratificação por mês
 ggseasonplot(varejo, year.labels = TRUE) + geom_point() + theme_bw()</code></pre>
-<p><img src="/post/2016-10-27-mafs01_files/figure-html/graficos-2.png" width="1248" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2016-10-27-mafs01_files/figure-html/graficos-2.png" width="1248" /></p>
 <p>A partir dos dois gráficos é possível fazer uma observação interessante: A tendência é praticamente alternada. A série sempre cai de Janeiro a Fevereiro, sobe em Março, cai em Abril, sobe em Maio, cai em Junho, sobe ou se mantém estável em Julho, sobe em Agosto, cai ou se mantém estável em Setembro, e sobe de Outubro a Dezembro. A diferença mais evidente ocorrente entre os meses de Novembro e Dezembro.</p>
 <p>Poderiam ser feitas mais algumas análises exploratórias, mas eu acabaria fugindo do escopo do post.</p>
 </div>
@@ -299,7 +299,7 @@ ggseasonplot(varejo, year.labels = TRUE) + geom_point() + theme_bw()</code></pre
 ## [16] &quot;croston&quot;    &quot;tslm&quot;       &quot;hybrid&quot;</code></pre>
 <p>Cada um desses modelos pode ser aplicado à série temporal analisada por meio da função <code>mafs::apply_selected_model()</code>. Por exemplo, para o modelo de redes neurais, temos:</p>
 <pre class="r"><code>apply_selected_model(varejo, &quot;nnetar&quot;, horizon = 6) %&gt;% forecast(h  = 6) %&gt;% plot</code></pre>
-<p><img src="/post/2016-10-27-mafs01_files/figure-html/apply_selected_model-1.png" width="1248" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2016-10-27-mafs01_files/figure-html/apply_selected_model-1.png" width="1248" /></p>
 <p>Imagine-se agora na situação onde vocë é um analista de previsão e precisa realizar, periodicamente, projeções de centenas ou milhares de séries temporais. Seria impraticável testar todos esses 18 modelos disponíveis, não seria? Pensando nisso, a principal função do <code>mafs</code>, chamada <code>select_forecast()</code> automatiza esse processo. Ela depende de quatro parâmetros:<br />
 * <code>x</code>, que é a série temporal de input;<br />
 * <code>test_size</code>, que é o tamanho da série de teste a ser usado para mensurar a acurácia das previsões obtidas;<br />
@@ -367,7 +367,7 @@ output$best_forecast</code></pre>
 ## Mar 2016           90.2 46.89388 133.5061 23.96901 156.4310</code></pre>
 <p>O output de <code>output$df_models</code> mostra que o modelo de menor MAPE foi curiosamente o naive, que corresponde simplesmente a usar o último valor observado como previsão dos próximos valores. Tal previsão pode ser conferida visualmente com outra função do <code>mafs</code>, chamada <code>gg_fit()</code></p>
 <pre class="r"><code>gg_fit(varejo, 6, &quot;naive&quot;) + theme_bw() + theme(legend.position = &quot;bottom&quot;)</code></pre>
-<p><img src="/post/2016-10-27-mafs01_files/figure-html/gg_fit-1.png" width="1248" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2016-10-27-mafs01_files/figure-html/gg_fit-1.png" width="1248" /></p>
 <p>Para avaliar a eficiência do meu método, pode-se calcular o MAPE real, isto é, o erro relativo médio entre os valores previstos e os reais, presentes no objeto <code>output$df_comparison</code></p>
 <pre class="r"><code>x &lt;- output$df_comparison
 # Calcular MAPE real
@@ -391,13 +391,13 @@ mean(mape_real)</code></pre>
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="/post/censo-da-educacao-superior-02/"><i class="fa fa-chevron-left"></i></a>
+    <a href="http://www.sillasgonzaga.com/post/censo-da-educacao-superior-02/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="/post/censo-da-educacao-superior-02/">Censo da Educação Superior (2): Como plotar o movimento migratório universitário no Brasil em um mapa</a>
+      <a href="http://www.sillasgonzaga.com/post/censo-da-educacao-superior-02/">Censo da Educação Superior (2): Como plotar o movimento migratório universitário no Brasil em um mapa</a>
     </nav>
     
   </div>
@@ -407,13 +407,13 @@ mean(mape_real)</code></pre>
   <div class="pure-u-10-24">
     
     <nav class="next">
-      <a href="/post/olx01/">Como usar o R para escolher um lugar para morar(1) - Web Scraping e Data Cleaning</a>
+      <a href="http://www.sillasgonzaga.com/post/olx01/">Como usar o R para escolher um lugar para morar(1) - Web Scraping e Data Cleaning</a>
     </nav>
     
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
     
-    <a href="/post/olx01/"><i class="fa fa-chevron-right"></i></a>
+    <a href="http://www.sillasgonzaga.com/post/olx01/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
@@ -444,7 +444,7 @@ mean(mape_real)</code></pre>
 
 </div>
 </div>
-<script src="/js/ui.js"></script>
+<script src="http://www.sillasgonzaga.com/js/ui.js"></script>
 
 
 <script>

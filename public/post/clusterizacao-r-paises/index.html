@@ -21,13 +21,13 @@
   <!--<![endif]-->
 
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu-old-ie.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="/css/side-menu.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu.css">
   <!--<![endif]-->
 
-  <link rel="stylesheet" href="/css/blackburn.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/blackburn.css">
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,7 +45,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
   
 
-  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="http://www.sillasgonzaga.com/img/favicon.ico" type="image/x-icon" />
 
   
   
@@ -70,25 +70,25 @@
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/"><i class='fa fa-home fa-fw'></i>Home</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
       
         </li>
       
@@ -227,9 +227,9 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="/tags/cluster">cluster</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/cluster">cluster</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="/tags/unsupervised">unsupervised</a>
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/unsupervised">unsupervised</a>
     
   </div>
   
@@ -322,14 +322,14 @@ for (i in 2:15) wss[i] &lt;- sum(kmeans(df2_escala,
    centers=i)$withinss)
 plot(1:15, wss, type=&quot;b&quot;, xlab=&quot;Número of Clusters&quot;,
   ylab=&quot;Soma dos quadrados dentro dos clusteres&quot;) </code></pre>
-<p><img src="/post/2016-06-28-clusterizacao-r-paises_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2016-06-28-clusterizacao-r-paises_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>A soma dos quadrados dos clusteres se mantem estável a partir de 8 segmentos. Contudo, é preciso pensar qual a interpretação que teríamos disso. Quer dizer, posso dizer que dividi os dados em 8 clusteres, mas… e daí? O que seria aprendido por meio desses 8 clusteres?</p>
 <p>Pelo segundo método, um dendograma é criado:</p>
 <pre class="r"><code>dendo &lt;- df2_escala %&gt;% dist %&gt;% hclust
 plot(dendo)
 rect.hclust(dendo, k = 3, border = &quot;blue&quot;)
 rect.hclust(dendo, k = 4, border = &quot;red&quot;)</code></pre>
-<p><img src="/post/2016-06-28-clusterizacao-r-paises_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2016-06-28-clusterizacao-r-paises_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>A posição de cada país no dendograma é determinada pela dissimilaridade entre cada um dos outros países. Veja que a opção de 4 segmentos divide um dos segmentos da opção de 3 ao meio. Portanto, 4 parece ser uma boa escolha para a quantidade de clusteres do modelo desta análise.</p>
 <p>Por exemplo, esta é a distância entre o Brasil e alguns outros países:</p>
 <pre class="r"><code>df2_escala[c(&quot;Brazil&quot;, &quot;Sierra Leone&quot;, &quot;Zimbabwe&quot;, &quot;Norway&quot;, &quot;United States&quot;),] %&gt;% dist</code></pre>
@@ -1256,13 +1256,13 @@ x[order(-x$pib_per_capita),] %&gt;% knitr::kable()</code></pre>
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="/post/censo-da-educacao-superior-01/"><i class="fa fa-chevron-left"></i></a>
+    <a href="http://www.sillasgonzaga.com/post/censo-da-educacao-superior-01/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="/post/censo-da-educacao-superior-01/">Censo da Educação Superior (1) - Quais são as cidades mais universitárias do Brasil?</a>
+      <a href="http://www.sillasgonzaga.com/post/censo-da-educacao-superior-01/">Censo da Educação Superior (1) - Quais são as cidades mais universitárias do Brasil?</a>
     </nav>
     
   </div>
@@ -1272,13 +1272,13 @@ x[order(-x$pib_per_capita),] %&gt;% knitr::kable()</code></pre>
   <div class="pure-u-10-24">
     
     <nav class="next">
-      <a href="/post/censo-da-educacao-superior-02/">Censo da Educação Superior (2): Como plotar o movimento migratório universitário no Brasil em um mapa</a>
+      <a href="http://www.sillasgonzaga.com/post/censo-da-educacao-superior-02/">Censo da Educação Superior (2): Como plotar o movimento migratório universitário no Brasil em um mapa</a>
     </nav>
     
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
     
-    <a href="/post/censo-da-educacao-superior-02/"><i class="fa fa-chevron-right"></i></a>
+    <a href="http://www.sillasgonzaga.com/post/censo-da-educacao-superior-02/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
@@ -1309,7 +1309,7 @@ x[order(-x$pib_per_capita),] %&gt;% knitr::kable()</code></pre>
 
 </div>
 </div>
-<script src="/js/ui.js"></script>
+<script src="http://www.sillasgonzaga.com/js/ui.js"></script>
 
 
 <script>

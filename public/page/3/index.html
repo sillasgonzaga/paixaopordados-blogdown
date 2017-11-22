@@ -21,13 +21,13 @@
   <!--<![endif]-->
 
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu-old-ie.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="/css/side-menu.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu.css">
   <!--<![endif]-->
 
-  <link rel="stylesheet" href="/css/blackburn.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/blackburn.css">
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -37,7 +37,7 @@
 
   
   
-  <link rel="alternate" type="application/rss+xml" title="Paixão por Dados" href="/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Paixão por Dados" href="http://www.sillasgonzaga.com/index.xml" />
   
 
   
@@ -47,7 +47,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
   
 
-  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="http://www.sillasgonzaga.com/img/favicon.ico" type="image/x-icon" />
 
   
   
@@ -72,25 +72,25 @@
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/"><i class='fa fa-home fa-fw'></i>Home</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
       
         </li>
       
@@ -102,7 +102,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="/index.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      <a class="pure-menu-link" href="http://www.sillasgonzaga.com/index.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
     </li>
     
 
@@ -219,57 +219,7 @@
   
     <article>
   <header>
-    <h2><a href="/post/transparencia-05/">Transparência (5): Trabalhando com datas</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>18 Jan 2016</time>
-  </div>
-
-  
-
-  
-  
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="/tags/transparencia">transparencia</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="/tags/servidores-publicos">servidores publicos</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  Transparência (5): Trabalhando com datas O dataset do Portal da Transparência traz três colunas relacionadas com datas: DATA_INGRESSO_CARGOFUNCAO, DATA_INGRESSO_ORGAO e DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO, as quais geram umas análises curiosas, principalmente se relacionadas com a variável salário.
-library(treemap) library(dplyr) library(ggplot2) library(ggrepel) library(ggthemes) library(lubridate) df &lt;- read.csv2(&quot;/home/sillas/R/data/transparenciaComSalarios.csv&quot;, stringsAsFactors = FALSE, fileEncoding = &quot;ISO-8859-15&quot;)  Primeiro, as datas vêm neste formato:
-df %&gt;% select(DATA_INGRESSO_CARGOFUNCAO, DATA_INGRESSO_ORGAO, DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO) %&gt;% head()  ## DATA_INGRESSO_CARGOFUNCAO DATA_INGRESSO_ORGAO ## 1 01/07/2006 01/01/1984 ## 2 22/10/2014 20/10/2014 ## 3 &lt;NA&gt; 01/08/2015 ## 4 30/11/2014 03/09/2014 ## 5 19/05/2010 19/05/2010 ## 6 02/02/2009 30/12/2008 ## DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO ## 1 01/06/1984 ## 2 17/02/2010 ## 3 01/08/2015 ## 4 28/06/2006 ## 5 19/05/2010 ## 6 30/12/2008  O R, nativamente, não reconhece este formato como data e sim como texto.
-  </p>
-
-  
-  <footer>
-    <a href="/post/transparencia-05/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="/post/transparencia-04/">Transparência(4): Análise de salários usando Treemaps</a></h2>
+    <h2><a href="http://www.sillasgonzaga.com/post/transparencia-04/">Transparência(4): Análise de salários usando Treemaps</a></h2>
 
     <div class="post-meta">
 
@@ -288,9 +238,9 @@ df %&gt;% select(DATA_INGRESSO_CARGOFUNCAO, DATA_INGRESSO_ORGAO, DATA_DIPLOMA_IN
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="/tags/transparencia">transparencia</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/transparencia">transparencia</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="/tags/servidores-publicos">servidores publicos</a>
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/servidores-publicos">servidores publicos</a>
     
   </div>
   
@@ -308,7 +258,7 @@ aggSetor &lt;-df %&gt;% group_by(ORG_LOTACAO) %&gt;% summarise(quantidade = n(),
 
   
   <footer>
-    <a href="/post/transparencia-04/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+    <a href="http://www.sillasgonzaga.com/post/transparencia-04/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>
@@ -316,7 +266,7 @@ aggSetor &lt;-df %&gt;% group_by(ORG_LOTACAO) %&gt;% summarise(quantidade = n(),
   
     <article>
   <header>
-    <h2><a href="/post/transparencia-03/">Transparência (3): Em quais estados os salários são mais mal distribuídos?</a></h2>
+    <h2><a href="http://www.sillasgonzaga.com/post/transparencia-03/">Transparência (3): Em quais estados os salários são mais mal distribuídos?</a></h2>
 
     <div class="post-meta">
 
@@ -335,9 +285,9 @@ aggSetor &lt;-df %&gt;% group_by(ORG_LOTACAO) %&gt;% summarise(quantidade = n(),
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="/tags/transparencia">transparencia</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/transparencia">transparencia</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="/tags/servidores-publicos">servidores publicos</a>
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/servidores-publicos">servidores publicos</a>
     
   </div>
   
@@ -354,7 +304,7 @@ Assim que eu publiquei o último post, percebi que perdi a oportunidade de anali
 
   
   <footer>
-    <a href="/post/transparencia-03/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+    <a href="http://www.sillasgonzaga.com/post/transparencia-03/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>
@@ -362,7 +312,7 @@ Assim que eu publiquei o último post, percebi que perdi a oportunidade de anali
   
     <article>
   <header>
-    <h2><a href="/post/transparencia-2-qual-o-sal%C3%A1rio-m%C3%A9dio-dos-servidores-federais/">Transparência (2): Qual o salário médio dos servidores federais?</a></h2>
+    <h2><a href="http://www.sillasgonzaga.com/post/transparencia-2-qual-o-sal%C3%A1rio-m%C3%A9dio-dos-servidores-federais/">Transparência (2): Qual o salário médio dos servidores federais?</a></h2>
 
     <div class="post-meta">
 
@@ -384,9 +334,9 @@ Assim que eu publiquei o último post, percebi que perdi a oportunidade de anali
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="/tags/transparencia">transparencia</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/transparencia">transparencia</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="/tags/servidores-publicos">servidores publicos</a>
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/servidores-publicos">servidores publicos</a>
     
   </div>
   
@@ -404,7 +354,7 @@ library(ggplot2) library(stringr) library(ggthemes) library(dplyr) library(ggrep
 
   
   <footer>
-    <a href="/post/transparencia-2-qual-o-sal%C3%A1rio-m%C3%A9dio-dos-servidores-federais/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+    <a href="http://www.sillasgonzaga.com/post/transparencia-2-qual-o-sal%C3%A1rio-m%C3%A9dio-dos-servidores-federais/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>
@@ -412,7 +362,7 @@ library(ggplot2) library(stringr) library(ggthemes) library(dplyr) library(ggrep
   
     <article>
   <header>
-    <h2><a href="/post/transparencia-01/">Transparência (1): Qual estado brasileiro tem o maior número de servidores federais?</a></h2>
+    <h2><a href="http://www.sillasgonzaga.com/post/transparencia-01/">Transparência (1): Qual estado brasileiro tem o maior número de servidores federais?</a></h2>
 
     <div class="post-meta">
 
@@ -434,9 +384,9 @@ library(ggplot2) library(stringr) library(ggthemes) library(dplyr) library(ggrep
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="/tags/transparencia">transparencia</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/transparencia">transparencia</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="/tags/servidores-publicos">servidores publicos</a>
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/servidores-publicos">servidores publicos</a>
     
   </div>
   
@@ -453,7 +403,7 @@ library(ggplot2) library(stringr) library(ggthemes) library(dplyr) library(ggrep
 
   
   <footer>
-    <a href="/post/transparencia-01/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+    <a href="http://www.sillasgonzaga.com/post/transparencia-01/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>
@@ -461,7 +411,7 @@ library(ggplot2) library(stringr) library(ggthemes) library(dplyr) library(ggrep
   
     <article>
   <header>
-    <h2><a href="/post/2015-11-07-dolar-indice-bovespa/">Correlação entre o dólar e ações de empresas do Índice Bovespa</a></h2>
+    <h2><a href="http://www.sillasgonzaga.com/post/2015-11-07-dolar-indice-bovespa/">Correlação entre o dólar e ações de empresas do Índice Bovespa</a></h2>
 
     <div class="post-meta">
 
@@ -483,7 +433,7 @@ library(ggplot2) library(stringr) library(ggthemes) library(dplyr) library(ggrep
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="/tags/series-temporais">series temporais</a>
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/series-temporais">series temporais</a>
     
   </div>
   
@@ -499,7 +449,7 @@ library(ggplot2) library(stringr) library(ggthemes) library(dplyr) library(ggrep
 
   
   <footer>
-    <a href="/post/2015-11-07-dolar-indice-bovespa/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+    <a href="http://www.sillasgonzaga.com/post/2015-11-07-dolar-indice-bovespa/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>
@@ -507,7 +457,7 @@ library(ggplot2) library(stringr) library(ggthemes) library(dplyr) library(ggrep
   
     <article>
   <header>
-    <h2><a href="/post/2015-07-23-r-rmarkdown/">Hello R Markdown</a></h2>
+    <h2><a href="http://www.sillasgonzaga.com/post/2015-07-23-r-rmarkdown/">Hello R Markdown</a></h2>
 
     <div class="post-meta">
 
@@ -526,11 +476,11 @@ library(ggplot2) library(stringr) library(ggthemes) library(dplyr) library(ggrep
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="/tags/r-markdown">R Markdown</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/r-markdown">R Markdown</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="/tags/plot">plot</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/plot">plot</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="/tags/regression">regression</a>
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/regression">regression</a>
     
   </div>
   
@@ -548,7 +498,7 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
 
   
   <footer>
-    <a href="/post/2015-07-23-r-rmarkdown/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+    <a href="http://www.sillasgonzaga.com/post/2015-07-23-r-rmarkdown/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>
@@ -560,7 +510,7 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
 
 <nav class="pagination" role="pagination">
   
-  <a href="/page/2/"><i class="fa fa-chevron-left"></i></a>
+  <a href="http://www.sillasgonzaga.com/page/2/"><i class="fa fa-chevron-left"></i></a>
   
   <span>&nbsp;3 / 3&nbsp;</span>
   
@@ -574,7 +524,7 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
 
 </div>
 </div>
-<script src="/js/ui.js"></script>
+<script src="http://www.sillasgonzaga.com/js/ui.js"></script>
 
 
 <script>

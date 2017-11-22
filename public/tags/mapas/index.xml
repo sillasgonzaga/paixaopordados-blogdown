@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mapas on Paixão por Dados</title>
-    <link>/tags/mapas/</link>
+    <link>http://www.sillasgonzaga.com/tags/mapas/</link>
     <description>Recent content in Mapas on Paixão por Dados</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
     <lastBuildDate>Fri, 18 Nov 2016 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/mapas/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.sillasgonzaga.com/tags/mapas/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Como usar o R para escolher um lugar para morar (4) - Mapa interativo</title>
-      <link>/post/olx04/</link>
+      <link>http://www.sillasgonzaga.com/post/olx04/</link>
       <pubDate>Fri, 18 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/olx04/</guid>
+      <guid>http://www.sillasgonzaga.com/post/olx04/</guid>
       <description>No post anterior da série, mostrei como fazer um gráfico em um mapa a partir das coordenadas geográficas dos imóveis. Neste post, a grande sacada da série: um mapa interativo em que é possível visualizar diversas dimensões de cada um dos apartamentos, como o preço do aluguel, a proximidade em relação a um ponto de interesse, etc.
 Dessa vez, vou usar o data frame que contem todos os apartamentos listados no OLX que eu não mostrei (exatamente) como obter e nem posso compartilhar em respeito ao OLX.</description>
     </item>

@@ -2,41 +2,41 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Web Scraping on Paixão por Dados</title>
-    <link>/tags/web-scraping/</link>
+    <link>http://www.sillasgonzaga.com/tags/web-scraping/</link>
     <description>Recent content in Web Scraping on Paixão por Dados</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
     <lastBuildDate>Sun, 15 Oct 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/web-scraping/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.sillasgonzaga.com/tags/web-scraping/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Mineração de textos em notícias de G1: O que diferencia notícias sobre Rio de Janeiro e São Paulo?</title>
-      <link>/post/analise-g1-01/</link>
+      <link>http://www.sillasgonzaga.com/post/analise-g1-01/</link>
       <pubDate>Sun, 15 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/analise-g1-01/</guid>
+      <guid>http://www.sillasgonzaga.com/post/analise-g1-01/</guid>
       <description>library(rvest) library(tidyverse) library(magrittr) library(stringr) library(Rfacebook) library(tidytext) library(tm) Motivação para o post Apesar de hoje em dia eu morar no Rio de Janeiro, morei e vivi (quase) a vida toda em Aracaju, a capital do menor estado do Brasil. Devido à irrelevância que a cidade tem (desculpa mas é verdade) no cenário político e econômico do país, era (e ainda é) muito raro ver qualquer notícia em um veículo de audiência nacional (como o Jornal Nacional ou a homepage do G1 ou Estadão) relacionada a Aracaju ou a Sergipe que não seja desgraça ou por um acontecimento inusitadamente ruim.</description>
     </item>
     
     <item>
       <title>Como usar o R para escolher um lugar para morar (3) - Converter CEP em coordenadas geográficas</title>
-      <link>/post/olx03/</link>
+      <link>http://www.sillasgonzaga.com/post/olx03/</link>
       <pubDate>Thu, 17 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/olx03/</guid>
+      <guid>http://www.sillasgonzaga.com/post/olx03/</guid>
       <description>No primeiro e segundo post desta série, mostrei como obter dados de apartamentos para alugar a partir do site da OLX e analisá-los, mas ainda não temos a resposta definita para a pergunta que motivou esta série: Como o R pode ajudar a escolher um lugar para morar?
 Uma boa ideia seria plotar os imóveis em um mapa, não? No terceiro post da série, mostrarei como fazer isso, além de como extrair os CEPs dos imóveis (novamente por web scraping) e converter os CEPs para endereços, que serão usados para obter as coordenadas geográficas dos apartamentos.</description>
     </item>
     
     <item>
       <title>Como usar o R para escolher um lugar para morar(1) - Web Scraping e Data Cleaning</title>
-      <link>/post/olx01/</link>
+      <link>http://www.sillasgonzaga.com/post/olx01/</link>
       <pubDate>Thu, 17 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/olx01/</guid>
+      <guid>http://www.sillasgonzaga.com/post/olx01/</guid>
       <description>Introdução Imagine-se na seguinte situação: você foi convidado a se mudar para a cidade do Rio de Janeiro a trabalho e precisa procurar um lugar para morar. Pessoas normais resolveriam esse problema pesquisando preços de apartamentos ou quartos para alugar em sites como OLX ou AirBNB. Mas como alguém fascinado em programação e análise resolveria?
 Nesta série de posts, mostro como o R pode ser usado tomar a decisão sobre escolher um apartamento ou quarto para alugar.</description>
     </item>

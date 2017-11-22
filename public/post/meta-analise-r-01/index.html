@@ -21,13 +21,13 @@
   <!--<![endif]-->
 
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu-old-ie.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="/css/side-menu.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu.css">
   <!--<![endif]-->
 
-  <link rel="stylesheet" href="/css/blackburn.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/blackburn.css">
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,7 +45,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
   
 
-  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="http://www.sillasgonzaga.com/img/favicon.ico" type="image/x-icon" />
 
   
   
@@ -70,25 +70,25 @@
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/"><i class='fa fa-home fa-fw'></i>Home</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
       
         </li>
       
@@ -227,7 +227,7 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="/tags/sna">sna</a>
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/sna">sna</a>
     
   </div>
   
@@ -318,7 +318,7 @@ nrow(df_pkgs_pareto)</code></pre>
     scale_y_continuous(labels = comma) +
     coord_flip() +
     theme_economist() </code></pre>
-<p><img src="/post/2016-05-25-meta-analise-r-01_files/figure-html/top-20-pkgs-1.png" width="672" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2016-05-25-meta-analise-r-01_files/figure-html/top-20-pkgs-1.png" width="672" /></p>
 <p>Pessoalmente, não fiquei surpreso ao ver que, dos 6 pacotes mais baixados, 3 (ggplot2, stringr e plyr) fazem parte do Hadleyverse, ou seja, foram criados pelo gênio Hadley Wickham, que revolucionou o modo como o R é usado e é ídolo para muitos usuários da linguagem, como eu :).</p>
 <p>Após filtrar os pacotes que entrarão na análise, o pacote miniCRAN é usado para extrair as dependências de cada um e formar uma rede deles. A função <code>makeDepGraph</code> extrai as dependências dos pacotes indicados na função e cria um grafo. Por exemplo:</p>
 <pre class="r"><code>pkgDep(&quot;ggplot2&quot;)</code></pre>
@@ -364,7 +364,7 @@ par(mfrow=(c(1,2)))
 plot(g, vertex.size=10, cex=0.7, main = &quot;&quot;) # método plot.pkgDepGraph
 
 plot.igraph(g)</code></pre>
-<p><img src="/post/2016-05-25-meta-analise-r-01_files/figure-html/makeDepGraph-1.png" width="672" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2016-05-25-meta-analise-r-01_files/figure-html/makeDepGraph-1.png" width="672" /></p>
 <p>Como pode-se ver, ambos os gráficos acima são visualmente poluídos e não dá para aprender muita coisa a partir deles. Além disso, a fim de analisar a centralidade de um pacote em um grafo, é importante saber o que o argumento <code>suggests</code> da função <code>makeDepGraph</code> significa. Segundo <a href="http://r-pkgs.had.co.nz/description.html">Hadley Wickham</a>, quando o pacote A sugere um outro pacote B, significa que o A <em>pode</em> usar o pacote B, mas ele não é requerido. Este pode ser usado para rodar testes, montar vignettes (tutoriais de pacotes), etc.</p>
 <p>Vamos, então, como fica o grafo dos 20 pacotes mais populares, com e sem <code>suggests</code>, com o pacote <code>ggplot2</code> destacado:</p>
 <pre class="r"><code>list_pkgs &lt;- df_pkgs$package[1:20]
@@ -377,7 +377,7 @@ plot(g, pkgsToHighlight = &quot;ggplot2&quot;,vertex.size=20, cex=1, main = &quo
 g &lt;- makeDepGraph(list_pkgs, enhances = FALSE, suggests = TRUE)
 set.seed(123)
 plot(g, pkgsToHighlight = &quot;ggplot2&quot;, vertex.size=20, cex=1, main = &quot;Argumento suggests = TRUE&quot;, legendPosition = c(-1, -1))</code></pre>
-<p><img src="/post/2016-05-25-meta-analise-r-01_files/figure-html/grafo%20top-20-1.png" width="672" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2016-05-25-meta-analise-r-01_files/figure-html/grafo%20top-20-1.png" width="672" /></p>
 <p>Agora sim já é possível aprender algumas coisas a partir do grafo. O sentido da linha vermelha indica que, por exemplo, o <code>ggplot2</code> importa vários pacotes(<code>digest</code>, <code>gtable</code>, <code>MASS</code>, <code>reshape2</code>, <code>plyr</code> e <code>scales</code>), mas não é importado por nenhum outro. Já o grafo da direita mostra que o <code>ggplot2</code> sugere muitos outros, o que aumenta sua centralidade na rede.</p>
 <p>Conclusão: para realizar análises de centralidade de pacotes R, é necessário deixar o argumento <code>suggests</code> como <code>FALSE</code>.</p>
 
@@ -386,13 +386,13 @@ plot(g, pkgsToHighlight = &quot;ggplot2&quot;, vertex.size=20, cex=1, main = &qu
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="/post/transparencia-07/"><i class="fa fa-chevron-left"></i></a>
+    <a href="http://www.sillasgonzaga.com/post/transparencia-07/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="/post/transparencia-07/">Transparência (7): Os famosos Cargos Comissionados</a>
+      <a href="http://www.sillasgonzaga.com/post/transparencia-07/">Transparência (7): Os famosos Cargos Comissionados</a>
     </nav>
     
   </div>
@@ -402,13 +402,13 @@ plot(g, pkgsToHighlight = &quot;ggplot2&quot;, vertex.size=20, cex=1, main = &qu
   <div class="pure-u-10-24">
     
     <nav class="next">
-      <a href="/post/meta-analise-r-02/">Meta-análise R (2): Analisando Pacotes R como indivíduos em uma rede social</a>
+      <a href="http://www.sillasgonzaga.com/post/meta-analise-r-02/">Meta-análise R (2): Analisando Pacotes R como indivíduos em uma rede social</a>
     </nav>
     
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
     
-    <a href="/post/meta-analise-r-02/"><i class="fa fa-chevron-right"></i></a>
+    <a href="http://www.sillasgonzaga.com/post/meta-analise-r-02/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
@@ -439,7 +439,7 @@ plot(g, pkgsToHighlight = &quot;ggplot2&quot;, vertex.size=20, cex=1, main = &qu
 
 </div>
 </div>
-<script src="/js/ui.js"></script>
+<script src="http://www.sillasgonzaga.com/js/ui.js"></script>
 
 
 <script>
