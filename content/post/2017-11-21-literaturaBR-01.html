@@ -17,7 +17,7 @@ tags:
 </div>
 <div id="literaturabr-o-mais-novo-pacote-da-comunidade-r-brasil" class="section level2">
 <h2>literaturaBR, o mais novo pacote da comunidade R Brasil</h2>
-<p>Após lançar o pacote <a href="www.github.com/sillasgonzaga/lexiconPT"><code>lexiconPT</code></a>, senti que a carência de datasets textuais na língua portuguesa poderia restringir seu potencial de alcance de desenvolvedores e cientistas de dados interessados em usar os léxicos para fazer análise de sentimento. Apesar de ter feito um post mostrando seu uso em <a href="http://www.sillasgonzaga.com/post/o-sensacionalista-e-text-mining/">dados obtidos do Facebook</a>, eu admito que é complicado ter que fazer web scraping de algum site toda vez que se deseja praticar ou ensinar mineração de texto com textos em Português.</p>
+<p>Após lançar o pacote <a href="https://github.com/sillasgonzaga/lexiconPT"><code>lexiconPT</code></a>, senti que a carência de datasets textuais na língua portuguesa poderia restringir seu potencial de alcance de desenvolvedores e cientistas de dados interessados em usar os léxicos para fazer análise de sentimento. Apesar de ter feito um post mostrando seu uso em <a href="http://www.sillasgonzaga.com/post/o-sensacionalista-e-text-mining/">dados obtidos do Facebook</a>, eu admito que é complicado ter que fazer web scraping de algum site toda vez que se deseja praticar ou ensinar mineração de texto com textos em Português.</p>
 <p>Esse problema me inspirou a desenvolver mais um pacote R para facilitar pequenas demonstrações de Text Mining. Assim como a Julia Silge criou o <a href="https://github.com/juliasilge/janeaustenr"><code>janeaustenr</code></a> com livros clássicos da Jane Austen, eu criei o <a href="https://github.com/sillasgonzaga/literaturaBR"><code>literaturaBR</code></a>, um <em>data package</em> criado para disponibilizar livros clássicos da literatura brasileira já prontos para serem importados e manuseados no R. Para saber quais livros estão disponíveis na versão atual do pacote e outras informações úteis, visite seu repositório.</p>
 <p>Este post se destina a apresentar algumas exemplos simples de tarefas de Text Mining, como:<br />
 * Análise de Sentimento;<br />
@@ -89,7 +89,7 @@ summary(meu_corpus)</code></pre>
 ##                             O Ateneu 15341  73063      3551
 ## 
 ## Source:  /home/sillas/R/Projetos/paixaopordados-blogdown/content/post/* on x86_64 by sillas
-## Created: Tue Nov 21 23:30:32 2017
+## Created: Wed Nov 22 20:34:35 2017
 ## Notes:</code></pre>
 <p>Como vemos, a função <code>quanteda::corpus()</code> identificou a quantidade de <em>Types</em> (número de palavras distintas em um corpus), <em>Tokens</em> (número total de palavras em um corpus) e <em>Sentences</em> (frases) em cada livro.</p>
 <p>Vamos então criar uma <em>document-feature matrix</em> a partir desse corpus criado, tomando o cuidade de remover pontuações e stopwords:</p>
