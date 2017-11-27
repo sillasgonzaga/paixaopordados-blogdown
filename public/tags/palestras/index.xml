@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Palestras on Paixão por Dados</title>
-    <link>http://www.sillasgonzaga.com/tags/palestras/</link>
+    <link>/tags/palestras/</link>
     <description>Recent content in Palestras on Paixão por Dados</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
     <lastBuildDate>Tue, 23 May 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://www.sillasgonzaga.com/tags/palestras/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/palestras/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Slides da minha apresentação no SER 2017</title>
-      <link>http://www.sillasgonzaga.com/post/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/</link>
+      <link>/post/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/</link>
       <pubDate>Tue, 23 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/post/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/</guid>
+      <guid>/post/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/</guid>
       <description>Hoje (23/05), o Paixão por Dados esteve presente no II Seminário Internacional de Estatística com R, realizado na UFF, em Niterói. Com muito orgulho, pude falar de parte dos projetos que realizei com R, conquistas pessoais e profissionais que obtive como resultado pela minha dedicação à linguagem e ainda dicas para quem quer se aprofundar no R.
 Os slides da minha apresentação, entitulada Como o R pode despertar sua paixão por dados se encontram aqui.</description>
     </item>
     
     <item>
       <title>Blog Paixão por Dados estará no meetup 1º #AnalyticsEmTudo - Dados Abertos</title>
-      <link>http://www.sillasgonzaga.com/post/analytics-em-tudo/</link>
+      <link>/post/analytics-em-tudo/</link>
       <pubDate>Thu, 16 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/post/analytics-em-tudo/</guid>
+      <guid>/post/analytics-em-tudo/</guid>
       <description>Com muito orgulho, anuncio que o blog Paixão por Dados estará representado no primeiro meetup do grupo #AnalyticsEmTudo, no Rio de Janeiro, onde moro atualmente. Serei um dos três palestrantes do encontro. Falarei um pouco sobre os principais projetos que realizei usando o R, dando maior ênfase aos relacionados a Dados Abertos, que é o tema dessa edição.</description>
     </item>
     

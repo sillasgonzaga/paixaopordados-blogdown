@@ -21,13 +21,13 @@
   <!--<![endif]-->
 
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu-old-ie.css">
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu.css">
+  <link rel="stylesheet" href="/css/side-menu.css">
   <!--<![endif]-->
 
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/blackburn.css">
+  <link rel="stylesheet" href="/css/blackburn.css">
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,7 +45,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
   
 
-  <link rel="shortcut icon" href="http://www.sillasgonzaga.com/img/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
 
   
   
@@ -70,25 +70,25 @@
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/"><i class='fa fa-home fa-fw'></i>Home</a>
+          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
       
         </li>
       
@@ -227,9 +227,9 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/transparencia">transparencia</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="/tags/transparencia">transparencia</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/servidores-publicos">servidores publicos</a>
+      <a class="post-taxonomy-tag" href="/tags/servidores-publicos">servidores publicos</a>
     
   </div>
   
@@ -265,7 +265,7 @@ x &lt;- treemap(aggSetor, index = &quot;ORG_LOTACAO&quot;, vSize = &quot;quantid
         title  =  &quot;Treemap dos salários dos órgãos federais brasileiros&quot;)
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte4/unnamed-chunk-2-1.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte4/unnamed-chunk-2-1.png" alt="center" /></p>
 
 <p><strong>Interpretação</strong>: Com o gráfico acima, aprendemos que:<br />
 * O Ministério da Saúde tem muitos servidores mas salários muito baixos.<br />
@@ -277,14 +277,14 @@ Por exemplo, será que existe alguma relação interessante entre o UF e o vínc
 <pre><code class="language-r">treemap(df, index = c(&quot;UF_EXERCICIO&quot;, &quot;SITUACAO_VINCULO&quot;), vSize = &quot;x&quot;)
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte4/unnamed-chunk-3-1.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte4/unnamed-chunk-3-1.png" alt="center" /></p>
 
 <p>Aparentemente, tem sim! O número de servidores de Contrário Temporário no RJ e de Cargo Comissionado no DF parecem ser muito grandes. Podemos ratificar isso filtrando fora os servidores ativos:</p>
 
 <pre><code class="language-r">treemap(subset(df, SITUACAO_VINCULO != &quot;ATIVO PERMANENTE&quot;), index = c(&quot;UF_EXERCICIO&quot;, &quot;SITUACAO_VINCULO&quot;), vSize = &quot;x&quot;)
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte4/unnamed-chunk-4-1.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte4/unnamed-chunk-4-1.png" alt="center" /></p>
 
 <p>Vamos conferir essa informação com um gráfico de dispersão:</p>
 
@@ -300,7 +300,7 @@ Por exemplo, será que existe alguma relação interessante entre o UF e o vínc
     theme_few()
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte4/unnamed-chunk-5-1.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte4/unnamed-chunk-5-1.png" alt="center" /></p>
 
 <p>Duas grandes descobertas aqui:<br />
 * O <strong>DF</strong> tem um número assustadoramente grande de CCs (5384), tanto que chega a distorcer o gráfico.<br />
@@ -313,13 +313,13 @@ Por exemplo, será que existe alguma relação interessante entre o UF e o vínc
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="http://www.sillasgonzaga.com/post/transparencia-03/"><i class="fa fa-chevron-left"></i></a>
+    <a href="/post/transparencia-03/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="http://www.sillasgonzaga.com/post/transparencia-03/">Transparência (3): Em quais estados os salários são mais mal distribuídos?</a>
+      <a href="/post/transparencia-03/">Transparência (3): Em quais estados os salários são mais mal distribuídos?</a>
     </nav>
     
   </div>
@@ -329,13 +329,13 @@ Por exemplo, será que existe alguma relação interessante entre o UF e o vínc
   <div class="pure-u-10-24">
     
     <nav class="next">
-      <a href="http://www.sillasgonzaga.com/post/transparencia-05/">Transparência (5): Trabalhando com datas</a>
+      <a href="/post/transparencia-05/">Transparência (5): Trabalhando com datas</a>
     </nav>
     
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
     
-    <a href="http://www.sillasgonzaga.com/post/transparencia-05/"><i class="fa fa-chevron-right"></i></a>
+    <a href="/post/transparencia-05/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
@@ -366,7 +366,7 @@ Por exemplo, será que existe alguma relação interessante entre o UF e o vínc
 
 </div>
 </div>
-<script src="http://www.sillasgonzaga.com/js/ui.js"></script>
+<script src="/js/ui.js"></script>
 
 
 <script>

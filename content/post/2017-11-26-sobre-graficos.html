@@ -76,7 +76,7 @@ p</code></pre>
 <p>Para isso, vamos criar uma coluna onde o valor do <code>alpha</code> do segmento, que correspondência ao seu nível de opacidade, seja definido manualmente:</p>
 <pre class="r"><code># criar coluna para identificar quem da mais importancia ao fator
 df &lt;- df %&gt;% 
-  mutate(alpha_segmento = if_else(Executivos - Consumidores &gt; 0, 0.5, 1))</code></pre>
+  mutate(alpha_segmento = if_else(Executivos - Consumidores &gt; 0, 0.2, 1))</code></pre>
 <p>Vamos então adicionar esse novo elemento no gráfico.</p>
 <pre class="r"><code>p + 
   # para não fazer que o segmento fique em cima do ponto, eu removo 0,3 de cada lado dele

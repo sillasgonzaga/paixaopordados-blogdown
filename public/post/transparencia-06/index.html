@@ -21,13 +21,13 @@
   <!--<![endif]-->
 
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu-old-ie.css">
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu.css">
+  <link rel="stylesheet" href="/css/side-menu.css">
   <!--<![endif]-->
 
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/blackburn.css">
+  <link rel="stylesheet" href="/css/blackburn.css">
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,7 +45,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
   
 
-  <link rel="shortcut icon" href="http://www.sillasgonzaga.com/img/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
 
   
   
@@ -70,25 +70,25 @@
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/"><i class='fa fa-home fa-fw'></i>Home</a>
+          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
       
         </li>
       
@@ -230,9 +230,9 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/transparencia">transparencia</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="/tags/transparencia">transparencia</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/servidores-publicos">servidores publicos</a>
+      <a class="post-taxonomy-tag" href="/tags/servidores-publicos">servidores publicos</a>
     
   </div>
   
@@ -315,7 +315,7 @@ ggplot(temp, aes(x = reorder(UF_EXERCICIO, -quantidade), y = quantidade, fill = 
    theme(legend.position = &quot;bottom&quot;, legend.title = element_blank())
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte6/unnamed-chunk-5-1.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte6/unnamed-chunk-5-1.png" alt="center" /></p>
 
 <p>Melhor do que apresentar esses resultados isolados é comparar com os resultados apresentados no <a href="http://sillasgonzaga.github.io/blog/transparencia1/">primeiro post</a> desta série. Para isso, ao invés de trabalhar com quantidade, veremos o porcentual de servidores que está alocado em cada UF.</p>
 
@@ -344,7 +344,7 @@ ggplot(temp3, aes(x = UF_EXERCICIO, y = value, fill = variable)) +
   theme(legend.position = &quot;bottom&quot;, legend.title = element_blank())
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte6/unnamed-chunk-6-1.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte6/unnamed-chunk-6-1.png" alt="center" /></p>
 
 <p>Mais uma vez o DF desponta como anomalia, onde mais de 35% dos servidores mais ricos estão alocados.</p>
 
@@ -387,7 +387,7 @@ ggplot(temp3, aes(x = ORG_LOTACAO, y = value, fill = variable)) +
   theme(legend.position = &quot;bottom&quot;, legend.title = element_blank())
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte6/unnamed-chunk-7-1.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte6/unnamed-chunk-7-1.png" alt="center" /></p>
 
 <p>Também há uma discrepância notável aqui: Enquanto que apenas 1,5% dos servidores federais trabalha na AGU, no grupo dos 1% esse percentual sobe para 9%.</p>
 
@@ -405,7 +405,7 @@ ggplot(temp3, aes(x = ORG_LOTACAO, y = value, fill = variable)) +
     geom_bar(stat = &quot;identity&quot;)
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte6/unnamed-chunk-8-1.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte6/unnamed-chunk-8-1.png" alt="center" /></p>
 
 <p>Curiosamente, a maioria dos 1% são professores de universidades federais. Pelo visto não é todo professor que ganha pouco&hellip;</p>
 
@@ -429,7 +429,7 @@ boxplot(umPorCento$anos, main = &quot;Tempo trabalhando para o Estado\n(Grupo do
 boxplot(df$anos, main = &quot;Tempo trabalhando para o Estado\n(Geral)&quot;, ylab = &quot;Anos&quot;)
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte6/unnamed-chunk-9-1.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte6/unnamed-chunk-9-1.png" alt="center" /></p>
 
 <p>Aqui temos o esperado: O tempo médio e mediano no funcionalismo público é maior para os 1% do que para o geral.</p>
 
@@ -472,7 +472,7 @@ ggplot(temp3, aes(x = SITUACAO_VINCULO, y = value, fill = variable)) +
   theme(legend.position = &quot;bottom&quot;, legend.title = element_blank())
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte6/unnamed-chunk-10-1.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte6/unnamed-chunk-10-1.png" alt="center" /></p>
 
 <p><strong>Mais uma grande descoberta</strong>: O porcentual de servidores das categorias <em>&ldquo;APOSENTADO&rdquo;</em>, <em>&ldquo;EXERC DESCENT CARREI&rdquo;</em> (que são servidores das carreiras típicas de Estado vinculadas aos Ministérios do Planejamento, Orçamento e Gestão e Ministério da Fazenda que exercem as suas atividades na UJ mediante exercício descentralizado de atividade) e <em>&ldquo;REQUISITADO&rdquo;</em> (servidores que exercem atividades na UJ em razão de haverem sido requisitados conforme previsão do art. 93, inciso II, da Lei n.º 8.<sup>112</sup>&frasl;<sub>90</sub>) é muito maior no grupo dos 1% do que no geral.</p>
 
@@ -571,13 +571,13 @@ ggplot(temp3, aes(x = SITUACAO_VINCULO, y = value, fill = variable)) +
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="http://www.sillasgonzaga.com/post/transparencia-05/"><i class="fa fa-chevron-left"></i></a>
+    <a href="/post/transparencia-05/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="http://www.sillasgonzaga.com/post/transparencia-05/">Transparência (5): Trabalhando com datas</a>
+      <a href="/post/transparencia-05/">Transparência (5): Trabalhando com datas</a>
     </nav>
     
   </div>
@@ -587,13 +587,13 @@ ggplot(temp3, aes(x = SITUACAO_VINCULO, y = value, fill = variable)) +
   <div class="pure-u-10-24">
     
     <nav class="next">
-      <a href="http://www.sillasgonzaga.com/post/transparencia-07/">Transparência (7): Os famosos Cargos Comissionados</a>
+      <a href="/post/transparencia-07/">Transparência (7): Os famosos Cargos Comissionados</a>
     </nav>
     
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
     
-    <a href="http://www.sillasgonzaga.com/post/transparencia-07/"><i class="fa fa-chevron-right"></i></a>
+    <a href="/post/transparencia-07/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
@@ -624,7 +624,7 @@ ggplot(temp3, aes(x = SITUACAO_VINCULO, y = value, fill = variable)) +
 
 </div>
 </div>
-<script src="http://www.sillasgonzaga.com/js/ui.js"></script>
+<script src="/js/ui.js"></script>
 
 
 <script>

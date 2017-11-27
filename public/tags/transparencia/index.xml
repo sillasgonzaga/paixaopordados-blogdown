@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Transparencia on Paixão por Dados</title>
-    <link>http://www.sillasgonzaga.com/tags/transparencia/</link>
+    <link>/tags/transparencia/</link>
     <description>Recent content in Transparencia on Paixão por Dados</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
     <lastBuildDate>Wed, 03 Feb 2016 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://www.sillasgonzaga.com/tags/transparencia/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/transparencia/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Transparência (7): Os famosos Cargos Comissionados</title>
-      <link>http://www.sillasgonzaga.com/post/transparencia-07/</link>
+      <link>/post/transparencia-07/</link>
       <pubDate>Wed, 03 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/post/transparencia-07/</guid>
+      <guid>/post/transparencia-07/</guid>
       <description>Transparência (7): Os famosos Cargos Comissionados No quarto post da minha série sobre dados do Portal da Transparência, eu introduzi um tema interessante a ser olhado a fundo: os servidores cujo vínculo com o Estado é descrito como cargo comissionado. Vimos que, no Ceará, o salário médio de um servidor é muito alto. E nos outros estados?
 library(ggplot2) library(dplyr) library(ggthemes) library(ggrepel) library(reshape2) df &amp;lt;- read.csv2(&amp;quot;/home/sillas/R/data/transparenciaComSalarios.csv&amp;quot;, stringsAsFactors = FALSE, fileEncoding = &amp;quot;ISO-8859-15&amp;quot;) cor1 &amp;lt;- &amp;quot;#C10534&amp;quot; #cor das barras  Para começar, quais são os 10 tipos de vínculo mais comuns?</description>
     </item>
     
     <item>
       <title>Transparência (6): Quem são os 1% do funcionalismo público?</title>
-      <link>http://www.sillasgonzaga.com/post/transparencia-06/</link>
+      <link>/post/transparencia-06/</link>
       <pubDate>Sun, 24 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/post/transparencia-06/</guid>
+      <guid>/post/transparencia-06/</guid>
       <description>Transparência (6): Quem são os 1% mais ricos do funcionalismo público? Para quem não entendeu a referência.
 library(ggplot2) library(dplyr) library(reshape2) library(lubridate) library(htmlTable) df &amp;lt;- read.csv2(&amp;quot;/home/sillas/R/data/transparenciaComSalarios.csv&amp;quot;, stringsAsFactors = FALSE, fileEncoding = &amp;quot;ISO-8859-15&amp;quot;)  Você já teve curiosidade em saber quem são os funcionários públicos mais ricos do Brasil? O sexto post da série de artigos sobre dados do Portal da Transparência será dedicado a eles.
 Primeiramente, quantos servidores compõem o 1%?</description>
@@ -35,10 +35,10 @@ Primeiramente, quantos servidores compõem o 1%?</description>
     
     <item>
       <title>Transparência (5): Trabalhando com datas</title>
-      <link>http://www.sillasgonzaga.com/post/transparencia-05/</link>
+      <link>/post/transparencia-05/</link>
       <pubDate>Mon, 18 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/post/transparencia-05/</guid>
+      <guid>/post/transparencia-05/</guid>
       <description>Transparência (5): Trabalhando com datas O dataset do Portal da Transparência traz três colunas relacionadas com datas: DATA_INGRESSO_CARGOFUNCAO, DATA_INGRESSO_ORGAO e DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO, as quais geram umas análises curiosas, principalmente se relacionadas com a variável salário.
 library(treemap) library(dplyr) library(ggplot2) library(ggrepel) library(ggthemes) library(lubridate) df &amp;lt;- read.csv2(&amp;quot;/home/sillas/R/data/transparenciaComSalarios.csv&amp;quot;, stringsAsFactors = FALSE, fileEncoding = &amp;quot;ISO-8859-15&amp;quot;)  Primeiro, as datas vêm neste formato:
 df %&amp;gt;% select(DATA_INGRESSO_CARGOFUNCAO, DATA_INGRESSO_ORGAO, DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO) %&amp;gt;% head()  ## DATA_INGRESSO_CARGOFUNCAO DATA_INGRESSO_ORGAO ## 1 01/07/2006 01/01/1984 ## 2 22/10/2014 20/10/2014 ## 3 &amp;lt;NA&amp;gt; 01/08/2015 ## 4 30/11/2014 03/09/2014 ## 5 19/05/2010 19/05/2010 ## 6 02/02/2009 30/12/2008 ## DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO ## 1 01/06/1984 ## 2 17/02/2010 ## 3 01/08/2015 ## 4 28/06/2006 ## 5 19/05/2010 ## 6 30/12/2008  O R, nativamente, não reconhece este formato como data e sim como texto.</description>
@@ -46,10 +46,10 @@ df %&amp;gt;% select(DATA_INGRESSO_CARGOFUNCAO, DATA_INGRESSO_ORGAO, DATA_DIPLOM
     
     <item>
       <title>Transparência(4): Análise de salários usando Treemaps</title>
-      <link>http://www.sillasgonzaga.com/post/transparencia-04/</link>
+      <link>/post/transparencia-04/</link>
       <pubDate>Sun, 17 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/post/transparencia-04/</guid>
+      <guid>/post/transparencia-04/</guid>
       <description>Transparência(4): Análise de salários usando Treemaps library(treemap) library(dplyr) library(ggplot2) library(ggrepel) library(ggthemes) df &amp;lt;- read.csv2(&amp;quot;/home/sillas/R/data/transparenciaComSalarios.csv&amp;quot;, stringsAsFactors = FALSE, fileEncoding = &amp;quot;ISO-8859-15&amp;quot;)  Para este post, continuaremos analisando os salários dos servidores federais, mas agora usando uma visualização chamada Treemap ou Mapa de árvores.
 Por exemplo, o gráfico abaixo compara diferentes órgãos públicos de acordo com a quantidade de servidores e o salário médio dos mesmos.
 aggSetor &amp;lt;-df %&amp;gt;% group_by(ORG_LOTACAO) %&amp;gt;% summarise(quantidade = n(), salarioMedio = median(SALARIO)) aggSetor$escala &amp;lt;- scale(aggSetor$salarioMedio) #necessário para criar valores negativos para deixar as disparidades mais evidentes x &amp;lt;- treemap(aggSetor, index = &amp;quot;ORG_LOTACAO&amp;quot;, vSize = &amp;quot;quantidade&amp;quot;, vColor = &amp;quot;escala&amp;quot;, type = &amp;quot;value&amp;quot;, palette = &amp;quot;-RdGy&amp;quot;, lowerbound.</description>
@@ -57,20 +57,20 @@ aggSetor &amp;lt;-df %&amp;gt;% group_by(ORG_LOTACAO) %&amp;gt;% summarise(quant
     
     <item>
       <title>Transparência (3): Em quais estados os salários são mais mal distribuídos?</title>
-      <link>http://www.sillasgonzaga.com/post/transparencia-03/</link>
+      <link>/post/transparencia-03/</link>
       <pubDate>Mon, 11 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/post/transparencia-03/</guid>
+      <guid>/post/transparencia-03/</guid>
       <description>library(ggplot) library(ggrepel) library(ggthemes) library(dplyr)  Aviso Este post funciona como um adendo ao anterior, portanto recomendo o ler antes de prosseguir com a leitura.
 Assim que eu publiquei o último post, percebi que perdi a oportunidade de analisar o quão diferente são as distribuições dos salários nos estados brasileiros e não só nas regiões. Voltando ao nosso dataset, que dessa vez carrego apenas as colunas de salários e UFs:</description>
     </item>
     
     <item>
       <title>Transparência (2): Qual o salário médio dos servidores federais?</title>
-      <link>http://www.sillasgonzaga.com/post/transparencia-2-qual-o-sal%C3%A1rio-m%C3%A9dio-dos-servidores-federais/</link>
+      <link>/post/transparencia-2-qual-o-sal%C3%A1rio-m%C3%A9dio-dos-servidores-federais/</link>
       <pubDate>Sun, 10 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/post/transparencia-2-qual-o-sal%C3%A1rio-m%C3%A9dio-dos-servidores-federais/</guid>
+      <guid>/post/transparencia-2-qual-o-sal%C3%A1rio-m%C3%A9dio-dos-servidores-federais/</guid>
       <description>Transparência (2): Qual o salário médio dos servidores federais? Este é o segundo post da série de artigos sobre dados do Portal Transparência relativos a de servidores federais. Agora, o foco são os salários.
 Outra pequena mudança é que, para os gráficos deste post, ao invés de usar o tema theme_economist(), usarei o theme_wsj(), também incluso no package ggthemes.
 library(ggplot2) library(stringr) library(ggthemes) library(dplyr) library(ggrepel)  Por alguma razão além do meu entendimento, o Portal da Transparência arquiva os dados de salários em um arquivo separado do principal.</description>
@@ -78,10 +78,10 @@ library(ggplot2) library(stringr) library(ggthemes) library(dplyr) library(ggrep
     
     <item>
       <title>Transparência (1): Qual estado brasileiro tem o maior número de servidores federais?</title>
-      <link>http://www.sillasgonzaga.com/post/transparencia-01/</link>
+      <link>/post/transparencia-01/</link>
       <pubDate>Sun, 15 Nov 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/post/transparencia-01/</guid>
+      <guid>/post/transparencia-01/</guid>
       <description>Transparência (1): Qual estado brasileiro tem o maior número de servidores federais? 1 - Introdução Alguns dos datasets brasileiros mais interessantes podem ser encontrados no Portal da Transparência, no qual é possível obter dados sobre:
  gastos diretos do Governo Federal (desde 2004 - exceto Cartão de Pagamentos - desde 2002) transferências de recursos a Estados e Municípios (desde 2004) convênios com pessoas físicas, jurídicas ou entes governamentais (desde 1996) previsão e arrecadação de receitas (desde 2009) servidores do Governo Federal.</description>
     </item>
