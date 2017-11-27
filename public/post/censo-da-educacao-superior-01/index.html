@@ -21,13 +21,13 @@
   <!--<![endif]-->
 
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu-old-ie.css">
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu.css">
+  <link rel="stylesheet" href="/css/side-menu.css">
   <!--<![endif]-->
 
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/blackburn.css">
+  <link rel="stylesheet" href="/css/blackburn.css">
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,7 +45,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
   
 
-  <link rel="shortcut icon" href="http://www.sillasgonzaga.com/img/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
 
   
   
@@ -70,25 +70,25 @@
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/"><i class='fa fa-home fa-fw'></i>Home</a>
+          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
       
         </li>
       
@@ -230,7 +230,7 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/censo-educacao">censo-educacao</a>
+      <a class="post-taxonomy-tag" href="/tags/censo-educacao">censo-educacao</a>
     
   </div>
   
@@ -564,7 +564,7 @@ ggplot(temp, aes(x = valor)) +
     labs(x = &quot;%&quot;, y = &quot;Frequência&quot;)
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/censo_educ_superior1/unnamed-chunk-6-1.png" alt="center" /></p>
+<p><img src="/figs/censo_educ_superior1/unnamed-chunk-6-1.png" alt="center" /></p>
 
 <p>A diferença da distribuição de alunos de outra cidade quando se agrega os resultados por cidade ou por IES é curiosa, a ponto de eu não conseguir formular uma explicação para ela.</p>
 
@@ -663,7 +663,7 @@ p &lt;- plot_grid(p, legend_b, ncol = 1, rel_heights = c(1, .2))
 ggdraw(p)
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/censo_educ_superior1/unnamed-chunk-8-1.png" alt="center" /></p>
+<p><img src="/figs/censo_educ_superior1/unnamed-chunk-8-1.png" alt="center" /></p>
 
 <p>Ou seja: para as 10 cidades com o maior porcentual de alunos de fora do município, esse valor é de 100%. O histograma dessa distribuição mostra que esse resultado não é surpreendente, pois existem mais de 20 cidades que têm no mínimo 95% de alunos de outra cidade.
 Já quando se trata de analisar as cidades que mais atraem universitários de outros estados, quatro cidades goianas e três paranaenses despontam como capitais universitárias. Surpreendentemente (ao menos para mim), apenas uma cidade do Sudeste consta nesse Top 10.
@@ -750,7 +750,7 @@ p &lt;- plot_grid(p, legend_b, ncol = 1, rel_heights = c(1, .2))
 ggdraw(p)
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/censo_educ_superior1/unnamed-chunk-10-1.png" alt="center" /></p>
+<p><img src="/figs/censo_educ_superior1/unnamed-chunk-10-1.png" alt="center" /></p>
 
 <p>Já que analisamos os resultados por cidade, podemos fazer o mesmo por estado: quais UFs recebem mais estudantes de outros estados?</p>
 
@@ -768,7 +768,7 @@ ggplot(p, aes(x = num_absoluto, y = porcentual, color = NO_REGIAO_IES, label = S
     theme_minimal() + theme(legend.position = &quot;right&quot;)
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/censo_educ_superior1/grafico uf-1.png" alt="center" /></p>
+<p><img src="/figs/censo_educ_superior1/grafico uf-1.png" alt="center" /></p>
 
 <p>O estado do Paraná é disparado o campeão nesse quesito em ambos os critérios, isto é, tanto por quantidade absoluta - cerca de 600.000 universitários de outras partes do Brasil estudam na Rússia brasileira - como por porcentual - aquela quantidade corresponde a cerca de 55% do total de estudantes matriculados em universidades paranaenses.
 Na outra ponta do gráfico, a ponta inferior esquerda, a maioria dos estados são da região Nordeste e Norte, com destaque negativo para Maranhão, Alagoas e Bahia, três dos estados mais pobres do país. Arrisco dizer que, por serem mais pobres que a média nacional, as universidades desses estados não têm reputação suficiente para atrair universitários de outros estados do Brasil.</p>
@@ -786,13 +786,13 @@ write_feather(df, &quot;dm_aluno_tratado.feather&quot;)
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="http://www.sillasgonzaga.com/post/meta-analise-r-02/"><i class="fa fa-chevron-left"></i></a>
+    <a href="/post/meta-analise-r-02/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="http://www.sillasgonzaga.com/post/meta-analise-r-02/">Meta-análise R (2): Analisando Pacotes R como indivíduos em uma rede social</a>
+      <a href="/post/meta-analise-r-02/">Meta-análise R (2): Analisando Pacotes R como indivíduos em uma rede social</a>
     </nav>
     
   </div>
@@ -802,13 +802,13 @@ write_feather(df, &quot;dm_aluno_tratado.feather&quot;)
   <div class="pure-u-10-24">
     
     <nav class="next">
-      <a href="http://www.sillasgonzaga.com/post/clusterizacao-r-paises/">Clusterização no R: Como segmentar países de acordo com indicadores econômicos</a>
+      <a href="/post/clusterizacao-r-paises/">Clusterização no R: Como segmentar países de acordo com indicadores econômicos</a>
     </nav>
     
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
     
-    <a href="http://www.sillasgonzaga.com/post/clusterizacao-r-paises/"><i class="fa fa-chevron-right"></i></a>
+    <a href="/post/clusterizacao-r-paises/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
@@ -839,7 +839,7 @@ write_feather(df, &quot;dm_aluno_tratado.feather&quot;)
 
 </div>
 </div>
-<script src="http://www.sillasgonzaga.com/js/ui.js"></script>
+<script src="/js/ui.js"></script>
 
 
 <script>

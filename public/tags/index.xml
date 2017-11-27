@@ -2,175 +2,184 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Paixão por Dados</title>
-    <link>http://www.sillasgonzaga.com/tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on Paixão por Dados</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
     <lastBuildDate>Fri, 08 Jul 2016 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://www.sillasgonzaga.com/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Censo Educacao</title>
-      <link>http://www.sillasgonzaga.com/tags/censo-educacao/</link>
+      <link>/tags/censo-educacao/</link>
       <pubDate>Fri, 08 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/tags/censo-educacao/</guid>
+      <guid>/tags/censo-educacao/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Cluster</title>
-      <link>http://www.sillasgonzaga.com/tags/cluster/</link>
+      <link>/tags/cluster/</link>
       <pubDate>Tue, 28 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/tags/cluster/</guid>
+      <guid>/tags/cluster/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Visualization</title>
+      <link>/tags/data-visualization/</link>
+      <pubDate>Sun, 26 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/data-visualization/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Eventos</title>
-      <link>http://www.sillasgonzaga.com/tags/eventos/</link>
+      <link>/tags/eventos/</link>
       <pubDate>Tue, 23 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/tags/eventos/</guid>
+      <guid>/tags/eventos/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Lexiconpt</title>
-      <link>http://www.sillasgonzaga.com/tags/lexiconpt/</link>
+      <link>/tags/lexiconpt/</link>
       <pubDate>Sat, 23 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/tags/lexiconpt/</guid>
+      <guid>/tags/lexiconpt/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Mafs</title>
-      <link>http://www.sillasgonzaga.com/tags/mafs/</link>
+      <link>/tags/mafs/</link>
       <pubDate>Sun, 29 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/tags/mafs/</guid>
+      <guid>/tags/mafs/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Mapas</title>
-      <link>http://www.sillasgonzaga.com/tags/mapas/</link>
+      <link>/tags/mapas/</link>
       <pubDate>Fri, 18 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/tags/mapas/</guid>
+      <guid>/tags/mapas/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Olx</title>
-      <link>http://www.sillasgonzaga.com/tags/olx/</link>
+      <link>/tags/olx/</link>
       <pubDate>Fri, 18 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/tags/olx/</guid>
+      <guid>/tags/olx/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Palestras</title>
-      <link>http://www.sillasgonzaga.com/tags/palestras/</link>
+      <link>/tags/palestras/</link>
       <pubDate>Tue, 23 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/tags/palestras/</guid>
+      <guid>/tags/palestras/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Plot</title>
-      <link>http://www.sillasgonzaga.com/tags/plot/</link>
+      <link>/tags/plot/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/tags/plot/</guid>
+      <guid>/tags/plot/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R Markdown</title>
-      <link>http://www.sillasgonzaga.com/tags/r-markdown/</link>
+      <link>/tags/r-markdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/tags/r-markdown/</guid>
+      <guid>/tags/r-markdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Regression</title>
-      <link>http://www.sillasgonzaga.com/tags/regression/</link>
+      <link>/tags/regression/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/tags/regression/</guid>
+      <guid>/tags/regression/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Series Temporais</title>
-      <link>http://www.sillasgonzaga.com/tags/series-temporais/</link>
+      <link>/tags/series-temporais/</link>
       <pubDate>Sun, 29 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/tags/series-temporais/</guid>
+      <guid>/tags/series-temporais/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Servidores Publicos</title>
-      <link>http://www.sillasgonzaga.com/tags/servidores-publicos/</link>
+      <link>/tags/servidores-publicos/</link>
       <pubDate>Wed, 03 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/tags/servidores-publicos/</guid>
+      <guid>/tags/servidores-publicos/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Sna</title>
-      <link>http://www.sillasgonzaga.com/tags/sna/</link>
+      <link>/tags/sna/</link>
       <pubDate>Mon, 30 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/tags/sna/</guid>
+      <guid>/tags/sna/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Text Mining</title>
-      <link>http://www.sillasgonzaga.com/tags/text-mining/</link>
+      <link>/tags/text-mining/</link>
       <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/tags/text-mining/</guid>
+      <guid>/tags/text-mining/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Transparencia</title>
-      <link>http://www.sillasgonzaga.com/tags/transparencia/</link>
+      <link>/tags/transparencia/</link>
       <pubDate>Wed, 03 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/tags/transparencia/</guid>
+      <guid>/tags/transparencia/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Unsupervised</title>
-      <link>http://www.sillasgonzaga.com/tags/unsupervised/</link>
+      <link>/tags/unsupervised/</link>
       <pubDate>Tue, 28 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/tags/unsupervised/</guid>
+      <guid>/tags/unsupervised/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Web Scraping</title>
-      <link>http://www.sillasgonzaga.com/tags/web-scraping/</link>
+      <link>/tags/web-scraping/</link>
       <pubDate>Sun, 15 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/tags/web-scraping/</guid>
+      <guid>/tags/web-scraping/</guid>
       <description></description>
     </item>
     

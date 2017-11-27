@@ -21,13 +21,13 @@
   <!--<![endif]-->
 
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu-old-ie.css">
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu.css">
+  <link rel="stylesheet" href="/css/side-menu.css">
   <!--<![endif]-->
 
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/blackburn.css">
+  <link rel="stylesheet" href="/css/blackburn.css">
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,7 +45,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
   
 
-  <link rel="shortcut icon" href="http://www.sillasgonzaga.com/img/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
 
   
   
@@ -70,25 +70,25 @@
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/"><i class='fa fa-home fa-fw'></i>Home</a>
+          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
       
         </li>
       
@@ -230,9 +230,9 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/transparencia">transparencia</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="/tags/transparencia">transparencia</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/servidores-publicos">servidores publicos</a>
+      <a class="post-taxonomy-tag" href="/tags/servidores-publicos">servidores publicos</a>
     
   </div>
   
@@ -323,7 +323,7 @@ df$anos.como.servidor &lt;- CalcAnos(df$dataServico)
        x = &quot;Tempo no serviço público em anos&quot;, y = &quot;Número de servidores&quot;)
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte5/unnamed-chunk-4-1.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte5/unnamed-chunk-4-1.png" alt="center" /></p>
 
 <p><strong>Observações</strong>:<br />
 * A maioria dos servidores tomou posse há 3 anos.<br />
@@ -343,7 +343,7 @@ ggplot(subset(df, anos.como.servidor &lt;= 50), aes(x=anos.como.servidor)) +
        x = &quot;Tempo no serviço público em anos&quot;, y = &quot;Número de servidores&quot;)
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte5/unnamed-chunk-5-1.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte5/unnamed-chunk-5-1.png" alt="center" /></p>
 
 <p>Fica muito fácil detectar a anomalia nos dados: o número de servidores que são funcionários do governo há mais de 35 anos na região Norte é assustador. São mais de 6000, muito mais do que em qualquer região. Na verdade, essa é a faixa de idade com mais pessoas dessa região.</p>
 
@@ -360,7 +360,7 @@ ggplot(data=df, aes(x=REGIAO, y=anos.como.servidor, fill=REGIAO)) +
     theme_bw()
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte5/unnamed-chunk-6-1.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte5/unnamed-chunk-6-1.png" alt="center" /></p>
 
 <p>Depois do gráfico acima, acredito que não restam mais dúvidas que o Boxplot é uma ferramenta muito superior ao histograma quando o objetivo é comparar a distribuição de uma mesma variável numérica de acordo com outra variável categórica. Aqui, é muito mais fácil detectar que existe algo muito estranho no Norte: Os servidores de lá têm, em média, 25 anos de serviço público. A diferença para as outras regiões é colossal.</p>
 
@@ -398,7 +398,7 @@ ggplot(data=df, aes(x=UF_EXERCICIO, y=anos.como.servidor, fill=UF_EXERCICIO)) +
   theme_bw()
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte5/unnamed-chunk-7-1.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte5/unnamed-chunk-7-1.png" alt="center" /></p>
 
 <p><strong>Parem e percebam o quão absurda é a situação em Amapá</strong>, que merece dois comentários a parte:<br />
 * A mediana é igual a cerca de 37 anos. Na verdade, a distribuição é tão bagunçada que a mediana deixa de fazer sentido aqui nesse contexto.<br />
@@ -410,13 +410,13 @@ ggplot(data=df, aes(x=UF_EXERCICIO, y=anos.como.servidor, fill=UF_EXERCICIO)) +
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="http://www.sillasgonzaga.com/post/transparencia-04/"><i class="fa fa-chevron-left"></i></a>
+    <a href="/post/transparencia-04/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="http://www.sillasgonzaga.com/post/transparencia-04/">Transparência(4): Análise de salários usando Treemaps</a>
+      <a href="/post/transparencia-04/">Transparência(4): Análise de salários usando Treemaps</a>
     </nav>
     
   </div>
@@ -426,13 +426,13 @@ ggplot(data=df, aes(x=UF_EXERCICIO, y=anos.como.servidor, fill=UF_EXERCICIO)) +
   <div class="pure-u-10-24">
     
     <nav class="next">
-      <a href="http://www.sillasgonzaga.com/post/transparencia-06/">Transparência (6): Quem são os 1% do funcionalismo público?</a>
+      <a href="/post/transparencia-06/">Transparência (6): Quem são os 1% do funcionalismo público?</a>
     </nav>
     
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
     
-    <a href="http://www.sillasgonzaga.com/post/transparencia-06/"><i class="fa fa-chevron-right"></i></a>
+    <a href="/post/transparencia-06/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
@@ -463,7 +463,7 @@ ggplot(data=df, aes(x=UF_EXERCICIO, y=anos.como.servidor, fill=UF_EXERCICIO)) +
 
 </div>
 </div>
-<script src="http://www.sillasgonzaga.com/js/ui.js"></script>
+<script src="/js/ui.js"></script>
 
 
 <script>

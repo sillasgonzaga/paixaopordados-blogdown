@@ -21,13 +21,13 @@
   <!--<![endif]-->
 
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu-old-ie.css">
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu.css">
+  <link rel="stylesheet" href="/css/side-menu.css">
   <!--<![endif]-->
 
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/blackburn.css">
+  <link rel="stylesheet" href="/css/blackburn.css">
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,7 +45,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
   
 
-  <link rel="shortcut icon" href="http://www.sillasgonzaga.com/img/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
 
   
   
@@ -70,25 +70,25 @@
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/"><i class='fa fa-home fa-fw'></i>Home</a>
+          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
       
         </li>
       
@@ -230,9 +230,9 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/transparencia">transparencia</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="/tags/transparencia">transparencia</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/servidores-publicos">servidores publicos</a>
+      <a class="post-taxonomy-tag" href="/tags/servidores-publicos">servidores publicos</a>
     
   </div>
   
@@ -283,7 +283,7 @@ rm(salarios)
   theme_wsj()
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte2/unnamed-chunk-3-1.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte2/unnamed-chunk-3-1.png" alt="center" /></p>
 
 <p>Com o gráfico acima, é possível aprender que:
 * Estranhamente, existe uma quantidade anormal (fora da curva) de servidores que ganham aproximadamente entre R$22.000 a RS$24.000,00.<br />
@@ -299,7 +299,7 @@ rm(salarios)
     theme_wsj()
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte2/unnamed-chunk-4-1.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte2/unnamed-chunk-4-1.png" alt="center" /></p>
 
 <p>Será que os salários variam de acordo com a região? Existem diferentes visualizações que podem ser usadas para fazer essa comparação.</p>
 
@@ -313,7 +313,7 @@ rm(salarios)
   labs(title = &quot;Distribuição dos salários\n por região&quot;)
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte2/Histogramas-1.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte2/Histogramas-1.png" alt="center" /></p>
 
 <pre><code class="language-r">ggplot(data=df, aes(x=SALARIO)) +
     geom_histogram(binwidth=1000, aes(y=..density..)) +
@@ -324,7 +324,7 @@ rm(salarios)
     theme_wsj()
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte2/Histogramas-2.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte2/Histogramas-2.png" alt="center" /></p>
 
 <p>Com os gráficos acima, é possível inferir que:
 * A diferença entre as distribuições dos salários se mantém constante nas diferentes faixas salariais.<br />
@@ -445,7 +445,7 @@ ggplot(data=df, aes(x=REGIAO, y=SALARIO, fill=REGIAO)) +
   labs(title = &quot;Distribuição dos salários por região&quot;)
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte2/Boxplots-1.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte2/Boxplots-1.png" alt="center" /></p>
 
 <pre><code class="language-r">#2: Agrupar estados por região
 # Defini um vetor de cores para cada estado para facilitar a visualização
@@ -473,7 +473,7 @@ ggplot(data=df, aes(x=UF_EXERCICIO, y=SALARIO, fill=UF_EXERCICIO)) + geom_boxplo
   guides(fill = FALSE)
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte2/Boxplots-2.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte2/Boxplots-2.png" alt="center" /></p>
 
 <p>Por meio dos dois gráficos acima, aprendemos que:<br />
 * A grande maioria dos outliers pertence ao Centro-Oeste, onde estão os três maiores salários de servidores do Brasil.<br />
@@ -492,7 +492,7 @@ ggplot(data=df, aes(x=UF_EXERCICIO, y=SALARIO, fill=UF_EXERCICIO)) + geom_boxplo
   theme_wsj()
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte2/unnamed-chunk-8-1.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte2/unnamed-chunk-8-1.png" alt="center" /></p>
 
 <p>Será que existe alguma correlação entre o salário médio e o número de servidores do estado? Vamos tentar responder isso com um gráfico de dispersão comum, onde eu uso um recurso do package recém criado <em>ggrepel</em>:</p>
 
@@ -510,7 +510,7 @@ ggplot(temp, aes(numeroDeServidores, salarioMedio)) +
   theme_wsj()
 </code></pre>
 
-<p><img src="http://www.sillasgonzaga.com/figs/transparenciaParte2/unnamed-chunk-9-1.png" alt="center" /></p>
+<p><img src="/figs/transparenciaParte2/unnamed-chunk-9-1.png" alt="center" /></p>
 
 <p>Não é possível detectar nenhum padrão muito significativo.</p>
 
@@ -521,13 +521,13 @@ ggplot(temp, aes(numeroDeServidores, salarioMedio)) +
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="http://www.sillasgonzaga.com/post/transparencia-01/"><i class="fa fa-chevron-left"></i></a>
+    <a href="/post/transparencia-01/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="http://www.sillasgonzaga.com/post/transparencia-01/">Transparência (1): Qual estado brasileiro tem o maior número de servidores federais?</a>
+      <a href="/post/transparencia-01/">Transparência (1): Qual estado brasileiro tem o maior número de servidores federais?</a>
     </nav>
     
   </div>
@@ -537,13 +537,13 @@ ggplot(temp, aes(numeroDeServidores, salarioMedio)) +
   <div class="pure-u-10-24">
     
     <nav class="next">
-      <a href="http://www.sillasgonzaga.com/post/transparencia-03/">Transparência (3): Em quais estados os salários são mais mal distribuídos?</a>
+      <a href="/post/transparencia-03/">Transparência (3): Em quais estados os salários são mais mal distribuídos?</a>
     </nav>
     
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
     
-    <a href="http://www.sillasgonzaga.com/post/transparencia-03/"><i class="fa fa-chevron-right"></i></a>
+    <a href="/post/transparencia-03/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
@@ -574,7 +574,7 @@ ggplot(temp, aes(numeroDeServidores, salarioMedio)) +
 
 </div>
 </div>
-<script src="http://www.sillasgonzaga.com/js/ui.js"></script>
+<script src="/js/ui.js"></script>
 
 
 <script>

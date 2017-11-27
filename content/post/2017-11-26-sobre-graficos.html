@@ -1,0 +1,89 @@
+---
+title: Sobre gráficos e a mensagem que eles querem transmitir
+author: Sillas Teixeira Gonzaga
+date: '2017-11-26'
+slug: sobre-graficos
+categories:
+  - R
+tags:
+  - data visualization
+---
+
+
+
+<p>Recentemente, quando estava no trabalhando lendo uma revista de negócios sobre o varejo, me deparei com o seguinte gráfico:</p>
+<pre class="r"><code>knitr::include_graphics(&quot;https://i.imgur.com/f1dh4uw.jpg&quot;)</code></pre>
+<p><img src="https://i.imgur.com/f1dh4uw.jpg" width="600px" /></p>
+<p>Mesmo sem contexto, é possível perceber que essa visualização foi criada para mostrar a divergência de opiniões sobre a importância dada a fatores de compra pelos executivos de varejo e pelos consumidores. Imediatamente, eu pensei que o jornalista perdeu uma ótima oportunidade de representar melhor a informação desejada.</p>
+<p>Primeiramente, a ordem dos fatores no gráfico não segue uma ordem clara. Se o gráfico foi feito para enfatizar essa divergência de opiniões, teria sido melhor que os fatores fossem ordenados no gráfico pela diferença numérica entre executivos e consumidores. Veja que o ponto onde há maior disparidade, <em>Acesso a informações, venda e serviços</em>, aparece no canto inferior direito, fazendo com que os olhos do leitor tenham de percorrer o gráfico quase que até seu final para extrair sua informação mais importante. Além disso, o fator de compra que apresenta maior uniformidade, <em>Informações em tempo real sobre inventário e disponibilidade de informações</em>, aparece logo ao lado da que apresenta mais divergência.</p>
+<p>Outra oportunidade perdida é que não é dada uma ênfase ao que os consumidores, os responsáveis pela empresa existir, preferem. Como esta é uma revista voltada para o segmento de varejo, seu público-alvo são executivos de varejo, que estão sedentos por saber o que os clientes pensam. Contudo, os fatores que os consumidores mais preferem, <em>Pagamento simples e fluido</em> e <em>Acesso a informaçoes, venda e servicos</em>, aparecem em ordem aleatória no gŕafico (em quinto e em oitavo lugar, respectivamente).</p>
+<p>Por isso, este post é dedicado a propor uma nova versão dessa visualização de dados, de maneira que atenda aos pontos citados acima. Ou seja, um gráfico que:</p>
+<ul>
+<li>Ordene os fatores de acordo com o grau de divergência entre consumidores e executivos;<br />
+</li>
+<li>Destaque de alguma maneira os fatores que os consumidores consideram mais importantes que os executivos.</li>
+</ul>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<p>Recriando o dataset do gráfico:</p>
+<pre class="r"><code>df &lt;- tribble(
+  ~fator, ~Executivos, ~Consumidores,
+  &quot;Experiência personalizada&quot;, 43, 27,
+  &quot;Experiência fluida em todos os canais&quot;, 42, 26,
+  &quot;Pagamento simples e fluido&quot;, 41, 50,
+  &quot;Tecnologia em loja&quot;, 38, 18,
+  &quot;Informações em tempo real sobre inventário e disponibilidade de informações&quot;, 37, 38,
+  &quot;Plataformas mobile e aplicativos de compra&quot;, 36, 19,
+  &quot;Habilidade de customizar produtos e serviços&quot;, 35, 24,
+  &quot;Engajamento e presença em redes sociais&quot;, 35, 14,
+  &quot;Pagamento digital e opções de câmbio&quot;, 34, 31,
+  &quot;Acesso a informações, venda e serviços&quot;, 31, 50,
+  &quot;Gamificação e experiência digital interativa&quot;, 21, 9
+)</code></pre>
+<p>Em seguida, calculamos a diferença entre as duas colunas numéricas e usamos a funçao <code>forcats::fct_reorder()</code> para ordenar os fatores de acordo com essa diferença.</p>
+<pre class="r"><code>df &lt;- df %&gt;% 
+  mutate(diferenca = abs(Executivos - Consumidores),
+         # Quebrar o string do fator em parágrafos e reordenar
+         fator = str_wrap(fator, 40),
+         fator = fct_reorder(fator, diferenca, .desc = FALSE)) %&gt;% 
+  # criar colunas para armazenar os valores maximo e minimo entre executivos e consumidores 
+  rowwise() %&gt;% 
+   mutate(maior_percentual = max(Executivos, Consumidores),
+          menor_percentual = min(Executivos, Consumidores))
+
+# criar coluna para identificar </code></pre>
+<p>O código desse gráfico é um pouco mais complexo do que o usual. Como eu queria que o label de cada ponto ficasse à esquerda no caso do menor número e à direita do maior, é necessário criar duas camadas de <code>geom_text()</code> separadamente, uma para o valor mínimo de cada fator e outra para o valor máximo, sendo que cada possui um valor diferente de <code>hjust</code>.</p>
+<pre class="r"><code>df.long &lt;- df %&gt;% 
+  # transformar para formato tidy (long)
+  gather(fonte_opiniao, valor, 2:3)
+
+p &lt;- ggplot(df.long, aes(x = valor, y = fator)) +
+  geom_point(aes(color = fonte_opiniao), size = 3) +
+  # ajustar pontos
+  scale_x_continuous(limits = c(0, 55), breaks = seq(0, 50, 10)) +
+  # mudar aparencia. isso é opcional.
+  theme_minimal() + 
+  # adicionar manualmente o label do valor que cada ponto representa
+  geom_text(data = df, aes(x = maior_percentual, label = maior_percentual), hjust = -0.3) +
+  geom_text(data = df, aes(x = menor_percentual, label = menor_percentual), hjust = 1.4) +
+  # mudar titulos dos eixos e do grafico
+  labs(x = &quot;%&quot;, y = NULL, color = NULL, title = &quot;Quais fatores influenciam a compra?&quot;) +
+  theme(legend.position = &quot;bottom&quot;)
+
+p</code></pre>
+<p><img src="/post/2017-11-26-sobre-graficos_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Com este gráfico, creio que atendemos ao primeiro ponto. Veja que, além dos objetivos listados anteriormente, o gráfico apresenta outras melhorias em relação ao original. Uma delas é que é possível descobrir muito mais facilmente quais são os fatores que os consumidores menos se lembram (<em>Gamificação</em>).</p>
+<p>Para atender à segunda melhoria proposta, a de destacar de alguma maneira os fatores considerados mais importantes pelos consumidores, decidi usar o seguinte método: plotar um segmento ligando os pontos em cada fator, sendo que, nos fatores de compra que foram mais lembrados por consumidores do que por executivos, o segmento fosse mais destacado (ou menos transparente) no gráfico.</p>
+<p>Para isso, vamos criar uma coluna onde o valor do <code>alpha</code> do segmento, que correspondência ao seu nível de opacidade, seja definido manualmente:</p>
+<pre class="r"><code># criar coluna para identificar quem da mais importancia ao fator
+df &lt;- df %&gt;% 
+  mutate(alpha_segmento = if_else(Executivos - Consumidores &gt; 0, 0.5, 1))</code></pre>
+<p>Vamos então adicionar esse novo elemento no gráfico.</p>
+<pre class="r"><code>p + 
+  # para não fazer que o segmento fique em cima do ponto, eu removo 0,3 de cada lado dele
+  geom_segment(data = df, aes(x = maior_percentual-0.3, xend = menor_percentual+0.3,
+                              y = fator, yend = fator,
+                              alpha = alpha_segmento),
+               inherit.aes = FALSE, show.legend = FALSE) +
+  scale_alpha_identity()</code></pre>
+<p><img src="/post/2017-11-26-sobre-graficos_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Acredito que, com essa visualização, as mensagens que o gráfico da revista foi criado para mostrar são transmitidas mais claramente.</p>

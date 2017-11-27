@@ -21,13 +21,13 @@
   <!--<![endif]-->
 
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu-old-ie.css">
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu.css">
+  <link rel="stylesheet" href="/css/side-menu.css">
   <!--<![endif]-->
 
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/blackburn.css">
+  <link rel="stylesheet" href="/css/blackburn.css">
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,7 +45,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
   
 
-  <link rel="shortcut icon" href="http://www.sillasgonzaga.com/img/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
 
   
   
@@ -70,25 +70,25 @@
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/"><i class='fa fa-home fa-fw'></i>Home</a>
+          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
       
         </li>
       
@@ -227,7 +227,7 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/text-mining">text mining</a>
+      <a class="post-taxonomy-tag" href="/tags/text-mining">text mining</a>
     
   </div>
   
@@ -449,7 +449,7 @@ round(corpus_simil, 3)</code></pre>
                                diag = FALSE)
 # ver os resultados individualmente para cada livro
 plot(hclust(corpus_dist))</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2017-11-21-literaturaBR-01_files/figure-html/dist-1.png" width="672" /></p>
+<p><img src="/post/2017-11-21-literaturaBR-01_files/figure-html/dist-1.png" width="672" /></p>
 </div>
 <div id="analise-de-sentimento" class="section level3">
 <h3>Análise de Sentimento</h3>
@@ -502,7 +502,7 @@ df.sentiment %&gt;%
     facet_wrap(~ book_name, ncol = 5, labeller = label_wrap_gen(20)) +
     labs(x = &quot;Posição relativa no livro&quot;, y = &quot;Sentimento&quot;) +
     theme_bw()</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2017-11-21-literaturaBR-01_files/figure-html/sentimento%20por%20capitulo-1.png" width="768" /></p>
+<p><img src="/post/2017-11-21-literaturaBR-01_files/figure-html/sentimento%20por%20capitulo-1.png" width="768" /></p>
 <p>Os resultados são muito interessantes: De acordo com esse método, <strong>A Escrava Isaura</strong> e <strong>O Ateneu</strong> são verdadeiras montanhas-russas de emoções, enquanto que livros os “dois Memórias” são mais estáveis. <strong>O Alienista</strong> apresenta um sentimento que tem uma tendência decrescente até a metade e crescente após ela.</p>
 </div>
 <div id="complexidade-lexica-e-ocorrencia-de-palavras" class="section level3">
@@ -528,15 +528,15 @@ lexdiv %&gt;%
     coord_flip() + 
     labs(x = NULL, y = &quot;TTR&quot;) +
     theme_minimal()</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2017-11-21-literaturaBR-01_files/figure-html/plot%20ttr-1.png" width="672" /></p>
+<p><img src="/post/2017-11-21-literaturaBR-01_files/figure-html/plot%20ttr-1.png" width="672" /></p>
 <p>O livro que apresenta a maior diversidade léxica, de acordo com a métrica <em>Type-Token Ratio</em> (TTR), é <strong>O Alienista</strong>. <strong>Memórias de um Sargento de Milícias</strong> vem bem atrás dos demais.</p>
 <p>De todas os gráficos que apresentei neste post, o mais legal vem a seguir. É possível plotar a ocorrência de uma determinada palavra ao longo dos livros analisados. Por exemplo, a ocorrência da palavra amor é uniformemente distribuída nos livros?</p>
 <pre class="r"><code>kwic(meu_corpus, &quot;amor&quot;) %&gt;% textplot_xray(scale = &quot;relative&quot;)</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2017-11-21-literaturaBR-01_files/figure-html/plot%20xray-1.png" width="672" /></p>
+<p><img src="/post/2017-11-21-literaturaBR-01_files/figure-html/plot%20xray-1.png" width="672" /></p>
 <p>Com o gráfico acima, é possível ver que a palavra amor aparece, no livro Ateneu, muito mais frequentemente na primeira metade do que na segunda. Nos demais livros, a ocorrência da palavra é mais uniforme.</p>
 <p>Outro exemplo interessante surge com a busca da palavra fogo. Quem já leu O Ateneu já consegue imaginar como serão os resultados:</p>
 <pre class="r"><code>kwic(meu_corpus, &quot;fogo&quot;) %&gt;% textplot_xray(scale = &quot;relative&quot;)</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2017-11-21-literaturaBR-01_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="/post/2017-11-21-literaturaBR-01_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
 </div>
 <div id="conclusao" class="section level2">
@@ -549,13 +549,13 @@ lexdiv %&gt;%
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="http://www.sillasgonzaga.com/post/analise-g1-01/"><i class="fa fa-chevron-left"></i></a>
+    <a href="/post/analise-g1-01/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="http://www.sillasgonzaga.com/post/analise-g1-01/">Mineração de textos em notícias de G1: O que diferencia notícias sobre Rio de Janeiro e São Paulo?</a>
+      <a href="/post/analise-g1-01/">Mineração de textos em notícias de G1: O que diferencia notícias sobre Rio de Janeiro e São Paulo?</a>
     </nav>
     
   </div>
@@ -564,8 +564,14 @@ lexdiv %&gt;%
   </div>
   <div class="pure-u-10-24">
     
+    <nav class="next">
+      <a href="/post/sobre-graficos/">Sobre gráficos e a mensagem que eles querem transmitir</a>
+    </nav>
+    
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="/post/sobre-graficos/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
@@ -596,7 +602,7 @@ lexdiv %&gt;%
 
 </div>
 </div>
-<script src="http://www.sillasgonzaga.com/js/ui.js"></script>
+<script src="/js/ui.js"></script>
 
 
 <script>

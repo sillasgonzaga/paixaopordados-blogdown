@@ -21,13 +21,13 @@
   <!--<![endif]-->
 
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu-old-ie.css">
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu.css">
+  <link rel="stylesheet" href="/css/side-menu.css">
   <!--<![endif]-->
 
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/blackburn.css">
+  <link rel="stylesheet" href="/css/blackburn.css">
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,7 +45,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
   
 
-  <link rel="shortcut icon" href="http://www.sillasgonzaga.com/img/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
 
   
   
@@ -70,25 +70,25 @@
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/"><i class='fa fa-home fa-fw'></i>Home</a>
+          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
       
         </li>
       
@@ -227,7 +227,7 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/olx">olx</a>
+      <a class="post-taxonomy-tag" href="/tags/olx">olx</a>
     
   </div>
   
@@ -268,7 +268,7 @@ df$bairro %&lt;&gt;% str_trim()</code></pre>
   geom_histogram(binwidth = 1000, fill = azul) +
   meu_tema() +
   labs(x = &quot;Aluguel (R$)&quot;, y = &quot;Quantidade de apartamentos&quot;)</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-1-1.png" width="1152" /></p>
+<p><img src="/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-1-1.png" width="1152" /></p>
 <p>O histograma acima ficou muito distorcido devido à presença de alguns imóveis cujo valor do aluguel chega a mais de R$1.500.000. É necessário, portanto, remover as anomalias do dataset. Como existem apenas 34 imóveis (menos de 1% do total) cujo aluguel é superior a R$20000, decidi usar esse valor como limite máximo para a remoção de anomalias.</p>
 <pre class="r"><code>df2 &lt;- df %&gt;% filter(preco &lt;= 20000)
 
@@ -277,7 +277,7 @@ ggplot(df2, aes(preco)) +
   meu_tema() +
   scale_x_continuous(breaks  = seq(0, 20000, 1000)) +
   labs(x = &quot;Aluguel (R$)&quot;, y = &quot;Quantidade de apartamentos&quot;)</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-2-1.png" width="1152" /></p>
+<p><img src="/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-2-1.png" width="1152" /></p>
 <p>O histograma acima mostra que a maior parte dos apartamentos está no intervalo entre R$500,01 a R$1000,00. Contudo, aumentar o número de intervalos do histograma pode nos ajudar a encontrar conclusões ainda melhores. Veja o que encontramos ao reduzir a “espessura” de cada bloco do histograma de 500 para 100:</p>
 <pre class="r"><code>ggplot(df2, aes(preco)) +
   geom_histogram(breaks = seq(0, 20000, 100), fill = azul) +
@@ -285,7 +285,7 @@ ggplot(df2, aes(preco)) +
   coord_cartesian(xlim = c(0, 5000)) +
   scale_x_continuous(breaks  = seq(0, 20000, 500)) +
   labs(x = &quot;Aluguel (R$)&quot;, y = &quot;Quantidade de apartamentos&quot;)</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-3-1.png" width="1152" /></p>
+<p><img src="/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-3-1.png" width="1152" /></p>
 <p>Uma possível conclusão do gráfico acima é que os locadores tendem a precificar seus apartamentos em um valor “fechado” a cada R$500,00, como R$500, R$1000, R$1500, etc. Além disso, o fato de existirem mais apartamentos à esquerda de cada “pico” ao invés de à direita mostra que os proprietários preferem “arredondar” os valores para cima, nunca para baixo. Em outras palavras: a decisão sobre o preço do aluguel de um apartamento é enviesada e não segue uma lógica racional. Novamente, isso é apenas uma conclusão pessoal minha.</p>
 <p>Para ser mais preciso, confira a quantidade numérica de apartamentos agrupados em intervalos de preço de aluguel de R$100:</p>
 <pre class="r"><code>df2 %&gt;% filter(between(preco, 1900, 3100)) %&gt;% count(cut_interval(preco, length = 100, dig.lab = 5))</code></pre>
@@ -313,7 +313,7 @@ ggplot(df2, aes(preco)) +
   geom_histogram(fill = azul) +
   meu_tema() +
   labs(x = &quot;Área do condomínio (m²)&quot;, y = NULL)</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-5-1.png" width="1152" /></p>
+<p><img src="/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-5-1.png" width="1152" /></p>
 <pre class="r"><code>df2 %&gt;% filter(area_condominio &gt; 7000)</code></pre>
 <pre><code>##                                                                                            link
 ## 1 http://rj.olx.com.br/rio-de-janeiro-e-regiao/imoveis/alugo-apartamento-campo-grande-254728943
@@ -364,7 +364,7 @@ ggplot(df2, aes(x = area_condominio)) +
   meu_tema() +
   labs(x = &quot;Área do condomínio (m²)&quot;, y = NULL) +
   scale_x_continuous(breaks = seq(0, 300, 50))</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-7-1.png" width="1152" /></p>
+<p><img src="/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-7-1.png" width="1152" /></p>
 <p>A maior parte dos condomínios têm área entre 41 a 70m².</p>
 </div>
 <div id="taxa-do-condominio" class="section level3">
@@ -377,14 +377,14 @@ ggplot(df2, aes(x = taxa_condominio)) +
   meu_tema() +
   labs(x = &quot;Taxa do condomínio (R$)&quot;, y = NULL) +
   scale_x_continuous(breaks = seq(0, limite, 500))</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-8-1.png" width="1152" /></p>
+<p><img src="/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-8-1.png" width="1152" /></p>
 <pre class="r"><code># Reduzindo o comprimento dos intervalos
 ggplot(df2, aes(x = taxa_condominio)) +
   geom_histogram(breaks = seq(0, limite, 50), fill = azul) +
   meu_tema() +
   labs(x = &quot;Taxa do condomínio (R$)&quot;, y = NULL) +
   scale_x_continuous(breaks = seq(0, limite, 500))</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-8-2.png" width="1152" /></p>
+<p><img src="/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-8-2.png" width="1152" /></p>
 <p>Nota-se que a taxa de condomínio apresenta o mesmo comportamento que o preço do aluguel.</p>
 </div>
 <div id="quartos" class="section level3">
@@ -394,7 +394,7 @@ ggplot(df2, aes(x = taxa_condominio)) +
   geom_bar(fill = azul) +
   meu_tema() +
   labs(x = &quot;Quartos&quot;, y = &quot;Quantidade de apartamentos&quot;)</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-9-1.png" width="1152" /></p>
+<p><img src="/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-9-1.png" width="1152" /></p>
 </div>
 </div>
 <div id="analise-rio-de-janeiro-x-niteroi" class="section level1">
@@ -417,7 +417,7 @@ ggplot(df2, aes(x = taxa_condominio)) +
   geom_boxplot() +
   meu_tema() +
   labs(x = NULL, y = &quot;Aluguel (R$)&quot;)</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-11-1.png" width="1152" /></p>
+<p><img src="/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-11-1.png" width="1152" /></p>
 <p>Aparentemente, Niteroi e Rio de Janeiro possuem a mesma mediana do preço de aluguel. A quantidade de apartamentos anormalmente caros é mais comum no Rio de Janeiro. Para confirmar isso:</p>
 <pre class="r"><code># utilizando o data frame inteiro e não o filtrado
 df %&gt;%
@@ -449,7 +449,7 @@ df %&gt;%
     scale_y_continuous(breaks = seq(0, 1, 0.1)) +
     labs(x = &quot;Quartos&quot;, y = &quot;Porcentual&quot;, fill = NULL) +
     theme(legend.position = &quot;bottom&quot;)</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-14-1.png" width="1152" /></p>
+<p><img src="/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-14-1.png" width="1152" /></p>
 <pre class="r"><code>df2 %&gt;%
   filter(tem_quarto) %&gt;%
   group_by(cidade, qtd_quarto) %&gt;%
@@ -460,7 +460,7 @@ df %&gt;%
     scale_fill_manual(values = brewer.pal(5, &quot;Reds&quot;)) +
     scale_y_continuous(breaks = seq(0, 1, 0.1)) +
     labs(x = NULL, y = &quot;Porcentual&quot;)</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-14-2.png" width="1152" /></p>
+<p><img src="/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-14-2.png" width="1152" /></p>
 <p>Os dois gráficos acima mostram que os apartamentos para aluguel do Rio de Janeiro costumam ter menos quartos: Cerca de 30% dos imóveis da cidade possuem apenas 1 quarto. A proporção de apartamentos com 2 ou 3 quartos é maior em Niterói do que na capital do estado.</p>
 </div>
 </div>
@@ -523,7 +523,7 @@ df.rio %&gt;%
     scale_y_continuous(breaks = seq(0, 20000, 1000)) +
     theme(legend.position = &quot;bottom&quot;) +
     labs(x = NULL, y = &quot;Aluguel (R$)&quot;)</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-17-1.png" width="1152" /></p>
+<p><img src="/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-17-1.png" width="1152" /></p>
 <p>Com o gráfico acima, aprendemos que:<br />
 * O aluguel mediano de um apartamento no Leblon é maior que R$4000,00. Contudo, ainda assim é possível encontrar apartamentos cujo valor é o mesmo do mediano encontrado em bairros menos ricos;<br />
 * Existem apenas três bairros (dentre os 20 mais populares) onde o preço mediano do aluguel é menor que R$1000,00;<br />
@@ -538,7 +538,7 @@ df.rio %&gt;%
     scale_y_continuous(breaks = seq(0, 300, 50)) +
     theme(legend.position = &quot;bottom&quot;) +
     labs(x = NULL, y = &quot;Aluguel (R$)&quot;)</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-18-1.png" width="1152" /></p>
+<p><img src="/post/2016-11-17-olx02_files/figure-html/unnamed-chunk-18-1.png" width="1152" /></p>
 </div>
 <div id="analise-de-regressao-o-que-determina-o-preco-de-um-aluguel" class="section level1">
 <h1>Análise de regressão: O que determina o preço de um aluguel?</h1>
@@ -604,13 +604,13 @@ summary(z)</code></pre>
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="http://www.sillasgonzaga.com/post/olx03/"><i class="fa fa-chevron-left"></i></a>
+    <a href="/post/olx03/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="http://www.sillasgonzaga.com/post/olx03/">Como usar o R para escolher um lugar para morar (3) - Converter CEP em coordenadas geográficas</a>
+      <a href="/post/olx03/">Como usar o R para escolher um lugar para morar (3) - Converter CEP em coordenadas geográficas</a>
     </nav>
     
   </div>
@@ -620,13 +620,13 @@ summary(z)</code></pre>
   <div class="pure-u-10-24">
     
     <nav class="next">
-      <a href="http://www.sillasgonzaga.com/post/olx04/">Como usar o R para escolher um lugar para morar (4) - Mapa interativo</a>
+      <a href="/post/olx04/">Como usar o R para escolher um lugar para morar (4) - Mapa interativo</a>
     </nav>
     
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
     
-    <a href="http://www.sillasgonzaga.com/post/olx04/"><i class="fa fa-chevron-right"></i></a>
+    <a href="/post/olx04/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
@@ -657,7 +657,7 @@ summary(z)</code></pre>
 
 </div>
 </div>
-<script src="http://www.sillasgonzaga.com/js/ui.js"></script>
+<script src="/js/ui.js"></script>
 
 
 <script>

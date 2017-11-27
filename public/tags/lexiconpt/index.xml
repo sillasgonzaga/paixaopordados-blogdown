@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Lexiconpt on Paixão por Dados</title>
-    <link>http://www.sillasgonzaga.com/tags/lexiconpt/</link>
+    <link>/tags/lexiconpt/</link>
     <description>Recent content in Lexiconpt on Paixão por Dados</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
     <lastBuildDate>Sat, 23 Sep 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://www.sillasgonzaga.com/tags/lexiconpt/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/lexiconpt/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>O Sensacionalista e Text Mining: Análise de sentimento usando o lexiconPT</title>
-      <link>http://www.sillasgonzaga.com/post/o-sensacionalista-e-text-mining/</link>
+      <link>/post/o-sensacionalista-e-text-mining/</link>
       <pubDate>Sat, 23 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sillasgonzaga.com/post/o-sensacionalista-e-text-mining/</guid>
+      <guid>/post/o-sensacionalista-e-text-mining/</guid>
       <description>De volta à ativa no blog!
 Recentemente, quando precisei fazer pela primeira vez algum tipo de análise em cima de textos (o chamado Text Mining ou Mineração de Texto) em Português, senti falta de ter um acesso fácil a um léxico na linguagem. O R já tem a sua disposição vários recursos para quem quer fazer Text Mining em inglês, como os pacotes tokenizer, tidytext, tm e lexicon, além de vários blog posts sobre Sentiment Analysis que você encontra no R-bloggers.</description>
     </item>

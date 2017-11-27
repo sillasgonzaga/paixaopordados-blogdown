@@ -21,13 +21,13 @@
   <!--<![endif]-->
 
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu-old-ie.css">
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu.css">
+  <link rel="stylesheet" href="/css/side-menu.css">
   <!--<![endif]-->
 
-  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/blackburn.css">
+  <link rel="stylesheet" href="/css/blackburn.css">
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,7 +45,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
   
 
-  <link rel="shortcut icon" href="http://www.sillasgonzaga.com/img/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
 
   
   
@@ -70,25 +70,25 @@
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/"><i class='fa fa-home fa-fw'></i>Home</a>
+          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
       
         </li>
       
@@ -227,9 +227,9 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/text-mining">text mining</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="/tags/text-mining">text mining</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/web-scraping">web scraping</a>
+      <a class="post-taxonomy-tag" href="/tags/web-scraping">web scraping</a>
     
   </div>
   
@@ -441,7 +441,7 @@ temp %&gt;%
            caption = &quot;Fonte: Mineração de texto aplicada em notícias do G1.&quot;) +
       facet_wrap(~documento, ncol = 2, scales = &quot;free&quot;) +
       coord_flip()</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2017-10-15-analise-g1-01_files/figure-html/unnamed-chunk-13-1.png" width="864" /></p>
+<p><img src="/post/2017-10-15-analise-g1-01_files/figure-html/unnamed-chunk-13-1.png" width="864" /></p>
 <p>Algumas observações sobre os resultados precisam ser feitas:<br />
 * No Rio de Janeiro, aparecem alguns termos meio estranhos como Envie e VC. Isso acontece porque, durante um período, no final das reportagens, o G1 escrevia algo como “Envie VC também uma reportagem para o G1RJ pelo Whatsapp ou pelo Viber”.<br />
 * Alguns nomes próprios se destacam, o que é natural, visto que Dória é prefeito de SP e Cabral um ex-governador do RJ. Em mineração de texto, esse tipo de dado é chamado de Entidade.</p>
@@ -478,7 +478,7 @@ temp %&gt;%
            caption = &quot;Fonte: Mineração de texto aplicada em notícias do G1.&quot;) +
       facet_wrap(~documento, ncol = 2, scales = &quot;free&quot;) +
       coord_flip()</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2017-10-15-analise-g1-01_files/figure-html/unnamed-chunk-15-1.png" width="864" /></p>
+<p><img src="/post/2017-10-15-analise-g1-01_files/figure-html/unnamed-chunk-15-1.png" width="864" /></p>
 <p>Agora é possível notar resultados mais interessantes: termos relacionados ao tráfico de drogas como <strong>tiroteio</strong>, <strong>rival</strong>, <strong>UPP</strong> e <strong>propinas</strong> possui uma frequência relativa muito maior em notícias sobre a cidade do Rio de Janeiro que na capital paulista. Por outro lado, notícias sobre <strong>estupro</strong> e <strong>abuso</strong> parecem ser mais comuns na terra onde biscoito é chamado de bolacha.</p>
 <p>Também é possível realizar essa mesma análise por expressões compostas por mais de uma palavra, que são os chamados n-grams, onde n é a quantidade de termos. Analisando os 2-grams:</p>
 <pre class="r"><code>temp &lt;- df_filtro %&gt;% 
@@ -505,7 +505,7 @@ temp %&gt;%
       labs(x = NULL, y = &quot;tf-idf&quot;) +
       facet_wrap(~documento, ncol = 2, scales = &quot;free&quot;) +
       coord_flip()</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2017-10-15-analise-g1-01_files/figure-html/unnamed-chunk-16-1.png" width="864" /></p>
+<p><img src="/post/2017-10-15-analise-g1-01_files/figure-html/unnamed-chunk-16-1.png" width="864" /></p>
 </div>
 <div id="e-sergipe" class="section level2">
 <h2>E Sergipe?</h2>
@@ -537,7 +537,7 @@ df_g1 %&gt;%
   mutate(documento = regiao) %&gt;% 
   filter(!is.na(documento)) %&gt;% 
   grafico_tfidf(n_grams = 1, remover_nomes_proprios = TRUE, agregar_por_noticia = TRUE)</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2017-10-15-analise-g1-01_files/figure-html/unnamed-chunk-18-1.png" width="864" /></p>
+<p><img src="/post/2017-10-15-analise-g1-01_files/figure-html/unnamed-chunk-18-1.png" width="864" /></p>
 <p>Mesmo agregando os dados por região, o desbalanceamento da quantidade de notícias por região prejudicou os resultados. Seria necessário coletar muito mais notícias para que os resultados fossem mais interessantes.</p>
 </div>
 <div id="bonus" class="section level2">
@@ -546,7 +546,7 @@ df_g1 %&gt;%
 <pre class="r"><code>df_g1 %&gt;% 
   filter(documento %in% c(&quot;politica&quot;, &quot;ciencia-e-saude&quot;)) %&gt;% 
   grafico_tfidf(n_grams = 1, remover_nomes_proprios = TRUE, agregar_por_noticia = TRUE)</code></pre>
-<p><img src="http://www.sillasgonzaga.com/post/2017-10-15-analise-g1-01_files/figure-html/unnamed-chunk-19-1.png" width="864" /></p>
+<p><img src="/post/2017-10-15-analise-g1-01_files/figure-html/unnamed-chunk-19-1.png" width="864" /></p>
 </div>
 
 
@@ -554,13 +554,13 @@ df_g1 %&gt;%
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="http://www.sillasgonzaga.com/post/o-sensacionalista-e-text-mining/"><i class="fa fa-chevron-left"></i></a>
+    <a href="/post/o-sensacionalista-e-text-mining/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="http://www.sillasgonzaga.com/post/o-sensacionalista-e-text-mining/">O Sensacionalista e Text Mining: Análise de sentimento usando o lexiconPT</a>
+      <a href="/post/o-sensacionalista-e-text-mining/">O Sensacionalista e Text Mining: Análise de sentimento usando o lexiconPT</a>
     </nav>
     
   </div>
@@ -570,13 +570,13 @@ df_g1 %&gt;%
   <div class="pure-u-10-24">
     
     <nav class="next">
-      <a href="http://www.sillasgonzaga.com/post/literaturabr-01/">Anunciando o lançamento de literaturaBR</a>
+      <a href="/post/literaturabr-01/">Anunciando o lançamento de literaturaBR</a>
     </nav>
     
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
     
-    <a href="http://www.sillasgonzaga.com/post/literaturabr-01/"><i class="fa fa-chevron-right"></i></a>
+    <a href="/post/literaturabr-01/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
@@ -607,7 +607,7 @@ df_g1 %&gt;%
 
 </div>
 </div>
-<script src="http://www.sillasgonzaga.com/js/ui.js"></script>
+<script src="/js/ui.js"></script>
 
 
 <script>
