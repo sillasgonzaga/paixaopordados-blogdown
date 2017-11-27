@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Data Visualization on Paixão por Dados</title>
-    <link>/tags/data-visualization/</link>
+    <link>http://www.sillasgonzaga.com/tags/data-visualization/</link>
     <description>Recent content in Data Visualization on Paixão por Dados</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
     <lastBuildDate>Sun, 26 Nov 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/data-visualization/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.sillasgonzaga.com/tags/data-visualization/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Sobre gráficos e a mensagem que eles querem transmitir</title>
-      <link>/post/sobre-graficos/</link>
+      <link>http://www.sillasgonzaga.com/post/sobre-graficos/</link>
       <pubDate>Sun, 26 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/sobre-graficos/</guid>
+      <guid>http://www.sillasgonzaga.com/post/sobre-graficos/</guid>
       <description>Recentemente, quando estava no trabalhando lendo uma revista de negócios sobre o varejo, me deparei com o seguinte gráfico:
 knitr::include_graphics(&amp;quot;https://i.imgur.com/f1dh4uw.jpg&amp;quot;) Mesmo sem contexto, é possível perceber que essa visualização foi criada para mostrar a divergência de opiniões sobre a importância dada a fatores de compra pelos executivos de varejo e pelos consumidores. Imediatamente, eu pensei que o jornalista perdeu uma ótima oportunidade de representar melhor a informação desejada.
 Primeiramente, a ordem dos fatores no gráfico não segue uma ordem clara.</description>

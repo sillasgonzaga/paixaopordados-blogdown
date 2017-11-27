@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Paixão por Dados</title>
-    <link>/</link>
+    <link>http://www.sillasgonzaga.com/</link>
     <description>Recent content on Paixão por Dados</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
     <lastBuildDate>Sun, 26 Nov 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.sillasgonzaga.com/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Sobre gráficos e a mensagem que eles querem transmitir</title>
-      <link>/post/sobre-graficos/</link>
+      <link>http://www.sillasgonzaga.com/post/sobre-graficos/</link>
       <pubDate>Sun, 26 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/sobre-graficos/</guid>
+      <guid>http://www.sillasgonzaga.com/post/sobre-graficos/</guid>
       <description>Recentemente, quando estava no trabalhando lendo uma revista de negócios sobre o varejo, me deparei com o seguinte gráfico:
 knitr::include_graphics(&amp;quot;https://i.imgur.com/f1dh4uw.jpg&amp;quot;) Mesmo sem contexto, é possível perceber que essa visualização foi criada para mostrar a divergência de opiniões sobre a importância dada a fatores de compra pelos executivos de varejo e pelos consumidores. Imediatamente, eu pensei que o jornalista perdeu uma ótima oportunidade de representar melhor a informação desejada.
 Primeiramente, a ordem dos fatores no gráfico não segue uma ordem clara.</description>
@@ -25,88 +25,88 @@ Primeiramente, a ordem dos fatores no gráfico não segue uma ordem clara.</desc
     
     <item>
       <title>Anunciando o lançamento de literaturaBR</title>
-      <link>/post/literaturabr-01/</link>
+      <link>http://www.sillasgonzaga.com/post/literaturabr-01/</link>
       <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/literaturabr-01/</guid>
+      <guid>http://www.sillasgonzaga.com/post/literaturabr-01/</guid>
       <description>Paixão por Dados de cara nova! O blog está de cara nova! O endereço antigo do blog começou a apresentar alguns bugs bem chatos, então tomei a decisão de finalmente migrar para uma nova plataforma, utilizando o pacote blogdown, a mesma que o pessoal do Curso-R usa no site deles. Para comemorar essa migração, anuncio o lançamento do meu terceiro pacote R: o literaturaBR.
  literaturaBR, o mais novo pacote da comunidade R Brasil Após lançar o pacote lexiconPT, senti que a carência de datasets textuais na língua portuguesa poderia restringir seu potencial de alcance de desenvolvedores e cientistas de dados interessados em usar os léxicos para fazer análise de sentimento.</description>
     </item>
     
     <item>
       <title>Mineração de textos em notícias de G1: O que diferencia notícias sobre Rio de Janeiro e São Paulo?</title>
-      <link>/post/analise-g1-01/</link>
+      <link>http://www.sillasgonzaga.com/post/analise-g1-01/</link>
       <pubDate>Sun, 15 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/analise-g1-01/</guid>
+      <guid>http://www.sillasgonzaga.com/post/analise-g1-01/</guid>
       <description>library(rvest) library(tidyverse) library(magrittr) library(stringr) library(Rfacebook) library(tidytext) library(tm) Motivação para o post Apesar de hoje em dia eu morar no Rio de Janeiro, morei e vivi (quase) a vida toda em Aracaju, a capital do menor estado do Brasil. Devido à irrelevância que a cidade tem (desculpa mas é verdade) no cenário político e econômico do país, era (e ainda é) muito raro ver qualquer notícia em um veículo de audiência nacional (como o Jornal Nacional ou a homepage do G1 ou Estadão) relacionada a Aracaju ou a Sergipe que não seja desgraça ou por um acontecimento inusitadamente ruim.</description>
     </item>
     
     <item>
       <title>O Sensacionalista e Text Mining: Análise de sentimento usando o lexiconPT</title>
-      <link>/post/o-sensacionalista-e-text-mining/</link>
+      <link>http://www.sillasgonzaga.com/post/o-sensacionalista-e-text-mining/</link>
       <pubDate>Sat, 23 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/o-sensacionalista-e-text-mining/</guid>
+      <guid>http://www.sillasgonzaga.com/post/o-sensacionalista-e-text-mining/</guid>
       <description>De volta à ativa no blog!
 Recentemente, quando precisei fazer pela primeira vez algum tipo de análise em cima de textos (o chamado Text Mining ou Mineração de Texto) em Português, senti falta de ter um acesso fácil a um léxico na linguagem. O R já tem a sua disposição vários recursos para quem quer fazer Text Mining em inglês, como os pacotes tokenizer, tidytext, tm e lexicon, além de vários blog posts sobre Sentiment Analysis que você encontra no R-bloggers.</description>
     </item>
     
     <item>
       <title>Slides da minha apresentação no SER 2017</title>
-      <link>/post/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/</link>
+      <link>http://www.sillasgonzaga.com/post/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/</link>
       <pubDate>Tue, 23 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/</guid>
+      <guid>http://www.sillasgonzaga.com/post/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/</guid>
       <description>Hoje (23/05), o Paixão por Dados esteve presente no II Seminário Internacional de Estatística com R, realizado na UFF, em Niterói. Com muito orgulho, pude falar de parte dos projetos que realizei com R, conquistas pessoais e profissionais que obtive como resultado pela minha dedicação à linguagem e ainda dicas para quem quer se aprofundar no R.
 Os slides da minha apresentação, entitulada Como o R pode despertar sua paixão por dados se encontram aqui.</description>
     </item>
     
     <item>
       <title>Blog Paixão por Dados estará no meetup 1º #AnalyticsEmTudo - Dados Abertos</title>
-      <link>/post/analytics-em-tudo/</link>
+      <link>http://www.sillasgonzaga.com/post/analytics-em-tudo/</link>
       <pubDate>Thu, 16 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/analytics-em-tudo/</guid>
+      <guid>http://www.sillasgonzaga.com/post/analytics-em-tudo/</guid>
       <description>Com muito orgulho, anuncio que o blog Paixão por Dados estará representado no primeiro meetup do grupo #AnalyticsEmTudo, no Rio de Janeiro, onde moro atualmente. Serei um dos três palestrantes do encontro. Falarei um pouco sobre os principais projetos que realizei usando o R, dando maior ênfase aos relacionados a Dados Abertos, que é o tema dessa edição.</description>
     </item>
     
     <item>
       <title>mafs: Analisando a eficácia dos modelos preditivos usados no pacote</title>
-      <link>/post/mafs02/</link>
+      <link>http://www.sillasgonzaga.com/post/mafs02/</link>
       <pubDate>Sun, 29 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/mafs02/</guid>
+      <guid>http://www.sillasgonzaga.com/post/mafs02/</guid>
       <description>Lancei recentemente a versão 0.0.2 do pacote mafs tanto no CRAN como no Github. Adicionei dois novos recursos:
 * No data frame df_models criado, foi acrescentada uma variável referente ao tempo de execução (runtime) do modelo para a série temporal de input. Isso foi uma necessidade devido ao fato de alguns modelos levarem muito tempo para rodar. Esse dado será importante para ser levado em consideração no segundo recurso adicionado:</description>
     </item>
     
     <item>
       <title>Anunciando a criação do rbloggers-BR: Seu novo feed de artigos sobre o R</title>
-      <link>/post/rbloggers/</link>
+      <link>http://www.sillasgonzaga.com/post/rbloggers/</link>
       <pubDate>Sat, 24 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/rbloggers/</guid>
+      <guid>http://www.sillasgonzaga.com/post/rbloggers/</guid>
       <description>É com grande orgulho que eu anuncio a concretização de um antigo projeto meu: a criação de um agregador de blogs brasileiros sobre o R, no estilo do R-Bloggers: O rbloggers-BR, um bot do twitter que a cada período de tempo posta as mais recentes publicações de blogs relacionados a linguagem R.
 Atualmente, o bot não consegue funcionar em tempo real e sim a cada x horas por meio de um agendador de tarefas (como o Task Scheduler do Windows).</description>
     </item>
     
     <item>
       <title>Como usar o R para escolher um lugar para morar (4) - Mapa interativo</title>
-      <link>/post/olx04/</link>
+      <link>http://www.sillasgonzaga.com/post/olx04/</link>
       <pubDate>Fri, 18 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/olx04/</guid>
+      <guid>http://www.sillasgonzaga.com/post/olx04/</guid>
       <description>No post anterior da série, mostrei como fazer um gráfico em um mapa a partir das coordenadas geográficas dos imóveis. Neste post, a grande sacada da série: um mapa interativo em que é possível visualizar diversas dimensões de cada um dos apartamentos, como o preço do aluguel, a proximidade em relação a um ponto de interesse, etc.
 Dessa vez, vou usar o data frame que contem todos os apartamentos listados no OLX que eu não mostrei (exatamente) como obter e nem posso compartilhar em respeito ao OLX.</description>
     </item>
     
     <item>
       <title>Como usar o R para escolher um lugar para morar (2) - Análise dos dados</title>
-      <link>/post/olx02/</link>
+      <link>http://www.sillasgonzaga.com/post/olx02/</link>
       <pubDate>Thu, 17 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/olx02/</guid>
+      <guid>http://www.sillasgonzaga.com/post/olx02/</guid>
       <description>No post anterior, mostramos como obter os dados de apartamentos para aluguel no Rio de Janeiro do site do OLX. Neste post, vamos analisar esses dados e ver se descobrimos algo interessante. Algumas das perguntas que podemos responder com os dados que temos são:
  Quais as principais diferenças entre os apartamentos nas cidades do Rio de Janeiro e Niterói?
  Quantos quartos os apartamentos têm em média?
@@ -115,50 +115,50 @@ Dessa vez, vou usar o data frame que contem todos os apartamentos listados no OL
     
     <item>
       <title>Como usar o R para escolher um lugar para morar (3) - Converter CEP em coordenadas geográficas</title>
-      <link>/post/olx03/</link>
+      <link>http://www.sillasgonzaga.com/post/olx03/</link>
       <pubDate>Thu, 17 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/olx03/</guid>
+      <guid>http://www.sillasgonzaga.com/post/olx03/</guid>
       <description>No primeiro e segundo post desta série, mostrei como obter dados de apartamentos para alugar a partir do site da OLX e analisá-los, mas ainda não temos a resposta definita para a pergunta que motivou esta série: Como o R pode ajudar a escolher um lugar para morar?
 Uma boa ideia seria plotar os imóveis em um mapa, não? No terceiro post da série, mostrarei como fazer isso, além de como extrair os CEPs dos imóveis (novamente por web scraping) e converter os CEPs para endereços, que serão usados para obter as coordenadas geográficas dos apartamentos.</description>
     </item>
     
     <item>
       <title>Como usar o R para escolher um lugar para morar(1) - Web Scraping e Data Cleaning</title>
-      <link>/post/olx01/</link>
+      <link>http://www.sillasgonzaga.com/post/olx01/</link>
       <pubDate>Thu, 17 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/olx01/</guid>
+      <guid>http://www.sillasgonzaga.com/post/olx01/</guid>
       <description>Introdução Imagine-se na seguinte situação: você foi convidado a se mudar para a cidade do Rio de Janeiro a trabalho e precisa procurar um lugar para morar. Pessoas normais resolveriam esse problema pesquisando preços de apartamentos ou quartos para alugar em sites como OLX ou AirBNB. Mas como alguém fascinado em programação e análise resolveria?
 Nesta série de posts, mostro como o R pode ser usado tomar a decisão sobre escolher um apartamento ou quarto para alugar.</description>
     </item>
     
     <item>
       <title>Meu primeiro pacote R: aplicação para série temporal do varejo</title>
-      <link>/post/mafs01/</link>
+      <link>http://www.sillasgonzaga.com/post/mafs01/</link>
       <pubDate>Thu, 27 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/mafs01/</guid>
+      <guid>http://www.sillasgonzaga.com/post/mafs01/</guid>
       <description>Depois de um longo hiato devido à falta de tempo, o blog está de volta à ativa.
 Um dos (muitos) motivos de minha ausência tem sido a elaboração do meu TCC, que é sobre previsão de demanda. Eu desenvolvi um sistema que seleciona automaticamente o melhor modelo de previsão dentre os disponíveis no pacote forecast para uma dada série temporal de acordo com a métrica de erro escolhida pelo usuário. O nome do pacote é mafs e já está disponível em meu Github para ser baixado e instalado gratuitamente.</description>
     </item>
     
     <item>
       <title>Censo da Educação Superior (2): Como plotar o movimento migratório universitário no Brasil em um mapa</title>
-      <link>/post/censo-da-educacao-superior-02/</link>
+      <link>http://www.sillasgonzaga.com/post/censo-da-educacao-superior-02/</link>
       <pubDate>Fri, 08 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/censo-da-educacao-superior-02/</guid>
+      <guid>http://www.sillasgonzaga.com/post/censo-da-educacao-superior-02/</guid>
       <description>No primeiro post sobre os microdados do Censo da Educação Superior, falei sobre as cidades e estados que mais atraem universitários de fora. Neste segundo post, discutirei mais a fundo este movimento migratório universitário, incluindo a elaboração de um rebusco mapa de fluxo migratório.
 library(stringr) library(tidyr) library(magrittr) library(dplyr) library(feather) library(maptools) library(maps) library(geosphere) library(knitr)  Importação dos dados Para plotar em um mapa os universitários que estudam em uma cidade diferente da que nasceram, precisamos de dois tipos de dados: - Dados espaciais dos municípios brasileiros;</description>
     </item>
     
     <item>
       <title>Clusterização no R: Como segmentar países de acordo com indicadores econômicos</title>
-      <link>/post/clusterizacao-r-paises/</link>
+      <link>http://www.sillasgonzaga.com/post/clusterizacao-r-paises/</link>
       <pubDate>Tue, 28 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/clusterizacao-r-paises/</guid>
+      <guid>http://www.sillasgonzaga.com/post/clusterizacao-r-paises/</guid>
       <description>Neste post, eu mostro como:
 - Baixar dados de indicadores macroecômicos de todos os países usando a API do World Bank;
 - Clusterizar países de acordo com esses indicadores usando o algoritmo k-means;
@@ -168,20 +168,20 @@ library(WDI) # baixar os dados do World Bank library(magrittr) library(formattab
     
     <item>
       <title>Censo da Educação Superior (1) - Quais são as cidades mais universitárias do Brasil?</title>
-      <link>/post/censo-da-educacao-superior-01/</link>
+      <link>http://www.sillasgonzaga.com/post/censo-da-educacao-superior-01/</link>
       <pubDate>Tue, 07 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/censo-da-educacao-superior-01/</guid>
+      <guid>http://www.sillasgonzaga.com/post/censo-da-educacao-superior-01/</guid>
       <description>Recentemente, discuti com um amigo meu que afirmou que Aracaju, cidade onde moramos, é uma capital universitária - ou seja, uma cidade que atrai muitos estudantes de fora -, que eu não acredito que seja verdade. Mas não há melhor maneira de responder a isso senão com análise de dados, não é mesmo?
 library(data.table) library(dplyr) library(magrittr) library(gdata) library(feather) library(ggplot2) library(ggthemes) library(stringr) library(tidyr) library(microbenchmark) library(gridExtra) library(scales) library(cowplot) library(gtable) library(grid) library(ggrepel) setwd(&amp;quot;/home/sillas/R/Projetos/CensoEducSuperior/Dados&amp;quot;)  Introdução Os dados que podem tirar essa dúvida, além de trazer a luz muitas outras informações interessantes, são os microdados do Censo da Educação Superior, disponibilizados pelo Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira, o Inep.</description>
     </item>
     
     <item>
       <title>Meta-análise R (2): Analisando Pacotes R como indivíduos em uma rede social</title>
-      <link>/post/meta-analise-r-02/</link>
+      <link>http://www.sillasgonzaga.com/post/meta-analise-r-02/</link>
       <pubDate>Mon, 30 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/meta-analise-r-02/</guid>
+      <guid>http://www.sillasgonzaga.com/post/meta-analise-r-02/</guid>
       <description>O objetivo deste segundo post da série sobre meta-análise de pacotes R é testar a utilização de diferentes pacotes voltados para a análise de redes sociais (SNA). Existem dezenas de opções disponíveis para se fazer esta análise e os usados neste post são:
 Da Wikipedia:
  As Redes Sociais consistem em estruturas que representam pessoas ou organizações (atores) e as relações entre si. A Análise de Redes Sociais perceciona as relações sociais em termos da Teoria de Redes.</description>
@@ -189,10 +189,10 @@ Da Wikipedia:
     
     <item>
       <title>Meta-análise R (1): Quais são os pacotes mais baixados?</title>
-      <link>/post/meta-analise-r-01/</link>
+      <link>http://www.sillasgonzaga.com/post/meta-analise-r-01/</link>
       <pubDate>Wed, 25 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/meta-analise-r-01/</guid>
+      <guid>http://www.sillasgonzaga.com/post/meta-analise-r-01/</guid>
       <description>Este é o primeiro post de uma nova série sobre meta-análises de pacotes R. Com o pacote miniCRAN é possível baixar logs de downloads de pacotes de R por meio do espelho (mirror) do RStudio do CRAN. Cada linha nesses logs representa um download de um pacote por um usuário.
 O objetivo desta série é analisar os dados gerados por esses logs.
 Para este primeiro post, é mostrado:
@@ -201,20 +201,20 @@ Para este primeiro post, é mostrado:
     
     <item>
       <title>Transparência (7): Os famosos Cargos Comissionados</title>
-      <link>/post/transparencia-07/</link>
+      <link>http://www.sillasgonzaga.com/post/transparencia-07/</link>
       <pubDate>Wed, 03 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/transparencia-07/</guid>
+      <guid>http://www.sillasgonzaga.com/post/transparencia-07/</guid>
       <description>Transparência (7): Os famosos Cargos Comissionados No quarto post da minha série sobre dados do Portal da Transparência, eu introduzi um tema interessante a ser olhado a fundo: os servidores cujo vínculo com o Estado é descrito como cargo comissionado. Vimos que, no Ceará, o salário médio de um servidor é muito alto. E nos outros estados?
 library(ggplot2) library(dplyr) library(ggthemes) library(ggrepel) library(reshape2) df &amp;lt;- read.csv2(&amp;quot;/home/sillas/R/data/transparenciaComSalarios.csv&amp;quot;, stringsAsFactors = FALSE, fileEncoding = &amp;quot;ISO-8859-15&amp;quot;) cor1 &amp;lt;- &amp;quot;#C10534&amp;quot; #cor das barras  Para começar, quais são os 10 tipos de vínculo mais comuns?</description>
     </item>
     
     <item>
       <title>Transparência (6): Quem são os 1% do funcionalismo público?</title>
-      <link>/post/transparencia-06/</link>
+      <link>http://www.sillasgonzaga.com/post/transparencia-06/</link>
       <pubDate>Sun, 24 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/transparencia-06/</guid>
+      <guid>http://www.sillasgonzaga.com/post/transparencia-06/</guid>
       <description>Transparência (6): Quem são os 1% mais ricos do funcionalismo público? Para quem não entendeu a referência.
 library(ggplot2) library(dplyr) library(reshape2) library(lubridate) library(htmlTable) df &amp;lt;- read.csv2(&amp;quot;/home/sillas/R/data/transparenciaComSalarios.csv&amp;quot;, stringsAsFactors = FALSE, fileEncoding = &amp;quot;ISO-8859-15&amp;quot;)  Você já teve curiosidade em saber quem são os funcionários públicos mais ricos do Brasil? O sexto post da série de artigos sobre dados do Portal da Transparência será dedicado a eles.
 Primeiramente, quantos servidores compõem o 1%?</description>
@@ -222,10 +222,10 @@ Primeiramente, quantos servidores compõem o 1%?</description>
     
     <item>
       <title>Transparência (5): Trabalhando com datas</title>
-      <link>/post/transparencia-05/</link>
+      <link>http://www.sillasgonzaga.com/post/transparencia-05/</link>
       <pubDate>Mon, 18 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/transparencia-05/</guid>
+      <guid>http://www.sillasgonzaga.com/post/transparencia-05/</guid>
       <description>Transparência (5): Trabalhando com datas O dataset do Portal da Transparência traz três colunas relacionadas com datas: DATA_INGRESSO_CARGOFUNCAO, DATA_INGRESSO_ORGAO e DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO, as quais geram umas análises curiosas, principalmente se relacionadas com a variável salário.
 library(treemap) library(dplyr) library(ggplot2) library(ggrepel) library(ggthemes) library(lubridate) df &amp;lt;- read.csv2(&amp;quot;/home/sillas/R/data/transparenciaComSalarios.csv&amp;quot;, stringsAsFactors = FALSE, fileEncoding = &amp;quot;ISO-8859-15&amp;quot;)  Primeiro, as datas vêm neste formato:
 df %&amp;gt;% select(DATA_INGRESSO_CARGOFUNCAO, DATA_INGRESSO_ORGAO, DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO) %&amp;gt;% head()  ## DATA_INGRESSO_CARGOFUNCAO DATA_INGRESSO_ORGAO ## 1 01/07/2006 01/01/1984 ## 2 22/10/2014 20/10/2014 ## 3 &amp;lt;NA&amp;gt; 01/08/2015 ## 4 30/11/2014 03/09/2014 ## 5 19/05/2010 19/05/2010 ## 6 02/02/2009 30/12/2008 ## DATA_DIPLOMA_INGRESSO_SERVICOPUBLICO ## 1 01/06/1984 ## 2 17/02/2010 ## 3 01/08/2015 ## 4 28/06/2006 ## 5 19/05/2010 ## 6 30/12/2008  O R, nativamente, não reconhece este formato como data e sim como texto.</description>
@@ -233,10 +233,10 @@ df %&amp;gt;% select(DATA_INGRESSO_CARGOFUNCAO, DATA_INGRESSO_ORGAO, DATA_DIPLOM
     
     <item>
       <title>Transparência(4): Análise de salários usando Treemaps</title>
-      <link>/post/transparencia-04/</link>
+      <link>http://www.sillasgonzaga.com/post/transparencia-04/</link>
       <pubDate>Sun, 17 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/transparencia-04/</guid>
+      <guid>http://www.sillasgonzaga.com/post/transparencia-04/</guid>
       <description>Transparência(4): Análise de salários usando Treemaps library(treemap) library(dplyr) library(ggplot2) library(ggrepel) library(ggthemes) df &amp;lt;- read.csv2(&amp;quot;/home/sillas/R/data/transparenciaComSalarios.csv&amp;quot;, stringsAsFactors = FALSE, fileEncoding = &amp;quot;ISO-8859-15&amp;quot;)  Para este post, continuaremos analisando os salários dos servidores federais, mas agora usando uma visualização chamada Treemap ou Mapa de árvores.
 Por exemplo, o gráfico abaixo compara diferentes órgãos públicos de acordo com a quantidade de servidores e o salário médio dos mesmos.
 aggSetor &amp;lt;-df %&amp;gt;% group_by(ORG_LOTACAO) %&amp;gt;% summarise(quantidade = n(), salarioMedio = median(SALARIO)) aggSetor$escala &amp;lt;- scale(aggSetor$salarioMedio) #necessário para criar valores negativos para deixar as disparidades mais evidentes x &amp;lt;- treemap(aggSetor, index = &amp;quot;ORG_LOTACAO&amp;quot;, vSize = &amp;quot;quantidade&amp;quot;, vColor = &amp;quot;escala&amp;quot;, type = &amp;quot;value&amp;quot;, palette = &amp;quot;-RdGy&amp;quot;, lowerbound.</description>
@@ -244,20 +244,20 @@ aggSetor &amp;lt;-df %&amp;gt;% group_by(ORG_LOTACAO) %&amp;gt;% summarise(quant
     
     <item>
       <title>Transparência (3): Em quais estados os salários são mais mal distribuídos?</title>
-      <link>/post/transparencia-03/</link>
+      <link>http://www.sillasgonzaga.com/post/transparencia-03/</link>
       <pubDate>Mon, 11 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/transparencia-03/</guid>
+      <guid>http://www.sillasgonzaga.com/post/transparencia-03/</guid>
       <description>library(ggplot) library(ggrepel) library(ggthemes) library(dplyr)  Aviso Este post funciona como um adendo ao anterior, portanto recomendo o ler antes de prosseguir com a leitura.
 Assim que eu publiquei o último post, percebi que perdi a oportunidade de analisar o quão diferente são as distribuições dos salários nos estados brasileiros e não só nas regiões. Voltando ao nosso dataset, que dessa vez carrego apenas as colunas de salários e UFs:</description>
     </item>
     
     <item>
       <title>Transparência (2): Qual o salário médio dos servidores federais?</title>
-      <link>/post/transparencia-2-qual-o-sal%C3%A1rio-m%C3%A9dio-dos-servidores-federais/</link>
+      <link>http://www.sillasgonzaga.com/post/transparencia-2-qual-o-sal%C3%A1rio-m%C3%A9dio-dos-servidores-federais/</link>
       <pubDate>Sun, 10 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/transparencia-2-qual-o-sal%C3%A1rio-m%C3%A9dio-dos-servidores-federais/</guid>
+      <guid>http://www.sillasgonzaga.com/post/transparencia-2-qual-o-sal%C3%A1rio-m%C3%A9dio-dos-servidores-federais/</guid>
       <description>Transparência (2): Qual o salário médio dos servidores federais? Este é o segundo post da série de artigos sobre dados do Portal Transparência relativos a de servidores federais. Agora, o foco são os salários.
 Outra pequena mudança é que, para os gráficos deste post, ao invés de usar o tema theme_economist(), usarei o theme_wsj(), também incluso no package ggthemes.
 library(ggplot2) library(stringr) library(ggthemes) library(dplyr) library(ggrepel)  Por alguma razão além do meu entendimento, o Portal da Transparência arquiva os dados de salários em um arquivo separado do principal.</description>
@@ -265,29 +265,29 @@ library(ggplot2) library(stringr) library(ggthemes) library(dplyr) library(ggrep
     
     <item>
       <title>Transparência (1): Qual estado brasileiro tem o maior número de servidores federais?</title>
-      <link>/post/transparencia-01/</link>
+      <link>http://www.sillasgonzaga.com/post/transparencia-01/</link>
       <pubDate>Sun, 15 Nov 2015 00:00:00 +0000</pubDate>
       
-      <guid>/post/transparencia-01/</guid>
+      <guid>http://www.sillasgonzaga.com/post/transparencia-01/</guid>
       <description>Transparência (1): Qual estado brasileiro tem o maior número de servidores federais? 1 - Introdução Alguns dos datasets brasileiros mais interessantes podem ser encontrados no Portal da Transparência, no qual é possível obter dados sobre:
  gastos diretos do Governo Federal (desde 2004 - exceto Cartão de Pagamentos - desde 2002) transferências de recursos a Estados e Municípios (desde 2004) convênios com pessoas físicas, jurídicas ou entes governamentais (desde 1996) previsão e arrecadação de receitas (desde 2009) servidores do Governo Federal.</description>
     </item>
     
     <item>
       <title>Correlação entre o dólar e ações de empresas do Índice Bovespa</title>
-      <link>/post/2015-11-07-dolar-indice-bovespa/</link>
+      <link>http://www.sillasgonzaga.com/post/2015-11-07-dolar-indice-bovespa/</link>
       <pubDate>Sat, 07 Nov 2015 00:00:00 +0000</pubDate>
       
-      <guid>/post/2015-11-07-dolar-indice-bovespa/</guid>
+      <guid>http://www.sillasgonzaga.com/post/2015-11-07-dolar-indice-bovespa/</guid>
       <description>Introdução Este projeto surgiu de uma situação que eu estou lidando no momento: digamos que você deseja investir dinheiro para fazer uma viagem internacional durante suas férias daqui a 5 anos. Como os gastos da viagem serão indexados pelo dólar, não basta apenas escolher um bom investimento como títulos do tesouro ou outras modalidades de renda fixa. Por mais que os rendimentos deles possam apresentar enormes vantagens para seus investidores, eles precisam ser maiores que a valorização do dólar, caso contrário você correrá o risco de chegar no fim desse período de 5 anos sem o dinheiro necessário para realizar seu sonho.</description>
     </item>
     
     <item>
       <title>Hello R Markdown</title>
-      <link>/post/2015-07-23-r-rmarkdown/</link>
+      <link>http://www.sillasgonzaga.com/post/2015-07-23-r-rmarkdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>/post/2015-07-23-r-rmarkdown/</guid>
+      <guid>http://www.sillasgonzaga.com/post/2015-07-23-r-rmarkdown/</guid>
       <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
 You can embed an R code chunk like this:
 summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
@@ -295,10 +295,10 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
     
     <item>
       <title>About</title>
-      <link>/about/</link>
+      <link>http://www.sillasgonzaga.com/about/</link>
       <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>/about/</guid>
+      <guid>http://www.sillasgonzaga.com/about/</guid>
       <description>Sobre mim Formação  Graduação em Engenharia de Produção, pela Universidade Federal de Sergipe (03/2011 a 11/ 2016);
  Intercâmbio acadêmico na KAIST, Coreia do Sul, pelo programa Ciência sem Fronteiras (08/2013 - 08/2014);
   Descrição Engenheiro de produção de formação, venho me especializando em programação voltada a Data Science, Machine Learning e Business Intelligence. Atualmente sou Analista Senior de Planejamento e Soluções Analíticas da Casa e Vídeo e contribuidor do Instituto Brasileiro de Pesquisa e Análise de Dados, o IBPAD.</description>
@@ -306,10 +306,10 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
     
     <item>
       <title>Contato</title>
-      <link>/contact/</link>
+      <link>http://www.sillasgonzaga.com/contact/</link>
       <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>/contact/</guid>
+      <guid>http://www.sillasgonzaga.com/contact/</guid>
       <description>Você pode entrar em contato comigo pelo meu email ou pelas minhas redes sociais listadas no menu lateral.</description>
     </item>
     

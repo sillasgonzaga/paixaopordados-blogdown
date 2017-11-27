@@ -21,13 +21,13 @@
   <!--<![endif]-->
 
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu-old-ie.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="/css/side-menu.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu.css">
   <!--<![endif]-->
 
-  <link rel="stylesheet" href="/css/blackburn.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/blackburn.css">
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,7 +45,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
   
 
-  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="http://www.sillasgonzaga.com/img/favicon.ico" type="image/x-icon" />
 
   
   
@@ -70,25 +70,25 @@
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/"><i class='fa fa-home fa-fw'></i>Home</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
       
         </li>
       
@@ -227,9 +227,9 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="/tags/series-temporais">series temporais</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/series-temporais">series temporais</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="/tags/mafs">mafs</a>
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/mafs">mafs</a>
     
   </div>
   
@@ -280,7 +280,7 @@ lapply(data_fpp, class) %&gt;% unlist</code></pre>
 ##           1           1           1          12           1</code></pre>
 <pre class="r"><code># fazer um gráfico
 lapply(data_fpp, frequency) %&gt;% unlist %&gt;% table %&gt;% barplot()</code></pre>
-<p><img src="/post/2017-01-29-mafs02_files/figure-html/unnamed-chunk-3-1.png" width="864" /> Temos então 8 séries anuais (frequência 1), 4 trimestrais e 5 mensais. Esse será um bom teste para o pacote <code>mafs</code>.</p>
+<p><img src="http://www.sillasgonzaga.com/post/2017-01-29-mafs02_files/figure-html/unnamed-chunk-3-1.png" width="864" /> Temos então 8 séries anuais (frequência 1), 4 trimestrais e 5 mensais. Esse será um bom teste para o pacote <code>mafs</code>.</p>
 </div>
 <div id="modelagem" class="section level1">
 <h1>Modelagem</h1>
@@ -333,7 +333,7 @@ saveRDS(df_results, &quot;/home/sillas/R/data/2017-01-29-mafs02.Rds&quot;)</code
   geom_boxplot() +
   labs(x = NULL, y = &quot;Tempo de execução (s)&quot;) +
   coord_flip()</code></pre>
-<p><img src="/post/2017-01-29-mafs02_files/figure-html/unnamed-chunk-7-1.png" width="864" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2017-01-29-mafs02_files/figure-html/unnamed-chunk-7-1.png" width="864" /></p>
 <p>Percebe-se que os modelos <code>tbats()</code> e <code>bats()</code> são os mais computacionalmente custosos. Os mais rápidos são, sem surpresas, os modelos de previsão simples, como o da média simples e o modelo ingênuo.</p>
 <p>Agora, um gráfico da acurácia dos modelos de acordo com a métrica MAPE:</p>
 <pre class="r"><code>ggplot(df_results, aes(x = reorder(model, -MAPE, FUN = median),
@@ -341,7 +341,7 @@ saveRDS(df_results, &quot;/home/sillas/R/data/2017-01-29-mafs02.Rds&quot;)</code
   geom_boxplot() +
   labs(x = NULL, y = &quot;MAPE (%)&quot;) +
   coord_flip()</code></pre>
-<p><img src="/post/2017-01-29-mafs02_files/figure-html/unnamed-chunk-8-1.png" width="864" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2017-01-29-mafs02_files/figure-html/unnamed-chunk-8-1.png" width="864" /></p>
 <p>Alguns modelos apresentaram outliers, o que distorceu o boxplot. Visto que esse gráfico não serviu para muita coisa, é melhor resumir a acurácia por meio da mediana simples do MAPE:</p>
 <pre class="r"><code># calcular a mediana do MAPE para cada modelo
 df_results %&gt;%
@@ -352,13 +352,13 @@ df_results %&gt;%
     labs(x = NULL, y = &quot;MAPE mediano&quot;) +
     coord_flip() +
     theme_bw()</code></pre>
-<p><img src="/post/2017-01-29-mafs02_files/figure-html/unnamed-chunk-9-1.png" width="864" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2017-01-29-mafs02_files/figure-html/unnamed-chunk-9-1.png" width="864" /></p>
 <p>Vê-se que os modelos que obtiveram os melhores resultados foram os modelos <code>stlm()</code>, seja por arima ou por ets. Não vou entrar em detalhes estatísticos sobre o porquê desse resultado para não fugir do escopo do post.</p>
 <p>Vamos então analisar a relação entre tempo de execução e eficácia dos modelos por meio de um gráfico de pontos.</p>
 <pre class="r"><code>ggplot(df_results, aes(x = runtime_model, y = MAPE)) + 
   geom_point() +
   theme_bw()</code></pre>
-<p><img src="/post/2017-01-29-mafs02_files/figure-html/unnamed-chunk-10-1.png" width="864" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2017-01-29-mafs02_files/figure-html/unnamed-chunk-10-1.png" width="864" /></p>
 <p>É difícil visualizar alguma relação muito clara nesse gráfico. Ao invés de plotar todos os data points, vamos resumir os dados pela mediana do MAPE e do runtime para cada modelo.</p>
 <pre class="r"><code>df_results %&gt;%
   group_by(model) %&gt;%
@@ -370,7 +370,7 @@ df_results %&gt;%
          x = &quot;MAPE mediano (%)&quot;) +
     geom_text_repel(aes(label = model)) +
     theme_bw()</code></pre>
-<p><img src="/post/2017-01-29-mafs02_files/figure-html/unnamed-chunk-11-1.png" width="864" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2017-01-29-mafs02_files/figure-html/unnamed-chunk-11-1.png" width="864" /></p>
 <p>Novamente, não é possível determinar que a acurácia do modelo influencia o seu tempo de execução.</p>
 </div>
 <div id="analise-da-influencia-da-frequencia-da-serie" class="section level1">
@@ -399,7 +399,7 @@ names(data_fpp)</code></pre>
 df_results %&gt;%
   filter(runtime_model &lt;= quantile(runtime_model, 0.90)) %&gt;%
   ggplot(aes(x = runtime_model, color = frequencia)) + geom_density()</code></pre>
-<p><img src="/post/2017-01-29-mafs02_files/figure-html/unnamed-chunk-13-1.png" width="864" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2017-01-29-mafs02_files/figure-html/unnamed-chunk-13-1.png" width="864" /></p>
 <p>É difícil tirar qualquer tipo de conclusão a partir do gráfico acima. Dá para afirmar que a probabilidade de um modelo ter um runtime muito curto (de até 0,25 segundos) é menor para séries mensais e trimestrais do que para mensais.</p>
 <p>Um teste estatístico que pode ser usado para mensura essa relação é o ANOVA e o teste de Tukey:</p>
 <pre class="r"><code>anova.fit &lt;- aov(runtime_model ~ frequencia, data = df_results)
@@ -429,7 +429,7 @@ anova.fit %&gt;% TukeyHSD()</code></pre>
 <pre class="r"><code>df_results %&gt;%
   filter(MAPE &lt;= quantile(MAPE, 0.90)) %&gt;%
   ggplot(aes(x = MAPE, color = frequencia)) + geom_density()</code></pre>
-<p><img src="/post/2017-01-29-mafs02_files/figure-html/unnamed-chunk-15-1.png" width="864" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2017-01-29-mafs02_files/figure-html/unnamed-chunk-15-1.png" width="864" /></p>
 <pre class="r"><code>anova.fit &lt;- aov(MAPE ~ frequencia, data = df_results)
 summary(anova.fit)</code></pre>
 <pre><code>##              Df   Sum Sq Mean Sq F value   Pr(&gt;F)    
@@ -461,13 +461,13 @@ anova.fit %&gt;% TukeyHSD()</code></pre>
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="/post/rbloggers/"><i class="fa fa-chevron-left"></i></a>
+    <a href="http://www.sillasgonzaga.com/post/rbloggers/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="/post/rbloggers/">Anunciando a criação do rbloggers-BR: Seu novo feed de artigos sobre o R</a>
+      <a href="http://www.sillasgonzaga.com/post/rbloggers/">Anunciando a criação do rbloggers-BR: Seu novo feed de artigos sobre o R</a>
     </nav>
     
   </div>
@@ -477,13 +477,13 @@ anova.fit %&gt;% TukeyHSD()</code></pre>
   <div class="pure-u-10-24">
     
     <nav class="next">
-      <a href="/post/analytics-em-tudo/">Blog Paixão por Dados estará no meetup 1º #AnalyticsEmTudo - Dados Abertos</a>
+      <a href="http://www.sillasgonzaga.com/post/analytics-em-tudo/">Blog Paixão por Dados estará no meetup 1º #AnalyticsEmTudo - Dados Abertos</a>
     </nav>
     
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
     
-    <a href="/post/analytics-em-tudo/"><i class="fa fa-chevron-right"></i></a>
+    <a href="http://www.sillasgonzaga.com/post/analytics-em-tudo/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
@@ -514,7 +514,7 @@ anova.fit %&gt;% TukeyHSD()</code></pre>
 
 </div>
 </div>
-<script src="/js/ui.js"></script>
+<script src="http://www.sillasgonzaga.com/js/ui.js"></script>
 
 
 <script>

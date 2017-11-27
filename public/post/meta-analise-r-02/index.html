@@ -21,13 +21,13 @@
   <!--<![endif]-->
 
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu-old-ie.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="/css/side-menu.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu.css">
   <!--<![endif]-->
 
-  <link rel="stylesheet" href="/css/blackburn.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/blackburn.css">
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,7 +45,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
   
 
-  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="http://www.sillasgonzaga.com/img/favicon.ico" type="image/x-icon" />
 
   
   
@@ -70,25 +70,25 @@
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/"><i class='fa fa-home fa-fw'></i>Home</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
       
         </li>
       
@@ -227,7 +227,7 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="/tags/sna">sna</a>
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/sna">sna</a>
     
   </div>
   
@@ -235,15 +235,15 @@
 
 </div>
 
-  <script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
-<link href="/rmarkdown-libs/vis/vis.css" rel="stylesheet" />
-<script src="/rmarkdown-libs/vis/vis.min.js"></script>
-<script src="/rmarkdown-libs/visNetwork-binding/visNetwork.js"></script>
-<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
-<script src="/rmarkdown-libs/datatables-binding/datatables.js"></script>
-<link href="/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js"></script>
+  <script src="http://www.sillasgonzaga.com/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="http://www.sillasgonzaga.com/rmarkdown-libs/vis/vis.css" rel="stylesheet" />
+<script src="http://www.sillasgonzaga.com/rmarkdown-libs/vis/vis.min.js"></script>
+<script src="http://www.sillasgonzaga.com/rmarkdown-libs/visNetwork-binding/visNetwork.js"></script>
+<script src="http://www.sillasgonzaga.com/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="http://www.sillasgonzaga.com/rmarkdown-libs/datatables-binding/datatables.js"></script>
+<link href="http://www.sillasgonzaga.com/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="http://www.sillasgonzaga.com/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="http://www.sillasgonzaga.com/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js"></script>
 
 
 <p>O objetivo deste segundo post da série sobre meta-análise de pacotes R é testar a utilização de diferentes pacotes voltados para a análise de redes sociais (SNA). Existem dezenas de opções disponíveis para se fazer esta análise e os usados neste post são:</p>
@@ -281,9 +281,9 @@ df_pkgs %&lt;&gt;% top_n(50, wt = downloads)
 <pre class="r"><code>g &lt;- makeDepGraph(list_pkgs, suggests = FALSE)
 
 plot(g, main = &quot;&quot;)</code></pre>
-<p><img src="/post/2016-05-30-meta-analise-r-02_files/figure-html/ler%20df_pkgs-1.png" width="672" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2016-05-30-meta-analise-r-02_files/figure-html/ler%20df_pkgs-1.png" width="672" /></p>
 <pre class="r"><code>plot.igraph(g, vertex.size=10, layout = layout_with_fr(g)) </code></pre>
-<p><img src="/post/2016-05-30-meta-analise-r-02_files/figure-html/ler%20df_pkgs-2.png" width="672" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2016-05-30-meta-analise-r-02_files/figure-html/ler%20df_pkgs-2.png" width="672" /></p>
 <p>O número de pacotes selecionados para a análise dificultou a leitura da visualização do grafo, mas servirá para analisar diferentes métricas associadas à ARS.</p>
 <p>Como homenagem ao Hadley Wickham, os pacotes pertencentes ao Hadleyverse (lista de pacotes R criados ou que tiveram contribuição de Wickham) serão destacados no grafo. O código abaixo foi tirado deste <a href="http://adolfoalvarez.cl/the-hitchhikers-guide-to-the-hadleyverse/">ótimo artigo</a> sobre o Hadleyverse.</p>
 <pre class="r"><code># baixar lista de pacotes disponíveis no CRAN
@@ -353,13 +353,13 @@ datatable(df_sna)</code></pre>
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="/post/meta-analise-r-01/"><i class="fa fa-chevron-left"></i></a>
+    <a href="http://www.sillasgonzaga.com/post/meta-analise-r-01/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="/post/meta-analise-r-01/">Meta-análise R (1): Quais são os pacotes mais baixados?</a>
+      <a href="http://www.sillasgonzaga.com/post/meta-analise-r-01/">Meta-análise R (1): Quais são os pacotes mais baixados?</a>
     </nav>
     
   </div>
@@ -369,13 +369,13 @@ datatable(df_sna)</code></pre>
   <div class="pure-u-10-24">
     
     <nav class="next">
-      <a href="/post/censo-da-educacao-superior-01/">Censo da Educação Superior (1) - Quais são as cidades mais universitárias do Brasil?</a>
+      <a href="http://www.sillasgonzaga.com/post/censo-da-educacao-superior-01/">Censo da Educação Superior (1) - Quais são as cidades mais universitárias do Brasil?</a>
     </nav>
     
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
     
-    <a href="/post/censo-da-educacao-superior-01/"><i class="fa fa-chevron-right"></i></a>
+    <a href="http://www.sillasgonzaga.com/post/censo-da-educacao-superior-01/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
@@ -406,7 +406,7 @@ datatable(df_sna)</code></pre>
 
 </div>
 </div>
-<script src="/js/ui.js"></script>
+<script src="http://www.sillasgonzaga.com/js/ui.js"></script>
 
 
 <script>

@@ -105,7 +105,7 @@ Para isso, vamos criar uma coluna onde o valor do `alpha` do segmento, que corre
 ```{r}
 # criar coluna para identificar quem da mais importancia ao fator
 df <- df %>% 
-  mutate(alpha_segmento = if_else(Executivos - Consumidores > 0, 0.5, 1))
+  mutate(alpha_segmento = if_else(Executivos - Consumidores > 0, 0.2, 1))
 
 
 ```

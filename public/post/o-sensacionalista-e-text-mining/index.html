@@ -21,13 +21,13 @@
   <!--<![endif]-->
 
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu-old-ie.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="/css/side-menu.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/side-menu.css">
   <!--<![endif]-->
 
-  <link rel="stylesheet" href="/css/blackburn.css">
+  <link rel="stylesheet" href="http://www.sillasgonzaga.com/css/blackburn.css">
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,7 +45,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
   
 
-  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="http://www.sillasgonzaga.com/img/favicon.ico" type="image/x-icon" />
 
   
   
@@ -70,25 +70,25 @@
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/"><i class='fa fa-home fa-fw'></i>Home</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+          <a class="pure-menu-link" href="http://www.sillasgonzaga.com/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
       
         </li>
       
@@ -227,9 +227,9 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="/tags/text-mining">text mining</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/text-mining">text mining</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="/tags/lexiconpt">lexiconPT</a>
+      <a class="post-taxonomy-tag" href="http://www.sillasgonzaga.com/tags/lexiconpt">lexiconPT</a>
     
   </div>
   
@@ -489,7 +489,7 @@ head(df_comments_unnested)</code></pre>
     #geom_smooth(method = &quot;lm&quot;) +
     geom_vline(xintercept = 0, linetype = &quot;dashed&quot;) +
     geom_hline(yintercept = 0, linetype = &quot;dashed&quot;)</code></pre>
-<p><img src="/post/2017-09-23-o-sensacionalista-e-text-mining-analise-de-sentimento-usando-o-lexiconpt_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2017-09-23-o-sensacionalista-e-text-mining-analise-de-sentimento-usando-o-lexiconpt_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>Existem pelo menos três outliers nos dados, todos causados pela grande quantidade de palavras do comentário, o que pode ser um indício de que simplesmente somar a polaridade de cada palavra do comentário pode não ser um bom método. Outra informação revelada pelo gráfico é que existem palavras que possuem sentimentos diferentes de acordo com o léxico usado. Ter isso em mente é fundamental para a análise.</p>
 <p>Após remover os outliers, já é possível descobrir quais os comentários mais positivos e mais negativos da amostra coletada:</p>
 <pre class="r"><code>df_comments_unnested %&lt;&gt;% filter(between(comment_sentiment_op, -10, 10))
@@ -661,7 +661,7 @@ head(df_comments_wide) %&gt;% knitr::kable()</code></pre>
     scale_y_continuous(breaks = seq(-60, 60, 20), limits = c(-60, 60)) +
     labs(x = &quot;Índice da publicação&quot;, y = &quot;Sentimento&quot;,
          fill = NULL, title = &quot;Evolução do sentimento em publicações do Sensacionalista&quot;)</code></pre>
-<p><img src="/post/2017-09-23-o-sensacionalista-e-text-mining-analise-de-sentimento-usando-o-lexiconpt_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2017-09-23-o-sensacionalista-e-text-mining-analise-de-sentimento-usando-o-lexiconpt_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>Uma possível interpretação do gráfico é que a série temporal não possui uma clara tendência, apesar de os picos de negatividade serem bem mais frequentes que os de positividade.</p>
 <p>Outra análise que dá para fazer é investigar o nível de sentimento de comentários associados a determinadas palavras. Por exemplo, o quão negativo costuma ser um comentário quando ele menciona a palavra <strong>bolsonaro</strong>?</p>
 <pre class="r"><code># qual o sentimento mais associado a palavras em especifico
@@ -683,7 +683,7 @@ df_comments %&gt;%
   summarise(sentiment = mean(sentiment)) %&gt;% 
   ggplot(aes(x = termo, y = sentiment)) + 
     geom_col(fill = &quot;#C10534&quot;)</code></pre>
-<p><img src="/post/2017-09-23-o-sensacionalista-e-text-mining-analise-de-sentimento-usando-o-lexiconpt_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="http://www.sillasgonzaga.com/post/2017-09-23-o-sensacionalista-e-text-mining-analise-de-sentimento-usando-o-lexiconpt_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>Temer e Dilma, os dois presidentes com os piores níveis de popularidade de República, estarem associados a comentários positivos é bem surpreendente. Na verdade, isso ocorre porque a própria palavra <strong>temer</strong> possui polaridade positiva. Para consultar a polaridade de uma palavra nos datasets presentes no <code>lexiconPT</code>, use a função <code>lexiconPT::get_word_sentiment()</code>.</p>
 <pre class="r"><code>get_word_sentiment(&quot;temer&quot;)</code></pre>
 <pre><code>## $oplexicon_v2.1
@@ -729,13 +729,13 @@ df_comments %&gt;%
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="/post/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/"><i class="fa fa-chevron-left"></i></a>
+    <a href="http://www.sillasgonzaga.com/post/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="/post/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/">Slides da minha apresentação no SER 2017</a>
+      <a href="http://www.sillasgonzaga.com/post/slides-da-minha-apresenta%C3%A7%C3%A3o-no-ser-2017/">Slides da minha apresentação no SER 2017</a>
     </nav>
     
   </div>
@@ -745,13 +745,13 @@ df_comments %&gt;%
   <div class="pure-u-10-24">
     
     <nav class="next">
-      <a href="/post/analise-g1-01/">Mineração de textos em notícias de G1: O que diferencia notícias sobre Rio de Janeiro e São Paulo?</a>
+      <a href="http://www.sillasgonzaga.com/post/analise-g1-01/">Mineração de textos em notícias de G1: O que diferencia notícias sobre Rio de Janeiro e São Paulo?</a>
     </nav>
     
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
     
-    <a href="/post/analise-g1-01/"><i class="fa fa-chevron-right"></i></a>
+    <a href="http://www.sillasgonzaga.com/post/analise-g1-01/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
@@ -782,7 +782,7 @@ df_comments %&gt;%
 
 </div>
 </div>
-<script src="/js/ui.js"></script>
+<script src="http://www.sillasgonzaga.com/js/ui.js"></script>
 
 
 <script>

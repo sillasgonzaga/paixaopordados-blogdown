@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Censo Educacao on Paixão por Dados</title>
-    <link>/tags/censo-educacao/</link>
+    <link>http://www.sillasgonzaga.com/tags/censo-educacao/</link>
     <description>Recent content in Censo Educacao on Paixão por Dados</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
     <lastBuildDate>Fri, 08 Jul 2016 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/censo-educacao/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.sillasgonzaga.com/tags/censo-educacao/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Censo da Educação Superior (2): Como plotar o movimento migratório universitário no Brasil em um mapa</title>
-      <link>/post/censo-da-educacao-superior-02/</link>
+      <link>http://www.sillasgonzaga.com/post/censo-da-educacao-superior-02/</link>
       <pubDate>Fri, 08 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/censo-da-educacao-superior-02/</guid>
+      <guid>http://www.sillasgonzaga.com/post/censo-da-educacao-superior-02/</guid>
       <description>No primeiro post sobre os microdados do Censo da Educação Superior, falei sobre as cidades e estados que mais atraem universitários de fora. Neste segundo post, discutirei mais a fundo este movimento migratório universitário, incluindo a elaboração de um rebusco mapa de fluxo migratório.
 library(stringr) library(tidyr) library(magrittr) library(dplyr) library(feather) library(maptools) library(maps) library(geosphere) library(knitr)  Importação dos dados Para plotar em um mapa os universitários que estudam em uma cidade diferente da que nasceram, precisamos de dois tipos de dados: - Dados espaciais dos municípios brasileiros;</description>
     </item>
     
     <item>
       <title>Censo da Educação Superior (1) - Quais são as cidades mais universitárias do Brasil?</title>
-      <link>/post/censo-da-educacao-superior-01/</link>
+      <link>http://www.sillasgonzaga.com/post/censo-da-educacao-superior-01/</link>
       <pubDate>Tue, 07 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/censo-da-educacao-superior-01/</guid>
+      <guid>http://www.sillasgonzaga.com/post/censo-da-educacao-superior-01/</guid>
       <description>Recentemente, discuti com um amigo meu que afirmou que Aracaju, cidade onde moramos, é uma capital universitária - ou seja, uma cidade que atrai muitos estudantes de fora -, que eu não acredito que seja verdade. Mas não há melhor maneira de responder a isso senão com análise de dados, não é mesmo?
 library(data.table) library(dplyr) library(magrittr) library(gdata) library(feather) library(ggplot2) library(ggthemes) library(stringr) library(tidyr) library(microbenchmark) library(gridExtra) library(scales) library(cowplot) library(gtable) library(grid) library(ggrepel) setwd(&amp;quot;/home/sillas/R/Projetos/CensoEducSuperior/Dados&amp;quot;)  Introdução Os dados que podem tirar essa dúvida, além de trazer a luz muitas outras informações interessantes, são os microdados do Censo da Educação Superior, disponibilizados pelo Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira, o Inep.</description>
     </item>

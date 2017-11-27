@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Topics on Paixão por Dados</title>
-    <link>/topics/</link>
+    <link>http://www.sillasgonzaga.com/topics/</link>
     <description>Recent content in Topics on Paixão por Dados</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
     
-	<atom:link href="/topics/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.sillasgonzaga.com/topics/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

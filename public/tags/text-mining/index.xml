@@ -2,41 +2,41 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Text Mining on Paixão por Dados</title>
-    <link>/tags/text-mining/</link>
+    <link>http://www.sillasgonzaga.com/tags/text-mining/</link>
     <description>Recent content in Text Mining on Paixão por Dados</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
     <lastBuildDate>Tue, 21 Nov 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/text-mining/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.sillasgonzaga.com/tags/text-mining/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Anunciando o lançamento de literaturaBR</title>
-      <link>/post/literaturabr-01/</link>
+      <link>http://www.sillasgonzaga.com/post/literaturabr-01/</link>
       <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/literaturabr-01/</guid>
+      <guid>http://www.sillasgonzaga.com/post/literaturabr-01/</guid>
       <description>Paixão por Dados de cara nova! O blog está de cara nova! O endereço antigo do blog começou a apresentar alguns bugs bem chatos, então tomei a decisão de finalmente migrar para uma nova plataforma, utilizando o pacote blogdown, a mesma que o pessoal do Curso-R usa no site deles. Para comemorar essa migração, anuncio o lançamento do meu terceiro pacote R: o literaturaBR.
  literaturaBR, o mais novo pacote da comunidade R Brasil Após lançar o pacote lexiconPT, senti que a carência de datasets textuais na língua portuguesa poderia restringir seu potencial de alcance de desenvolvedores e cientistas de dados interessados em usar os léxicos para fazer análise de sentimento.</description>
     </item>
     
     <item>
       <title>Mineração de textos em notícias de G1: O que diferencia notícias sobre Rio de Janeiro e São Paulo?</title>
-      <link>/post/analise-g1-01/</link>
+      <link>http://www.sillasgonzaga.com/post/analise-g1-01/</link>
       <pubDate>Sun, 15 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/analise-g1-01/</guid>
+      <guid>http://www.sillasgonzaga.com/post/analise-g1-01/</guid>
       <description>library(rvest) library(tidyverse) library(magrittr) library(stringr) library(Rfacebook) library(tidytext) library(tm) Motivação para o post Apesar de hoje em dia eu morar no Rio de Janeiro, morei e vivi (quase) a vida toda em Aracaju, a capital do menor estado do Brasil. Devido à irrelevância que a cidade tem (desculpa mas é verdade) no cenário político e econômico do país, era (e ainda é) muito raro ver qualquer notícia em um veículo de audiência nacional (como o Jornal Nacional ou a homepage do G1 ou Estadão) relacionada a Aracaju ou a Sergipe que não seja desgraça ou por um acontecimento inusitadamente ruim.</description>
     </item>
     
     <item>
       <title>O Sensacionalista e Text Mining: Análise de sentimento usando o lexiconPT</title>
-      <link>/post/o-sensacionalista-e-text-mining/</link>
+      <link>http://www.sillasgonzaga.com/post/o-sensacionalista-e-text-mining/</link>
       <pubDate>Sat, 23 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/o-sensacionalista-e-text-mining/</guid>
+      <guid>http://www.sillasgonzaga.com/post/o-sensacionalista-e-text-mining/</guid>
       <description>De volta à ativa no blog!
 Recentemente, quando precisei fazer pela primeira vez algum tipo de análise em cima de textos (o chamado Text Mining ou Mineração de Texto) em Português, senti falta de ter um acesso fácil a um léxico na linguagem. O R já tem a sua disposição vários recursos para quem quer fazer Text Mining em inglês, como os pacotes tokenizer, tidytext, tm e lexicon, além de vários blog posts sobre Sentiment Analysis que você encontra no R-bloggers.</description>
     </item>
