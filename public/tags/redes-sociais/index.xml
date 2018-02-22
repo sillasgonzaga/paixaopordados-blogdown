@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Redes Sociais on Paixão por Dados</title>
+    <link>/tags/redes-sociais/</link>
+    <description>Recent content in Redes Sociais on Paixão por Dados</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2016. All rights reserved.</copyright>
+    <lastBuildDate>Thu, 22 Feb 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/redes-sociais/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>BBB no R: Estudando as interações entre membros por análise de redes</title>
+      <link>/post/bbb-no-r/</link>
+      <pubDate>Thu, 22 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/bbb-no-r/</guid>
+      <description>Eu realmente não acredito que estou escrevendo este post.
+Ok, respirei fundo, vamos lá…
+Sejam bem-vindos a mais um post! Em 2018, um dos projetos mais incríveis que vou tocar é um curso online de Análise de Redes Sociais (ARS) no R a ser oferecido por mim e pelo IBPAD, que é referência nacional em ARS e em outras coisas. A previsão é de que o curso seja lançado até Maio de 2018.</description>
+    </item>
+    
+  </channel>
+</rss>

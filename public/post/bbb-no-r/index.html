@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.31" />
+
+  <title>BBB no R: Estudando as interações entre membros por análise de redes &middot; Paixão por Dados</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://facebook.com/sillast" target="_blank"><i class="fa fa-facebook-square fa-fw"></i>Facebook</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://linkedin.com/in/sillasgonzaga" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/sillasgonzaga" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2016. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>BBB no R: Estudando as interações entre membros por análise de redes</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>22 Feb 2018</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/sna">sna</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="/tags/redes-sociais">redes-sociais</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p>Eu <strong>realmente</strong> não acredito que estou escrevendo este post.</p>
+<p>Ok, respirei fundo, vamos lá…</p>
+<p>Sejam bem-vindos a mais um post! Em 2018, um dos projetos mais incríveis que vou tocar é um curso online de Análise de Redes Sociais (ARS) no R a ser oferecido por mim e pelo <a href="http://ibpad.com.br/">IBPAD</a>, que é referência nacional em ARS e em outras coisas. A previsão é de que o curso seja lançado até Maio de 2018.</p>
+<p>Como um aperitivo do conteúdo a ser abordado no curso, lhes apresento uma simples porém criativa (para quem gosta, né) e prática aplicação de ARS: analisar interações de brothers e sisters (meu Deus, que termos ridículos), descobrir participantes influentes e aplicar algoritmos de detecção de comunidades. Com isso, minha intenção é demonstrar que você pode usar seus conhecimentos em R para aplicar em basicamente qualquer projeto que você quiser.</p>
+<p>Uma breve introdução sobre ARS pode ser vista neste artigo na <a href="https://pt.wikipedia.org/wiki/An%C3%A1lise_de_redes_sociais">Wikipedia</a>. Se prefere um conteúdo mais elaborado e completo, sugiro adquirir <a href="http://ibpad.com.br/">este livro</a> dos caras do IBPAD.</p>
+<pre class="r"><code># pacotes usados
+library(tidyverse)
+library(rvest)
+library(igraph)
+library(Rfacebook)
+library(knitr)
+library(viridis)</code></pre>
+<div id="coleta-dos-dados" class="section level1">
+<h1>Coleta dos dados</h1>
+<p>Para preparar os dados para a realização da ARS no R, precisamos obter um dataset neste formato:</p>
+<pre class="r"><code>tribble(
+  ~pessoa_1, ~pessoa_2,
+  &quot;Fulano&quot;, &quot;Ciclano&quot;,
+  &quot;Fulano&quot;, &quot;Beltrano&quot;,
+  &quot;Ciclano&quot;, &quot;Beltrano&quot;
+)</code></pre>
+<pre><code>## # A tibble: 3 x 2
+##   pessoa_1 pessoa_2
+##      &lt;chr&gt;    &lt;chr&gt;
+## 1   Fulano  Ciclano
+## 2   Fulano Beltrano
+## 3  Ciclano Beltrano</code></pre>
+<p>Ou seja, o formato desejado é uma simples matriz de 2 colunas onde cada linha representa uma interação entre a Pessoa 1 e a Pessoa 2. A ordem (ex.: Fulano na coluna 1 ou 2) não importa, porque não se trata de uma rede direcionada (<em>directed</em>).</p>
+<p>Como, então, obter esses dados?</p>
+<p>Existem diversas alternativas. Minha solução foi coletar as manchetes do <a href="https://gshow.globo.com/realities/bbb/">site do BBB</a> (após me recuperar do desgaste psicológico que é entrar em contato com um material literário tão rico) e extrair os nomes presentes na manchete.</p>
+<p>Por exemplo, a partir da “notícia” <a href="https://gshow.globo.com/realities/bbb/BBB18/agora-na-casa/noticia/diego-kaysar-e-lucas-limpam-espelho-do-banheiro.ghtml">Diego, Kaysar e Lucas limpam espelho do banheiro</a>, será retornado um dataframe com todas as possíveis combinações de duplas formadas pelos três participantes presentes no título.</p>
+<p>Para coletar todas as notícias sobre o BBB já publicadas no site, utilizei a mesma estratégia descrita <a href="http://sillasgonzaga.com/post/analise-g1-01/">neste post sobre o G1</a>, ou seja: coletar todos os links já publicados na página do BBB no Facebook.</p>
+<pre class="r"><code>posts &lt;- getPage(&quot;BigBrotherBrasil&quot;, token, n = 5000, since = &quot;2018/01/22&quot;)
+links &lt;- posts$link[posts$type == &quot;link&quot;]</code></pre>
+<p>Após extrair os links, o código abaixo faz um webscraping bem simples e extrair o título e o corpo das matérias.</p>
+<pre class="r"><code>extrair_bbb &lt;- function(url){
+  url &lt;- url %&gt;% read_html()
+  
+  css_titulo &lt;- &quot;.content-head__title&quot;
+  css_texto &lt;- &quot;.content-text__container&quot;
+  
+  noticia_titulo &lt;- url %&gt;% 
+    html_nodes(css = css_titulo) %&gt;% 
+    html_text()
+  
+  noticia_texto &lt;- url %&gt;% 
+    html_nodes(css = css_texto) %&gt;% 
+    html_text() %&gt;% 
+    dplyr::first()
+  
+  tibble(noticia_titulo, noticia_texto)
+}
+
+lst &lt;- links %&gt;% map(extrair_bbb)</code></pre>
+<pre class="r"><code># juntar a lista em um dataframe
+df_bbb &lt;- bind_rows(lst)
+# remover noticias de resumo
+df_bbb &lt;- df_bbb %&gt;% filter(!str_detect(noticia_titulo, &quot;Resumo&quot;))
+
+glimpse(df_bbb)</code></pre>
+<pre><code>## Observations: 595
+## Variables: 2
+## $ noticia_titulo &lt;chr&gt; &quot;Wagner elogia Gleici: &#39;Você tá linda&#39;&quot;, &quot;Ayrto...
+## $ noticia_texto  &lt;chr&gt; &quot; Na sala, Gleici chega perto de Wagner e eles ...</code></pre>
+<p>A seguir, mostro funções para extrair os participantes mencionados nos títulos e retornar as combinações de duplas.</p>
+<pre class="r"><code>participantes &lt;- c(&quot;Ayrton&quot;, &quot;Ana Clara&quot;, &quot;Ana Paula&quot;, &quot;Breno&quot;, &quot;Caruso&quot;, &quot;Diego&quot;,
+                   &quot;Gleici&quot;, &quot;Jaqueline&quot;, &quot;Jéssica&quot;, &quot;Kaysar&quot;, &quot;Lucas&quot;, &quot;Mahmoud&quot;,
+                   &quot;Mara&quot;, &quot;Nayara&quot;, &quot;Patrícia&quot;, &quot;Paula&quot;, &quot;Viegas&quot;, &quot;Wagner&quot;)
+
+extrair_mencionados &lt;- function(x){
+  participantes[str_detect(x, participantes)]
+}
+
+mencionados &lt;- df_bbb$noticia_titulo %&gt;% map(extrair_mencionados)
+# manter na lista apenas onde length(.) &gt; 2
+mencionados &lt;- mencionados %&gt;% keep(~length(.) &gt; 1)
+
+# gerar lista de combinacoes entre todos os mencionados
+gerar_pares &lt;- function(x){
+  x &lt;- sort(unique(x))
+  x &lt;- x %&gt;% combn(m = 2, simplify = TRUE) %&gt;% t()
+  x &lt;- as.tibble(x)
+  colnames(x) &lt;- c(&quot;P1&quot;, &quot;P2&quot;)
+  x
+}
+# exemplo
+gerar_pares(c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;))</code></pre>
+<pre><code>## # A tibble: 3 x 2
+##      P1    P2
+##   &lt;chr&gt; &lt;chr&gt;
+## 1     A     B
+## 2     A     C
+## 3     B     C</code></pre>
+<pre class="r"><code>df_mencionados &lt;- mencionados %&gt;%
+  map(gerar_pares) %&gt;%
+  bind_rows() %&gt;% 
+  group_by_all() %&gt;% 
+  summarise(n = n())
+
+kable(head(df_mencionados))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">P1</th>
+<th align="left">P2</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ana Clara</td>
+<td align="left">Ana Paula</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Ana Clara</td>
+<td align="left">Ayrton</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="left">Ana Clara</td>
+<td align="left">Breno</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">Ana Clara</td>
+<td align="left">Caruso</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Ana Clara</td>
+<td align="left">Diego</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Ana Clara</td>
+<td align="left">Gleici</td>
+<td align="right">9</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="visualizacao-dos-dados" class="section level1">
+<h1>Visualização dos dados</h1>
+<p>Antes de partir para ANS, vamos ver como se dá a frequência de interações entre os participantes:</p>
+<pre class="r"><code>df_mencionados %&gt;% 
+  ggplot(aes(x = P1, y = P2, fill = n)) +
+  geom_tile() +
+  viridis::scale_fill_viridis() +
+  geom_text(aes(label = n), color = &quot;black&quot;) + 
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90))</code></pre>
+<p><img src="/post/2018-02-22-bbb-no-r_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Temos que, praticamente, todo mudo interage com todo mundo. Por isso, antes mesmo de plotar o grafo dessa rede, espera-se que ela seja bem coesa, com todos os vértices se ligando.</p>
+<p>Entretanto, não deixa de ser interessante notar que, dentro de um grupo de apenas 18 pessoas confinadas em um espaço limitado como uma casa durante algumas semanas ou meses, é incrível como existem pares que simplesmente não interagem entre si (de acordo com a metodologia deste post).</p>
+<p>Para deixar a análise interessante, vou remover os nós em que existem menos de 3 interações.</p>
+<pre class="r"><code>df_mencionados &lt;- df_mencionados %&gt;% filter(n &gt; 3)</code></pre>
+</div>
+<div id="analise-da-rede" class="section level1">
+<h1>Análise da Rede</h1>
+<p>Para definir o grafo, vamos criar um dataframe de metadados sobre os vértices (os participantes), como sexo:</p>
+<pre class="r"><code>vertices &lt;- tibble(
+  nome = participantes,
+  sexo = c(&quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;F&quot;, &quot;F&quot;,
+           &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;)
+)
+
+vertices &lt;- vertices %&gt;%
+  filter(nome %in% df_mencionados$P1 | nome %in% df_mencionados$P2)
+
+g &lt;- graph_from_data_frame(d = df_mencionados, vertices = vertices,
+                           directed = FALSE)
+
+# adicionar cor aos pontos de acordo com o sexo
+V(g)$color &lt;- ifelse(V(g)$sexo == &quot;M&quot;, &quot;lightblue&quot;, &quot;pink&quot;)
+# adicionar peso aos nós
+E(g)$weight &lt;- df_mencionados$n </code></pre>
+<p>Finalmente, o grafo em si:</p>
+<pre class="r"><code>set.seed(123)
+plot(g, vertex.label.color = &quot;black&quot;, layout = layout_with_kk(g),
+     vertex.size = 20) #,edge.width = E(g)$n/50)</code></pre>
+<p><img src="/post/2018-02-22-bbb-no-r_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Ok, me tornei o que mais temia, um crítico de BBB, mas vamos lá:</p>
+<p>Pela grafo, nota-se que existem alguns participantes mais isolados, como Viegas, Jaqueline e Wagner. Sobre Jaqueline, existe um viés causado pelo tempo, visto que ela já foi eliminada no momento em que vos escrevo.</p>
+<p>Outra observação é que de fato existem alguns participantes mais importantes na rede, como Paula, Lucas e Patrícia, visto que estão localizados mais ao centro do grafo.</p>
+<p>Uma medida que pode ser usada para mensurar a importância de cada pessoa na rede é o <em>betweenness</em>:</p>
+<pre class="r"><code>rev(sort(betweenness(g)))</code></pre>
+<pre><code>##     Nayara     Kaysar    Jéssica     Caruso      Lucas     Gleici 
+## 21.9166667 16.8333333 16.5000000 13.2500000  9.7500000  9.4166667 
+##      Paula    Mahmoud      Diego      Breno  Jaqueline     Wagner 
+##  7.0000000  4.0000000  2.5833333  2.3333333  1.0000000  0.3333333 
+##     Viegas   Patrícia  Ana Paula  Ana Clara     Ayrton 
+##  0.0000000  0.0000000  0.0000000  0.0000000  0.0000000</code></pre>
+<p>Outra medida é o <em>degree</em>, que é simplesmente a contagem de outras pessoas com as quais cada participante está conectado:</p>
+<pre class="r"><code>rev(sort(degree(g)))</code></pre>
+<pre><code>##     Paula     Lucas    Kaysar    Gleici   Mahmoud    Caruso  Patrícia 
+##        14        13        12        11        10        10         9 
+##    Nayara   Jéssica     Diego     Breno Ana Paula Ana Clara    Wagner 
+##         9         9         7         7         7         7         4 
+## Jaqueline    Ayrton    Viegas 
+##         3         3         1</code></pre>
+<p>Uma aplicação muito interessante em ARS é a detecção de comunidade. Com o perdão por não entrar em detalhes sobre o funcionamento do algoritmo (isso eu deixo para meu curso), segue abaixo um exemplo disso:</p>
+<pre class="r"><code>cluster &lt;- fastgreedy.community(g)
+cluster</code></pre>
+<pre><code>## IGRAPH clustering fast greedy, groups: 3, mod: 0.23
+## + groups:
+##   $`1`
+##   [1] &quot;Ayrton&quot;    &quot;Ana Clara&quot; &quot;Breno&quot;     &quot;Caruso&quot;    &quot;Gleici&quot;   
+##   [6] &quot;Jaqueline&quot; &quot;Nayara&quot;    &quot;Viegas&quot;    &quot;Wagner&quot;   
+##   
+##   $`2`
+##   [1] &quot;Ana Paula&quot; &quot;Diego&quot;     &quot;Kaysar&quot;    &quot;Mahmoud&quot;   &quot;Patrícia&quot; 
+##   [6] &quot;Paula&quot;    
+##   
+##   $`3`
+##   [1] &quot;Jéssica&quot; &quot;Lucas&quot;  
+##   + ... omitted several groups/vertices</code></pre>
+<pre class="r"><code>set.seed(123)
+plot(cluster, g)</code></pre>
+<p><img src="/post/2018-02-22-bbb-no-r_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>O algoritmno encontrou três comunidades dentro da rede, sendo um deles formados apenas por Jéssica e Lucas.</p>
+</div>
+<div id="conclusao" class="section level1">
+<h1>Conclusão</h1>
+<p>Você talvez tenha percebido pelo meu tom jocoso no post que não sou lá muito fã de BBB. Contudo, isso não me impediu de pensar nessa aplicação como exemplo de demonstração de situações em que é possível aplicar a Análise de Redes Sociais. Como tudo na vida quando se sabe R, os limites dependem da sua criatividade :)</p>
+</div>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="/post/sobre-graficos/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="/post/sobre-graficos/">Sobre gráficos e a mensagem que eles querem transmitir</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
+</div>
+
+
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'sillastg';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</div>
+
+</div>
+</div>
+<script src="/js/ui.js"></script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-110050805-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+</body>
+</html>
+
