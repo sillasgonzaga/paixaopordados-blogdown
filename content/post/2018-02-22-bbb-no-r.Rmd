@@ -141,7 +141,7 @@ kable(head(df_mencionados))
 
 # Visualização dos dados
 
-Antes de partir para ANS, vamos ver como se dá a frequência de interações entre os participantes:
+Antes de partir para ARS, vamos ver como se dá a frequência de interações entre os participantes:
 
 ```{r}
 df_mencionados %>% 
