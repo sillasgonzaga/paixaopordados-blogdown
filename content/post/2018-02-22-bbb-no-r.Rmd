@@ -156,7 +156,7 @@ df_mencionados %>%
 
 ```
 
-Temos que, praticamente, todo mudo interage com todo mundo. Por isso, antes mesmo de plotar o grafo dessa rede, espera-se que ela seja bem coesa, com todos os vértices se ligando.
+Temos que, praticamente, todo mudo interage com todo mundo. Por isso, antes mesmo de plotar o grafo dessa rede, espera-se que ela seja bem densa, com todos os vértices se ligando.
 
 Entretanto, não deixa de ser interessante notar que, dentro de um grupo de apenas 18 pessoas confinadas em um espaço limitado como uma casa durante algumas semanas ou meses, é incrível como existem pares que simplesmente não interagem entre si (de acordo com a metodologia deste post). 
 

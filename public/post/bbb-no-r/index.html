@@ -390,7 +390,7 @@ kable(head(df_mencionados))</code></pre>
   theme_classic() +
   theme(axis.text.x = element_text(angle = 90))</code></pre>
 <p><img src="/post/2018-02-22-bbb-no-r_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<p>Temos que, praticamente, todo mudo interage com todo mundo. Por isso, antes mesmo de plotar o grafo dessa rede, espera-se que ela seja bem coesa, com todos os vértices se ligando.</p>
+<p>Temos que, praticamente, todo mudo interage com todo mundo. Por isso, antes mesmo de plotar o grafo dessa rede, espera-se que ela seja bem densa, com todos os vértices se ligando.</p>
 <p>Entretanto, não deixa de ser interessante notar que, dentro de um grupo de apenas 18 pessoas confinadas em um espaço limitado como uma casa durante algumas semanas ou meses, é incrível como existem pares que simplesmente não interagem entre si (de acordo com a metodologia deste post).</p>
 <p>Para deixar a análise interessante, vou remover os nós em que existem menos de 3 interações.</p>
 <pre class="r"><code>df_mencionados &lt;- df_mencionados %&gt;% filter(n &gt; 3)</code></pre>
