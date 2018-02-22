@@ -210,6 +210,8 @@ Uma medida que pode ser usada para mensurar a importância de cada pessoa na red
 rev(sort(betweenness(g)))
 ```
 
+De acordo com essa métrica, Nayara, Kaysar e Jéssica são os brothers com maior articulação entre todos.
+
 Outra medida é o *degree*, que é simplesmente a contagem de outras pessoas com as quais cada participante está conectado:
 
 ```{r}
