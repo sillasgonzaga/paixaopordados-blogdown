@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.width = 9)
 
 
 
-No meu [último post](http://www.sillasgonzaga.com/post/literaturaBR-01/) sobre Mineração de Texto, usei algumas ferramentas do R para analisar textos clássicos da literatura brasileira. Desta vez, o foco da análise será algo mais contemporâneo: uma youtuber. Mais precisamente, a [Nathalia Arcuri](http://mepoupenaweb.uol.com.br/sobre-a-nath/), responsável por um dos principais canais de educação financeira, o [Me Poupe](https://www.youtube.com/channel/UC8mDF5mWNGE-Kpfcvnn0bUg/).
+No meu [último post](http://www.sillasgonzaga.com/post/literaturaBR-01/) sobre Mineração de Texto, usei algumas ferramentas do R para analisar textos clássicos da literatura brasileira. Desta vez, o foco da análise será algo mais contemporâneo: uma youtuber. Mais precisamente, a [Nathalia Arcuri](http://mepoupenaweb.uol.com.br/sobre-a-nath/), responsável por um dos principais canais de educação financeira, o [Me Poupe](https://www.youtube.com/channel/UC8mDF5mWNGE-Kpfcvnn0bUg/). 
 
 Além do objeto da análise, a abordagem aqui também é diferente: vou mostrar como Topic Modeling pode ser usado para descobrir temas gerais em um conjunto de dados textuais.
 
@@ -43,8 +43,6 @@ options(scipen = 999)
 Para analisar o conteúdo de vídeos de youtube, precisamos das legendas dos vídeos. Alguns (bem poucos) canais produzem suas próprias legendas manualmente, mas a grande maioria, como o Me Poupe, o canal da Nathalia Arcuri, não o faz. Sendo assim, precisamos nós mesmo produzir essas legendas.
 
 Isso seria uma tarefa muito árdua, mas felizmente o próprio Youtube tem seu próprio serviço de inteligência artifical de reconhecimento de fala, que cria automaticamente legendas para um vídeo. Apesar de algumas vezes as legendas produzidas pelo algoritmo do Youtube não serem muito fiéis, elas serão usadas como dados brutos para a modelagem por tópicos. Os resultados apresentados no post mostram que essas legendas automáticas podem sim serem usadas para fins de estudo.
-
-![Nathalia Arcuri](https://i.imgur.com/dQFxp9g.png?1){width=100%}
 
 Para coletar as legendas dos vídeo, eu uso um utilitário de linha de comando chamado [`youtube-dl`](https://rg3.github.io/youtube-dl/), que é bem simples de usar. No código abaixo, que mistura R com shell script, eu mostro como montar uma query para baixar as legendas do vídeo em arquivos de texto cujos nomes contem alguns metadados do vídeo, descritos na variável `fields_raw`. Caso você deseje realizar este mesmo estudo com outro youtuber, basta atribuir a url do canal na variável `channel_url`.
 

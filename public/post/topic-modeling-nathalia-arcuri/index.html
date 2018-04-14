@@ -255,10 +255,6 @@ options(scipen = 999)</code></pre>
 <h2>Coleta dos dados</h2>
 <p>Para analisar o conteúdo de vídeos de youtube, precisamos das legendas dos vídeos. Alguns (bem poucos) canais produzem suas próprias legendas manualmente, mas a grande maioria, como o Me Poupe, o canal da Nathalia Arcuri, não o faz. Sendo assim, precisamos nós mesmo produzir essas legendas.</p>
 <p>Isso seria uma tarefa muito árdua, mas felizmente o próprio Youtube tem seu próprio serviço de inteligência artifical de reconhecimento de fala, que cria automaticamente legendas para um vídeo. Apesar de algumas vezes as legendas produzidas pelo algoritmo do Youtube não serem muito fiéis, elas serão usadas como dados brutos para a modelagem por tópicos. Os resultados apresentados no post mostram que essas legendas automáticas podem sim serem usadas para fins de estudo.</p>
-<div class="figure">
-<img src="https://i.imgur.com/dQFxp9g.png?1" alt="Nathalia Arcuri" style="width:100.0%" />
-<p class="caption">Nathalia Arcuri</p>
-</div>
 <p>Para coletar as legendas dos vídeo, eu uso um utilitário de linha de comando chamado <a href="https://rg3.github.io/youtube-dl/"><code>youtube-dl</code></a>, que é bem simples de usar. No código abaixo, que mistura R com shell script, eu mostro como montar uma query para baixar as legendas do vídeo em arquivos de texto cujos nomes contem alguns metadados do vídeo, descritos na variável <code>fields_raw</code>. Caso você deseje realizar este mesmo estudo com outro youtuber, basta atribuir a url do canal na variável <code>channel_url</code>.</p>
 <pre class="r"><code>fields_raw &lt;- c(&quot;id&quot;, &quot;title&quot;, &quot;alt_title&quot;, &quot;creator&quot;, &quot;release_date&quot;,
                 &quot;timestamp&quot;, &quot;upload_date&quot;, &quot;duration&quot;, &quot;view_count&quot;,
