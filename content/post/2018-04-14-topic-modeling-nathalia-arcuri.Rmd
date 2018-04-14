@@ -1,6 +1,5 @@
 ---
-title: 'Topic Modeling: Um algoritmo consegue entender sobre o que fala a youtuber
-  Nathalia Arcuri?'
+title: 'Topic Modeling: Um algoritmo consegue entender sobre o que fala a youtuber Nathalia Arcuri?'
 author: Sillas Gonzaga
 date: '2018-04-14'
 slug: topic-modeling-nathalia-arcuri
@@ -17,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.width = 9)
 
 
 
-No meu [último post](http://www.sillasgonzaga.com/post/literaturaBR-01/) sobre Mineração de Texto, usei algumas ferramentas do R para analisar textos clássicos da literatura brasileira. Desta vez, o foco da análise será algo mais contemporâneo: uma youtuber. Mais precisamente, a [Nathalia Arcuri](http://mepoupenaweb.uol.com.br/sobre-a-nath/), responsável por um dos principais canais de educação financeira, o [Me Poupe](https://www.youtube.com/channel/UC8mDF5mWNGE-Kpfcvnn0bUg/).
+No meu [último post](http://www.sillasgonzaga.com/post/literaturaBR-01/) sobre Mineração de Texto, usei algumas ferramentas do R para analisar textos clássicos da literatura brasileira. Desta vez, o foco da análise será algo mais contemporâneo: uma youtuber. Mais precisamente, a [Nathalia Arcuri](http://mepoupenaweb.uol.com.br/sobre-a-nath/), responsável por um dos principais canais de educação financeira, o [Me Poupe](https://www.youtube.com/channel/UC8mDF5mWNGE-Kpfcvnn0bUg/). 
 
 Além do objeto da análise, a abordagem aqui também é diferente: vou mostrar como Topic Modeling pode ser usado para descobrir temas gerais em um conjunto de dados textuais.
 
