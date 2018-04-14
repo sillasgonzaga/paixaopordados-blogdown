@@ -1,0 +1,475 @@
+---
+title: 'Topic Modeling: Um algoritmo consegue entender sobre o que fala a youtuber
+  Nathalia Arcuri?'
+author: Sillas Gonzaga
+date: '2018-04-14'
+slug: topic-modeling-nathalia-arcuri
+categories:
+  - R
+tags:
+  - text mining
+  - lexiconPT
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width = 9)
+```
+
+
+
+No meu [último post](http://www.sillasgonzaga.com/post/literaturaBR-01/) sobre Mineração de Texto, usei algumas ferramentas do R para analisar textos clássicos da literatura brasileira. Desta vez, o foco da análise será algo mais contemporâneo: uma youtuber. Mais precisamente, a [Nathalia Arcuri](http://mepoupenaweb.uol.com.br/sobre-a-nath/), responsável por um dos principais canais de educação financeira, o [Me Poupe](https://www.youtube.com/channel/UC8mDF5mWNGE-Kpfcvnn0bUg/).
+
+Além do objeto da análise, a abordagem aqui também é diferente: vou mostrar como Topic Modeling pode ser usado para descobrir temas gerais em um conjunto de dados textuais.
+
+Assim, este post se dedica ao seguinte problema de pesquisa: é possível identificar, por meio de um algoritmo de inteligência artificial, temas gerais que uma youtuber com mais de 300 vídeos publicados fala sobre?
+
+
+```{r pacotes, warning=FALSE, message=FALSE}
+library(reticulate)
+reticulate::use_python("/home/sillas/anaconda3/bin/python", required = TRUE)
+library(lexiconPT)
+library(tidytext)
+library(tidyverse)
+library(magrittr)
+library(stm)
+library(tm)
+library(ggridges)
+library(formattable)
+options(scipen = 999)
+```
+
+
+## Coleta dos dados
+
+Para analisar o conteúdo de vídeos de youtube, precisamos das legendas dos vídeos. Alguns (bem poucos) canais produzem suas próprias legendas manualmente, mas a grande maioria, como o Me Poupe, o canal da Nathalia Arcuri, não o faz. Sendo assim, precisamos nós mesmo produzir essas legendas.
+
+Isso seria uma tarefa muito árdua, mas felizmente o próprio Youtube tem seu próprio serviço de inteligência artifical de reconhecimento de fala, que cria automaticamente legendas para um vídeo. Apesar de algumas vezes as legendas produzidas pelo algoritmo do Youtube não serem muito fiéis, elas serão usadas como dados brutos para a modelagem por tópicos. Os resultados apresentados no post mostram que essas legendas automáticas podem sim serem usadas para fins de estudo.
+
+![Nathalia Arcuri](https://i.imgur.com/dQFxp9g.png?1){width=100%}
+
+Para coletar as legendas dos vídeo, eu uso um utilitário de linha de comando chamado [`youtube-dl`](https://rg3.github.io/youtube-dl/), que é bem simples de usar. No código abaixo, que mistura R com shell script, eu mostro como montar uma query para baixar as legendas do vídeo em arquivos de texto cujos nomes contem alguns metadados do vídeo, descritos na variável `fields_raw`. Caso você deseje realizar este mesmo estudo com outro youtuber, basta atribuir a url do canal na variável `channel_url`.
+
+```{r query_youtubedl}
+fields_raw <- c("id", "title", "alt_title", "creator", "release_date",
+                "timestamp", "upload_date", "duration", "view_count",
+                "like_count", "dislike_count", "comment_count")
+
+fields <- fields_raw %>% 
+  map_chr(~paste0("%(", ., ")s")) %>% 
+  # usar &&& como separador de fields
+  paste0(collapse = "&&&") %>% 
+  # acrescentar aspas no inicio e no final do string
+  paste0('"', ., '"')
+
+# canal do me poupe
+channel_url <- "https://www.youtube.com/channel/UC8mDF5mWNGE-Kpfcvnn0bUg"
+
+# montar query (comando) do youtube-dl
+cmd_ytdl <- str_glue("youtube-dl -o {fields} -i -v -w --skip-download --write-auto-sub --sub-lang pt {channel_url}")
+
+# acrescentar diretorio
+pasta_captions <- "/home/sillas/R/Projetos/paixaopordados-blogdown/data/mepoupe"
+fs::dir_create(pasta_captions)
+cmd <- str_glue("cd {pasta_captions} && {cmd_ytdl}")
+
+# imprimir comando para ver como ficou
+cat(cmd)
+
+```
+
+Portanto, temos o comando para baixar as legendas dos vídeos na pasta indicada. Para rodar o comando, basta a variável `cmd` como argumento da função `system()` ou o copiar e colar no terminal.
+
+Uma amostra dos arquivos baixados:
+
+```{r}
+dir(pasta_captions)[1:3]
+```
+## Limpeza dos dados
+
+O Youtube tem um formato próprio de arquivos para legendas chamado vtt. Veja como são os arquivos de texto baixados na etapa anterior:
+
+```{r}
+arquivos_captions <- dir(pasta_captions, pattern = '*.vtt', full.names = TRUE)
+amostra <- arquivos_captions[1]
+
+read_lines(amostra)[1:30]
+```
+
+Temos vários problemas de dados não estruturados aí, como timestamps, formatação de estilo como cor e alinhamento e repetição de frases em diferentes linhas (note como as frases nas linhas 24 e 28 são as mesmas). Entretanto, limpar esses dados é mais simples que se imagina. Segue o passo-a-passo:
+
+Começando pelo mais crítico, vamos remover toda a formatação de legendas do texto, deixando apenas as frases. Para isso, uso um módulo Python (sim, eu me rendi, esta é a primeira vez que uso Python no blog) chamado `webvtt`:
+
+```{python, eval = FALSE}
+from webvtt import WebVTT
+
+def caption_to_vector(file):
+  x = WebVTT().read(file)
+  txt = [caption.text for caption in x]
+  return(txt)
+
+```
+
+```{r, include = FALSE}
+source_python("../../helpers/youtube_caption_to_text.py")
+```
+
+Vejam com essa função faz todo o trabalho bruto de limpar os metadados da legenda:
+
+```{r}
+x <- amostra %>% caption_to_vector()
+x[1:20]
+```
+
+Ainda temos alguns problemas, como as linhas repetidas, mas isso é o de menos. Resolvemos todos os problemas de limpeza de dados com a função abaixo:
+
+```{r}
+limpar_caption <- function(arquivo){
+  caption_raw <- caption_to_vector(arquivo)
+  n <- length(caption_raw)
+  # remover \n das linhas com exceção da ultima
+  caption <- c(stringr::str_remove_all(caption_raw[-n], "[\n].*"),
+               caption_raw[n])
+  # remover duplicatas
+  caption <- unique(caption)
+  # remover acentos
+  caption <- iconv(caption, from = "UTF-8", to = "ASCII//TRANSLIT")
+  # juntar todo o vector em um so
+  caption <- paste0(caption, collapse = "\n")
+  caption
+}
+
+# exemplo
+# amostra %>% limpar_caption()
+```
+
+Além disso, precisamos também extrair os metadados dos vídeos salvos nos nomes dos arquivos:
+
+```{r}
+
+# funcao para extrair metadados do video baseado no titulo
+extrair_metadados <- function(arquivo, pasta = pasta_captions,
+                              fields = fields_raw){
+  mat <- str_split(arquivo, "&{3}", simplify = TRUE)
+  # substituir elemento da primeira coluna por id (remover pasta do nome)
+  mat[1,1] <- mat[1,1] %>% str_remove_all(pasta) %>% str_remove_all("/")
+  
+  # renomear colunas
+  cols <- fields[1:ncol(mat)]
+  colnames(mat) <- cols
+  as.tibble(mat)
+}
+
+```
+
+Finalmente, a função abaixo cria um dataframe com as colunas de metadados e de legenda, que chamo de caption:
+
+```{r criar_df, cache = TRUE}
+# funcao para juntar tudo num dataframe so
+caption_to_df <- function(arquivo, ...){
+  
+  caption <- limpar_caption(arquivo)
+  meta <- extrair_metadados(arquivo, ...)
+  meta <- meta %>% mutate(caption = caption)
+  
+  meta
+}
+
+### gerar dataframe para todos os videos
+df <- arquivos_captions %>% 
+  map_df(caption_to_df) %>% 
+  # remover coluna que nao uso
+  select(-comment_count) %>% 
+  # converter a classe de algumas colunas
+  mutate(upload_date = lubridate::ymd(upload_date)) %>% 
+  mutate_at(vars(duration:dislike_count), as.numeric)
+
+# vendo como ficou
+glimpse(df)
+
+```
+
+## Topic Modeling
+
+Antes de partir para o código aplicado a Topic Modeling, uma brevíssima introdução teórica.
+
+No contexto de [Text Mining](https://en.wikipedia.org/wiki/Text_mining), um **tópico** $T$ é definido como um conjunto de **palavras** ou tokens ($w_1, w_2, ... w_n$) onde cada palavra possui uma probabilidade de pertencer a um tópico, e um **documento** é definido como um conjunto de tópicos, onde cada um possui uma proporção de presença dentro do documento. A soma da proporção de cada tópico dentro de um documento é igual a 1, assim como a soma das probabilidades de cada palavra para um dado tópico, que também é igual a 1. Nesta análise, um documento corresponde a cada vídeo lançado no canal Me Poupe.
+
+Topic Modeling, portanto, é definido como uma ténica não-supervisionada de Machine Learning que busca que identica clusteres ou grupos de palavras que ocorrem juntas, descobrindo assim tópicos abstratos que ocorrem em um conjunto de documentos. O objetivo é descobrir subestruturas semânticas dentro de um conjunto de textos.
+
+Existem alguns algoritmos de Topic Modeling, muitos deles presentes no pacote `topicmodels`. Apenas devido a preferência pessoal, vou usar neste post o algoritmo **Structural Topic Models** (STM), presente no pacote `stm`.
+
+A qualidade de um tópico encontrado por um algoritmo pode ser medida por algumas métricas, como **exclusividade** e **coerência semântica**, cuja  ideia é que, em um modelo de tópicos que é semanticamente coerente, as palavras que são mais prováveis de pertencer a um tópico devem ocorrer dentro de um mesmo documento. A formulação matemática dessas métricas é razoavelmente mais complicadas que essas explicações. Caso você deseja conhecer essas métricas com mais detalhes, confira as referências no final do post.
+
+### Pré-processamento
+
+Mesmo após o processo de limpeza, é necessário realizar alguns pré-processamentos antes de aplicar o algoritmo de Topic Modeling.
+
+Um dos procedimentos necessários é a remoção de stopwords, que são palavras que ocorrem tão frequentemente que não acrescentam nenhum valor semântico a um texto, como "e", "vai", "lá", etc. O pacote `tm` fornece uma lista de stopwords em vários idiomas, incluindo Português.
+
+O código abaixo retorna as palavras mais faladas nos vídeos do Me Poupe, após a remoção de stopwords:
+
+```{r}
+# stopwords da lingua portuguesa sem acento
+sw_pt_tm <- tm::stopwords("pt") %>% iconv(from = "UTF-8", to = "ASCII//TRANSLIT")
+
+# criar dataframe com uma linha por palavra
+df_palavra <- df %>% 
+  unnest_tokens(palavra, caption) %>% 
+  # filtrar fora stopword
+  filter(!palavra %in% sw_pt_tm)
+
+df_palavra %>% 
+  count(palavra) %>% 
+  arrange(desc(n)) %>% 
+  head(20) %>% 
+  formattable()
+
+```
+
+Como muitas dessas palavras não possuem um grande valor semântico para a separação de tópicos, podemos as acrescentar à lista de stopwords.
+
+```{r}
+minhas_sw <- c("vai", "porque", "vou", "ai", "pra", "entao")
+sw_pt <- c(minhas_sw, sw_pt_tm)
+```
+
+Partimos então para o processamento de textos com as funções do pacote `stm`.
+
+```{r prepDoc}
+proc <- stm::textProcessor(df$caption, metadata = df, language = "portuguese",
+                           customstopwords = sw_pt)
+
+out <- stm::prepDocuments(proc$documents, proc$vocab, proc$meta,
+                          lower.thresh = 10)
+
+```
+
+
+## Criação do modelo de tópicos e interpretação dos resultados
+
+A quantidade de tópicos $K$ que desejamos extrair dos textos é, na verdade, escolhida pelo ser humano. Não há uma regra precisa que defina o número ótimo de clusteres. No entanto, é possível usar a função `stm::searchK` para rodar o STM para diferentes valores do parâmetro `K` para encontrar o valor que otimiza a exclusividade e a coerência semântica do modelo.
+
+```{r storage, eval = FALSE}
+storage <- stm::searchK(out$documents, out$vocab, K = c(3:15),
+                          data = out$meta)
+```
+
+Após uma inspeção manual, decidi usar $K = 10$ para encontrar 10 tópicos sobre os quais a Nathalia Arcuri mais fala.
+
+```{r criar_stm, cache = TRUE}
+fit <- stm(
+  documents = out$documents, vocab = out$vocab, data = out$meta,  K = 10,
+  max.em.its = 75, init.type = "Spectral", verbose = FALSE
+  )
+
+```
+
+Após a construção do modelo, a melhor forma de visualizar os resultados é por meio de um gráfico:
+
+```{r}
+plot(fit, "summary")
+```
+
+Ou mesmo por texto:
+
+```{r}
+stm::labelTopics(fit)
+```
+
+Na tabela acima, existe para cada tópico uma lista de palavras-chave, de acordo com uma métrica de associação. As métricas mais interessantes a serem olhadas são **Highest prob**, que é basicamente uma contagem de cada palavra no tópico, e **FREX**, que é combina frequência e exclusividade para identificar palavras que mais representam o tópico.
+
+Assim, a interpretação dos tópicos pode ser feita desta maneira:
+
+* Tópico 1: Dicas de economia doméstica, como que para reduzir despesas em casa;  
+* Tópico 2: Genérico;  
+* Tópico 3: Planejamento Financeiro, com temas como planilhas e aposentadoria;  
+* Tópico 4: Vídeos focados para mulheres ou famílias;  
+* Tópico 5: Política;  
+* Tópico 6: Renda Fixa (este ficou bem claro);  
+* Tópico 7: Dificil saber. Talvez renda variável;  
+* Tópico 8: Cartão de cŕedito e temas afins, como programas de milhas;  
+* Tópico 9: Dívidas e despesas;
+* Tópico 10: Empreendedorimo.  
+
+É possível representar visualmente a diferença entre um par de tópicos, como o 6 e o 9:
+
+```{r}
+plot(fit, "perspective", topics = c(9, 6))
+```
+
+Percebe-se que as palavras "dívida" e "tesouro" separam bem esses dois tópicos. 
+
+### Atribuição de tópicos a vídeos 
+
+Um dos possíveis produtos da análise de Topic Modeling é atribuir a cada documento (ou vídeo) um tópico, de acordo com a proporção de cada tópico nele.
+
+O objeto `fit` possui internamente um elemento que é uma matriz $N \times K$, onde N é o número de documentos. Assim, para cada vídeo, existe um porcentual de participação de cada tópico, cuja soma é igual a 1.
+
+Vejamos essa matriz para os cinco primeiros vídeos:
+
+```{r}
+head(fit$theta)
+```
+
+Observando a primeira linha, nota-se que existe um claro predomínio do Tópico 6, que representa 98% da distribuição de tópicos. Qual é esse vídeo?
+
+```{r}
+df %>% 
+  filter(row_number() == 1) %>% 
+  select(id, title)
+```
+
+Vemos que o algoritmo acertou na mosca, pois de fato o vídeo é sobre Renda Fixa.
+
+A qual tópico pertence o vídeo mais assistido do Me Poupe?
+
+```{r}
+# id do video Meu Primeiro Milhao
+ind <- which(df$id == "4jaWDfTbytA")
+t(fit$theta[ind,])
+```
+
+Os tópicos predominantes são 3 (Planejamento financeiro), com probabilidade de 51% e 10 (empreendedorismo), com 38%. Faz sentido, porque neste vídeo a Nathalia conta sua história como empreendedora para atingir seu primeiro milhão por meio de muito planejamento financeiro (não tô forçando, eu vi o vídeo).
+
+Vamos então, para cada vídeo, extrair seu tópico predominante e contar a frequência de videos por tópico:
+
+```{r}
+nomes_topicos <- c("economia_domestica", "generico", "plan_financeiro",
+                   "mulher_familia", "politica", "renda_fixa", "renda_variavel",
+                   "cartao_de_credito", "dividas", "empreendedorismo")
+# extrair a maior probabilidade pra cada video
+maior_prob <- apply(fit$theta, 1, max)
+# extrair o nome do topico com a maior probabilidade
+topico_video <- nomes_topicos[apply(fit$theta, 1, which.max)]
+
+# acrescentar esses dados no dataframe principal
+df_topico <- df %>% 
+  mutate(maior_prob = maior_prob,
+         topico = topico_video)
+
+```
+
+
+```{r}
+roxo <- "mediumpurple4"
+
+# grafico da quantidade de videos por topico
+df_topico %>% 
+  count(topico) %>% 
+  # classificar em ordem decrescente
+  mutate(topico = forcats::fct_reorder(topico, n)) %>% 
+  ggplot(aes(x = topico, y = n)) + 
+  geom_col(fill = roxo) +
+  theme_minimal() + 
+  labs(x = NULL, y = "Vídeos",
+       title = "Quantidade de vídeos por tópico") +
+  coord_flip()
+```
+
+Os tópicos sobre os quais a Nathalia mais fala são Renda Fixa, Economia Doméstica e Dívidas. Quem acompanha seu canal não vai ficar surpreso com estes resultados, o que é um índicio da qualidade do modelo construído neste post.
+
+Também é possível extrair os vídeos chaves de cada tópico, isto é, os vídeos com a maior probabilidade para cada tópico:
+
+```{r}
+df_topico %>% 
+  group_by(topico) %>% 
+  filter(maior_prob == max(maior_prob)) %>% 
+  select(id, title, topico, maior_prob) %>% 
+  knitr::kable()
+
+
+```
+
+Eu, pessoalmente, estou bastante satisfeito com os resultados. A modelagem de tópicos funcionou muito bem.
+
+Vamos estão analisar algumas estatísticas básicas para cada tópico: quais têm os vídeos mais longos? Quais são os mais populares?
+
+```{r graficos}
+
+meu_grafico <- function(df, var){
+  quo_var <- enquo(var)
+
+  mediana_geral <- df %>% 
+    summarise_at(vars(!!quo_var), median, na.rm = TRUE) %>% 
+    pull()
+  
+  # obter grafico
+  p <- df %>% 
+    group_by(topico) %>% 
+    summarise(m = median(!!quo_var, na.rm = TRUE)) %>% 
+    ggplot(aes(x = topico, y = m)) +
+    geom_col(fill = roxo) +
+    geom_hline(yintercept = mediana_geral, linetype = "dashed") +
+    theme_minimal() +
+    coord_flip() +
+    labs(x =  NULL, y = NULL)
+  
+  p
+}
+  
+meu_grafico(df_topico, duration) + ggtitle("Média da duração dos vídeos por tópico do Me Poupe")
+meu_grafico(df_topico, view_count) + ggtitle("Média de views por tópico do Me Poupe")
+meu_grafico(df_topico, like_count) + ggtitle("Média de likes por tópico do Me Poupe")
+
+```
+
+Com estes gráficos, aprendemos que os vídeos sobre renda fixa, planejamento financeiro e empreendedorismo são os mais populares entre os "me poupeiros" (como a Nathalia chama quem acompanha o canal), pois possuem mais visualizações e curtidas. Outro fato interessante é que os vídeos categorizados como política são, por assim dizer, improdutivos, pois, apesar de serem os mais longos, possuem muitos poucos views. Existem alguns possíveis tipos de viés que poderiam explicar este dado, como o temporal.
+
+### Análise de Sentimento
+
+Finalmente, vamos aplicar uma abordagem de [análise de sentimento](http://sillasgonzaga.com/post/o-sensacionalista-e-text-mining/) para analisar se os tópicos apresentam diferentes polaridades entre si. Quais tópicos são mais negativos?
+
+```{r analise_sent}
+data("sentiLex_lem_PT02")
+dict <- unique(sentiLex_lem_PT02)
+
+# criacao do dataframe de sentimento por topico
+df_sent <- df %>% 
+  unnest_tokens(palavra, caption) %>% 
+  inner_join(sentiLex_lem_PT02, by = c("palavra" = "term")) %>% 
+  group_by(id) %>% 
+  summarise(
+    sentimento_soma = sum(polarity),
+    sentimento_media = mean(polarity)
+  )
+
+# acrescentar ao dafaframe principal
+df_topico_sent <- inner_join(df_topico, df_sent, by = "id") 
+
+
+# calcular sentimento geral dos videos
+sent_medio_geral <- median(df_topico_sent$sentimento_media)
+
+df_topico_sent %>% 
+  mutate(topico = forcats::fct_reorder(topico, sentimento_media, median)) %>% 
+  ggplot(aes(x = sentimento_media, y = topico)) +
+  geom_density_ridges(fill = roxo) +
+  geom_vline(xintercept = sent_medio_geral, linetype = "dashed") +
+  theme_minimal() +
+  labs(x = "Sentimento", y = NULL,
+       title = "Distribuição dos sentimentos por tópico do Me Poupe")
+
+```
+
+Em novamente o que eu considero um acerto da metodologia, os vídeos de dívidas apresentaram polaridades mais baixas, ou sejas, um nível de sentimento mais negativo.
+
+## Conclusão
+
+É relativamente difícil avaliar a acurácia e precisão de um algoritmo de topic modeling por essa técnica ser não-supervisionada, ou seja, os dados não possuírem um output com a resposta correta.
+
+Contudo, os resultados apresentados neste post mostram que é possível sim usar esse tipo de técnica, com um certo auxílio de interpretação humana, para categorizar um conjunto de vídeos sem ser necessário os assistir ou mesmo sem saber seus títulos.
+
+## Referências
+
+Antes das referências formais, gostaria de indicar o post do [Júlio Trecenti](http://curso-r.com/blog/2018/02/23/2018-02-21-2cents/), que é um outro exemplo de uso criativo de análise de dados para youtubers. 
+
+
+https://en.wikipedia.org/wiki/Topic_model
+
+Mimno, D., Wallach, H. M., Talley, E., Leenders, M., & McCallum, A. (2011, July). "Optimizing semantic coherence in topic models." In Proceedings of the Conference on Empirical Methods in Natural Language Processing (pp. 262-272). Association for Computational Linguistics. Chicago
+
+Roberts, M., Stewart, B., Tingley, D., Lucas, C., Leder-Luis, J., Gadarian, S., Albertson, B., et al. (2014). "Structural topic models for open ended survey responses." American Journal of Political Science, 58(4), 1064-1082
+
+Margaret E. Roberts, Brandon M. Stewart and Dustin Tingley (2018). stm: R Package for Structural Topic Models.  URL http://www.structuraltopicmodel.com.
+
+

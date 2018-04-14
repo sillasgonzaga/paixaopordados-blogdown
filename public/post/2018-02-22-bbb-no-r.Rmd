@@ -56,7 +56,7 @@ Como, então, obter esses dados?
 
 Existem diversas alternativas. Minha solução foi coletar as manchetes do [site do BBB](https://gshow.globo.com/realities/bbb/) (após me recuperar do desgaste psicológico que é entrar em contato com um material literário tão rico) e extrair os nomes presentes na manchete.
 
-Por exemplo, a partir da "notícia" [Diego, Kaysar e Lucas limpam espelho do banheiro](https://gshow.globo.com/realities/bbb/BBB18/agora-na-casa/noticia/diego-kaysar-e-lucas-limpam-espelho-do-banheiro.ghtml), será retornado um dataframe com todas as possíveis combinações de duplas formadas pelos três participantes presentes no título.
+Por exemplo, a partir da "notícia" [Diego, Kaysar e Lucas limpam espelho do banheiro](https://gshow.globo.com/realities/bbb/BBB18/agora-na-casa/noticia/diego-kaysar-e-lucas-limpam-espelho-do-banheiro.ghtml), será retornado um dataframe com todas as possíveis combinações de duplas formadas pelos três participantes presentes no título. 
 
 Para coletar todas as notícias sobre o BBB já publicadas no site, utilizei a mesma estratégia descrita [neste post sobre o G1](http://sillasgonzaga.com/post/analise-g1-01/), ou seja: coletar todos os links já publicados na página do BBB no Facebook.
 

@@ -1,0 +1,30 @@
+---
+title: "Me Poupe 1"
+author: "Sillas Teixeira Gonzaga"
+date: "10 de abril de 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r configurar ambiente python no R}
+library(reticulate)
+reticulate::use_python("/home/sillas/anaconda3/bin/python", required = TRUE)
+
+source_python("rascunho/youtube_caption_to_text.py")
+```
+
+
+```{python}
+from webvtt import WebVTT
+
+def caption_to_vector(file):
+  x = WebVTT().read(file)
+  txt = [caption.text for caption in x]
+  return(txt)
+
+```
+

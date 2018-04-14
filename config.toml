@@ -6,6 +6,7 @@ author = "Sillas Teixeira Gonzaga"
 copyright = "&copy; 2016. All rights reserved."
 canonifyurls = true
 paginate = 10
+math = true
 
 [indexes]
   tag = "tags"

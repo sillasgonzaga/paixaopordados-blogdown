@@ -14,7 +14,7 @@ description = "Sobre mim e o blog"
 
 ### Descrição
 
-Engenheiro de produção de formação, venho me especializando em programação voltada a Data Science, Machine Learning e Business Intelligence. Atualmente sou Analista Senior de Planejamento e Soluções Analíticas da Casa e Vídeo e contribuidor do Instituto Brasileiro de Pesquisa e Análise de Dados, o IBPAD. Realizei um intercâmbio acadêmico na Coreia do Sul pelo Ciência sem Fronteiras. Conhecimento avançado em R, Excel, VBA e SQL Server, além de intermediário em Python. Escrevo para dois blogs: o meu, Paixão por Dados, e o do IBPAD. 
+Engenheiro de produção de formação, venho me especializando em programação voltada a Data Science, Machine Learning e Business Intelligence. Atualmente sou Cientista de Dados na Daemon Investimentos e contribuidor do Instituto Brasileiro de Pesquisa e Análise de Dados, o IBPAD. Realizei um intercâmbio acadêmico na Coreia do Sul pelo Ciência sem Fronteiras. Escrevo para dois blogs: o meu, Paixão por Dados, e o do IBPAD. 
 
 ### Destaques
 

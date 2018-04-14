@@ -35,10 +35,10 @@ library(viridis)</code></pre>
 )</code></pre>
 <pre><code>## # A tibble: 3 x 2
 ##   pessoa_1 pessoa_2
-##      &lt;chr&gt;    &lt;chr&gt;
-## 1   Fulano  Ciclano
-## 2   Fulano Beltrano
-## 3  Ciclano Beltrano</code></pre>
+##   &lt;chr&gt;    &lt;chr&gt;   
+## 1 Fulano   Ciclano 
+## 2 Fulano   Beltrano
+## 3 Ciclano  Beltrano</code></pre>
 <p>Ou seja, o formato desejado é uma simples matriz de 2 colunas onde cada linha representa uma interação entre a Pessoa 1 e a Pessoa 2. A ordem (ex.: Fulano na coluna 1 ou 2) não importa, porque não se trata de uma rede direcionada (<em>directed</em>).</p>
 <p>Como, então, obter esses dados?</p>
 <p>Existem diversas alternativas. Minha solução foi coletar as manchetes do <a href="https://gshow.globo.com/realities/bbb/">site do BBB</a> (após me recuperar do desgaste psicológico que é entrar em contato com um material literário tão rico) e extrair os nomes presentes na manchete.</p>
@@ -100,11 +100,11 @@ gerar_pares &lt;- function(x){
 # exemplo
 gerar_pares(c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;))</code></pre>
 <pre><code>## # A tibble: 3 x 2
-##      P1    P2
+##   P1    P2   
 ##   &lt;chr&gt; &lt;chr&gt;
-## 1     A     B
-## 2     A     C
-## 3     B     C</code></pre>
+## 1 A     B    
+## 2 A     C    
+## 3 B     C</code></pre>
 <pre class="r"><code>df_mencionados &lt;- mencionados %&gt;%
   map(gerar_pares) %&gt;%
   bind_rows() %&gt;% 
