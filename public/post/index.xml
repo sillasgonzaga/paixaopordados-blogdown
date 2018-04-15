@@ -7,19 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 15 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 14 Apr 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>teste2</title>
-      <link>/post/teste2/</link>
-      <pubDate>Sun, 15 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/teste2/</guid>
-      <description>hist(rnorm(500)) </description>
-    </item>
     
     <item>
       <title>Topic Modeling: Um algoritmo consegue entender sobre o que fala a youtuber Nathalia Arcuri?</title>
@@ -29,15 +20,6 @@
       <guid>/post/topic-modeling-nathalia-arcuri/</guid>
       <description>No meu último post sobre Mineração de Texto, usei algumas ferramentas do R para analisar textos clássicos da literatura brasileira. Desta vez, o foco da análise será algo mais contemporâneo: uma youtuber. Mais precisamente, a Nathalia Arcuri, responsável por um dos principais canais de educação financeira, o Me Poupe.
 Além do objeto da análise, a abordagem aqui também é diferente: vou mostrar como Topic Modeling pode ser usado para descobrir temas gerais em um conjunto de dados textuais.</description>
-    </item>
-    
-    <item>
-      <title>teste-deploy</title>
-      <link>/post/teste-deploy/</link>
-      <pubDate>Sat, 14 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/teste-deploy/</guid>
-      <description>teste deployr</description>
     </item>
     
     <item>
