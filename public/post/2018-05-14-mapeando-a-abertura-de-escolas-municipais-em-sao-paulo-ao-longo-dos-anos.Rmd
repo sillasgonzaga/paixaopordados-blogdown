@@ -1,0 +1,207 @@
+---
+title: Mapeando a abertura de escolas municipais em São Paulo ao longo dos anos com um GIF
+author: Sillas Gonzaga
+date: '2018-05-14'
+slug: mapeando-a-abertura-de-escolas-municipais-em-sao-paulo-ao-longo-dos-anos
+categories:
+  - R
+tags:
+  - data visualization
+  - mapas
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, fig.width = 9)
+```
+
+
+Pessoas adoram mapas. Sempre que puder fazer mapas para representar visualmente uma determinada informação, faça! 
+
+Suponha que você deseja fazer uma visualização da taxa de homicídio por estados brasileiros. Nada te impede de fazer um gráfico de barras, onde cada UF seria representado por uma barra cujo tamanho seria dependente do valor da taxa, mas teria um impacto visual menor em que cada estado estaria colorido de acordo com essa variável.
+
+Contudo, em algumas situações, um mapa é a única maneira possível de transmitir com clareza uma ideia. Esta é a ideia deste post: mostrar como um mapa pode ser útil para mostrar a evolução das abertudas de escolas municipais na cidade de São Paulo.
+
+## Coleta e limpeza dos dados
+
+Eu já tive a oportunidade de participar de uma palestra do pessoal da Secretaria Municipal de Educação de São Paulo, onde conheci suas iniciativas de [dados abertos](http://dados.prefeitura.sp.gov.br/group/educacao). Esses projetos são benéficos não só para a população como um todo, por toda a questão da transparência, mas especialmente para quem deseja desenvolver projetos para praticar análise de dados, ganhando assim experiência real para lidar com tarefas de limpeza, manuseio e visualização de dados.
+
+O dataset de interesse deste post é o [Cadastro de escolas municipais, conveniadas e privadas ](http://dados.prefeitura.sp.gov.br/dataset/cadastro-de-escolas-municipais-conveniadas-e-privadas).
+
+```{r}
+# pacotes
+library(tidyverse)
+library(ggmap)
+library(gganimate)
+library(lubridate)
+```
+
+
+
+```{r ler arquivo}
+# definir locale para lidar com caracteres especiais
+lcl <- locale(encoding = "ISO-8859-1")
+df <- read_csv2("/home/sillas/R/Projetos/paixaopordados-blogdown/data/escolasr34dez2017.csv",
+                locale = lcl)
+
+# dimensoes do dataset
+dim(df)
+```
+
+O dataset possui 53 colunas, mas só precisamos de realmente 3: as colunas de coordenadas geográficas e a de data de fundação das escolas.
+
+```{r}
+df <- df %>% 
+  select(DATA = DT_CRIACAO, LAT = LATITUDE, LON = LONGITUDE)
+
+knitr::kable(head(df))
+```
+
+O output acima revela a necessidade de alguns ajustes de limpeza: converter a coluna `DATA` para a classe `Date` e dividir as colunas de latitude e longitude por um milhão para obter os valores corretos.
+
+A transformação da coluna `DATA` poderia ser feita por funções automáticas, como a `strptime`, mas isso dependeria de algumas configurações internas do seu sistema operacional. Por isso, eu uso uma solução mais manual:
+
+```{r}
+converter_mes <- function(x){
+  nomes <- c("jan", "fev", "mar", "abr", "mai", "jun",
+             "jul", "ago", "set", "out", "nov", "dez")
+  
+  numeros <- str_pad(1:12, width = 2, pad = "0")
+  
+  x <- str_replace_all(x, nomes[1], numeros[1])
+  x <- str_replace_all(x, nomes[2], numeros[2])
+  x <- str_replace_all(x, nomes[3], numeros[3])
+  x <- str_replace_all(x, nomes[4], numeros[4])
+  x <- str_replace_all(x, nomes[5], numeros[5])
+  x <- str_replace_all(x, nomes[6], numeros[6])
+  x <- str_replace_all(x, nomes[7], numeros[7])
+  x <- str_replace_all(x, nomes[8], numeros[8])
+  x <- str_replace_all(x, nomes[9], numeros[9])
+  x <- str_replace_all(x, nomes[10], numeros[10])
+  x <- str_replace_all(x, nomes[11], numeros[11])
+  x <- str_replace_all(x, nomes[12], numeros[12])
+  
+  x
+  
+}
+
+```
+
+Escrita a função, passo para a transformação das colunas:
+
+```{r}
+df <- df %>% 
+  mutate(DATA_CLEAN = dmy(converter_mes(DATA)),
+         LAT = LAT/1e6,
+         LON = LON/1e6
+         ) %>% 
+  mutate(ANO = year(DATA_CLEAN)) %>% 
+  # remover linhas onde LAT ou LON é NA
+  na.omit()
+
+summary(df)
+```
+
+Surgiu um novo erro: a coluna `ANO` possui valores acima do ano atual (2018). Isso provavelmente foi causado na conversão de datas como `30/08/68`, que o R retornou 2068 ao invés de 1968. Sinceramente, não parei para investigar o motivo disso, até porque é facilmente consertado:
+
+```{r}
+df <- df %>% 
+  mutate(ANO = if_else(ANO > year(today()), ANO - 100, ANO))
+```
+
+## Apresentação dos dados
+
+Primeiramente, qual a distribuição da abertura de novas escolas por ano?
+
+```{r}
+df %>% 
+  count(ANO) %>% 
+  ggplot(aes(x = ANO, y = n)) + 
+  geom_col(fill = "darkorange1") + 
+  theme_minimal() +
+  labs(x = NULL, y = NULL,
+       title = "Quantidade de escolas fundadas por ano em São Paulo") +
+  scale_x_continuous(breaks = scales::pretty_breaks(n = 10))
+
+```
+
+A grande maioria das escolas foi criada a partir do ano de 2005. Confesso que esperava uma distribuição mais uniforme.
+
+## Criando o mapa
+
+Existem diversas maneiras de criar um mapa no R. O melhor método depende basicamente do tipo de dados que se tem em mãos. Caso seja necessário, por exemplo, plotar polígonos, áreas e fronteiras, o indicado é o combo do pacote `sf` e da função `ggplot2::geom_sf`. No nosso caso, como estamos interessados em plotar pontos e já possuímos os dados das coordenadas geográficas, uma das melhores opções é usar o pacote `ggmap`.
+
+Para criar um mapa, são necessários dois parâmetros iniciais: um ponto central e um nível de zoom, que define a escala do gráfico.
+
+```{r}
+# para o centro de sp, usei as coordenadas da praca da se, que peguei no google maps
+praca_se <- c(lon = -46.634123, lat = -23.548408)
+# o zoom é calculado pela funcao calc_zoom do ggmap
+zoom_sp <- calc_zoom(lon = LON, lat = LAT, data = df)
+```
+
+Apenas com esses dois parâmetros, já é possível plotar um mapa base:
+
+```{r}
+mapa_sp <- get_map(location = praca_se,
+                   zoom = zoom_sp,
+                   maptype = "toner-lite")
+
+ggmap(mapa_sp) +
+  # plotar praça da sé
+  geom_point(x = praca_se[1], y = praca_se[2], color = "red")
+
+
+```
+
+Vamos então adicionar um pouco de vida ao gráfico e plotar todas as escolas presentes no dataset:
+
+
+```{r}
+ggmap(mapa_sp) +
+  geom_point(data = df, aes(x = LON, y = LAT),
+             color = "red", alpha = 0.1)
+```
+
+Aparantemente existe uma concentração de escolas perto, entre outras, da área de Itaquaquecetuba. Uma maneira de visualizar densidade de pontos é por meio do `geom_density2d`:
+
+
+```{r}
+ggmap(mapa_sp) +
+  geom_density2d(data = df, aes(x = LON, y = LAT),
+                 color = "red")
+
+```
+
+
+## Acrescentando o elemento tempo no mapa
+
+Ainda não mostrei como representar o fator tempo na visualização. Penso que isto pode ser feito de três maneiras: colorir as escolas de acordo com o ano de fundação, separar o gráfico em *facets* por ano ou, minha preferida, criar um gif composto por uma série de gráficos sobrepostos. Fazer isso é muito fácil com o auxílio do pacote `gganimate`:
+
+Para criar uma sobreposição de gráficos ggplot com o pacote `gganimate`, basta setar a *aesthetic* especial `frame` com o nome da variável que você deseja usar para separar os gráficos em unidades individuais. O argumento `cumulative` é usado para que as escolas de anos mais recentes permaneçam no gráfico ao longo dos anos:
+
+```{r, fig.show='animate', interval=.07}
+p <- ggmap(mapa_sp) +
+  geom_point(data = df,
+             aes(x = LON, y = LAT, frame = ANO,
+                 cumulative  = TRUE), color = "red", alpha = 0.1) + 
+  labs(x = NULL, y = NULL, title = "Escolas em São Paulo em ")
+
+# o argumento interval define o intervalo de transição do gif em segundos
+gganimate(p = p, interval = .075)
+
+```
+
+
+Taí! Com o auxílio do gráfico, é possível perceber (pelo menos foi o que vi, vai que é uma miragem) que, de acordo com o dataset, nas primeiras décadas foram priorizadas as áreas mais periféricas de São Paulo. A região mais central aparenta ter recebido mais escolas apenas a partir das últimas duas décadas.
+
+
+## Publicidade
+
+Sou um dos intrutores do curso de [Ciência de Dados do IBPAD](https://www.ibpad.com.br/produto/ciencia-de-dados-com-r-sp/). Temos um dia do curso voltado exclusivamente para visualização de dados, dentre eles mapas! Mais informações de novas turmas [neste link](https://www.ibpad.com.br/produto/ciencia-de-dados-com-r-sp/). 
+
+
+
+
+
+

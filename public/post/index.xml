@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 14 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 14 May 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mapeando a abertura de escolas municipais em São Paulo ao longo dos anos com um GIF</title>
+      <link>/post/mapeando-a-abertura-de-escolas-municipais-em-sao-paulo-ao-longo-dos-anos/</link>
+      <pubDate>Mon, 14 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mapeando-a-abertura-de-escolas-municipais-em-sao-paulo-ao-longo-dos-anos/</guid>
+      <description>Pessoas adoram mapas. Sempre que puder fazer mapas para representar visualmente uma determinada informação, faça!
+Suponha que você deseja fazer uma visualização da taxa de homicídio por estados brasileiros. Nada te impede de fazer um gráfico de barras, onde cada UF seria representado por uma barra cujo tamanho seria dependente do valor da taxa, mas teria um impacto visual menor em que cada estado estaria colorido de acordo com essa variável.</description>
+    </item>
     
     <item>
       <title>Topic Modeling: Um algoritmo consegue entender sobre o que fala a youtuber Nathalia Arcuri?</title>
