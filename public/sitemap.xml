@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/analise-e-simulacao-de-investimentos-com-o-pacote-calccidadao/</loc>
+    <lastmod>2018-06-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/mapeando-a-abertura-de-escolas-municipais-em-sao-paulo-ao-longo-dos-anos/</loc>
     <lastmod>2018-05-14T00:00:00+00:00</lastmod>
   </url>
@@ -163,6 +168,12 @@
   </url>
   
   <url>
+    <loc>/tags/calccidadao/</loc>
+    <lastmod>2018-06-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/censo-educacao/</loc>
     <lastmod>2016-07-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -183,6 +194,18 @@
   <url>
     <loc>/tags/eventos/</loc>
     <lastmod>2017-05-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/finan%C3%A7as/</loc>
+    <lastmod>2018-06-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/investimentos/</loc>
+    <lastmod>2018-06-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -212,7 +235,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-05-14T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -230,7 +253,7 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2018-05-14T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -272,7 +295,7 @@
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2016-07-08T00:00:00+00:00</lastmod>
+    <lastmod>2018-06-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

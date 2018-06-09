@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Finanças on Paixão por Dados</title>
+    <link>/tags/finan%C3%A7as/</link>
+    <description>Recent content in Finanças on Paixão por Dados</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2016. All rights reserved.</copyright>
+    <lastBuildDate>Sat, 09 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/finan%C3%A7as/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Análise e simulação de investimentos com o pacote calcCidadao</title>
+      <link>/post/analise-e-simulacao-de-investimentos-com-o-pacote-calccidadao/</link>
+      <pubDate>Sat, 09 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/analise-e-simulacao-de-investimentos-com-o-pacote-calccidadao/</guid>
+      <description>Calculadora do Cidadão Devido a um fenômeno econômico chamado de Inflação, o valor do dinheiro muda com o tempo. R\$100,00 hoje não possuem o mesmo valor monetário ou poder de compra que R\$100,00 daqui a 10 anos, ou mesmo 10 anos atrás. Uma técnica que pode ser usada para corrigir esse efeito é a de deflacionar esses valores, como mostrado neste post do blog Análise Macro. Um outro serviço que pode ser usado é a Calculadora do Cidadão, um produto desenvolvido pelo Banco Central do Brasil para facilitar o trabalho das pessoas que desejam corrigir valores pela inflação de maneira muito simples: Basta adicionar os dados nesta página de data inicial, data final e valor a ser corrigido.</description>
+    </item>
+    
+  </channel>
+</rss>
