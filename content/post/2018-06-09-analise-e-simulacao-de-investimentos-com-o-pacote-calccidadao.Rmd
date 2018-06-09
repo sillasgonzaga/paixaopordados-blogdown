@@ -84,7 +84,7 @@ Em um fórum de investimentos que participo, havia uma discussão sobre como ava
 
 De fato, a não ser que você trabalhe na Empiricus, não dá para saber como estará a Selic e a inflação ao longo dos próximos 6 anos. É simplesmente impossível prever variáveis tão complexas em um período tão distante no período no futuro. Contudo, é possível ter alguma noção desses valores a partir de simulação de rendimentos passados do mesmo intervalo de tempo. 
 
-Vamos então tomar como exemplo um produto que eu recebi por e-mail da Easynvest: um CDB prefixado de 15,07% ao ano do Banco Pine. Para calcular seu retorno líquido ao final do período, basta usar uma fórmula de juros compostos:  
+Vamos então tomar como exemplo um produto que eu recebi por e-mail da Easynvest: um CDB prefixado de 15,07% ao ano do Banco Pine com prazo de 6 anos. Para calcular seu retorno líquido ao final do período, basta usar uma fórmula de juros compostos:  
 
 ```{r}
 juros_compostos <- function(i, t, imposto){
@@ -92,7 +92,7 @@ juros_compostos <- function(i, t, imposto){
   liquido <- bruto * (1 - imposto)
   liquido
   }
-
+# taxa de 15.07%aa para 6 anos, considerando 15% de IR
 retorno_cdb <- juros_compostos(0.1507, 6, 0.15)
 retorno_cdb
 # montante liquido no resgate para um capital de 1000 reais

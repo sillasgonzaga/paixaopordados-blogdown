@@ -68,13 +68,13 @@ renda_fixa_10_anos</code></pre>
 <h2>Estudo de caso para o pacote: Análise de um Título Pré-Fixado</h2>
 <p>Em um fórum de investimentos que participo, havia uma discussão sobre como avaliar a “qualidade” de um título CDB pré-fixado de um prazo relativamente longo, como 6 anos. Mesmo que a taxa seja atrativa (um rendimento de 14% ao ano pode fazer o capital investido dobrar no período), 6 anos é um prazo muito longo em um país onde até o passado é imprevisível. É natural surgir perguntas como <em>E se a inflação acumulada no período for maior?</em> ou <em>E se um título pós-fixado a 100% do CDI render mais, me fazendo ter um custo de oportunidade?</em>.</p>
 <p>De fato, a não ser que você trabalhe na Empiricus, não dá para saber como estará a Selic e a inflação ao longo dos próximos 6 anos. É simplesmente impossível prever variáveis tão complexas em um período tão distante no período no futuro. Contudo, é possível ter alguma noção desses valores a partir de simulação de rendimentos passados do mesmo intervalo de tempo.</p>
-<p>Vamos então tomar como exemplo um produto que eu recebi por e-mail da Easynvest: um CDB prefixado de 15,07% ao ano do Banco Pine. Para calcular seu retorno líquido ao final do período, basta usar uma fórmula de juros compostos:</p>
+<p>Vamos então tomar como exemplo um produto que eu recebi por e-mail da Easynvest: um CDB prefixado de 15,07% ao ano do Banco Pine com prazo de 6 anos. Para calcular seu retorno líquido ao final do período, basta usar uma fórmula de juros compostos:</p>
 <pre class="r"><code>juros_compostos &lt;- function(i, t, imposto){
   bruto &lt;- (1 + i)^t - 1
   liquido &lt;- bruto * (1 - imposto)
   liquido
   }
-
+# taxa de 15.07%aa para 6 anos, considerando 15% de IR
 retorno_cdb &lt;- juros_compostos(0.1507, 6, 0.15)
 retorno_cdb</code></pre>
 <pre><code>## [1] 1.123293</code></pre>
