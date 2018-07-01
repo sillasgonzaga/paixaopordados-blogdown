@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 09 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 01 Jul 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A equação mais perigosa do mundo e o efeito do tamanho da amostra nos resultados</title>
+      <link>/post/a-equacao-mais-perigosa-do-mundo/</link>
+      <pubDate>Sun, 01 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/a-equacao-mais-perigosa-do-mundo/</guid>
+      <description>Introdução Nesta thread no subreddit de Data Science, um usuário fez o seguinte comentário:
+ So basically, I was asked to make inference on 10 people and expect those to generalize to the entire study population. I said the study was poorly designed, and that if I made up random numbers we would do a better job of understanding the customer base.
+ É muito comum pessoas que não são muito familiares com conceitos de inferência estatística ignorar o fato de que tomar conclusões a partir de amostras muito pequenas pode ser bastante perigoso.</description>
+    </item>
     
     <item>
       <title>Análise e simulação de investimentos com o pacote calcCidadao</title>

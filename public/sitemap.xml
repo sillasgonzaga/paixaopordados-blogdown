@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/a-equacao-mais-perigosa-do-mundo/</loc>
+    <lastmod>2018-07-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/analise-e-simulacao-de-investimentos-com-o-pacote-calccidadao/</loc>
     <lastmod>2018-06-09T00:00:00+00:00</lastmod>
   </url>
@@ -192,6 +197,12 @@
   </url>
   
   <url>
+    <loc>/tags/estatistica/</loc>
+    <lastmod>2018-07-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/eventos/</loc>
     <lastmod>2017-05-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -235,7 +246,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-06-09T00:00:00+00:00</lastmod>
+    <lastmod>2018-07-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -253,7 +264,7 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2018-06-09T00:00:00+00:00</lastmod>
+    <lastmod>2018-07-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

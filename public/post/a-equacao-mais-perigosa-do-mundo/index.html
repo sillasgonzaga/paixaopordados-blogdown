@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.31" />
+
+  <title>A equação mais perigosa do mundo e o efeito do tamanho da amostra nos resultados &middot; Paixão por Dados</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>Sobre</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contato</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://facebook.com/sillast" target="_blank"><i class="fa fa-facebook-square fa-fw"></i>Facebook</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://linkedin.com/in/sillasgonzaga" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/sillasgonzaga" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2016. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>A equação mais perigosa do mundo e o efeito do tamanho da amostra nos resultados</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>01 Jul 2018</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/estatistica">estatistica</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <div id="introducao" class="section level2">
+<h2>Introdução</h2>
+<p><a href="https://old.reddit.com/r/datascience/comments/8r16mi/whats_the_dumbest_thing_a_manager_or_executive/e0np7vm/">Nesta thread</a> no subreddit de Data Science, um usuário fez o seguinte comentário:</p>
+<blockquote>
+<p>So basically, I was asked to make inference on 10 people and expect those to generalize to the entire study population. I said the study was poorly designed, and that if I made up random numbers we would do a better job of understanding the customer base.</p>
+</blockquote>
+<p>É muito comum pessoas que não são muito familiares com conceitos de inferência estatística ignorar o fato de que tomar conclusões a partir de amostras muito pequenas pode ser bastante perigoso.</p>
+<p><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.504.3301&amp;rep=rep1&amp;type=pdf">Neste artigo escrito por Howard Wainer</a> (Aviso: Link para PDF), são citados dois motivos para que uma equação possa ser perigosa: o fato de elas serem conhecidas e o fato de elas serem desconhecidas. A equação de Moivre, que descreve o desvio padrão da distribuição amostral da média, se encontra no segundo caso:</p>
+<p><span class="math inline">\(\sigma_{\bar{x}}= \frac{\sigma}{\sqrt{n}}\)</span></p>
+<p>Onde <span class="math inline">\(\sigma_{\bar{x}}\)</span> é o erro padrão da média, <span class="math inline">\(\sigma\)</span> o desvio padrão da amostra e <span class="math inline">\(n\)</span> o tamanho da amostra. Em outras palavras, dado que <span class="math inline">\(\sigma\)</span> é um parâmetro conhecido, quanto menor o tamanho da amost, maior será erro da estimativa, que corresponde a variação da média amostral em relação à média da população. O paper inteiro é muito bom e fácil de ler, então recomendo a leitura.</p>
+<p>O objetivo deste post é um exercício simples para mostrar o efeito do tamanho da amostra na variabilidade dos resultados, mesmo quando se sabem os valores verdadeiros dos parâmetros de toda a população.</p>
+</div>
+<div id="geracao-dos-dados-por-simulacao" class="section level2">
+<h2>Geração dos dados por simulação</h2>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<p>O primeiro passo é gerar uma população de dados cujos parâmetros são conhecidos. Aqui, duas variáveis aleatórias ´x´ e ´y´ são definidas, em que x é uma variável aleatória e ´y´ deriva de x, com algum ruído:</p>
+<pre class="r"><code>n &lt;- 1e5
+set.seed(123)
+x &lt;- rnorm(n, mean = 0, sd = 0.5)
+y &lt;- 2 * x + 5 + rnorm(n, mean = 0, sd = 0.25)
+
+df &lt;- data.frame(x = x, y = y)</code></pre>
+<pre class="r"><code>mod_populacao &lt;- lm(y ~ x, data = df)
+summary(mod_populacao)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x, data = df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.0972 -0.1685 -0.0002  0.1683  1.0506 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 5.0013045  0.0007937    6302   &lt;2e-16 ***
+## x           1.9986648  0.0015877    1259   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.251 on 99998 degrees of freedom
+## Multiple R-squared:  0.9406, Adjusted R-squared:  0.9406 
+## F-statistic: 1.585e+06 on 1 and 99998 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Como esperado, a partir do modelo de regressão obtido acima a partir da população de parâmetros são conhecidos que o processo de geração da variável resposta ´y´ pode ser representado pela equação abaixo:</p>
+<p><span class="math inline">\(y = 2x + 5\)</span></p>
+<p>O histograma dos resíduos do modelo é mais uma evidência de que o modelo obtido possui boas propriedades:</p>
+<pre class="r"><code>hist(resid(mod_populacao),
+     main = &quot;Distribuição dos resíduos do modelo da população&quot;,
+     xlab = NULL)</code></pre>
+<p><img src="/post/2018-07-01-a-equacao-mais-perigosa-do-mundo_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Assim, se tirarmos uma amostra da população e criarmos um modelo <span class="math inline">\(y = f(x)\)</span>, os parâmetros do modelo dessa amostra serão os mesmos ou próximos ao da população, correto? Depende de seu tamanho.</p>
+</div>
+<div id="geracao-das-amostras" class="section level2">
+<h2>Geração das amostras</h2>
+<p>A função abaixo cria 1000 amostras de tamanho <strong><code>sample_size</code></strong> do dataframe <strong><code>df</code></strong> dos dados da população e, para cada uma das amostras, ajusta um modelo de regressão linear, extrai o coeficiente de <code>x</code> da regressão e retorna um dataframe com os resultados:</p>
+<pre class="r"><code>coef_x_sample &lt;- function(sample_size){
+  repl &lt;- purrr::rerun(1000, sample_n(df, sample_size))
+  
+  vec_coef_x &lt;- repl %&gt;% 
+    map(~ lm(y ~ x, data = .)) %&gt;% 
+    map_dbl(~ coef(.)[&quot;x&quot;])
+  
+  data.frame(size = sample_size, coef_x = vec_coef_x)
+}
+
+# exemplo
+set.seed(123)
+head(coef_x_sample(10))</code></pre>
+<pre><code>##   size   coef_x
+## 1   10 2.065196
+## 2   10 2.320681
+## 3   10 2.142100
+## 4   10 2.069578
+## 5   10 2.036510
+## 6   10 1.704862</code></pre>
+<p>Nas 6 primeiras amostras de tamanho 10, o coeficiente de x foi desde 1,70 a 2,32, mostrando uma certa variabilidade.</p>
+<p>O código abaixo repete o processo acima para valores diferentes do tamanho da amostra:</p>
+<pre class="r"><code>vec_samp_size &lt;- c(5, 10, 15, 20, 50, 75, 100, 150, 200, 250, 500, 750, 1000, 5000)
+
+df_result &lt;- vec_samp_size  %&gt;% map_dfr(coef_x_sample)
+
+df_result &lt;- df_result %&gt;% 
+  mutate(size = factor(size, levels = vec_samp_size))</code></pre>
+</div>
+<div id="analise-dos-resultados" class="section level2">
+<h2>Análise dos resultados</h2>
+<p>Vários gráficos podem ser feitos para ilustrar os resultados da variabilidade do parâmetro da regressão em funcão do tamanho da amostra, como o boxplot abaixo:</p>
+<pre class="r"><code>df_result %&gt;% 
+  ggplot(aes(x = size, y = coef_x)) + 
+  geom_boxplot() + 
+  scale_y_continuous(breaks = seq(-4, 4, by = 1)) + 
+  labs(x = NULL, y = NULL,
+       title = &quot;Variabilidade do coeficiente de x em função do tamanho da amostra&quot;) + 
+  theme_minimal()</code></pre>
+<p><img src="/post/2018-07-01-a-equacao-mais-perigosa-do-mundo_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>O gráfico acima mostra que, apesar de a mediana ser aproximadamente 2 em todos os tamanhos amostrais testados, a variabilidade é muito maior nas menores amostras. A medida que se aumenta o número de indivíduos na amostra, a distribuição dos resultados converge para o valor verdadeiro. Para amostras de 5 indivíduos, foram observados resultados no seguinte intervalo:</p>
+<pre class="r"><code># intervalo para menor tamanho amostral
+range(df_result$coef_x[df_result$size == &quot;5&quot;])</code></pre>
+<pre><code>## [1] 0.3693973 3.6749739</code></pre>
+<pre class="r"><code># intervalo para maior tamanho amostral
+range(df_result$coef_x[df_result$size == &quot;5000&quot;])</code></pre>
+<pre><code>## [1] 1.973962 2.022880</code></pre>
+<p>Ou seja, mesmo que uma amostra seja oriunda de uma população descrita por parâmetros já determinados, usar resultados de uma amostra pequena pode levar a conclusões erradas.</p>
+</div>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="/post/analise-e-simulacao-de-investimentos-com-o-pacote-calccidadao/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="/post/analise-e-simulacao-de-investimentos-com-o-pacote-calccidadao/">Análise e simulação de investimentos com o pacote calcCidadao</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
+</div>
+
+
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'sillastg';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</div>
+
+</div>
+</div>
+<script src="/js/ui.js"></script>
+<script src="//yihui.name/js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-110050805-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+
+</body>
+</html>
+
