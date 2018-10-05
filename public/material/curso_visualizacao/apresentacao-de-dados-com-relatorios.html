@@ -25,7 +25,7 @@
 <meta name="author" content="Sillas Gonzaga">
 
 
-<meta name="date" content="2018-08-27">
+<meta name="date" content="2018-10-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -64,10 +64,11 @@
 <script src="libs/leaflet-binding-1.1.0/leaflet.js"></script>
 <link href="libs/sequences-0.1/sequences.css" rel="stylesheet" />
 <script src="libs/sunburst-binding-2.0.0/sunburst.js"></script>
-<script src="libs/datatables-binding-0.2/datatables.js"></script>
-<link href="libs/dt-core-1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.10.12/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.10.12/js/jquery.dataTables.min.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.4/datatables.js"></script>
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
 
 
 <style type="text/css">
@@ -121,7 +122,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li> <img src="https://i.imgur.com/x4ZQ8E3.png" alt="" style="width:200px;height:100px;" class="center"> </li>
 <li><strong><a href="./">Introdução ao R para Visualização de Dados</a></strong></li>
 
 <li class="divider"></li>
@@ -192,10 +192,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.2" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#mapas-plotando-poligonos"><i class="fa fa-check"></i><b>4.2</b> Mapas: plotando polígonos</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#projeto-plotando-o-resultado-do-segundo-turno-das-eleicoes-para-presidente-de-2014-por-uf"><i class="fa fa-check"></i><b>4.2.1</b> Projeto: plotando o resultado do segundo turno das eleições para presidente de 2014 por UF:</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#mapas-plotando-pontos-com-google-maps"><i class="fa fa-check"></i><b>4.3</b> Mapas: plotando pontos com Google Maps</a></li>
-<li class="chapter" data-level="4.4" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#mapas-interativos"><i class="fa fa-check"></i><b>4.4</b> Mapas interativos</a></li>
-<li class="chapter" data-level="4.5" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#graficos-de-dados-hierarquicos-treemaps-e-sunburst"><i class="fa fa-check"></i><b>4.5</b> Gráficos de dados hierárquicos: treemaps e sunburst</a></li>
-<li class="chapter" data-level="4.6" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#exercicios-3"><i class="fa fa-check"></i><b>4.6</b> Exercícios</a><ul>
+<li class="chapter" data-level="4.3" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#mapas-interativos"><i class="fa fa-check"></i><b>4.3</b> Mapas interativos</a></li>
+<li class="chapter" data-level="4.4" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#graficos-de-dados-hierarquicos-treemaps-e-sunburst"><i class="fa fa-check"></i><b>4.4</b> Gráficos de dados hierárquicos: treemaps e sunburst</a></li>
+<li class="chapter" data-level="4.5" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#exercicios-3"><i class="fa fa-check"></i><b>4.5</b> Exercícios</a><ul>
 <li class="chapter" data-level="" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#plotly"><i class="fa fa-check"></i>plotly</a></li>
 <li class="chapter" data-level="" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#geom_sf"><i class="fa fa-check"></i>geom_sf</a></li>
 </ul></li>
@@ -215,6 +214,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.7.2" data-path="apresentacao-de-dados-com-relatorios.html"><a href="apresentacao-de-dados-com-relatorios.html#usando-os-parametros"><i class="fa fa-check"></i><b>5.7.2</b> Usando os parâmetros</a></li>
 </ul></li>
 <li class="chapter" data-level="5.8" data-path="apresentacao-de-dados-com-relatorios.html"><a href="apresentacao-de-dados-com-relatorios.html#projeto-final"><i class="fa fa-check"></i><b>5.8</b> Projeto final</a></li>
+<li class="chapter" data-level="5.9" data-path="apresentacao-de-dados-com-relatorios.html"><a href="apresentacao-de-dados-com-relatorios.html#r-markdown"><i class="fa fa-check"></i><b>5.9</b> R Markdown</a></li>
+<li class="chapter" data-level="5.10" data-path="apresentacao-de-dados-com-relatorios.html"><a href="apresentacao-de-dados-com-relatorios.html#including-plots"><i class="fa fa-check"></i><b>5.10</b> Including Plots</a></li>
 </ul></li>
 </ul>
 
@@ -756,8 +757,8 @@ setosa
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">head</span>() <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span>DT<span class="op">::</span><span class="kw">datatable</span>()</code></pre></div>
-<div id="htmlwidget-9972789b811a45f82654" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9972789b811a45f82654">{"x":{"filter":"none","data":[["1","2","3","4","5","6"],[5.1,4.9,4.7,4.6,5,5.4],[3.5,3,3.2,3.1,3.6,3.9],[1.4,1.4,1.3,1.5,1.4,1.7],[0.2,0.2,0.2,0.2,0.2,0.4],["setosa","setosa","setosa","setosa","setosa","setosa"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sepal.Length<\/th>\n      <th>Sepal.Width<\/th>\n      <th>Petal.Length<\/th>\n      <th>Petal.Width<\/th>\n      <th>Species<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row"}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-942936bd62b281c740e6" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-942936bd62b281c740e6">{"x":{"filter":"none","data":[["1","2","3","4","5","6"],[5.1,4.9,4.7,4.6,5,5.4],[3.5,3,3.2,3.1,3.6,3.9],[1.4,1.4,1.3,1.5,1.4,1.7],[0.2,0.2,0.2,0.2,0.2,0.4],["setosa","setosa","setosa","setosa","setosa","setosa"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sepal.Length<\/th>\n      <th>Sepal.Width<\/th>\n      <th>Petal.Length<\/th>\n      <th>Petal.Width<\/th>\n      <th>Species<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <div class="alert alert-info" <strong="">
 <p>Referências:</strong> <a href="https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html">Tutorial do pacote kableExtra</a><br />
 <a href="https://cran.r-project.org/web/packages/formattable/vignettes/formattable-data-frame.html">Tutorial do pacote formattable</a><br />
@@ -821,6 +822,26 @@ params<span class="op">$</span>estado</code></pre></div>
 <li><p>Carregue o dataset <code>gapminder</code>, extraia os nomes dos continentes presentes no dataset, salve em um vetor e exclua a Oceania (você pode usar a função <code>stringr::str_remove()</code> para isso). Lembre de converter o vetor de continentes para character.</p></li>
 <li><p>Use a função <code>rmarkdown::render()</code> especificando o continente em <code>params</code>. Crie um for loop para gerar um relatório para cada continente, salvando com o respectivo nome.</p></li>
 </ol>
+
+</div>
+<div id="r-markdown" class="section level2">
+<h2><span class="header-section-number">5.9</span> R Markdown</h2>
+<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
+<p>When you click the <strong>Knit</strong> button a <em>document</em> will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(cars)</code></pre></div>
+<pre><code>##      speed           dist       
+##  Min.   : 4.0   Min.   :  2.00  
+##  1st Qu.:12.0   1st Qu.: 26.00  
+##  Median :15.0   Median : 36.00  
+##  Mean   :15.4   Mean   : 42.98  
+##  3rd Qu.:19.0   3rd Qu.: 56.00  
+##  Max.   :25.0   Max.   :120.00</code></pre>
+</div>
+<div id="including-plots" class="section level2">
+<h2><span class="header-section-number">5.10</span> Including Plots</h2>
+<p>You can also embed plots, for example:</p>
+<p><img src="curso_visualizacao_files/figure-html/pressure-1.png" width="672" /></p>
+<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
 
 </div>
 </div>

@@ -25,7 +25,7 @@
 <meta name="author" content="Sillas Gonzaga">
 
 
-<meta name="date" content="2018-08-27">
+<meta name="date" content="2018-10-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -64,10 +64,11 @@
 <script src="libs/leaflet-binding-1.1.0/leaflet.js"></script>
 <link href="libs/sequences-0.1/sequences.css" rel="stylesheet" />
 <script src="libs/sunburst-binding-2.0.0/sunburst.js"></script>
-<script src="libs/datatables-binding-0.2/datatables.js"></script>
-<link href="libs/dt-core-1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.10.12/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.10.12/js/jquery.dataTables.min.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.4/datatables.js"></script>
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
 
 
 <style type="text/css">
@@ -121,7 +122,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li> <img src="https://i.imgur.com/x4ZQ8E3.png" alt="" style="width:200px;height:100px;" class="center"> </li>
 <li><strong><a href="./">Introdução ao R para Visualização de Dados</a></strong></li>
 
 <li class="divider"></li>
@@ -192,10 +192,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.2" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#mapas-plotando-poligonos"><i class="fa fa-check"></i><b>4.2</b> Mapas: plotando polígonos</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#projeto-plotando-o-resultado-do-segundo-turno-das-eleicoes-para-presidente-de-2014-por-uf"><i class="fa fa-check"></i><b>4.2.1</b> Projeto: plotando o resultado do segundo turno das eleições para presidente de 2014 por UF:</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#mapas-plotando-pontos-com-google-maps"><i class="fa fa-check"></i><b>4.3</b> Mapas: plotando pontos com Google Maps</a></li>
-<li class="chapter" data-level="4.4" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#mapas-interativos"><i class="fa fa-check"></i><b>4.4</b> Mapas interativos</a></li>
-<li class="chapter" data-level="4.5" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#graficos-de-dados-hierarquicos-treemaps-e-sunburst"><i class="fa fa-check"></i><b>4.5</b> Gráficos de dados hierárquicos: treemaps e sunburst</a></li>
-<li class="chapter" data-level="4.6" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#exercicios-3"><i class="fa fa-check"></i><b>4.6</b> Exercícios</a><ul>
+<li class="chapter" data-level="4.3" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#mapas-interativos"><i class="fa fa-check"></i><b>4.3</b> Mapas interativos</a></li>
+<li class="chapter" data-level="4.4" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#graficos-de-dados-hierarquicos-treemaps-e-sunburst"><i class="fa fa-check"></i><b>4.4</b> Gráficos de dados hierárquicos: treemaps e sunburst</a></li>
+<li class="chapter" data-level="4.5" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#exercicios-3"><i class="fa fa-check"></i><b>4.5</b> Exercícios</a><ul>
 <li class="chapter" data-level="" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#plotly"><i class="fa fa-check"></i>plotly</a></li>
 <li class="chapter" data-level="" data-path="outros-tipos-de-graficos.html"><a href="outros-tipos-de-graficos.html#geom_sf"><i class="fa fa-check"></i>geom_sf</a></li>
 </ul></li>
@@ -215,6 +214,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.7.2" data-path="apresentacao-de-dados-com-relatorios.html"><a href="apresentacao-de-dados-com-relatorios.html#usando-os-parametros"><i class="fa fa-check"></i><b>5.7.2</b> Usando os parâmetros</a></li>
 </ul></li>
 <li class="chapter" data-level="5.8" data-path="apresentacao-de-dados-com-relatorios.html"><a href="apresentacao-de-dados-com-relatorios.html#projeto-final"><i class="fa fa-check"></i><b>5.8</b> Projeto final</a></li>
+<li class="chapter" data-level="5.9" data-path="apresentacao-de-dados-com-relatorios.html"><a href="apresentacao-de-dados-com-relatorios.html#r-markdown"><i class="fa fa-check"></i><b>5.9</b> R Markdown</a></li>
+<li class="chapter" data-level="5.10" data-path="apresentacao-de-dados-com-relatorios.html"><a href="apresentacao-de-dados-com-relatorios.html#including-plots"><i class="fa fa-check"></i><b>5.10</b> Including Plots</a></li>
 </ul></li>
 </ul>
 
@@ -281,27 +282,27 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ##  [1] nlme_3.1-137        bitops_1.0-6        xts_0.10-0         
 ##  [4] lubridate_1.7.4     RColorBrewer_1.1-2  httr_1.3.1         
 ##  [7] rprojroot_1.3-2     tools_3.4.4         backports_1.1.2    
-## [10] DT_0.2              utf8_1.1.4          R6_2.2.2           
+## [10] DT_0.4              utf8_1.1.4          R6_2.2.2           
 ## [13] spData_0.2.9.3      DBI_1.0.0           lazyeval_0.2.1     
 ## [16] colorspace_1.3-2    withr_2.1.2         tidyselect_0.2.4   
 ## [19] mnormt_1.5-5        curl_3.2            compiler_3.4.4     
 ## [22] cli_1.0.0           rvest_0.3.2         Cairo_1.5-9        
 ## [25] xml2_1.2.0          labeling_0.3        bookdown_0.7       
 ## [28] scales_1.0.0.9000   classInt_0.2-3      psych_1.8.4        
-## [31] digest_0.6.15       foreign_0.8-70      rmarkdown_1.10     
+## [31] digest_0.6.17       foreign_0.8-70      rmarkdown_1.10     
 ## [34] jpeg_0.1-8          pkgconfig_2.0.1     htmltools_0.3.6    
 ## [37] highr_0.6           htmlwidgets_1.2     rlang_0.2.2        
 ## [40] rstudioapi_0.7      shiny_1.1.0         bindr_0.1.1        
 ## [43] zoo_1.8-2           jsonlite_1.5        crosstalk_1.0.0    
 ## [46] magrittr_1.5        kableExtra_0.9.0    d3r_0.8.1          
 ## [49] Rcpp_0.12.18        munsell_0.5.0       fansi_0.3.0        
-## [52] stringi_1.2.4       yaml_2.1.19         snakecase_0.9.1    
+## [52] stringi_1.2.4       yaml_2.2.0          snakecase_0.9.1    
 ## [55] plyr_1.8.4          grid_3.4.4          promises_1.0.1     
 ## [58] parallel_3.4.4      crayon_1.3.4        lattice_0.20-35    
 ## [61] haven_1.1.2         hms_0.4.2           knitr_1.20         
 ## [64] pillar_1.3.0        igraph_1.2.1        rjson_0.2.15       
 ## [67] reshape2_1.4.3      glue_1.3.0          evaluate_0.10.1    
-## [70] data.table_1.11.4   modelr_0.1.2        httpuv_1.4.5       
+## [70] data.table_1.11.6   modelr_0.1.2        httpuv_1.4.5       
 ## [73] png_0.1-7           RgoogleMaps_1.4.1   cellranger_1.1.0   
 ## [76] gtable_0.2.0        assertthat_0.2.0    formattable_0.2.0.1
 ## [79] gridBase_0.4-7      xfun_0.3            mime_0.5           
