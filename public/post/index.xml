@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 01 Jul 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 23 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Qual o melhor serviço de streaming de filmes e séries no Brasil? O R responde.</title>
+      <link>/post/qual-o-melhor-servico-de-streaming/</link>
+      <pubDate>Sat, 23 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/qual-o-melhor-servico-de-streaming/</guid>
+      <description>Introdução Recentemente, li um artigo sobre a Balcanização dos serviços de streaming que me fez refletir sobre essa indústria. Dado que assinar mais de um serviço de streaming pode ser um desperdício, devido a falta de tempo para consumir muito material, as pessoas costumam optar por apenas um dos existentes: Netflix, Amazon Prime Video e outros. Como saber qual escolher?
+O serviço JustWatch ajuda um pouco. Nele, é possível pesquisar por um filme ou seriado e descobrir em quais serviços ele está disponível.</description>
+    </item>
     
     <item>
       <title>A equação mais perigosa do mundo e o efeito do tamanho da amostra nos resultados</title>
