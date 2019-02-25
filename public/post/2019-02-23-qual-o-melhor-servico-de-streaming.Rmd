@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 
 ## Introdução
 
-Recentemente, li um artigo sobre a [Balcanização dos serviços de streaming](https://meiobit.com/397799/balcanizacao-streaming-aumento-pirataria/) que me fez refletir sobre essa indústria. Dado que assinar mais de um serviço de streaming pode ser um desperdício, devido a falta de tempo para consumir muito material, as pessoas costumam optar por apenas um dos existentes: Netflix, Amazon Prime Video e outros. Como saber qual escolher?
+Recentemente, li um artigo sobre a [Balcanização dos serviços de streaming](https://meiobit.com/397799/balcanizacao-streaming-aumento-pirataria/) que me fez refletir sobre essa indústria. Dado que assinar mais de um serviço de streaming pode ser um desperdício, devido a falta de tempo para consumir tanto material, as pessoas costumam optar por apenas um dos existentes: Netflix, Amazon Prime Video ou algum outro. Como saber qual escolher?
 
 O serviço [JustWatch](https://www.justwatch.com/br/) ajuda um pouco. Nele, é possível pesquisar por um filme ou seriado e descobrir em quais serviços ele está disponível. Assim, se temos em mão os dados dos catálogos dos serviços, podemos avaliar a quantidade e qualidade dos filmes em cada um para decidir o melhor.
 
@@ -36,7 +36,7 @@ Onde coletar essa lista de filmes? A ideia que eu tive foi usar o IMDB para isso
 
 O código é bem simples: eu leio o arquivo com a lista de filmes salvos na parte anterior, itero sobre o dataframe, junto todos os resultados em um dicionário e salvo os dados em formato json.
 
-O comportamento da função `just_watch.search_for_item()`  é o mesmo de você pesquisar manualmente no site. Isto é, ao digitar na caixa de busca o título que você, aparecerá uma lista com os resultados relacionados, mas provavelmente o primeiro resultado é o que interessa. Por isso, no código abaixo, eu extraio o primeiro resultado da busca. Funciona na maioria das vezes.
+O comportamento da função `just_watch.search_for_item()`  é o mesmo de você pesquisar manualmente no site. Isto é, ao digitar na caixa de busca o título desejado, aparecerá uma lista com os resultados relacionados, sendo que provavelmente apenas o primeiro resultado é o que interessa. Por isso, no código abaixo, eu extraio o primeiro resultado da busca. Funciona na maioria das vezes.
 
 ```{python, eval = FALSE}
 from justwatch import JustWatch
@@ -223,10 +223,6 @@ O formato da curva referente à Netflix é muito interessante. Note como ela cre
 Outra maneira de visualizar os resultados acima é separando os anos por década:
 
 ```{r}
-range(tbl_jw_principais$original_release_year)
-
-round(2019 %/% 10) * 10
-
 tbl_jw_principais %>% 
   mutate(decada = as.character(round(original_release_year %/% 10) * 10)) %>% 
   count(decada, object_type, provider_name) %>% 
@@ -242,7 +238,7 @@ tbl_jw_principais %>%
 ```
 
 
-### Qualidade dos imóveis
+### Qualidade dos filmes
 
 Como parâmetro para qualidade dos filmes, usei a nota do IMDB, que também é fornecida no dataset do JustWatch.
 

@@ -13,7 +13,7 @@ tags:
 
 <div id="introducao" class="section level2">
 <h2>Introdução</h2>
-<p>Recentemente, li um artigo sobre a <a href="https://meiobit.com/397799/balcanizacao-streaming-aumento-pirataria/">Balcanização dos serviços de streaming</a> que me fez refletir sobre essa indústria. Dado que assinar mais de um serviço de streaming pode ser um desperdício, devido a falta de tempo para consumir muito material, as pessoas costumam optar por apenas um dos existentes: Netflix, Amazon Prime Video e outros. Como saber qual escolher?</p>
+<p>Recentemente, li um artigo sobre a <a href="https://meiobit.com/397799/balcanizacao-streaming-aumento-pirataria/">Balcanização dos serviços de streaming</a> que me fez refletir sobre essa indústria. Dado que assinar mais de um serviço de streaming pode ser um desperdício, devido a falta de tempo para consumir tanto material, as pessoas costumam optar por apenas um dos existentes: Netflix, Amazon Prime Video ou algum outro. Como saber qual escolher?</p>
 <p>O serviço <a href="https://www.justwatch.com/br/">JustWatch</a> ajuda um pouco. Nele, é possível pesquisar por um filme ou seriado e descobrir em quais serviços ele está disponível. Assim, se temos em mão os dados dos catálogos dos serviços, podemos avaliar a quantidade e qualidade dos filmes em cada um para decidir o melhor.</p>
 <p>Existe um <a href="https://github.com/dawoudt/JustWatchAPI">módulo Python</a> que permite extrair os dados do JustWatch em json, tornando os dados muito fáceis para trabalhar. Por isso, este projeto usará código não só em R como em Python.</p>
 <p>Este projeto consiste em coletar os 5000 melhores filmes e seriados do IMDB, coletar dados de cada usando a API do Justwatch e analisar os resultados para concluir sobre o melhor serviço de streaming no Brasil.</p>
@@ -27,7 +27,7 @@ tags:
 <div id="usar-o-modulo-python-para-coletar-dados-da-api-do-justwatch" class="section level2">
 <h2>Usar o módulo Python para coletar dados da API do JustWatch</h2>
 <p>O código é bem simples: eu leio o arquivo com a lista de filmes salvos na parte anterior, itero sobre o dataframe, junto todos os resultados em um dicionário e salvo os dados em formato json.</p>
-<p>O comportamento da função <code>just_watch.search_for_item()</code> é o mesmo de você pesquisar manualmente no site. Isto é, ao digitar na caixa de busca o título que você, aparecerá uma lista com os resultados relacionados, mas provavelmente o primeiro resultado é o que interessa. Por isso, no código abaixo, eu extraio o primeiro resultado da busca. Funciona na maioria das vezes.</p>
+<p>O comportamento da função <code>just_watch.search_for_item()</code> é o mesmo de você pesquisar manualmente no site. Isto é, ao digitar na caixa de busca o título desejado, aparecerá uma lista com os resultados relacionados, sendo que provavelmente apenas o primeiro resultado é o que interessa. Por isso, no código abaixo, eu extraio o primeiro resultado da busca. Funciona na maioria das vezes.</p>
 <pre class="python"><code>from justwatch import JustWatch
 import csv
 import json
@@ -201,10 +201,6 @@ tbl_jw_principais &lt;- tbl_jw %&gt;%
 <p><img src="/post/2019-02-23-qual-o-melhor-servico-de-streaming_files/figure-html/unnamed-chunk-7-1.png" width="864" /></p>
 <p>O formato da curva referente à Netflix é muito interessante. Note como ela cresce numa velocidade muito maior a partir de 2010. Olhando para este ponto no eixo vertical, nota-se que 70% dos filmes e incríveis 80% dos seriados foram lançados a partir de 2010. De todos os 3 serviços de streaming, a Netflix é a mais enviesada para produções recentes. Note também como 70% dos filmes que não estão presentes em nenhum serviço por assinatura foram lançados antes de 2010. Na verdade, Netflix e Amazon Prime Video não possuem nenhum filme lançado antes de 1960.</p>
 <p>Outra maneira de visualizar os resultados acima é separando os anos por década:</p>
-<pre class="r"><code>range(tbl_jw_principais$original_release_year)</code></pre>
-<pre><code>## [1] 1920 2019</code></pre>
-<pre class="r"><code>round(2019 %/% 10) * 10</code></pre>
-<pre><code>## [1] 2010</code></pre>
 <pre class="r"><code>tbl_jw_principais %&gt;% 
   mutate(decada = as.character(round(original_release_year %/% 10) * 10)) %&gt;% 
   count(decada, object_type, provider_name) %&gt;% 
@@ -218,8 +214,8 @@ tbl_jw_principais &lt;- tbl_jw %&gt;%
   theme(legend.position = &quot;bottom&quot;)</code></pre>
 <p><img src="/post/2019-02-23-qual-o-melhor-servico-de-streaming_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
-<div id="qualidade-dos-imoveis" class="section level3">
-<h3>Qualidade dos imóveis</h3>
+<div id="qualidade-dos-filmes" class="section level3">
+<h3>Qualidade dos filmes</h3>
 <p>Como parâmetro para qualidade dos filmes, usei a nota do IMDB, que também é fornecida no dataset do JustWatch.</p>
 <pre class="r"><code>tbl_jw_principais %&gt;% 
   # filtrar filmes com nota IMDB acima de 7 para eliminar entradas erradas

@@ -36,7 +36,7 @@ Onde coletar essa lista de filmes? A ideia que eu tive foi usar o IMDB para isso
 
 O código é bem simples: eu leio o arquivo com a lista de filmes salvos na parte anterior, itero sobre o dataframe, junto todos os resultados em um dicionário e salvo os dados em formato json.
 
-O comportamento da função `just_watch.search_for_item()`  é o mesmo de você pesquisar manualmente no site. Isto é, ao digitar na caixa de busca o título que você, aparecerá uma lista com os resultados relacionados, mas provavelmente o primeiro resultado é o que interessa. Por isso, no código abaixo, eu extraio o primeiro resultado da busca. Funciona na maioria das vezes.
+O comportamento da função `just_watch.search_for_item()`  é o mesmo de você pesquisar manualmente no site. Isto é, ao digitar na caixa de busca o título desejado, aparecerá uma lista com os resultados relacionados, sendo que provavelmente apenas o primeiro resultado é o que interessa. Por isso, no código abaixo, eu extraio o primeiro resultado da busca. Funciona na maioria das vezes.
 
 ```{python, eval = FALSE}
 from justwatch import JustWatch
@@ -238,7 +238,7 @@ tbl_jw_principais %>%
 ```
 
 
-### Qualidade dos imóveis
+### Qualidade dos filmes
 
 Como parâmetro para qualidade dos filmes, usei a nota do IMDB, que também é fornecida no dataset do JustWatch.
 
