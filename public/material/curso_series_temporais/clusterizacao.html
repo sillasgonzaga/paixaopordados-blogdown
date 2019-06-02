@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 8 Aplicações avançadas em séries temporais: Clusterização | Curso de Séries Temporais - IBPAD</title>
+  <meta name="description" content="descrição YAML" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 8 Aplicações avançadas em séries temporais: Clusterização | Curso de Séries Temporais - IBPAD" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="descrição YAML" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 8 Aplicações avançadas em séries temporais: Clusterização | Curso de Séries Temporais - IBPAD" />
+  
+  <meta name="twitter:description" content="descrição YAML" />
+  
+
+<meta name="author" content="© Sillas Teixeira Gonzaga" />
+
+
+<meta name="date" content="2019-06-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="outros.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="libs/dygraphs-1.1.1/shapes.js"></script>
+<script src="libs/moment-2.8.4/moment.js"></script>
+<script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="libs/moment-fquarter-1.0.0/moment-fquarter.min.js"></script>
+<script src="libs/dygraphs-binding-1.1.1.6/dygraphs.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Curso de Séries Temporais - IBPAD</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instrutor"><i class="fa fa-check"></i>Instrutor</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instalacao-de-pacotes"><i class="fa fa-check"></i>Instalação de pacotes</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introducao.html"><a href="introducao.html"><i class="fa fa-check"></i><b>1</b> Introdução a Séries Temporais</a><ul>
+<li class="chapter" data-level="1.1" data-path="introducao.html"><a href="introducao.html#o-que-sao-series-temporais"><i class="fa fa-check"></i><b>1.1</b> O que são Séries Temporais</a></li>
+<li class="chapter" data-level="1.2" data-path="introducao.html"><a href="introducao.html#elementos"><i class="fa fa-check"></i><b>1.2</b> Elementos das Séries Temporais</a></li>
+<li class="chapter" data-level="1.3" data-path="introducao.html"><a href="introducao.html#series-temporais-no-r"><i class="fa fa-check"></i><b>1.3</b> Séries temporais no R</a></li>
+<li class="chapter" data-level="1.4" data-path="introducao.html"><a href="introducao.html#graficos-interativos-com-dygraphs"><i class="fa fa-check"></i><b>1.4</b> Gráficos interativos com dygraphs</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="regressao.html"><a href="regressao.html"><i class="fa fa-check"></i><b>2</b> Regressão</a><ul>
+<li class="chapter" data-level="2.1" data-path="regressao.html"><a href="regressao.html#analise-exploratoria"><i class="fa fa-check"></i><b>2.1</b> Análise exploratória</a></li>
+<li class="chapter" data-level="2.2" data-path="regressao.html"><a href="regressao.html#correlacao"><i class="fa fa-check"></i><b>2.2</b> Correlação</a></li>
+<li class="chapter" data-level="2.3" data-path="regressao.html"><a href="regressao.html#modelagem-por-regressao-simples"><i class="fa fa-check"></i><b>2.3</b> Modelagem por regressão simples</a></li>
+<li class="chapter" data-level="2.4" data-path="regressao.html"><a href="regressao.html#regressao-multivariada"><i class="fa fa-check"></i><b>2.4</b> Regressão multivariada</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="regressao.html"><a href="regressao.html#hipotese-nula-da-regressao"><i class="fa fa-check"></i><b>2.4.1</b> Hipótese nula da regressão</a></li>
+<li class="chapter" data-level="2.4.2" data-path="regressao.html"><a href="regressao.html#valor-p"><i class="fa fa-check"></i><b>2.4.2</b> valor-p</a></li>
+<li class="chapter" data-level="2.4.3" data-path="regressao.html"><a href="regressao.html#r-quadrado-e-r-quadrado-ajustado"><i class="fa fa-check"></i><b>2.4.3</b> R-quadrado e R-quadrado ajustado</a></li>
+<li class="chapter" data-level="2.4.4" data-path="regressao.html"><a href="regressao.html#analise-dos-residuos"><i class="fa fa-check"></i><b>2.4.4</b> Análise dos resíduos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="regressao.html"><a href="regressao.html#modelo-preditivo"><i class="fa fa-check"></i><b>2.5</b> Regressão como modelo preditivo</a></li>
+<li class="chapter" data-level="2.6" data-path="regressao.html"><a href="regressao.html#referencias"><i class="fa fa-check"></i><b>2.6</b> Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="avaliacao.html"><a href="avaliacao.html"><i class="fa fa-check"></i><b>3</b> Avaliação de precisão de modelos de séries temporais</a><ul>
+<li class="chapter" data-level="3.1" data-path="avaliacao.html"><a href="avaliacao.html#medidas-de-precisao"><i class="fa fa-check"></i><b>3.1</b> Medidas de precisão</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="avaliacao.html"><a href="avaliacao.html#metricas-baseadas-em-escala"><i class="fa fa-check"></i><b>3.1.1</b> Métricas baseadas em escala</a></li>
+<li class="chapter" data-level="3.1.2" data-path="avaliacao.html"><a href="avaliacao.html#metricas-baseadas-em-percentuais"><i class="fa fa-check"></i><b>3.1.2</b> Métricas baseadas em percentuais</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="avaliacao.html"><a href="avaliacao.html#desempenho-fora-de-amostra-overfitting-e-underfitting"><i class="fa fa-check"></i><b>3.2</b> Desempenho fora de amostra: Overfitting e underfitting</a></li>
+<li class="chapter" data-level="3.3" data-path="avaliacao.html"><a href="avaliacao.html#referencias-1"><i class="fa fa-check"></i><b>3.3</b> Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="decomposicao.html"><a href="decomposicao.html"><i class="fa fa-check"></i><b>4</b> Decomposição de Séries Temporais</a><ul>
+<li class="chapter" data-level="4.1" data-path="decomposicao.html"><a href="decomposicao.html#medias-moveis"><i class="fa fa-check"></i><b>4.1</b> Médias móveis</a></li>
+<li class="chapter" data-level="4.2" data-path="decomposicao.html"><a href="decomposicao.html#decomposicao-classica"><i class="fa fa-check"></i><b>4.2</b> Decomposição clássica</a></li>
+<li class="chapter" data-level="4.3" data-path="decomposicao.html"><a href="decomposicao.html#outros-tipos-de-decomposicao"><i class="fa fa-check"></i><b>4.3</b> Outros tipos de decomposição</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="decomposicao.html"><a href="decomposicao.html#pacote-seasonal"><i class="fa fa-check"></i><b>4.3.1</b> Pacote <code>seasonal</code></a></li>
+<li class="chapter" data-level="4.3.2" data-path="decomposicao.html"><a href="decomposicao.html#decomposicao-stl"><i class="fa fa-check"></i><b>4.3.2</b> Decomposição STL</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="suavizacao.html"><a href="suavizacao.html"><i class="fa fa-check"></i><b>5</b> Suavização exponencial</a><ul>
+<li class="chapter" data-level="5.1" data-path="suavizacao.html"><a href="suavizacao.html#suavizacao-simples"><i class="fa fa-check"></i><b>5.1</b> Suavização simples</a></li>
+<li class="chapter" data-level="5.2" data-path="suavizacao.html"><a href="suavizacao.html#linear-de-holt"><i class="fa fa-check"></i><b>5.2</b> Linear de Holt</a></li>
+<li class="chapter" data-level="5.3" data-path="suavizacao.html"><a href="suavizacao.html#holt-winter-aditivo-e-multiplicativo"><i class="fa fa-check"></i><b>5.3</b> Holt-winter aditivo e multiplicativo</a></li>
+<li class="chapter" data-level="5.4" data-path="suavizacao.html"><a href="suavizacao.html#selecao-automatica-do-melhor-modelo-de-suavizacao-exponencial"><i class="fa fa-check"></i><b>5.4</b> Seleção automática do melhor modelo de suavização exponencial</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="arima.html"><a href="arima.html"><i class="fa fa-check"></i><b>6</b> Modelos ARIMA</a><ul>
+<li class="chapter" data-level="6.1" data-path="arima.html"><a href="arima.html#estacionariedade-diferenciacao-e-autocorrelacao"><i class="fa fa-check"></i><b>6.1</b> Estacionariedade, diferenciação e autocorrelação</a></li>
+<li class="chapter" data-level="6.2" data-path="arima.html"><a href="arima.html#modelos-autoregressivos"><i class="fa fa-check"></i><b>6.2</b> Modelos autoregressivos</a></li>
+<li class="chapter" data-level="6.3" data-path="arima.html"><a href="arima.html#modelos-de-media-movel"><i class="fa fa-check"></i><b>6.3</b> Modelos de média móvel</a></li>
+<li class="chapter" data-level="6.4" data-path="arima.html"><a href="arima.html#modelos-arima"><i class="fa fa-check"></i><b>6.4</b> Modelos ARIMA</a></li>
+<li class="chapter" data-level="6.5" data-path="arima.html"><a href="arima.html#modelos-sarima"><i class="fa fa-check"></i><b>6.5</b> Modelos SARIMA</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="outros.html"><a href="outros.html"><i class="fa fa-check"></i><b>7</b> Outros Métodos</a><ul>
+<li class="chapter" data-level="7.1" data-path="outros.html"><a href="outros.html#redes-neurais"><i class="fa fa-check"></i><b>7.1</b> Redes Neurais</a></li>
+<li class="chapter" data-level="7.2" data-path="outros.html"><a href="outros.html#pacote-mafs"><i class="fa fa-check"></i><b>7.2</b> Pacote mafs</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="clusterizacao.html"><a href="clusterizacao.html"><i class="fa fa-check"></i><b>8</b> Aplicações avançadas em séries temporais: Clusterização</a><ul>
+<li class="chapter" data-level="8.1" data-path="clusterizacao.html"><a href="clusterizacao.html#motivacao"><i class="fa fa-check"></i><b>8.1</b> Motivação</a></li>
+<li class="chapter" data-level="8.2" data-path="clusterizacao.html"><a href="clusterizacao.html#introducao-de-tecnicas-avancadas-em-series-temporais"><i class="fa fa-check"></i><b>8.2</b> Introdução de técnicas avançadas em Séries Temporais</a></li>
+<li class="chapter" data-level="8.3" data-path="clusterizacao.html"><a href="clusterizacao.html#clusterizacao-de-series-temporais"><i class="fa fa-check"></i><b>8.3</b> Clusterização de séries temporais</a></li>
+<li class="chapter" data-level="8.4" data-path="clusterizacao.html"><a href="clusterizacao.html#demonstracao"><i class="fa fa-check"></i><b>8.4</b> Demonstração</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="clusterizacao.html"><a href="clusterizacao.html#obtencao-dos-dados"><i class="fa fa-check"></i><b>8.4.1</b> Obtenção dos dados</a></li>
+<li class="chapter" data-level="8.4.2" data-path="clusterizacao.html"><a href="clusterizacao.html#transformacao-dos-dados"><i class="fa fa-check"></i><b>8.4.2</b> Transformação dos dados</a></li>
+<li class="chapter" data-level="8.4.3" data-path="clusterizacao.html"><a href="clusterizacao.html#aplicacao-da-clusterizacao"><i class="fa fa-check"></i><b>8.4.3</b> Aplicação da clusterização</a></li>
+<li class="chapter" data-level="8.4.4" data-path="clusterizacao.html"><a href="clusterizacao.html#e-o-brasil"><i class="fa fa-check"></i><b>8.4.4</b> E o Brasil?</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Curso de Séries Temporais - IBPAD</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="clusterizacao" class="section level1">
+<h1><span class="header-section-number">Capítulo 8</span> Aplicações avançadas em séries temporais: Clusterização</h1>
+<div id="motivacao" class="section level2">
+<h2><span class="header-section-number">8.1</span> Motivação</h2>
+<p>É possível encontrar em diversas fontes, como em livros ou na Internet, ótimos conteúdos sobre Séries Temporais (um bom exemplo é o <a href="http://www.ibpad.com.br/blog/analise-de-dados/11-referencias-para-voce-aprender-series-temporais-com-r/">post no blog do IBPAD</a> sobre algumas dessas referências). Contudo, muitas vezes esses materiais acabam sendo repetitivos, abordando basicamente os mesmos temas: sazonalidade, tendência, ARIMA, forecasting, etc. Isso dificulta ao praticante de séries temporais dar o próximo passo, isto é, avançar em seus estudos sobre o tema e ampliar seu conhecimento. Por isso, este post se destina a apresentar técnicas avançadas em Séries Temporais para você turbinar suas análises.</p>
+</div>
+<div id="introducao-de-tecnicas-avancadas-em-series-temporais" class="section level2">
+<h2><span class="header-section-number">8.2</span> Introdução de técnicas avançadas em Séries Temporais</h2>
+<p>O artigo <a href="https://www.researchgate.net/publication/261722458_Time-Series_Data_Mining">Time-Series Data Mining</a>, de Esling e Agon (2012), lista algumas técnicas de mineração de dados aplicadas a séries temporais, que são:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Query by content</strong>: localizar padrões conhecidos em um banco de dados de séries temporais;<br />
+</li>
+<li><strong>Detecção de anomalias</strong>: detectar padrões incomuns em séries, como possíveis fraudes em transações financeiras;<br />
+</li>
+<li><strong>Descoberta de <em>motifs</em>:</strong> descobrir subsequências dentro de uma série temporal que se repetem em cadeias discretas;<br />
+</li>
+<li><strong>Classificação</strong>: distinguir séries temporais em rótulos ou classes conhecidas;<br />
+</li>
+<li><strong>Segmentação</strong>: Criar uma representação reduzida da série temporal;<br />
+</li>
+<li><strong>Previsão</strong>: estimar valores futuros baseado em valores passados da série;<br />
+</li>
+<li><strong>Clusterização</strong>: agrupar diferentes séries temporais em clusteres similares entre si.</li>
+</ol>
+<p>Todas essas técnicas podem ser implementadas no R graças a pacotes disponibilizados gratuitamente. Cada um desses tópicos renderia um (ou mais) post, portanto vou focar no momento apenas em clusterização.</p>
+</div>
+<div id="clusterizacao-de-series-temporais" class="section level2">
+<h2><span class="header-section-number">8.3</span> Clusterização de séries temporais</h2>
+<p>Clusterização é o processo de descobrir grupos, chamados de clusteres, em um conjunto de dados. O objetivo é determinar os clusteres mais homogêneos possíveis, isto é, os grupos em que os elementos sejam mais similares a elementos do mesmo cluster e mais diferentes de elementos de clusteres diferentes. Por exemplo, seria o mesmo que detectar, em uma loja de varejo, quais produtos são sazonais de verão ou de inverno baseado em suas séries de demanda.</p>
+<p>Uma excelente maneira de aprender mais sobre clusterização de séries temporais é lendo a <a href="https://cran.r-project.org/web/packages/dtwclust/index.html">documentação do pacote <code>dtwclust</code></a>, que implementa vários algoritmos conhecidos de clusterização.</p>
+<p>Neste post, iremos demonstrar como é possível encontrar grupos naturais analisando dados cambiais. Ou seja, a pergunta que se deseja responder é: <strong>Existem padrões naturais na variação cambial de moedas de países da América do Sul em relação ao dólar?</strong></p>
+</div>
+<div id="demonstracao" class="section level2">
+<h2><span class="header-section-number">8.4</span> Demonstração</h2>
+<div id="obtencao-dos-dados" class="section level3">
+<h3><span class="header-section-number">8.4.1</span> Obtenção dos dados</h3>
+<p>Para esta análise, serão usados os seguintes pacotes:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(dtwclust) <span class="co"># clusterizacao de series temporais</span></code></pre></div>
+<p>Abaixo, eu defino manualmente as moedas que serão usadas na análise:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">moedas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;USD/ARS&quot;</span>, <span class="st">&quot;USD/VEF&quot;</span>, <span class="st">&quot;USD/BOB&quot;</span>,
+            <span class="st">&quot;USD/BRL&quot;</span>, <span class="st">&quot;USD/CLP&quot;</span>, <span class="st">&quot;USD/COP&quot;</span>, 
+            <span class="st">&quot;USD/FKP&quot;</span>, <span class="st">&quot;USD/PYG&quot;</span>, <span class="st">&quot;USD/GYD&quot;</span>,
+            <span class="st">&quot;USD/PEN&quot;</span>, <span class="st">&quot;USD/UYU&quot;</span>, <span class="st">&quot;USD/SRD&quot;</span>)</code></pre></div>
+<p>Vamos então, de maneira iterativa para cada uma das moedas do vetor definido acima, obter a série temporal da cotação dos últimos 180 dias e salvar os resultados em uma lista:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_moedas &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/sillasgonzaga/curso_series_temporais/master/data/moedas.csv&quot;</span>)</code></pre></div>
+</div>
+<div id="transformacao-dos-dados" class="section level3">
+<h3><span class="header-section-number">8.4.2</span> Transformação dos dados</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># olhando os dados obtidos</span>
+df_moedas <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>() <span class="op">%&gt;%</span><span class="st"> </span>knitr<span class="op">::</span><span class="kw">kable</span>()</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">data</th>
+<th align="right">USD.ARS</th>
+<th align="right">USD.VEF</th>
+<th align="right">USD.BOB</th>
+<th align="right">USD.BRL</th>
+<th align="right">USD.CLP</th>
+<th align="right">USD.COP</th>
+<th align="right">USD.FKP</th>
+<th align="right">USD.PYG</th>
+<th align="right">USD.GYD</th>
+<th align="right">USD.PEN</th>
+<th align="right">USD.UYU</th>
+<th align="right">USD.SRD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">2018-12-05</td>
+<td align="right">37.51049</td>
+<td align="right">15701661</td>
+<td align="right">6.925374</td>
+<td align="right">3.858582</td>
+<td align="right">671.4947</td>
+<td align="right">3169.583</td>
+<td align="right">0.785610</td>
+<td align="right">5910.327</td>
+<td align="right">208.4773</td>
+<td align="right">3.381996</td>
+<td align="right">32.09173</td>
+<td align="right">7.456294</td>
+</tr>
+<tr class="even">
+<td align="left">2018-12-06</td>
+<td align="right">37.62264</td>
+<td align="right">16219400</td>
+<td align="right">6.920337</td>
+<td align="right">3.884084</td>
+<td align="right">674.9416</td>
+<td align="right">3175.373</td>
+<td align="right">0.784250</td>
+<td align="right">5907.212</td>
+<td align="right">208.8974</td>
+<td align="right">3.377670</td>
+<td align="right">32.01777</td>
+<td align="right">7.456214</td>
+</tr>
+<tr class="odd">
+<td align="left">2018-12-07</td>
+<td align="right">37.55145</td>
+<td align="right">18811618</td>
+<td align="right">6.918612</td>
+<td align="right">3.887892</td>
+<td align="right">675.1803</td>
+<td align="right">3164.734</td>
+<td align="right">0.783959</td>
+<td align="right">5911.780</td>
+<td align="right">209.2960</td>
+<td align="right">3.371920</td>
+<td align="right">32.01822</td>
+<td align="right">7.456286</td>
+</tr>
+<tr class="even">
+<td align="left">2018-12-08</td>
+<td align="right">37.37790</td>
+<td align="right">18807870</td>
+<td align="right">6.922675</td>
+<td align="right">3.907325</td>
+<td align="right">674.7750</td>
+<td align="right">3147.050</td>
+<td align="right">0.785472</td>
+<td align="right">5913.850</td>
+<td align="right">209.5450</td>
+<td align="right">3.366975</td>
+<td align="right">32.04850</td>
+<td align="right">7.456500</td>
+</tr>
+<tr class="odd">
+<td align="left">2018-12-09</td>
+<td align="right">37.37573</td>
+<td align="right">18808205</td>
+<td align="right">6.922675</td>
+<td align="right">3.907326</td>
+<td align="right">674.7784</td>
+<td align="right">3147.038</td>
+<td align="right">0.785546</td>
+<td align="right">5913.850</td>
+<td align="right">209.5450</td>
+<td align="right">3.366978</td>
+<td align="right">32.04850</td>
+<td align="right">7.454875</td>
+</tr>
+<tr class="even">
+<td align="left">2018-12-10</td>
+<td align="right">37.48558</td>
+<td align="right">19432307</td>
+<td align="right">6.916634</td>
+<td align="right">3.911653</td>
+<td align="right">676.4515</td>
+<td align="right">3170.546</td>
+<td align="right">0.790034</td>
+<td align="right">5913.295</td>
+<td align="right">209.2420</td>
+<td align="right">3.370476</td>
+<td align="right">32.05107</td>
+<td align="right">7.448992</td>
+</tr>
+</tbody>
+</table>
+<p>Veja que os dados possuem escalas distintas: existem moedas em que um dólar vale quase 3000 unidades dela. Para garantir que todas as moedas tenham o mesmo peso no algoritmo de clusterização, precisamos transformar os valores em uma mesma escala normalizada:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># aplicar a funcao de normalizacao excluindo a coluna de data</span>
+moedas_norm &lt;-<span class="st"> </span><span class="kw">scale</span>(df_moedas[,<span class="op">-</span><span class="dv">1</span>])
+moedas_norm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>() <span class="op">%&gt;%</span><span class="st"> </span>knitr<span class="op">::</span><span class="kw">kable</span>()</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">USD.ARS</th>
+<th align="right">USD.VEF</th>
+<th align="right">USD.BOB</th>
+<th align="right">USD.BRL</th>
+<th align="right">USD.CLP</th>
+<th align="right">USD.COP</th>
+<th align="right">USD.FKP</th>
+<th align="right">USD.PYG</th>
+<th align="right">USD.GYD</th>
+<th align="right">USD.PEN</th>
+<th align="right">USD.UYU</th>
+<th align="right">USD.SRD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">-1.0282445</td>
+<td align="right">-1.607223</td>
+<td align="right">1.1267706</td>
+<td align="right">0.0766651</td>
+<td align="right">-0.2252835</td>
+<td align="right">-0.1745677</td>
+<td align="right">1.0479646</td>
+<td align="right">-1.623902</td>
+<td align="right">-1.6996649</td>
+<td align="right">2.311189</td>
+<td align="right">-1.206810</td>
+<td align="right">0.8911261</td>
+</tr>
+<tr class="even">
+<td align="right">-0.9904478</td>
+<td align="right">-1.604254</td>
+<td align="right">0.3876272</td>
+<td align="right">0.3200150</td>
+<td align="right">0.0211982</td>
+<td align="right">-0.1001450</td>
+<td align="right">0.9343644</td>
+<td align="right">-1.648057</td>
+<td align="right">-0.6156920</td>
+<td align="right">2.128018</td>
+<td align="right">-1.277388</td>
+<td align="right">0.8733557</td>
+</tr>
+<tr class="odd">
+<td align="right">-1.0144396</td>
+<td align="right">-1.589390</td>
+<td align="right">0.1344959</td>
+<td align="right">0.3563524</td>
+<td align="right">0.0382677</td>
+<td align="right">-0.2368854</td>
+<td align="right">0.9100573</td>
+<td align="right">-1.612632</td>
+<td align="right">0.4127039</td>
+<td align="right">1.884551</td>
+<td align="right">-1.276965</td>
+<td align="right">0.8893491</td>
+</tr>
+<tr class="even">
+<td align="right">-1.0729300</td>
+<td align="right">-1.589411</td>
+<td align="right">0.7307118</td>
+<td align="right">0.5417895</td>
+<td align="right">0.0092881</td>
+<td align="right">-0.4641859</td>
+<td align="right">1.0364375</td>
+<td align="right">-1.596585</td>
+<td align="right">1.0551915</td>
+<td align="right">1.675170</td>
+<td align="right">-1.248066</td>
+<td align="right">0.9368849</td>
+</tr>
+<tr class="odd">
+<td align="right">-1.0736604</td>
+<td align="right">-1.589409</td>
+<td align="right">0.7307118</td>
+<td align="right">0.5417991</td>
+<td align="right">0.0095336</td>
+<td align="right">-0.4643412</td>
+<td align="right">1.0426187</td>
+<td align="right">-1.596585</td>
+<td align="right">1.0551915</td>
+<td align="right">1.675297</td>
+<td align="right">-1.248066</td>
+<td align="right">0.5759236</td>
+</tr>
+<tr class="even">
+<td align="right">-1.0366391</td>
+<td align="right">-1.585831</td>
+<td align="right">-0.1557613</td>
+<td align="right">0.5830890</td>
+<td align="right">0.1291779</td>
+<td align="right">-0.1621893</td>
+<td align="right">1.4174996</td>
+<td align="right">-1.600888</td>
+<td align="right">0.2733398</td>
+<td align="right">1.823409</td>
+<td align="right">-1.245610</td>
+<td align="right">-0.7308674</td>
+</tr>
+</tbody>
+</table>
+<p>Com os dados normalizados, podemos então prosseguir com a análise.</p>
+</div>
+<div id="aplicacao-da-clusterizacao" class="section level3">
+<h3><span class="header-section-number">8.4.3</span> Aplicação da clusterização</h3>
+<p>Primeiramente, é possível encontrar clusteres naturais apenas no olho, sem a ajuda de nenhum algoritmo? Para responder a isso, vamos fazer um gráfico no <code>ggplot2</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">moedas_norm <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># transformar data frame em formato tidy (long)</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ind =</span> <span class="kw">row_number</span>()) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(moeda, cotacao_norm, <span class="op">-</span>ind) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> ind, <span class="dt">y =</span> cotacao_norm)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>moeda, <span class="dt">scale =</span><span class="st">&quot;free_y&quot;</span>)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+<p>A maioria dos algoritmos de clusterização requer que a quantidade de clusteres seja definida pelo usuário. Olhando o gráfico acima, aparentemente, é possível dizer qeue existem três grupos naturais entre essas séries: as que apresentam tendência crescente, decrescente e as demais. Vamos então clusterizar a série em três grupos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelo &lt;-<span class="st"> </span><span class="kw">tsclust</span>(<span class="kw">t</span>(moedas_norm), 
+                  <span class="dt">k =</span> <span class="dv">3</span>, 
+                  <span class="dt">distance =</span> <span class="st">&quot;dtw_lb&quot;</span>,
+                  <span class="dt">centroid =</span> <span class="st">&quot;pam&quot;</span>, 
+                  <span class="dt">seed =</span> <span class="dv">123</span>,
+                  <span class="dt">trace =</span> <span class="ot">TRUE</span>,
+                  <span class="dt">control =</span> <span class="kw">partitional_control</span>(<span class="dt">pam.precompute =</span> <span class="ot">FALSE</span>),
+                  <span class="dt">args =</span> <span class="kw">tsclust_args</span>(<span class="dt">dist =</span> <span class="kw">list</span>(<span class="dt">window.size =</span> 20L)))</code></pre></div>
+<pre><code>## Iteration 1: Changes / Distsum = 12 / 685.6634
+## Iteration 2: Changes / Distsum = 1 / 617.6525
+## Iteration 3: Changes / Distsum = 1 / 614.9333
+## Iteration 4: Changes / Distsum = 0 / 614.9333
+## 
+##  Elapsed time is 2.468 seconds.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelo</code></pre></div>
+<pre><code>## partitional clustering with 3 clusters
+## Using dtw_lb distance
+## Using pam centroids
+## 
+## Time required for analysis:
+##    user  system elapsed 
+##   1.177   1.308   2.468 
+## 
+## Cluster sizes with average intra-cluster distance:
+## 
+##   size  av_dist
+## 1    4 27.39003
+## 2    1  0.00000
+## 3    7 72.19618</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(modelo)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+<p>O que você achou do resultado dos clusteres?</p>
+</div>
+<div id="e-o-brasil" class="section level3">
+<h3><span class="header-section-number">8.4.4</span> E o Brasil?</h3>
+<p>Em qual cluster o Real foi alocado?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># descobrir cluster do Real</span>
+(cl_br &lt;-<span class="st"> </span>(modelo<span class="op">@</span>cluster[<span class="kw">which</span>(<span class="kw">colnames</span>(moedas_norm) <span class="op">==</span><span class="st"> &quot;USD.BRL&quot;</span>)]))</code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#  contar quantos paises ficaram no mesmo cluster do Brasil</span>
+<span class="kw">colnames</span>(moedas_norm)[<span class="kw">which</span>(modelo<span class="op">@</span>cluster <span class="op">==</span><span class="st"> </span>cl_br)]</code></pre></div>
+<pre><code>## [1] &quot;USD.BRL&quot; &quot;USD.CLP&quot; &quot;USD.COP&quot; &quot;USD.FKP&quot; &quot;USD.GYD&quot; &quot;USD.PEN&quot; &quot;USD.SRD&quot;</code></pre>
+<p>Vamos então destacar essas moedas em um gráfico só:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># filtrar paises do mesmo cluster</span>
+cl_br &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(moedas_norm[, <span class="kw">which</span>(modelo<span class="op">@</span>cluster <span class="op">==</span><span class="st"> </span>cl_br)])
+
+
+cl_br <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">indice =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(moeda, cotacao_norm, <span class="op">-</span>indice) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> indice, <span class="dt">y =</span> cotacao_norm)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">facet_wrap</span>( <span class="op">~</span><span class="st"> </span>moeda, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)</code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<p>De fato, o comportamento entre as séries é relativamente parecido.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="outros.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/08-clusterizacao.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["curso-series-temporais.pdf", "curso-series-temporais.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

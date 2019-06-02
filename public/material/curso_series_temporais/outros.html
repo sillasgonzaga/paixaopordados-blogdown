@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 7 Outros Métodos | Curso de Séries Temporais - IBPAD</title>
+  <meta name="description" content="descrição YAML" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 7 Outros Métodos | Curso de Séries Temporais - IBPAD" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="descrição YAML" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 7 Outros Métodos | Curso de Séries Temporais - IBPAD" />
+  
+  <meta name="twitter:description" content="descrição YAML" />
+  
+
+<meta name="author" content="© Sillas Teixeira Gonzaga" />
+
+
+<meta name="date" content="2019-06-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="arima.html">
+<link rel="next" href="clusterizacao.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="libs/dygraphs-1.1.1/shapes.js"></script>
+<script src="libs/moment-2.8.4/moment.js"></script>
+<script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="libs/moment-fquarter-1.0.0/moment-fquarter.min.js"></script>
+<script src="libs/dygraphs-binding-1.1.1.6/dygraphs.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Curso de Séries Temporais - IBPAD</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instrutor"><i class="fa fa-check"></i>Instrutor</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instalacao-de-pacotes"><i class="fa fa-check"></i>Instalação de pacotes</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introducao.html"><a href="introducao.html"><i class="fa fa-check"></i><b>1</b> Introdução a Séries Temporais</a><ul>
+<li class="chapter" data-level="1.1" data-path="introducao.html"><a href="introducao.html#o-que-sao-series-temporais"><i class="fa fa-check"></i><b>1.1</b> O que são Séries Temporais</a></li>
+<li class="chapter" data-level="1.2" data-path="introducao.html"><a href="introducao.html#elementos"><i class="fa fa-check"></i><b>1.2</b> Elementos das Séries Temporais</a></li>
+<li class="chapter" data-level="1.3" data-path="introducao.html"><a href="introducao.html#series-temporais-no-r"><i class="fa fa-check"></i><b>1.3</b> Séries temporais no R</a></li>
+<li class="chapter" data-level="1.4" data-path="introducao.html"><a href="introducao.html#graficos-interativos-com-dygraphs"><i class="fa fa-check"></i><b>1.4</b> Gráficos interativos com dygraphs</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="regressao.html"><a href="regressao.html"><i class="fa fa-check"></i><b>2</b> Regressão</a><ul>
+<li class="chapter" data-level="2.1" data-path="regressao.html"><a href="regressao.html#analise-exploratoria"><i class="fa fa-check"></i><b>2.1</b> Análise exploratória</a></li>
+<li class="chapter" data-level="2.2" data-path="regressao.html"><a href="regressao.html#correlacao"><i class="fa fa-check"></i><b>2.2</b> Correlação</a></li>
+<li class="chapter" data-level="2.3" data-path="regressao.html"><a href="regressao.html#modelagem-por-regressao-simples"><i class="fa fa-check"></i><b>2.3</b> Modelagem por regressão simples</a></li>
+<li class="chapter" data-level="2.4" data-path="regressao.html"><a href="regressao.html#regressao-multivariada"><i class="fa fa-check"></i><b>2.4</b> Regressão multivariada</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="regressao.html"><a href="regressao.html#hipotese-nula-da-regressao"><i class="fa fa-check"></i><b>2.4.1</b> Hipótese nula da regressão</a></li>
+<li class="chapter" data-level="2.4.2" data-path="regressao.html"><a href="regressao.html#valor-p"><i class="fa fa-check"></i><b>2.4.2</b> valor-p</a></li>
+<li class="chapter" data-level="2.4.3" data-path="regressao.html"><a href="regressao.html#r-quadrado-e-r-quadrado-ajustado"><i class="fa fa-check"></i><b>2.4.3</b> R-quadrado e R-quadrado ajustado</a></li>
+<li class="chapter" data-level="2.4.4" data-path="regressao.html"><a href="regressao.html#analise-dos-residuos"><i class="fa fa-check"></i><b>2.4.4</b> Análise dos resíduos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="regressao.html"><a href="regressao.html#modelo-preditivo"><i class="fa fa-check"></i><b>2.5</b> Regressão como modelo preditivo</a></li>
+<li class="chapter" data-level="2.6" data-path="regressao.html"><a href="regressao.html#referencias"><i class="fa fa-check"></i><b>2.6</b> Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="avaliacao.html"><a href="avaliacao.html"><i class="fa fa-check"></i><b>3</b> Avaliação de precisão de modelos de séries temporais</a><ul>
+<li class="chapter" data-level="3.1" data-path="avaliacao.html"><a href="avaliacao.html#medidas-de-precisao"><i class="fa fa-check"></i><b>3.1</b> Medidas de precisão</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="avaliacao.html"><a href="avaliacao.html#metricas-baseadas-em-escala"><i class="fa fa-check"></i><b>3.1.1</b> Métricas baseadas em escala</a></li>
+<li class="chapter" data-level="3.1.2" data-path="avaliacao.html"><a href="avaliacao.html#metricas-baseadas-em-percentuais"><i class="fa fa-check"></i><b>3.1.2</b> Métricas baseadas em percentuais</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="avaliacao.html"><a href="avaliacao.html#desempenho-fora-de-amostra-overfitting-e-underfitting"><i class="fa fa-check"></i><b>3.2</b> Desempenho fora de amostra: Overfitting e underfitting</a></li>
+<li class="chapter" data-level="3.3" data-path="avaliacao.html"><a href="avaliacao.html#referencias-1"><i class="fa fa-check"></i><b>3.3</b> Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="decomposicao.html"><a href="decomposicao.html"><i class="fa fa-check"></i><b>4</b> Decomposição de Séries Temporais</a><ul>
+<li class="chapter" data-level="4.1" data-path="decomposicao.html"><a href="decomposicao.html#medias-moveis"><i class="fa fa-check"></i><b>4.1</b> Médias móveis</a></li>
+<li class="chapter" data-level="4.2" data-path="decomposicao.html"><a href="decomposicao.html#decomposicao-classica"><i class="fa fa-check"></i><b>4.2</b> Decomposição clássica</a></li>
+<li class="chapter" data-level="4.3" data-path="decomposicao.html"><a href="decomposicao.html#outros-tipos-de-decomposicao"><i class="fa fa-check"></i><b>4.3</b> Outros tipos de decomposição</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="decomposicao.html"><a href="decomposicao.html#pacote-seasonal"><i class="fa fa-check"></i><b>4.3.1</b> Pacote <code>seasonal</code></a></li>
+<li class="chapter" data-level="4.3.2" data-path="decomposicao.html"><a href="decomposicao.html#decomposicao-stl"><i class="fa fa-check"></i><b>4.3.2</b> Decomposição STL</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="suavizacao.html"><a href="suavizacao.html"><i class="fa fa-check"></i><b>5</b> Suavização exponencial</a><ul>
+<li class="chapter" data-level="5.1" data-path="suavizacao.html"><a href="suavizacao.html#suavizacao-simples"><i class="fa fa-check"></i><b>5.1</b> Suavização simples</a></li>
+<li class="chapter" data-level="5.2" data-path="suavizacao.html"><a href="suavizacao.html#linear-de-holt"><i class="fa fa-check"></i><b>5.2</b> Linear de Holt</a></li>
+<li class="chapter" data-level="5.3" data-path="suavizacao.html"><a href="suavizacao.html#holt-winter-aditivo-e-multiplicativo"><i class="fa fa-check"></i><b>5.3</b> Holt-winter aditivo e multiplicativo</a></li>
+<li class="chapter" data-level="5.4" data-path="suavizacao.html"><a href="suavizacao.html#selecao-automatica-do-melhor-modelo-de-suavizacao-exponencial"><i class="fa fa-check"></i><b>5.4</b> Seleção automática do melhor modelo de suavização exponencial</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="arima.html"><a href="arima.html"><i class="fa fa-check"></i><b>6</b> Modelos ARIMA</a><ul>
+<li class="chapter" data-level="6.1" data-path="arima.html"><a href="arima.html#estacionariedade-diferenciacao-e-autocorrelacao"><i class="fa fa-check"></i><b>6.1</b> Estacionariedade, diferenciação e autocorrelação</a></li>
+<li class="chapter" data-level="6.2" data-path="arima.html"><a href="arima.html#modelos-autoregressivos"><i class="fa fa-check"></i><b>6.2</b> Modelos autoregressivos</a></li>
+<li class="chapter" data-level="6.3" data-path="arima.html"><a href="arima.html#modelos-de-media-movel"><i class="fa fa-check"></i><b>6.3</b> Modelos de média móvel</a></li>
+<li class="chapter" data-level="6.4" data-path="arima.html"><a href="arima.html#modelos-arima"><i class="fa fa-check"></i><b>6.4</b> Modelos ARIMA</a></li>
+<li class="chapter" data-level="6.5" data-path="arima.html"><a href="arima.html#modelos-sarima"><i class="fa fa-check"></i><b>6.5</b> Modelos SARIMA</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="outros.html"><a href="outros.html"><i class="fa fa-check"></i><b>7</b> Outros Métodos</a><ul>
+<li class="chapter" data-level="7.1" data-path="outros.html"><a href="outros.html#redes-neurais"><i class="fa fa-check"></i><b>7.1</b> Redes Neurais</a></li>
+<li class="chapter" data-level="7.2" data-path="outros.html"><a href="outros.html#pacote-mafs"><i class="fa fa-check"></i><b>7.2</b> Pacote mafs</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="clusterizacao.html"><a href="clusterizacao.html"><i class="fa fa-check"></i><b>8</b> Aplicações avançadas em séries temporais: Clusterização</a><ul>
+<li class="chapter" data-level="8.1" data-path="clusterizacao.html"><a href="clusterizacao.html#motivacao"><i class="fa fa-check"></i><b>8.1</b> Motivação</a></li>
+<li class="chapter" data-level="8.2" data-path="clusterizacao.html"><a href="clusterizacao.html#introducao-de-tecnicas-avancadas-em-series-temporais"><i class="fa fa-check"></i><b>8.2</b> Introdução de técnicas avançadas em Séries Temporais</a></li>
+<li class="chapter" data-level="8.3" data-path="clusterizacao.html"><a href="clusterizacao.html#clusterizacao-de-series-temporais"><i class="fa fa-check"></i><b>8.3</b> Clusterização de séries temporais</a></li>
+<li class="chapter" data-level="8.4" data-path="clusterizacao.html"><a href="clusterizacao.html#demonstracao"><i class="fa fa-check"></i><b>8.4</b> Demonstração</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="clusterizacao.html"><a href="clusterizacao.html#obtencao-dos-dados"><i class="fa fa-check"></i><b>8.4.1</b> Obtenção dos dados</a></li>
+<li class="chapter" data-level="8.4.2" data-path="clusterizacao.html"><a href="clusterizacao.html#transformacao-dos-dados"><i class="fa fa-check"></i><b>8.4.2</b> Transformação dos dados</a></li>
+<li class="chapter" data-level="8.4.3" data-path="clusterizacao.html"><a href="clusterizacao.html#aplicacao-da-clusterizacao"><i class="fa fa-check"></i><b>8.4.3</b> Aplicação da clusterização</a></li>
+<li class="chapter" data-level="8.4.4" data-path="clusterizacao.html"><a href="clusterizacao.html#e-o-brasil"><i class="fa fa-check"></i><b>8.4.4</b> E o Brasil?</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Curso de Séries Temporais - IBPAD</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="outros" class="section level1">
+<h1><span class="header-section-number">Capítulo 7</span> Outros Métodos</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(c(&quot;fpp&quot;, &quot;vars&quot;))</span>
+
+<span class="kw">library</span>(fpp)
+<span class="kw">library</span>(forecast)
+<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(vars)
+<span class="kw">library</span>(mafs)</code></pre></div>
+<p><em>Forecasting</em> é um assunto amplo demais para ser compreendido em algumas poucas horas. Existem dezenas de métodos de previsão diferentes, cada um apropriada a situações específicas. Além das técnicas clássicas apresentadas aqui, existem ainda algumas outras que vem ganhando destaque.</p>
+<div id="redes-neurais" class="section level2">
+<h2><span class="header-section-number">7.1</span> Redes Neurais</h2>
+<p>Redes neurais artificiais são métodos de previsão baseados em modelos matemáticos do cérebro humano. Permitem relacionamentos não-lineares complexos entre a variável dependente e a independente.</p>
+<p>Uma rede neural pode ser interpretada como uma rede de neurônios organizados em camadas. Os preditores ou inputs formam a camada de baixo e as previsões ou outputs formam a camada de cima. As camadas intermediárias, que podem existir ou não, são chamadas de ocultas.</p>
+<p>Cada preditor tem um coeficiente associado a ele, chamado de peso. Inicialmente, os pesos atribuídos aos inputs são valores aleatórios que são atualizados a medida em que a rede neural utiliza um algoritmo de aprendizagem para minimizar uma função de custo do modelo, que corresponde a uma métrica de erro.</p>
+<p>A formulação matemática de uma rede neural é razoavelmente complexa. Contudo, ajustá-la em uma série temporal é bem simples:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">energia &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/ts_energia.Rda&quot;</span>)
+mod.rn &lt;-<span class="st"> </span><span class="kw">nnetar</span>(energia) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">forecast</span>(<span class="dt">h =</span> <span class="dv">36</span>)
+
+<span class="kw">autoplot</span>(mod.rn)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+</div>
+<div id="pacote-mafs" class="section level2">
+<h2><span class="header-section-number">7.2</span> Pacote mafs</h2>
+<p>O pacote <code>mafs</code> é basicamente um atalho para o pacote <code>forecast</code>. Sua função principal é <code>select_forecast()</code>, que recebe uma série temporal como input, divide-a em séries de treino e teste, ajusta 18 modelos diferentes no conjunto de treino, mede sua acurácia em relação ao conjunto de teste, seleciona o melhor modelo de acordo com a métrica de erro escolhida pelo usuário e retorna os resultados dos modelos ajustados e os valores previstos para o futuro.</p>
+<p>Um exemplo de uso:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>({
+  mod.mafs &lt;-<span class="st"> </span><span class="kw">select_forecast</span>(energia, <span class="dt">test_size =</span> <span class="dv">24</span>, <span class="dt">horizon =</span> <span class="dv">24</span>, <span class="dt">error =</span> <span class="st">&quot;MAPE&quot;</span>)
+})</code></pre></div>
+<pre><code>## Warning in mean.default(x, na.rm = TRUE): argument is not numeric or
+## logical: returning NA</code></pre>
+<pre><code>## Warning in trainingaccuracy(f, test, d, D): test elements must be within
+## sample</code></pre>
+<pre><code>##    user  system elapsed 
+## 104.212  39.878  91.081</code></pre>
+<p>A função <code>select_forecast()</code> retorna como output uma lista de três elementos:</p>
+<ol style="list-style-type: decimal">
+<li>O resultado da acurácia dos modelos na série de teste;</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod.mafs<span class="op">$</span>df_models <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(MAPE) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">model</th>
+<th align="right">ME</th>
+<th align="right">RMSE</th>
+<th align="right">MAE</th>
+<th align="right">MPE</th>
+<th align="right">MAPE</th>
+<th align="right">MASE</th>
+<th align="right">ACF1</th>
+<th align="left">best_model</th>
+<th align="right">runtime_model</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">tbats</td>
+<td align="right">37.529127</td>
+<td align="right">208.9966</td>
+<td align="right">154.3667</td>
+<td align="right">0.2495710</td>
+<td align="right">1.101182</td>
+<td align="right">0.2726785</td>
+<td align="right">0.3058238</td>
+<td align="left">tbats</td>
+<td align="right">5.844</td>
+</tr>
+<tr class="even">
+<td align="left">bats</td>
+<td align="right">8.397109</td>
+<td align="right">206.3553</td>
+<td align="right">160.0462</td>
+<td align="right">0.0451775</td>
+<td align="right">1.148213</td>
+<td align="right">0.2827109</td>
+<td align="right">0.2801706</td>
+<td align="left">tbats</td>
+<td align="right">2.089</td>
+</tr>
+<tr class="odd">
+<td align="left">StructTS</td>
+<td align="right">-65.694710</td>
+<td align="right">235.3721</td>
+<td align="right">163.7315</td>
+<td align="right">-0.4814760</td>
+<td align="right">1.180864</td>
+<td align="right">0.2892207</td>
+<td align="right">0.2224535</td>
+<td align="left">tbats</td>
+<td align="right">1.076</td>
+</tr>
+<tr class="even">
+<td align="left">stlm_arima</td>
+<td align="right">-55.927922</td>
+<td align="right">231.2390</td>
+<td align="right">178.6971</td>
+<td align="right">-0.4099147</td>
+<td align="right">1.285967</td>
+<td align="right">0.3156564</td>
+<td align="right">0.1845728</td>
+<td align="left">tbats</td>
+<td align="right">0.094</td>
+</tr>
+<tr class="odd">
+<td align="left">hybrid</td>
+<td align="right">-138.913205</td>
+<td align="right">242.6880</td>
+<td align="right">179.7722</td>
+<td align="right">-1.0063123</td>
+<td align="right">1.293593</td>
+<td align="right">0.3175555</td>
+<td align="right">0.2127121</td>
+<td align="left">tbats</td>
+<td align="right">9.481</td>
+</tr>
+<tr class="even">
+<td align="left">ets</td>
+<td align="right">157.249033</td>
+<td align="right">265.8208</td>
+<td align="right">222.2503</td>
+<td align="right">1.1101750</td>
+<td align="right">1.584445</td>
+<td align="right">0.3925902</td>
+<td align="right">0.2877032</td>
+<td align="left">tbats</td>
+<td align="right">2.084</td>
+</tr>
+<tr class="odd">
+<td align="left">stlm_ets</td>
+<td align="right">193.465478</td>
+<td align="right">300.4347</td>
+<td align="right">250.3780</td>
+<td align="right">1.3671693</td>
+<td align="right">1.785035</td>
+<td align="right">0.4422759</td>
+<td align="right">0.2721314</td>
+<td align="left">tbats</td>
+<td align="right">0.074</td>
+</tr>
+<tr class="even">
+<td align="left">rwf_drift</td>
+<td align="right">-122.184230</td>
+<td align="right">355.2741</td>
+<td align="right">270.4215</td>
+<td align="right">-0.9174526</td>
+<td align="right">1.950492</td>
+<td align="right">0.4776815</td>
+<td align="right">0.4760469</td>
+<td align="left">tbats</td>
+<td align="right">0.003</td>
+</tr>
+<tr class="odd">
+<td align="left">naive</td>
+<td align="right">132.916667</td>
+<td align="right">330.8344</td>
+<td align="right">281.5000</td>
+<td align="right">0.9003014</td>
+<td align="right">1.993695</td>
+<td align="right">0.4972509</td>
+<td align="right">0.4091301</td>
+<td align="left">tbats</td>
+<td align="right">0.003</td>
+</tr>
+<tr class="even">
+<td align="left">rwf</td>
+<td align="right">132.916667</td>
+<td align="right">330.8344</td>
+<td align="right">281.5000</td>
+<td align="right">0.9003014</td>
+<td align="right">1.993695</td>
+<td align="right">0.4972509</td>
+<td align="right">0.4091301</td>
+<td align="left">tbats</td>
+<td align="right">0.003</td>
+</tr>
+<tr class="odd">
+<td align="left">thetaf</td>
+<td align="right">-267.714726</td>
+<td align="right">349.1746</td>
+<td align="right">289.8854</td>
+<td align="right">-1.9143248</td>
+<td align="right">2.069838</td>
+<td align="right">0.5120632</td>
+<td align="right">0.3747142</td>
+<td align="left">tbats</td>
+<td align="right">0.020</td>
+</tr>
+<tr class="even">
+<td align="left">snaive</td>
+<td align="right">300.333333</td>
+<td align="right">392.3578</td>
+<td align="right">341.5833</td>
+<td align="right">2.1211653</td>
+<td align="right">2.424632</td>
+<td align="right">0.6033840</td>
+<td align="right">0.3988863</td>
+<td align="left">tbats</td>
+<td align="right">0.002</td>
+</tr>
+<tr class="odd">
+<td align="left">croston</td>
+<td align="right">259.494479</td>
+<td align="right">398.9009</td>
+<td align="right">345.9204</td>
+<td align="right">1.8022156</td>
+<td align="right">2.439079</td>
+<td align="right">0.6110452</td>
+<td align="right">0.4091301</td>
+<td align="left">tbats</td>
+<td align="right">5.439</td>
+</tr>
+<tr class="even">
+<td align="left">auto.arima</td>
+<td align="right">-496.467178</td>
+<td align="right">593.7442</td>
+<td align="right">496.4672</td>
+<td align="right">-3.5474593</td>
+<td align="right">3.547459</td>
+<td align="right">0.8769760</td>
+<td align="right">0.5551156</td>
+<td align="left">tbats</td>
+<td align="right">4.217</td>
+</tr>
+<tr class="odd">
+<td align="left">nnetar</td>
+<td align="right">-996.266813</td>
+<td align="right">1118.5003</td>
+<td align="right">996.2668</td>
+<td align="right">-7.1297376</td>
+<td align="right">7.129738</td>
+<td align="right">1.7598385</td>
+<td align="right">0.7258767</td>
+<td align="left">tbats</td>
+<td align="right">2.136</td>
+</tr>
+<tr class="even">
+<td align="left">tslm</td>
+<td align="right">-2097.396996</td>
+<td align="right">2108.3717</td>
+<td align="right">2097.3970</td>
+<td align="right">-14.9618287</td>
+<td align="right">14.961829</td>
+<td align="right">3.7049111</td>
+<td align="right">0.3339955</td>
+<td align="left">tbats</td>
+<td align="right">0.004</td>
+</tr>
+<tr class="odd">
+<td align="left">meanf</td>
+<td align="right">3475.189597</td>
+<td align="right">3488.3703</td>
+<td align="right">3475.1896</td>
+<td align="right">24.7152453</td>
+<td align="right">24.715245</td>
+<td align="right">6.1386892</td>
+<td align="right">0.4091301</td>
+<td align="left">tbats</td>
+<td align="right">0.001</td>
+</tr>
+</tbody>
+</table>
+<ol start="2" style="list-style-type: decimal">
+<li>A previsão gerada pelo melhor modelo (no caso, o auto.arima):</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod.mafs<span class="op">$</span>best_forecast <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">autoplot</span>()</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>A comparação entre os valores da série de teste e da previsão resultante do modelo na série de treino:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod.mafs<span class="op">$</span>df_comparison <span class="op">%&gt;%</span><span class="st"> </span>knitr<span class="op">::</span><span class="kw">kable</span>()</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">time</th>
+<th align="right">forecasted</th>
+<th align="right">observed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">2017-04-02</td>
+<td align="right">14031.10</td>
+<td align="right">14007</td>
+</tr>
+<tr class="even">
+<td align="left">2017-05-02</td>
+<td align="right">14026.53</td>
+<td align="right">13598</td>
+</tr>
+<tr class="odd">
+<td align="left">2017-06-02</td>
+<td align="right">14025.90</td>
+<td align="right">13919</td>
+</tr>
+<tr class="even">
+<td align="left">2017-07-02</td>
+<td align="right">14083.19</td>
+<td align="right">14082</td>
+</tr>
+<tr class="odd">
+<td align="left">2017-08-02</td>
+<td align="right">14305.20</td>
+<td align="right">14197</td>
+</tr>
+<tr class="even">
+<td align="left">2017-09-01</td>
+<td align="right">14306.58</td>
+<td align="right">14146</td>
+</tr>
+<tr class="odd">
+<td align="left">2017-10-02</td>
+<td align="right">14202.73</td>
+<td align="right">14173</td>
+</tr>
+<tr class="even">
+<td align="left">2017-11-01</td>
+<td align="right">14270.23</td>
+<td align="right">14316</td>
+</tr>
+<tr class="odd">
+<td align="left">2017-12-02</td>
+<td align="right">13838.47</td>
+<td align="right">14073</td>
+</tr>
+<tr class="even">
+<td align="left">2018-01-01</td>
+<td align="right">13490.05</td>
+<td align="right">13597</td>
+</tr>
+<tr class="odd">
+<td align="left">2018-01-31</td>
+<td align="right">13616.93</td>
+<td align="right">13845</td>
+</tr>
+<tr class="even">
+<td align="left">2018-03-03</td>
+<td align="right">13843.76</td>
+<td align="right">14023</td>
+</tr>
+<tr class="odd">
+<td align="left">2018-04-02</td>
+<td align="right">14031.10</td>
+<td align="right">14539</td>
+</tr>
+<tr class="even">
+<td align="left">2018-05-03</td>
+<td align="right">14026.53</td>
+<td align="right">14048</td>
+</tr>
+<tr class="odd">
+<td align="left">2018-06-02</td>
+<td align="right">14025.90</td>
+<td align="right">13525</td>
+</tr>
+<tr class="even">
+<td align="left">2018-07-03</td>
+<td align="right">14083.19</td>
+<td align="right">14170</td>
+</tr>
+<tr class="odd">
+<td align="left">2018-08-02</td>
+<td align="right">14305.20</td>
+<td align="right">14486</td>
+</tr>
+<tr class="even">
+<td align="left">2018-09-02</td>
+<td align="right">14306.58</td>
+<td align="right">14419</td>
+</tr>
+<tr class="odd">
+<td align="left">2018-10-02</td>
+<td align="right">14202.73</td>
+<td align="right">14312</td>
+</tr>
+<tr class="even">
+<td align="left">2018-11-01</td>
+<td align="right">14270.23</td>
+<td align="right">14498</td>
+</tr>
+<tr class="odd">
+<td align="left">2018-12-02</td>
+<td align="right">13838.47</td>
+<td align="right">14001</td>
+</tr>
+<tr class="even">
+<td align="left">2019-01-01</td>
+<td align="right">13490.05</td>
+<td align="right">13575</td>
+</tr>
+<tr class="odd">
+<td align="left">2019-02-01</td>
+<td align="right">13616.93</td>
+<td align="right">13575</td>
+</tr>
+<tr class="even">
+<td align="left">2019-03-03</td>
+<td align="right">13843.76</td>
+<td align="right">13858</td>
+</tr>
+</tbody>
+</table>
+<div class="figure">
+<img src="http://i.imgur.com/lBCBhhP.jpg" />
+
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="arima.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="clusterizacao.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/07-outros_metodos.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["curso-series-temporais.pdf", "curso-series-temporais.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

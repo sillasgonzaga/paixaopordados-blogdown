@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 5 Suavização exponencial | Curso de Séries Temporais - IBPAD</title>
+  <meta name="description" content="descrição YAML" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 5 Suavização exponencial | Curso de Séries Temporais - IBPAD" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="descrição YAML" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 5 Suavização exponencial | Curso de Séries Temporais - IBPAD" />
+  
+  <meta name="twitter:description" content="descrição YAML" />
+  
+
+<meta name="author" content="© Sillas Teixeira Gonzaga" />
+
+
+<meta name="date" content="2019-06-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="decomposicao.html">
+<link rel="next" href="arima.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="libs/dygraphs-1.1.1/shapes.js"></script>
+<script src="libs/moment-2.8.4/moment.js"></script>
+<script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="libs/moment-fquarter-1.0.0/moment-fquarter.min.js"></script>
+<script src="libs/dygraphs-binding-1.1.1.6/dygraphs.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Curso de Séries Temporais - IBPAD</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instrutor"><i class="fa fa-check"></i>Instrutor</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instalacao-de-pacotes"><i class="fa fa-check"></i>Instalação de pacotes</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introducao.html"><a href="introducao.html"><i class="fa fa-check"></i><b>1</b> Introdução a Séries Temporais</a><ul>
+<li class="chapter" data-level="1.1" data-path="introducao.html"><a href="introducao.html#o-que-sao-series-temporais"><i class="fa fa-check"></i><b>1.1</b> O que são Séries Temporais</a></li>
+<li class="chapter" data-level="1.2" data-path="introducao.html"><a href="introducao.html#elementos"><i class="fa fa-check"></i><b>1.2</b> Elementos das Séries Temporais</a></li>
+<li class="chapter" data-level="1.3" data-path="introducao.html"><a href="introducao.html#series-temporais-no-r"><i class="fa fa-check"></i><b>1.3</b> Séries temporais no R</a></li>
+<li class="chapter" data-level="1.4" data-path="introducao.html"><a href="introducao.html#graficos-interativos-com-dygraphs"><i class="fa fa-check"></i><b>1.4</b> Gráficos interativos com dygraphs</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="regressao.html"><a href="regressao.html"><i class="fa fa-check"></i><b>2</b> Regressão</a><ul>
+<li class="chapter" data-level="2.1" data-path="regressao.html"><a href="regressao.html#analise-exploratoria"><i class="fa fa-check"></i><b>2.1</b> Análise exploratória</a></li>
+<li class="chapter" data-level="2.2" data-path="regressao.html"><a href="regressao.html#correlacao"><i class="fa fa-check"></i><b>2.2</b> Correlação</a></li>
+<li class="chapter" data-level="2.3" data-path="regressao.html"><a href="regressao.html#modelagem-por-regressao-simples"><i class="fa fa-check"></i><b>2.3</b> Modelagem por regressão simples</a></li>
+<li class="chapter" data-level="2.4" data-path="regressao.html"><a href="regressao.html#regressao-multivariada"><i class="fa fa-check"></i><b>2.4</b> Regressão multivariada</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="regressao.html"><a href="regressao.html#hipotese-nula-da-regressao"><i class="fa fa-check"></i><b>2.4.1</b> Hipótese nula da regressão</a></li>
+<li class="chapter" data-level="2.4.2" data-path="regressao.html"><a href="regressao.html#valor-p"><i class="fa fa-check"></i><b>2.4.2</b> valor-p</a></li>
+<li class="chapter" data-level="2.4.3" data-path="regressao.html"><a href="regressao.html#r-quadrado-e-r-quadrado-ajustado"><i class="fa fa-check"></i><b>2.4.3</b> R-quadrado e R-quadrado ajustado</a></li>
+<li class="chapter" data-level="2.4.4" data-path="regressao.html"><a href="regressao.html#analise-dos-residuos"><i class="fa fa-check"></i><b>2.4.4</b> Análise dos resíduos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="regressao.html"><a href="regressao.html#modelo-preditivo"><i class="fa fa-check"></i><b>2.5</b> Regressão como modelo preditivo</a></li>
+<li class="chapter" data-level="2.6" data-path="regressao.html"><a href="regressao.html#referencias"><i class="fa fa-check"></i><b>2.6</b> Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="avaliacao.html"><a href="avaliacao.html"><i class="fa fa-check"></i><b>3</b> Avaliação de precisão de modelos de séries temporais</a><ul>
+<li class="chapter" data-level="3.1" data-path="avaliacao.html"><a href="avaliacao.html#medidas-de-precisao"><i class="fa fa-check"></i><b>3.1</b> Medidas de precisão</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="avaliacao.html"><a href="avaliacao.html#metricas-baseadas-em-escala"><i class="fa fa-check"></i><b>3.1.1</b> Métricas baseadas em escala</a></li>
+<li class="chapter" data-level="3.1.2" data-path="avaliacao.html"><a href="avaliacao.html#metricas-baseadas-em-percentuais"><i class="fa fa-check"></i><b>3.1.2</b> Métricas baseadas em percentuais</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="avaliacao.html"><a href="avaliacao.html#desempenho-fora-de-amostra-overfitting-e-underfitting"><i class="fa fa-check"></i><b>3.2</b> Desempenho fora de amostra: Overfitting e underfitting</a></li>
+<li class="chapter" data-level="3.3" data-path="avaliacao.html"><a href="avaliacao.html#referencias-1"><i class="fa fa-check"></i><b>3.3</b> Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="decomposicao.html"><a href="decomposicao.html"><i class="fa fa-check"></i><b>4</b> Decomposição de Séries Temporais</a><ul>
+<li class="chapter" data-level="4.1" data-path="decomposicao.html"><a href="decomposicao.html#medias-moveis"><i class="fa fa-check"></i><b>4.1</b> Médias móveis</a></li>
+<li class="chapter" data-level="4.2" data-path="decomposicao.html"><a href="decomposicao.html#decomposicao-classica"><i class="fa fa-check"></i><b>4.2</b> Decomposição clássica</a></li>
+<li class="chapter" data-level="4.3" data-path="decomposicao.html"><a href="decomposicao.html#outros-tipos-de-decomposicao"><i class="fa fa-check"></i><b>4.3</b> Outros tipos de decomposição</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="decomposicao.html"><a href="decomposicao.html#pacote-seasonal"><i class="fa fa-check"></i><b>4.3.1</b> Pacote <code>seasonal</code></a></li>
+<li class="chapter" data-level="4.3.2" data-path="decomposicao.html"><a href="decomposicao.html#decomposicao-stl"><i class="fa fa-check"></i><b>4.3.2</b> Decomposição STL</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="suavizacao.html"><a href="suavizacao.html"><i class="fa fa-check"></i><b>5</b> Suavização exponencial</a><ul>
+<li class="chapter" data-level="5.1" data-path="suavizacao.html"><a href="suavizacao.html#suavizacao-simples"><i class="fa fa-check"></i><b>5.1</b> Suavização simples</a></li>
+<li class="chapter" data-level="5.2" data-path="suavizacao.html"><a href="suavizacao.html#linear-de-holt"><i class="fa fa-check"></i><b>5.2</b> Linear de Holt</a></li>
+<li class="chapter" data-level="5.3" data-path="suavizacao.html"><a href="suavizacao.html#holt-winter-aditivo-e-multiplicativo"><i class="fa fa-check"></i><b>5.3</b> Holt-winter aditivo e multiplicativo</a></li>
+<li class="chapter" data-level="5.4" data-path="suavizacao.html"><a href="suavizacao.html#selecao-automatica-do-melhor-modelo-de-suavizacao-exponencial"><i class="fa fa-check"></i><b>5.4</b> Seleção automática do melhor modelo de suavização exponencial</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="arima.html"><a href="arima.html"><i class="fa fa-check"></i><b>6</b> Modelos ARIMA</a><ul>
+<li class="chapter" data-level="6.1" data-path="arima.html"><a href="arima.html#estacionariedade-diferenciacao-e-autocorrelacao"><i class="fa fa-check"></i><b>6.1</b> Estacionariedade, diferenciação e autocorrelação</a></li>
+<li class="chapter" data-level="6.2" data-path="arima.html"><a href="arima.html#modelos-autoregressivos"><i class="fa fa-check"></i><b>6.2</b> Modelos autoregressivos</a></li>
+<li class="chapter" data-level="6.3" data-path="arima.html"><a href="arima.html#modelos-de-media-movel"><i class="fa fa-check"></i><b>6.3</b> Modelos de média móvel</a></li>
+<li class="chapter" data-level="6.4" data-path="arima.html"><a href="arima.html#modelos-arima"><i class="fa fa-check"></i><b>6.4</b> Modelos ARIMA</a></li>
+<li class="chapter" data-level="6.5" data-path="arima.html"><a href="arima.html#modelos-sarima"><i class="fa fa-check"></i><b>6.5</b> Modelos SARIMA</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="outros.html"><a href="outros.html"><i class="fa fa-check"></i><b>7</b> Outros Métodos</a><ul>
+<li class="chapter" data-level="7.1" data-path="outros.html"><a href="outros.html#redes-neurais"><i class="fa fa-check"></i><b>7.1</b> Redes Neurais</a></li>
+<li class="chapter" data-level="7.2" data-path="outros.html"><a href="outros.html#pacote-mafs"><i class="fa fa-check"></i><b>7.2</b> Pacote mafs</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="clusterizacao.html"><a href="clusterizacao.html"><i class="fa fa-check"></i><b>8</b> Aplicações avançadas em séries temporais: Clusterização</a><ul>
+<li class="chapter" data-level="8.1" data-path="clusterizacao.html"><a href="clusterizacao.html#motivacao"><i class="fa fa-check"></i><b>8.1</b> Motivação</a></li>
+<li class="chapter" data-level="8.2" data-path="clusterizacao.html"><a href="clusterizacao.html#introducao-de-tecnicas-avancadas-em-series-temporais"><i class="fa fa-check"></i><b>8.2</b> Introdução de técnicas avançadas em Séries Temporais</a></li>
+<li class="chapter" data-level="8.3" data-path="clusterizacao.html"><a href="clusterizacao.html#clusterizacao-de-series-temporais"><i class="fa fa-check"></i><b>8.3</b> Clusterização de séries temporais</a></li>
+<li class="chapter" data-level="8.4" data-path="clusterizacao.html"><a href="clusterizacao.html#demonstracao"><i class="fa fa-check"></i><b>8.4</b> Demonstração</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="clusterizacao.html"><a href="clusterizacao.html#obtencao-dos-dados"><i class="fa fa-check"></i><b>8.4.1</b> Obtenção dos dados</a></li>
+<li class="chapter" data-level="8.4.2" data-path="clusterizacao.html"><a href="clusterizacao.html#transformacao-dos-dados"><i class="fa fa-check"></i><b>8.4.2</b> Transformação dos dados</a></li>
+<li class="chapter" data-level="8.4.3" data-path="clusterizacao.html"><a href="clusterizacao.html#aplicacao-da-clusterizacao"><i class="fa fa-check"></i><b>8.4.3</b> Aplicação da clusterização</a></li>
+<li class="chapter" data-level="8.4.4" data-path="clusterizacao.html"><a href="clusterizacao.html#e-o-brasil"><i class="fa fa-check"></i><b>8.4.4</b> E o Brasil?</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Curso de Séries Temporais - IBPAD</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="suavizacao" class="section level1">
+<h1><span class="header-section-number">Capítulo 5</span> Suavização exponencial</h1>
+<p>Métodos de suavização exponencial produzem previsões a partir de médias ponderadas de observações passadas, onde o peso associado a cada observação cai a medida em que se recua mais no tempo. Ou seja, quanto mais recente a observação, maior será seu peso no modelo preditivo. Apesar de simples, é usado em larga escala nas mais diversas aplicações.</p>
+<p>Para este capítulo, será usada como exemplo a série temporal da cotação do dólar, obtida com o pacote <code>quantmod</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(forecast)
+<span class="kw">library</span>(lubridate)
+energia &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/ts_energia.Rda&quot;</span>)</code></pre></div>
+<div id="suavizacao-simples" class="section level2">
+<h2><span class="header-section-number">5.1</span> Suavização simples</h2>
+<p>A suavização simples exponencial é considerada útil para séries sem tendência ou sazonalidade. No R, ela é implementada pela função <code>forecast::ses()</code></p>
+<p>Levando em conta que o modelo ingênuo (naive model) atribui peso 1 para a última observação e o modelo da média simples atribui peso igual para todas as observações passadas, a suavização simples poderia ser descrita como um meio termo entre ambos. Sua formulação matemática não é complexa:</p>
+<p><span class="math inline">\(\hat{y}_{T+1|T} = \alpha y_t + \alpha (1 - \alpha)y_{T-1} + \alpha (1 - \alpha)^2y_{T-2} + ...\)</span></p>
+<p>O parâmetro <span class="math inline">\(\alpha\)</span> é chamado de parâmetro de suavização e está definido no intervalo de 0 a 1. Por exemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">alpha &lt;-<span class="st"> </span><span class="fl">0.2</span>
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) <span class="kw">print</span>((<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>alpha)<span class="op">^</span>i)</code></pre></div>
+<pre><code>## [1] 0.8
+## [1] 0.64
+## [1] 0.512
+## [1] 0.4096
+## [1] 0.32768</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">alpha &lt;-<span class="st"> </span><span class="fl">0.8</span>
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) <span class="kw">print</span>((<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>alpha)<span class="op">^</span>i)</code></pre></div>
+<pre><code>## [1] 0.2
+## [1] 0.04
+## [1] 0.008
+## [1] 0.0016
+## [1] 0.00032</code></pre>
+<p>Percebe-se pelos resultados da simulação acima que quanto maior o parâmetro <span class="math inline">\(\alpha\)</span>, maior é o peso dado à observação imediatamente mais recente e menor o dado às demais.</p>
+<p>O valor de <span class="math inline">\(\alpha\)</span> pode ser “definido” subjetivamente, utilizando conhecimentos empíricos. Contudo, a maneira mais precisa de escolher esse valor é por meio de um algoritmo de otimização, que estimará <span class="math inline">\(\alpha\)</span> a partir dos dados obtidos</p>
+<p>Suponha que não façamos a mínima ideia do melhor valor de <span class="math inline">\(\alpha\)</span> para a série temporal da cotação do dólar. Vamos testar três valores:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">alpha1 &lt;-<span class="st"> </span><span class="kw">ses</span>(energia, <span class="dt">alpha =</span> <span class="fl">0.1</span>, <span class="dt">h =</span> <span class="dv">6</span>)
+alpha2 &lt;-<span class="st"> </span><span class="kw">ses</span>(energia, <span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">h =</span> <span class="dv">6</span>)
+alpha3 &lt;-<span class="st"> </span><span class="kw">ses</span>(energia, <span class="dt">alpha =</span> <span class="fl">0.9</span>, <span class="dt">h =</span> <span class="dv">6</span>)
+
+<span class="co"># calculando o erro de cada ajuste</span>
+<span class="kw">list</span>(alpha1, alpha2, alpha3) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map</span>(accuracy)</code></pre></div>
+<pre><code>## [[1]]
+##                    ME     RMSE      MAE      MPE     MAPE     MASE
+## Training set 189.1023 566.3227 452.3437 1.852651 4.394329 0.821636
+##                   ACF1
+## Training set 0.7750762
+## 
+## [[2]]
+##                    ME     RMSE      MAE       MPE     MAPE      MASE
+## Training set 38.04937 379.2963 279.4255 0.3436042 2.740185 0.5075478
+##                   ACF1
+## Training set 0.4246183
+## 
+## [[3]]
+##                    ME     RMSE      MAE       MPE     MAPE      MASE
+## Training set 21.28641 344.4563 257.3424 0.1862282 2.533822 0.4674361
+##                    ACF1
+## Training set 0.07787846</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(alpha1, <span class="dt">plot.conf=</span><span class="ot">FALSE</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">main=</span><span class="st">&quot;&quot;</span>, <span class="dt">fcol=</span><span class="st">&quot;white&quot;</span>)
+<span class="kw">lines</span>(<span class="kw">fitted</span>(alpha1), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)
+<span class="kw">lines</span>(<span class="kw">fitted</span>(alpha2), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)
+<span class="kw">lines</span>(<span class="kw">fitted</span>(alpha3), <span class="dt">col=</span><span class="st">&quot;green&quot;</span>)
+<span class="kw">lines</span>(alpha1<span class="op">$</span>mean, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">type=</span><span class="st">&quot;o&quot;</span>)
+<span class="kw">lines</span>(alpha2<span class="op">$</span>mean, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">type=</span><span class="st">&quot;o&quot;</span>)
+<span class="kw">lines</span>(alpha3<span class="op">$</span>mean, <span class="dt">col=</span><span class="st">&quot;green&quot;</span>, <span class="dt">type=</span><span class="st">&quot;o&quot;</span>)
+<span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>,<span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>,<span class="st">&quot;green&quot;</span>),
+       <span class="kw">c</span>(<span class="st">&quot;serie original&quot;</span>, <span class="kw">expression</span>(alpha <span class="op">==</span><span class="st"> </span><span class="fl">0.1</span>),
+         <span class="kw">expression</span>(alpha <span class="op">==</span><span class="st"> </span><span class="fl">0.5</span>),
+         <span class="kw">expression</span>(alpha <span class="op">==</span><span class="st"> </span><span class="dv">9</span>)),
+       <span class="dt">pch=</span><span class="dv">1</span>)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># qual o valor otimo encontrado para alpha nesse caso?</span>
+<span class="kw">ses</span>(energia) <span class="op">%&gt;%</span><span class="st"> </span>summary</code></pre></div>
+<pre><code>## 
+## Forecast method: Simple exponential smoothing
+## 
+## Model Information:
+## Simple exponential smoothing 
+## 
+## Call:
+##  ses(y = energia) 
+## 
+##   Smoothing parameters:
+##     alpha = 0.9881 
+## 
+##   Initial states:
+##     l = 4806.6943 
+## 
+##   sigma:  344.0853
+## 
+##      AIC     AICc      BIC 
+## 8405.052 8405.103 8417.516 
+## 
+## Error measures:
+##                    ME     RMSE      MAE       MPE     MAPE      MASE
+## Training set 19.44131 343.3539 259.5568 0.1690397 2.565129 0.4714584
+##                      ACF1
+## Training set -0.002095396
+## 
+## Forecasts:
+##          Point Forecast    Lo 80    Hi 80    Lo 95    Hi 95
+## Apr 2019       13854.63 13413.67 14295.60 13180.24 14529.03
+## May 2019       13854.63 13234.72 14474.55 12906.55 14802.72
+## Jun 2019       13854.63 13096.91 14612.36 12695.79 15013.48
+## Jul 2019       13854.63 12980.56 14728.70 12517.86 15191.41
+## Aug 2019       13854.63 12877.98 14831.29 12360.97 15348.29
+## Sep 2019       13854.63 12785.20 14924.07 12219.07 15490.20
+## Oct 2019       13854.63 12699.84 15009.43 12088.53 15620.74
+## Nov 2019       13854.63 12620.37 15088.90 11967.00 15742.27
+## Dec 2019       13854.63 12545.72 15163.55 11852.83 15856.44
+## Jan 2020       13854.63 12475.11 15234.16 11744.83 15964.44</code></pre>
+<p>O valor de <span class="math inline">\(\alpha\)</span> encontrado ffoi de 0,9999, praticamente um modelo ingênuo.</p>
+</div>
+<div id="linear-de-holt" class="section level2">
+<h2><span class="header-section-number">5.2</span> Linear de Holt</h2>
+<p>Holt criou uma extensão ao método de suavização simples que permite prever dados com tendência que possui dois parâmetros <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(\beta\)</span>. Matematicamente, temos:</p>
+<p><span class="math inline">\(\hat{y}_{t+h}=l_t + hT_t\)</span></p>
+<p><span class="math inline">\(l_t = \alpha y_t + (1 - \alpha)(l_{t-1} + T_{t-1})\)</span></p>
+<p><span class="math inline">\(T_t = \beta (l_t - l_{t-1}) + (1 - \beta)T_{t-1}\)</span></p>
+<p>Onde <span class="math inline">\(T_t\)</span> corresponde a uma estimativa do componente de tendência e <span class="math inline">\(l_t\)</span> uma estimativa do componente de nível da série no período <span class="math inline">\(t\)</span>. Assim como <span class="math inline">\(\alpha\)</span>, o parâmetro <span class="math inline">\(\beta\)</span> também está definido no intervalo [0,1].</p>
+<p>Recomenda-se que <span class="math inline">\(l_0\)</span> e <span class="math inline">\(T_0\)</span> sejam inicializados como <span class="math inline">\(y_1\)</span> e <span class="math inline">\(y_2 - y_1\)</span>, respectivamente.</p>
+<p>No R, a função para aplicar o modelo linear de Holt é <code>forecast::holt()</code>. Os parâmetros podem ser impostos manualmente ou calculados automaticamente por otimização:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod1 &lt;-<span class="st"> </span><span class="kw">holt</span>(energia, <span class="dt">alpha =</span> <span class="fl">0.6</span>, <span class="dt">beta =</span> <span class="fl">0.4</span>)
+mod2 &lt;-<span class="st"> </span><span class="kw">holt</span>(energia)
+mod2<span class="op">$</span>model</code></pre></div>
+<pre><code>## Holt&#39;s method 
+## 
+## Call:
+##  holt(y = energia) 
+## 
+##   Smoothing parameters:
+##     alpha = 0.9845 
+##     beta  = 1e-04 
+## 
+##   Initial states:
+##     l = 5052.3993 
+##     b = 19.8743 
+## 
+##   sigma:  344.5037
+## 
+##      AIC     AICc      BIC 
+## 8408.184 8408.313 8428.958</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(mod1)
+<span class="kw">lines</span>(<span class="kw">fitted</span>(mod1), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)
+<span class="kw">lines</span>(<span class="kw">fitted</span>(mod2), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculando a qualidade de ajuste</span>
+<span class="kw">list</span>(mod1, mod2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map</span>(accuracy)</code></pre></div>
+<pre><code>## [[1]]
+##                      ME     RMSE      MAE         MPE     MAPE      MASE
+## Training set -0.3120712 423.4344 313.9757 -0.01667693 3.026252 0.5703046
+##                  ACF1
+## Training set 0.233788
+## 
+## [[2]]
+##                     ME     RMSE     MAE         MPE     MAPE      MASE
+## Training set -1.307393 343.0377 258.776 -0.05088298 2.566114 0.4700401
+##                     ACF1
+## Training set 0.001255276</code></pre>
+</div>
+<div id="holt-winter-aditivo-e-multiplicativo" class="section level2">
+<h2><span class="header-section-number">5.3</span> Holt-winter aditivo e multiplicativo</h2>
+<p>Uma evolução do modelo linear de Holt foi criado por Holt e Winter para possibilitar a modelagem de séries temporais por suavização exponencial que também possuam um componente sazonal. O método de Holt-Winters possui três equações para calcular os componentes <span class="math inline">\(l_t\)</span> de nível, <span class="math inline">\(T_t\)</span> de tendência e <span class="math inline">\(s_t\)</span> de sazonalidade, com os parâmetros <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> e <span class="math inline">\(\gamma\)</span>.</p>
+<p>Esse método possui duas variações, que dependem da natureza do componente sazonal. O método <strong>aditivo</strong> é preferido quand as variações sazonais são razoavelmente constantes por toda a série, enquanto o <strong>multiplicativo</strong> pode ser usado quando as variações sazonais são proporcionais à mudança do nível da série.</p>
+<p>A formulação matemática completa, um pouco mais complexa que o modelo linear de Holt, pode ser encontrada <a href="http://www.portalaction.com.br/series-temporais/34-suavizacao-exponencial-de-holt-winters-hw">aqui</a>.</p>
+<p>No R, este método é implementado pela função <code>forecast::hw()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vamos testar tanto o metodo aditivo quanto o multiplicativo para a serie de exemplo</span>
+ajuste_ad &lt;-<span class="st"> </span><span class="kw">hw</span>(energia, <span class="dt">seasonal =</span> <span class="st">&quot;additive&quot;</span>)
+ajuste_mult &lt;-<span class="st"> </span><span class="kw">hw</span>(energia, <span class="dt">seasonal =</span> <span class="st">&quot;multiplicative&quot;</span>)
+
+
+<span class="kw">plot</span>(energia)
+<span class="kw">lines</span>(<span class="kw">fitted</span>(ajuste_ad), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)
+<span class="kw">lines</span>(<span class="kw">fitted</span>(ajuste_mult), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculando a qualidade de ajuste</span>
+<span class="kw">list</span>(ajuste_ad, ajuste_mult) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map</span>(accuracy)</code></pre></div>
+<pre><code>## [[1]]
+##                     ME     RMSE      MAE        MPE    MAPE     MASE
+## Training set -17.92829 266.2171 195.4297 -0.2371204 2.03023 0.354978
+##                    ACF1
+## Training set 0.03126608
+## 
+## [[2]]
+##                     ME     RMSE      MAE        MPE     MAPE     MASE
+## Training set -5.999514 263.2171 194.9375 -0.1027663 1.978821 0.354084
+##                    ACF1
+## Training set 0.01280095</code></pre>
+</div>
+<div id="selecao-automatica-do-melhor-modelo-de-suavizacao-exponencial" class="section level2">
+<h2><span class="header-section-number">5.4</span> Seleção automática do melhor modelo de suavização exponencial</h2>
+<p>Além dos apresentados neste capítulo, existem muito mais variações de métodos de suavização exponencial. São 15 no total, que são:</p>
+<div class="figure">
+<img src="http://i.imgur.com/gDdC0DE.png" />
+
+</div>
+<p>Felizmente, o pacote <code>forecast</code> traz uma função que automatiza internamente a seleção do melhor método de previsão, através da função <code>ets()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ajustando um modelo</span>
+modelo.ets &lt;-<span class="st"> </span><span class="kw">ets</span>(energia)
+<span class="co"># verificando o output</span>
+<span class="kw">summary</span>(modelo.ets)</code></pre></div>
+<pre><code>## ETS(A,N,A) 
+## 
+## Call:
+##  ets(y = energia) 
+## 
+##   Smoothing parameters:
+##     alpha = 0.8344 
+##     gamma = 0.1103 
+## 
+##   Initial states:
+##     l = 5705.8554 
+##     s = -122.337 194.4542 169.5002 267.6885 309.4918 27.2327
+##            37.4583 50.5964 68.238 -243.8595 -385.6998 -372.7637
+## 
+##   sigma:  269.556
+## 
+##      AIC     AICc      BIC 
+## 8186.889 8187.944 8249.212 
+## 
+## Training set error measures:
+##                  ME     RMSE      MAE      MPE     MAPE      MASE
+## Training set 20.455 265.5196 197.8673 0.177949 2.042775 0.3594056
+##                   ACF1
+## Training set 0.0222034</code></pre>
+<p>Para a série temporal de exemplo, a função retornou um modelo ETS(A, N, A). A primeira letra se refere ao componente de erro e pode ser A (aditivo) ou M (multiplicativo), a segunda ao componente de tendência e pode ser N (não possui), A (aditivo), Ad (aditivo amortecido), M (multiplicativo) ou Md (multiplicativo amortecido) e a terceira ao componente de sazonalidade, que pode ser N, A ou M.</p>
+<p>Ou seja, o algoritmo da função detectou que a série de exemplo possui componente de erro aditivo, não possui tendência e a sazonalidade é aditiva.</p>
+<p>O ajuste do modelo, graficamente, é:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(energia)
+<span class="kw">lines</span>(<span class="kw">fitted</span>(modelo.ets), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<div class="figure">
+<img src="http://i.imgur.com/lBCBhhP.jpg" />
+
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="decomposicao.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="arima.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-suavizacao.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["curso-series-temporais.pdf", "curso-series-temporais.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

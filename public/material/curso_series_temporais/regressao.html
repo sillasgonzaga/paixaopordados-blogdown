@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 2 Regressão | Curso de Séries Temporais - IBPAD</title>
+  <meta name="description" content="descrição YAML" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 2 Regressão | Curso de Séries Temporais - IBPAD" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="descrição YAML" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 2 Regressão | Curso de Séries Temporais - IBPAD" />
+  
+  <meta name="twitter:description" content="descrição YAML" />
+  
+
+<meta name="author" content="© Sillas Teixeira Gonzaga" />
+
+
+<meta name="date" content="2019-06-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introducao.html">
+<link rel="next" href="avaliacao.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="libs/dygraphs-1.1.1/shapes.js"></script>
+<script src="libs/moment-2.8.4/moment.js"></script>
+<script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="libs/moment-fquarter-1.0.0/moment-fquarter.min.js"></script>
+<script src="libs/dygraphs-binding-1.1.1.6/dygraphs.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Curso de Séries Temporais - IBPAD</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instrutor"><i class="fa fa-check"></i>Instrutor</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instalacao-de-pacotes"><i class="fa fa-check"></i>Instalação de pacotes</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introducao.html"><a href="introducao.html"><i class="fa fa-check"></i><b>1</b> Introdução a Séries Temporais</a><ul>
+<li class="chapter" data-level="1.1" data-path="introducao.html"><a href="introducao.html#o-que-sao-series-temporais"><i class="fa fa-check"></i><b>1.1</b> O que são Séries Temporais</a></li>
+<li class="chapter" data-level="1.2" data-path="introducao.html"><a href="introducao.html#elementos"><i class="fa fa-check"></i><b>1.2</b> Elementos das Séries Temporais</a></li>
+<li class="chapter" data-level="1.3" data-path="introducao.html"><a href="introducao.html#series-temporais-no-r"><i class="fa fa-check"></i><b>1.3</b> Séries temporais no R</a></li>
+<li class="chapter" data-level="1.4" data-path="introducao.html"><a href="introducao.html#graficos-interativos-com-dygraphs"><i class="fa fa-check"></i><b>1.4</b> Gráficos interativos com dygraphs</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="regressao.html"><a href="regressao.html"><i class="fa fa-check"></i><b>2</b> Regressão</a><ul>
+<li class="chapter" data-level="2.1" data-path="regressao.html"><a href="regressao.html#analise-exploratoria"><i class="fa fa-check"></i><b>2.1</b> Análise exploratória</a></li>
+<li class="chapter" data-level="2.2" data-path="regressao.html"><a href="regressao.html#correlacao"><i class="fa fa-check"></i><b>2.2</b> Correlação</a></li>
+<li class="chapter" data-level="2.3" data-path="regressao.html"><a href="regressao.html#modelagem-por-regressao-simples"><i class="fa fa-check"></i><b>2.3</b> Modelagem por regressão simples</a></li>
+<li class="chapter" data-level="2.4" data-path="regressao.html"><a href="regressao.html#regressao-multivariada"><i class="fa fa-check"></i><b>2.4</b> Regressão multivariada</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="regressao.html"><a href="regressao.html#hipotese-nula-da-regressao"><i class="fa fa-check"></i><b>2.4.1</b> Hipótese nula da regressão</a></li>
+<li class="chapter" data-level="2.4.2" data-path="regressao.html"><a href="regressao.html#valor-p"><i class="fa fa-check"></i><b>2.4.2</b> valor-p</a></li>
+<li class="chapter" data-level="2.4.3" data-path="regressao.html"><a href="regressao.html#r-quadrado-e-r-quadrado-ajustado"><i class="fa fa-check"></i><b>2.4.3</b> R-quadrado e R-quadrado ajustado</a></li>
+<li class="chapter" data-level="2.4.4" data-path="regressao.html"><a href="regressao.html#analise-dos-residuos"><i class="fa fa-check"></i><b>2.4.4</b> Análise dos resíduos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="regressao.html"><a href="regressao.html#modelo-preditivo"><i class="fa fa-check"></i><b>2.5</b> Regressão como modelo preditivo</a></li>
+<li class="chapter" data-level="2.6" data-path="regressao.html"><a href="regressao.html#referencias"><i class="fa fa-check"></i><b>2.6</b> Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="avaliacao.html"><a href="avaliacao.html"><i class="fa fa-check"></i><b>3</b> Avaliação de precisão de modelos de séries temporais</a><ul>
+<li class="chapter" data-level="3.1" data-path="avaliacao.html"><a href="avaliacao.html#medidas-de-precisao"><i class="fa fa-check"></i><b>3.1</b> Medidas de precisão</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="avaliacao.html"><a href="avaliacao.html#metricas-baseadas-em-escala"><i class="fa fa-check"></i><b>3.1.1</b> Métricas baseadas em escala</a></li>
+<li class="chapter" data-level="3.1.2" data-path="avaliacao.html"><a href="avaliacao.html#metricas-baseadas-em-percentuais"><i class="fa fa-check"></i><b>3.1.2</b> Métricas baseadas em percentuais</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="avaliacao.html"><a href="avaliacao.html#desempenho-fora-de-amostra-overfitting-e-underfitting"><i class="fa fa-check"></i><b>3.2</b> Desempenho fora de amostra: Overfitting e underfitting</a></li>
+<li class="chapter" data-level="3.3" data-path="avaliacao.html"><a href="avaliacao.html#referencias-1"><i class="fa fa-check"></i><b>3.3</b> Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="decomposicao.html"><a href="decomposicao.html"><i class="fa fa-check"></i><b>4</b> Decomposição de Séries Temporais</a><ul>
+<li class="chapter" data-level="4.1" data-path="decomposicao.html"><a href="decomposicao.html#medias-moveis"><i class="fa fa-check"></i><b>4.1</b> Médias móveis</a></li>
+<li class="chapter" data-level="4.2" data-path="decomposicao.html"><a href="decomposicao.html#decomposicao-classica"><i class="fa fa-check"></i><b>4.2</b> Decomposição clássica</a></li>
+<li class="chapter" data-level="4.3" data-path="decomposicao.html"><a href="decomposicao.html#outros-tipos-de-decomposicao"><i class="fa fa-check"></i><b>4.3</b> Outros tipos de decomposição</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="decomposicao.html"><a href="decomposicao.html#pacote-seasonal"><i class="fa fa-check"></i><b>4.3.1</b> Pacote <code>seasonal</code></a></li>
+<li class="chapter" data-level="4.3.2" data-path="decomposicao.html"><a href="decomposicao.html#decomposicao-stl"><i class="fa fa-check"></i><b>4.3.2</b> Decomposição STL</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="suavizacao.html"><a href="suavizacao.html"><i class="fa fa-check"></i><b>5</b> Suavização exponencial</a><ul>
+<li class="chapter" data-level="5.1" data-path="suavizacao.html"><a href="suavizacao.html#suavizacao-simples"><i class="fa fa-check"></i><b>5.1</b> Suavização simples</a></li>
+<li class="chapter" data-level="5.2" data-path="suavizacao.html"><a href="suavizacao.html#linear-de-holt"><i class="fa fa-check"></i><b>5.2</b> Linear de Holt</a></li>
+<li class="chapter" data-level="5.3" data-path="suavizacao.html"><a href="suavizacao.html#holt-winter-aditivo-e-multiplicativo"><i class="fa fa-check"></i><b>5.3</b> Holt-winter aditivo e multiplicativo</a></li>
+<li class="chapter" data-level="5.4" data-path="suavizacao.html"><a href="suavizacao.html#selecao-automatica-do-melhor-modelo-de-suavizacao-exponencial"><i class="fa fa-check"></i><b>5.4</b> Seleção automática do melhor modelo de suavização exponencial</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="arima.html"><a href="arima.html"><i class="fa fa-check"></i><b>6</b> Modelos ARIMA</a><ul>
+<li class="chapter" data-level="6.1" data-path="arima.html"><a href="arima.html#estacionariedade-diferenciacao-e-autocorrelacao"><i class="fa fa-check"></i><b>6.1</b> Estacionariedade, diferenciação e autocorrelação</a></li>
+<li class="chapter" data-level="6.2" data-path="arima.html"><a href="arima.html#modelos-autoregressivos"><i class="fa fa-check"></i><b>6.2</b> Modelos autoregressivos</a></li>
+<li class="chapter" data-level="6.3" data-path="arima.html"><a href="arima.html#modelos-de-media-movel"><i class="fa fa-check"></i><b>6.3</b> Modelos de média móvel</a></li>
+<li class="chapter" data-level="6.4" data-path="arima.html"><a href="arima.html#modelos-arima"><i class="fa fa-check"></i><b>6.4</b> Modelos ARIMA</a></li>
+<li class="chapter" data-level="6.5" data-path="arima.html"><a href="arima.html#modelos-sarima"><i class="fa fa-check"></i><b>6.5</b> Modelos SARIMA</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="outros.html"><a href="outros.html"><i class="fa fa-check"></i><b>7</b> Outros Métodos</a><ul>
+<li class="chapter" data-level="7.1" data-path="outros.html"><a href="outros.html#redes-neurais"><i class="fa fa-check"></i><b>7.1</b> Redes Neurais</a></li>
+<li class="chapter" data-level="7.2" data-path="outros.html"><a href="outros.html#pacote-mafs"><i class="fa fa-check"></i><b>7.2</b> Pacote mafs</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="clusterizacao.html"><a href="clusterizacao.html"><i class="fa fa-check"></i><b>8</b> Aplicações avançadas em séries temporais: Clusterização</a><ul>
+<li class="chapter" data-level="8.1" data-path="clusterizacao.html"><a href="clusterizacao.html#motivacao"><i class="fa fa-check"></i><b>8.1</b> Motivação</a></li>
+<li class="chapter" data-level="8.2" data-path="clusterizacao.html"><a href="clusterizacao.html#introducao-de-tecnicas-avancadas-em-series-temporais"><i class="fa fa-check"></i><b>8.2</b> Introdução de técnicas avançadas em Séries Temporais</a></li>
+<li class="chapter" data-level="8.3" data-path="clusterizacao.html"><a href="clusterizacao.html#clusterizacao-de-series-temporais"><i class="fa fa-check"></i><b>8.3</b> Clusterização de séries temporais</a></li>
+<li class="chapter" data-level="8.4" data-path="clusterizacao.html"><a href="clusterizacao.html#demonstracao"><i class="fa fa-check"></i><b>8.4</b> Demonstração</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="clusterizacao.html"><a href="clusterizacao.html#obtencao-dos-dados"><i class="fa fa-check"></i><b>8.4.1</b> Obtenção dos dados</a></li>
+<li class="chapter" data-level="8.4.2" data-path="clusterizacao.html"><a href="clusterizacao.html#transformacao-dos-dados"><i class="fa fa-check"></i><b>8.4.2</b> Transformação dos dados</a></li>
+<li class="chapter" data-level="8.4.3" data-path="clusterizacao.html"><a href="clusterizacao.html#aplicacao-da-clusterizacao"><i class="fa fa-check"></i><b>8.4.3</b> Aplicação da clusterização</a></li>
+<li class="chapter" data-level="8.4.4" data-path="clusterizacao.html"><a href="clusterizacao.html#e-o-brasil"><i class="fa fa-check"></i><b>8.4.4</b> E o Brasil?</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Curso de Séries Temporais - IBPAD</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regressao" class="section level1">
+<h1><span class="header-section-number">Capítulo 2</span> Regressão</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(GGally)
+<span class="kw">library</span>(broom)</code></pre></div>
+<p>A técnica chamada de regressão é usada para predizer o valor de uma variável Y (chamada de variável resposta ou dependente) baseado em uma ou mais variáveis X (variável explanatória ou independente). Se a regressão utiliza apenas uma variável explanatória, é chamada de regressão simples. O objetivo da regressão é representar a relação entre as variáveis resposta e explanatória por meio de uma equação matemática linear do tipo:</p>
+<p><span class="math inline">\(Y = \beta_1 + \beta_2X + \epsilon\)</span></p>
+<p>onde <span class="math inline">\(\beta_1\)</span> é a interceptação da reta com o eixo vertical e <span class="math inline">\(\beta2\)</span> o coeficiente de inclinação associado à variável explanatória. Tais elementos são chamados coeficientes da regressão. O termo <span class="math inline">\(\epsilon\)</span> representa o termo do erro, que é a parte de Y que a regressão é incapaz de explicar (por existir outras variáveis que explicariam Y mas que não foram incorporadas ao modelo).</p>
+<p>Neste módulo, usaremos como exemplo o dataset do Kaggle de <a href="https://www.kaggle.com/marklvl/bike-sharing-dataset">Bicicletas compartilhadas em Washington D.C.</a>, nos Estados Unidos. Baixe o arquivo zip do Kaggle e leia o README para entender o que o dataset representa e suas variáveis significam. Vamos importar apenas</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/sillasgonzaga/curso_series_temporais/master/data/Bike-Sharing-Dataset/day.csv&quot;</span>)
+<span class="co"># dando olhada nos dados</span>
+<span class="co"># glimpse(df)</span></code></pre></div>
+<p>Seguindo o que aprendemos a partir da leitura do README, vamos fazer algumas transformações de colunas antes de proceder com a modelagem:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_transf &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># remover colunas irrelevantes</span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(instant, workingday)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># renomear algumas colunas</span>
+<span class="st">  </span><span class="kw">rename</span>(
+    <span class="dt">estacao =</span> season,
+    <span class="dt">total =</span> cnt,
+    <span class="dt">year =</span> yr, 
+    <span class="dt">month =</span> mnth
+  ) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># mudar weekday, que começa a contar do zero</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weekday =</span> weekday <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># transformar a variavel de feriado para texto</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">holiday =</span> <span class="kw">as.character</span>(holiday)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># mudar os valores de algumas variaveis</span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="co"># substituir o codigo do ano  pelo ano real</span>
+    <span class="dt">year =</span> lubridate<span class="op">::</span><span class="kw">year</span>(dteday),
+    <span class="co"># adicionar um leading zero no mês</span>
+    <span class="dt">month =</span> <span class="kw">str_pad</span>(month, <span class="dt">width =</span> <span class="dv">2</span>, <span class="dt">side =</span> <span class="st">&quot;left&quot;</span>, <span class="dt">pad =</span> <span class="st">&quot;0&quot;</span>),
+    <span class="co"># converter weathersit para variavel do tipo factor</span>
+    <span class="dt">weathersit =</span> <span class="kw">factor</span>(weathersit,
+                        <span class="dt">levels =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,
+                        <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;muito bom&quot;</span>, <span class="st">&quot;bom&quot;</span>, <span class="st">&quot;ruim&quot;</span>, <span class="st">&quot;muito ruim&quot;</span>)),
+    <span class="co"># converter dia da semana para variavel do tipo factor</span>
+    <span class="dt">weekday =</span> <span class="kw">factor</span>(weekday, 
+                     <span class="dt">levels =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">7</span>,
+                     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Dom&quot;</span>, <span class="st">&quot;Seg&quot;</span>, <span class="st">&quot;Ter&quot;</span>, <span class="st">&quot;Qua&quot;</span>, <span class="st">&quot;Qui&quot;</span>, <span class="st">&quot;Sex&quot;</span>, <span class="st">&quot;Sab&quot;</span>)),
+    <span class="co"># fazer o mesmo para estacao</span>
+    <span class="dt">estacao =</span> <span class="kw">factor</span>(estacao, 
+                     <span class="dt">levels =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,
+                     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Primavera&quot;</span>, <span class="st">&quot;Verao&quot;</span>, <span class="st">&quot;Outono&quot;</span>, <span class="st">&quot;Inverno&quot;</span>)),
+    <span class="co"># converter colunas numericas para escala normal (não-normalizada)</span>
+    <span class="dt">temp =</span> temp <span class="op">*</span><span class="st"> </span><span class="dv">41</span>,
+    <span class="dt">atemp =</span> atemp <span class="op">*</span><span class="st"> </span><span class="dv">50</span>,
+    <span class="dt">hum =</span> hum <span class="op">*</span><span class="st"> </span><span class="dv">100</span>,
+    <span class="dt">windspeed =</span> windspeed <span class="op">*</span><span class="st"> </span><span class="dv">67</span>
+  )</code></pre></div>
+<p>Estamos interessados em entender o que influencia a demanda de bicicletas alugadas por dia.</p>
+<div id="analise-exploratoria" class="section level2">
+<h2><span class="header-section-number">2.1</span> Análise exploratória</h2>
+<p>O primeiro passo para entendermos nossa variável de estudo é criar um gráfico da série:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_transf <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> dteday, <span class="dt">y =</span> total)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="co"># adicionar curva de tendencia</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
+<span class="st">  </span><span class="co"># quebrar eixo x em 1 mes</span>
+<span class="st">  </span><span class="kw">scale_x_date</span>(<span class="dt">date_breaks =</span> <span class="st">&quot;1 month&quot;</span>,
+               <span class="dt">date_labels =</span> <span class="st">&quot;%m/%Y&quot;</span>,
+               <span class="dt">minor_breaks =</span> <span class="ot">NULL</span>) <span class="op">+</span>
+<span class="st">  </span><span class="co"># inverter eixos</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>))</code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-6-1.png" width="864" /></p>
+<p>Apenas com o gráfico acima, podemos aprender uma série de insights interessantes:</p>
+<ul>
+<li>Parece haver múltiplas sazonalidades que afetam a demanda por bicicletas alugadas: dia da semana, mês, ano e estação do ano.<br />
+</li>
+<li>Não existe um componente de tendência linear, pois as altas e quedas são mais em função das sazonalidades descritas acima.</li>
+</ul>
+<div class="alert alert-danger" <strong="">
+<p>Exercícios:</strong> <br> - Como você faria para representar a estação do ano no gráfico acima? Teste duas abordagens: acrescente linhas verticas tracejadas marcando a transição das estações ou pinte a linha (usando <code>aes</code>) de acordo com a estação.<br />
+- Explore com mais detalhes a distribuição da variável <code>total</code> em função de: <br> - Dia da semana &amp; Feriado<br />
+- Dia da semana &amp; Condição do tempo<br />
+- Mês &amp; Estação do ano<br />
+- Mês &amp; Ano</p>
+</div>
+</div>
+<div id="correlacao" class="section level2">
+<h2><span class="header-section-number">2.2</span> Correlação</h2>
+<p>Correlação é um indicador estatístico que mede o nível de dependência linear entre duas variáveis. Está definida no intervalo <span class="math inline">\([-1, +1]\)</span>. Se a correlação é negativa, indica que as variáveis são inversamente proporcinais: quando uma aumenta, a outra diminui. Se é positiva, indica que as variáveis são diretamente proporcionais.</p>
+<p>Medir a correlação no R é muito simples:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Usando a função cor</span>
+<span class="kw">cor</span>(df_transf<span class="op">$</span>total, df_transf<span class="op">$</span>temp)</code></pre></div>
+<pre><code>## [1] 0.627494</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(df_transf<span class="op">$</span>temp, df_transf<span class="op">$</span>atemp)</code></pre></div>
+<pre><code>## [1] 0.9917016</code></pre>
+<p>Como poderia se esperar, as variáveis <code>temp</code> e <code>atemp</code> são praticamente a mesma, apresentando uma correlação quase igual a 1. Isso, em regressão, é um problema chamado multicolinearidade. Por isso, é necessário remover uma delas:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_transf &lt;-<span class="st"> </span>df_transf <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>atemp)</code></pre></div>
+<p>No entanto, é possível analisar todos os pares possíveis entre as variáveis de uma matriz numérica:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_transf <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select_if</span>(is.numeric) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>year) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">cor</span>()</code></pre></div>
+<pre><code>##                  temp         hum  windspeed      casual registered
+## temp        1.0000000  0.12696294 -0.1579441  0.54328466  0.5400120
+## hum         0.1269629  1.00000000 -0.2484891 -0.07700788 -0.0910886
+## windspeed  -0.1579441 -0.24848910  1.0000000 -0.16761335 -0.2174490
+## casual      0.5432847 -0.07700788 -0.1676133  1.00000000  0.3952825
+## registered  0.5400120 -0.09108860 -0.2174490  0.39528245  1.0000000
+## total       0.6274940 -0.10065856 -0.2345450  0.67280443  0.9455169
+##                 total
+## temp        0.6274940
+## hum        -0.1006586
+## windspeed  -0.2345450
+## casual      0.6728044
+## registered  0.9455169
+## total       1.0000000</code></pre>
+<p>Um incremento ainda melhor é usar o pacote <code>GGally</code> para plotar uma matriz de correlação:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_transf <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select_if</span>(is.numeric) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(year, casual, registered)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>GGally<span class="op">::</span><span class="kw">ggpairs</span>(<span class="dt">progress =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Percebe-se pela matriz de correlação (e principalmente pelo gráfico) que talvez só valeria a pena usar como variáveis explanatórias do nosso objeto de estudo a temperatura do dia.</p>
+</div>
+<div id="modelagem-por-regressao-simples" class="section level2">
+<h2><span class="header-section-number">2.3</span> Modelagem por regressão simples</h2>
+<p>No R, é bem simples ajustar um modelo de regressão. Usando a variável <code>temp</code> como explanatória e <code>total</code> como resposta, um modelo é construído da seguinte maneira:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelo.simples &lt;-<span class="st"> </span><span class="kw">lm</span>(total <span class="op">~</span><span class="st"> </span>temp, <span class="dt">data =</span> df_transf)
+<span class="kw">summary</span>(modelo.simples)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = total ~ temp, data = df_transf)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4615.3 -1134.9  -104.4  1044.3  3737.8 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 1214.642    161.164   7.537 1.43e-13 ***
+## temp         161.969      7.444  21.759  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1509 on 729 degrees of freedom
+## Multiple R-squared:  0.3937, Adjusted R-squared:  0.3929 
+## F-statistic: 473.5 on 1 and 729 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Com o modelo criado, é possível descrever a relação entre <code>consumo</code> e <code>n_carteiras</code> matematicamente por meio da seguinte equação:</p>
+<p><span class="math inline">\(total = 1214.642 + 161.969 \times temperatura\)</span></p>
+<p>Vamos deixar para analisar os diagnósticos da regressão no próximo item:</p>
+</div>
+<div id="regressao-multivariada" class="section level2">
+<h2><span class="header-section-number">2.4</span> Regressão multivariada</h2>
+<p>Suponha também que você deseja incorporar as outras variáveis que detectamos que são importantes para modelar a variável da quantidade de bikes alugadas:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># sintaxe para incluir todas as variaveis como regressoras menos uma (dteday)</span>
+modelo.multiplo &lt;-<span class="st"> </span><span class="kw">lm</span>(total <span class="op">~</span><span class="st"> </span>. <span class="op">-</span><span class="st"> </span>dteday <span class="op">-</span><span class="st"> </span>casual <span class="op">-</span><span class="st"> </span>registered, <span class="dt">data =</span> df_transf)
+<span class="kw">summary</span>(modelo.multiplo)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = total ~ . - dteday - casual - registered, data = df_transf)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3960.9  -350.9    74.1   456.0  2919.9 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)    -4.057e+06  1.171e+05 -34.634  &lt; 2e-16 ***
+## estacaoVerao    8.893e+02  1.795e+02   4.954 9.12e-07 ***
+## estacaoOutono   8.322e+02  2.132e+02   3.903 0.000104 ***
+## estacaoInverno  1.579e+03  1.810e+02   8.722  &lt; 2e-16 ***
+## year            2.018e+03  5.823e+01  34.660  &lt; 2e-16 ***
+## month02         1.369e+02  1.437e+02   0.952 0.341396    
+## month03         5.451e+02  1.655e+02   3.294 0.001036 ** 
+## month04         4.565e+02  2.476e+02   1.844 0.065667 .  
+## month05         7.235e+02  2.675e+02   2.704 0.007010 ** 
+## month06         4.906e+02  2.818e+02   1.741 0.082133 .  
+## month07         8.404e+00  3.134e+02   0.027 0.978613    
+## month08         4.049e+02  3.015e+02   1.343 0.179700    
+## month09         9.839e+02  2.647e+02   3.717 0.000217 ***
+## month10         5.209e+02  2.416e+02   2.156 0.031432 *  
+## month11        -1.114e+02  2.308e+02  -0.482 0.629621    
+## month12        -8.439e+01  1.822e+02  -0.463 0.643439    
+## holiday1       -6.036e+02  1.801e+02  -3.352 0.000845 ***
+## weekdaySeg      2.149e+02  1.095e+02   1.962 0.050133 .  
+## weekdayTer      3.091e+02  1.072e+02   2.884 0.004041 ** 
+## weekdayQua      3.774e+02  1.075e+02   3.512 0.000473 ***
+## weekdayQui      3.852e+02  1.076e+02   3.581 0.000366 ***
+## weekdaySex      4.286e+02  1.073e+02   3.996 7.12e-05 ***
+## weekdaySab      4.387e+02  1.066e+02   4.116 4.32e-05 ***
+## weathersitbom  -4.652e+02  7.708e+01  -6.035 2.57e-09 ***
+## weathersitruim -1.981e+03  1.967e+02 -10.075  &lt; 2e-16 ***
+## temp            1.094e+02  1.004e+01  10.896  &lt; 2e-16 ***
+## hum            -1.518e+01  2.922e+00  -5.196 2.68e-07 ***
+## windspeed      -4.366e+01  6.062e+00  -7.202 1.53e-12 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 769.5 on 703 degrees of freedom
+## Multiple R-squared:  0.848,  Adjusted R-squared:  0.8422 
+## F-statistic: 145.3 on 27 and 703 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Valores altos de impostos aparentam estar associados com valores baixos de consumo.</p>
+<p>Para adicionar uma nova variável ao modelo, fazemos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Usando o pacote broom para formatar o output dos modelos de regressao</span>
+<span class="co"># concatenando os dois modelos em um dataframe so</span>
+
+<span class="co"># metricas dos regressores</span>
+modelo.simples <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>()</code></pre></div>
+<pre><code>## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    1215.    161.        7.54 1.43e-13
+## 2 temp            162.      7.44     21.8  2.81e-81</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelo.multiplo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>()</code></pre></div>
+<pre><code>## # A tibble: 28 x 5
+##    term            estimate std.error statistic   p.value
+##    &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+##  1 (Intercept)    -4056781.  117133.    -34.6   3.97e-154
+##  2 estacaoVerao        889.     180.      4.95  9.12e-  7
+##  3 estacaoOutono       832.     213.      3.90  1.04e-  4
+##  4 estacaoInverno     1579.     181.      8.72  1.97e- 17
+##  5 year               2018.      58.2    34.7   2.85e-154
+##  6 month02             137.     144.      0.952 3.41e-  1
+##  7 month03             545.     165.      3.29  1.04e-  3
+##  8 month04             456.     248.      1.84  6.57e-  2
+##  9 month05             724.     268.      2.70  7.01e-  3
+## 10 month06             491.     282.      1.74  8.21e-  2
+## # … with 18 more rows</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># metricas do modelo</span>
+modelo.simples <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">glance</span>()</code></pre></div>
+<pre><code>## # A tibble: 1 x 11
+##   r.squared adj.r.squared sigma statistic  p.value    df logLik    AIC
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1     0.394         0.393 1509.      473. 2.81e-81     2 -6387. 12780.
+## # … with 3 more variables: BIC &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelo.multiplo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">glance</span>()</code></pre></div>
+<pre><code>## # A tibble: 1 x 11
+##   r.squared adj.r.squared sigma statistic   p.value    df logLik    AIC
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1     0.848         0.842  770.      145. 1.49e-266    28 -5881. 11820.
+## # … with 3 more variables: BIC &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;</code></pre>
+<p>Agora vamos à análise dos indicadores da regressão:</p>
+<div id="hipotese-nula-da-regressao" class="section level3">
+<h3><span class="header-section-number">2.4.1</span> Hipótese nula da regressão</h3>
+<p>A presença de um valor-p indica que existe uma hipótese nula sendo testada. Na regressão linear, a hipótese nula é a de que os coeficientes das variáveis explanatórias são iguais a zero. A hipótese alternativa é a de que os coeficientes não são iguais a zero, ou seja, existe uma relação matemático entre as variáveis do modelo.</p>
+</div>
+<div id="valor-p" class="section level3">
+<h3><span class="header-section-number">2.4.2</span> valor-p</h3>
+<p>Nós podemos considerar um modelo linear estatisticamente significante apenas se os valores-p, tanto dos coeficientes como do modelo, são menores que um nível de significância pré-determinado, que idealmente é 0,05.</p>
+</div>
+<div id="r-quadrado-e-r-quadrado-ajustado" class="section level3">
+<h3><span class="header-section-number">2.4.3</span> R-quadrado e R-quadrado ajustado</h3>
+<p>R-quadrado é a proporção da variação da variável resposta que é explicada pelo modelo. Quanto maior, melhor o modelo, supostamente.</p>
+<p>Se continuarmos adicionando variáveis ao modelo de regressão, o R-quadrado apenas tende a crescer, intuitivamente. Isso acontecerá mesmo que a variável explanatória adicionada não seja significante. Para evitar esse problema que tornaria a comparação entre modelos praticamente inviável, o R-quadrado ajustado “penaliza” o valor do R-quadrado pelo número de variáveis adicionadas. Semelhantemente ao R-quadrado, quanto maior, melhor.</p>
+</div>
+<div id="analise-dos-residuos" class="section level3">
+<h3><span class="header-section-number">2.4.4</span> Análise dos resíduos</h3>
+<p>Um indicador visual da qualidade de um modelo é a distribuição dos modelos: um bom modelo apresentará resídos que seguem uma distribuição normal com média 0.</p>
+<p>Um modelo de regressão pressupõe que seus resíduos (subtração entre o valor real e o ajustado) seguem uma distribuição normal e não possuem nenhum tipo de relação matemática com os regressores do modelo (ou mesmo com variáveis independentes não usadas no modelo).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">forecast<span class="op">::</span><span class="kw">checkresiduals</span>(modelo.multiplo)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre><code>## 
+##  Breusch-Godfrey test for serial correlation of order up to 31
+## 
+## data:  Residuals
+## LM test = 148.71, df = 31, p-value &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div id="modelo-preditivo" class="section level2">
+<h2><span class="header-section-number">2.5</span> Regressão como modelo preditivo</h2>
+<p>Um dos objetivos da regressão, além de descrever matematicamente a relação entre duas ou mais variáveis, é prever o valor da variável dependente baseado em novos valores da variável independente. Não é possível afirmar que um modelo apresentará um bom desempenho preditivo analisando apenas as métricas da regressão do tópico anterior. É necessário testar o modelo em dados que ele nunca viu.</p>
+<p>A prática comum em Data Science é de separar o conjunto de dados que se tem em mãos em dois conjuntos: o de treino, que será usado para construir o modelo, e o de teste, que será usado como input do modelo para avaliar sua acurácia.</p>
+<p>Após obter as previsões, deve-se usar uma ou mais métricas de erro (ver capítulo posterior) para avaliar a precisão do modelo.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">indice_teste &lt;-<span class="st"> </span><span class="kw">tail</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(df_transf), <span class="dv">60</span>)
+treino &lt;-<span class="st"> </span>df_transf[<span class="op">-</span>indice_teste, ]  <span class="co"># model training data</span>
+teste  &lt;-<span class="st"> </span>df_transf[indice_teste, ]   <span class="co"># test data</span>
+
+<span class="co"># construindo os dois modelos, mantendo o teste de fora</span>
+modelo.simples &lt;-<span class="st"> </span><span class="kw">lm</span>(total <span class="op">~</span><span class="st"> </span>temp, <span class="dt">data =</span> treino)
+modelo.multiplo &lt;-<span class="st"> </span><span class="kw">lm</span>(total <span class="op">~</span><span class="st"> </span>. <span class="op">-</span><span class="st"> </span>dteday <span class="op">-</span><span class="st"> </span>casual <span class="op">-</span><span class="st"> </span>registered, <span class="dt">data =</span> treino)
+
+<span class="co"># calcular previsao baseado no dataframe de teste</span>
+prev.simples &lt;-<span class="st"> </span><span class="kw">predict</span>(modelo.simples, teste)
+prev.mult &lt;-<span class="st"> </span><span class="kw">predict</span>(modelo.multiplo, teste)
+<span class="co"># uma das metricas é correlação entre previsto e real:</span>
+real &lt;-<span class="st"> </span>teste<span class="op">$</span>total
+
+<span class="co"># outra metrica é o MAPE</span>
+ape &lt;-<span class="st"> </span><span class="cf">function</span>(yreal, yprev) {
+  <span class="kw">abs</span>((yreal <span class="op">-</span><span class="st"> </span>yprev)<span class="op">/</span>yreal)
+}
+
+<span class="kw">mean</span>(<span class="kw">ape</span>(<span class="dt">yreal =</span> real, <span class="dt">yprev =</span> prev.simples))</code></pre></div>
+<pre><code>## [1] 0.4816825</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">ape</span>(<span class="dt">yreal =</span> real, <span class="dt">yprev =</span> prev.mult))</code></pre></div>
+<pre><code>## [1] 0.3890409</code></pre>
+<p>Os dois modelos apresentam resultados semelhantes de erro. Portanto, pelo menos para este teste, não houve um aumento significativo de acurácia no modelo ao incorporar a variável <code>imposto</code> como explanatória.</p>
+</div>
+<div id="referencias" class="section level2">
+<h2><span class="header-section-number">2.6</span> Referências</h2>
+<ul>
+<li><a href="http://r-statistics.co/Assumptions-of-Linear-Regression.html">Pressupostos sobre regressão linear</a>;<br />
+</li>
+<li><a href="https://archive.ics.uci.edu/ml/datasets.html?area=&amp;att=&amp;format=&amp;numAtt=&amp;numIns=&amp;sort=nameUp&amp;task=reg&amp;type=&amp;view=table">Datasets</a> para você praticar regressão linear.</li>
+</ul>
+<div class="alert alert-danger" <strong="">
+<p>Exercícios:</strong> <br> - Importe <a href="https://github.com/sillasgonzaga/curso_series_temporais/blob/master/data/petrol_consumption.csv">este dataset de consumo de petróleo</a> para o R.<br />
+- Qual a variável resposta?<br />
+- Quais variáveis explanatórias incluir no modelo?<br />
+- Quais gráficos para analisar as variáveis e os modelos?</p>
+</div>
+<div class="figure">
+<img src="http://i.imgur.com/lBCBhhP.jpg" />
+
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introducao.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="avaliacao.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-regressao.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["curso-series-temporais.pdf", "curso-series-temporais.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

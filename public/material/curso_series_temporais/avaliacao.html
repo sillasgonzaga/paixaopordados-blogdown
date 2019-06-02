@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 3 Avaliação de precisão de modelos de séries temporais | Curso de Séries Temporais - IBPAD</title>
+  <meta name="description" content="descrição YAML" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 3 Avaliação de precisão de modelos de séries temporais | Curso de Séries Temporais - IBPAD" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="descrição YAML" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 3 Avaliação de precisão de modelos de séries temporais | Curso de Séries Temporais - IBPAD" />
+  
+  <meta name="twitter:description" content="descrição YAML" />
+  
+
+<meta name="author" content="© Sillas Teixeira Gonzaga" />
+
+
+<meta name="date" content="2019-06-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="regressao.html">
+<link rel="next" href="decomposicao.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="libs/dygraphs-1.1.1/shapes.js"></script>
+<script src="libs/moment-2.8.4/moment.js"></script>
+<script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="libs/moment-fquarter-1.0.0/moment-fquarter.min.js"></script>
+<script src="libs/dygraphs-binding-1.1.1.6/dygraphs.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Curso de Séries Temporais - IBPAD</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instrutor"><i class="fa fa-check"></i>Instrutor</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instalacao-de-pacotes"><i class="fa fa-check"></i>Instalação de pacotes</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introducao.html"><a href="introducao.html"><i class="fa fa-check"></i><b>1</b> Introdução a Séries Temporais</a><ul>
+<li class="chapter" data-level="1.1" data-path="introducao.html"><a href="introducao.html#o-que-sao-series-temporais"><i class="fa fa-check"></i><b>1.1</b> O que são Séries Temporais</a></li>
+<li class="chapter" data-level="1.2" data-path="introducao.html"><a href="introducao.html#elementos"><i class="fa fa-check"></i><b>1.2</b> Elementos das Séries Temporais</a></li>
+<li class="chapter" data-level="1.3" data-path="introducao.html"><a href="introducao.html#series-temporais-no-r"><i class="fa fa-check"></i><b>1.3</b> Séries temporais no R</a></li>
+<li class="chapter" data-level="1.4" data-path="introducao.html"><a href="introducao.html#graficos-interativos-com-dygraphs"><i class="fa fa-check"></i><b>1.4</b> Gráficos interativos com dygraphs</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="regressao.html"><a href="regressao.html"><i class="fa fa-check"></i><b>2</b> Regressão</a><ul>
+<li class="chapter" data-level="2.1" data-path="regressao.html"><a href="regressao.html#analise-exploratoria"><i class="fa fa-check"></i><b>2.1</b> Análise exploratória</a></li>
+<li class="chapter" data-level="2.2" data-path="regressao.html"><a href="regressao.html#correlacao"><i class="fa fa-check"></i><b>2.2</b> Correlação</a></li>
+<li class="chapter" data-level="2.3" data-path="regressao.html"><a href="regressao.html#modelagem-por-regressao-simples"><i class="fa fa-check"></i><b>2.3</b> Modelagem por regressão simples</a></li>
+<li class="chapter" data-level="2.4" data-path="regressao.html"><a href="regressao.html#regressao-multivariada"><i class="fa fa-check"></i><b>2.4</b> Regressão multivariada</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="regressao.html"><a href="regressao.html#hipotese-nula-da-regressao"><i class="fa fa-check"></i><b>2.4.1</b> Hipótese nula da regressão</a></li>
+<li class="chapter" data-level="2.4.2" data-path="regressao.html"><a href="regressao.html#valor-p"><i class="fa fa-check"></i><b>2.4.2</b> valor-p</a></li>
+<li class="chapter" data-level="2.4.3" data-path="regressao.html"><a href="regressao.html#r-quadrado-e-r-quadrado-ajustado"><i class="fa fa-check"></i><b>2.4.3</b> R-quadrado e R-quadrado ajustado</a></li>
+<li class="chapter" data-level="2.4.4" data-path="regressao.html"><a href="regressao.html#analise-dos-residuos"><i class="fa fa-check"></i><b>2.4.4</b> Análise dos resíduos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="regressao.html"><a href="regressao.html#modelo-preditivo"><i class="fa fa-check"></i><b>2.5</b> Regressão como modelo preditivo</a></li>
+<li class="chapter" data-level="2.6" data-path="regressao.html"><a href="regressao.html#referencias"><i class="fa fa-check"></i><b>2.6</b> Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="avaliacao.html"><a href="avaliacao.html"><i class="fa fa-check"></i><b>3</b> Avaliação de precisão de modelos de séries temporais</a><ul>
+<li class="chapter" data-level="3.1" data-path="avaliacao.html"><a href="avaliacao.html#medidas-de-precisao"><i class="fa fa-check"></i><b>3.1</b> Medidas de precisão</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="avaliacao.html"><a href="avaliacao.html#metricas-baseadas-em-escala"><i class="fa fa-check"></i><b>3.1.1</b> Métricas baseadas em escala</a></li>
+<li class="chapter" data-level="3.1.2" data-path="avaliacao.html"><a href="avaliacao.html#metricas-baseadas-em-percentuais"><i class="fa fa-check"></i><b>3.1.2</b> Métricas baseadas em percentuais</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="avaliacao.html"><a href="avaliacao.html#desempenho-fora-de-amostra-overfitting-e-underfitting"><i class="fa fa-check"></i><b>3.2</b> Desempenho fora de amostra: Overfitting e underfitting</a></li>
+<li class="chapter" data-level="3.3" data-path="avaliacao.html"><a href="avaliacao.html#referencias-1"><i class="fa fa-check"></i><b>3.3</b> Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="decomposicao.html"><a href="decomposicao.html"><i class="fa fa-check"></i><b>4</b> Decomposição de Séries Temporais</a><ul>
+<li class="chapter" data-level="4.1" data-path="decomposicao.html"><a href="decomposicao.html#medias-moveis"><i class="fa fa-check"></i><b>4.1</b> Médias móveis</a></li>
+<li class="chapter" data-level="4.2" data-path="decomposicao.html"><a href="decomposicao.html#decomposicao-classica"><i class="fa fa-check"></i><b>4.2</b> Decomposição clássica</a></li>
+<li class="chapter" data-level="4.3" data-path="decomposicao.html"><a href="decomposicao.html#outros-tipos-de-decomposicao"><i class="fa fa-check"></i><b>4.3</b> Outros tipos de decomposição</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="decomposicao.html"><a href="decomposicao.html#pacote-seasonal"><i class="fa fa-check"></i><b>4.3.1</b> Pacote <code>seasonal</code></a></li>
+<li class="chapter" data-level="4.3.2" data-path="decomposicao.html"><a href="decomposicao.html#decomposicao-stl"><i class="fa fa-check"></i><b>4.3.2</b> Decomposição STL</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="suavizacao.html"><a href="suavizacao.html"><i class="fa fa-check"></i><b>5</b> Suavização exponencial</a><ul>
+<li class="chapter" data-level="5.1" data-path="suavizacao.html"><a href="suavizacao.html#suavizacao-simples"><i class="fa fa-check"></i><b>5.1</b> Suavização simples</a></li>
+<li class="chapter" data-level="5.2" data-path="suavizacao.html"><a href="suavizacao.html#linear-de-holt"><i class="fa fa-check"></i><b>5.2</b> Linear de Holt</a></li>
+<li class="chapter" data-level="5.3" data-path="suavizacao.html"><a href="suavizacao.html#holt-winter-aditivo-e-multiplicativo"><i class="fa fa-check"></i><b>5.3</b> Holt-winter aditivo e multiplicativo</a></li>
+<li class="chapter" data-level="5.4" data-path="suavizacao.html"><a href="suavizacao.html#selecao-automatica-do-melhor-modelo-de-suavizacao-exponencial"><i class="fa fa-check"></i><b>5.4</b> Seleção automática do melhor modelo de suavização exponencial</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="arima.html"><a href="arima.html"><i class="fa fa-check"></i><b>6</b> Modelos ARIMA</a><ul>
+<li class="chapter" data-level="6.1" data-path="arima.html"><a href="arima.html#estacionariedade-diferenciacao-e-autocorrelacao"><i class="fa fa-check"></i><b>6.1</b> Estacionariedade, diferenciação e autocorrelação</a></li>
+<li class="chapter" data-level="6.2" data-path="arima.html"><a href="arima.html#modelos-autoregressivos"><i class="fa fa-check"></i><b>6.2</b> Modelos autoregressivos</a></li>
+<li class="chapter" data-level="6.3" data-path="arima.html"><a href="arima.html#modelos-de-media-movel"><i class="fa fa-check"></i><b>6.3</b> Modelos de média móvel</a></li>
+<li class="chapter" data-level="6.4" data-path="arima.html"><a href="arima.html#modelos-arima"><i class="fa fa-check"></i><b>6.4</b> Modelos ARIMA</a></li>
+<li class="chapter" data-level="6.5" data-path="arima.html"><a href="arima.html#modelos-sarima"><i class="fa fa-check"></i><b>6.5</b> Modelos SARIMA</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="outros.html"><a href="outros.html"><i class="fa fa-check"></i><b>7</b> Outros Métodos</a><ul>
+<li class="chapter" data-level="7.1" data-path="outros.html"><a href="outros.html#redes-neurais"><i class="fa fa-check"></i><b>7.1</b> Redes Neurais</a></li>
+<li class="chapter" data-level="7.2" data-path="outros.html"><a href="outros.html#pacote-mafs"><i class="fa fa-check"></i><b>7.2</b> Pacote mafs</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="clusterizacao.html"><a href="clusterizacao.html"><i class="fa fa-check"></i><b>8</b> Aplicações avançadas em séries temporais: Clusterização</a><ul>
+<li class="chapter" data-level="8.1" data-path="clusterizacao.html"><a href="clusterizacao.html#motivacao"><i class="fa fa-check"></i><b>8.1</b> Motivação</a></li>
+<li class="chapter" data-level="8.2" data-path="clusterizacao.html"><a href="clusterizacao.html#introducao-de-tecnicas-avancadas-em-series-temporais"><i class="fa fa-check"></i><b>8.2</b> Introdução de técnicas avançadas em Séries Temporais</a></li>
+<li class="chapter" data-level="8.3" data-path="clusterizacao.html"><a href="clusterizacao.html#clusterizacao-de-series-temporais"><i class="fa fa-check"></i><b>8.3</b> Clusterização de séries temporais</a></li>
+<li class="chapter" data-level="8.4" data-path="clusterizacao.html"><a href="clusterizacao.html#demonstracao"><i class="fa fa-check"></i><b>8.4</b> Demonstração</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="clusterizacao.html"><a href="clusterizacao.html#obtencao-dos-dados"><i class="fa fa-check"></i><b>8.4.1</b> Obtenção dos dados</a></li>
+<li class="chapter" data-level="8.4.2" data-path="clusterizacao.html"><a href="clusterizacao.html#transformacao-dos-dados"><i class="fa fa-check"></i><b>8.4.2</b> Transformação dos dados</a></li>
+<li class="chapter" data-level="8.4.3" data-path="clusterizacao.html"><a href="clusterizacao.html#aplicacao-da-clusterizacao"><i class="fa fa-check"></i><b>8.4.3</b> Aplicação da clusterização</a></li>
+<li class="chapter" data-level="8.4.4" data-path="clusterizacao.html"><a href="clusterizacao.html#e-o-brasil"><i class="fa fa-check"></i><b>8.4.4</b> E o Brasil?</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Curso de Séries Temporais - IBPAD</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="avaliacao" class="section level1">
+<h1><span class="header-section-number">Capítulo 3</span> Avaliação de precisão de modelos de séries temporais</h1>
+<p>Suponha que <span class="math inline">\(y_i\)</span> seja uma observação real de uma série temporal no período <span class="math inline">\(i\)</span> e <span class="math inline">\(\hat{y}_i\)</span> seja uma previsão de <span class="math inline">\(y_i\)</span>. O erro de previsão no ponto <span class="math inline">\(i\)</span> é simplesmente <span class="math inline">\(e_i = y_i - \hat{y}_i\)</span>. Para calcular o erro “geral” de um modelo preditivo de série temporal, diversas existem diversas métricas.</p>
+<p>Para demonstrar o uso dessas métricas, usaremos uma série temporal obtida pelo pacote <code>BETS</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># carregar pacotes usados</span>
+<span class="co"># install.packages(&quot;BETS&quot;)</span>
+<span class="kw">library</span>(BETS)
+<span class="kw">library</span>(forecast)
+<span class="kw">library</span>(tidyverse)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># baixar serie temporal de exemplo deste capitulo</span>
+<span class="kw">BETSsearch</span>(<span class="st">&quot;industria&quot;</span>, <span class="dt">periodicity =</span> <span class="st">&quot;M&quot;</span>, <span class="dt">view =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</code></pre></div>
+<pre><code>## 
+## BETS-package: Found 139 out of 18706 time series.</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">code</th>
+<th align="left">description</th>
+<th align="left">unit</th>
+<th align="left">periodicity</th>
+<th align="left">start</th>
+<th align="left">last_value</th>
+<th align="left">source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">11073</td>
+<td align="left">Industrial production (2002=100) - Northeast region</td>
+<td align="left">Index</td>
+<td align="left">M</td>
+<td align="left">31/01/1991</td>
+<td align="left">feb/2014</td>
+<td align="left">IBGE</td>
+</tr>
+<tr class="even">
+<td align="left">11074</td>
+<td align="left">Industrial production (1991=100) - Amazonas</td>
+<td align="left">Index</td>
+<td align="left">M</td>
+<td align="left">31/01/1991</td>
+<td align="left">feb/2014</td>
+<td align="left">IBGE</td>
+</tr>
+<tr class="odd">
+<td align="left">11075</td>
+<td align="left">Industrial production (1991=100) - Pará</td>
+<td align="left">Index</td>
+<td align="left">M</td>
+<td align="left">31/01/1991</td>
+<td align="left">feb/2014</td>
+<td align="left">IBGE</td>
+</tr>
+<tr class="even">
+<td align="left">11076</td>
+<td align="left">Industrial production (1991=100) - Ceará - 11076</td>
+<td align="left">Index</td>
+<td align="left">M</td>
+<td align="left">31/01/1991</td>
+<td align="left">feb/2014</td>
+<td align="left">IBGE</td>
+</tr>
+<tr class="odd">
+<td align="left">11077</td>
+<td align="left">Industrial production (1991=100) - Pernambuco - 11077</td>
+<td align="left">Index</td>
+<td align="left">M</td>
+<td align="left">31/01/1991</td>
+<td align="left">feb/2014</td>
+<td align="left">IBGE</td>
+</tr>
+<tr class="even">
+<td align="left">11078</td>
+<td align="left">Industrial production (2002=100) - Bahia</td>
+<td align="left">Index</td>
+<td align="left">M</td>
+<td align="left">31/01/1991</td>
+<td align="left">feb/2014</td>
+<td align="left">IBGE</td>
+</tr>
+<tr class="odd">
+<td align="left">11079</td>
+<td align="left">Industrial production (2002=100) - Minas Gerais</td>
+<td align="left">Index</td>
+<td align="left">M</td>
+<td align="left">31/01/1991</td>
+<td align="left">feb/2014</td>
+<td align="left">IBGE</td>
+</tr>
+<tr class="even">
+<td align="left">11080</td>
+<td align="left">Industrial production (2002=100) - Espírito Santo</td>
+<td align="left">Index</td>
+<td align="left">M</td>
+<td align="left">31/01/1991</td>
+<td align="left">feb/2014</td>
+<td align="left">IBGE</td>
+</tr>
+<tr class="odd">
+<td align="left">11081</td>
+<td align="left">Industrial production (2002=100) - Rio de Janeiro</td>
+<td align="left">Index</td>
+<td align="left">M</td>
+<td align="left">31/01/1991</td>
+<td align="left">feb/2014</td>
+<td align="left">IBGE</td>
+</tr>
+<tr class="even">
+<td align="left">11082</td>
+<td align="left">Industrial production (2002=100) - São Paulo</td>
+<td align="left">Index</td>
+<td align="left">M</td>
+<td align="left">31/01/1991</td>
+<td align="left">feb/2014</td>
+<td align="left">IBGE</td>
+</tr>
+</tbody>
+</table>
+<p>A busca pela string “indústria” nos retorna alguns datasets sobre o tema. Usaremos a série de número 1404, que é sobre o consumo de energia elétrica no Brasil em GWh e de frequência mensal.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">energia &lt;-<span class="st"> </span><span class="kw">BETSget</span>(<span class="dv">1404</span>)
+<span class="co"># Salvar para uso posterior</span>
+<span class="kw">saveRDS</span>(energia, <span class="st">&quot;data/ts_energia.Rda&quot;</span>)
+
+<span class="co"># plotando a serie para a conhecer</span>
+<span class="kw">autoplot</span>(energia) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>, <span class="dt">y =</span> <span class="st">&quot;Consumo (Gwh)&quot;</span>)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>É possível perceber que a série apresenta uma tendência contínua de alta desde o início. As pequenas variações podem ser interpretadas como componenente sazonal, o que é mostrado no gráfico de decomposição:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># analisando os componentes:</span>
+energia <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">decompose</span>() <span class="op">%&gt;%</span><span class="st"> </span>autoplot</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>Pelo gráfico, temos que tanto o componente de tendência quanto o de sazonalidade são bem evidentes na série.</p>
+<p>Voltando ao tema do capítulo. Para ilustrar o conceito das métricas tratadas, vamos nos utilizar de dois modelos de previsão: um complexo, de suavização exponencial, e outro simples, um sazonal ingênuo.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod.rn &lt;-<span class="st"> </span><span class="kw">ets</span>(energia)
+mod.ingenuo.saz &lt;-<span class="st"> </span><span class="kw">snaive</span>(energia, <span class="dt">h =</span> <span class="dv">12</span>)
+
+<span class="co"># plotando os dois ajustes junto à curva original</span>
+<span class="kw">autoplot</span>(energia) <span class="op">+</span>
+<span class="st">  </span><span class="co"># plota modelo de Suavização exponencial</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> mod.rn<span class="op">$</span>fitted, <span class="dt">color =</span> <span class="st">&quot;Suavização exponencial&quot;</span>),
+            <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.7</span>) <span class="op">+</span>
+<span class="st">  </span><span class="co"># plotar modelo sazonal ingenuo</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> mod.ingenuo.saz<span class="op">$</span>fitted, <span class="dt">color =</span> <span class="st">&quot;Ingênuo sazonal&quot;</span>),
+            <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="co"># redefinir cores</span>
+<span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">name =</span> <span class="ot">NULL</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span>
+<span class="st">  </span><span class="co"># posicionar legenda</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>Pelo gráfico, poderíamos concluir que o ajuste obtido com o modelo de Suavização exponencial é superior ao sazonal ingênuo, que costuma errar o nível da série temporal.</p>
+<p>Contudo, para ter certeza disso, precisamos avaliar os modelos com alguma métrica de precisão (ou de erro).</p>
+<div id="medidas-de-precisao" class="section level2">
+<h2><span class="header-section-number">3.1</span> Medidas de precisão</h2>
+<p>Podemos dividir as métricas de precisão em dois grupos: os baseados em escala e os baseados em percentuais.</p>
+<div id="metricas-baseadas-em-escala" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Métricas baseadas em escala</h3>
+<p>Você deve ter observado que <span class="math inline">\(e_i\)</span> possui a mesma escala da variável resposta <span class="math inline">\(y_i\)</span>. Isto é, se o objeto do modelo é prever o consumo de gasolina de um carro, dado em litros, então o erro de previsão também será dado em litros. As duas métricas de erro baseadas em escala são o MAE (erro médio absoluto) e o RMSE (raiz do erro quadrático médio), calculados como:</p>
+<p><span class="math inline">\(MAE = media(|e_i|)\)</span></p>
+<p><span class="math inline">\(RMSE = \sqrt(media(e_i^2))\)</span></p>
+<p>Entre as duas métricas, a MAE é mais fácil e simples de explicar. Contudo, o output da RMSE representa o que vários algoritmos de previsão são escritos para minimizar. Ela pode ser compreendida como uma medida análoga ao desvio padrão do modelo.</p>
+</div>
+<div id="metricas-baseadas-em-percentuais" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> Métricas baseadas em percentuais</h3>
+<p>Se o objetivo de uma análise é avaliar a qualidade de ajuste e a acurácia de diferentes modelos para uma mesma série, as métricas baseadas em escala não são um problema.</p>
+<p>Porém, quando se deseja avaliar a performance de um (ou mais) modelo para diversas séries temporais de escalas diferentes (é muito incomum que um conjunto grande de séries possuam a mesma escala, mesmo que tenham a mesma unidade de medida), deve-se optar pelas métricas baseadas em percentuais.</p>
+<p>Definindo <span class="math inline">\(p_i = 100\times e_i/y_i\)</span>, temos que a métrica mais comum é o MAPE (erro absoluto percentual médio):</p>
+<p><span class="math inline">\(MAPE = media(|p_i|)\)</span></p>
+<p>Contudo, o MAPE possui uma grande desvantagem: é indefinido quando há pelo menos um caso em que <span class="math inline">\(y_i = 0\)</span>. Para contornar essa situação e poder usar uma métrica de erro independente de escala em uma série temporal que possa apresentar valores muito próximos ou iguais a zero, podemos usar o MASE (erro médio de escala absoluto), que é a proporção de erros de previsão em relação aos erros de uma previsão ingênuo.</p>
+<p>A função <code>forecast::accuracy()</code> retorna todas essas métricas e mais algumas outras para um dado modelo preditivo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># modelo de Suavização exponencial</span>
+<span class="kw">accuracy</span>(mod.rn)</code></pre></div>
+<pre><code>##                  ME     RMSE      MAE      MPE     MAPE      MASE
+## Training set 20.455 265.5196 197.8673 0.177949 2.042775 0.3594056
+##                   ACF1
+## Training set 0.0222034</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># modelo ingenuo sazonal</span>
+<span class="kw">accuracy</span>(mod.ingenuo.saz)</code></pre></div>
+<pre><code>##                    ME     RMSE      MAE      MPE     MAPE MASE      ACF1
+## Training set 234.2484 730.5153 550.5403 2.392288 5.322205    1 0.8895264</code></pre>
+</div>
+</div>
+<div id="desempenho-fora-de-amostra-overfitting-e-underfitting" class="section level2">
+<h2><span class="header-section-number">3.2</span> Desempenho fora de amostra: Overfitting e underfitting</h2>
+<p>Conforme discutido no <a href="regressao.html#modelo-preditivo">capítulo anterior</a>, a melhor maneira de avaliar o desempenho preditivo de um modelo de séries temporais é avaliar sua performance em dados nunca vistos pelo modelo. Repetimos o procedimento já descrito nos dois modelos usados como exemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vamos construir dois modelos para serem comparados: um de Suavização exponencial e</span>
+<span class="co"># um modelo ingenuo</span>
+treino &lt;-<span class="st"> </span><span class="kw">window</span>(energia, <span class="dt">end =</span> <span class="kw">c</span>(<span class="dv">2015</span>, <span class="dv">12</span>))
+teste &lt;-<span class="st"> </span><span class="kw">window</span>(energia, <span class="dt">start =</span> <span class="kw">c</span>(<span class="dv">2016</span>, <span class="dv">1</span>), <span class="dt">end =</span> <span class="kw">c</span>(<span class="dv">2016</span>, <span class="dv">12</span>))
+
+<span class="co"># vamos &quot;esconder&quot; o conjunto de teste dos modelos:</span>
+mod.rn &lt;-<span class="st"> </span><span class="kw">nnetar</span>(treino) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">forecast</span>(<span class="dt">h =</span> <span class="kw">length</span>(teste))
+mod.ingenuo.saz &lt;-<span class="st"> </span><span class="kw">snaive</span>(treino, <span class="dt">h =</span> <span class="dv">12</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">forecast</span>(<span class="dt">h =</span> <span class="kw">length</span>(teste))
+
+<span class="co"># a funcao accuracy aceita como argumento um vetor numerico de teste, sobre o qual</span>
+<span class="co"># a acuracia do modelo sera avaliada</span>
+<span class="kw">accuracy</span>(mod.rn, teste) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">3</span>)</code></pre></div>
+<pre><code>##                    ME    RMSE    MAE    MPE  MAPE  MASE  ACF1 Theil&#39;s U
+## Training set   -0.224 324.163 242.01 -0.110 2.432 0.422 0.104        NA
+## Test set     -454.840 525.610 454.84 -3.366 3.366 0.794 0.279     1.356</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">accuracy</span>(mod.ingenuo.saz, teste) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">3</span>)</code></pre></div>
+<pre><code>##                    ME    RMSE     MAE    MPE  MAPE  MASE  ACF1 Theil&#39;s U
+## Training set  255.648 753.274 572.810  2.616 5.606 1.000 0.887        NA
+## Test set     -383.750 567.367 412.917 -2.868 3.082 0.721 0.656     1.443</code></pre>
+<p>Os resultados são no mínimo interessantes: enquanto o desempenho do modelo de Suavização exponencial é bem melhor na série de treino (possui MAE e MAPE mais de duas vezes menor), é o modelo sazonal ingênuo que apresenta o melhor desempenho na série de teste, com exceção do RMSE.</p>
+<p>Esse é um exemplo claro que ilustra os conceitos de overfitting e underfitting, também conhecido como o tradeoff entre viés e variância.</p>
+<p>Conceitualmente, viés é o erro que ocorre quando o algoritmo do modelo preditivo assume pressupostos errados (ou demasiadamente simples). Um alto viés implica na possibilidade de que o modelo não incorpore elementos importantes do conjunto de treino, causando o <strong>underfitting</strong>.</p>
+<p>Variância é o erro oriundo de pequenas variações no conjunto de treino. Quando um modelo é complexo demais a ponto de tentar representar todas as pequenas variações observadas no conjunto de treino, temos o <strong>overfitting</strong>.</p>
+<p>Nos nossos dois modelos de estudo, apenas analisando os resultados de acurácia nos conjuntos de treino e teste, podemos observar que o modelo de Suavização exponencial sofre de overfitting, pois apresenta um excelente desempenho na série de treino mas um desempenho inferior na série de teste comparado com um modelo simples, que compreensivelmente sofre de underfitting.</p>
+<p>Essa representação visual nos ajuda a entender esses dois conceitos:</p>
+<div class="figure">
+<img src="http://i.imgur.com/VkoFdTA.png" />
+
+</div>
+<p>Também é possível analisar a qualidade das previsões dos modelos graficamente:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plotando as previsoes contra o real:</span>
+<span class="kw">autoplot</span>(teste) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> mod.rn<span class="op">$</span>mean, <span class="dt">color =</span> <span class="st">&quot;Suavização exponencial&quot;</span>),
+            <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> mod.ingenuo.saz<span class="op">$</span>mean, <span class="dt">color =</span> <span class="st">&quot;Ingênuo sazonal&quot;</span>),
+            <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">name =</span> <span class="ot">NULL</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>) </code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>Dá para observar que o modelo ingênuo sazonal apresenta um desempenho praticamente perfeito no segundo semestre de 2016, compensando o erro alto no primeiro semestre. Será que isso é um padrão? É mais fácil prever o segundo semestre do que o primeiro? Será que, caso o modelo ingênuo sazonal seja sempre melhor no segundo semestre e o de Suavização exponencial no primeiro, é possível construir um modelo de previsão misto (ou um <code>ensemble model</code>) que se beneficie dessa informação? Fica o exercício para o leitor.</p>
+</div>
+<div id="referencias-1" class="section level2">
+<h2><span class="header-section-number">3.3</span> Referências</h2>
+<ul>
+<li>Ótimo post no <a href="http://regisely.com/blog/bias-variance/">blog do Regis</a> sobre o tradeoff entre viés e variância;<br />
+</li>
+<li><a href="https://robjhyndman.com/papers/foresight.pdf">ANOTHER LOOK AT FORECAST-ACCURACY METRICS FOR INTERMITTENT DEMAND</a>, um paper do Rob Hyndman sobre as principais métricas de erros usadas em séries temporais.</li>
+</ul>
+<div class="alert alert-danger" <strong="">
+<p>Exercícios:</strong> <br> - Baixe uma série temporal usando o BETS (pode ser a mesma do capítulo 01) e ajuste três modelos nela: ARIMA, Suavizacao exponencial e Media simples.<br />
+- Calcule a acurácia dentro e fora da amostra.</p>
+</div>
+<div class="figure">
+<img src="http://i.imgur.com/lBCBhhP.jpg" />
+
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regressao.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="decomposicao.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-avaliacao-precisao.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["curso-series-temporais.pdf", "curso-series-temporais.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

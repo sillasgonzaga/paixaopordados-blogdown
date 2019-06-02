@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 6 Modelos ARIMA | Curso de Séries Temporais - IBPAD</title>
+  <meta name="description" content="descrição YAML" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 6 Modelos ARIMA | Curso de Séries Temporais - IBPAD" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="descrição YAML" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 6 Modelos ARIMA | Curso de Séries Temporais - IBPAD" />
+  
+  <meta name="twitter:description" content="descrição YAML" />
+  
+
+<meta name="author" content="© Sillas Teixeira Gonzaga" />
+
+
+<meta name="date" content="2019-06-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="suavizacao.html">
+<link rel="next" href="outros.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="libs/dygraphs-1.1.1/shapes.js"></script>
+<script src="libs/moment-2.8.4/moment.js"></script>
+<script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="libs/moment-fquarter-1.0.0/moment-fquarter.min.js"></script>
+<script src="libs/dygraphs-binding-1.1.1.6/dygraphs.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Curso de Séries Temporais - IBPAD</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instrutor"><i class="fa fa-check"></i>Instrutor</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instalacao-de-pacotes"><i class="fa fa-check"></i>Instalação de pacotes</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introducao.html"><a href="introducao.html"><i class="fa fa-check"></i><b>1</b> Introdução a Séries Temporais</a><ul>
+<li class="chapter" data-level="1.1" data-path="introducao.html"><a href="introducao.html#o-que-sao-series-temporais"><i class="fa fa-check"></i><b>1.1</b> O que são Séries Temporais</a></li>
+<li class="chapter" data-level="1.2" data-path="introducao.html"><a href="introducao.html#elementos"><i class="fa fa-check"></i><b>1.2</b> Elementos das Séries Temporais</a></li>
+<li class="chapter" data-level="1.3" data-path="introducao.html"><a href="introducao.html#series-temporais-no-r"><i class="fa fa-check"></i><b>1.3</b> Séries temporais no R</a></li>
+<li class="chapter" data-level="1.4" data-path="introducao.html"><a href="introducao.html#graficos-interativos-com-dygraphs"><i class="fa fa-check"></i><b>1.4</b> Gráficos interativos com dygraphs</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="regressao.html"><a href="regressao.html"><i class="fa fa-check"></i><b>2</b> Regressão</a><ul>
+<li class="chapter" data-level="2.1" data-path="regressao.html"><a href="regressao.html#analise-exploratoria"><i class="fa fa-check"></i><b>2.1</b> Análise exploratória</a></li>
+<li class="chapter" data-level="2.2" data-path="regressao.html"><a href="regressao.html#correlacao"><i class="fa fa-check"></i><b>2.2</b> Correlação</a></li>
+<li class="chapter" data-level="2.3" data-path="regressao.html"><a href="regressao.html#modelagem-por-regressao-simples"><i class="fa fa-check"></i><b>2.3</b> Modelagem por regressão simples</a></li>
+<li class="chapter" data-level="2.4" data-path="regressao.html"><a href="regressao.html#regressao-multivariada"><i class="fa fa-check"></i><b>2.4</b> Regressão multivariada</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="regressao.html"><a href="regressao.html#hipotese-nula-da-regressao"><i class="fa fa-check"></i><b>2.4.1</b> Hipótese nula da regressão</a></li>
+<li class="chapter" data-level="2.4.2" data-path="regressao.html"><a href="regressao.html#valor-p"><i class="fa fa-check"></i><b>2.4.2</b> valor-p</a></li>
+<li class="chapter" data-level="2.4.3" data-path="regressao.html"><a href="regressao.html#r-quadrado-e-r-quadrado-ajustado"><i class="fa fa-check"></i><b>2.4.3</b> R-quadrado e R-quadrado ajustado</a></li>
+<li class="chapter" data-level="2.4.4" data-path="regressao.html"><a href="regressao.html#analise-dos-residuos"><i class="fa fa-check"></i><b>2.4.4</b> Análise dos resíduos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="regressao.html"><a href="regressao.html#modelo-preditivo"><i class="fa fa-check"></i><b>2.5</b> Regressão como modelo preditivo</a></li>
+<li class="chapter" data-level="2.6" data-path="regressao.html"><a href="regressao.html#referencias"><i class="fa fa-check"></i><b>2.6</b> Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="avaliacao.html"><a href="avaliacao.html"><i class="fa fa-check"></i><b>3</b> Avaliação de precisão de modelos de séries temporais</a><ul>
+<li class="chapter" data-level="3.1" data-path="avaliacao.html"><a href="avaliacao.html#medidas-de-precisao"><i class="fa fa-check"></i><b>3.1</b> Medidas de precisão</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="avaliacao.html"><a href="avaliacao.html#metricas-baseadas-em-escala"><i class="fa fa-check"></i><b>3.1.1</b> Métricas baseadas em escala</a></li>
+<li class="chapter" data-level="3.1.2" data-path="avaliacao.html"><a href="avaliacao.html#metricas-baseadas-em-percentuais"><i class="fa fa-check"></i><b>3.1.2</b> Métricas baseadas em percentuais</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="avaliacao.html"><a href="avaliacao.html#desempenho-fora-de-amostra-overfitting-e-underfitting"><i class="fa fa-check"></i><b>3.2</b> Desempenho fora de amostra: Overfitting e underfitting</a></li>
+<li class="chapter" data-level="3.3" data-path="avaliacao.html"><a href="avaliacao.html#referencias-1"><i class="fa fa-check"></i><b>3.3</b> Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="decomposicao.html"><a href="decomposicao.html"><i class="fa fa-check"></i><b>4</b> Decomposição de Séries Temporais</a><ul>
+<li class="chapter" data-level="4.1" data-path="decomposicao.html"><a href="decomposicao.html#medias-moveis"><i class="fa fa-check"></i><b>4.1</b> Médias móveis</a></li>
+<li class="chapter" data-level="4.2" data-path="decomposicao.html"><a href="decomposicao.html#decomposicao-classica"><i class="fa fa-check"></i><b>4.2</b> Decomposição clássica</a></li>
+<li class="chapter" data-level="4.3" data-path="decomposicao.html"><a href="decomposicao.html#outros-tipos-de-decomposicao"><i class="fa fa-check"></i><b>4.3</b> Outros tipos de decomposição</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="decomposicao.html"><a href="decomposicao.html#pacote-seasonal"><i class="fa fa-check"></i><b>4.3.1</b> Pacote <code>seasonal</code></a></li>
+<li class="chapter" data-level="4.3.2" data-path="decomposicao.html"><a href="decomposicao.html#decomposicao-stl"><i class="fa fa-check"></i><b>4.3.2</b> Decomposição STL</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="suavizacao.html"><a href="suavizacao.html"><i class="fa fa-check"></i><b>5</b> Suavização exponencial</a><ul>
+<li class="chapter" data-level="5.1" data-path="suavizacao.html"><a href="suavizacao.html#suavizacao-simples"><i class="fa fa-check"></i><b>5.1</b> Suavização simples</a></li>
+<li class="chapter" data-level="5.2" data-path="suavizacao.html"><a href="suavizacao.html#linear-de-holt"><i class="fa fa-check"></i><b>5.2</b> Linear de Holt</a></li>
+<li class="chapter" data-level="5.3" data-path="suavizacao.html"><a href="suavizacao.html#holt-winter-aditivo-e-multiplicativo"><i class="fa fa-check"></i><b>5.3</b> Holt-winter aditivo e multiplicativo</a></li>
+<li class="chapter" data-level="5.4" data-path="suavizacao.html"><a href="suavizacao.html#selecao-automatica-do-melhor-modelo-de-suavizacao-exponencial"><i class="fa fa-check"></i><b>5.4</b> Seleção automática do melhor modelo de suavização exponencial</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="arima.html"><a href="arima.html"><i class="fa fa-check"></i><b>6</b> Modelos ARIMA</a><ul>
+<li class="chapter" data-level="6.1" data-path="arima.html"><a href="arima.html#estacionariedade-diferenciacao-e-autocorrelacao"><i class="fa fa-check"></i><b>6.1</b> Estacionariedade, diferenciação e autocorrelação</a></li>
+<li class="chapter" data-level="6.2" data-path="arima.html"><a href="arima.html#modelos-autoregressivos"><i class="fa fa-check"></i><b>6.2</b> Modelos autoregressivos</a></li>
+<li class="chapter" data-level="6.3" data-path="arima.html"><a href="arima.html#modelos-de-media-movel"><i class="fa fa-check"></i><b>6.3</b> Modelos de média móvel</a></li>
+<li class="chapter" data-level="6.4" data-path="arima.html"><a href="arima.html#modelos-arima"><i class="fa fa-check"></i><b>6.4</b> Modelos ARIMA</a></li>
+<li class="chapter" data-level="6.5" data-path="arima.html"><a href="arima.html#modelos-sarima"><i class="fa fa-check"></i><b>6.5</b> Modelos SARIMA</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="outros.html"><a href="outros.html"><i class="fa fa-check"></i><b>7</b> Outros Métodos</a><ul>
+<li class="chapter" data-level="7.1" data-path="outros.html"><a href="outros.html#redes-neurais"><i class="fa fa-check"></i><b>7.1</b> Redes Neurais</a></li>
+<li class="chapter" data-level="7.2" data-path="outros.html"><a href="outros.html#pacote-mafs"><i class="fa fa-check"></i><b>7.2</b> Pacote mafs</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="clusterizacao.html"><a href="clusterizacao.html"><i class="fa fa-check"></i><b>8</b> Aplicações avançadas em séries temporais: Clusterização</a><ul>
+<li class="chapter" data-level="8.1" data-path="clusterizacao.html"><a href="clusterizacao.html#motivacao"><i class="fa fa-check"></i><b>8.1</b> Motivação</a></li>
+<li class="chapter" data-level="8.2" data-path="clusterizacao.html"><a href="clusterizacao.html#introducao-de-tecnicas-avancadas-em-series-temporais"><i class="fa fa-check"></i><b>8.2</b> Introdução de técnicas avançadas em Séries Temporais</a></li>
+<li class="chapter" data-level="8.3" data-path="clusterizacao.html"><a href="clusterizacao.html#clusterizacao-de-series-temporais"><i class="fa fa-check"></i><b>8.3</b> Clusterização de séries temporais</a></li>
+<li class="chapter" data-level="8.4" data-path="clusterizacao.html"><a href="clusterizacao.html#demonstracao"><i class="fa fa-check"></i><b>8.4</b> Demonstração</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="clusterizacao.html"><a href="clusterizacao.html#obtencao-dos-dados"><i class="fa fa-check"></i><b>8.4.1</b> Obtenção dos dados</a></li>
+<li class="chapter" data-level="8.4.2" data-path="clusterizacao.html"><a href="clusterizacao.html#transformacao-dos-dados"><i class="fa fa-check"></i><b>8.4.2</b> Transformação dos dados</a></li>
+<li class="chapter" data-level="8.4.3" data-path="clusterizacao.html"><a href="clusterizacao.html#aplicacao-da-clusterizacao"><i class="fa fa-check"></i><b>8.4.3</b> Aplicação da clusterização</a></li>
+<li class="chapter" data-level="8.4.4" data-path="clusterizacao.html"><a href="clusterizacao.html#e-o-brasil"><i class="fa fa-check"></i><b>8.4.4</b> E o Brasil?</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Curso de Séries Temporais - IBPAD</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="arima" class="section level1">
+<h1><span class="header-section-number">Capítulo 6</span> Modelos ARIMA</h1>
+<p>Modelos ARIMA são outra classe de modelos populares em <em>forecasting</em>. A diferença entre modelos de suavização exponencial e os ARIMA é que os primeiros são baseados em descrever a tendência e a sazonalidade na série, enquanto os segundos se baseam em autocorrelações presentes nos dados.</p>
+<p>Para este capítulo, continuaremos usando a série temporal do consumo de energia pela indústria no Brasil.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(forecast)
+<span class="kw">library</span>(tidyverse)
+energia &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/ts_energia.Rda&quot;</span>)</code></pre></div>
+<p>Antes de explicar o que é ARIMA, precisamos introduzir conceitos básicos como estacionariedade.</p>
+<div id="estacionariedade-diferenciacao-e-autocorrelacao" class="section level2">
+<h2><span class="header-section-number">6.1</span> Estacionariedade, diferenciação e autocorrelação</h2>
+<p>Uma série temporal é dita <strong>estacionária</strong> se suas propriedades (média, variância, etc.) não dependem do tempo da observação. Portanto, séries que apresentam tendência ou sazonalidade não são estacionárias. Por outro lado, uma série composta por valores gerados aleatoriamente (ex. pela função <code>rnorm</code>) são estacionárias, visto que a “aparência” da série é basicamente a mesma para qualquer período <span class="math inline">\(t\)</span>.</p>
+
+<div class="rmdcaution">
+A série abaixo é estacionária?
+</div>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;lynx&quot;</span>)
+<span class="kw">head</span>(lynx)</code></pre></div>
+<pre><code>## Time Series:
+## Start = 1821 
+## End = 1826 
+## Frequency = 1 
+## [1]  269  321  585  871 1475 2821</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">autoplot</span>(lynx)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p>Por curiosidade, linces são isto:</p>
+<div class="figure">
+<img src="http://i.imgur.com/KHabQgM.png" />
+
+</div>
+<p>Aparentemente, a série apresenta ciclos ou sazonalidade, certo? Vamos ver seus componentes por dentro:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lynx <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">decompose</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">autoplot</span>()</code></pre></div>
+<pre><code>## Error in decompose(.): time series has no or less than 2 periods</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lynx <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">stl</span>(<span class="dt">s.window =</span> <span class="st">&quot;periodic&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">autoplot</span>()</code></pre></div>
+<pre><code>## Error in stl(., s.window = &quot;periodic&quot;): series is not periodic or has less than two periods</code></pre>
+<p>Por que a função retorna um erro? Acontece que esta série não possui sazonalidade. Os algoritmos de decomposição não foram capazes de detectar períodos em que padrões se repetem, visto que os ciclos, além de possuírem níveis não constantes, acontecem em diferentes períodos, tornando-os imprevisíveis.</p>
+<p>Voltando a nossa série de exemplo. Ela é estacionária?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">energia <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">autoplot</span>()</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p>Claramente, ela não é. Contudo, existe um método muito simples para a tornar estacionária, que é a diferenciação. Ele se baseia nada mais em calcular a diferença absoluta (ou percentual) entre uma observação e a outra. O intervalo entre as observações pode ser escolhido pelo usuário:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(energia, <span class="dv">10</span>)</code></pre></div>
+<pre><code>##       Jan  Feb  Mar  Apr  May  Jun  Jul  Aug  Sep  Oct
+## 1980 4806 4808 4833 4901 5009 5162 5149 5432 5369 5391</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">diff</span>(energia), <span class="dv">10</span>)</code></pre></div>
+<pre><code>##      Feb Mar Apr May Jun Jul Aug Sep Oct Nov
+## 1980   2  25  68 108 153 -13 283 -63  22 114</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">diff</span>(energia, <span class="dv">2</span>), <span class="dv">10</span>)</code></pre></div>
+<pre><code>##       Mar  Apr  May  Jun  Jul  Aug  Sep  Oct  Nov  Dec
+## 1980   27   93  176  261  140  270  220  -41  136 -270</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plotando as series</span>
+<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">1</span>))
+<span class="kw">plot</span>(energia, <span class="dt">main =</span> <span class="st">&quot;Série original&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylab =</span>  <span class="st">&quot;&quot;</span>)
+<span class="kw">plot</span>(<span class="kw">diff</span>(energia), <span class="dt">main  =</span> <span class="st">&quot;Série diferenciada&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="dt">ylab =</span>  <span class="st">&quot;&quot;</span>)
+<span class="co"># plotando uma serie aleatoria:</span>
+<span class="kw">plot</span>(<span class="kw">rnorm</span>(<span class="kw">length</span>(energia)), <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Dados aleatórios&quot;, xlab = &quot;&quot;, ylab = &quot;&quot;)</span></code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<p>Vemos pelo gráfico que a série diferenciada se aproxima muito de dados gerados aleatoriamente, comprovando que o método da diferenciação tornou a série estacionária.</p>
+<p>Uma outra maneira de analisar a estacionariedade de uma série é pelo conceito de autocorrelação, que é uma medida do relacionamento linear entre os valores dentro de uma mesma série (como se fosse uma correlação interna). A autocorrelação depende do <em>lag</em> que se deseja analisar. Por exemplo, <span class="math inline">\(r1\)</span> se refere à relação entre <span class="math inline">\(y_t\)</span> e <span class="math inline">\(y_{t-1}\)</span>.</p>
+<p>A melhor maneira de se analisar a autocorrelação de uma série é por meio de gráficos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lag.plot</span>(energia, <span class="dt">lags =</span> <span class="dv">9</span>)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p>No gráfico de dispersão acima, vimos que em todos os 9 lags analisados, existe uma correlação forte entre as observações entre si. Numericamente, temos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Acf</span>(energia, <span class="dt">plot =</span> <span class="ot">FALSE</span>)<span class="op">$</span>acf <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.vector</span>()</code></pre></div>
+<pre><code>##  [1] 1.0000000 0.9895288 0.9793583 0.9701326 0.9616287 0.9539380 0.9469652
+##  [8] 0.9401798 0.9345256 0.9296718 0.9265290 0.9244649 0.9207918 0.9112844
+## [15] 0.9016482 0.8932005 0.8856901 0.8792969 0.8726764 0.8664785 0.8610202
+## [22] 0.8551207 0.8509758 0.8480218 0.8431056 0.8330215 0.8226599</code></pre>
+<p>Outro gráfico muito útil para analisar a autocorrelação é o próprio gráfico de autocorrelação, também conhecido como correlograma:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Acf</span>(energia)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<p>A linha horizonal tracejada azul define o nível de significância mínimo. Isto é, se uma autocorrelação estiver acima dessa linha, ela é estatisticamente significativa.</p>
+<p>Contudo, a situação é diferente para a série diferenciada, como mostram os gráficos abaixo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lag.plot</span>(<span class="kw">diff</span>(energia), <span class="dt">lags =</span> <span class="dv">9</span>)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Acf</span>(<span class="kw">diff</span>(energia))</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-49-2.png" width="672" /></p>
+<p>O fato de ainda haver três valores podem indicar duas coisas:</p>
+<ul>
+<li>Que a série diferenciada ainda não é estacionária;<br />
+</li>
+<li>Que a série diferenciada é sim estacionária, pois esses lags com forte autocorrelação podem ser devidos a uma aleatoriedade. De fato, espera-se que, para uma série aleatória, 5% dos valores na ACF encontrem-se fora do intervalo <span class="math inline">\(\pm 2/ \sqrt{T}\)</span>.</li>
+</ul>
+</div>
+<div id="modelos-autoregressivos" class="section level2">
+<h2><span class="header-section-number">6.2</span> Modelos autoregressivos</h2>
+<p>A diferença entre modelos regressivos e autoregressivos é que os primeiros prevêem o valor de uma variável de interesse usando uma combinação linear (equação) das variáveis explanatórias. Já os segundos usam uma combinação linear de valores passados da própria variável. Matematicamente, um modelo autoregressivo é descrito como:</p>
+<p><span class="math inline">\(y_t = c + \phi_1y_{t-1} + \phi_2y_{t-2} + ... + \phi_py_{t-p} + e_t\)</span></p>
+<p>Onde <span class="math inline">\(c\)</span> é uma constante e <span class="math inline">\(e_t\)</span> é um erro aleatório (ruído branco). Esse tipo de modelo é chamado de <strong>modelo AR(p)</strong> e são normalmente restritos a séries estacionárias.</p>
+<p>No R, modelos autoregressivos podem ser ajustados por meio da função <code>arima</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># explicaremos o que é o argumento order da função abaixo daqui a pouco</span>
+ar.p1 &lt;-<span class="st"> </span>energia <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">diff</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arima</span>(<span class="dt">order =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>))
+ar.p2 &lt;-<span class="st"> </span>energia <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">diff</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arima</span>(<span class="dt">order =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>))
+<span class="kw">coefficients</span>(ar.p1) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">4</span>)</code></pre></div>
+<pre><code>##       ar1 intercept 
+##   -0.0130   19.2715</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coefficients</span>(ar.p2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">4</span>)</code></pre></div>
+<pre><code>##       ar1       ar2 intercept 
+##   -0.0140   -0.0822   19.2385</code></pre>
+<p>Portanto, as equações resultantes do ajuste de modelos autoregressivos de ordem 1 e 2 são, respectivamente:</p>
+<p><span class="math inline">\(y_t = 21.1135 - 0.0135y_{t-1} + e_t\)</span></p>
+<p><span class="math inline">\(y_t = 20.9643 - 0.01435y_{t-1} - 0.0143y_{t-2} + e_t\)</span></p>
+</div>
+<div id="modelos-de-media-movel" class="section level2">
+<h2><span class="header-section-number">6.3</span> Modelos de média móvel</h2>
+<p>Modelos de média móvel utilizam valores passados de erro de previsão de maneira semelhante a um modelo de regressão:</p>
+<p><span class="math inline">\(y_t = c + e_t + \theta_1e_{t-1} + \theta_2e_{t-2} + ... + \theta_qe_{t-q}\)</span></p>
+<p>Um modelo acima é chamado de <strong>modelo MA(q)</strong> e pode ser interpretado como um modelo onde <span class="math inline">\(y_t\)</span> é uma média ponderada dos erros de previsão passados.</p>
+</div>
+<div id="modelos-arima" class="section level2">
+<h2><span class="header-section-number">6.4</span> Modelos ARIMA</h2>
+<p>A combinação entre os métodos de diferenciação e os modelos de autoregressão e média móvel resultam em um modelo ARIMA (<em>AutoRegressive Integrated Moving Average model</em>) não-sazonal, que pode ser descrito matematicamente como:</p>
+<p><span class="math inline">\(\acute{y_t} = c + \phi_1\acute{y}_{t-1} + ... + \phi_p\acute{y}_{t-p} + \theta_1 + \theta_1e_{t-1} + ... + \theta_qe_{t-q} + e_t\)</span></p>
+<p>Onde <span class="math inline">\(\acute{y}_t\)</span> é a série diferenciada. A equação acima é o que descreve o modelo <strong>ARIMA(p, d, q)</strong>, onde:</p>
+<ul>
+<li><span class="math inline">\(p\)</span> é a ordem do modelo autoregressivo;<br />
+</li>
+<li><span class="math inline">\(d\)</span> é o grau de diferenciação;<br />
+</li>
+<li><span class="math inline">\(q\)</span> é a ordem do modelo de média móvel.</li>
+</ul>
+<p>Como seria complicado selecionar valores apropriada para cada um desses três parâmetros, a função <code>forecast::auto.arima()</code> faz isso automaticamente:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod.arima &lt;-<span class="st"> </span><span class="kw">auto.arima</span>(energia, <span class="dt">seasonal =</span> <span class="ot">FALSE</span>)
+<span class="kw">summary</span>(mod.arima)</code></pre></div>
+<pre><code>## Series: energia 
+## ARIMA(1,1,2) with drift 
+## 
+## Coefficients:
+##          ar1      ma1      ma2    drift
+##       0.6842  -0.7456  -0.1086  19.4967
+## s.e.  0.0798   0.0866   0.0525   7.2082
+## 
+## sigma^2 estimated as 113359:  log likelihood=-3400
+## AIC=6810.01   AICc=6810.14   BIC=6830.77
+## 
+## Training set error measures:
+##                     ME     RMSE      MAE         MPE   MAPE      MASE
+## Training set 0.2500474 334.8969 253.1834 -0.02693067 2.5143 0.4598817
+##                     ACF1
+## Training set 0.003546764</code></pre>
+<p>O modelo resultante é um ARIMA(2, 1, 1), o que corresponde a uma combinação a uma série com um grau de diferenciação (p = 1) aplicada em um modelo AR(2) e em um MA(1).</p>
+<p>É possível saber o comportamento da previsão de um modelo ARIMA apenas baseado nos valores dos coeficientes c e d:</p>
+<ul>
+<li>Se <span class="math inline">\(c = 0\)</span> e <span class="math inline">\(d = 0\)</span>, previsões em longo prazo serão iguais a zero;<br />
+</li>
+<li>Se <span class="math inline">\(c = 0\)</span> e <span class="math inline">\(d = 1\)</span>, serão iguais a uma constante maior que zero;<br />
+</li>
+<li>Se <span class="math inline">\(c \neq 0\)</span> e <span class="math inline">\(d = 2\)</span>, seguirão uma linha reta;<br />
+</li>
+<li>Se <span class="math inline">\(c \neq 0\)</span> e <span class="math inline">\(d = 0\)</span>, convergirão para a média da série;<br />
+</li>
+<li>Se <span class="math inline">\(c \neq 0\)</span> e <span class="math inline">\(d = 1\)</span>, seguirão uma linha reta;<br />
+</li>
+<li>Se <span class="math inline">\(c \neq 0\)</span> e <span class="math inline">\(d = 2\)</span>, seguirão uma tendência quadrática;</li>
+</ul>
+<p>No caso do nosso exemplo, vamos ver se isso se aplica:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod.arima <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">forecast</span>(<span class="dt">h =</span> <span class="dv">36</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">autoplot</span>()</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<p>Conforme esperado, as previsões seguem uma linha reta, o que, em palavras, indicam que a série crescerá indefinitivamente.</p>
+<p>Como ficaram as previsões de outras combinações ARIMA? Vamos fazer o teste:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># criar funcao para extrair previsao de um modelo arima</span>
+prever.arima &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">p =</span> <span class="dv">0</span>, d, <span class="dt">q =</span> <span class="dv">0</span>, con) {
+  <span class="co"># argumento c = binario TRUE ou FALSE</span>
+  <span class="co"># argumento d = 0, 1 ou 2</span>
+  x &lt;-<span class="st"> </span><span class="kw">Arima</span>(energia, <span class="dt">order =</span> <span class="kw">c</span>(p, d, q), <span class="dt">include.constant =</span> con, <span class="dt">seasonal =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))
+  x &lt;-<span class="st"> </span><span class="kw">forecast</span>(x)
+  <span class="kw">as.numeric</span>(x<span class="op">$</span>mean)
+}
+
+<span class="co"># plotar previsoes</span>
+<span class="kw">prever.arima</span>(<span class="dt">d =</span> <span class="dv">1</span>, <span class="dt">con =</span> <span class="ot">FALSE</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">plot</span>(<span class="dt">type =</span>  <span class="st">&quot;l&quot;</span>)
+<span class="kw">prever.arima</span>(<span class="dt">d =</span> <span class="dv">0</span>, <span class="dt">con =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">lines</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)
+<span class="kw">prever.arima</span>(<span class="dt">d =</span> <span class="dv">2</span>, <span class="dt">con =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">lines</span>(<span class="dt">col =</span> <span class="st">&quot;orange&quot;</span>)
+<span class="kw">prever.arima</span>(<span class="dt">d =</span> <span class="dv">0</span>, <span class="dt">con =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">lines</span>(<span class="dt">col =</span> <span class="st">&quot;green&quot;</span>)
+<span class="kw">prever.arima</span>(<span class="dt">d =</span> <span class="dv">1</span>, <span class="dt">con =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">lines</span>(<span class="dt">col =</span> <span class="st">&quot;pink&quot;</span>)
+<span class="kw">prever.arima</span>(<span class="dt">d =</span> <span class="dv">2</span>, <span class="dt">con =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">lines</span>(<span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+</div>
+<div id="modelos-sarima" class="section level2">
+<h2><span class="header-section-number">6.5</span> Modelos SARIMA</h2>
+<p>Modelos ARIMA são capazes também de modelar séries que apresentam um componente sazonal, sendo descrito como:</p>
+<p>ARIMA <span class="math inline">\((p, d, q)(P, D, Q)_m\)</span></p>
+<p>Onde o primeiro parênteses se refere à parte não-sazonal do modelo e o segundo à parte sazonal. <span class="math inline">\(m\)</span> corresponde ao número de períodos sazonais.</p>
+<p>Ajustar um modelo SARIMA é semelhante ao processo de ajustar um ARIMA:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod.sarima &lt;-<span class="st"> </span><span class="kw">auto.arima</span>(energia, <span class="dt">seasonal =</span> <span class="ot">TRUE</span>)
+mod.sarima</code></pre></div>
+<pre><code>## Series: energia 
+## ARIMA(1,0,1)(0,1,2)[12] with drift 
+## 
+## Coefficients:
+##          ar1      ma1     sma1     sma2    drift
+##       0.9655  -0.1093  -0.6945  -0.1370  20.3127
+## s.e.  0.0137   0.0465   0.0470   0.0458   4.8901
+## 
+## sigma^2 estimated as 68706:  log likelihood=-3211.86
+## AIC=6435.72   AICc=6435.9   BIC=6460.49</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod.sarima <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">forecast</span>(<span class="dt">h =</span> <span class="dv">36</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">autoplot</span>()</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<p>Para a série de análise, qual modelo possui o melhor ajuste: o sazonal ou o não-sazonal?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculando a qualidade de ajuste:</span>
+<span class="kw">list</span>(mod.arima, mod.sarima) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map</span>(accuracy)</code></pre></div>
+<pre><code>## [[1]]
+##                     ME     RMSE      MAE         MPE   MAPE      MASE
+## Training set 0.2500474 334.8969 253.1834 -0.02693067 2.5143 0.4598817
+##                     ACF1
+## Training set 0.003546764
+## 
+## [[2]]
+##                    ME     RMSE      MAE          MPE     MAPE      MASE
+## Training set 1.518877 257.3437 187.2863 0.0006205425 1.888167 0.3401863
+##                      ACF1
+## Training set -0.002581607</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculando a qualidade preditiva</span>
+treino &lt;-<span class="st"> </span><span class="kw">window</span>(energia, <span class="dt">end =</span> <span class="kw">c</span>(<span class="dv">2015</span>, <span class="dv">12</span>))
+teste &lt;-<span class="st"> </span><span class="kw">window</span>(energia, <span class="dt">start =</span> <span class="kw">c</span>(<span class="dv">2016</span>, <span class="dv">1</span>))
+
+mod.arima2 &lt;-<span class="st"> </span><span class="kw">auto.arima</span>(treino, <span class="dt">seasonal =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">forecast</span>(teste)</code></pre></div>
+<pre><code>## Warning in 1:h: numerical expression has 39 elements: only the first used</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod.sarima2 &lt;-<span class="st"> </span><span class="kw">auto.arima</span>(treino, <span class="dt">seasonal =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">forecast</span>(teste)
+
+<span class="kw">list</span>(mod.arima2, mod.sarima2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map</span>(forecast) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map</span>(accuracy, teste)</code></pre></div>
+<pre><code>## [[1]]
+##                      ME     RMSE      MAE         MPE     MAPE      MASE
+## Training set   0.290353 326.0823 246.5337 -0.02778075 2.491441 0.4303939
+## Test set     164.165281 367.2520 325.1233  1.12888967 2.343479 0.5675941
+##                    ACF1 Theil&#39;s U
+## Training set -0.0981782        NA
+## Test set      0.4006154  1.033457
+## 
+## [[2]]
+##                       ME      RMSE       MAE         MPE      MAPE
+## Training set    4.834388  279.3321  205.7491  0.04012374  2.137084
+## Test set     1544.035378 1710.4150 1555.9073 11.01891349 11.113601
+##                   MASE         ACF1 Theil&#39;s U
+## Training set 0.3591928 -0.002323165        NA
+## Test set     2.7162735  0.850060508  5.025037</code></pre>
+<p>Apesar de o modelo ARIMA possuir o pior qualidade de ajuste, seu desempenho para prever valores futuros é superior ao SARIMA.</p>
+<div class="figure">
+<img src="http://i.imgur.com/lBCBhhP.jpg" />
+
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="suavizacao.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="outros.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-arima.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["curso-series-temporais.pdf", "curso-series-temporais.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

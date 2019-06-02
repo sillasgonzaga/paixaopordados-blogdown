@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 4 Decomposição de Séries Temporais | Curso de Séries Temporais - IBPAD</title>
+  <meta name="description" content="descrição YAML" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 4 Decomposição de Séries Temporais | Curso de Séries Temporais - IBPAD" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="descrição YAML" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 4 Decomposição de Séries Temporais | Curso de Séries Temporais - IBPAD" />
+  
+  <meta name="twitter:description" content="descrição YAML" />
+  
+
+<meta name="author" content="© Sillas Teixeira Gonzaga" />
+
+
+<meta name="date" content="2019-06-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="avaliacao.html">
+<link rel="next" href="suavizacao.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="libs/dygraphs-1.1.1/shapes.js"></script>
+<script src="libs/moment-2.8.4/moment.js"></script>
+<script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="libs/moment-fquarter-1.0.0/moment-fquarter.min.js"></script>
+<script src="libs/dygraphs-binding-1.1.1.6/dygraphs.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Curso de Séries Temporais - IBPAD</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instrutor"><i class="fa fa-check"></i>Instrutor</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instalacao-de-pacotes"><i class="fa fa-check"></i>Instalação de pacotes</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introducao.html"><a href="introducao.html"><i class="fa fa-check"></i><b>1</b> Introdução a Séries Temporais</a><ul>
+<li class="chapter" data-level="1.1" data-path="introducao.html"><a href="introducao.html#o-que-sao-series-temporais"><i class="fa fa-check"></i><b>1.1</b> O que são Séries Temporais</a></li>
+<li class="chapter" data-level="1.2" data-path="introducao.html"><a href="introducao.html#elementos"><i class="fa fa-check"></i><b>1.2</b> Elementos das Séries Temporais</a></li>
+<li class="chapter" data-level="1.3" data-path="introducao.html"><a href="introducao.html#series-temporais-no-r"><i class="fa fa-check"></i><b>1.3</b> Séries temporais no R</a></li>
+<li class="chapter" data-level="1.4" data-path="introducao.html"><a href="introducao.html#graficos-interativos-com-dygraphs"><i class="fa fa-check"></i><b>1.4</b> Gráficos interativos com dygraphs</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="regressao.html"><a href="regressao.html"><i class="fa fa-check"></i><b>2</b> Regressão</a><ul>
+<li class="chapter" data-level="2.1" data-path="regressao.html"><a href="regressao.html#analise-exploratoria"><i class="fa fa-check"></i><b>2.1</b> Análise exploratória</a></li>
+<li class="chapter" data-level="2.2" data-path="regressao.html"><a href="regressao.html#correlacao"><i class="fa fa-check"></i><b>2.2</b> Correlação</a></li>
+<li class="chapter" data-level="2.3" data-path="regressao.html"><a href="regressao.html#modelagem-por-regressao-simples"><i class="fa fa-check"></i><b>2.3</b> Modelagem por regressão simples</a></li>
+<li class="chapter" data-level="2.4" data-path="regressao.html"><a href="regressao.html#regressao-multivariada"><i class="fa fa-check"></i><b>2.4</b> Regressão multivariada</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="regressao.html"><a href="regressao.html#hipotese-nula-da-regressao"><i class="fa fa-check"></i><b>2.4.1</b> Hipótese nula da regressão</a></li>
+<li class="chapter" data-level="2.4.2" data-path="regressao.html"><a href="regressao.html#valor-p"><i class="fa fa-check"></i><b>2.4.2</b> valor-p</a></li>
+<li class="chapter" data-level="2.4.3" data-path="regressao.html"><a href="regressao.html#r-quadrado-e-r-quadrado-ajustado"><i class="fa fa-check"></i><b>2.4.3</b> R-quadrado e R-quadrado ajustado</a></li>
+<li class="chapter" data-level="2.4.4" data-path="regressao.html"><a href="regressao.html#analise-dos-residuos"><i class="fa fa-check"></i><b>2.4.4</b> Análise dos resíduos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="regressao.html"><a href="regressao.html#modelo-preditivo"><i class="fa fa-check"></i><b>2.5</b> Regressão como modelo preditivo</a></li>
+<li class="chapter" data-level="2.6" data-path="regressao.html"><a href="regressao.html#referencias"><i class="fa fa-check"></i><b>2.6</b> Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="avaliacao.html"><a href="avaliacao.html"><i class="fa fa-check"></i><b>3</b> Avaliação de precisão de modelos de séries temporais</a><ul>
+<li class="chapter" data-level="3.1" data-path="avaliacao.html"><a href="avaliacao.html#medidas-de-precisao"><i class="fa fa-check"></i><b>3.1</b> Medidas de precisão</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="avaliacao.html"><a href="avaliacao.html#metricas-baseadas-em-escala"><i class="fa fa-check"></i><b>3.1.1</b> Métricas baseadas em escala</a></li>
+<li class="chapter" data-level="3.1.2" data-path="avaliacao.html"><a href="avaliacao.html#metricas-baseadas-em-percentuais"><i class="fa fa-check"></i><b>3.1.2</b> Métricas baseadas em percentuais</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="avaliacao.html"><a href="avaliacao.html#desempenho-fora-de-amostra-overfitting-e-underfitting"><i class="fa fa-check"></i><b>3.2</b> Desempenho fora de amostra: Overfitting e underfitting</a></li>
+<li class="chapter" data-level="3.3" data-path="avaliacao.html"><a href="avaliacao.html#referencias-1"><i class="fa fa-check"></i><b>3.3</b> Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="decomposicao.html"><a href="decomposicao.html"><i class="fa fa-check"></i><b>4</b> Decomposição de Séries Temporais</a><ul>
+<li class="chapter" data-level="4.1" data-path="decomposicao.html"><a href="decomposicao.html#medias-moveis"><i class="fa fa-check"></i><b>4.1</b> Médias móveis</a></li>
+<li class="chapter" data-level="4.2" data-path="decomposicao.html"><a href="decomposicao.html#decomposicao-classica"><i class="fa fa-check"></i><b>4.2</b> Decomposição clássica</a></li>
+<li class="chapter" data-level="4.3" data-path="decomposicao.html"><a href="decomposicao.html#outros-tipos-de-decomposicao"><i class="fa fa-check"></i><b>4.3</b> Outros tipos de decomposição</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="decomposicao.html"><a href="decomposicao.html#pacote-seasonal"><i class="fa fa-check"></i><b>4.3.1</b> Pacote <code>seasonal</code></a></li>
+<li class="chapter" data-level="4.3.2" data-path="decomposicao.html"><a href="decomposicao.html#decomposicao-stl"><i class="fa fa-check"></i><b>4.3.2</b> Decomposição STL</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="suavizacao.html"><a href="suavizacao.html"><i class="fa fa-check"></i><b>5</b> Suavização exponencial</a><ul>
+<li class="chapter" data-level="5.1" data-path="suavizacao.html"><a href="suavizacao.html#suavizacao-simples"><i class="fa fa-check"></i><b>5.1</b> Suavização simples</a></li>
+<li class="chapter" data-level="5.2" data-path="suavizacao.html"><a href="suavizacao.html#linear-de-holt"><i class="fa fa-check"></i><b>5.2</b> Linear de Holt</a></li>
+<li class="chapter" data-level="5.3" data-path="suavizacao.html"><a href="suavizacao.html#holt-winter-aditivo-e-multiplicativo"><i class="fa fa-check"></i><b>5.3</b> Holt-winter aditivo e multiplicativo</a></li>
+<li class="chapter" data-level="5.4" data-path="suavizacao.html"><a href="suavizacao.html#selecao-automatica-do-melhor-modelo-de-suavizacao-exponencial"><i class="fa fa-check"></i><b>5.4</b> Seleção automática do melhor modelo de suavização exponencial</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="arima.html"><a href="arima.html"><i class="fa fa-check"></i><b>6</b> Modelos ARIMA</a><ul>
+<li class="chapter" data-level="6.1" data-path="arima.html"><a href="arima.html#estacionariedade-diferenciacao-e-autocorrelacao"><i class="fa fa-check"></i><b>6.1</b> Estacionariedade, diferenciação e autocorrelação</a></li>
+<li class="chapter" data-level="6.2" data-path="arima.html"><a href="arima.html#modelos-autoregressivos"><i class="fa fa-check"></i><b>6.2</b> Modelos autoregressivos</a></li>
+<li class="chapter" data-level="6.3" data-path="arima.html"><a href="arima.html#modelos-de-media-movel"><i class="fa fa-check"></i><b>6.3</b> Modelos de média móvel</a></li>
+<li class="chapter" data-level="6.4" data-path="arima.html"><a href="arima.html#modelos-arima"><i class="fa fa-check"></i><b>6.4</b> Modelos ARIMA</a></li>
+<li class="chapter" data-level="6.5" data-path="arima.html"><a href="arima.html#modelos-sarima"><i class="fa fa-check"></i><b>6.5</b> Modelos SARIMA</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="outros.html"><a href="outros.html"><i class="fa fa-check"></i><b>7</b> Outros Métodos</a><ul>
+<li class="chapter" data-level="7.1" data-path="outros.html"><a href="outros.html#redes-neurais"><i class="fa fa-check"></i><b>7.1</b> Redes Neurais</a></li>
+<li class="chapter" data-level="7.2" data-path="outros.html"><a href="outros.html#pacote-mafs"><i class="fa fa-check"></i><b>7.2</b> Pacote mafs</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="clusterizacao.html"><a href="clusterizacao.html"><i class="fa fa-check"></i><b>8</b> Aplicações avançadas em séries temporais: Clusterização</a><ul>
+<li class="chapter" data-level="8.1" data-path="clusterizacao.html"><a href="clusterizacao.html#motivacao"><i class="fa fa-check"></i><b>8.1</b> Motivação</a></li>
+<li class="chapter" data-level="8.2" data-path="clusterizacao.html"><a href="clusterizacao.html#introducao-de-tecnicas-avancadas-em-series-temporais"><i class="fa fa-check"></i><b>8.2</b> Introdução de técnicas avançadas em Séries Temporais</a></li>
+<li class="chapter" data-level="8.3" data-path="clusterizacao.html"><a href="clusterizacao.html#clusterizacao-de-series-temporais"><i class="fa fa-check"></i><b>8.3</b> Clusterização de séries temporais</a></li>
+<li class="chapter" data-level="8.4" data-path="clusterizacao.html"><a href="clusterizacao.html#demonstracao"><i class="fa fa-check"></i><b>8.4</b> Demonstração</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="clusterizacao.html"><a href="clusterizacao.html#obtencao-dos-dados"><i class="fa fa-check"></i><b>8.4.1</b> Obtenção dos dados</a></li>
+<li class="chapter" data-level="8.4.2" data-path="clusterizacao.html"><a href="clusterizacao.html#transformacao-dos-dados"><i class="fa fa-check"></i><b>8.4.2</b> Transformação dos dados</a></li>
+<li class="chapter" data-level="8.4.3" data-path="clusterizacao.html"><a href="clusterizacao.html#aplicacao-da-clusterizacao"><i class="fa fa-check"></i><b>8.4.3</b> Aplicação da clusterização</a></li>
+<li class="chapter" data-level="8.4.4" data-path="clusterizacao.html"><a href="clusterizacao.html#e-o-brasil"><i class="fa fa-check"></i><b>8.4.4</b> E o Brasil?</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Curso de Séries Temporais - IBPAD</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="decomposicao" class="section level1">
+<h1><span class="header-section-number">Capítulo 4</span> Decomposição de Séries Temporais</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;seasonal&quot;)</span>
+
+<span class="kw">library</span>(BETS)
+<span class="kw">library</span>(forecast)
+<span class="kw">library</span>(lubridate)
+<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(magrittr)
+<span class="kw">library</span>(seasonal)</code></pre></div>
+<p>Séries Temporais podem exibir uma grande variedade de padrões que podem ser modelados separadamentes, o que pode ajudar o analista a entender melhor os dados e até mesmo a melhorar as previsões.</p>
+<p>Já vimos no <a href="introducao.html#elementos">capítulo introdutório</a> que uma série temporal possui três tipos de padrão: tendência, sazonalidade e ciclo. Se assumirmos que a série segue um modelo aditivo, então, matematicamente, ela pode ser descrita pela equação <span class="math inline">\(y_t = S_t + T_t + E_t\)</span>, onde <span class="math inline">\(E_t\)</span> é o componente do erro no período <span class="math inline">\(t\)</span>. Se a série for melhor descrita por um modelo multiplicativo, então a equação vira <span class="math inline">\(y_t = S_t \times T_t \times E_t\)</span>.</p>
+<p>Para se decidir se uma série segue um modelo aditivo ou multiplicativo (alguns algoritmos já calculam isso internamente), observe se a magnitude dos períodos sazonais ou a variância da tendência cresce conforme o nível (valores absolutos) da série cresce.</p>
+<p>Por exemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># simulando uma série de modelo aditivo</span>
+<span class="kw">set.seed</span>(<span class="dv">123</span>)
+x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">500</span> <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="kw">rnorm</span>(<span class="dv">250</span>, <span class="dv">50</span>, <span class="dv">25</span>), <span class="kw">rnorm</span>(<span class="dv">250</span>, <span class="dv">50</span>, <span class="dv">25</span>))
+<span class="kw">plot</span>(x, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># modelo multiplicativo</span>
+a &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">500</span>)
+b &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">500</span><span class="op">/</span><span class="dv">8</span>
+
+<span class="kw">set.seed</span>(<span class="dv">123</span>)
+x2 &lt;-<span class="st"> </span><span class="kw">pmap</span>(<span class="kw">list</span>(a, b), rnorm, <span class="dt">mean =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.numeric</span>()
+
+x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">500</span> <span class="op">+</span><span class="st"> </span>x2
+<span class="kw">plot</span>(x, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-24-2.png" width="672" /></p>
+<p>No segundo gráfico, vemos que, para valores maiores da série temporal, a variância dos dados é maior.</p>
+<div id="medias-moveis" class="section level2">
+<h2><span class="header-section-number">4.1</span> Médias móveis</h2>
+<p>Embora seja meio datada e tenha dado espaço para técnicas mais avançadas de decomposição, a média móvel é a base de muitos métodos de análises de séries temporais e uma importante etapa para estimar o componente de tendência de uma série.</p>
+<p>Vamos voltar a analisar a série temporal baixada por meio do <code>BETS</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">energia &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/ts_energia.Rda&quot;</span>)
+<span class="co"># plotando a serie contra uma media movel de 3 meses</span>
+<span class="kw">plot</span>(energia)
+<span class="kw">ma</span>(energia, <span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">lines</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">1</span>)
+<span class="co"># a media movel de 3 meses nao foi suficiente. vamos aumentar o periodo</span>
+<span class="kw">ma</span>(energia, <span class="dv">12</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">lines</span>(<span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)
+<span class="kw">ma</span>(energia, <span class="dv">24</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">lines</span>(<span class="dt">col =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>A curva que apresenta menos flutuações sazonais é verde, referente à média móvel de 24 períodos. Mesmo assim, pode-se dizer que essa decomposição não foi satisfatória, devido a curva apresentar perturbações mesmo usando um período longo (24 meses) para sua estimação.</p>
+</div>
+<div id="decomposicao-classica" class="section level2">
+<h2><span class="header-section-number">4.2</span> Decomposição clássica</h2>
+<p>A técnica de decomposição clássica é um procedimento relativamente simples, mas depende da definição do usuário se a série temporal analisada segue um modelo aditivo ou multiplicativo.</p>
+<ol style="list-style-type: decimal">
+<li>Calcule a média móvel da série temporal:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># convertendo para dataframe</span>
+df_energia &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">data =</span> <span class="kw">seq.Date</span>(<span class="dt">from =</span> <span class="kw">as.Date</span>(<span class="st">&quot;1979-01-01&quot;</span>), <span class="dt">by =</span> <span class="st">&quot;month&quot;</span>,
+                  <span class="dt">length.out =</span> <span class="kw">length</span>(energia)),
+  <span class="dt">st =</span> energia
+)
+<span class="co"># adicionando a media movel</span>
+df_energia<span class="op">$</span>media_movel &lt;-<span class="st"> </span><span class="kw">ma</span>(energia, <span class="dv">24</span>)</code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Remova o componente de tendência da série. Caso seja o modelo seja aditivo, subtraia a série pela tendência. Caso seja multiplicativo, divida.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_energia<span class="op">$</span>serie_sem_tend_adt &lt;-<span class="st"> </span>energia <span class="op">-</span><span class="st"> </span>df_energia<span class="op">$</span>media_movel
+df_energia<span class="op">$</span>serie_sem_tend_mult &lt;-<span class="st"> </span>energia <span class="op">/</span><span class="st"> </span>df_energia<span class="op">$</span>media_movel</code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Calcule a média da série sem tendência para cada período sazonal.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># no caso dessa serie de exemplo, que possui frequencia igual a 12, </span>
+<span class="co"># um periodo sazonal corresponde aos 12 meses do ano</span>
+df_energia <span class="op">%&lt;&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(<span class="dt">mes =</span> <span class="kw">month</span>(data)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">saz_adi =</span> <span class="kw">mean</span>(serie_sem_tend_adt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
+         <span class="dt">saz_mult =</span> <span class="kw">mean</span>(serie_sem_tend_mult, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ungroup</span>()
+
+<span class="co"># é necessário verificar se os indices sazonais aditivos somam 0 e se os multiplicativos somam 12</span>
+df_energia<span class="op">$</span>saz_adi <span class="op">%&gt;%</span><span class="st"> </span>unique <span class="op">%&gt;%</span><span class="st"> </span>sum</code></pre></div>
+<pre><code>## [1] 6.252638</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_energia<span class="op">$</span>saz_mult <span class="op">%&gt;%</span><span class="st"> </span>unique <span class="op">%&gt;%</span><span class="st"> </span>sum</code></pre></div>
+<pre><code>## [1] 11.99492</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># os indices sazonais nao somam zero, portanto precisamos rescalar o vetor:</span>
+df_energia <span class="op">%&lt;&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">saz_adi =</span> <span class="kw">scale</span>(saz_adi)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ungroup</span>()
+<span class="co"># checando novamente</span>
+df_energia<span class="op">$</span>saz_adi <span class="op">%&gt;%</span><span class="st"> </span>unique <span class="op">%&gt;%</span><span class="st"> </span>sum</code></pre></div>
+<pre><code>## [1] 0.1081548</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Calcular o componente de erro (restante)</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># se for aditivo, e = y_t - T_t - S_t</span>
+df_energia <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(
+  <span class="dt">erro_adi =</span> serie_sem_tend_adt <span class="op">-</span><span class="st"> </span>saz_adi,
+  <span class="dt">erro_mult =</span> serie_sem_tend_mult <span class="op">/</span><span class="st"> </span>saz_mult
+)</code></pre></div>
+<p>Vamos comparar os dois componentes de erro obtidos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">layout</span>(<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dv">2</span>, <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>))
+<span class="kw">plot</span>(df_energia<span class="op">$</span>erro_adi, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)
+<span class="kw">lines</span>(df_energia<span class="op">$</span>erro_mult, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col  =</span> <span class="st">&quot;red&quot;</span>)
+
+<span class="kw">hist</span>(df_energia<span class="op">$</span>erro_adi, <span class="dt">main =</span> <span class="st">&quot;Distribuição do erro aditivo&quot;</span>)
+<span class="kw">hist</span>(df_energia<span class="op">$</span>erro_mult, <span class="dt">main =</span> <span class="st">&quot;Distribuição do erro multiplicativo&quot;</span>)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p>Outro gráfico que pode ser usado para comparar o erro aleatório é o de autocorrelação:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
+df_energia <span class="op">%$%</span><span class="st"> </span><span class="kw">acf</span>(erro_adi, <span class="dt">na.action =</span> na.omit)
+df_energia <span class="op">%$%</span><span class="st"> </span><span class="kw">acf</span>(erro_mult, <span class="dt">na.action =</span> na.omit)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># verificando qual dos dois possui a menor autocorrelacao total</span>
+df_energia <span class="op">%$%</span>
+<span class="st">  </span><span class="kw">acf</span>(erro_adi, <span class="dt">na.action =</span> na.omit, <span class="dt">plot =</span> <span class="ot">FALSE</span>)<span class="op">$</span>acf<span class="op">^</span><span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>sum</code></pre></div>
+<pre><code>## [1] 2.67057</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_energia <span class="op">%$%</span>
+<span class="st">  </span><span class="kw">acf</span>(erro_mult, <span class="dt">na.action =</span> na.omit, <span class="dt">plot =</span> <span class="ot">FALSE</span>)<span class="op">$</span>acf<span class="op">^</span><span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>sum</code></pre></div>
+<pre><code>## [1] 2.401482</code></pre>
+<p>Pela análise da autocorrelação, a decomposição multiplicativa parece ser mais apropriada.</p>
+</div>
+<div id="outros-tipos-de-decomposicao" class="section level2">
+<h2><span class="header-section-number">4.3</span> Outros tipos de decomposição</h2>
+<div id="pacote-seasonal" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> Pacote <code>seasonal</code></h3>
+<p>O pacote <code>seasonal</code>, disponível no <a href="https://cran.r-project.org/web/packages/seasonal/index.html">CRAN</a>, implementa uma interface ao algoritmo e software <strong>X-13-ARIMA-SEATS</strong>, desenvolvido pelo <a href="https://www.census.gov/srd/www/x13as/">US Census Bureau</a>. Possui recursos como seleção automática do modelo ARIMA, detecção de outliers e suporte para feriados definidos pelo usuário, como Carnaval e Páscoa.</p>
+<p>Um rápido uso do pacote <code>seasonal</code> é mostrado abaixo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">seas</span>(energia)
+<span class="co"># resumo sobre o modelo</span>
+<span class="kw">summary</span>(m)</code></pre></div>
+<pre><code>## 
+## Call:
+## seas(x = energia)
+## 
+## Coefficients:
+##                     Estimate Std. Error z value Pr(&gt;|z|)    
+## Leap Year          5.861e+01  5.619e+01   1.043 0.296924    
+## Mon               -2.526e+01  1.748e+01  -1.445 0.148339    
+## Tue               -1.817e+01  1.746e+01  -1.040 0.298218    
+## Wed               -5.446e+01  1.746e+01  -3.119 0.001812 ** 
+## Thu                9.225e+01  1.746e+01   5.283 1.27e-07 ***
+## Fri               -3.713e+01  1.763e+01  -2.106 0.035165 *  
+## Sat                1.139e+01  1.748e+01   0.652 0.514642    
+## Easter[15]        -1.299e+02  3.732e+01  -3.480 0.000501 ***
+## AO1990.May        -9.306e+02  1.632e+02  -5.704 1.17e-08 ***
+## LS2001.Jul        -1.707e+03  1.959e+02  -8.713  &lt; 2e-16 ***
+## LS2003.Dec         8.830e+02  1.961e+02   4.502 6.72e-06 ***
+## AO2008.Dec         1.005e+03  2.038e+02   4.931 8.18e-07 ***
+## LS2008.Dec        -2.100e+03  2.454e+02  -8.557  &lt; 2e-16 ***
+## MA-Nonseasonal-01  2.702e-01  4.459e-02   6.059 1.37e-09 ***
+## MA-Seasonal-12     7.701e-01  3.122e-02  24.672  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## SEATS adj.  ARIMA: (0 1 1)(0 1 1)  Obs.: 471  Transform: none
+## AICc:  6264, BIC:  6329  QS (no seasonality in final):1.115  
+## Box-Ljung (no autocorr.): 34.74 . Shapiro (normality): 0.9928 *
+## Messages generated by X-13:
+## Notes:
+## - Unable to test AO2008.Dec due to regression matrix
+##   singularity.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plotando o modelo</span>
+<span class="kw">plot</span>(m)</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># retornando as componentes individuais da serie:</span>
+<span class="kw">final</span>(m) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">20</span>) <span class="co"># serie sem tendencia</span></code></pre></div>
+<pre><code>##           Jan      Feb      Mar      Apr      May      Jun      Jul
+## 1980 5005.965 5051.760 5044.333 5001.809 4997.515 5087.738 5094.600
+## 1981 5390.172 5297.773 5385.770 5138.128 5218.988 5029.885 5080.190
+##           Aug      Sep      Oct      Nov      Dec
+## 1980 5163.362 5204.023 5267.454 5271.295 5327.045
+## 1981 4950.570</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">trend</span>(m) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">20</span>) <span class="co"># tendencia da serie</span></code></pre></div>
+<pre><code>##           Jan      Feb      Mar      Apr      May      Jun      Jul
+## 1980 5008.057 5028.672 5030.321 5021.832 5033.681 5069.899 5111.983
+## 1981 5337.207 5327.410 5287.642 5220.365 5153.433 5090.446 5029.089
+##           Aug      Sep      Oct      Nov      Dec
+## 1980 5157.802 5206.487 5248.918 5284.289 5319.683
+## 1981 4956.184</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">irregular</span>(m) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">20</span>) <span class="co"># erro aleatorio</span></code></pre></div>
+<pre><code>##             Jan        Feb        Mar        Apr        May        Jun
+## 1980  -2.091950  23.088065  14.012675 -20.022918 -36.166350  17.839499
+## 1981  52.964646 -29.636641  98.127233 -82.237707  65.554973 -60.560923
+##             Jul        Aug        Sep        Oct        Nov        Dec
+## 1980 -17.382187   5.559417  -2.464073  18.536265 -12.994203   7.361955
+## 1981  51.100318  -5.613686</code></pre>
+</div>
+<div id="decomposicao-stl" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> Decomposição STL</h3>
+<p>O método STL funciona apenas para decomposições aditivas. Aplicá-la no R é muito fácil, usando a função <code>stl</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">energia <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">stl</span>(<span class="dt">s.window =</span> <span class="st">&quot;periodic&quot;</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co">#raramente este argumento sera diferente</span>
+<span class="st">  </span>plot</code></pre></div>
+<p><img src="curso-series-temporais_files/figure-html/stl-1.png" width="672" /></p>
+<div class="figure">
+<img src="http://i.imgur.com/lBCBhhP.jpg" />
+
+</div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="avaliacao.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="suavizacao.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-decomposicao.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["curso-series-temporais.pdf", "curso-series-temporais.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
