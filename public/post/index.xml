@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 23 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 04 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Anunciando um &#34;novo&#34; dataset no Kaggle: Pesquisa Origem Destino do Metrô SP</title>
+      <link>/post/anunciando-um-novo-dataset-no-kaggle-pesquisa-origem-destino-do-metr%C3%B4-sp/</link>
+      <pubDate>Thu, 04 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/anunciando-um-novo-dataset-no-kaggle-pesquisa-origem-destino-do-metr%C3%B4-sp/</guid>
+      <description>Motivação Esta matéria da Folha de São Paulo me motivou a fazer algo que sempre tive muito interesse e que foi responsável por ajudar a desenvolver meu raciocínio analítico: baixar um conjunto de dados público, fazer minhas próprias análises e tirar conclusões que considero interessantes.
+Ao baixar o dataset neste link, contudo, meu primeiro obstáculo foi o formato em que os dados foram disponbilizados. Problemas como células mescladas, problemas de encoding, formato matricial (e não tidy) de tabelas, etc.</description>
+    </item>
     
     <item>
       <title>Qual o melhor serviço de streaming de filmes e séries no Brasil? O R responde.</title>

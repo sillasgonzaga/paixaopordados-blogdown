@@ -1,0 +1,166 @@
+---
+title: 'Anunciando um "novo" dataset no Kaggle: Pesquisa Origem Destino do Metrô SP'
+author: ''
+date: '2019-07-04'
+slug: anunciando-um-novo-dataset-no-kaggle-pesquisa-origem-destino-do-metrô-sp
+categories:
+  - R
+tags: []
+description: ''
+topics: []
+---
+
+
+
+<div id="motivacao" class="section level2">
+<h2>Motivação</h2>
+<p><a href="https://www1.folha.uol.com.br/cotidiano/2019/07/sao-paulo-ganha-nova-hora-do-rush-com-aumento-de-viagens-ao-meio-dia.shtml">Esta matéria da Folha de São Paulo</a> me motivou a fazer algo que sempre tive muito interesse e que foi responsável por ajudar a desenvolver meu raciocínio analítico: baixar um conjunto de dados público, fazer minhas próprias análises e tirar conclusões que considero interessantes.</p>
+<p>Ao baixar o dataset <a href="http://www.metro.sp.gov.br/pesquisa-od/">neste link</a>, contudo, meu primeiro obstáculo foi o formato em que os dados foram disponbilizados. Problemas como células mescladas, problemas de encoding, formato matricial (e não tidy) de tabelas, etc. Além disso, o próprio nome dos arquivos não esclarece seu conteúdo e não facilita o trabalho de quem deseja juntar as diferentes tabelas para tirar conclusões criativas.</p>
+<p>Por exemplo, existe relação entre renda familiar e a “popularidade” de uma zona de destino de viagens? Bairros mais ricos recebem mais trabalhadores da indústria, de serviços ou de comércio? Quais distritos de São Paulo mais “exportam” pessoas que pegam metrô para buscar emprego? As possibilidades de análises e modelagens são muitas.</p>
+<p>Com esta motivação, ao perceber que o trabalho de limpeza de dados, realizado <a href="https://gist.github.com/sillasgonzaga/5e3282d160ea87a97c0be0b46d00df8a">neste código</a>, poderia ser trabalhoso para mais gente além de mim, decidi exportar os arquivos <a href="https://www.kaggle.com/sillas/pesquisa-origem-destino-2017-metr-so-paulo">no Kaggle</a> em um arquivo SQLite que contem as tabelas, além de salvar as tabelas individualmente em arquivos csv após passar pelo processo de limpeza e padronização de dados.</p>
+</div>
+<div id="como-usar-os-dados" class="section level2">
+<h2>Como usar os dados</h2>
+<p>O <code>dplyr</code> tem um recurso muito legal: pode interagir diretamente com arquivos SQL, sejam eles como arquivo local ou como um sistema de banco de dados hospedado em algum servidor. O <a href="https://db.rstudio.com/">Rstudio</a> possui um site com vários tutoriais sobre trabalhar com bancos de dados SQL.</p>
+<pre class="r"><code>library(RSQLite)
+library(tidyverse)
+# apos baixar o arquivo SQLITE chamado DB_ORIGEM_DESTINO_SP do Kaggle,
+# indique abaixo o caminho para o arquivo
+arquivo_db &lt;- &quot;/home/sillas/R/Projetos/pesquisa_origem_destino/data/DB_ORIGEM_DESTINO_SP&quot;
+# criar conexao com o banco
+con &lt;- dbConnect(RSQLite::SQLite(), dbname = arquivo_db)</code></pre>
+<p>A função <code>dbListTables</code> exibe quais tabelas estão disponíveis:</p>
+<pre class="r"><code>dbListTables(con)</code></pre>
+<pre><code>##  [1] &quot;dados_geograficos_das_zonas&quot;                                                                           
+##  [2] &quot;dados_gerais&quot;                                                                                          
+##  [3] &quot;dados_gerais_por_zona_de_pesquisa_2017&quot;                                                                
+##  [4] &quot;dicionario_das_variaveis_da_tabela_dados_gerais&quot;                                                       
+##  [5] &quot;dicionarios_de_variaveis_da_tabela_de_dados_gerais_encodificadas&quot;                                      
+##  [6] &quot;empregos_com_trabalho_externo_ou_interno_por_zona_de_emprego_2017&quot;                                     
+##  [7] &quot;empregos_em_endereco_fixo_na_propria_residencia_e_sem_endereco_fixo_por_zona_de_emprego_2017&quot;          
+##  [8] &quot;empregos_por_classe_de_atividade_e_zona_de_emprego_2017&quot;                                               
+##  [9] &quot;empregos_por_setor_de_atividade_e_zona_de_emprego_2017&quot;                                                
+## [10] &quot;empregos_por_vinculo_empregaticio_e_zona_de_emprego_2017&quot;                                              
+## [11] &quot;familias_por_numero_de_automoveis_particulares_e_zona_de_residencia_2017&quot;                              
+## [12] &quot;matriculas_escolares_por_tipo_de_estabelecimento_e_zona_de_escola_2017&quot;                                
+## [13] &quot;populacao_por_condicao_de_atividade_e_zona_de_residencia_2017&quot;                                         
+## [14] &quot;populacao_por_faixa_de_renda_familiar_mensal_e_zona_de_residencia_2017&quot;                                
+## [15] &quot;populacao_por_faixa_etaria_e_zona_de_residencia_2017&quot;                                                  
+## [16] &quot;populacao_por_genero_e_zona_de_residencia_2017&quot;                                                        
+## [17] &quot;populacao_por_grau_de_instrucao_e_zona_de_residencia_2017&quot;                                             
+## [18] &quot;populacao_que_trabalha_por_vinculo_empregaticio_do_primeiro_trabalho_e_zona_de_residencia_2017&quot;        
+## [19] &quot;renda_total_renda_media_familiar_renda_per_capita_e_renda_mediana_familiar_por_zona_de_residencia_2017&quot;
+## [20] &quot;tempo_medio_das_viagem_produzidas_por_tipo_de_viagem_e_zona_de_origem_2017&quot;                            
+## [21] &quot;viagens_diarias_a_pe_por_zonas_de_origem_e_destino_2017&quot;                                               
+## [22] &quot;viagens_diarias_atraidas_por_modo_principal_e_zona_de_destino_2017&quot;                                    
+## [23] &quot;viagens_diarias_atraidas_por_motivo_e_zona_de_destino_2017&quot;                                            
+## [24] &quot;viagens_diarias_atraidas_por_tipo_e_zona_de_destino_2017&quot;                                              
+## [25] &quot;viagens_diarias_motorizadas_por_zonas_de_origem_e_destino_2017&quot;                                        
+## [26] &quot;viagens_diarias_nao_motorizadas_por_zonas_de_origem_e_destino_2017&quot;                                    
+## [27] &quot;viagens_diarias_por_bicicleta_e_zonas_de_origem_e_destino_2017&quot;                                        
+## [28] &quot;viagens_diarias_por_modo_coletivo_e_zonas_de_origem_e_destino_2017&quot;                                    
+## [29] &quot;viagens_diarias_por_modo_individual_e_zonas_de_origem_e_destino_2017&quot;                                  
+## [30] &quot;viagens_diarias_produzidas_a_pe_por_razao_de_escolha_do_modo_e_zona_de_origem_2017&quot;                    
+## [31] &quot;viagens_diarias_produzidas_por_modo_principal_e_zona_de_origem_2017&quot;                                   
+## [32] &quot;viagens_diarias_produzidas_por_motivo_e_zona_de_origem_2017&quot;                                           
+## [33] &quot;viagens_diarias_produzidas_por_tipo_e_zona_de_origem_2017&quot;                                             
+## [34] &quot;viagens_diarias_totais_por_zonas_de_origem_e_destino_2017&quot;</code></pre>
+<p>Para iniciantes nesse dataset, as tabelas mais importantes são estas:</p>
+<pre class="r"><code>dbListTables(con)[c(1, 4, 5)]</code></pre>
+<pre><code>## [1] &quot;dados_geograficos_das_zonas&quot;                                     
+## [2] &quot;dicionario_das_variaveis_da_tabela_dados_gerais&quot;                 
+## [3] &quot;dicionarios_de_variaveis_da_tabela_de_dados_gerais_encodificadas&quot;</code></pre>
+<p>Para interagir com uma tabela desse banco de dados, usa-se a função <code>tbl()</code>:</p>
+<pre class="r"><code>tbl(con, # arquivo de conexao com o banco
+    &quot;dicionario_das_variaveis_da_tabela_dados_gerais&quot;) # nome da tabela)</code></pre>
+<pre><code>## # Source:   table&lt;dicionario_das_variaveis_da_tabela_dados_gerais&gt; [?? x
+## #   2]
+## # Database: sqlite 3.22.0
+## #   [/home/sillas/R/Projetos/pesquisa_origem_destino/data/DB_ORIGEM_DESTINO_SP]
+##    VAR_NOME VAR_CONTEUDO                             
+##    &lt;chr&gt;    &lt;chr&gt;                                    
+##  1 ZONA     Zona do Domicílio                        
+##  2 MUNI_DOM Município de Domicílio                   
+##  3 CO_DOM_X Coordenada X Domicílio                   
+##  4 CO_DOM_Y Coordenada Y Domicílio                   
+##  5 ID_DOM   Identifica Domicílio                     
+##  6 F_DOM    Identifica Primeiro Registro do Domicílio
+##  7 FE_DOM   Fator de Expansão do Domicílio           
+##  8 DOM      Número do Domicílio                      
+##  9 CD_ENTRE Código de Entrevista                     
+## 10 DATA     Data da Entrevista                       
+## # … with more rows</code></pre>
+<p>O <code>dplyr</code> faz, então, algo que se chama de consulta lazy: o output acima não é um dataframe ou tibble, mas sim uma breve exibição das primeiras linhas do resultado da consulta à tabela. O benefício disso é que o resultado da consulta não foi carregado para a memória RAM, o que é muito útil ao lidar com bancos de dados muito grandes e queries complexas.</p>
+<p>No código abaixo, por exemplo, eu junto duas tabelas diferentes e filtro as zonas da cidade de São Paulo para só então “baixar” ou trazer os dados para a memória RAM com a função <code>collect()</code>:</p>
+<pre class="r"><code>df_zonas_sp &lt;- tbl(con, &quot;dados_gerais&quot;) %&gt;% 
+  left_join(tbl(con, &quot;dados_geograficos_das_zonas&quot;),
+            by = c(&quot;ZONA&quot; = c(&quot;COD_ZONA&quot;))) %&gt;% 
+  # filtrar zonas de SP
+  filter(NOME_MUNICIPIO == &quot;São Paulo&quot;) %&gt;% 
+  collect()</code></pre>
+<p>A partir dos dados obtidos, podemos fazer qualquer tipo de análise desejada. Por exemplo, um gráfico contendo a renda familiar mediana por distrito na cidade de São Paulo:</p>
+<pre class="r"><code># distritos por renda familiar
+renda_por_distrito &lt;- df_zonas_sp %&gt;% 
+  filter(!is.na(RENDA_FA)) %&gt;% 
+  group_by(NOME_AREA_SP_CAPITAL, NOME_DISTRITO) %&gt;% 
+  summarise(RENDA_MEDIANA = median(RENDA_FA))
+
+quartis &lt;- quantile(renda_por_distrito$RENDA_MEDIANA,
+                    prob = c(.25, .50, .75))
+
+renda_por_distrito %&gt;% 
+  ggplot(aes(x = fct_reorder(NOME_DISTRITO, RENDA_MEDIANA),
+             y = RENDA_MEDIANA)) +
+  geom_col(fill = &quot;#A82B2EFE&quot;) +
+  geom_hline(yintercept = quartis, linetype = &quot;dashed&quot;) +
+  facet_wrap(vars(NOME_AREA_SP_CAPITAL), scales = &quot;free_y&quot;) +
+  labs(x = NULL, y = NULL,
+       title = &quot;Mediana da renda familiar por zona na cidade de SP&quot;) +
+  scale_y_continuous(breaks = seq(0, 10000, 2000),
+                     minor_breaks = NULL) +
+  coord_flip()</code></pre>
+<p><img src="/post/2019-07-04-anunciando-um-novo-dataset-no-kaggle-pesquisa-origem-destino-do-metr%C3%B4-sp_files/figure-html/unnamed-chunk-6-1.png" width="864" /></p>
+<p>Outro tipo de análise possível pelo cruzamento de tabelas: Para onde vão as pessoas que partem da Luz?</p>
+<pre class="r"><code># para onde as pessoas que moram na luz vão?
+tb_zona_de_para &lt;- tbl(con, &quot;dados_geograficos_das_zonas&quot;) %&gt;% 
+  select(COD_ZONA, NOME_ZONA)
+
+
+tbl(con, &quot;viagens_diarias_totais_por_zonas_de_origem_e_destino_2017&quot;) %&gt;% 
+  left_join(tb_zona_de_para, by = c(&quot;COD_ZONA_ORIGEM&quot; = &quot;COD_ZONA&quot;)) %&gt;% 
+  rename(NOME_ZONA_ORIGEM = NOME_ZONA) %&gt;% 
+  left_join(tb_zona_de_para, by = c(&quot;COD_ZONA_DESTINO&quot; = &quot;COD_ZONA&quot;)) %&gt;% 
+  rename(NOME_ZONA_DESTINO = NOME_ZONA) %&gt;% 
+  filter(NOME_ZONA_ORIGEM == &quot;Luz&quot;) %&gt;% 
+  select(NOME_ZONA_DESTINO, QTD) %&gt;% 
+  arrange(desc(QTD))</code></pre>
+<pre><code>## # Source:     lazy query [?? x 2]
+## # Database:   sqlite 3.22.0
+## #   [/home/sillas/R/Projetos/pesquisa_origem_destino/data/DB_ORIGEM_DESTINO_SP]
+## # Ordered by: desc(QTD)
+##    NOME_ZONA_DESTINO     QTD
+##    &lt;chr&gt;               &lt;dbl&gt;
+##  1 Luz                18425.
+##  2 Bom Retiro          3702.
+##  3 Parque Dom Pedro    2752.
+##  4 Santa Ifigênia      2550.
+##  5 Santa Cecília       1945.
+##  6 Ponte Pequena       1712.
+##  7 Saúde               1392.
+##  8 Vila Formosa        1368.
+##  9 Pari                1304.
+## 10 Ermelino Matarazzo  1261.
+## # … with more rows</code></pre>
+</div>
+<div id="e-python" class="section level2">
+<h2>E Python?</h2>
+<p>Também é bem fácil importar um arquivo SQLite no Python combinando os módulos <code>sqlite3</code> e <code>pandas</code>.</p>
+<pre class="python"><code>import sqlite3
+import pandas as pd
+
+
+x = &#39;/home/sillas/R/Projetos/pesquisa_origem_destino/data/DB_ORIGEM_DESTINO_SP&#39;
+con = sqlite3.connect(x)
+# importar tabela como um dataframe no pandas
+tb = pd.read_sql_query(&#39;SELECT * FROM dicionario_das_variaveis_da_tabela_dados_gerais&#39;, con)</code></pre>
+</div>
