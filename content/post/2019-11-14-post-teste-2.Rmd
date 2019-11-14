@@ -1,0 +1,19 @@
+---
+title: Post teste 2
+author: Sillas
+date: '2019-11-14'
+slug: post-teste-2
+categories:
+  - R
+tags:
+  - calcCidadao
+description: ''
+topics: []
+---
+
+Ei
+
+```{r}
+hist(rnorm(500))
+```
+

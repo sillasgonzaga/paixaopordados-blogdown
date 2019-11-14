@@ -3,17 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/post/anunciando-um-novo-dataset-no-kaggle-pesquisa-origem-destino-do-metr%C3%B4-sp/</loc>
-    <lastmod>2019-07-04T00:00:00+00:00</lastmod>
+    <loc>/tags/calccidadao/</loc>
+    <lastmod>2019-11-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/</loc>
-    <lastmod>2019-07-04T00:00:00+00:00</lastmod>
+    <lastmod>2019-11-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/post-teste/</loc>
+    <lastmod>2019-11-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/post-teste-2/</loc>
+    <lastmod>2019-11-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/post/</loc>
+    <lastmod>2019-11-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2019-11-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/anunciando-um-novo-dataset-no-kaggle-pesquisa-origem-destino-do-metr%C3%B4-sp/</loc>
     <lastmod>2019-07-04T00:00:00+00:00</lastmod>
   </url>
   
@@ -28,22 +48,12 @@
   </url>
   
   <url>
-    <loc>/tags/</loc>
-    <lastmod>2019-02-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/post/a-equacao-mais-perigosa-do-mundo/</loc>
     <lastmod>2018-07-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/post/analise-e-simulacao-de-investimentos-com-o-pacote-calccidadao/</loc>
-    <lastmod>2018-06-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/calccidadao/</loc>
     <lastmod>2018-06-09T00:00:00+00:00</lastmod>
   </url>
   
