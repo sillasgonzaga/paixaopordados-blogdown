@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Series Temporais on Paixão por Dados</title>
+    <title>series temporais on Paixão por Dados</title>
     <link>/tags/series-temporais/</link>
-    <description>Recent content in Series Temporais on Paixão por Dados</description>
+    <description>Recent content in series temporais on Paixão por Dados</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
@@ -29,7 +29,7 @@
       
       <guid>/post/mafs01/</guid>
       <description>Depois de um longo hiato devido à falta de tempo, o blog está de volta à ativa.
-Um dos (muitos) motivos de minha ausência tem sido a elaboração do meu TCC, que é sobre previsão de demanda. Eu desenvolvi um sistema que seleciona automaticamente o melhor modelo de previsão dentre os disponíveis no pacote forecast para uma dada série temporal de acordo com a métrica de erro escolhida pelo usuário. O nome do pacote é mafs e já está disponível em meu Github para ser baixado e instalado gratuitamente.</description>
+Um dos (muitos) motivos de minha ausência tem sido a elaboração do meu TCC, que é sobre previsão de demanda. Eu desenvolvi um sistema que seleciona automaticamente o melhor modelo de previsão dentre os disponíveis no pacote forecast para uma dada série temporal de acordo com a métrica de erro escolhida pelo usuário.</description>
     </item>
     
     <item>

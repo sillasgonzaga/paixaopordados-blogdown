@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.31" />
+  <meta name="generator" content="Hugo 0.59.1" />
 
   <title>O Sensacionalista e Text Mining: Análise de sentimento usando o lexiconPT &middot; Paixão por Dados</title>
 
@@ -237,7 +237,10 @@
 
 </div>
 
-  <p>De volta à ativa no blog!</p>
+  
+
+
+<p>De volta à ativa no blog!</p>
 <p>Recentemente, quando precisei fazer pela primeira vez algum tipo de análise em cima de textos (o chamado Text Mining ou Mineração de Texto) em Português, senti falta de ter um acesso fácil a um léxico na linguagem. O R já tem a sua disposição vários recursos para quem quer fazer Text Mining em inglês, como os pacotes <code>tokenizer</code>, <code>tidytext</code>, <code>tm</code> e <code>lexicon</code>, além de vários blog posts sobre Sentiment Analysis que você encontra no R-bloggers. Contudo, existe uma séria escassez de material de referência na língua portuguesa.</p>
 <p>O pacote <a href="https://github.com/sillasgonzaga/lexiconPT"><code>lexiconPT</code></a>, que eu lancei em 20/09/2017 no Github (e em breve no CRAN também) nasceu para resolver parte desse problema. Até o momento, o <code>lexiconPT</code> possui três datasets de léxicos: o OpLexicon (versões 2.1 e 3.0) e o SentiLex-PT02. Não pretendo (nem tenho competência para tal, pois sou iniciante em Text Mining - sem falsa modéstia) destrinchar como cada um deles funciona e em quê eles diferem. Para isso, sugiro ler as referências citadas na documentação dos próprios datasets (ex.: <code>help(&quot;oplexicon_v2.1&quot;)</code>).</p>
 <p>Mas ter o léxico em mãos só resolve parte dos problemas: ainda faltam os textos em si para serem analisados. Algumas ideias de datasets poderiam ser notícias, letras de músicas, livros (tem vários em Domínio Público), tweets, etc. Para demonstrar um simples uso do pacote, eu decidi por analisar comentários feitos por usuários na página do <a href="https://www.facebook.com/sensacionalista/">Sensacionalista</a>, uma das mais populares do Facebook. A coleta dos dados foi relativamente fácil graças ao pacote <code>Rfacebook</code>.</p>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Paixão por Dados</title>
@@ -7,49 +7,13 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 09 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 23 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Calccidadao</title>
-      <link>/tags/calccidadao/</link>
-      <pubDate>Sat, 09 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/calccidadao/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Censo Educacao</title>
-      <link>/tags/censo-educacao/</link>
-      <pubDate>Fri, 08 Jul 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/censo-educacao/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Cluster</title>
-      <link>/tags/cluster/</link>
-      <pubDate>Tue, 28 Jun 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/cluster/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Data Visualization</title>
-      <link>/tags/data-visualization/</link>
-      <pubDate>Mon, 14 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/data-visualization/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Estatistica</title>
+      <title>estatistica</title>
       <link>/tags/estatistica/</link>
       <pubDate>Sat, 23 Feb 2019 00:00:00 +0000</pubDate>
       
@@ -58,16 +22,16 @@
     </item>
     
     <item>
-      <title>Eventos</title>
-      <link>/tags/eventos/</link>
-      <pubDate>Tue, 23 May 2017 00:00:00 +0000</pubDate>
+      <title>calcCidadao</title>
+      <link>/tags/calccidadao/</link>
+      <pubDate>Sat, 09 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/eventos/</guid>
+      <guid>/tags/calccidadao/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Finanças</title>
+      <title>finanças</title>
       <link>/tags/finan%C3%A7as/</link>
       <pubDate>Sat, 09 Jun 2018 00:00:00 +0000</pubDate>
       
@@ -76,7 +40,7 @@
     </item>
     
     <item>
-      <title>Investimentos</title>
+      <title>investimentos</title>
       <link>/tags/investimentos/</link>
       <pubDate>Sat, 09 Jun 2018 00:00:00 +0000</pubDate>
       
@@ -85,25 +49,16 @@
     </item>
     
     <item>
-      <title>Lexiconpt</title>
-      <link>/tags/lexiconpt/</link>
-      <pubDate>Sat, 14 Apr 2018 00:00:00 +0000</pubDate>
+      <title>data visualization</title>
+      <link>/tags/data-visualization/</link>
+      <pubDate>Mon, 14 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/lexiconpt/</guid>
+      <guid>/tags/data-visualization/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Mafs</title>
-      <link>/tags/mafs/</link>
-      <pubDate>Sun, 29 Jan 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/mafs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Mapas</title>
+      <title>mapas</title>
       <link>/tags/mapas/</link>
       <pubDate>Mon, 14 May 2018 00:00:00 +0000</pubDate>
       
@@ -112,16 +67,61 @@
     </item>
     
     <item>
-      <title>Olx</title>
-      <link>/tags/olx/</link>
-      <pubDate>Fri, 18 Nov 2016 00:00:00 +0000</pubDate>
+      <title>lexiconPT</title>
+      <link>/tags/lexiconpt/</link>
+      <pubDate>Sat, 14 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/olx/</guid>
+      <guid>/tags/lexiconpt/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Palestras</title>
+      <title>text mining</title>
+      <link>/tags/text-mining/</link>
+      <pubDate>Sat, 14 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/text-mining/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>redes-sociais</title>
+      <link>/tags/redes-sociais/</link>
+      <pubDate>Thu, 22 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/redes-sociais/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sna</title>
+      <link>/tags/sna/</link>
+      <pubDate>Thu, 22 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/sna/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web scraping</title>
+      <link>/tags/web-scraping/</link>
+      <pubDate>Sun, 15 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/web-scraping/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>eventos</title>
+      <link>/tags/eventos/</link>
+      <pubDate>Tue, 23 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/eventos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>palestras</title>
       <link>/tags/palestras/</link>
       <pubDate>Tue, 23 May 2017 00:00:00 +0000</pubDate>
       
@@ -130,7 +130,79 @@
     </item>
     
     <item>
-      <title>Plot</title>
+      <title>mafs</title>
+      <link>/tags/mafs/</link>
+      <pubDate>Sun, 29 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/mafs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>series temporais</title>
+      <link>/tags/series-temporais/</link>
+      <pubDate>Sun, 29 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/series-temporais/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>olx</title>
+      <link>/tags/olx/</link>
+      <pubDate>Fri, 18 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/olx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>censo-educacao</title>
+      <link>/tags/censo-educacao/</link>
+      <pubDate>Fri, 08 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/censo-educacao/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cluster</title>
+      <link>/tags/cluster/</link>
+      <pubDate>Tue, 28 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/cluster/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>unsupervised</title>
+      <link>/tags/unsupervised/</link>
+      <pubDate>Tue, 28 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/unsupervised/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>servidores publicos</title>
+      <link>/tags/servidores-publicos/</link>
+      <pubDate>Wed, 03 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/servidores-publicos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>transparencia</title>
+      <link>/tags/transparencia/</link>
+      <pubDate>Wed, 03 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/transparencia/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>plot</title>
       <link>/tags/plot/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
@@ -148,83 +220,11 @@
     </item>
     
     <item>
-      <title>Redes Sociais</title>
-      <link>/tags/redes-sociais/</link>
-      <pubDate>Thu, 22 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/redes-sociais/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Regression</title>
+      <title>regression</title>
       <link>/tags/regression/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
       <guid>/tags/regression/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Series Temporais</title>
-      <link>/tags/series-temporais/</link>
-      <pubDate>Sun, 29 Jan 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/series-temporais/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Servidores Publicos</title>
-      <link>/tags/servidores-publicos/</link>
-      <pubDate>Wed, 03 Feb 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/servidores-publicos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Sna</title>
-      <link>/tags/sna/</link>
-      <pubDate>Thu, 22 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/sna/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Text Mining</title>
-      <link>/tags/text-mining/</link>
-      <pubDate>Sat, 14 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/text-mining/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Transparencia</title>
-      <link>/tags/transparencia/</link>
-      <pubDate>Wed, 03 Feb 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/transparencia/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Unsupervised</title>
-      <link>/tags/unsupervised/</link>
-      <pubDate>Tue, 28 Jun 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/unsupervised/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Web Scraping</title>
-      <link>/tags/web-scraping/</link>
-      <pubDate>Sun, 15 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/web-scraping/</guid>
       <description></description>
     </item>
     

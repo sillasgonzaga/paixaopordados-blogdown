@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.31" />
+  <meta name="generator" content="Hugo 0.59.1" />
 
   <title>mafs: Analisando a eficácia dos modelos preditivos usados no pacote &middot; Paixão por Dados</title>
 
@@ -237,7 +237,10 @@
 
 </div>
 
-  <p>Lancei recentemente a versão 0.0.2 do pacote <code>mafs</code> tanto no <a href="https://cran.r-project.org/web/packages/mafs/index.html">CRAN</a> como no <a href="http://github.com/sillasgonzaga/mafs">Github</a>. Adicionei dois novos recursos:<br />
+  
+
+
+<p>Lancei recentemente a versão 0.0.2 do pacote <code>mafs</code> tanto no <a href="https://cran.r-project.org/web/packages/mafs/index.html">CRAN</a> como no <a href="http://github.com/sillasgonzaga/mafs">Github</a>. Adicionei dois novos recursos:<br />
 * No data frame <code>df_models</code> criado, foi acrescentada uma variável referente ao tempo de execução (runtime) do modelo para a série temporal de input. Isso foi uma necessidade devido ao fato de alguns modelos levarem muito tempo para rodar. Esse dado será importante para ser levado em consideração no segundo recurso adicionado:<br />
 * A função <code>select_forecast()</code> agora tem um argumento chamado <code>dont_apply</code>, no qual o usuário poderá inserir os modelos (em forma de vetor de caracteres) que não deverão ser usados na função para criar modelos preditivos. Esse recurso é muito útil para excluir da função os pacotes que demoram muito e que não costumam entregar bons resultados.</p>
 <p>Neste post, farei uma demonstração da aplicação do pacote <code>mafs</code> em diversas séries temporais diferentes.</p>
