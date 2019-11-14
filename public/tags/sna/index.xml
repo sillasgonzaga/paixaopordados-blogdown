@@ -34,17 +34,5 @@ Da Wikipedia:
  As Redes Sociais consistem em estruturas que representam pessoas ou organizações (atores) e as relações entre si. A Análise de Redes Sociais perceciona as relações sociais em termos da Teoria de Redes.</description>
     </item>
     
-    <item>
-      <title>Meta-análise R (1): Quais são os pacotes mais baixados?</title>
-      <link>/post/meta-analise-r-01/</link>
-      <pubDate>Wed, 25 May 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/post/meta-analise-r-01/</guid>
-      <description>Este é o primeiro post de uma nova série sobre meta-análises de pacotes R. Com o pacote miniCRAN é possível baixar logs de downloads de pacotes de R por meio do espelho (mirror) do RStudio do CRAN. Cada linha nesses logs representa um download de um pacote por um usuário.
-O objetivo desta série é analisar os dados gerados por esses logs.
-Para este primeiro post, é mostrado:
-- Como baixar os logs de downloads de pacotes do CRAN do RStudio de forma automatizada com o pacote miniCRAN;</description>
-    </item>
-    
   </channel>
 </rss>

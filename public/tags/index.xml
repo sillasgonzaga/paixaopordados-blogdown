@@ -7,19 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 14 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 23 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>calcCidadao</title>
-      <link>/tags/calccidadao/</link>
-      <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/calccidadao/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>estatistica</title>
@@ -27,6 +18,15 @@
       <pubDate>Sat, 23 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/estatistica/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>calcCidadao</title>
+      <link>/tags/calccidadao/</link>
+      <pubDate>Sat, 09 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/calccidadao/</guid>
       <description></description>
     </item>
     
