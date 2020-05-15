@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>16 Revisão - Titanic | Ciência de Dados com R - Introdução</title>
+  <meta name="description" content="Aprendendo a programar com R" />
+  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="16 Revisão - Titanic | Ciência de Dados com R - Introdução" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Aprendendo a programar com R" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="16 Revisão - Titanic | Ciência de Dados com R - Introdução" />
+  
+  <meta name="twitter:description" content="Aprendendo a programar com R" />
+  
+
+<meta name="author" content="Saulo Guerra, Paulo Felipe de Oliveira, Robert McDonnell e Sillas Gonzaga" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="modelos.html"/>
+<link rel="next" href="referências-1.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.9000/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+<link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="libs/dygraphs-1.1.1/shapes.js"></script>
+<script src="libs/moment-2.8.4/moment.js"></script>
+<script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="libs/moment-fquarter-1.0.0/moment-fquarter.min.js"></script>
+<script src="libs/dygraphs-binding-1.1.1.6/dygraphs.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-61574597-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-61574597-1');
+</script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Ciência de Dados com R - Introdução</a></li>
+<img src="hexcdr.png" class="hexcurso" alt="hex">
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a></li>
+<li class="chapter" data-level="1" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i><b>1</b> Introdução</a><ul>
+<li class="chapter" data-level="1.1" data-path="introdução.html"><a href="introdução.html#o-que-é-ciência-de-dados"><i class="fa fa-check"></i><b>1.1</b> O que é Ciência de Dados?</a></li>
+<li class="chapter" data-level="1.2" data-path="introdução.html"><a href="introdução.html#workflow-da-ciência-de-dados"><i class="fa fa-check"></i><b>1.2</b> Workflow da Ciência de Dados</a></li>
+<li class="chapter" data-level="1.3" data-path="introdução.html"><a href="introdução.html#linguagens-para-ciência-de-dados"><i class="fa fa-check"></i><b>1.3</b> Linguagens para Ciência de dados</a></li>
+<li class="chapter" data-level="1.4" data-path="introdução.html"><a href="introdução.html#o-que-é-r-e-por-que-devo-aprendê-lo"><i class="fa fa-check"></i><b>1.4</b> O que é R e por que devo aprendê-lo?</a></li>
+<li class="chapter" data-level="1.5" data-path="introdução.html"><a href="introdução.html#rstudio"><i class="fa fa-check"></i><b>1.5</b> RStudio</a></li>
+<li class="chapter" data-level="1.6" data-path="introdução.html"><a href="introdução.html#buscando-ajuda"><i class="fa fa-check"></i><b>1.6</b> Buscando Ajuda</a></li>
+<li class="chapter" data-level="1.7" data-path="introdução.html"><a href="introdução.html#exercícios"><i class="fa fa-check"></i><b>1.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html"><i class="fa fa-check"></i><b>2</b> Conceitos Básicos</a><ul>
+<li class="chapter" data-level="2.1" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#console"><i class="fa fa-check"></i><b>2.1</b> Console</a></li>
+<li class="chapter" data-level="2.2" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#scripts"><i class="fa fa-check"></i><b>2.2</b> Scripts</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#salvando-scripts"><i class="fa fa-check"></i><b>2.2.1</b> Salvando Scripts</a></li>
+<li class="chapter" data-level="2.2.2" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#comentários-de-código"><i class="fa fa-check"></i><b>2.2.2</b> Comentários de Código</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#objetos-variáveis"><i class="fa fa-check"></i><b>2.3</b> Objetos (Variáveis)</a></li>
+<li class="chapter" data-level="2.4" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#funções"><i class="fa fa-check"></i><b>2.4</b> Funções</a></li>
+<li class="chapter" data-level="2.5" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#pacotes"><i class="fa fa-check"></i><b>2.5</b> Pacotes</a></li>
+<li class="chapter" data-level="2.6" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#boas-práticas"><i class="fa fa-check"></i><b>2.6</b> Boas práticas</a></li>
+<li class="chapter" data-level="2.7" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#tidyverse"><i class="fa fa-check"></i><b>2.7</b> Tidyverse</a></li>
+<li class="chapter" data-level="2.8" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#exercícios-1"><i class="fa fa-check"></i><b>2.8</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html"><i class="fa fa-check"></i><b>3</b> Lendo os dados</a><ul>
+<li class="chapter" data-level="3.1" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#tipos-de-estrutura-dos-dados"><i class="fa fa-check"></i><b>3.1</b> Tipos de Estrutura dos Dados</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#dados-estruturados"><i class="fa fa-check"></i><b>3.1.1</b> Dados Estruturados</a></li>
+<li class="chapter" data-level="3.1.2" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#dados-não-estruturados"><i class="fa fa-check"></i><b>3.1.2</b> Dados Não Estruturados</a></li>
+<li class="chapter" data-level="3.1.3" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#dados-semiestruturados"><i class="fa fa-check"></i><b>3.1.3</b> Dados Semiestruturados</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#definindo-o-local-dos-dados"><i class="fa fa-check"></i><b>3.2</b> Definindo o Local dos Dados</a></li>
+<li class="chapter" data-level="3.3" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#pacote-para-leitura-dos-dados"><i class="fa fa-check"></i><b>3.3</b> Pacote para leitura dos dados</a></li>
+<li class="chapter" data-level="3.4" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#exercícios-2"><i class="fa fa-check"></i><b>3.4</b> Exercícios:</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html"><i class="fa fa-check"></i><b>4</b> Manipulando os dados</a><ul>
+<li class="chapter" data-level="4.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#tipos-de-variáveis-e-colunas"><i class="fa fa-check"></i><b>4.1</b> Tipos de Variáveis e Colunas</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#conversões-de-tipos-de-variáveis"><i class="fa fa-check"></i><b>4.1.1</b> Conversões de tipos de variáveis</a></li>
+<li class="chapter" data-level="4.1.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#outros-tipos-de-variáveis"><i class="fa fa-check"></i><b>4.1.2</b> Outros tipos de variáveis</a></li>
+<li class="chapter" data-level="4.1.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#valores-faltantes-e-o-na"><i class="fa fa-check"></i><b>4.1.3</b> Valores faltantes e o ‘NA’</a></li>
+<li class="chapter" data-level="4.1.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#estruturas-de-controle-de-fluxo"><i class="fa fa-check"></i><b>4.1.4</b> Estruturas de Controle de Fluxo</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#if-e-else"><i class="fa fa-check"></i><b>4.2</b> If e Else</a></li>
+<li class="chapter" data-level="4.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#loops"><i class="fa fa-check"></i><b>4.3</b> Loops</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#for"><i class="fa fa-check"></i><b>4.3.1</b> For</a></li>
+<li class="chapter" data-level="4.3.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#while"><i class="fa fa-check"></i><b>4.3.2</b> While</a></li>
+<li class="chapter" data-level="4.3.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#funções-1"><i class="fa fa-check"></i><b>4.3.3</b> Funções</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#manipulações-com-r-base"><i class="fa fa-check"></i><b>4.4</b> Manipulações com R base</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#trabalhando-com-colunas-de-um-data.frame"><i class="fa fa-check"></i><b>4.4.1</b> Trabalhando com colunas de um data.frame</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#pacote-dplyr"><i class="fa fa-check"></i><b>4.5</b> Pacote dplyr</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#verbetes-do-dplyr-e-o-operador"><i class="fa fa-check"></i><b>4.5.1</b> Verbetes do dplyr e o operador <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="4.5.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#select"><i class="fa fa-check"></i><b>4.5.2</b> Select</a></li>
+<li class="chapter" data-level="4.5.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#filter"><i class="fa fa-check"></i><b>4.5.3</b> Filter</a></li>
+<li class="chapter" data-level="4.5.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#mutate"><i class="fa fa-check"></i><b>4.5.4</b> Mutate</a></li>
+<li class="chapter" data-level="4.5.5" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#group-by-e-summarise"><i class="fa fa-check"></i><b>4.5.5</b> Group By e Summarise</a></li>
+<li class="chapter" data-level="4.5.6" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#arrange"><i class="fa fa-check"></i><b>4.5.6</b> Arrange</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#exercícios-3"><i class="fa fa-check"></i><b>4.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="limpando-dados.html"><a href="limpando-dados.html"><i class="fa fa-check"></i><b>5</b> Limpando dados</a><ul>
+<li class="chapter" data-level="5.1" data-path="limpando-dados.html"><a href="limpando-dados.html#o-formato-ideal-dos-dados"><i class="fa fa-check"></i><b>5.1</b> O formato “ideal” dos dados</a></li>
+<li class="chapter" data-level="5.2" data-path="limpando-dados.html"><a href="limpando-dados.html#pacote-tidyr"><i class="fa fa-check"></i><b>5.2</b> Pacote tidyr</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="limpando-dados.html"><a href="limpando-dados.html#gather"><i class="fa fa-check"></i><b>5.2.1</b> gather</a></li>
+<li class="chapter" data-level="5.2.2" data-path="limpando-dados.html"><a href="limpando-dados.html#spread"><i class="fa fa-check"></i><b>5.2.2</b> spread</a></li>
+<li class="chapter" data-level="5.2.3" data-path="limpando-dados.html"><a href="limpando-dados.html#separate"><i class="fa fa-check"></i><b>5.2.3</b> separate</a></li>
+<li class="chapter" data-level="5.2.4" data-path="limpando-dados.html"><a href="limpando-dados.html#unite"><i class="fa fa-check"></i><b>5.2.4</b> unite</a></li>
+<li class="chapter" data-level="5.2.5" data-path="limpando-dados.html"><a href="limpando-dados.html#separate_rows"><i class="fa fa-check"></i><b>5.2.5</b> separate_rows</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="limpando-dados.html"><a href="limpando-dados.html#exercicios"><i class="fa fa-check"></i><b>5.3</b> Exercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="juntando-dados.html"><a href="juntando-dados.html"><i class="fa fa-check"></i><b>6</b> Juntando dados</a><ul>
+<li class="chapter" data-level="6.1" data-path="juntando-dados.html"><a href="juntando-dados.html#união-de-dados-union"><i class="fa fa-check"></i><b>6.1</b> União de dados (Union)</a></li>
+<li class="chapter" data-level="6.2" data-path="juntando-dados.html"><a href="juntando-dados.html#cruzamento-de-dados-join"><i class="fa fa-check"></i><b>6.2</b> Cruzamento de Dados (Join)</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="juntando-dados.html"><a href="juntando-dados.html#inner-join-ou-apenas-join"><i class="fa fa-check"></i><b>6.2.1</b> Inner Join (ou apenas Join)</a></li>
+<li class="chapter" data-level="6.2.2" data-path="juntando-dados.html"><a href="juntando-dados.html#left-outer-join"><i class="fa fa-check"></i><b>6.2.2</b> Left Outer Join</a></li>
+<li class="chapter" data-level="6.2.3" data-path="juntando-dados.html"><a href="juntando-dados.html#right-outer-join"><i class="fa fa-check"></i><b>6.2.3</b> Right Outer Join</a></li>
+<li class="chapter" data-level="6.2.4" data-path="juntando-dados.html"><a href="juntando-dados.html#full-outer-join"><i class="fa fa-check"></i><b>6.2.4</b> Full Outer Join</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="juntando-dados.html"><a href="juntando-dados.html#exercícios-4"><i class="fa fa-check"></i><b>6.3</b> Exercícios</a></li>
+<li class="chapter" data-level="6.4" data-path="juntando-dados.html"><a href="juntando-dados.html#exercícios-gerais-do-tidyverse"><i class="fa fa-check"></i><b>6.4</b> Exercícios gerais do Tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html"><i class="fa fa-check"></i><b>7</b> Dados em strings (texto)</a><ul>
+<li class="chapter" data-level="7.1" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#pacote-stringr"><i class="fa fa-check"></i><b>7.1</b> Pacote stringr</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#extrair-parte-de-uma-string"><i class="fa fa-check"></i><b>7.1.1</b> Extrair parte de uma string</a></li>
+<li class="chapter" data-level="7.1.2" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#substituir-caracteres-em-um-string"><i class="fa fa-check"></i><b>7.1.2</b> Substituir caracteres em um string</a></li>
+<li class="chapter" data-level="7.1.3" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#buscar-correspondências-em-um-string"><i class="fa fa-check"></i><b>7.1.3</b> Buscar correspondências em um string</a></li>
+<li class="chapter" data-level="7.1.4" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#complementar-uma-string"><i class="fa fa-check"></i><b>7.1.4</b> Complementar uma string</a></li>
+<li class="chapter" data-level="7.1.5" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#remover-espaços-em-branco-desnecessários"><i class="fa fa-check"></i><b>7.1.5</b> Remover espaços em branco desnecessários</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#regex"><i class="fa fa-check"></i><b>7.2</b> Regex</a></li>
+<li class="chapter" data-level="7.3" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#exercícios-5"><i class="fa fa-check"></i><b>7.3</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html"><i class="fa fa-check"></i><b>8</b> Trabalhando com datas</a><ul>
+<li class="chapter" data-level="8.1" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html#gerar-um-vetor-sequencial-de-datas"><i class="fa fa-check"></i><b>8.1</b> Gerar um vetor sequencial de datas</a></li>
+<li class="chapter" data-level="8.2" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html#parsear-datas-e-horários"><i class="fa fa-check"></i><b>8.2</b> ‘Parsear’ datas e horários</a></li>
+<li class="chapter" data-level="8.3" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html#extrair-componentes-de-uma-data"><i class="fa fa-check"></i><b>8.3</b> Extrair componentes de uma data</a></li>
+<li class="chapter" data-level="8.4" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html#operações-matemáticas-com-datas"><i class="fa fa-check"></i><b>8.4</b> Operações matemáticas com datas</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html"><i class="fa fa-check"></i><b>9</b> Escrevendo dados</a><ul>
+<li class="chapter" data-level="9.1" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html#escrevendo-csv"><i class="fa fa-check"></i><b>9.1</b> Escrevendo csv</a></li>
+<li class="chapter" data-level="9.2" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html#rds"><i class="fa fa-check"></i><b>9.2</b> Rds</a></li>
+<li class="chapter" data-level="9.3" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html#escrevendo-outros-tipos-de-arquivos"><i class="fa fa-check"></i><b>9.3</b> Escrevendo outros tipos de arquivos</a></li>
+<li class="chapter" data-level="9.4" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html#exercícios-6"><i class="fa fa-check"></i><b>9.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="obtendo-dados.html"><a href="obtendo-dados.html"><i class="fa fa-check"></i><b>10</b> Obtendo dados</a><ul>
+<li class="chapter" data-level="10.1" data-path="obtendo-dados.html"><a href="obtendo-dados.html#api"><i class="fa fa-check"></i><b>10.1</b> API</a></li>
+<li class="chapter" data-level="10.2" data-path="obtendo-dados.html"><a href="obtendo-dados.html#web-scrapping"><i class="fa fa-check"></i><b>10.2</b> Web Scrapping</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html"><i class="fa fa-check"></i><b>11</b> Estruturas complexas de dados</a><ul>
+<li class="chapter" data-level="11.1" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#introdução-a-listas"><i class="fa fa-check"></i><b>11.1</b> Introdução a listas</a></li>
+<li class="chapter" data-level="11.2" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#introdução-ao-pacote-purrr"><i class="fa fa-check"></i><b>11.2</b> Introdução ao pacote purrr</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#map"><i class="fa fa-check"></i><b>11.2.1</b> <code>map()</code></a></li>
+<li class="chapter" data-level="11.2.2" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#funções-derivadas-de-map"><i class="fa fa-check"></i><b>11.2.2</b> Funções derivadas de <code>map()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#ideia-de-projeto-aplicando-uma-série-de-funções-a-uma-lista-de-arquivos"><i class="fa fa-check"></i><b>11.3</b> Ideia de projeto: Aplicando uma série de funções a uma lista de arquivos</a></li>
+<li class="chapter" data-level="11.4" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#referências"><i class="fa fa-check"></i><b>11.4</b> Referências</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>12</b> Visualizações de dados (ggplot2)</a><ul>
+<li class="chapter" data-level="12.1" data-path="ggplot2.html"><a href="ggplot2.html#mapeamento-estético"><i class="fa fa-check"></i><b>12.1</b> Mapeamento Estético</a></li>
+<li class="chapter" data-level="12.2" data-path="ggplot2.html"><a href="ggplot2.html#objetos-geométricos"><i class="fa fa-check"></i><b>12.2</b> Objetos geométricos</a></li>
+<li class="chapter" data-level="12.3" data-path="ggplot2.html"><a href="ggplot2.html#escalas"><i class="fa fa-check"></i><b>12.3</b> Escalas</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="ggplot2.html"><a href="ggplot2.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>12.3.1</b> Tipos de Variáveis</a></li>
+<li class="chapter" data-level="12.3.2" data-path="ggplot2.html"><a href="ggplot2.html#eixos"><i class="fa fa-check"></i><b>12.3.2</b> Eixos</a></li>
+<li class="chapter" data-level="12.3.3" data-path="ggplot2.html"><a href="ggplot2.html#escalas-de-cores-color-e-preenchimento-fill"><i class="fa fa-check"></i><b>12.3.3</b> Escalas de Cores (color) e Preenchimento (fill)</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="ggplot2.html"><a href="ggplot2.html#subplots-facet"><i class="fa fa-check"></i><b>12.4</b> Subplots (facet)</a></li>
+<li class="chapter" data-level="12.5" data-path="ggplot2.html"><a href="ggplot2.html#temas"><i class="fa fa-check"></i><b>12.5</b> Temas</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="ggplot2.html"><a href="ggplot2.html#temas-disponíveis-no-ggplot2"><i class="fa fa-check"></i><b>12.5.1</b> Temas disponíveis no ggplot2</a></li>
+<li class="chapter" data-level="12.5.2" data-path="ggplot2.html"><a href="ggplot2.html#temas-no-pacote-ggthemes"><i class="fa fa-check"></i><b>12.5.2</b> Temas no pacote ggthemes</a></li>
+<li class="chapter" data-level="12.5.3" data-path="ggplot2.html"><a href="ggplot2.html#hrbrthemes"><i class="fa fa-check"></i><b>12.5.3</b> hrbrthemes</a></li>
+<li class="chapter" data-level="12.5.4" data-path="ggplot2.html"><a href="ggplot2.html#setando-o-tema-globalmente"><i class="fa fa-check"></i><b>12.5.4</b> Setando o tema globalmente</a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="ggplot2.html"><a href="ggplot2.html#legendas"><i class="fa fa-check"></i><b>12.6</b> Legendas</a></li>
+<li class="chapter" data-level="12.7" data-path="ggplot2.html"><a href="ggplot2.html#escolhendo-o-tipo-de-gráfico"><i class="fa fa-check"></i><b>12.7</b> Escolhendo o tipo de gráfico</a></li>
+<li class="chapter" data-level="12.8" data-path="ggplot2.html"><a href="ggplot2.html#gráfico-de-dispersão-geom_point"><i class="fa fa-check"></i><b>12.8</b> Gráfico de Dispersão (<code>geom_point()</code>)</a></li>
+<li class="chapter" data-level="12.9" data-path="ggplot2.html"><a href="ggplot2.html#gráficos-de-bolhas"><i class="fa fa-check"></i><b>12.9</b> Gráficos de Bolhas</a></li>
+<li class="chapter" data-level="12.10" data-path="ggplot2.html"><a href="ggplot2.html#gráficos-de-barras"><i class="fa fa-check"></i><b>12.10</b> Gráficos de Barras</a></li>
+<li class="chapter" data-level="12.11" data-path="ggplot2.html"><a href="ggplot2.html#gráficos-de-linhas"><i class="fa fa-check"></i><b>12.11</b> Gráficos de linhas</a></li>
+<li class="chapter" data-level="12.12" data-path="ggplot2.html"><a href="ggplot2.html#histogramas-e-freqpoly"><i class="fa fa-check"></i><b>12.12</b> Histogramas e freqpoly</a></li>
+<li class="chapter" data-level="12.13" data-path="ggplot2.html"><a href="ggplot2.html#boxplots-jitterplots-e-violinplots"><i class="fa fa-check"></i><b>12.13</b> Boxplots, jitterplots e violinplots</a></li>
+<li class="chapter" data-level="12.14" data-path="ggplot2.html"><a href="ggplot2.html#anotações"><i class="fa fa-check"></i><b>12.14</b> Anotações</a></li>
+<li class="chapter" data-level="12.15" data-path="ggplot2.html"><a href="ggplot2.html#cleveland-dot-plot"><i class="fa fa-check"></i><b>12.15</b> Cleveland Dot Plot</a></li>
+<li class="chapter" data-level="12.16" data-path="ggplot2.html"><a href="ggplot2.html#textosrótulos"><i class="fa fa-check"></i><b>12.16</b> Textos/Rótulos</a></li>
+<li class="chapter" data-level="12.17" data-path="ggplot2.html"><a href="ggplot2.html#plotando-funções"><i class="fa fa-check"></i><b>12.17</b> Plotando funções</a></li>
+<li class="chapter" data-level="12.18" data-path="ggplot2.html"><a href="ggplot2.html#mapas-plotando-polígonos"><i class="fa fa-check"></i><b>12.18</b> Mapas: plotando polígonos</a><ul>
+<li class="chapter" data-level="12.18.1" data-path="ggplot2.html"><a href="ggplot2.html#projeto-plotando-indicadores-socioeconômicos-em-um-mapa."><i class="fa fa-check"></i><b>12.18.1</b> Projeto: plotando indicadores socioeconômicos em um mapa.</a></li>
+</ul></li>
+<li class="chapter" data-level="12.19" data-path="ggplot2.html"><a href="ggplot2.html#salvando-gráficos"><i class="fa fa-check"></i><b>12.19</b> Salvando Gráficos</a></li>
+<li class="chapter" data-level="12.20" data-path="ggplot2.html"><a href="ggplot2.html#extensões-do-ggplot2"><i class="fa fa-check"></i><b>12.20</b> Extensões do ggplot2</a><ul>
+<li class="chapter" data-level="12.20.1" data-path="ggplot2.html"><a href="ggplot2.html#ggrepel"><i class="fa fa-check"></i><b>12.20.1</b> ggrepel</a></li>
+<li class="chapter" data-level="12.20.2" data-path="ggplot2.html"><a href="ggplot2.html#gganimate"><i class="fa fa-check"></i><b>12.20.2</b> gganimate</a></li>
+</ul></li>
+<li class="chapter" data-level="12.21" data-path="ggplot2.html"><a href="ggplot2.html#exercícios-7"><i class="fa fa-check"></i><b>12.21</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="htmlwidgets.html"><a href="htmlwidgets.html"><i class="fa fa-check"></i><b>13</b> Visualizações Interativas</a><ul>
+<li class="chapter" data-level="13.1" data-path="htmlwidgets.html"><a href="htmlwidgets.html#introdução-1"><i class="fa fa-check"></i><b>13.1</b> Introdução</a></li>
+<li class="chapter" data-level="13.2" data-path="htmlwidgets.html"><a href="htmlwidgets.html#plotly"><i class="fa fa-check"></i><b>13.2</b> Plotly</a></li>
+<li class="chapter" data-level="13.3" data-path="htmlwidgets.html"><a href="htmlwidgets.html#dygraphs"><i class="fa fa-check"></i><b>13.3</b> dygraphs</a></li>
+<li class="chapter" data-level="13.4" data-path="htmlwidgets.html"><a href="htmlwidgets.html#leaflet"><i class="fa fa-check"></i><b>13.4</b> Leaflet</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="htmlwidgets.html"><a href="htmlwidgets.html#primeiro-exemplo"><i class="fa fa-check"></i><b>13.4.1</b> Primeiro exemplo</a></li>
+<li class="chapter" data-level="13.4.2" data-path="htmlwidgets.html"><a href="htmlwidgets.html#marcadores"><i class="fa fa-check"></i><b>13.4.2</b> Marcadores</a></li>
+<li class="chapter" data-level="13.4.3" data-path="htmlwidgets.html"><a href="htmlwidgets.html#polígonos"><i class="fa fa-check"></i><b>13.4.3</b> Polígonos</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="htmlwidgets.html"><a href="htmlwidgets.html#exercícios-8"><i class="fa fa-check"></i><b>13.5</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>14</b> RMarkdown</a><ul>
+<li class="chapter" data-level="14.1" data-path="rmarkdown.html"><a href="rmarkdown.html#usos-do-rmarkdown"><i class="fa fa-check"></i><b>14.1</b> Usos do RMarkdown</a></li>
+<li class="chapter" data-level="14.2" data-path="rmarkdown.html"><a href="rmarkdown.html#estrutura-de-um-rmarkdown"><i class="fa fa-check"></i><b>14.2</b> Estrutura de um RMarkdown</a></li>
+<li class="chapter" data-level="14.3" data-path="rmarkdown.html"><a href="rmarkdown.html#renderizando-um-documento"><i class="fa fa-check"></i><b>14.3</b> Renderizando um documento</a></li>
+<li class="chapter" data-level="14.4" data-path="rmarkdown.html"><a href="rmarkdown.html#sintaxe"><i class="fa fa-check"></i><b>14.4</b> Sintaxe</a></li>
+<li class="chapter" data-level="14.5" data-path="rmarkdown.html"><a href="rmarkdown.html#opções-de-chunk"><i class="fa fa-check"></i><b>14.5</b> Opções de Chunk</a></li>
+<li class="chapter" data-level="14.6" data-path="rmarkdown.html"><a href="rmarkdown.html#principais-formatos"><i class="fa fa-check"></i><b>14.6</b> Principais Formatos</a><ul>
+<li class="chapter" data-level="14.6.1" data-path="rmarkdown.html"><a href="rmarkdown.html#html"><i class="fa fa-check"></i><b>14.6.1</b> HTML</a></li>
+<li class="chapter" data-level="14.6.2" data-path="rmarkdown.html"><a href="rmarkdown.html#pdf"><i class="fa fa-check"></i><b>14.6.2</b> PDF</a></li>
+<li class="chapter" data-level="14.6.3" data-path="rmarkdown.html"><a href="rmarkdown.html#word"><i class="fa fa-check"></i><b>14.6.3</b> Word</a></li>
+</ul></li>
+<li class="chapter" data-level="14.7" data-path="rmarkdown.html"><a href="rmarkdown.html#excercícios"><i class="fa fa-check"></i><b>14.7</b> Excercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="modelos.html"><a href="modelos.html"><i class="fa fa-check"></i><b>15</b> Modelos</a><ul>
+<li class="chapter" data-level="15.1" data-path="modelos.html"><a href="modelos.html#modelo-linear"><i class="fa fa-check"></i><b>15.1</b> Modelo Linear</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="modelos.html"><a href="modelos.html#regressão"><i class="fa fa-check"></i><b>15.1.1</b> Regressão</a></li>
+<li class="chapter" data-level="15.1.2" data-path="modelos.html"><a href="modelos.html#classificação"><i class="fa fa-check"></i><b>15.1.2</b> Classificação</a></li>
+<li class="chapter" data-level="15.1.3" data-path="modelos.html"><a href="modelos.html#classificação-com-modelos-baseados-em-árvores"><i class="fa fa-check"></i><b>15.1.3</b> Classificação com modelos baseados em árvores</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="modelos.html"><a href="modelos.html#exercícios-9"><i class="fa fa-check"></i><b>15.2</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="revisão-titanic.html"><a href="revisão-titanic.html"><i class="fa fa-check"></i><b>16</b> Revisão - Titanic</a><ul>
+<li class="chapter" data-level="16.1" data-path="revisão-titanic.html"><a href="revisão-titanic.html#objetivo"><i class="fa fa-check"></i><b>16.1</b> Objetivo</a></li>
+<li class="chapter" data-level="16.2" data-path="revisão-titanic.html"><a href="revisão-titanic.html#carregando-os-dados"><i class="fa fa-check"></i><b>16.2</b> Carregando os Dados</a></li>
+<li class="chapter" data-level="16.3" data-path="revisão-titanic.html"><a href="revisão-titanic.html#manipulando-os-dados-1"><i class="fa fa-check"></i><b>16.3</b> Manipulando os dados</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="revisão-titanic.html"><a href="revisão-titanic.html#variável-survived"><i class="fa fa-check"></i><b>16.3.1</b> Variável Survived</a></li>
+<li class="chapter" data-level="16.3.2" data-path="revisão-titanic.html"><a href="revisão-titanic.html#variável-name"><i class="fa fa-check"></i><b>16.3.2</b> Variável Name</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="revisão-titanic.html"><a href="revisão-titanic.html#idade"><i class="fa fa-check"></i><b>16.4</b> Idade</a><ul>
+<li class="chapter" data-level="16.4.1" data-path="revisão-titanic.html"><a href="revisão-titanic.html#exercício"><i class="fa fa-check"></i><b>16.4.1</b> Exercício</a></li>
+</ul></li>
+<li class="chapter" data-level="16.5" data-path="revisão-titanic.html"><a href="revisão-titanic.html#visualizações"><i class="fa fa-check"></i><b>16.5</b> Visualizações</a></li>
+<li class="chapter" data-level="16.6" data-path="revisão-titanic.html"><a href="revisão-titanic.html#modelo-preditivo"><i class="fa fa-check"></i><b>16.6</b> Modelo Preditivo</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="referências-1.html"><a href="referências-1.html"><i class="fa fa-check"></i><b>17</b> Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado com bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ciência de Dados com R - Introdução</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="revisão---titanic" class="section level1">
+<h1><span class="header-section-number">16</span> Revisão - Titanic</h1>
+<div id="objetivo" class="section level2">
+<h2><span class="header-section-number">16.1</span> Objetivo</h2>
+<p>O objetivo deste capítulo é fazer uma breve revisão do que foi ensinado no curso. Para isso, será utilizada a base disponível no pacote <code>titanic</code>. É esperado que o aluno consiga realizar manipulações nos dados, visualizações e um modelo preditivo. A análise deve ser demonstrada em um documento criado com o RMarkdown.</p>
+</div>
+<div id="carregando-os-dados" class="section level2">
+<h2><span class="header-section-number">16.2</span> Carregando os Dados</h2>
+<div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb718-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb718-2" data-line-number="2"><span class="kw">library</span>(titanic)</a>
+<a class="sourceLine" id="cb718-3" data-line-number="3"><span class="kw">data</span>(<span class="st">&quot;titanic_train&quot;</span>)</a>
+<a class="sourceLine" id="cb718-4" data-line-number="4"><span class="co"># Base de treinamento</span></a>
+<a class="sourceLine" id="cb718-5" data-line-number="5"><span class="kw">head</span>(titanic_train)</a></code></pre></div>
+<pre><code>##   PassengerId Survived Pclass                                                Name    Sex Age SibSp Parch           Ticket    Fare
+## 1           1        0      3                             Braund, Mr. Owen Harris   male  22     1     0        A/5 21171  7.2500
+## 2           2        1      1 Cumings, Mrs. John Bradley (Florence Briggs Thayer) female  38     1     0         PC 17599 71.2833
+## 3           3        1      3                              Heikkinen, Miss. Laina female  26     0     0 STON/O2. 3101282  7.9250
+## 4           4        1      1        Futrelle, Mrs. Jacques Heath (Lily May Peel) female  35     1     0           113803 53.1000
+## 5           5        0      3                            Allen, Mr. William Henry   male  35     0     0           373450  8.0500
+## 6           6        0      3                                    Moran, Mr. James   male  NA     0     0           330877  8.4583
+##   Cabin Embarked
+## 1              S
+## 2   C85        C
+## 3              S
+## 4  C123        S
+## 5              S
+## 6              Q</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Variável</th>
+<th align="center">Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">PassengerId</td>
+<td align="center">Identificador do Passageiro</td>
+</tr>
+<tr class="even">
+<td align="center">Survived</td>
+<td align="center">Variável de indicadora de sobrevivência (0 = Não Sobreviveu, 1 = Sobreviveu)</td>
+</tr>
+<tr class="odd">
+<td align="center">Pclass</td>
+<td align="center">Classe do passageiro</td>
+</tr>
+<tr class="even">
+<td align="center">Name</td>
+<td align="center">Nome do passageiro</td>
+</tr>
+<tr class="odd">
+<td align="center">Sex</td>
+<td align="center">Sexo do passageiro</td>
+</tr>
+<tr class="even">
+<td align="center">Age</td>
+<td align="center">Idade do passageiro</td>
+</tr>
+<tr class="odd">
+<td align="center">SibSp</td>
+<td align="center">Número de irmãos/cônjuge no navio</td>
+</tr>
+<tr class="even">
+<td align="center">Parch</td>
+<td align="center">Número de pais e filhos no navio</td>
+</tr>
+<tr class="odd">
+<td align="center">Ticket</td>
+<td align="center">Número da passagem</td>
+</tr>
+<tr class="even">
+<td align="center">Fare</td>
+<td align="center">Preço da passagem</td>
+</tr>
+<tr class="odd">
+<td align="center">Cabin</td>
+<td align="center">Código da cabine</td>
+</tr>
+<tr class="even">
+<td align="center">Embarked</td>
+<td align="center">Porto de embarque</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="manipulando-os-dados-1" class="section level2">
+<h2><span class="header-section-number">16.3</span> Manipulando os dados</h2>
+<p>Nesta seção, faremos alguma alteração nos dados. Veja o summary do dataset.</p>
+<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb720-1" data-line-number="1"><span class="kw">summary</span>(titanic_train)</a></code></pre></div>
+<pre><code>##   PassengerId       Survived          Pclass          Name               Sex                 Age            SibSp      
+##  Min.   :  1.0   Min.   :0.0000   Min.   :1.000   Length:891         Length:891         Min.   : 0.42   Min.   :0.000  
+##  1st Qu.:223.5   1st Qu.:0.0000   1st Qu.:2.000   Class :character   Class :character   1st Qu.:20.12   1st Qu.:0.000  
+##  Median :446.0   Median :0.0000   Median :3.000   Mode  :character   Mode  :character   Median :28.00   Median :0.000  
+##  Mean   :446.0   Mean   :0.3838   Mean   :2.309                                         Mean   :29.70   Mean   :0.523  
+##  3rd Qu.:668.5   3rd Qu.:1.0000   3rd Qu.:3.000                                         3rd Qu.:38.00   3rd Qu.:1.000  
+##  Max.   :891.0   Max.   :1.0000   Max.   :3.000                                         Max.   :80.00   Max.   :8.000  
+##                                                                                         NA&#39;s   :177                    
+##      Parch           Ticket               Fare           Cabin             Embarked        
+##  Min.   :0.0000   Length:891         Min.   :  0.00   Length:891         Length:891        
+##  1st Qu.:0.0000   Class :character   1st Qu.:  7.91   Class :character   Class :character  
+##  Median :0.0000   Mode  :character   Median : 14.45   Mode  :character   Mode  :character  
+##  Mean   :0.3816                      Mean   : 32.20                                        
+##  3rd Qu.:0.0000                      3rd Qu.: 31.00                                        
+##  Max.   :6.0000                      Max.   :512.33                                        
+## </code></pre>
+<div id="variável-survived" class="section level3">
+<h3><span class="header-section-number">16.3.1</span> Variável Survived</h3>
+<p>A variável <code>Survived</code> está definida como indicadora (1 ou 0). Como será usada em um modelo de classificação, é interessante que esta variável seja transformada ou que seja criada uma nova variável, tornando-a uma variável do tipo <code>factor</code> ou <code>character</code>.</p>
+<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb722-1" data-line-number="1">titanic_train &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb722-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Survived =</span> <span class="kw">factor</span>(Survived))</a>
+<a class="sourceLine" id="cb722-3" data-line-number="3"><span class="kw">levels</span>(titanic_train<span class="op">$</span>Survived) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Não&quot;</span>, <span class="st">&quot;Sim&quot;</span>)</a></code></pre></div>
+</div>
+<div id="variável-name" class="section level3">
+<h3><span class="header-section-number">16.3.2</span> Variável Name</h3>
+<p>Na variável <code>Name</code>, percebe-se que os passageiros possuíam títulos: Mr., Miss., Mrs. etc. Seria interessante criar-se uma nova variável que possua apenas o título do passageiro. Para isto, precisaremos usar a função <code>str_extract()</code> do pacote <code>stringr</code> e um pouco de regex.</p>
+<div class="sourceCode" id="cb723"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb723-1" data-line-number="1">titanic_train &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb723-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">title =</span> <span class="kw">str_extract</span>(<span class="kw">tolower</span>(Name), <span class="st">&#39;[a-z]{1,}</span><span class="ch">\\</span><span class="st">.&#39;</span>))</a></code></pre></div>
+<p>Quais são os títulos mais comuns?</p>
+<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb724-1" data-line-number="1">titanic_train <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb724-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(title) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb724-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb724-4" data-line-number="4"><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>n)</a></code></pre></div>
+<pre><code>## # A tibble: 17 x 2
+##    title         n
+##    &lt;chr&gt;     &lt;int&gt;
+##  1 mr.         517
+##  2 miss.       182
+##  3 mrs.        125
+##  4 master.      40
+##  5 dr.           7
+##  6 rev.          6
+##  7 col.          2
+##  8 major.        2
+##  9 mlle.         2
+## 10 capt.         1
+## 11 countess.     1
+## 12 don.          1
+## 13 jonkheer.     1
+## 14 lady.         1
+## 15 mme.          1
+## 16 ms.           1
+## 17 sir.          1</code></pre>
+<p>Faremos mais uma modificação. Pode ser interessante agregarmos os títulos menos frequentes em uma única categoria.</p>
+<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb726-1" data-line-number="1">classes_de_interesse &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mr.&quot;</span>, <span class="st">&quot;miss&quot;</span>, <span class="st">&quot;mrs.&quot;</span>, <span class="st">&quot;master.&quot;</span>)</a>
+<a class="sourceLine" id="cb726-2" data-line-number="2">titanic_train &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb726-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">title =</span> <span class="kw">ifelse</span>(title <span class="op">%in%</span><span class="st"> </span>classes_de_interesse,</a>
+<a class="sourceLine" id="cb726-4" data-line-number="4">                         title,</a>
+<a class="sourceLine" id="cb726-5" data-line-number="5">                         <span class="st">&quot;other&quot;</span>))</a></code></pre></div>
+</div>
+</div>
+<div id="idade" class="section level2">
+<h2><span class="header-section-number">16.4</span> Idade</h2>
+<p>Como vimos no summary, há alguns valores faltantes para a variável <code>Age</code>. Alguns modelos conseguem tratar internamente os missing values, outros não. Para o modelo que usaremos, não podemos ter missings. Assim, podemos eliminar essas observações ou atribuir-lhes um valor. Utilizaremos a segunda opção.</p>
+<p>Para imputação, existem inúmeros métodos, podendo até mesmo ser utilizado o modelo auxiliar. Aqui, vamos inserir a mediana da idade, separando por título e sexo.</p>
+<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb727-1" data-line-number="1">titanic_train &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb727-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(Sex, title) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb727-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Age =</span> <span class="kw">ifelse</span>(<span class="kw">is.na</span>(Age), <span class="kw">median</span>(Age, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), Age))</a>
+<a class="sourceLine" id="cb727-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb727-5" data-line-number="5"><span class="kw">summary</span>(titanic_train<span class="op">$</span>Age)</a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    0.42   22.00   30.00   29.43   35.00   80.00</code></pre>
+<div id="exercício" class="section level3">
+<h3><span class="header-section-number">16.4.1</span> Exercício</h3>
+<ol style="list-style-type: decimal">
+<li>Crie mais duas variáveis:</li>
+</ol>
+</div>
+</div>
+<div id="visualizações" class="section level2">
+<h2><span class="header-section-number">16.5</span> Visualizações</h2>
+<p>Abaixo, criamos algumas visualizações iniciais. Explore as demais variáveis da base e mostre relações com a variável <code>Survived</code>.</p>
+<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb729-1" data-line-number="1"><span class="kw">library</span>(hrbrthemes)</a>
+<a class="sourceLine" id="cb729-2" data-line-number="2"><span class="kw">theme_set</span>(<span class="kw">theme_ipsum</span>(<span class="dt">base_size =</span> <span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb729-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb729-4" data-line-number="4"><span class="kw">ggplot</span>(titanic_train, <span class="kw">aes</span>(<span class="dt">x =</span> Age)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb729-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">boundary =</span> <span class="dv">0</span>, <span class="dt">fill =</span> <span class="st">&quot;#223e63&quot;</span>, <span class="dt">bins =</span> <span class="dv">20</span>)</a></code></pre></div>
+<p><img src="cdr-intro_files/figure-html/unnamed-chunk-390-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb730-1" data-line-number="1"><span class="kw">ggplot</span>(titanic_train, <span class="kw">aes</span>(<span class="dt">x =</span> Age, <span class="dt">fill =</span> Survived)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb730-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">boundary =</span> <span class="dv">0</span>, <span class="dt">bins =</span> <span class="dv">20</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb730-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>Survived) <span class="op">+</span></a>
+<a class="sourceLine" id="cb730-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_fill_ipsum</span>()</a></code></pre></div>
+<p><img src="cdr-intro_files/figure-html/unnamed-chunk-390-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb731"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb731-1" data-line-number="1"><span class="kw">ggplot</span>(titanic_train, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">fill =</span> Survived)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb731-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb731-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Número de passageiros por Sexo&quot;</span>,</a>
+<a class="sourceLine" id="cb731-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Contagem&quot;</span>,</a>
+<a class="sourceLine" id="cb731-5" data-line-number="5">       <span class="dt">x =</span> <span class="st">&quot;Sexo&quot;</span>)</a></code></pre></div>
+<p><img src="cdr-intro_files/figure-html/unnamed-chunk-390-3.png" width="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb732-1" data-line-number="1">titanic_train <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb732-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(Sex, Survived) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb732-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb732-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(Sex) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb732-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> n<span class="op">/</span><span class="kw">sum</span>(n) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb732-6" data-line-number="6"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> prop, <span class="dt">fill =</span> Survived)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb732-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb732-8" data-line-number="8"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Proporção de Sobreviventes por Sexo&quot;</span>,</a>
+<a class="sourceLine" id="cb732-9" data-line-number="9">       <span class="dt">y =</span> <span class="st">&quot;%&quot;</span>,</a>
+<a class="sourceLine" id="cb732-10" data-line-number="10">       <span class="dt">x =</span> <span class="st">&quot;Sexo&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb732-11" data-line-number="11"><span class="st">  </span><span class="kw">scale_fill_ipsum</span>(<span class="st">&quot;Sobreviveu&quot;</span>)</a></code></pre></div>
+<p><img src="cdr-intro_files/figure-html/unnamed-chunk-390-4.png" width="100%" style="display: block; margin: auto;" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Crie mais duas visualizações:</li>
+</ol>
+</div>
+<div id="modelo-preditivo" class="section level2">
+<h2><span class="header-section-number">16.6</span> Modelo Preditivo</h2>
+<ol style="list-style-type: decimal">
+<li>Crie um modelo preditivo a partir da base de treinamento. Para isso, selecione um subconjunto de variáveis que você utilizará como input (features).</li>
+<li>Divida a base de treinamentos em duas: 70% para treinamento e 30% para a validação.</li>
+<li>Utilize a função <code>glm()</code> para estimar um modelo de regressão logística.</li>
+<li>Calcule a acurácia do modelo.</li>
+<li>Treine o modelo na base <code>titanic_train</code> completa.</li>
+<li>Realize predições para base <code>titanic_test</code>.</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="modelos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referências-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["cdr-intro.pdf"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

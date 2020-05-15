@@ -394,11 +394,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="carregando-os-dados" class="section level2">
 <h2><span class="header-section-number">16.2</span> Carregando os Dados</h2>
-<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb711-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb711-2" data-line-number="2"><span class="kw">library</span>(titanic)</a>
-<a class="sourceLine" id="cb711-3" data-line-number="3"><span class="kw">data</span>(<span class="st">&quot;titanic_train&quot;</span>)</a>
-<a class="sourceLine" id="cb711-4" data-line-number="4"><span class="co"># Base de treinamento</span></a>
-<a class="sourceLine" id="cb711-5" data-line-number="5"><span class="kw">head</span>(titanic_train)</a></code></pre></div>
+<div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb718-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb718-2" data-line-number="2"><span class="kw">library</span>(titanic)</a>
+<a class="sourceLine" id="cb718-3" data-line-number="3"><span class="kw">data</span>(<span class="st">&quot;titanic_train&quot;</span>)</a>
+<a class="sourceLine" id="cb718-4" data-line-number="4"><span class="co"># Base de treinamento</span></a>
+<a class="sourceLine" id="cb718-5" data-line-number="5"><span class="kw">head</span>(titanic_train)</a></code></pre></div>
 <pre><code>##   PassengerId Survived Pclass
 ## 1           1        0      3
 ## 2           2        1      1
@@ -482,7 +482,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="manipulando-os-dados-1" class="section level2">
 <h2><span class="header-section-number">16.3</span> Manipulando os dados</h2>
 <p>Nesta seção, faremos alguma alteração nos dados. Veja o summary do dataset.</p>
-<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb713-1" data-line-number="1"><span class="kw">summary</span>(titanic_train)</a></code></pre></div>
+<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb720-1" data-line-number="1"><span class="kw">summary</span>(titanic_train)</a></code></pre></div>
 <pre><code>##   PassengerId       Survived          Pclass          Name          
 ##  Min.   :  1.0   Min.   :0.0000   Min.   :1.000   Length:891        
 ##  1st Qu.:223.5   1st Qu.:0.0000   1st Qu.:2.000   Class :character  
@@ -510,20 +510,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="variavel-survived" class="section level3">
 <h3><span class="header-section-number">16.3.1</span> Variável Survived</h3>
 <p>A variável <code>Survived</code> está definida como indicadora (1 ou 0). Como será usada em um modelo de classificação, é interessante que esta variável seja transformada ou que seja criada uma nova variável, tornando-a uma variável do tipo <code>factor</code> ou <code>character</code>.</p>
-<div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb715-1" data-line-number="1">titanic_train &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb715-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Survived =</span> <span class="kw">factor</span>(Survived))</a>
-<a class="sourceLine" id="cb715-3" data-line-number="3"><span class="kw">levels</span>(titanic_train<span class="op">$</span>Survived) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Não&quot;</span>, <span class="st">&quot;Sim&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb722-1" data-line-number="1">titanic_train &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb722-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Survived =</span> <span class="kw">factor</span>(Survived))</a>
+<a class="sourceLine" id="cb722-3" data-line-number="3"><span class="kw">levels</span>(titanic_train<span class="op">$</span>Survived) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Não&quot;</span>, <span class="st">&quot;Sim&quot;</span>)</a></code></pre></div>
 </div>
 <div id="variavel-name" class="section level3">
 <h3><span class="header-section-number">16.3.2</span> Variável Name</h3>
 <p>Na variável <code>Name</code>, percebe-se que os passageiros possuíam títulos: Mr., Miss., Mrs. etc. Seria interessante criar-se uma nova variável que possua apenas o título do passageiro. Para isto, precisaremos usar a função <code>str_extract()</code> do pacote <code>stringr</code> e um pouco de regex.</p>
-<div class="sourceCode" id="cb716"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb716-1" data-line-number="1">titanic_train &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb716-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">title =</span> <span class="kw">str_extract</span>(<span class="kw">tolower</span>(Name), <span class="st">&#39;[a-z]{1,}</span><span class="ch">\\</span><span class="st">.&#39;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb723"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb723-1" data-line-number="1">titanic_train &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb723-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">title =</span> <span class="kw">str_extract</span>(<span class="kw">tolower</span>(Name), <span class="st">&#39;[a-z]{1,}</span><span class="ch">\\</span><span class="st">.&#39;</span>))</a></code></pre></div>
 <p>Quais são os títulos mais comuns?</p>
-<div class="sourceCode" id="cb717"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb717-1" data-line-number="1">titanic_train <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb717-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(title) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb717-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb717-4" data-line-number="4"><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>n)</a></code></pre></div>
+<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb724-1" data-line-number="1">titanic_train <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb724-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(title) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb724-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb724-4" data-line-number="4"><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>n)</a></code></pre></div>
 <pre><code>## # A tibble: 17 x 2
 ##    title         n
 ##    &lt;chr&gt;     &lt;int&gt;
@@ -545,22 +545,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 16 ms.           1
 ## 17 sir.          1</code></pre>
 <p>Faremos mais uma modificação. Pode ser interessante agregarmos os títulos menos frequentes em uma única categoria.</p>
-<div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb719-1" data-line-number="1">classes_de_interesse &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mr.&quot;</span>, <span class="st">&quot;miss&quot;</span>, <span class="st">&quot;mrs.&quot;</span>, <span class="st">&quot;master.&quot;</span>)</a>
-<a class="sourceLine" id="cb719-2" data-line-number="2">titanic_train &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb719-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">title =</span> <span class="kw">ifelse</span>(title <span class="op">%in%</span><span class="st"> </span>classes_de_interesse,</a>
-<a class="sourceLine" id="cb719-4" data-line-number="4">                         title,</a>
-<a class="sourceLine" id="cb719-5" data-line-number="5">                         <span class="st">&quot;other&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb726-1" data-line-number="1">classes_de_interesse &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mr.&quot;</span>, <span class="st">&quot;miss&quot;</span>, <span class="st">&quot;mrs.&quot;</span>, <span class="st">&quot;master.&quot;</span>)</a>
+<a class="sourceLine" id="cb726-2" data-line-number="2">titanic_train &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb726-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">title =</span> <span class="kw">ifelse</span>(title <span class="op">%in%</span><span class="st"> </span>classes_de_interesse,</a>
+<a class="sourceLine" id="cb726-4" data-line-number="4">                         title,</a>
+<a class="sourceLine" id="cb726-5" data-line-number="5">                         <span class="st">&quot;other&quot;</span>))</a></code></pre></div>
 </div>
 </div>
 <div id="idade" class="section level2">
 <h2><span class="header-section-number">16.4</span> Idade</h2>
 <p>Como vimos no summary, há alguns valores faltantes para a variável <code>Age</code>. Alguns modelos conseguem tratar internamente os missing values, outros não. Para o modelo que usaremos, não podemos ter missings. Assim, podemos eliminar essas observações ou atribuir-lhes um valor. Utilizaremos a segunda opção.</p>
 <p>Para imputação, existem inúmeros métodos, podendo até mesmo ser utilizado o modelo auxiliar. Aqui, vamos inserir a mediana da idade, separando por título e sexo.</p>
-<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb720-1" data-line-number="1">titanic_train &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb720-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(Sex, title) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb720-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Age =</span> <span class="kw">ifelse</span>(<span class="kw">is.na</span>(Age), <span class="kw">median</span>(Age, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), Age))</a>
-<a class="sourceLine" id="cb720-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb720-5" data-line-number="5"><span class="kw">summary</span>(titanic_train<span class="op">$</span>Age)</a></code></pre></div>
+<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb727-1" data-line-number="1">titanic_train &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb727-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(Sex, title) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb727-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Age =</span> <span class="kw">ifelse</span>(<span class="kw">is.na</span>(Age), <span class="kw">median</span>(Age, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), Age))</a>
+<a class="sourceLine" id="cb727-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb727-5" data-line-number="5"><span class="kw">summary</span>(titanic_train<span class="op">$</span>Age)</a></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    0.42   22.00   30.00   29.43   35.00   80.00</code></pre>
 <div id="exercicio" class="section level3">
@@ -573,35 +573,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="visualizacoes" class="section level2">
 <h2><span class="header-section-number">16.5</span> Visualizações</h2>
 <p>Abaixo, criamos algumas visualizações iniciais. Explore as demais variáveis da base e mostre relações com a variável <code>Survived</code>.</p>
-<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb722-1" data-line-number="1"><span class="kw">library</span>(hrbrthemes)</a>
-<a class="sourceLine" id="cb722-2" data-line-number="2"><span class="kw">theme_set</span>(<span class="kw">theme_ipsum</span>(<span class="dt">base_size =</span> <span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb722-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb722-4" data-line-number="4"><span class="kw">ggplot</span>(titanic_train, <span class="kw">aes</span>(<span class="dt">x =</span> Age)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb722-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">boundary =</span> <span class="dv">0</span>, <span class="dt">fill =</span> <span class="st">&quot;#223e63&quot;</span>, <span class="dt">bins =</span> <span class="dv">20</span>)</a></code></pre></div>
-<p><img src="cdr-intro_files/figure-html/15-revisao-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb723"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb723-1" data-line-number="1"><span class="kw">ggplot</span>(titanic_train, <span class="kw">aes</span>(<span class="dt">x =</span> Age, <span class="dt">fill =</span> Survived)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb723-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">boundary =</span> <span class="dv">0</span>, <span class="dt">bins =</span> <span class="dv">20</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb723-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>Survived) <span class="op">+</span></a>
-<a class="sourceLine" id="cb723-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_fill_ipsum</span>()</a></code></pre></div>
-<p><img src="cdr-intro_files/figure-html/15-revisao-10-2.png" width="100%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb724-1" data-line-number="1"><span class="kw">ggplot</span>(titanic_train, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">fill =</span> Survived)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb724-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb724-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Número de passageiros por Sexo&quot;</span>,</a>
-<a class="sourceLine" id="cb724-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Contagem&quot;</span>,</a>
-<a class="sourceLine" id="cb724-5" data-line-number="5">       <span class="dt">x =</span> <span class="st">&quot;Sexo&quot;</span>)</a></code></pre></div>
-<p><img src="cdr-intro_files/figure-html/15-revisao-10-3.png" width="100%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb725-1" data-line-number="1">titanic_train <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb725-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(Sex, Survived) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb725-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb725-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(Sex) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb725-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> n<span class="op">/</span><span class="kw">sum</span>(n) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb725-6" data-line-number="6"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> prop, <span class="dt">fill =</span> Survived)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb725-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb725-8" data-line-number="8"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Proporção de Sobreviventes por Sexo&quot;</span>,</a>
-<a class="sourceLine" id="cb725-9" data-line-number="9">       <span class="dt">y =</span> <span class="st">&quot;%&quot;</span>,</a>
-<a class="sourceLine" id="cb725-10" data-line-number="10">       <span class="dt">x =</span> <span class="st">&quot;Sexo&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb725-11" data-line-number="11"><span class="st">  </span><span class="kw">scale_fill_ipsum</span>(<span class="st">&quot;Sobreviveu&quot;</span>)</a></code></pre></div>
-<p><img src="cdr-intro_files/figure-html/15-revisao-10-4.png" width="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb729-1" data-line-number="1"><span class="kw">library</span>(hrbrthemes)</a>
+<a class="sourceLine" id="cb729-2" data-line-number="2"><span class="kw">theme_set</span>(<span class="kw">theme_ipsum</span>(<span class="dt">base_size =</span> <span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb729-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb729-4" data-line-number="4"><span class="kw">ggplot</span>(titanic_train, <span class="kw">aes</span>(<span class="dt">x =</span> Age)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb729-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">boundary =</span> <span class="dv">0</span>, <span class="dt">fill =</span> <span class="st">&quot;#223e63&quot;</span>, <span class="dt">bins =</span> <span class="dv">20</span>)</a></code></pre></div>
+<p><img src="cdr-intro_files/figure-html/unnamed-chunk-466-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb730-1" data-line-number="1"><span class="kw">ggplot</span>(titanic_train, <span class="kw">aes</span>(<span class="dt">x =</span> Age, <span class="dt">fill =</span> Survived)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb730-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">boundary =</span> <span class="dv">0</span>, <span class="dt">bins =</span> <span class="dv">20</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb730-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>Survived) <span class="op">+</span></a>
+<a class="sourceLine" id="cb730-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_fill_ipsum</span>()</a></code></pre></div>
+<p><img src="cdr-intro_files/figure-html/unnamed-chunk-466-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb731"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb731-1" data-line-number="1"><span class="kw">ggplot</span>(titanic_train, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">fill =</span> Survived)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb731-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb731-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Número de passageiros por Sexo&quot;</span>,</a>
+<a class="sourceLine" id="cb731-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Contagem&quot;</span>,</a>
+<a class="sourceLine" id="cb731-5" data-line-number="5">       <span class="dt">x =</span> <span class="st">&quot;Sexo&quot;</span>)</a></code></pre></div>
+<p><img src="cdr-intro_files/figure-html/unnamed-chunk-466-3.png" width="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb732-1" data-line-number="1">titanic_train <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb732-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(Sex, Survived) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb732-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb732-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(Sex) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb732-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">prop =</span> n<span class="op">/</span><span class="kw">sum</span>(n) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb732-6" data-line-number="6"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> prop, <span class="dt">fill =</span> Survived)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb732-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb732-8" data-line-number="8"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Proporção de Sobreviventes por Sexo&quot;</span>,</a>
+<a class="sourceLine" id="cb732-9" data-line-number="9">       <span class="dt">y =</span> <span class="st">&quot;%&quot;</span>,</a>
+<a class="sourceLine" id="cb732-10" data-line-number="10">       <span class="dt">x =</span> <span class="st">&quot;Sexo&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb732-11" data-line-number="11"><span class="st">  </span><span class="kw">scale_fill_ipsum</span>(<span class="st">&quot;Sobreviveu&quot;</span>)</a></code></pre></div>
+<p><img src="cdr-intro_files/figure-html/unnamed-chunk-466-4.png" width="100%" style="display: block; margin: auto;" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Crie mais duas visualizações:</li>
 </ol>
