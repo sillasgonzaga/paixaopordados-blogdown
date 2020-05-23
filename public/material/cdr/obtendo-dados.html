@@ -394,64 +394,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.1</span> API</h2>
 <p>API é uma forma de comunicação de dados mais apropriada para as trocas de informações entre softwares. Normalmente APIs trocam dados em formato hierárquico. Os dois formatos hierárquicos mais comuns são Javascript Object Notation (JSON) e eXtensible Markup Language (XML).</p>
 <p>Para obter-se e utilizar-se dados de API em R recomendamos a utilização do pacote <code>jsonlite</code>.</p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb425-1" data-line-number="1"><span class="kw">library</span>(jsonlite)</a></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" data-line-number="1"><span class="kw">library</span>(jsonlite)</a></code></pre></div>
 <p>A seguir apresentaremos alguns exemplos de APIs e seu uso. Existem diversas APIs e formas de consumi-las, portanto não iremos exaurir nesse texto todas as possibilidades de uso de APIs. O principal aqui é entender-se APIs como uma fonte rica de dados que pode ser explorada em suas análises.</p>
 <p>No exemplo a seguir utilizamos a API do github (portal para repositórios) e veremos quais os repositórios do Hadley Wickham:</p>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb426-1" data-line-number="1">hadley.rep &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&quot;https://api.github.com/users/hadley/repos&quot;</span>)</a>
-<a class="sourceLine" id="cb426-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb426-3" data-line-number="3"><span class="kw">dim</span>(hadley.rep)</a></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" data-line-number="1">hadley.rep &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&quot;https://api.github.com/users/hadley/repos&quot;</span>)</a>
+<a class="sourceLine" id="cb420-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb420-3" data-line-number="3"><span class="kw">dim</span>(hadley.rep)</a></code></pre></div>
 <pre><code>## [1] 30 73</code></pre>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb428-1" data-line-number="1"><span class="kw">head</span>(hadley.rep[,<span class="kw">c</span>(<span class="st">&#39;name&#39;</span>, <span class="st">&#39;description&#39;</span>)], <span class="dv">15</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" data-line-number="1"><span class="kw">head</span>(hadley.rep[,<span class="kw">c</span>(<span class="st">&#39;name&#39;</span>, <span class="st">&#39;description&#39;</span>)], <span class="dv">15</span>)</a></code></pre></div>
 <pre><code>##                     name
 ## 1  15-state-of-the-union
 ## 2      15-student-papers
 ## 3               500lines
 ## 4                  adv-r
-## 5                appdirs
-## 6                  arrow
-## 7             assertthat
-## 8              babynames
-## 9         beautiful-data
-## 10                 bench
-## 11                bigvis
-## 12        bigvis-infovis
-## 13          BiocStickers
-## 14               bizarro
-## 15    Book-Twitter-for-R
+## 5                    amt
+## 6                appdirs
+## 7                  arrow
+## 8             assertthat
+## 9              babynames
+## 10             bayesplot
+## 11        beautiful-data
+## 12                 bench
+## 13                bigvis
+## 14        bigvis-infovis
+## 15          BiocStickers
 ##                                                                                                                                                                                                                                                                                                                                                                                                                                       description
 ## 1                                                                                                                                                                                                                                                                                                                                                                                                                                            &lt;NA&gt;
 ## 2                                                                                                                                                                                                                                                                                                                                                                                           Graphics &amp; computing student paper winners @ JSM 2015
 ## 3                                                                                                                                                                                                                                                                                                                                                                                                                               500 Lines or Less
 ## 4                                                                                                                                                                                                                                                                                                                                                                                                                              Advanced R: a book
-## 5                                                                                                                                                                                                                                                                                                                                               A small Python module for determining appropriate platform-specific dirs, e.g. a &quot;user data dir&quot;.
-## 6  Apache Arrow is a cross-language development platform for in-memory data. It specifies a standardized language-independent columnar memory format for flat and hierarchical data, organized for efficient analytic operations on modern hardware. It also provides computational libraries and zero-copy streaming messaging and interprocess communication. Languages currently supported include C, C++, Java, JavaScript, Python, and Ruby.
-## 7                                                                                                                                                                                                                                                                                                                                                                                                                  User friendly assertions for R
-## 8                                                                                                                                                                                                                                                                                                                                                                                              An R package containing US baby names from the SSA
-## 9                                                                                                                                                                                                                                                                                                                                                                                                                 Book chapter for beautiful data
-## 10                                                                                                                                                                                                                                                                                                                                                                                                                        Bechmarking tools for R
-## 11                                                                                                                                                                                                                                                                                                                                                                     Exploratory data analysis for large datasets (10-100 million observations)
-## 12                                                                                                                                                                                                                                                                                                                                                                    Paper describing the bigvis package and framework submitted to Infovis 2013
-## 13                                                                                                                                                                                                                                                                                                                                                               Stickers for some Bioconductor packages - feel free to contribute and/or modify.
-## 14                                                                                                                                                                                                                                                                                                                                                                                                                                  Bizarro world
-## 15                                                                                                                                                                                                                                                                                                                                                                                                             Guide to Twitter for R programmers</code></pre>
+## 5                                                                                                                                                                                                                                                                                                                                                                                                                                            &lt;NA&gt;
+## 6                                                                                                                                                                                                                                                                                                                                               A small Python module for determining appropriate platform-specific dirs, e.g. a &quot;user data dir&quot;.
+## 7  Apache Arrow is a cross-language development platform for in-memory data. It specifies a standardized language-independent columnar memory format for flat and hierarchical data, organized for efficient analytic operations on modern hardware. It also provides computational libraries and zero-copy streaming messaging and interprocess communication. Languages currently supported include C, C++, Java, JavaScript, Python, and Ruby.
+## 8                                                                                                                                                                                                                                                                                                                                                                                                                  User friendly assertions for R
+## 9                                                                                                                                                                                                                                                                                                                                                                                              An R package containing US baby names from the SSA
+## 10                                                                                                                                                                                                                                                                                                                                                                                               bayesplot R package for plotting Bayesian models
+## 11                                                                                                                                                                                                                                                                                                                                                                                                                Book chapter for beautiful data
+## 12                                                                                                                                                                                                                                                                                                                                                                                                                        Bechmarking tools for R
+## 13                                                                                                                                                                                                                                                                                                                                                                     Exploratory data analysis for large datasets (10-100 million observations)
+## 14                                                                                                                                                                                                                                                                                                                                                                    Paper describing the bigvis package and framework submitted to Infovis 2013
+## 15                                                                                                                                                                                                                                                                                                                                                               Stickers for some Bioconductor packages - feel free to contribute and/or modify.</code></pre>
 <p>Outro exemplo de API muito interessante é o portal de dados abertos da Câmara dos Deputados. Eles possuem diversas APIs para consultar os dados do processo legislativo. Veja o exemplo a seguir, que resgata as proposições utilizando API:</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" data-line-number="1">proposicoes &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&quot;https://dadosabertos.camara.leg.br/api/v2/proposicoes&quot;</span>)</a>
-<a class="sourceLine" id="cb430-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb430-3" data-line-number="3"><span class="kw">head</span>(proposicoes<span class="op">$</span>dados <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(siglaTipo, numero, ano, ementa))</a></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" data-line-number="1">proposicoes &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&quot;https://dadosabertos.camara.leg.br/api/v2/proposicoes&quot;</span>)</a>
+<a class="sourceLine" id="cb424-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb424-3" data-line-number="3"><span class="kw">head</span>(proposicoes<span class="op">$</span>dados <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(siglaTipo, numero, ano, ementa))</a></code></pre></div>
 <pre><code>##   siglaTipo numero  ano
 ## 1        PL   2295 2000
-## 2        PL   6222 2002
-## 3        PL   6588 2006
-## 4        PL   7220 2006
-## 5        PL    478 2007
-## 6       REP      7 2007
-##                                                                                                                                                                                                                                      ementa
-## 1                                                                                                                                                  Dispõe sobre a jornada de trabalho dos Enfermeiros, Técnicos e Auxiliares de Enfermagem.
-## 2                                                                                                                                 Dispõe sobre a vigilância e o controle da qualidade da água para consumo humano e dá outras providências.
-## 3 Altera o art. 41 da Lei nº 7.210, de 11 de julho de 1984 - Lei de Execução Penal, para prever a interceptação de correspondência de presos condenados ou provisórios para fins de investigação criminal ou de instrução processual penal.
-## 4                                                                                                               Altera o art. 109 do Decreto-Lei nº 2.848, de 7 de dezembro de 1940,  Código Penal, para aumentar os prazos prescricionais.
-## 5                                                                                                                                                                            Dispõe sobre o Estatuto do Nascituro e dá outras providências.
-## 6                                                                                                                                            Solicita a instauração de procedimento de fiscalização na Prefeitura Municipal da Caxias - MA.</code></pre>
+## 2        PL   1952 2003
+## 3       REP      7 2007
+## 4        PL   2289 2007
+## 5       PDC    691 2012
+## 6        PL   4699 2012
+##                                                                                                                                                                                                                                        ementa
+## 1                                                                                                                                                    Dispõe sobre a jornada de trabalho dos Enfermeiros, Técnicos e Auxiliares de Enfermagem.
+## 2                                                                                                                                    Dispõe sobre a elevação para dezoito por cento a alíquota da CSLL devida pelas instituições financeiras.
+## 3                                                                                                                                              Solicita a instauração de procedimento de fiscalização na Prefeitura Municipal da Caxias - MA.
+## 4                                                                                                       Regulamenta o art. 190 da Constituição Federal, altera o art. 1º da Lei nº 4.131, de 3 de setembro de 1962, e dá outras providências.
+## 5 Aprova o ato que autoriza a Associação Mogiana dos Profissionais de Rádio e TV  a executar, pelo prazo de dez anos, sem direito de exclusividade, serviço de radiodifusão comunitária no Município de Mogi das Cruzes, Estado de São Paulo.
+## 6                                                                                                                                                                            Regulamenta a profissão de historiador e dá outras providências.</code></pre>
 <p>Hoje em dia, todas as redes sociais possuem APIs para consumir os dados dos usuários e postagens. Normalmente essas APIs pedem um cadastro anterior (apesar de gratuitas, em sua maior parte). O R possui diversos pacotes para consumir APIs interessantes:</p>
 <ul>
 <li>Quandl: pacote que fornece diversos dados econômicos de diversos países;</li>
@@ -469,19 +469,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>O pacote funciona da seguinte forma: Um string que contem o link é usado como input da função <code>read_html()</code>. A partir daí as funções do pacote <code>rvest</code> podem ser usadas para extrair dados da página. <code>html_table()</code>, por exemplo, extrai dados tabulares da página.</p>
 <p>Algo que torna o Web Scraping muito complexo é que essa tarefa é muito dependente do código-fonte da página. Caso ela sofra mudanças, o código provavelmente não irá mais funcionar. Um exemplo é o que se vê neste post sobre Web Scraping do OLX, que não funciona mais.</p>
 <p>Devido a isso, este material opta por não entrar a fundo no assunto além de mostrar um exemplo superficial abaixo de scraping de uma <a href="https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2018_-_S%C3%A9rie_A#Classifica%C3%A7%C3%A3o">tabela da Wikipedia</a>:</p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb432-1" data-line-number="1"><span class="kw">library</span>(rvest)</a>
-<a class="sourceLine" id="cb432-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb432-3" data-line-number="3">url &lt;-<span class="st"> &quot;https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2018_-_Série_A&quot;</span> <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb432-4" data-line-number="4"><span class="st">  </span><span class="kw">read_html</span>()</a>
-<a class="sourceLine" id="cb432-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb432-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb432-7" data-line-number="7">tb &lt;-<span class="st"> </span><span class="kw">html_table</span>(url, <span class="dt">fill =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb432-8" data-line-number="8">tb &lt;-<span class="st"> </span>tb[[<span class="dv">6</span>]]</a>
-<a class="sourceLine" id="cb432-9" data-line-number="9">tb <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb432-10" data-line-number="10"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb432-11" data-line-number="11"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">SG =</span> <span class="kw">ifelse</span>(<span class="kw">str_detect</span>(SG,<span class="st">&quot;</span><span class="ch">\\</span><span class="st">+&quot;</span>),</a>
-<a class="sourceLine" id="cb432-12" data-line-number="12">                    readr<span class="op">::</span><span class="kw">parse_number</span>(SG),</a>
-<a class="sourceLine" id="cb432-13" data-line-number="13">                    <span class="dv">-1</span> <span class="op">*</span><span class="st"> </span>readr<span class="op">::</span><span class="kw">parse_number</span>(SG)))</a></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb426-1" data-line-number="1"><span class="kw">library</span>(rvest)</a>
+<a class="sourceLine" id="cb426-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb426-3" data-line-number="3">url &lt;-<span class="st"> &quot;https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2018_-_Série_A&quot;</span> <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb426-4" data-line-number="4"><span class="st">  </span><span class="kw">read_html</span>()</a>
+<a class="sourceLine" id="cb426-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb426-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb426-7" data-line-number="7">tb &lt;-<span class="st"> </span><span class="kw">html_table</span>(url, <span class="dt">fill =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb426-8" data-line-number="8">tb &lt;-<span class="st"> </span>tb[[<span class="dv">6</span>]]</a>
+<a class="sourceLine" id="cb426-9" data-line-number="9">tb <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb426-10" data-line-number="10"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb426-11" data-line-number="11"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">SG =</span> <span class="kw">ifelse</span>(<span class="kw">str_detect</span>(SG,<span class="st">&quot;</span><span class="ch">\\</span><span class="st">+&quot;</span>),</a>
+<a class="sourceLine" id="cb426-12" data-line-number="12">                    readr<span class="op">::</span><span class="kw">parse_number</span>(SG),</a>
+<a class="sourceLine" id="cb426-13" data-line-number="13">                    <span class="dv">-1</span> <span class="op">*</span><span class="st"> </span>readr<span class="op">::</span><span class="kw">parse_number</span>(SG)))</a></code></pre></div>
 
 </div>
 </div>

@@ -412,8 +412,8 @@ Figura 5.2: Tabela long
 <p>Na contramão da limpeza de dados, você provavelmente terá o problema contrário ao final da sua análise. Supondo que você organizou seus dados perfeitamente, conseguiu executar os modelos que gostaria, gerou diversos gráficos interessantes e está satisfeito com o resultado, você ainda precisará entregar relatórios finais da sua análise em forma de tabelas sumarizadas e explicativas, de modo que os interessados possam entender facilmente, apenas com uma rápida análise visual. Neste caso, que tipo de tabela seria melhor produzir? Provavelmente, quem for ler seus relatórios entenderá mais rapidamente as tabelas mais próximas do primeiro exemplo mostrado.</p>
 <p>É importante aprender a estruturar e desestruturar tabelas de todas as formas possíveis.</p>
 <p>Para exemplificar, veja algumas tabelas disponíveis no pacote <code>tidyverse</code>, ilustrando os diferentes tipos de organização nos formatos wide e long. Todas as tabelas possuem os mesmos dados e informações:</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" data-line-number="1">table1</a></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" data-line-number="1">table1</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -423,7 +423,7 @@ Figura 5.2: Tabela long
 ## 4 Brazil       2000  80488  174504898
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" data-line-number="1">table2</a></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1">table2</a></code></pre></div>
 <pre><code>## # A tibble: 12 x 4
 ##    country      year type            count
 ##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
@@ -439,7 +439,7 @@ Figura 5.2: Tabela long
 ## 10 China        1999 population 1272915272
 ## 11 China        2000 cases          213766
 ## 12 China        2000 population 1280428583</code></pre>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" data-line-number="1">table3</a></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" data-line-number="1">table3</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   country      year rate             
 ## * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
@@ -449,21 +449,21 @@ Figura 5.2: Tabela long
 ## 4 Brazil       2000 80488/174504898  
 ## 5 China        1999 212258/1272915272
 ## 6 China        2000 213766/1280428583</code></pre>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" data-line-number="1">table4a</a></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" data-line-number="1">table4a</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   country     `1999` `2000`
 ## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
 ## 1 Afghanistan    745   2666
 ## 2 Brazil       37737  80488
 ## 3 China       212258 213766</code></pre>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" data-line-number="1">table4b</a></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" data-line-number="1">table4b</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   country         `1999`     `2000`
 ## * &lt;chr&gt;            &lt;int&gt;      &lt;int&gt;
 ## 1 Afghanistan   19987071   20595360
 ## 2 Brazil       172006362  174504898
 ## 3 China       1272915272 1280428583</code></pre>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" data-line-number="1">table5</a></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1">table5</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country     century year  rate             
 ## * &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            
@@ -478,9 +478,9 @@ Figura 5.2: Tabela long
 <h2><span class="header-section-number">5.2</span> Pacote tidyr</h2>
 <p>Apesar de existirem diversas possibilidades de situações que necessitem de limpeza de dados, a conjugação de três pacotes consegue resolver a grande maioria dos casos: <code>dplyr</code>, <code>tidyr</code>, <code>stringr</code>.</p>
 <p>O pacote <code>tidyr</code> é mais um dos pacotes criados por Hadley Wickham. Este fato, por si só, já traz algumas vantagens: ele se integra perfeitamente com o <code>dplyr</code>, usando o conector <code>%&gt;%</code>, e tem a sintaxe de suas funções bastante intuitiva.</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidyr&quot;</span>)</a>
-<a class="sourceLine" id="cb205-2" data-line-number="2"><span class="kw">library</span>(tidyr)</a>
-<a class="sourceLine" id="cb205-3" data-line-number="3">?tidyr</a></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidyr&quot;</span>)</a>
+<a class="sourceLine" id="cb202-2" data-line-number="2"><span class="kw">library</span>(tidyr)</a>
+<a class="sourceLine" id="cb202-3" data-line-number="3">?tidyr</a></code></pre></div>
 <p>O <code>tidyr</code> também tem suas funções organizadas em pequenos verbetes, onde cada um representa uma tarefa para organizar os dados. Os verbetes básicos que abordaremos são os seguintes:</p>
 <ul>
 <li><code>gather()</code></li>
@@ -506,15 +506,15 @@ Figura 5.3: Tabela long
 <h3><span class="header-section-number">5.2.1</span> gather</h3>
 <p>A função <code>gather()</code> serve para agrupar duas ou mais colunas e seus respectivos valores (conteúdos) em pares. Assim, o resultado após o agrupamento é sempre duas colunas. A primeira delas possui observações cujos valores chave eram as colunas antigas e a segunda possui os valores respectivos relacionados com as colunas antigas. Na prática, a função gather diminui o número de colunas e aumenta o número de linhas de nossa base de dados.</p>
 <p>Usaremos dados disponíveis no R base para exemplificar:</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;USArrests&quot;</span>)</a>
-<a class="sourceLine" id="cb206-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb206-3" data-line-number="3"><span class="kw">str</span>(USArrests)</a></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;USArrests&quot;</span>)</a>
+<a class="sourceLine" id="cb203-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb203-3" data-line-number="3"><span class="kw">str</span>(USArrests)</a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    50 obs. of  4 variables:
 ##  $ Murder  : num  13.2 10 8.1 8.8 9 7.9 3.3 5.9 15.4 17.4 ...
 ##  $ Assault : int  236 263 294 190 276 204 110 238 335 211 ...
 ##  $ UrbanPop: int  58 48 80 50 91 78 77 72 80 60 ...
 ##  $ Rape    : num  21.2 44.5 31 19.5 40.6 38.7 11.1 15.8 31.9 25.8 ...</code></pre>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" data-line-number="1"><span class="kw">head</span>(USArrests)</a></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1"><span class="kw">head</span>(USArrests)</a></code></pre></div>
 <pre><code>##            Murder Assault UrbanPop Rape
 ## Alabama      13.2     236       58 21.2
 ## Alaska       10.0     263       48 44.5
@@ -522,9 +522,9 @@ Figura 5.3: Tabela long
 ## Arkansas      8.8     190       50 19.5
 ## California    9.0     276       91 40.6
 ## Colorado      7.9     204       78 38.7</code></pre>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" data-line-number="1"><span class="co"># Transformando o nome das linhas em colunas</span></a>
-<a class="sourceLine" id="cb210-2" data-line-number="2">USArrests<span class="op">$</span>State &lt;-<span class="st"> </span><span class="kw">rownames</span>(USArrests)</a>
-<a class="sourceLine" id="cb210-3" data-line-number="3"><span class="kw">head</span>(USArrests)</a></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" data-line-number="1"><span class="co"># Transformando o nome das linhas em colunas</span></a>
+<a class="sourceLine" id="cb207-2" data-line-number="2">USArrests<span class="op">$</span>State &lt;-<span class="st"> </span><span class="kw">rownames</span>(USArrests)</a>
+<a class="sourceLine" id="cb207-3" data-line-number="3"><span class="kw">head</span>(USArrests)</a></code></pre></div>
 <pre><code>##            Murder Assault UrbanPop Rape      State
 ## Alabama      13.2     236       58 21.2    Alabama
 ## Alaska       10.0     263       48 44.5     Alaska
@@ -532,10 +532,10 @@ Figura 5.3: Tabela long
 ## Arkansas      8.8     190       50 19.5   Arkansas
 ## California    9.0     276       91 40.6 California
 ## Colorado      7.9     204       78 38.7   Colorado</code></pre>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" data-line-number="1">usa.long &lt;-<span class="st"> </span>USArrests <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb212-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;tipo_crime&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;valor&quot;</span>, <span class="op">-</span>State)</a>
-<a class="sourceLine" id="cb212-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb212-4" data-line-number="4"><span class="kw">head</span>(usa.long)</a></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1">usa.long &lt;-<span class="st"> </span>USArrests <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb209-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;tipo_crime&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;valor&quot;</span>, <span class="op">-</span>State)</a>
+<a class="sourceLine" id="cb209-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb209-4" data-line-number="4"><span class="kw">head</span>(usa.long)</a></code></pre></div>
 <pre><code>##        State tipo_crime valor
 ## 1    Alabama     Murder  13.2
 ## 2     Alaska     Murder  10.0
@@ -543,7 +543,7 @@ Figura 5.3: Tabela long
 ## 4   Arkansas     Murder   8.8
 ## 5 California     Murder   9.0
 ## 6   Colorado     Murder   7.9</code></pre>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" data-line-number="1"><span class="kw">tail</span>(usa.long)</a></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" data-line-number="1"><span class="kw">tail</span>(usa.long)</a></code></pre></div>
 <pre><code>##             State tipo_crime valor
 ## 195       Vermont       Rape  11.2
 ## 196      Virginia       Rape  20.7
@@ -561,7 +561,7 @@ Figura 5.3: Tabela long
 <div id="spread" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> spread</h3>
 <p>É a operação antagônica do <code>gather()</code>. Ela espalha os valores de duas colunas em diversos campos para cada registro: os valores de uma coluna viram o nome das novas colunas, e os valores de outra viram valores de cada registro nas novas colunas. Usaremos a <code>table2</code> para exemplificar:</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1"><span class="kw">head</span>(table2)</a></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" data-line-number="1"><span class="kw">head</span>(table2)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year type           count
 ##   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;          &lt;int&gt;
@@ -571,10 +571,10 @@ Figura 5.3: Tabela long
 ## 4 Afghanistan  2000 population  20595360
 ## 5 Brazil       1999 cases          37737
 ## 6 Brazil       1999 population 172006362</code></pre>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1">table2.wide &lt;-<span class="st"> </span>table2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb218-2" data-line-number="2"><span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> type, <span class="dt">value =</span> count)</a>
-<a class="sourceLine" id="cb218-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb218-4" data-line-number="4"><span class="kw">head</span>(table2.wide)</a></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" data-line-number="1">table2.wide &lt;-<span class="st"> </span>table2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb215-2" data-line-number="2"><span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> type, <span class="dt">value =</span> count)</a>
+<a class="sourceLine" id="cb215-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb215-4" data-line-number="4"><span class="kw">head</span>(table2.wide)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -594,10 +594,10 @@ Figura 5.3: Tabela long
 <h3><span class="header-section-number">5.2.3</span> separate</h3>
 <p>O <code>separate()</code> é usado para separar duas variáveis que estão em uma mesma coluna. Lembre-se: cada coluna deve ser apenas uma única variável! É muito normal virem variáveis juntas em uma única coluna, mas nem sempre isso é prejudicial, cabe avaliar quando vale a pena separá-las.</p>
 <p>Usaremos o exemplo da <code>table3</code> para investigar:</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1">table3.wide &lt;-<span class="st"> </span>table3 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb220-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep=</span><span class="st">&#39;/&#39;</span>)</a>
-<a class="sourceLine" id="cb220-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb220-4" data-line-number="4"><span class="kw">head</span>(table3.wide)</a></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" data-line-number="1">table3.wide &lt;-<span class="st"> </span>table3 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb217-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep=</span><span class="st">&#39;/&#39;</span>)</a>
+<a class="sourceLine" id="cb217-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb217-4" data-line-number="4"><span class="kw">head</span>(table3.wide)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year cases  population
 ##   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     
@@ -616,11 +616,11 @@ Figura 5.3: Tabela long
 <div id="unite" class="section level3">
 <h3><span class="header-section-number">5.2.4</span> unite</h3>
 <p>A operação <code>unite()</code> é o oposto da <code>separate()</code>, ela pega duas colunas (variáveis) e transforma em uma só. É muito utilizada para montar relatórios finais ou tabelas para análise visual. Aproveitemos o exemplo em <code>table2</code> para montarmos uma tabela final comparando a “case” e “population” de cada país, em cada ano.</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" data-line-number="1">table2.relatorio &lt;-<span class="st"> </span>table2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb222-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(type_year, type, year) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb222-3" data-line-number="3"><span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> type_year, <span class="dt">value =</span> count, <span class="dt">sep =</span> <span class="st">&#39;_&#39;</span>)</a>
-<a class="sourceLine" id="cb222-4" data-line-number="4">  </a>
-<a class="sourceLine" id="cb222-5" data-line-number="5">table2.relatorio</a></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" data-line-number="1">table2.relatorio &lt;-<span class="st"> </span>table2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb219-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(type_year, type, year) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb219-3" data-line-number="3"><span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> type_year, <span class="dt">value =</span> count, <span class="dt">sep =</span> <span class="st">&#39;_&#39;</span>)</a>
+<a class="sourceLine" id="cb219-4" data-line-number="4">  </a>
+<a class="sourceLine" id="cb219-5" data-line-number="5">table2.relatorio</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 5
 ##   country     type_year_cases_1999 type_year_cases_2000 type_year_population_1999 type_year_population_2000
 ##   &lt;chr&gt;                      &lt;int&gt;                &lt;int&gt;                     &lt;int&gt;                     &lt;int&gt;
@@ -637,12 +637,12 @@ Figura 5.3: Tabela long
 <div id="separate_rows" class="section level3">
 <h3><span class="header-section-number">5.2.5</span> separate_rows</h3>
 <p>Do mesmo modo que <code>separate()</code> quebra uma coluna em várias, <code>separate_rows()</code> quebra uma linha em várias de acordo com um separador. Essa função é muito útil para lidar com dados sujos. Observe o exemplo:</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1"><span class="co"># criar dataframe de exemplo</span></a>
-<a class="sourceLine" id="cb224-2" data-line-number="2">exemplo &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">grupo =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>,<span class="st">&quot;b&quot;</span>),</a>
-<a class="sourceLine" id="cb224-3" data-line-number="3">                  <span class="dt">y =</span> <span class="kw">c</span>(<span class="st">&quot;1, 2&quot;</span>, <span class="st">&quot;3;4&quot;</span>, <span class="st">&quot;1,2,3&quot;</span>, <span class="st">&quot;4&quot;</span>))</a>
-<a class="sourceLine" id="cb224-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb224-5" data-line-number="5">exemplo <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb224-6" data-line-number="6"><span class="st">  </span><span class="kw">separate_rows</span>(y, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" data-line-number="1"><span class="co"># criar dataframe de exemplo</span></a>
+<a class="sourceLine" id="cb221-2" data-line-number="2">exemplo &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">grupo =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>,<span class="st">&quot;b&quot;</span>),</a>
+<a class="sourceLine" id="cb221-3" data-line-number="3">                  <span class="dt">y =</span> <span class="kw">c</span>(<span class="st">&quot;1, 2&quot;</span>, <span class="st">&quot;3;4&quot;</span>, <span class="st">&quot;1,2,3&quot;</span>, <span class="st">&quot;4&quot;</span>))</a>
+<a class="sourceLine" id="cb221-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb221-5" data-line-number="5">exemplo <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb221-6" data-line-number="6"><span class="st">  </span><span class="kw">separate_rows</span>(y, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 7 x 2
 ##   grupo y    
 ##   &lt;chr&gt; &lt;chr&gt;

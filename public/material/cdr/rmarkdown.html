@@ -455,7 +455,7 @@ A média de x é `r mean(x)`.</code></pre>
 <pre><code>---
 title: &quot;Primeiro Exemplo para o Curso de R&quot;
 author: &quot;Paulo&quot;
-date: &quot;23 de abril de 2020&quot;
+date: &quot;22 de maio de 2020&quot;
 output:
   html_document: default
   pdf_document:
@@ -477,11 +477,11 @@ lang: pt-br
 <div id="renderizando-um-documento" class="section level2">
 <h2><span class="header-section-number">14.3</span> Renderizando um documento</h2>
 <p>Há duas formas de se renderizar um documento <code>.Rmd</code>. A primeira é via função <code>render()</code> do pacote <code>rmarkdown</code>.</p>
-<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb631-1" data-line-number="1"><span class="kw">render</span>(input, <span class="dt">output_format =</span> <span class="ot">NULL</span>, <span class="dt">output_file =</span> <span class="ot">NULL</span>, <span class="dt">output_dir =</span> <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb631-2" data-line-number="2">       <span class="dt">output_options =</span> <span class="ot">NULL</span>, <span class="dt">intermediates_dir =</span> <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb631-3" data-line-number="3">       <span class="dt">runtime =</span> <span class="kw">c</span>(<span class="st">&quot;auto&quot;</span>, <span class="st">&quot;static&quot;</span>, <span class="st">&quot;shiny&quot;</span>),</a>
-<a class="sourceLine" id="cb631-4" data-line-number="4">       <span class="dt">clean =</span> <span class="ot">TRUE</span>, <span class="dt">params =</span> <span class="ot">NULL</span>, <span class="dt">knit_meta =</span> <span class="ot">NULL</span>, <span class="dt">envir =</span> <span class="kw">parent.frame</span>(),</a>
-<a class="sourceLine" id="cb631-5" data-line-number="5">       <span class="dt">run_pandoc =</span> <span class="ot">TRUE</span>, <span class="dt">quiet =</span> <span class="ot">FALSE</span>, <span class="dt">encoding =</span> <span class="kw">getOption</span>(<span class="st">&quot;encoding&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb617-1" data-line-number="1"><span class="kw">render</span>(input, <span class="dt">output_format =</span> <span class="ot">NULL</span>, <span class="dt">output_file =</span> <span class="ot">NULL</span>, <span class="dt">output_dir =</span> <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb617-2" data-line-number="2">       <span class="dt">output_options =</span> <span class="ot">NULL</span>, <span class="dt">intermediates_dir =</span> <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb617-3" data-line-number="3">       <span class="dt">runtime =</span> <span class="kw">c</span>(<span class="st">&quot;auto&quot;</span>, <span class="st">&quot;static&quot;</span>, <span class="st">&quot;shiny&quot;</span>),</a>
+<a class="sourceLine" id="cb617-4" data-line-number="4">       <span class="dt">clean =</span> <span class="ot">TRUE</span>, <span class="dt">params =</span> <span class="ot">NULL</span>, <span class="dt">knit_meta =</span> <span class="ot">NULL</span>, <span class="dt">envir =</span> <span class="kw">parent.frame</span>(),</a>
+<a class="sourceLine" id="cb617-5" data-line-number="5">       <span class="dt">run_pandoc =</span> <span class="ot">TRUE</span>, <span class="dt">quiet =</span> <span class="ot">FALSE</span>, <span class="dt">encoding =</span> <span class="kw">getOption</span>(<span class="st">&quot;encoding&quot;</span>))</a></code></pre></div>
 <p>Veja no help a função de cada argumento. Essa função é especialmente importante quando a renderização de um RMarkdown está inserida dentro de uma rotina. Por exemplo, pode-se usar a função <code>render()</code> dentro de um loop para criar-se vários pdf’s a partir de um relatório parametrizado.</p>
 <p>A outra opção é usando o botão <code>knit</code>, disponível na interface do RStudio.</p>
 <div class="figure">
@@ -610,9 +610,9 @@ I want the contents of this cell to fit into one line   Word1 Word2
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb643-1" data-line-number="1">x &lt;-<span class="st"> </span>letters[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a>
-<a class="sourceLine" id="cb643-2" data-line-number="2">y &lt;-<span class="st"> </span>LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a>
-<a class="sourceLine" id="cb643-3" data-line-number="3">knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">data.frame</span>(x, y), <span class="dt">align =</span> <span class="st">&#39;cc&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb629-1" data-line-number="1">x &lt;-<span class="st"> </span>letters[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb629-2" data-line-number="2">y &lt;-<span class="st"> </span>LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb629-3" data-line-number="3">knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">data.frame</span>(x, y), <span class="dt">align =</span> <span class="st">&#39;cc&#39;</span>)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -823,10 +823,10 @@ I want the contents of this cell to fit into one line   Word1 Word2
 <li><p>Crie um vetor com cinco códigos de países. A partir deste vetor, utilize a função render para criar um arquivo para cada país.</p></li>
 </ol>
 
-<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb649-1" data-line-number="1"><span class="kw">library</span>(rpart)</a>
-<a class="sourceLine" id="cb649-2" data-line-number="2"><span class="kw">library</span>(randomForest)</a>
-<a class="sourceLine" id="cb649-3" data-line-number="3"><span class="kw">library</span>(ModelMetrics)</a>
-<a class="sourceLine" id="cb649-4" data-line-number="4"><span class="kw">library</span>(rpart.plot)</a></code></pre></div>
+<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb635-1" data-line-number="1"><span class="kw">library</span>(rpart)</a>
+<a class="sourceLine" id="cb635-2" data-line-number="2"><span class="kw">library</span>(randomForest)</a>
+<a class="sourceLine" id="cb635-3" data-line-number="3"><span class="kw">library</span>(ModelMetrics)</a>
+<a class="sourceLine" id="cb635-4" data-line-number="4"><span class="kw">library</span>(rpart.plot)</a></code></pre></div>
 </div>
 </div>
             </section>
