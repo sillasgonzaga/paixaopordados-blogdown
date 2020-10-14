@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>10 Obtendo dados | Ciência de Dados com R - Introdução</title>
   <meta name="description" content="Aprendendo a programar com R" />
-  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="10 Obtendo dados | Ciência de Dados com R - Introdução" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,6 @@
 <meta name="author" content="Saulo Guerra, Paulo Felipe de Oliveira, Robert McDonnell e Sillas Gonzaga" />
 
 
-<meta name="date" content="2020-07-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,7 +49,7 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
@@ -400,14 +399,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.1</span> API</h2>
 <p>API é uma forma de comunicação de dados mais apropriada para as trocas de informações entre softwares. Normalmente APIs trocam dados em formato hierárquico. Os dois formatos hierárquicos mais comuns são Javascript Object Notation (JSON) e eXtensible Markup Language (XML).</p>
 <p>Para obter-se e utilizar-se dados de API em R recomendamos a utilização do pacote <code>jsonlite</code>.</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb423-1" data-line-number="1"><span class="kw">library</span>(jsonlite)</a></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" data-line-number="1"><span class="kw">library</span>(jsonlite)</a></code></pre></div>
 <p>A seguir apresentaremos alguns exemplos de APIs e seu uso. Existem diversas APIs e formas de consumi-las, portanto não iremos exaurir nesse texto todas as possibilidades de uso de APIs. O principal aqui é entender-se APIs como uma fonte rica de dados que pode ser explorada em suas análises.</p>
 <p>No exemplo a seguir utilizamos a API do github (portal para repositórios) e veremos quais os repositórios do Hadley Wickham:</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" data-line-number="1">hadley.rep &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&quot;https://api.github.com/users/hadley/repos&quot;</span>)</a>
-<a class="sourceLine" id="cb424-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb424-3" data-line-number="3"><span class="kw">dim</span>(hadley.rep)</a></code></pre></div>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb418-1" data-line-number="1">hadley.rep &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&quot;https://api.github.com/users/hadley/repos&quot;</span>)</a>
+<a class="sourceLine" id="cb418-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb418-3" data-line-number="3"><span class="kw">dim</span>(hadley.rep)</a></code></pre></div>
 <pre><code>## [1] 30 73</code></pre>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb426-1" data-line-number="1"><span class="kw">head</span>(hadley.rep[,<span class="kw">c</span>(<span class="st">&#39;name&#39;</span>, <span class="st">&#39;description&#39;</span>)], <span class="dv">15</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" data-line-number="1"><span class="kw">head</span>(hadley.rep[,<span class="kw">c</span>(<span class="st">&#39;name&#39;</span>, <span class="st">&#39;description&#39;</span>)], <span class="dv">15</span>)</a></code></pre></div>
 <pre><code>##                     name
 ## 1  15-state-of-the-union
 ## 2      15-student-papers
@@ -415,15 +414,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4                  adv-r
 ## 5                    amt
 ## 6                appdirs
-## 7                  arrow
-## 8             assertthat
-## 9              babynames
-## 10             bayesplot
-## 11        beautiful-data
-## 12                 bench
-## 13                bigvis
-## 14        bigvis-infovis
-## 15          BiocStickers
+## 7                  arkdb
+## 8                  arrow
+## 9             assertthat
+## 10             babynames
+## 11                  bark
+## 12             bayesplot
+## 13                bcdata
+## 14        beautiful-data
+## 15                 bench
 ##                                                                                                                                                                                                                                                                                                                                                                                                                                       description
 ## 1                                                                                                                                                                                                                                                                                                                                                                                                                                            &lt;NA&gt;
 ## 2                                                                                                                                                                                                                                                                                                                                                                                           Graphics &amp; computing student paper winners @ JSM 2015
@@ -431,33 +430,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4                                                                                                                                                                                                                                                                                                                                                                                                                              Advanced R: a book
 ## 5                                                                                                                                                                                                                                                                                                                                                                                                                                            &lt;NA&gt;
 ## 6                                                                                                                                                                                                                                                                                                                                               A small Python module for determining appropriate platform-specific dirs, e.g. a &quot;user data dir&quot;.
-## 7  Apache Arrow is a cross-language development platform for in-memory data. It specifies a standardized language-independent columnar memory format for flat and hierarchical data, organized for efficient analytic operations on modern hardware. It also provides computational libraries and zero-copy streaming messaging and interprocess communication. Languages currently supported include C, C++, Java, JavaScript, Python, and Ruby.
-## 8                                                                                                                                                                                                                                                                                                                                                                                                                  User friendly assertions for R
-## 9                                                                                                                                                                                                                                                                                                                                                                                              An R package containing US baby names from the SSA
-## 10                                                                                                                                                                                                                                                                                                                                                                                               bayesplot R package for plotting Bayesian models
-## 11                                                                                                                                                                                                                                                                                                                                                                                                                Book chapter for beautiful data
-## 12                                                                                                                                                                                                                                                                                                                                                                                                                        Bechmarking tools for R
-## 13                                                                                                                                                                                                                                                                                                                                                                     Exploratory data analysis for large datasets (10-100 million observations)
-## 14                                                                                                                                                                                                                                                                                                                                                                    Paper describing the bigvis package and framework submitted to Infovis 2013
-## 15                                                                                                                                                                                                                                                                                                                                                               Stickers for some Bioconductor packages - feel free to contribute and/or modify.</code></pre>
+## 7                                                                                                                                                                                                                                                                                                                                                                                              Archive and unarchive databases as flat text files
+## 8  Apache Arrow is a cross-language development platform for in-memory data. It specifies a standardized language-independent columnar memory format for flat and hierarchical data, organized for efficient analytic operations on modern hardware. It also provides computational libraries and zero-copy streaming messaging and interprocess communication. Languages currently supported include C, C++, Java, JavaScript, Python, and Ruby.
+## 9                                                                                                                                                                                                                                                                                                                                                                                                                  User friendly assertions for R
+## 10                                                                                                                                                                                                                                                                                                                                                                                             An R package containing US baby names from the SSA
+## 11                                                                                                                                                                                                                                                                                                                                                                                                          Bayesian Additive Regresssion Kernels
+## 12                                                                                                                                                                                                                                                                                                                                                                                               bayesplot R package for plotting Bayesian models
+## 13                                                                                                                                                                                                                                                                                                                                                                      An R package for searching &amp; retrieving data from the B.C. Data Catalogue
+## 14                                                                                                                                                                                                                                                                                                                                                                                                                Book chapter for beautiful data
+## 15                                                                                                                                                                                                                                                                                                                                                                                                                        Bechmarking tools for R</code></pre>
 <p>Outro exemplo de API muito interessante é o portal de dados abertos da Câmara dos Deputados. Eles possuem diversas APIs para consultar os dados do processo legislativo. Veja o exemplo a seguir, que resgata as proposições utilizando API:</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb428-1" data-line-number="1">proposicoes &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&quot;https://dadosabertos.camara.leg.br/api/v2/proposicoes&quot;</span>)</a>
-<a class="sourceLine" id="cb428-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb428-3" data-line-number="3"><span class="kw">head</span>(proposicoes<span class="op">$</span>dados <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(siglaTipo, numero, ano, ementa))</a></code></pre></div>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" data-line-number="1">proposicoes &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&quot;https://dadosabertos.camara.leg.br/api/v2/proposicoes&quot;</span>)</a>
+<a class="sourceLine" id="cb422-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb422-3" data-line-number="3"><span class="kw">head</span>(proposicoes<span class="op">$</span>dados <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(siglaTipo, numero, ano, ementa))</a></code></pre></div>
 <pre><code>##   siglaTipo numero  ano
-## 1        PL   3968 1997
-## 2        PL   3351 2004
-## 3        PL   4811 2005
-## 4        PL   6229 2005
-## 5        PL   1550 2007
-## 6       REC    108 2011
-##                                                                                                                                                                                                                                                                                                                                                                                                  ementa
-## 1                                                                                                                                                                                                                                 Isenta os órgãos públicos e as entidades filantrópicas do pagamento de direitos autorais pelo uso de obras musicais e lítero-musicais em eventos por eles promovidos.
-## 2                                                                                                                                                                                                                                                                                             Altera  o art. 1.361 da Lei nº 10.406, de 10 de janeiro de 2002, Código Civil, e dá  outras providências.
-## 3                                                                                                                                                                                                            Modifica a Lei nº 9.610, de 19 de fevereiro de 1998, isentando as emissoras de radiodifusão educativa e comunitária do pagamento de direitos autorais de obras musicais e litero-musicais.
-## 4                                                                                                                                                  Altera o § 7º do art. 6º da Lei nº 11.101, de 9 de fevereiro de 2005, que &quot;Regula a recuperação judicial, a extrajudicial e a falência do empresário e da sociedade empresária&quot;, para submeter todos os créditos tributários à recuperação judicial.
-## 5                                                                                                                                                                                                                                           Altera a Lei nº 9.610, de 1998, isentando do pagamento de direitos autorais as apresentações teatrais e musicais beneficentes e as organizadas por igrejas.
-## 6 Recorre contra parecer terminativo da Comissão de Finanças e Tributação ao Projeto de Lei nº 3.776/2008 que  &quot;altera a Lei nº 11.738, de 16 de julho de 2008, que regulamenta a alínea &quot;e&quot; do inciso III do caput do art. 60 do Ato das Disposições Constitucionais Transitórias para instituir o piso salarial profissional nacional para os profissionais do magistério público da educação básica.</code></pre>
+## 1        PL   3009 2000
+## 2        PL   4363 2001
+## 3        PL   6699 2002
+## 4        PL    839 2003
+## 5        PL   6229 2005
+## 6        PL    411 2007
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ementa
+## 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Revoga o caput do art. 83 da Lei nº 9.430, de 27 de dezembro de 1996.
+## 2                                                                                                                                                                                                                                                                                              Estabelece normas gerais de organização, efetivos, material bélico, garantias, convocação e mobilização das polícias militares e corpos de bombeiros militares dos Estados, do Distrito Federal e dos Territórios, e dá outras providências.
+## 3                                                                                                                                                                                                                                                                                                                                                                                                                                                                           Modifica dispositivo do Código Penal, e dá outras providências.
+## 4                                                                                                                                                                                                                                                                                                                                                                                                                                                                          Estabelece critérios para a abertura de novos cursos de Direito.
+## 5 Altera o § 7º do art. 6º da Lei nº 11.101, de 9 de fevereiro de 2005, que &quot;Regula a recuperação judicial, a extrajudicial e a falência do empresário e da sociedade empresária&quot;, para submeter todos os créditos tributários à recuperação judicial.  NOVA EMENTA: Altera as Leis nºs 11.101, de 9 de fevereiro de 2005, 10.522, de 19 de julho de 2002, e 8.929, de 22 de agosto de 1994, para atualizar a legislação referente à recuperação judicial, à recuperação extrajudicial e à falência do empresário e da sociedade empresária
+## 6                                                                                                                                                                                                                                                                                                                                                       Estabelece normas gerais para a simplificação do procedimento de registro de empresários e pessoas jurídicas no âmbito da União, dos Estados, do Distrito Federal e dos Municípios.</code></pre>
 <p>Hoje em dia, todas as redes sociais possuem APIs para consumir os dados dos usuários e postagens. Normalmente essas APIs pedem um cadastro anterior (apesar de gratuitas, em sua maior parte). O R possui diversos pacotes para consumir APIs interessantes:</p>
 <ul>
 <li>Quandl: pacote que fornece diversos dados econômicos de diversos países;</li>
@@ -475,19 +474,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>O pacote funciona da seguinte forma: Um string que contem o link é usado como input da função <code>read_html()</code>. A partir daí as funções do pacote <code>rvest</code> podem ser usadas para extrair dados da página. <code>html_table()</code>, por exemplo, extrai dados tabulares da página.</p>
 <p>Algo que torna o Web Scraping muito complexo é que essa tarefa é muito dependente do código-fonte da página. Caso ela sofra mudanças, o código provavelmente não irá mais funcionar. Um exemplo é o que se vê neste post sobre Web Scraping do OLX, que não funciona mais.</p>
 <p>Devido a isso, este material opta por não entrar a fundo no assunto além de mostrar um exemplo superficial abaixo de scraping de uma <a href="https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2018_-_S%C3%A9rie_A#Classifica%C3%A7%C3%A3o">tabela da Wikipedia</a>:</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" data-line-number="1"><span class="kw">library</span>(rvest)</a>
-<a class="sourceLine" id="cb430-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb430-3" data-line-number="3">url &lt;-<span class="st"> &quot;https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2018_-_Série_A&quot;</span> <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb430-4" data-line-number="4"><span class="st">  </span><span class="kw">read_html</span>()</a>
-<a class="sourceLine" id="cb430-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb430-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb430-7" data-line-number="7">tb &lt;-<span class="st"> </span><span class="kw">html_table</span>(url, <span class="dt">fill =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb430-8" data-line-number="8">tb &lt;-<span class="st"> </span>tb[[<span class="dv">6</span>]]</a>
-<a class="sourceLine" id="cb430-9" data-line-number="9">tb <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb430-10" data-line-number="10"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb430-11" data-line-number="11"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">SG =</span> <span class="kw">ifelse</span>(<span class="kw">str_detect</span>(SG,<span class="st">&quot;</span><span class="ch">\\</span><span class="st">+&quot;</span>),</a>
-<a class="sourceLine" id="cb430-12" data-line-number="12">                    readr<span class="op">::</span><span class="kw">parse_number</span>(SG),</a>
-<a class="sourceLine" id="cb430-13" data-line-number="13">                    <span class="dv">-1</span> <span class="op">*</span><span class="st"> </span>readr<span class="op">::</span><span class="kw">parse_number</span>(SG)))</a></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" data-line-number="1"><span class="kw">library</span>(rvest)</a>
+<a class="sourceLine" id="cb424-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb424-3" data-line-number="3">url &lt;-<span class="st"> &quot;https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2018_-_Série_A&quot;</span> <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb424-4" data-line-number="4"><span class="st">  </span><span class="kw">read_html</span>()</a>
+<a class="sourceLine" id="cb424-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb424-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb424-7" data-line-number="7">tb &lt;-<span class="st"> </span><span class="kw">html_table</span>(url, <span class="dt">fill =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb424-8" data-line-number="8">tb &lt;-<span class="st"> </span>tb[[<span class="dv">6</span>]]</a>
+<a class="sourceLine" id="cb424-9" data-line-number="9">tb <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb424-10" data-line-number="10"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb424-11" data-line-number="11"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">SG =</span> <span class="kw">ifelse</span>(<span class="kw">str_detect</span>(SG,<span class="st">&quot;</span><span class="ch">\\</span><span class="st">+&quot;</span>),</a>
+<a class="sourceLine" id="cb424-12" data-line-number="12">                    readr<span class="op">::</span><span class="kw">parse_number</span>(SG),</a>
+<a class="sourceLine" id="cb424-13" data-line-number="13">                    <span class="dv">-1</span> <span class="op">*</span><span class="st"> </span>readr<span class="op">::</span><span class="kw">parse_number</span>(SG)))</a></code></pre></div>
 
 </div>
 </div>

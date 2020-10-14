@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11 Estruturas complexas de dados | Ciência de Dados com R - Introdução</title>
   <meta name="description" content="Aprendendo a programar com R" />
-  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11 Estruturas complexas de dados | Ciência de Dados com R - Introdução" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,6 @@
 <meta name="author" content="Saulo Guerra, Paulo Felipe de Oliveira, Robert McDonnell e Sillas Gonzaga" />
 
 
-<meta name="date" content="2020-07-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,7 +49,7 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
@@ -397,26 +396,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="introdução-a-listas" class="section level2">
 <h2><span class="header-section-number">11.1</span> Introdução a listas</h2>
 <p>Nós já falamos sobre vetores, que são as principais estruturas unidimensionais de dados e que só aceitam elementos da mesma classe:</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb431-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;c&quot;</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb431-2" data-line-number="2"><span class="kw">class</span>(a)</a></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb425-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;c&quot;</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb425-2" data-line-number="2"><span class="kw">class</span>(a)</a></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>O R também possui uma estrutura de dados que pode armazenar, literalmente, qualquer tipo de objeto: as listas, criadas com a função <code>list()</code>.</p>
 <p>No exemplo abaixo uma série de objetos de classes diferentes são armazenadas:</p>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb433-1" data-line-number="1">data_frame &lt;-<span class="st"> </span><span class="kw">head</span>(iris)</a>
-<a class="sourceLine" id="cb433-2" data-line-number="2">elemento_unico_inteiro &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb433-3" data-line-number="3">um_na &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb433-4" data-line-number="4">vetor_string &lt;-<span class="st"> </span>letters[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a>
-<a class="sourceLine" id="cb433-5" data-line-number="5">modelo_regressao &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>wt, <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb433-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb433-7" data-line-number="7">minha_lista &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">data_frame =</span> data_frame, </a>
-<a class="sourceLine" id="cb433-8" data-line-number="8">                    <span class="dt">elemento_unico_inteiro =</span> elemento_unico_inteiro, </a>
-<a class="sourceLine" id="cb433-9" data-line-number="9">                    <span class="co"># este elemento abaixo não vai possuir um nome</span></a>
-<a class="sourceLine" id="cb433-10" data-line-number="10">                    um_na, </a>
-<a class="sourceLine" id="cb433-11" data-line-number="11">                    <span class="dt">vetor_string =</span> vetor_string,</a>
-<a class="sourceLine" id="cb433-12" data-line-number="12">                    <span class="dt">modelo_regressao =</span> modelo_regressao)</a>
-<a class="sourceLine" id="cb433-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb433-14" data-line-number="14"><span class="co"># Conferindo o output: </span></a>
-<a class="sourceLine" id="cb433-15" data-line-number="15">minha_lista</a></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb427-1" data-line-number="1">data_frame &lt;-<span class="st"> </span><span class="kw">head</span>(iris)</a>
+<a class="sourceLine" id="cb427-2" data-line-number="2">elemento_unico_inteiro &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb427-3" data-line-number="3">um_na &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb427-4" data-line-number="4">vetor_string &lt;-<span class="st"> </span>letters[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a>
+<a class="sourceLine" id="cb427-5" data-line-number="5">modelo_regressao &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>wt, <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb427-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb427-7" data-line-number="7">minha_lista &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">data_frame =</span> data_frame, </a>
+<a class="sourceLine" id="cb427-8" data-line-number="8">                    <span class="dt">elemento_unico_inteiro =</span> elemento_unico_inteiro, </a>
+<a class="sourceLine" id="cb427-9" data-line-number="9">                    <span class="co"># este elemento abaixo não vai possuir um nome</span></a>
+<a class="sourceLine" id="cb427-10" data-line-number="10">                    um_na, </a>
+<a class="sourceLine" id="cb427-11" data-line-number="11">                    <span class="dt">vetor_string =</span> vetor_string,</a>
+<a class="sourceLine" id="cb427-12" data-line-number="12">                    <span class="dt">modelo_regressao =</span> modelo_regressao)</a>
+<a class="sourceLine" id="cb427-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb427-14" data-line-number="14"><span class="co"># Conferindo o output: </span></a>
+<a class="sourceLine" id="cb427-15" data-line-number="15">minha_lista</a></code></pre></div>
 <pre><code>## $data_frame
 ##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 ## 1          5.1         3.5          1.4         0.2  setosa
@@ -444,16 +443,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## (Intercept)           wt  
 ##      37.285       -5.344</code></pre>
 <p>Pelo output já percebemos que a maneira como extraímos um elemento de um vetor é diferente da de uma lista. No primeiro, usamos um par de colchetes (<code>[]</code>), no segundo usamos dois pares (<code>[[]]</code>) ou também cifrão (<code>$</code>), que só funciona caso o elemento da lista possua um nome.</p>
-<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb435-1" data-line-number="1">minha_lista[[<span class="dv">2</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb429-1" data-line-number="1">minha_lista[[<span class="dv">2</span>]]</a></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb437-1" data-line-number="1">minha_lista<span class="op">$</span>vetor_string</a></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb431-1" data-line-number="1">minha_lista<span class="op">$</span>vetor_string</a></code></pre></div>
 <pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot;</code></pre>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb439-1" data-line-number="1"><span class="co"># o comando abaixo retorna NULL pq &quot;um_na&quot; não é um nome de</span></a>
-<a class="sourceLine" id="cb439-2" data-line-number="2"><span class="co"># nenhum elemento da lista</span></a>
-<a class="sourceLine" id="cb439-3" data-line-number="3">minha_lista<span class="op">$</span>um_na</a></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb433-1" data-line-number="1"><span class="co"># o comando abaixo retorna NULL pq &quot;um_na&quot; não é um nome de</span></a>
+<a class="sourceLine" id="cb433-2" data-line-number="2"><span class="co"># nenhum elemento da lista</span></a>
+<a class="sourceLine" id="cb433-3" data-line-number="3">minha_lista<span class="op">$</span>um_na</a></code></pre></div>
 <pre><code>## NULL</code></pre>
 <p>Vetores podem ser transformandos em listas usando a função de coerção <code>as.list()</code>:</p>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb441-1" data-line-number="1"><span class="kw">as.list</span>(vetor_string)</a></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb435-1" data-line-number="1"><span class="kw">as.list</span>(vetor_string)</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;a&quot;
 ## 
@@ -469,12 +468,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [[5]]
 ## [1] &quot;e&quot;</code></pre>
 <p>Inserir um nome em uma lista é simples com o uso da função <code>names()</code>, que pode alterar os nomes da lista inteira ou de apenas um elemento, como no exemplo abaixo:</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" data-line-number="1"><span class="kw">names</span>(minha_lista)[<span class="dv">3</span>] &lt;-<span class="st"> &quot;meu_na&quot;</span></a>
-<a class="sourceLine" id="cb443-2" data-line-number="2"><span class="kw">names</span>(minha_lista)</a></code></pre></div>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb437-1" data-line-number="1"><span class="kw">names</span>(minha_lista)[<span class="dv">3</span>] &lt;-<span class="st"> &quot;meu_na&quot;</span></a>
+<a class="sourceLine" id="cb437-2" data-line-number="2"><span class="kw">names</span>(minha_lista)</a></code></pre></div>
 <pre><code>## [1] &quot;data_frame&quot;             &quot;elemento_unico_inteiro&quot; &quot;meu_na&quot;                 &quot;vetor_string&quot;          
 ## [5] &quot;modelo_regressao&quot;</code></pre>
 <p>A função <code>str()</code> pode user usada para inspecionar a estrutura da lista:</p>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" data-line-number="1"><span class="kw">str</span>(minha_lista)</a></code></pre></div>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb439-1" data-line-number="1"><span class="kw">str</span>(minha_lista)</a></code></pre></div>
 <pre><code>## List of 5
 ##  $ data_frame            :&#39;data.frame&#39;:  6 obs. of  5 variables:
 ##   ..$ Sepal.Length: num [1:6] 5.1 4.9 4.7 4.6 5 5.4
@@ -489,17 +488,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   ..$ coefficients : Named num [1:2] 37.29 -5.34
 ##   .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;(Intercept)&quot; &quot;wt&quot;
 ##   ..$ residuals    : Named num [1:32] -2.28 -0.92 -2.09 1.3 -0.2 ...
-##   .. ..- attr(*, &quot;names&quot;)= chr [1:32] &quot;Mazda RX4&quot; &quot;Mazda RX4 Wag&quot; &quot;Datsun 710&quot; &quot;Hornet 4 Drive&quot; ...
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:32] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
 ##   ..$ effects      : Named num [1:32] -113.65 -29.116 -1.661 1.631 0.111 ...
 ##   .. ..- attr(*, &quot;names&quot;)= chr [1:32] &quot;(Intercept)&quot; &quot;wt&quot; &quot;&quot; &quot;&quot; ...
 ##   ..$ rank         : int 2
 ##   ..$ fitted.values: Named num [1:32] 23.3 21.9 24.9 20.1 18.9 ...
-##   .. ..- attr(*, &quot;names&quot;)= chr [1:32] &quot;Mazda RX4&quot; &quot;Mazda RX4 Wag&quot; &quot;Datsun 710&quot; &quot;Hornet 4 Drive&quot; ...
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:32] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
 ##   ..$ assign       : int [1:2] 0 1
 ##   ..$ qr           :List of 5
 ##   .. ..$ qr   : num [1:32, 1:2] -5.657 0.177 0.177 0.177 0.177 ...
 ##   .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2
-##   .. .. .. ..$ : chr [1:32] &quot;Mazda RX4&quot; &quot;Mazda RX4 Wag&quot; &quot;Datsun 710&quot; &quot;Hornet 4 Drive&quot; ...
+##   .. .. .. ..$ : chr [1:32] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
 ##   .. .. .. ..$ : chr [1:2] &quot;(Intercept)&quot; &quot;wt&quot;
 ##   .. .. ..- attr(*, &quot;assign&quot;)= int [1:2] 0 1
 ##   .. ..$ qraux: num [1:2] 1.18 1.05
@@ -550,19 +549,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="map" class="section level3">
 <h3><span class="header-section-number">11.2.1</span> <code>map()</code></h3>
 <p>Nós já vimos que o R aplica uma função a cada elemento de um vetor de uma forma muito simples:</p>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb447-1" data-line-number="1">meu_vetor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">-3</span>, <span class="dv">5</span>, <span class="dv">-10</span>)</a>
-<a class="sourceLine" id="cb447-2" data-line-number="2"><span class="co"># extrair o modulo de cada elemento do vetor acima</span></a>
-<a class="sourceLine" id="cb447-3" data-line-number="3"><span class="kw">abs</span>(meu_vetor)</a></code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb441-1" data-line-number="1">meu_vetor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">-3</span>, <span class="dv">5</span>, <span class="dv">-10</span>)</a>
+<a class="sourceLine" id="cb441-2" data-line-number="2"><span class="co"># extrair o modulo de cada elemento do vetor acima</span></a>
+<a class="sourceLine" id="cb441-3" data-line-number="3"><span class="kw">abs</span>(meu_vetor)</a></code></pre></div>
 <pre><code>## [1]  1  3  5 10</code></pre>
 <p>No caso de listas, não é bem assim que funciona:</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb449-1" data-line-number="1">minha_lista &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb449-2" data-line-number="2"><span class="kw">abs</span>(minha_lista)</a></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" data-line-number="1">minha_lista &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb443-2" data-line-number="2"><span class="kw">abs</span>(minha_lista)</a></code></pre></div>
 <pre><code>## Error in abs(minha_lista): non-numeric argument to mathematical function</code></pre>
 <p>É necessário usar uma outra função para aplicar uma função a cada elemento da lista. É aqui que introduzimos a função <code>map()</code>, do pacote <code>purrr</code>. O primeiro argumento é a estrutura de dados sobre a qual se deseja iterar e o segundo é a função que será aplicada a cada elemento.</p>
 <p>O pacote <code>purrr</code> faz parte do <code>tidyverse</code>.</p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb451-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb451-2" data-line-number="2"><span class="kw">library</span>(purrr)</a>
-<a class="sourceLine" id="cb451-3" data-line-number="3"><span class="kw">map</span>(minha_lista, abs)</a></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb445-2" data-line-number="2"><span class="kw">library</span>(purrr)</a>
+<a class="sourceLine" id="cb445-3" data-line-number="3"><span class="kw">map</span>(minha_lista, abs)</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 1
 ## 
@@ -575,9 +574,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [[4]]
 ## [1] 10</code></pre>
 <p>Veja a diferença no output:</p>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb453-1" data-line-number="1"><span class="kw">class</span>(minha_lista)</a></code></pre></div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb447-1" data-line-number="1"><span class="kw">class</span>(minha_lista)</a></code></pre></div>
 <pre><code>## [1] &quot;list&quot;</code></pre>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb455-1" data-line-number="1"><span class="kw">map</span>(minha_lista, class)</a></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb449-1" data-line-number="1"><span class="kw">map</span>(minha_lista, class)</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;numeric&quot;
 ## 
@@ -590,19 +589,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [[4]]
 ## [1] &quot;numeric&quot;</code></pre>
 <p>De maneira genérica, é assim que são usados os parâmetros de <code>map()</code>:</p>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" data-line-number="1"><span class="kw">map</span>(.x, .f, ...)</a>
-<a class="sourceLine" id="cb457-2" data-line-number="2"><span class="co"># ou </span></a>
-<a class="sourceLine" id="cb457-3" data-line-number="3"><span class="kw">map</span>(VETOR_OU_LISTA, FUNCAO_PARA_APLICAR, ARGUMENTOS_OPCIONAIS)</a>
-<a class="sourceLine" id="cb457-4" data-line-number="4"><span class="co"># que é equivalente a </span></a>
-<a class="sourceLine" id="cb457-5" data-line-number="5">VETOR_OU_LISTA <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map</span>(FUNCAO_PARA_APLICAR, ARGUMENTOS_OPCIONAIS)</a></code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb451-1" data-line-number="1"><span class="kw">map</span>(.x, .f, ...)</a>
+<a class="sourceLine" id="cb451-2" data-line-number="2"><span class="co"># ou </span></a>
+<a class="sourceLine" id="cb451-3" data-line-number="3"><span class="kw">map</span>(VETOR_OU_LISTA, FUNCAO_PARA_APLICAR, ARGUMENTOS_OPCIONAIS)</a>
+<a class="sourceLine" id="cb451-4" data-line-number="4"><span class="co"># que é equivalente a </span></a>
+<a class="sourceLine" id="cb451-5" data-line-number="5">VETOR_OU_LISTA <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map</span>(FUNCAO_PARA_APLICAR, ARGUMENTOS_OPCIONAIS)</a></code></pre></div>
 <p>Existem três maneiras de especificar a função para usar no <code>map()</code>:</p>
 <ul>
 <li>Uma função existente</li>
 </ul>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb458-1" data-line-number="1"><span class="co"># definir uma lista composta por vetores</span></a>
-<a class="sourceLine" id="cb458-2" data-line-number="2">v &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">v1 =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>), <span class="dt">v2 =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>), <span class="dt">v3 =</span> <span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>))</a>
-<a class="sourceLine" id="cb458-3" data-line-number="3"><span class="co"># aplicar a raiz quadrada a todos os vetores</span></a>
-<a class="sourceLine" id="cb458-4" data-line-number="4"><span class="kw">map</span>(v, sqrt)</a></code></pre></div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb452-1" data-line-number="1"><span class="co"># definir uma lista composta por vetores</span></a>
+<a class="sourceLine" id="cb452-2" data-line-number="2">v &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">v1 =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>), <span class="dt">v2 =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>), <span class="dt">v3 =</span> <span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>))</a>
+<a class="sourceLine" id="cb452-3" data-line-number="3"><span class="co"># aplicar a raiz quadrada a todos os vetores</span></a>
+<a class="sourceLine" id="cb452-4" data-line-number="4"><span class="kw">map</span>(v, sqrt)</a></code></pre></div>
 <pre><code>## $v1
 ## [1] 1.000000 1.732051 2.236068
 ## 
@@ -611,8 +610,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## $v3
 ## [1] 2.645751 2.828427 3.000000</code></pre>
-<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb460-1" data-line-number="1"><span class="co"># calcular a soma dos elementos de cada vetor</span></a>
-<a class="sourceLine" id="cb460-2" data-line-number="2"><span class="kw">map</span>(v, sum)</a></code></pre></div>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb454-1" data-line-number="1"><span class="co"># calcular a soma dos elementos de cada vetor</span></a>
+<a class="sourceLine" id="cb454-2" data-line-number="2"><span class="kw">map</span>(v, sum)</a></code></pre></div>
 <pre><code>## $v1
 ## [1] 9
 ## 
@@ -624,8 +623,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Uma função “anônima”, definida dentro da própria <code>map()</code>. Veja que, em <code>function(x)</code> abaixo, <code>x</code> é como se fosse uma representação genérica de cada elemento da lista <code>v</code>. Em inglês isso se chama placeholder.</li>
 </ul>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb462-1" data-line-number="1"><span class="co"># elevar cada elemento de cada vetor ao quadrado</span></a>
-<a class="sourceLine" id="cb462-2" data-line-number="2"><span class="kw">map</span>(v, <span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb456-1" data-line-number="1"><span class="co"># elevar cada elemento de cada vetor ao quadrado</span></a>
+<a class="sourceLine" id="cb456-2" data-line-number="2"><span class="kw">map</span>(v, <span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## $v1
 ## [1]  1  9 25
 ## 
@@ -634,8 +633,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## $v3
 ## [1] 49 64 81</code></pre>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb464-1" data-line-number="1"><span class="co"># elevar a soma dos elementos do vetor ao quadrado</span></a>
-<a class="sourceLine" id="cb464-2" data-line-number="2"><span class="kw">map</span>(v, <span class="cf">function</span>(x) <span class="kw">sum</span>(x)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb458-1" data-line-number="1"><span class="co"># elevar a soma dos elementos do vetor ao quadrado</span></a>
+<a class="sourceLine" id="cb458-2" data-line-number="2"><span class="kw">map</span>(v, <span class="cf">function</span>(x) <span class="kw">sum</span>(x)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## $v1
 ## [1] 81
 ## 
@@ -647,7 +646,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Uma fórmula. Deve-se começar com o símbolo <code>~</code> para iniciar uma função e <code>.x</code> para se referir ao seu input, que corresponde a cada elemento da lista especificada no primeiro argumento de <code>map()</code>. Traduzindo os dois comandos anteriores para esta sintaxe, ficaria assim:</li>
 </ul>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb466-1" data-line-number="1"><span class="kw">map</span>(v, <span class="op">~</span><span class="st"> </span>.x<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb460-1" data-line-number="1"><span class="kw">map</span>(v, <span class="op">~</span><span class="st"> </span>.x<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## $v1
 ## [1]  1  9 25
 ## 
@@ -656,7 +655,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## $v3
 ## [1] 49 64 81</code></pre>
-<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb468-1" data-line-number="1"><span class="kw">map</span>(v, <span class="op">~</span><span class="st"> </span><span class="kw">sum</span>(.x)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb462-1" data-line-number="1"><span class="kw">map</span>(v, <span class="op">~</span><span class="st"> </span><span class="kw">sum</span>(.x)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## $v1
 ## [1] 81
 ## 
@@ -669,14 +668,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="funções-derivadas-de-map" class="section level3">
 <h3><span class="header-section-number">11.2.2</span> Funções derivadas de <code>map()</code></h3>
 <p>A função <code>map()</code> retorna uma lista. Contudo, se você sabe que sua função deve retornar um resultado em que todos os elementos pertencem a uma mesma classe, é possível usar as funções derivadas de map, como <code>map_chr()</code> (character) e <code>map_dbl()</code> (numérico):</p>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb470-1" data-line-number="1"><span class="kw">map_chr</span>(v, class)</a></code></pre></div>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb464-1" data-line-number="1"><span class="kw">map_chr</span>(v, class)</a></code></pre></div>
 <pre><code>##        v1        v2        v3 
 ## &quot;numeric&quot; &quot;numeric&quot; &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb472-1" data-line-number="1"><span class="kw">map_dbl</span>(v, <span class="op">~</span><span class="st"> </span><span class="kw">sum</span>(.x)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb466-1" data-line-number="1"><span class="kw">map_dbl</span>(v, <span class="op">~</span><span class="st"> </span><span class="kw">sum</span>(.x)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code>##  v1  v2  v3 
 ##  81 144 576</code></pre>
 <p>Dá até para garantir que o resultado de <code>map()</code> seja um dataframe com <code>map_dfr()</code> ou <code>map_dfc()</code>:</p>
-<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb474-1" data-line-number="1"><span class="kw">map_dfc</span>(v, <span class="cf">function</span>(x) x <span class="op">*</span><span class="st"> </span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb468-1" data-line-number="1"><span class="kw">map_dfc</span>(v, <span class="cf">function</span>(x) x <span class="op">*</span><span class="st"> </span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##      v1    v2    v3
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -684,9 +683,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2     6     8    16
 ## 3    10    12    18</code></pre>
 <p>É possível e simples encadear uma sequência de comandos <code>map()</code> com o pipe:</p>
-<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb476-1" data-line-number="1">v <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb476-2" data-line-number="2"><span class="st">  </span><span class="kw">map</span>(<span class="op">~</span><span class="st"> </span>.x <span class="op">*</span><span class="st"> </span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb476-3" data-line-number="3"><span class="st">  </span><span class="kw">map_dbl</span>(sum)</a></code></pre></div>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb470-1" data-line-number="1">v <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb470-2" data-line-number="2"><span class="st">  </span><span class="kw">map</span>(<span class="op">~</span><span class="st"> </span>.x <span class="op">*</span><span class="st"> </span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb470-3" data-line-number="3"><span class="st">  </span><span class="kw">map_dbl</span>(sum)</a></code></pre></div>
 <pre><code>## v1 v2 v3 
 ## 18 24 48</code></pre>
 </div>
@@ -696,14 +695,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Este <a href="https://www.kaggle.com/robikscube/hourly-energy-consumption#DOM_hourly.csv">dataset no Kaggle</a> traz o consumo médio de energia elétrica por região nos Estados Unidos. A página disponibiliza 13 arquivos csv, um para cada região.</p>
 <p>Suponha que, para cada região, desejamos ler o arquivo, padronizar os nomes das duas colunas, acrescentar uma coluna identificando a região do arquivo, calcular o consumo médio por mês do ano e juntar os dataframes. Seria tortuoso fazer isso para cada arquivo manualmente, por isso nos valemos do pacote <code>purrr</code> para sistematizar esse processo.</p>
 <p>Baixe o dataset e salve em uma pasta chamada “dados”. Descompacte o arquivo zip e uma nova pasta será criada.</p>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb478-1" data-line-number="1"><span class="co"># listar os arquivos contidos na pasta baixada</span></a>
-<a class="sourceLine" id="cb478-2" data-line-number="2">arquivos &lt;-<span class="st"> </span><span class="kw">dir</span>(<span class="st">&quot;dados/hourly-energy-consumption/&quot;</span>,</a>
-<a class="sourceLine" id="cb478-3" data-line-number="3">                <span class="co"># listar apenas arquivos que contem o padrao abaixo</span></a>
-<a class="sourceLine" id="cb478-4" data-line-number="4">                <span class="dt">pattern =</span> <span class="st">&quot;_hourly.csv&quot;</span>,</a>
-<a class="sourceLine" id="cb478-5" data-line-number="5">                <span class="dt">full.names =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb472-1" data-line-number="1"><span class="co"># listar os arquivos contidos na pasta baixada</span></a>
+<a class="sourceLine" id="cb472-2" data-line-number="2">arquivos &lt;-<span class="st"> </span><span class="kw">dir</span>(<span class="st">&quot;dados/hourly-energy-consumption/&quot;</span>,</a>
+<a class="sourceLine" id="cb472-3" data-line-number="3">                <span class="co"># listar apenas arquivos que contem o padrao abaixo</span></a>
+<a class="sourceLine" id="cb472-4" data-line-number="4">                <span class="dt">pattern =</span> <span class="st">&quot;_hourly.csv&quot;</span>,</a>
+<a class="sourceLine" id="cb472-5" data-line-number="5">                <span class="dt">full.names =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Para fins de demonstração, o código abaixo mostra como seria executar o processo descrito acima para apenas um dos arquivos:</p>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb479-1" data-line-number="1">df1 &lt;-<span class="kw">read_csv</span>(arquivos[<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb479-2" data-line-number="2"><span class="kw">head</span>(df1)</a></code></pre></div>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb473-1" data-line-number="1">df1 &lt;-<span class="kw">read_csv</span>(arquivos[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb473-2" data-line-number="2"><span class="kw">head</span>(df1)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   Datetime            AEP_MW
 ##   &lt;dttm&gt;               &lt;dbl&gt;
@@ -714,25 +713,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 2004-12-31 05:00:00  12670
 ## 6 2004-12-31 06:00:00  13038</code></pre>
 <p>Para extrair o nome do arquivo, note que o padrão é NOMEREGIAO_hourly. Por isso, podemos usar str_split() para “quebrar” o string em dois e pegar apenas o primeiro elemento.</p>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb481-1" data-line-number="1"><span class="co"># basename() retorna apenas o nome do arquivo, sem o diretorio</span></a>
-<a class="sourceLine" id="cb481-2" data-line-number="2"><span class="kw">basename</span>(arquivos[<span class="dv">1</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb475-1" data-line-number="1"><span class="co"># basename() retorna apenas o nome do arquivo, sem o diretorio</span></a>
+<a class="sourceLine" id="cb475-2" data-line-number="2"><span class="kw">basename</span>(arquivos[<span class="dv">1</span>])</a></code></pre></div>
 <pre><code>## [1] &quot;AEP_hourly.csv&quot;</code></pre>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb483-1" data-line-number="1"><span class="co"># str_split() quebra um string em mais de um baseado no separador especificado</span></a>
-<a class="sourceLine" id="cb483-2" data-line-number="2">nome_regiao &lt;-<span class="st"> </span><span class="kw">str_split</span>(<span class="kw">basename</span>(arquivos[<span class="dv">1</span>]), <span class="st">&quot;_&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb483-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb483-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb483-5" data-line-number="5">df1_mes &lt;-<span class="st"> </span>df1 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb483-6" data-line-number="6"><span class="st">  </span><span class="co"># mudar nome das colunas</span></a>
-<a class="sourceLine" id="cb483-7" data-line-number="7"><span class="st">  </span>purrr<span class="op">::</span><span class="kw">set_names</span>(<span class="kw">c</span>(<span class="st">&quot;horario&quot;</span>, <span class="st">&quot;consumo&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb483-8" data-line-number="8"><span class="st">  </span><span class="co"># criar uma coluna contendo o mes da data</span></a>
-<a class="sourceLine" id="cb483-9" data-line-number="9"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mes =</span> lubridate<span class="op">::</span><span class="kw">month</span>(horario)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb483-10" data-line-number="10"><span class="st">  </span><span class="co"># criar uma coluna contendo o nome da regiao do arquivo</span></a>
-<a class="sourceLine" id="cb483-11" data-line-number="11"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">regiao =</span> nome_regiao) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb483-12" data-line-number="12"><span class="st">  </span><span class="co"># agrupar os dados e calcular a media</span></a>
-<a class="sourceLine" id="cb483-13" data-line-number="13"><span class="st">  </span><span class="kw">group_by</span>(regiao, mes) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb483-14" data-line-number="14"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">consumo_medio =</span> <span class="kw">mean</span>(consumo))</a></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb477-1" data-line-number="1"><span class="co"># str_split() quebra um string em mais de um baseado no separador especificado</span></a>
+<a class="sourceLine" id="cb477-2" data-line-number="2">nome_regiao &lt;-<span class="st"> </span><span class="kw">str_split</span>(<span class="kw">basename</span>(arquivos[<span class="dv">1</span>]), <span class="st">&quot;_&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb477-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb477-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb477-5" data-line-number="5">df1_mes &lt;-<span class="st"> </span>df1 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb477-6" data-line-number="6"><span class="st">  </span><span class="co"># mudar nome das colunas</span></a>
+<a class="sourceLine" id="cb477-7" data-line-number="7"><span class="st">  </span>purrr<span class="op">::</span><span class="kw">set_names</span>(<span class="kw">c</span>(<span class="st">&quot;horario&quot;</span>, <span class="st">&quot;consumo&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb477-8" data-line-number="8"><span class="st">  </span><span class="co"># criar uma coluna contendo o mes da data</span></a>
+<a class="sourceLine" id="cb477-9" data-line-number="9"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mes =</span> lubridate<span class="op">::</span><span class="kw">month</span>(horario)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb477-10" data-line-number="10"><span class="st">  </span><span class="co"># criar uma coluna contendo o nome da regiao do arquivo</span></a>
+<a class="sourceLine" id="cb477-11" data-line-number="11"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">regiao =</span> nome_regiao) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb477-12" data-line-number="12"><span class="st">  </span><span class="co"># agrupar os dados e calcular a media</span></a>
+<a class="sourceLine" id="cb477-13" data-line-number="13"><span class="st">  </span><span class="kw">group_by</span>(regiao, mes) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb477-14" data-line-number="14"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">consumo_medio =</span> <span class="kw">mean</span>(consumo))</a></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;regiao&#39; (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb485-1" data-line-number="1">df1_mes</a></code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb479-1" data-line-number="1">df1_mes</a></code></pre></div>
 <pre><code>## # A tibble: 12 x 3
 ## # Groups:   regiao [1]
 ##    regiao   mes consumo_medio
@@ -750,36 +749,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 11 AEP       11        14930.
 ## 12 AEP       12        16446.</code></pre>
 <p>A solução para aplicar o código acima para todos os arquivos csv diferentes de maneira elegante no R é o sistematizar, transformando-o em uma função:</p>
-<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb487-1" data-line-number="1">agregar_dados &lt;-<span class="st"> </span><span class="cf">function</span>(arquivo_csv){</a>
-<a class="sourceLine" id="cb487-2" data-line-number="2">  </a>
-<a class="sourceLine" id="cb487-3" data-line-number="3">  <span class="co"># str_split() quebra um string em mais de um baseado no separador especificado</span></a>
-<a class="sourceLine" id="cb487-4" data-line-number="4">  nome_regiao &lt;-<span class="st"> </span><span class="kw">str_split</span>(<span class="kw">basename</span>(arquivo_csv), <span class="st">&quot;_&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb487-5" data-line-number="5">  </a>
-<a class="sourceLine" id="cb487-6" data-line-number="6">  <span class="co"># ler arquivo para um dataframe</span></a>
-<a class="sourceLine" id="cb487-7" data-line-number="7">  dframe &lt;-<span class="st"> </span><span class="kw">read_csv</span>(arquivo_csv)</a>
-<a class="sourceLine" id="cb487-8" data-line-number="8">  </a>
-<a class="sourceLine" id="cb487-9" data-line-number="9">  <span class="co"># criar novo dataframe</span></a>
-<a class="sourceLine" id="cb487-10" data-line-number="10">  dframe_mes &lt;-<span class="st"> </span>dframe <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb487-11" data-line-number="11"><span class="st">    </span><span class="co"># mudar nome das colunas</span></a>
-<a class="sourceLine" id="cb487-12" data-line-number="12"><span class="st">    </span>purrr<span class="op">::</span><span class="kw">set_names</span>(<span class="kw">c</span>(<span class="st">&quot;horario&quot;</span>, <span class="st">&quot;consumo&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb487-13" data-line-number="13"><span class="st">    </span><span class="co"># criar uma coluna contendo o mes da data</span></a>
-<a class="sourceLine" id="cb487-14" data-line-number="14"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">mes =</span> lubridate<span class="op">::</span><span class="kw">month</span>(horario)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb487-15" data-line-number="15"><span class="st">    </span><span class="co"># criar uma coluna contendo o nome da regiao do arquivo</span></a>
-<a class="sourceLine" id="cb487-16" data-line-number="16"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">regiao =</span> nome_regiao) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb487-17" data-line-number="17"><span class="st">    </span><span class="co"># agrupar os dados e calcular a media</span></a>
-<a class="sourceLine" id="cb487-18" data-line-number="18"><span class="st">    </span><span class="kw">group_by</span>(regiao, mes) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb487-19" data-line-number="19"><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">consumo_medio =</span> <span class="kw">mean</span>(consumo))</a>
-<a class="sourceLine" id="cb487-20" data-line-number="20">  </a>
-<a class="sourceLine" id="cb487-21" data-line-number="21">  <span class="co"># retornar novo dataframe</span></a>
-<a class="sourceLine" id="cb487-22" data-line-number="22">  dframe_mes</a>
-<a class="sourceLine" id="cb487-23" data-line-number="23"></a>
-<a class="sourceLine" id="cb487-24" data-line-number="24">}</a></code></pre></div>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb481-1" data-line-number="1">agregar_dados &lt;-<span class="st"> </span><span class="cf">function</span>(arquivo_csv){</a>
+<a class="sourceLine" id="cb481-2" data-line-number="2">  </a>
+<a class="sourceLine" id="cb481-3" data-line-number="3">  <span class="co"># str_split() quebra um string em mais de um baseado no separador especificado</span></a>
+<a class="sourceLine" id="cb481-4" data-line-number="4">  nome_regiao &lt;-<span class="st"> </span><span class="kw">str_split</span>(<span class="kw">basename</span>(arquivo_csv), <span class="st">&quot;_&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb481-5" data-line-number="5">  </a>
+<a class="sourceLine" id="cb481-6" data-line-number="6">  <span class="co"># ler arquivo para um dataframe</span></a>
+<a class="sourceLine" id="cb481-7" data-line-number="7">  dframe &lt;-<span class="st"> </span><span class="kw">read_csv</span>(arquivo_csv)</a>
+<a class="sourceLine" id="cb481-8" data-line-number="8">  </a>
+<a class="sourceLine" id="cb481-9" data-line-number="9">  <span class="co"># criar novo dataframe</span></a>
+<a class="sourceLine" id="cb481-10" data-line-number="10">  dframe_mes &lt;-<span class="st"> </span>dframe <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb481-11" data-line-number="11"><span class="st">    </span><span class="co"># mudar nome das colunas</span></a>
+<a class="sourceLine" id="cb481-12" data-line-number="12"><span class="st">    </span>purrr<span class="op">::</span><span class="kw">set_names</span>(<span class="kw">c</span>(<span class="st">&quot;horario&quot;</span>, <span class="st">&quot;consumo&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb481-13" data-line-number="13"><span class="st">    </span><span class="co"># criar uma coluna contendo o mes da data</span></a>
+<a class="sourceLine" id="cb481-14" data-line-number="14"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">mes =</span> lubridate<span class="op">::</span><span class="kw">month</span>(horario)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb481-15" data-line-number="15"><span class="st">    </span><span class="co"># criar uma coluna contendo o nome da regiao do arquivo</span></a>
+<a class="sourceLine" id="cb481-16" data-line-number="16"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">regiao =</span> nome_regiao) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb481-17" data-line-number="17"><span class="st">    </span><span class="co"># agrupar os dados e calcular a media</span></a>
+<a class="sourceLine" id="cb481-18" data-line-number="18"><span class="st">    </span><span class="kw">group_by</span>(regiao, mes) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb481-19" data-line-number="19"><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">consumo_medio =</span> <span class="kw">mean</span>(consumo))</a>
+<a class="sourceLine" id="cb481-20" data-line-number="20">  </a>
+<a class="sourceLine" id="cb481-21" data-line-number="21">  <span class="co"># retornar novo dataframe</span></a>
+<a class="sourceLine" id="cb481-22" data-line-number="22">  dframe_mes</a>
+<a class="sourceLine" id="cb481-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb481-24" data-line-number="24">}</a></code></pre></div>
 <p>Como sabemos que a função <code>agregar_dados()</code> deve retornar um dataframe, usamos <code>map_dfr()</code> para, além de gerar um dataframe por arquivo, juntá-los em um dataframe só:</p>
-<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb488-1" data-line-number="1">df_mes_geral &lt;-<span class="st"> </span>arquivos <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb488-2" data-line-number="2"><span class="st">  </span><span class="kw">map_dfr</span>(agregar_dados)</a>
-<a class="sourceLine" id="cb488-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb488-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb488-5" data-line-number="5"><span class="kw">head</span>(df_mes_geral)</a></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb482-1" data-line-number="1">df_mes_geral &lt;-<span class="st"> </span>arquivos <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb482-2" data-line-number="2"><span class="st">  </span><span class="kw">map_dfr</span>(agregar_dados)</a>
+<a class="sourceLine" id="cb482-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb482-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb482-5" data-line-number="5"><span class="kw">head</span>(df_mes_geral)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ## # Groups:   regiao [1]
 ##   regiao   mes consumo_medio

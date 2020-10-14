@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 Conceitos Básicos | Ciência de Dados com R - Introdução</title>
   <meta name="description" content="Aprendendo a programar com R" />
-  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 Conceitos Básicos | Ciência de Dados com R - Introdução" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,6 @@
 <meta name="author" content="Saulo Guerra, Paulo Felipe de Oliveira, Robert McDonnell e Sillas Gonzaga" />
 
 
-<meta name="date" content="2020-07-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,7 +49,7 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
@@ -394,14 +393,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="conceitos-básicos" class="section level1">
 <h1><span class="header-section-number">2</span> Conceitos Básicos</h1>
-<pre><code>## ── Attaching packages ────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
-## ✓ tibble  3.0.3     ✓ dplyr   1.0.1
-## ✓ tidyr   1.1.0     ✓ stringr 1.4.0
-## ✓ readr   1.3.1     ✓ forcats 0.4.0</code></pre>
-<pre><code>## ── Conflicts ───────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
 <p>Entenda o R como uma grande calculadora científica cheia de botões, mas, ao invés de apertar os botões, você irá escrever os comandos. Ou seja, aprender R significa se familiarizar com os comandos e saber quando usá-los. Todos os comandos são baseados em inglês e seus nomes, normalmente, dão dicas a respeito do seu uso.</p>
 <div id="console" class="section level2">
 <h2><span class="header-section-number">2.1</span> Console</h2>
@@ -409,10 +400,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Olhando para o console, você verá o símbolo <code>&gt;</code>. Este símbolo indica a linha onde você deve inserir os comandos. Clique nesse símbolo para posicionar o cursor na linha de comandos e digite seu primeiro comando em R: <code>2 * 3</code>. Digite e aperte <em>enter</em>. Você verá o seguinte resultado:</p>
 <pre><code>## [1] 6</code></pre>
 <p>Além de outras funcionalidades mais interessantes, o R é como uma grande calculadora científica, como apontado anteriormente. Para entender melhor esse conceito, vamos exercitar um pouco o console de comandos. Digite um por um os seguintes comandos e acompanhe os resultados:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="dv">7</span> <span class="op">*</span><span class="st"> </span><span class="dv">9</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">6</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="fl">2.5</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">(<span class="dv">50</span> <span class="op">+</span><span class="st"> </span><span class="dv">7</span>)<span class="op">/</span>(<span class="dv">8</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">3</span> <span class="op">-</span><span class="st"> </span><span class="dv">5</span><span class="op">/</span><span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="dv">3</span> <span class="op">^</span><span class="st"> </span><span class="dv">4</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dv">7</span> <span class="op">*</span><span class="st"> </span><span class="dv">9</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="fl">2.5</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">(<span class="dv">50</span> <span class="op">+</span><span class="st"> </span><span class="dv">7</span>)<span class="op">/</span>(<span class="dv">8</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">3</span> <span class="op">-</span><span class="st"> </span><span class="dv">5</span><span class="op">/</span><span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="dv">3</span> <span class="op">^</span><span class="st"> </span><span class="dv">4</span></a></code></pre></div>
 <p>Repare que, na medida em que executa os comandos, o R vai respondendo. Esse é o comportamento básico do console, muito utilizado para obter-se resultados rápidos de comandos específicos.</p>
 <p>Uma funcionalidade importante é o fato de que o R guarda um histórico dos últimos comandos executados e para acessá-los basta apertar a seta para cima no teclado.</p>
 </div>
@@ -440,10 +431,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Para que o R deixe de ser uma simples calculadora, será necessário aprender, dentre outras coisas, o uso de variáveis. Se você tem alguma noção de estatística, provavelmente já tem a intuição do que é uma variável para uma linguagem de programação. No contexto do R, vamos entender variável como um objeto, ou seja, como uma estrutura predefinida que vai “receber” algum valor. Utilizando uma linguagem mais técnica, objeto (ou variável) é um pequeno espaço na memória do seu computador onde o R armazenará um valor ou o resultado de um comando, utilizando um nome que você mesmo definiu.</p>
 <p>Conhecer os tipos de objetos do R é fundamental. Para criar objetos, utiliza-se o símbolo <code>&lt;-</code>. Este provavelmente é o símbolo que você mais verá daqui para frente.</p>
 <p>Execute, no console ou no editor de códigos, o seguinte comando <code>x &lt;- 15</code>. Pronto, agora o nome <code>x</code> representa o valor <code>15</code>. Para comprovar, execute apenas o nome do objeto <code>x</code>, o R mostrará o conteúdo dele. A partir de então, você poderá utilizar esse objeto como se fosse o valor 15. Experimente os seguintes resultados:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">x <span class="op">+</span><span class="st"> </span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">x <span class="op">*</span><span class="st"> </span>x <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="dv">2</span> <span class="op">^</span><span class="st"> </span>x</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">y &lt;-<span class="st"> </span>x <span class="op">/</span><span class="st"> </span><span class="dv">3</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">x <span class="op">+</span><span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">x <span class="op">*</span><span class="st"> </span>x <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="dv">2</span> <span class="op">^</span><span class="st"> </span>x</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">y &lt;-<span class="st"> </span>x <span class="op">/</span><span class="st"> </span><span class="dv">3</span></a></code></pre></div>
 <p>Dê uma boa lida em <em>Dicas e boas práticas para um código organizado</em> para aprender a organizar seus objetos e funções da melhor maneira possível.</p>
 <p>Todos os objetos que você criar estarão disponíveis na aba <strong><em>Environment</em></strong>.</p>
 <p>O RStudio possui a função <em>auto complete</em>. Digite as primeiras letras de um objeto (ou função) que você criou e, em seguida, use o atalho <strong><em>ctrl + barra de espaço</em></strong>. O RStudio listará tudo que começar com essas letras no arquivo. Selecione algum item e aperte <em>enter</em> para escrevê-lo no editor de códigos.</p>
@@ -453,25 +444,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Entenda função como uma sequência de comandos preparados para serem usados de forma simples e, assim, facilitar sua vida. Funções são usadas para tudo que você possa imaginar: cálculos mais complexos, estatística, análise de dados, manipulação de dados, gráficos, relatórios etc. Assim que você o instala, o R já vem configurado com várias funções prontas para uso. A partir de agora, chamaremos esse conjunto de funções que já vem por padrão com o R de <em>R Base</em>.</p>
 <p>Claro que as funções do R base não serão suficientes para resolver todos os problemas que você encontrará pela frente. Nesse sentido, o R também mostra outro ponto forte. Você pode instalar conjuntos extras de funções específicas de maneira muito simples: usando pacotes.</p>
 <p>Funcões do R base.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">raiz.quadrada &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">16</span>) <span class="co"># função para calcular raiz quadrada</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">round</span>(<span class="fl">5.3499999</span>, <span class="dv">2</span>) <span class="co"># função para arredondamento</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">raiz.quadrada &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">16</span>) <span class="co"># função para calcular raiz quadrada</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">round</span>(<span class="fl">5.3499999</span>, <span class="dv">2</span>) <span class="co"># função para arredondamento</span></a></code></pre></div>
 <p>Uma função tem dois elementos básicos: o nome e o(s) parâmetro(s) (também chamados de argumentos). Por exemplo, a função <code>log(10)</code> possui o nome <code>log()</code> e apenas um parâmetro, que é o número que você quer calcular o log. Já a função <code>round()</code> possui dois parâmetros, o número que você quer arredondar e a quantidade de dígitos para arredondamento.</p>
 <p>Quando você usa uma função, você pode informar os parâmetros de duas formas: sequencialmente, sem explicitar o nome dos parâmetros, ou na ordem que quiser, explicitando o nome dos parâmetros. Veja o exemplo a seguir:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">round</span>(<span class="fl">5.3499999</span>, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="co"># o mesmo que:</span></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">round</span>(<span class="dt">digits =</span> <span class="dv">2</span>, <span class="dt">x =</span> <span class="fl">5.3499999</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">round</span>(<span class="fl">5.3499999</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co"># o mesmo que:</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">round</span>(<span class="dt">digits =</span> <span class="dv">2</span>, <span class="dt">x =</span> <span class="fl">5.3499999</span>)</a></code></pre></div>
 <p>Para saber como informar os parâmetros corretamente, utilize o comando <code>?</code> (ou coloque o cursor no nome da função e pressione F1) para ver a documentação de funções, ou seja, conhecer para que serve, entender cada um dos seus parâmetros e ver exemplos de uso.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">?round</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">?rnorm</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">??inner_join <span class="co"># procurar ajuda de funções que não estão &quot;instaladas&quot; ainda</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">?round</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">?rnorm</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">??inner_join <span class="co"># procurar ajuda de funções que não estão &quot;instaladas&quot; ainda</span></a></code></pre></div>
 <p>Vale comentar que é possível informar objetos nos parâmetros das funções.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="fl">3.141593</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">round</span>(x, <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="fl">3.141593</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">round</span>(x, <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>## [1] 3.142</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">ceiling</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">ceiling</span>(x)</a></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">floor</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">floor</span>(x)</a></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p>Observe algumas das principais funções para estatísticas básicas no R:</p>
 <table>
@@ -515,9 +506,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Caso você precise de algum pacote específico, procure no Google pelo tema que necessita. Você encontrará o nome do pacote e o instalará normalmente.</p>
 <p><a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">Nesse link</a> você pode ver uma lista de todos os pacotes disponíveis no repositório central. Além desses, ainda existe a possibilidade de instalar-se pacotes “não oficiais”, que ainda não fazem parte de um repositório central.</p>
 <p>Para instalar um pacote, execute o seguinte comando:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>) <span class="co"># instala um famoso pacote de manipulação de dados</span></a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>) <span class="co"># instala um famoso pacote de manipulação de dados</span></a></code></pre></div>
 <p>Uma vez instalado, esse pacote estará disponível para uso sempre que quiser, sem a necessidade de instalá-lo novamente. Mas, sempre que iniciar um código novo, você precisará carregá-lo na memória. Para isso, use o seguinte comando:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
 <p>Para instalar um pacote, você precisa informar o nome entre aspas <code>install.packages(“readxl”)</code>, caso contrário o pacote não funcionará. Porém, para carregar o pacote em memória, você pode usar com ou sem aspas library(readxl) ou library(“readxl”), ambas as formas funcionam.</p>
 </div>
 <div id="boas-práticas" class="section level2">
@@ -536,7 +527,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Como já dito, eventualmente as funções do R base não são suficientes ou simplesmente não fornecem a maneira mais fácil de resolver-se um problema. Neste curso utilizaremos o Tidyverse: uma coleção de pacotes R cuidadosamente desenhados para atuarem no workflow comum da ciência de dados: importação, manipulação, exploração e visualização de dados. Uma vez carregado, esse pacote disponibiliza todo o conjunto de ferramentas de outros pacotes importantes: ggplot2, tibble, tidyr, readr, purrr e dplyr. Oportunamente, detalharemos cada um deles.</p>
 <p>O Tidyverse foi idealizado, dentre outros responsáveis, por Hadley Wickham, um dos maiores colaboradores da comunidade R. Se você não o conhece e pretende seguir em frente com o R, certamente ouvirá falar muito dele. Recomendamos segui-lo nas redes sociais para ficar por dentro das novidades do Tidyverse.</p>
 <p>Para instalar os pacotes do Tidyverse, rode o comando abaixo:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
 </div>
 <div id="exercícios-1" class="section level2">
 <h2><span class="header-section-number">2.8</span> Exercícios</h2>
@@ -547,13 +538,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Para que serve a função <code>rm()</code>? Quais os seus parâmetros/atributos?</p></li>
 <li><p>Rode o comando abaixo para instalar os pacotes usados neste livro:</p></li>
 </ol>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;broom&quot;</span>, <span class="st">&quot;choroplethrMaps&quot;</span>, <span class="st">&quot;DT&quot;</span>, <span class="st">&quot;dygraphs&quot;</span>,</a>
-<a class="sourceLine" id="cb19-2" data-line-number="2">                   <span class="st">&quot;gapminder&quot;</span>,  <span class="st">&quot;ggrepel&quot;</span>,</a>
-<a class="sourceLine" id="cb19-3" data-line-number="3">                   <span class="st">&quot;ggthemes&quot;</span>, <span class="st">&quot;gridExtra&quot;</span>, <span class="st">&quot;hrbrthemes&quot;</span>, <span class="st">&quot;htmltools&quot;</span>, <span class="st">&quot;ISLR&quot;</span>,</a>
-<a class="sourceLine" id="cb19-4" data-line-number="4">                   <span class="st">&quot;jsonlite&quot;</span>, <span class="st">&quot;knitr&quot;</span>, <span class="st">&quot;leaflet&quot;</span>, <span class="st">&quot;ModelMetrics&quot;</span>,</a>
-<a class="sourceLine" id="cb19-5" data-line-number="5">                   <span class="st">&quot;nycflights13&quot;</span>, <span class="st">&quot;plotly&quot;</span>, <span class="st">&quot;RColorBrewer&quot;</span>,  <span class="st">&quot;readxl&quot;</span>,</a>
-<a class="sourceLine" id="cb19-6" data-line-number="6">                   <span class="st">&quot;scales&quot;</span>,</a>
-<a class="sourceLine" id="cb19-7" data-line-number="7">                   <span class="st">&quot;titanic&quot;</span>, <span class="st">&quot;viridis&quot;</span>, <span class="st">&quot;WDI&quot;</span>, <span class="st">&quot;xtable&quot;</span>, <span class="st">&quot;xts&quot;</span>, <span class="st">&quot;sf&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;broom&quot;</span>, <span class="st">&quot;choroplethrMaps&quot;</span>, <span class="st">&quot;DT&quot;</span>, <span class="st">&quot;dygraphs&quot;</span>,</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">                   <span class="st">&quot;gapminder&quot;</span>,  <span class="st">&quot;ggrepel&quot;</span>,</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3">                   <span class="st">&quot;ggthemes&quot;</span>, <span class="st">&quot;gridExtra&quot;</span>, <span class="st">&quot;hrbrthemes&quot;</span>, <span class="st">&quot;htmltools&quot;</span>, <span class="st">&quot;ISLR&quot;</span>,</a>
+<a class="sourceLine" id="cb16-4" data-line-number="4">                   <span class="st">&quot;jsonlite&quot;</span>, <span class="st">&quot;knitr&quot;</span>, <span class="st">&quot;leaflet&quot;</span>, <span class="st">&quot;ModelMetrics&quot;</span>,</a>
+<a class="sourceLine" id="cb16-5" data-line-number="5">                   <span class="st">&quot;nycflights13&quot;</span>, <span class="st">&quot;plotly&quot;</span>, <span class="st">&quot;RColorBrewer&quot;</span>,  <span class="st">&quot;readxl&quot;</span>,</a>
+<a class="sourceLine" id="cb16-6" data-line-number="6">                   <span class="st">&quot;scales&quot;</span>, <span class="st">&quot;randomForest&quot;</span>, <span class="st">&#39;rpart.plot&#39;</span>, <span class="st">&quot;car&quot;</span>, <span class="st">&quot;caret&quot;</span>,</a>
+<a class="sourceLine" id="cb16-7" data-line-number="7">                   <span class="st">&quot;titanic&quot;</span>, <span class="st">&quot;viridis&quot;</span>, <span class="st">&quot;WDI&quot;</span>, <span class="st">&quot;xtable&quot;</span>, <span class="st">&quot;xts&quot;</span>, <span class="st">&quot;sf&quot;</span>))</a></code></pre></div>
 
 </div>
 </div>

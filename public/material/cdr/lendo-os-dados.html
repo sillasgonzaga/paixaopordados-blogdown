@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 Lendo os dados | Ciência de Dados com R - Introdução</title>
   <meta name="description" content="Aprendendo a programar com R" />
-  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Lendo os dados | Ciência de Dados com R - Introdução" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,6 @@
 <meta name="author" content="Saulo Guerra, Paulo Felipe de Oliveira, Robert McDonnell e Sillas Gonzaga" />
 
 
-<meta name="date" content="2020-07-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,7 +49,7 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
@@ -416,49 +415,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="definindo-o-local-dos-dados" class="section level2">
 <h2><span class="header-section-number">3.2</span> Definindo o Local dos Dados</h2>
 <p>O R sempre trabalha com o conceito de <em>Working direcotry</em>, ou seja, uma pasta de trabalho onde vai “ler” e “escrever” os dados. Para verificar qual o diretório que o R está “olhando”, utilize o seguinte comando:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">getwd</span>() <span class="co">#Get Working Directory</span></a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">getwd</span>() <span class="co">#Get Working Directory</span></a></code></pre></div>
 <p>Para informar ao R em qual pasta ele deve ler os arquivos, utilizamos o comando <em>set working directory</em>, que muda o diretório padrão do R para leitura e escrita:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">setwd</span>(<span class="st">&#39;D:/caminho/do/arquivo/arquivo.csv&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">setwd</span>(<span class="st">&#39;D:/caminho/do/arquivo/arquivo.csv&#39;</span>)</a></code></pre></div>
 </div>
 <div id="pacote-para-leitura-dos-dados" class="section level2">
 <h2><span class="header-section-number">3.3</span> Pacote para leitura dos dados</h2>
 <p>O R base possui funções para a leitura dos principais tipos de arquivos. Um outro pacote específico, e muito bom para isso, é o <code>readr</code>. O Tidyverse inclui o carregamento do pacote <code>readr</code>.</p>
 <p>Diversos tipos de arquivos são lidos pelo R: Comma-Separated Values (csv), Excel, arquivos separados por delimitadores, colunas de tamanho fixo etc. Talvez o tipo de arquivo (estruturado) mais comum hoje em dia, e mais simples de trabalhar, seja o csv. Começaremos a importar dados com arquivos csv.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">library</span>(tidyverse) <span class="co"># já carrega o readr</span></a>
-<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="co">#ou</span></a>
-<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="kw">library</span>(readr)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">library</span>(tidyverse) <span class="co"># já carrega o readr</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="co">#ou</span></a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="kw">library</span>(readr)</a></code></pre></div>
 <p>Vamos importar um csv chamado <code>senado.csv</code>. Caso o arquivo esteja em seu working directory (<code>getwd()</code>), basta passar apenas o nome do arquivo para a função, caso contrário será necessário informar todo o caminho até a pasta do arquivo. Usamos o read_csv() para fazer isso.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">senado &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;senado.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">senado &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;senado.csv&quot;</span>)</a></code></pre></div>
 <p>Esse comando carrega o conteúdo do arquivo <code>senado.csv</code> para o objeto (variável) senado. Após o carregamento, começaremos a investigar o conteúdo desse objeto: os dados.</p>
 <p>O <code>head</code> e o <code>tail</code> são funções para ver a “cabeça” e o “rabo” dos seus dados, ou seja, o começo e o fim das amostras. É muito importante sempre observar a “aparência” dos dados após o carregamento. Essa observação ajuda a identificar erros básicos no carregamento, possibilitando ajustes o quanto antes, impedindo que esses erros se propaguem. Repare que na primeira linha temos os nomes das colunas e, em seguida, os registros.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">head</span>(senado)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">head</span>(senado)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 15
-##   VoteNumber SenNumber SenatorUpper Vote  Party GovCoalition State    FP Origin Contentious PercentYes IndGov
-##        &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;lgl&gt;        &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt; 
-## 1    2007001 PRS0002/… FLEXA RIBEI… S     PSDB  FALSE        PA        2     11           0       85.5 S     
-## 2    2007001 PRS0002/… ARTHUR VIRG… S     PSDB  FALSE        AM        2     11           0       85.5 S     
-## 3    2007001 PRS0002/… FLAVIO ARNS  N     PT    TRUE         PR        2     11           0       85.5 S     
-## 4    2007001 PRS0002/… MARCELO CRI… S     PRB   TRUE         RJ        2     11           0       85.5 S     
-## 5    2007001 PRS0002/… JOAO DURVAL  N     PDT   FALSE        BA        2     11           0       85.5 S     
-## 6    2007001 PRS0002/… PAULO PAIM   S     PT    TRUE         RS        2     11           0       85.5 S     
-## # … with 3 more variables: VoteType &lt;dbl&gt;, Content &lt;chr&gt;, Round &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">tail</span>(senado)</a></code></pre></div>
+##   VoteNumber SenNumber SenatorUpper Vote  Party GovCoalition State    FP Origin Contentious PercentYes IndGov VoteType Content
+##        &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;lgl&gt;        &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;  
+## 1    2007001 PRS0002/… FLEXA RIBEI… S     PSDB  FALSE        PA        2     11           0       85.5 S             1 Create…
+## 2    2007001 PRS0002/… ARTHUR VIRG… S     PSDB  FALSE        AM        2     11           0       85.5 S             1 Create…
+## 3    2007001 PRS0002/… FLAVIO ARNS  N     PT    TRUE         PR        2     11           0       85.5 S             1 Create…
+## 4    2007001 PRS0002/… MARCELO CRI… S     PRB   TRUE         RJ        2     11           0       85.5 S             1 Create…
+## 5    2007001 PRS0002/… JOAO DURVAL  N     PDT   FALSE        BA        2     11           0       85.5 S             1 Create…
+## 6    2007001 PRS0002/… PAULO PAIM   S     PT    TRUE         RS        2     11           0       85.5 S             1 Create…
+## # … with 1 more variable: Round &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">tail</span>(senado)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 15
-##   VoteNumber SenNumber SenatorUpper Vote  Party GovCoalition State    FP Origin Contentious PercentYes IndGov
-##        &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;lgl&gt;        &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt; 
-## 1    2010027 PLC0010/… EDISON LOBAO S     PMDB  TRUE         MA        1      1           0       97.8 S     
-## 2    2010027 PLC0010/… EDUARDO SUP… S     PT    TRUE         SP        1      1           0       97.8 S     
-## 3    2010027 PLC0010/… JARBAS VASC… N     PMDB  TRUE         PE        1      1           0       97.8 S     
-## 4    2010027 PLC0010/… MARISA SERR… S     PSDB  FALSE        MS        1      1           0       97.8 S     
-## 5    2010027 PLC0010/… EPITACIO CA… S     PTB   FALSE        MA        1      1           0       97.8 S     
-## 6    2010027 PLC0010/… INACIO ARRU… S     PCdoB TRUE         CE        1      1           0       97.8 S     
-## # … with 3 more variables: VoteType &lt;dbl&gt;, Content &lt;chr&gt;, Round &lt;dbl&gt;</code></pre>
+##   VoteNumber SenNumber SenatorUpper Vote  Party GovCoalition State    FP Origin Contentious PercentYes IndGov VoteType Content
+##        &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;lgl&gt;        &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;  
+## 1    2010027 PLC0010/… EDISON LOBAO S     PMDB  TRUE         MA        1      1           0       97.8 S             1 Rules …
+## 2    2010027 PLC0010/… EDUARDO SUP… S     PT    TRUE         SP        1      1           0       97.8 S             1 Rules …
+## 3    2010027 PLC0010/… JARBAS VASC… N     PMDB  TRUE         PE        1      1           0       97.8 S             1 Rules …
+## 4    2010027 PLC0010/… MARISA SERR… S     PSDB  FALSE        MS        1      1           0       97.8 S             1 Rules …
+## 5    2010027 PLC0010/… EPITACIO CA… S     PTB   FALSE        MA        1      1           0       97.8 S             1 Rules …
+## 6    2010027 PLC0010/… INACIO ARRU… S     PCdoB TRUE         CE        1      1           0       97.8 S             1 Rules …
+## # … with 1 more variable: Round &lt;dbl&gt;</code></pre>
 <p>Outros comandos muito importantes para começar a investigar os dados são o <code>str()</code>, o <code>class()</code> e o <code>summary()</code>.</p>
 <p>Para verificar o tipo do objeto, ou seja, sua classe, utilize:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">class</span>(senado)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">class</span>(senado)</a></code></pre></div>
 <pre><code>## [1] &quot;spec_tbl_df&quot; &quot;tbl_df&quot;      &quot;tbl&quot;         &quot;data.frame&quot;</code></pre>
 <p>Já para verificar a estrutura do objeto, ou seja, seus campos (quando aplicável), insira:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">str</span>(senado) <span class="co">#STRucture</span></a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">str</span>(senado) <span class="co">#STRucture</span></a></code></pre></div>
 <pre><code>## tibble [9,262 × 15] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ VoteNumber  : num [1:9262] 2007001 2007001 2007001 2007001 2007001 ...
 ##  $ SenNumber   : chr [1:9262] &quot;PRS0002/07&quot; &quot;PRS0002/07&quot; &quot;PRS0002/07&quot; &quot;PRS0002/07&quot; ...
@@ -494,7 +493,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   ..   Round = col_double()
 ##   .. )</code></pre>
 <p>Para verificar estatísticas básicas do objeto (média, mediana, quantis, mínimo, máximo etc.), quando aplicáveis:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">summary</span>(senado)</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">summary</span>(senado)</a></code></pre></div>
 <pre><code>##    VoteNumber       SenNumber         SenatorUpper           Vote              Party           GovCoalition   
 ##  Min.   :2007001   Length:9262        Length:9262        Length:9262        Length:9262        Mode :logical  
 ##  1st Qu.:2008006   Class :character   Class :character   Class :character   Class :character   FALSE:3480     
@@ -502,28 +501,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  Mean   :2008483                                                                                              
 ##  3rd Qu.:2009048                                                                                              
 ##  Max.   :2010027                                                                                              
-##     State                 FP            Origin        Contentious        PercentYes         IndGov         
-##  Length:9262        Min.   :1.000   Min.   : 1.000   Min.   :0.00000   Min.   :  2.174   Length:9262       
-##  Class :character   1st Qu.:2.000   1st Qu.: 1.000   1st Qu.:0.00000   1st Qu.: 66.667   Class :character  
-##  Mode  :character   Median :2.000   Median : 2.000   Median :0.00000   Median : 96.078   Mode  :character  
-##                     Mean   :1.878   Mean   : 2.595   Mean   :0.01781   Mean   : 82.509                     
-##                     3rd Qu.:2.000   3rd Qu.: 4.000   3rd Qu.:0.00000   3rd Qu.: 98.148                     
-##                     Max.   :2.000   Max.   :11.000   Max.   :1.00000   Max.   :100.000                     
-##     VoteType       Content              Round      
-##  Min.   :1.000   Length:9262        Min.   :1.000  
-##  1st Qu.:1.000   Class :character   1st Qu.:1.000  
-##  Median :1.000   Mode  :character   Median :1.000  
-##  Mean   :1.159                      Mean   :1.358  
-##  3rd Qu.:1.000                      3rd Qu.:2.000  
-##  Max.   :2.000                      Max.   :4.000</code></pre>
+##     State                 FP            Origin        Contentious        PercentYes         IndGov             VoteType    
+##  Length:9262        Min.   :1.000   Min.   : 1.000   Min.   :0.00000   Min.   :  2.174   Length:9262        Min.   :1.000  
+##  Class :character   1st Qu.:2.000   1st Qu.: 1.000   1st Qu.:0.00000   1st Qu.: 66.667   Class :character   1st Qu.:1.000  
+##  Mode  :character   Median :2.000   Median : 2.000   Median :0.00000   Median : 96.078   Mode  :character   Median :1.000  
+##                     Mean   :1.878   Mean   : 2.595   Mean   :0.01781   Mean   : 82.509                      Mean   :1.159  
+##                     3rd Qu.:2.000   3rd Qu.: 4.000   3rd Qu.:0.00000   3rd Qu.: 98.148                      3rd Qu.:1.000  
+##                     Max.   :2.000   Max.   :11.000   Max.   :1.00000   Max.   :100.000                      Max.   :2.000  
+##    Content              Round      
+##  Length:9262        Min.   :1.000  
+##  Class :character   1st Qu.:1.000  
+##  Mode  :character   Median :1.000  
+##                     Mean   :1.358  
+##                     3rd Qu.:2.000  
+##                     Max.   :4.000</code></pre>
 <p>Acontece que nem sempre o separador será o <code>;</code>, típico do csv. Nesse caso será necessário usar o <code>read_delim()</code>, onde você pode informar qualquer tipo de separador. Outro tipo de arquivo bastante comum é o de colunas com tamanho fixo (fixed width), também conhecido como colunas posicionais. Nesse caso, será necessário usar o <code>read_fwf()</code> informando o tamanho de cada coluna.</p>
 <p>Exemplo:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="co">#lendo arquivo com delimitador #</span></a>
-<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="kw">read_delim</span>(<span class="st">&#39;caminho/do/arquivo/arquivo_separado_por#.txt&#39;</span>, <span class="dt">delim =</span> <span class="st">&#39;#&#39;</span>)</a>
-<a class="sourceLine" id="cb34-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb34-4" data-line-number="4"><span class="co">#lendo arquivo de coluna fixa</span></a>
-<a class="sourceLine" id="cb34-5" data-line-number="5"><span class="co">#coluna 1 de tamanho 5, coluna 2 de tamanho 2 e coluna 3 de tamanho 10</span></a>
-<a class="sourceLine" id="cb34-6" data-line-number="6"><span class="kw">read_fwf</span>(<span class="st">&#39;caminho/do/arquivo/arquivo_posicional.txt&#39;</span>, <span class="dt">col_positions =</span> <span class="kw">fwf_widths</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">10</span>), <span class="kw">c</span>(<span class="st">&quot;col1&quot;</span>, <span class="st">&quot;col2&quot;</span>, <span class="st">&quot;col3&quot;</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="co">#lendo arquivo com delimitador #</span></a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw">read_delim</span>(<span class="st">&#39;caminho/do/arquivo/arquivo_separado_por#.txt&#39;</span>, <span class="dt">delim =</span> <span class="st">&#39;#&#39;</span>)</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb31-4" data-line-number="4"><span class="co">#lendo arquivo de coluna fixa</span></a>
+<a class="sourceLine" id="cb31-5" data-line-number="5"><span class="co">#coluna 1 de tamanho 5, coluna 2 de tamanho 2 e coluna 3 de tamanho 10</span></a>
+<a class="sourceLine" id="cb31-6" data-line-number="6"><span class="kw">read_fwf</span>(<span class="st">&#39;caminho/do/arquivo/arquivo_posicional.txt&#39;</span>, <span class="dt">col_positions =</span> <span class="kw">fwf_widths</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">10</span>), <span class="kw">c</span>(<span class="st">&quot;col1&quot;</span>, <span class="st">&quot;col2&quot;</span>, <span class="st">&quot;col3&quot;</span>)))</a></code></pre></div>
 <p>No capítulo a seguir exploraremos melhor os tipos de objetos mais comuns no R.</p>
 <div class="rmdtip">
 <p>

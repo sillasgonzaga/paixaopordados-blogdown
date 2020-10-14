@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 Limpando dados | Ciência de Dados com R - Introdução</title>
   <meta name="description" content="Aprendendo a programar com R" />
-  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 Limpando dados | Ciência de Dados com R - Introdução" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,6 @@
 <meta name="author" content="Saulo Guerra, Paulo Felipe de Oliveira, Robert McDonnell e Sillas Gonzaga" />
 
 
-<meta name="date" content="2020-07-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,7 +49,7 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
@@ -418,8 +417,8 @@ Figura 5.2: Tabela long
 <p>Na contramão da limpeza de dados, você provavelmente terá o problema contrário ao final da sua análise. Supondo que você organizou seus dados perfeitamente, conseguiu executar os modelos que gostaria, gerou diversos gráficos interessantes e está satisfeito com o resultado, você ainda precisará entregar relatórios finais da sua análise em forma de tabelas sumarizadas e explicativas, de modo que os interessados possam entender facilmente, apenas com uma rápida análise visual. Neste caso, que tipo de tabela seria melhor produzir? Provavelmente, quem for ler seus relatórios entenderá mais rapidamente as tabelas mais próximas do primeiro exemplo mostrado.</p>
 <p>É importante aprender a estruturar e desestruturar tabelas de todas as formas possíveis.</p>
 <p>Para exemplificar, veja algumas tabelas disponíveis no pacote <code>tidyverse</code>, ilustrando os diferentes tipos de organização nos formatos wide e long. Todas as tabelas possuem os mesmos dados e informações:</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" data-line-number="1">table1</a></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" data-line-number="1">table1</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -429,7 +428,7 @@ Figura 5.2: Tabela long
 ## 4 Brazil       2000  80488  174504898
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" data-line-number="1">table2</a></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" data-line-number="1">table2</a></code></pre></div>
 <pre><code>## # A tibble: 12 x 4
 ##    country      year type            count
 ##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
@@ -445,7 +444,7 @@ Figura 5.2: Tabela long
 ## 10 China        1999 population 1272915272
 ## 11 China        2000 cases          213766
 ## 12 China        2000 population 1280428583</code></pre>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" data-line-number="1">table3</a></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1">table3</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   country      year rate             
 ## * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
@@ -455,21 +454,21 @@ Figura 5.2: Tabela long
 ## 4 Brazil       2000 80488/174504898  
 ## 5 China        1999 212258/1272915272
 ## 6 China        2000 213766/1280428583</code></pre>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1">table4a</a></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" data-line-number="1">table4a</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   country     `1999` `2000`
 ## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
 ## 1 Afghanistan    745   2666
 ## 2 Brazil       37737  80488
 ## 3 China       212258 213766</code></pre>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" data-line-number="1">table4b</a></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1">table4b</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   country         `1999`     `2000`
 ## * &lt;chr&gt;            &lt;int&gt;      &lt;int&gt;
 ## 1 Afghanistan   19987071   20595360
 ## 2 Brazil       172006362  174504898
 ## 3 China       1272915272 1280428583</code></pre>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1">table5</a></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1">table5</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country     century year  rate             
 ## * &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            
@@ -484,9 +483,9 @@ Figura 5.2: Tabela long
 <h2><span class="header-section-number">5.2</span> Pacote tidyr</h2>
 <p>Apesar de existirem diversas possibilidades de situações que necessitem de limpeza de dados, a conjugação de três pacotes consegue resolver a grande maioria dos casos: <code>dplyr</code>, <code>tidyr</code>, <code>stringr</code>.</p>
 <p>O pacote <code>tidyr</code> é mais um dos pacotes criados por Hadley Wickham. Este fato, por si só, já traz algumas vantagens: ele se integra perfeitamente com o <code>dplyr</code>, usando o conector <code>%&gt;%</code>, e tem a sintaxe de suas funções bastante intuitiva.</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidyr&quot;</span>)</a>
-<a class="sourceLine" id="cb211-2" data-line-number="2"><span class="kw">library</span>(tidyr)</a>
-<a class="sourceLine" id="cb211-3" data-line-number="3">?tidyr</a></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidyr&quot;</span>)</a>
+<a class="sourceLine" id="cb208-2" data-line-number="2"><span class="kw">library</span>(tidyr)</a>
+<a class="sourceLine" id="cb208-3" data-line-number="3">?tidyr</a></code></pre></div>
 <p>O <code>tidyr</code> também tem suas funções organizadas em pequenos verbetes, onde cada um representa uma tarefa para organizar os dados. Os verbetes básicos que abordaremos são os seguintes:</p>
 <ul>
 <li><code>pivot_longer()</code><br />
@@ -514,38 +513,37 @@ Figura 5.3: Tabela long
 <h3><span class="header-section-number">5.2.1</span> pivot_longer()</h3>
 <p>A função <code>pivot_longer()</code>, antiga <code>gather()</code>, serve para agrupar duas ou mais colunas e seus respectivos valores (conteúdos) em pares. Assim, o resultado após o agrupamento é sempre duas colunas. A primeira delas possui observações cujos valores chave eram as colunas antigas e a segunda possui os valores respectivos relacionados com as colunas antigas. Na prática, a função gather diminui o número de colunas e aumenta o número de linhas de nossa base de dados.</p>
 <p>Usaremos dados disponíveis no R base para exemplificar:</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" data-line-number="1">relig_income </a></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1">relig_income </a></code></pre></div>
 <pre><code>## # A tibble: 18 x 11
-##    religion `&lt;$10k` `$10-20k` `$20-30k` `$30-40k` `$40-50k` `$50-75k` `$75-100k` `$100-150k` `&gt;150k`
-##    &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;
-##  1 Agnostic      27        34        60        81        76       137        122         109      84
-##  2 Atheist       12        27        37        52        35        70         73          59      74
-##  3 Buddhist      27        21        30        34        33        58         62          39      53
-##  4 Catholic     418       617       732       670       638      1116        949         792     633
-##  5 Don’t k…      15        14        15        11        10        35         21          17      18
-##  6 Evangel…     575       869      1064       982       881      1486        949         723     414
-##  7 Hindu          1         9         7         9        11        34         47          48      54
-##  8 Histori…     228       244       236       238       197       223        131          81      78
-##  9 Jehovah…      20        27        24        24        21        30         15          11       6
-## 10 Jewish        19        19        25        25        30        95         69          87     151
-## 11 Mainlin…     289       495       619       655       651      1107        939         753     634
-## 12 Mormon        29        40        48        51        56       112         85          49      42
-## 13 Muslim         6         7         9        10         9        23         16           8       6
-## 14 Orthodox      13        17        23        32        32        47         38          42      46
-## 15 Other C…       9         7        11        13        13        14         18          14      12
-## 16 Other F…      20        33        40        46        49        63         46          40      41
-## 17 Other W…       5         2         3         4         2         7          3           4       4
-## 18 Unaffil…     217       299       374       365       341       528        407         321     258
-## # … with 1 more variable: `Don&#39;t know/refused` &lt;dbl&gt;</code></pre>
+##    religion         `&lt;$10k` `$10-20k` `$20-30k` `$30-40k` `$40-50k` `$50-75k` `$75-100k` `$100-150k` `&gt;150k` `Don&#39;t know/refus…
+##    &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;              &lt;dbl&gt;
+##  1 Agnostic              27        34        60        81        76       137        122         109      84                 96
+##  2 Atheist               12        27        37        52        35        70         73          59      74                 76
+##  3 Buddhist              27        21        30        34        33        58         62          39      53                 54
+##  4 Catholic             418       617       732       670       638      1116        949         792     633               1489
+##  5 Don’t know/refu…      15        14        15        11        10        35         21          17      18                116
+##  6 Evangelical Prot     575       869      1064       982       881      1486        949         723     414               1529
+##  7 Hindu                  1         9         7         9        11        34         47          48      54                 37
+##  8 Historically Bl…     228       244       236       238       197       223        131          81      78                339
+##  9 Jehovah&#39;s Witne…      20        27        24        24        21        30         15          11       6                 37
+## 10 Jewish                19        19        25        25        30        95         69          87     151                162
+## 11 Mainline Prot        289       495       619       655       651      1107        939         753     634               1328
+## 12 Mormon                29        40        48        51        56       112         85          49      42                 69
+## 13 Muslim                 6         7         9        10         9        23         16           8       6                 22
+## 14 Orthodox              13        17        23        32        32        47         38          42      46                 73
+## 15 Other Christian        9         7        11        13        13        14         18          14      12                 18
+## 16 Other Faiths          20        33        40        46        49        63         46          40      41                 71
+## 17 Other World Rel…       5         2         3         4         2         7          3           4       4                  8
+## 18 Unaffiliated         217       299       374       365       341       528        407         321     258                597</code></pre>
 <p>Para transformar a tabela acima do formato wide para o long, usamos a função:</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" data-line-number="1">relig_income <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb214-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(</a>
-<a class="sourceLine" id="cb214-3" data-line-number="3">    <span class="co"># o argumento cols controla quais colunas serão (ou não serão) transformadas</span></a>
-<a class="sourceLine" id="cb214-4" data-line-number="4">    <span class="dt">cols =</span> <span class="op">-</span>religion,</a>
-<a class="sourceLine" id="cb214-5" data-line-number="5">    <span class="co">#names_to controla o nome da nova coluna que irá receber os nomes das colunas transpostas</span></a>
-<a class="sourceLine" id="cb214-6" data-line-number="6">    <span class="dt">names_to =</span> <span class="st">&quot;renda&quot;</span>,</a>
-<a class="sourceLine" id="cb214-7" data-line-number="7">    <span class="co"># values_to controla o nome da nova coluna que irá recebebr os valores das colunas transpostas </span></a>
-<a class="sourceLine" id="cb214-8" data-line-number="8">    <span class="dt">values_to =</span> <span class="st">&quot;quantidade&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" data-line-number="1">relig_income <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb211-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(</a>
+<a class="sourceLine" id="cb211-3" data-line-number="3">    <span class="co"># o argumento cols controla quais colunas serão (ou não serão) transformadas</span></a>
+<a class="sourceLine" id="cb211-4" data-line-number="4">    <span class="dt">cols =</span> <span class="op">-</span>religion,</a>
+<a class="sourceLine" id="cb211-5" data-line-number="5">    <span class="co">#names_to controla o nome da nova coluna que irá receber os nomes das colunas transpostas</span></a>
+<a class="sourceLine" id="cb211-6" data-line-number="6">    <span class="dt">names_to =</span> <span class="st">&quot;renda&quot;</span>,</a>
+<a class="sourceLine" id="cb211-7" data-line-number="7">    <span class="co"># values_to controla o nome da nova coluna que irá recebebr os valores das colunas transpostas </span></a>
+<a class="sourceLine" id="cb211-8" data-line-number="8">    <span class="dt">values_to =</span> <span class="st">&quot;quantidade&quot;</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 180 x 3
 ##    religion renda              quantidade
 ##    &lt;chr&gt;    &lt;chr&gt;                   &lt;dbl&gt;
@@ -569,7 +567,7 @@ Figura 5.3: Tabela long
 <div id="pivot_wider" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> pivot_wider()</h3>
 <p>É a operação antagônica do <code>pivot_longer()</code>. Ela espalha os valores de duas colunas em diversos campos para cada registro: os valores de uma coluna viram o nome das novas colunas, e os valores de outra viram valores de cada registro nas novas colunas. O output tem mais colunas e menos linhas.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1">us_rent_income</a></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" data-line-number="1">us_rent_income</a></code></pre></div>
 <pre><code>## # A tibble: 104 x 5
 ##    GEOID NAME       variable estimate   moe
 ##    &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;
@@ -584,13 +582,13 @@ Figura 5.3: Tabela long
 ##  9 06    California income      29454   109
 ## 10 06    California rent         1358     3
 ## # … with 94 more rows</code></pre>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1">us_rent_income <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb218-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_wider</span>(</a>
-<a class="sourceLine" id="cb218-3" data-line-number="3">    <span class="co">#names_from controla de qual coluna serão criados os nomes das novas colunas</span></a>
-<a class="sourceLine" id="cb218-4" data-line-number="4">    <span class="dt">names_from =</span> variable,</a>
-<a class="sourceLine" id="cb218-5" data-line-number="5">    <span class="co"># values_from controla as colunas cujos valores serão os valores das novas colunas</span></a>
-<a class="sourceLine" id="cb218-6" data-line-number="6">    <span class="dt">values_from =</span> <span class="kw">c</span>(estimate, moe)</a>
-<a class="sourceLine" id="cb218-7" data-line-number="7">  )</a></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" data-line-number="1">us_rent_income <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb215-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_wider</span>(</a>
+<a class="sourceLine" id="cb215-3" data-line-number="3">    <span class="co">#names_from controla de qual coluna serão criados os nomes das novas colunas</span></a>
+<a class="sourceLine" id="cb215-4" data-line-number="4">    <span class="dt">names_from =</span> variable,</a>
+<a class="sourceLine" id="cb215-5" data-line-number="5">    <span class="co"># values_from controla as colunas cujos valores serão os valores das novas colunas</span></a>
+<a class="sourceLine" id="cb215-6" data-line-number="6">    <span class="dt">values_from =</span> <span class="kw">c</span>(estimate, moe)</a>
+<a class="sourceLine" id="cb215-7" data-line-number="7">  )</a></code></pre></div>
 <pre><code>## # A tibble: 52 x 6
 ##    GEOID NAME                 estimate_income estimate_rent moe_income moe_rent
 ##    &lt;chr&gt; &lt;chr&gt;                          &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
@@ -615,10 +613,10 @@ Figura 5.3: Tabela long
 <h3><span class="header-section-number">5.2.3</span> separate</h3>
 <p>O <code>separate()</code> é usado para separar duas variáveis que estão em uma mesma coluna. Lembre-se: cada coluna deve ser apenas uma única variável! É muito normal virem variáveis juntas em uma única coluna, mas nem sempre isso é prejudicial, cabe avaliar quando vale a pena separá-las.</p>
 <p>Usaremos o exemplo da <code>table3</code> para investigar:</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1">table3.wide &lt;-<span class="st"> </span>table3 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb220-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep=</span><span class="st">&#39;/&#39;</span>)</a>
-<a class="sourceLine" id="cb220-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb220-4" data-line-number="4"><span class="kw">head</span>(table3.wide)</a></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" data-line-number="1">table3.wide &lt;-<span class="st"> </span>table3 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb217-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep=</span><span class="st">&#39;/&#39;</span>)</a>
+<a class="sourceLine" id="cb217-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb217-4" data-line-number="4"><span class="kw">head</span>(table3.wide)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year cases  population
 ##   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     
@@ -637,11 +635,11 @@ Figura 5.3: Tabela long
 <div id="unite" class="section level3">
 <h3><span class="header-section-number">5.2.4</span> unite</h3>
 <p>A operação <code>unite()</code> é o oposto da <code>separate()</code>, ela pega duas colunas (variáveis) e transforma em uma só. É muito utilizada para montar relatórios finais ou tabelas para análise visual. Aproveitemos o exemplo em <code>table2</code> para montarmos uma tabela final comparando a “case” e “population” de cada país, em cada ano.</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" data-line-number="1">table2.relatorio &lt;-<span class="st"> </span>table2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb222-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(type_year, type, year) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb222-3" data-line-number="3"><span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> type_year, <span class="dt">value =</span> count, <span class="dt">sep =</span> <span class="st">&#39;_&#39;</span>)</a>
-<a class="sourceLine" id="cb222-4" data-line-number="4">  </a>
-<a class="sourceLine" id="cb222-5" data-line-number="5">table2.relatorio</a></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" data-line-number="1">table2.relatorio &lt;-<span class="st"> </span>table2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb219-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(type_year, type, year) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb219-3" data-line-number="3"><span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> type_year, <span class="dt">value =</span> count, <span class="dt">sep =</span> <span class="st">&#39;_&#39;</span>)</a>
+<a class="sourceLine" id="cb219-4" data-line-number="4">  </a>
+<a class="sourceLine" id="cb219-5" data-line-number="5">table2.relatorio</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 5
 ##   country     type_year_cases_1999 type_year_cases_2000 type_year_population_1999 type_year_population_2000
 ##   &lt;chr&gt;                      &lt;int&gt;                &lt;int&gt;                     &lt;int&gt;                     &lt;int&gt;
@@ -658,12 +656,12 @@ Figura 5.3: Tabela long
 <div id="separate_rows" class="section level3">
 <h3><span class="header-section-number">5.2.5</span> separate_rows</h3>
 <p>Do mesmo modo que <code>separate()</code> quebra uma coluna em várias, <code>separate_rows()</code> quebra uma linha em várias de acordo com um separador. Essa função é muito útil para lidar com dados sujos. Observe o exemplo:</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1"><span class="co"># criar dataframe de exemplo</span></a>
-<a class="sourceLine" id="cb224-2" data-line-number="2">exemplo &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">grupo =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>,<span class="st">&quot;b&quot;</span>),</a>
-<a class="sourceLine" id="cb224-3" data-line-number="3">                  <span class="dt">y =</span> <span class="kw">c</span>(<span class="st">&quot;1, 2&quot;</span>, <span class="st">&quot;3;4&quot;</span>, <span class="st">&quot;1,2,3&quot;</span>, <span class="st">&quot;4&quot;</span>))</a>
-<a class="sourceLine" id="cb224-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb224-5" data-line-number="5">exemplo <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb224-6" data-line-number="6"><span class="st">  </span><span class="kw">separate_rows</span>(y, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" data-line-number="1"><span class="co"># criar dataframe de exemplo</span></a>
+<a class="sourceLine" id="cb221-2" data-line-number="2">exemplo &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">grupo =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>,<span class="st">&quot;b&quot;</span>),</a>
+<a class="sourceLine" id="cb221-3" data-line-number="3">                  <span class="dt">y =</span> <span class="kw">c</span>(<span class="st">&quot;1, 2&quot;</span>, <span class="st">&quot;3;4&quot;</span>, <span class="st">&quot;1,2,3&quot;</span>, <span class="st">&quot;4&quot;</span>))</a>
+<a class="sourceLine" id="cb221-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb221-5" data-line-number="5">exemplo <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb221-6" data-line-number="6"><span class="st">  </span><span class="kw">separate_rows</span>(y, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 7 x 2
 ##   grupo y    
 ##   &lt;chr&gt; &lt;chr&gt;

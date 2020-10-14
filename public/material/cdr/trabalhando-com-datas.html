@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8 Trabalhando com datas | Ciência de Dados com R - Introdução</title>
   <meta name="description" content="Aprendendo a programar com R" />
-  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8 Trabalhando com datas | Ciência de Dados com R - Introdução" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,6 @@
 <meta name="author" content="Saulo Guerra, Paulo Felipe de Oliveira, Robert McDonnell e Sillas Gonzaga" />
 
 
-<meta name="date" content="2020-07-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,7 +49,7 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
@@ -396,99 +395,94 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">8</span> Trabalhando com datas</h1>
 <p>Datas são um caso a parte no R. Existe uma própria classe para objetos desse tipo, chamada <code>Date</code>, com D maiúsculo. O R lida com datas no formato AAAA-MM-DD (Ano, Mês e Dia).</p>
 <p>Abaixo, definimos um vetor com datas</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2014-07-15&quot;</span>, <span class="st">&quot;2018/03/20&quot;</span>, <span class="st">&quot;2019-12-31&quot;</span>, <span class="st">&quot;20170511&quot;</span>)</a>
-<a class="sourceLine" id="cb353-2" data-line-number="2"><span class="kw">as.Date</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb350-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2014-07-15&quot;</span>, <span class="st">&quot;2018/03/20&quot;</span>, <span class="st">&quot;2019-12-31&quot;</span>, <span class="st">&quot;20170511&quot;</span>)</a>
+<a class="sourceLine" id="cb350-2" data-line-number="2"><span class="kw">as.Date</span>(x)</a></code></pre></div>
 <pre><code>## [1] &quot;2014-07-15&quot; NA           &quot;2019-12-31&quot; NA</code></pre>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb355-1" data-line-number="1"><span class="kw">class</span>(<span class="kw">as.Date</span>(x))</a></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" data-line-number="1"><span class="kw">class</span>(<span class="kw">as.Date</span>(x))</a></code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
 <p>Perceba que o R nativamente não aceita qualquer separador entre o ano, o mês e o dia, apenas o traço. O pacote <code>lubridate</code>, que faz parte da família <code>tidyverse</code>, possui uma versão mais generalizável para isso:</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" data-line-number="1"><span class="kw">library</span>(lubridate)</a></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;lubridate&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     date, intersect, setdiff, union</code></pre>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" data-line-number="1">lubridate<span class="op">::</span><span class="kw">as_date</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb354-1" data-line-number="1"><span class="kw">library</span>(lubridate)</a>
+<a class="sourceLine" id="cb354-2" data-line-number="2">lubridate<span class="op">::</span><span class="kw">as_date</span>(x)</a></code></pre></div>
 <pre><code>## [1] &quot;2014-07-15&quot; &quot;2018-03-20&quot; &quot;2019-12-31&quot; &quot;2017-05-11&quot;</code></pre>
 <p>A propósito, dominar o pacote <code>lubridate</code>, que possui funções muito simples de usar, é a única coisa necessária para saber lidar com datas no R. Por isso, este capítulo se dedica a mostrar as principais funções do pacote.</p>
 <div id="gerar-um-vetor-sequencial-de-datas" class="section level2">
 <h2><span class="header-section-number">8.1</span> Gerar um vetor sequencial de datas</h2>
 <p>Essa tarefa é feita usando uma função nativa do R chamada <code>seq.Date()</code>, que possui quatro argumentos principais, sendo que três deles precisam ser especificados.</p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb362-1" data-line-number="1"><span class="kw">args</span>(seq.Date)</a></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" data-line-number="1"><span class="kw">args</span>(seq.Date)</a></code></pre></div>
 <pre><code>## function (from, to, by, length.out = NULL, along.with = NULL, 
 ##     ...) 
 ## NULL</code></pre>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" data-line-number="1"><span class="co"># gerar vetor de datas separadas por mes</span></a>
-<a class="sourceLine" id="cb364-2" data-line-number="2"><span class="kw">seq.Date</span>(<span class="dt">from =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-01&quot;</span>),</a>
-<a class="sourceLine" id="cb364-3" data-line-number="3">         <span class="dt">to =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-12-01&quot;</span>),</a>
-<a class="sourceLine" id="cb364-4" data-line-number="4">         <span class="dt">by =</span> <span class="st">&quot;1 month&quot;</span>)</a></code></pre></div>
-<pre><code>##  [1] &quot;2020-01-01&quot; &quot;2020-02-01&quot; &quot;2020-03-01&quot; &quot;2020-04-01&quot; &quot;2020-05-01&quot; &quot;2020-06-01&quot; &quot;2020-07-01&quot; &quot;2020-08-01&quot;
-##  [9] &quot;2020-09-01&quot; &quot;2020-10-01&quot; &quot;2020-11-01&quot; &quot;2020-12-01&quot;</code></pre>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb366-1" data-line-number="1"><span class="co"># gerar vetor de datas separadas por dia</span></a>
-<a class="sourceLine" id="cb366-2" data-line-number="2"><span class="kw">seq.Date</span>(<span class="dt">from =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-01&quot;</span>),</a>
-<a class="sourceLine" id="cb366-3" data-line-number="3">         <span class="dt">to =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-20&quot;</span>),</a>
-<a class="sourceLine" id="cb366-4" data-line-number="4">         <span class="dt">by =</span> <span class="st">&quot;1 day&quot;</span>)</a></code></pre></div>
-<pre><code>##  [1] &quot;2020-01-01&quot; &quot;2020-01-02&quot; &quot;2020-01-03&quot; &quot;2020-01-04&quot; &quot;2020-01-05&quot; &quot;2020-01-06&quot; &quot;2020-01-07&quot; &quot;2020-01-08&quot;
-##  [9] &quot;2020-01-09&quot; &quot;2020-01-10&quot; &quot;2020-01-11&quot; &quot;2020-01-12&quot; &quot;2020-01-13&quot; &quot;2020-01-14&quot; &quot;2020-01-15&quot; &quot;2020-01-16&quot;
-## [17] &quot;2020-01-17&quot; &quot;2020-01-18&quot; &quot;2020-01-19&quot; &quot;2020-01-20&quot;</code></pre>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb368-1" data-line-number="1"><span class="co"># gerar vetor de datas separadas por 3 dias</span></a>
-<a class="sourceLine" id="cb368-2" data-line-number="2"><span class="kw">seq.Date</span>(<span class="dt">from =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-01&quot;</span>),</a>
-<a class="sourceLine" id="cb368-3" data-line-number="3">         <span class="dt">to =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-20&quot;</span>),</a>
-<a class="sourceLine" id="cb368-4" data-line-number="4">         <span class="dt">by =</span> <span class="st">&quot;3 day&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" data-line-number="1"><span class="co"># gerar vetor de datas separadas por mes</span></a>
+<a class="sourceLine" id="cb358-2" data-line-number="2"><span class="kw">seq.Date</span>(<span class="dt">from =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-01&quot;</span>),</a>
+<a class="sourceLine" id="cb358-3" data-line-number="3">         <span class="dt">to =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-12-01&quot;</span>),</a>
+<a class="sourceLine" id="cb358-4" data-line-number="4">         <span class="dt">by =</span> <span class="st">&quot;1 month&quot;</span>)</a></code></pre></div>
+<pre><code>##  [1] &quot;2020-01-01&quot; &quot;2020-02-01&quot; &quot;2020-03-01&quot; &quot;2020-04-01&quot; &quot;2020-05-01&quot; &quot;2020-06-01&quot; &quot;2020-07-01&quot; &quot;2020-08-01&quot; &quot;2020-09-01&quot;
+## [10] &quot;2020-10-01&quot; &quot;2020-11-01&quot; &quot;2020-12-01&quot;</code></pre>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" data-line-number="1"><span class="co"># gerar vetor de datas separadas por dia</span></a>
+<a class="sourceLine" id="cb360-2" data-line-number="2"><span class="kw">seq.Date</span>(<span class="dt">from =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-01&quot;</span>),</a>
+<a class="sourceLine" id="cb360-3" data-line-number="3">         <span class="dt">to =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-20&quot;</span>),</a>
+<a class="sourceLine" id="cb360-4" data-line-number="4">         <span class="dt">by =</span> <span class="st">&quot;1 day&quot;</span>)</a></code></pre></div>
+<pre><code>##  [1] &quot;2020-01-01&quot; &quot;2020-01-02&quot; &quot;2020-01-03&quot; &quot;2020-01-04&quot; &quot;2020-01-05&quot; &quot;2020-01-06&quot; &quot;2020-01-07&quot; &quot;2020-01-08&quot; &quot;2020-01-09&quot;
+## [10] &quot;2020-01-10&quot; &quot;2020-01-11&quot; &quot;2020-01-12&quot; &quot;2020-01-13&quot; &quot;2020-01-14&quot; &quot;2020-01-15&quot; &quot;2020-01-16&quot; &quot;2020-01-17&quot; &quot;2020-01-18&quot;
+## [19] &quot;2020-01-19&quot; &quot;2020-01-20&quot;</code></pre>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb362-1" data-line-number="1"><span class="co"># gerar vetor de datas separadas por 3 dias</span></a>
+<a class="sourceLine" id="cb362-2" data-line-number="2"><span class="kw">seq.Date</span>(<span class="dt">from =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-01&quot;</span>),</a>
+<a class="sourceLine" id="cb362-3" data-line-number="3">         <span class="dt">to =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-20&quot;</span>),</a>
+<a class="sourceLine" id="cb362-4" data-line-number="4">         <span class="dt">by =</span> <span class="st">&quot;3 day&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2020-01-01&quot; &quot;2020-01-04&quot; &quot;2020-01-07&quot; &quot;2020-01-10&quot; &quot;2020-01-13&quot; &quot;2020-01-16&quot; &quot;2020-01-19&quot;</code></pre>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" data-line-number="1"><span class="co"># gerar um vetor de 7 semanas separados por 1 semana</span></a>
-<a class="sourceLine" id="cb370-2" data-line-number="2"><span class="kw">seq.Date</span>(<span class="dt">from =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-01&quot;</span>),</a>
-<a class="sourceLine" id="cb370-3" data-line-number="3">         <span class="dt">length.out =</span> <span class="dv">7</span>,</a>
-<a class="sourceLine" id="cb370-4" data-line-number="4">         <span class="dt">by =</span> <span class="st">&quot;1 week&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" data-line-number="1"><span class="co"># gerar um vetor de 7 semanas separados por 1 semana</span></a>
+<a class="sourceLine" id="cb364-2" data-line-number="2"><span class="kw">seq.Date</span>(<span class="dt">from =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-01&quot;</span>),</a>
+<a class="sourceLine" id="cb364-3" data-line-number="3">         <span class="dt">length.out =</span> <span class="dv">7</span>,</a>
+<a class="sourceLine" id="cb364-4" data-line-number="4">         <span class="dt">by =</span> <span class="st">&quot;1 week&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2020-01-01&quot; &quot;2020-01-08&quot; &quot;2020-01-15&quot; &quot;2020-01-22&quot; &quot;2020-01-29&quot; &quot;2020-02-05&quot; &quot;2020-02-12&quot;</code></pre>
 </div>
 <div id="parsear-datas-e-horários" class="section level2">
 <h2><span class="header-section-number">8.2</span> ‘Parsear’ datas e horários</h2>
 <p>Para fazer o R converter (ou parsear na linguagem de programação) um string em data, basta usar as funções correspondentes do lubridate.</p>
 <p>Por exemplo, no vetor de exemplo <code>x</code>, definido acima, as datas já estavam definidas no formato correto: AAAA-MM-DD. Aqui no Brasil usamos outro formato: DD/MM/AAAA. O <code>lubridate</code> possui uma função pronta para essa situação:</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" data-line-number="1"><span class="co"># observer como usamos diferentes separadores</span></a>
-<a class="sourceLine" id="cb372-2" data-line-number="2">datas_brasil &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;01/12/2019&quot;</span>, <span class="st">&quot;20/11/2018&quot;</span>, <span class="st">&quot;30011990&quot;</span>, <span class="st">&quot;17-03-2000&quot;</span>)</a>
-<a class="sourceLine" id="cb372-3" data-line-number="3"><span class="co"># parseando o vetor acima para Data</span></a>
-<a class="sourceLine" id="cb372-4" data-line-number="4"><span class="kw">dmy</span>(datas_brasil)</a></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb366-1" data-line-number="1"><span class="co"># observer como usamos diferentes separadores</span></a>
+<a class="sourceLine" id="cb366-2" data-line-number="2">datas_brasil &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;01/12/2019&quot;</span>, <span class="st">&quot;20/11/2018&quot;</span>, <span class="st">&quot;30011990&quot;</span>, <span class="st">&quot;17-03-2000&quot;</span>)</a>
+<a class="sourceLine" id="cb366-3" data-line-number="3"><span class="co"># parseando o vetor acima para Data</span></a>
+<a class="sourceLine" id="cb366-4" data-line-number="4"><span class="kw">dmy</span>(datas_brasil)</a></code></pre></div>
 <pre><code>## [1] &quot;2019-12-01&quot; &quot;2018-11-20&quot; &quot;1990-01-30&quot; &quot;2000-03-17&quot;</code></pre>
 <p>Caso o vetor também contenha dados de horário, basta incluir o sufixo referente a hora, minuto e segundo:</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" data-line-number="1"><span class="kw">dmy_hms</span>(<span class="st">&quot;30-09-2019 14:51:39&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb368-1" data-line-number="1"><span class="kw">dmy_hms</span>(<span class="st">&quot;30-09-2019 14:51:39&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2019-09-30 14:51:39 UTC&quot;</code></pre>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb376-1" data-line-number="1"><span class="co"># sem o segundo</span></a>
-<a class="sourceLine" id="cb376-2" data-line-number="2"><span class="kw">dmy_hm</span>(<span class="st">&quot;30-09-2019 14:15&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" data-line-number="1"><span class="co"># sem o segundo</span></a>
+<a class="sourceLine" id="cb370-2" data-line-number="2"><span class="kw">dmy_hm</span>(<span class="st">&quot;30-09-2019 14:15&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2019-09-30 14:15:00 UTC&quot;</code></pre>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb378-1" data-line-number="1"><span class="co"># apenas a hora</span></a>
-<a class="sourceLine" id="cb378-2" data-line-number="2"><span class="kw">dmy_h</span>(<span class="st">&quot;30-09-2019 15&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" data-line-number="1"><span class="co"># apenas a hora</span></a>
+<a class="sourceLine" id="cb372-2" data-line-number="2"><span class="kw">dmy_h</span>(<span class="st">&quot;30-09-2019 15&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2019-09-30 15:00:00 UTC&quot;</code></pre>
 </div>
 <div id="extrair-componentes-de-uma-data" class="section level2">
 <h2><span class="header-section-number">8.3</span> Extrair componentes de uma data</h2>
 <p>É possível extrair qualquer tipo de componente de uma data ou de um vetor de datas com o lubridate. Veja alguns exemplos:</p>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb380-1" data-line-number="1">datas_brasil &lt;-<span class="st"> </span><span class="kw">dmy_hms</span>(<span class="kw">c</span>(<span class="st">&quot;01/12/2019 13:51:15&quot;</span>, <span class="st">&quot;20/11/2018 00:00:00&quot;</span>, <span class="st">&quot;30011990 080000&quot;</span>, <span class="st">&quot;17-03-2000 203000&quot;</span>))</a>
-<a class="sourceLine" id="cb380-2" data-line-number="2">datas_brasil</a></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" data-line-number="1">datas_brasil &lt;-<span class="st"> </span><span class="kw">dmy_hms</span>(<span class="kw">c</span>(<span class="st">&quot;01/12/2019 13:51:15&quot;</span>, <span class="st">&quot;20/11/2018 00:00:00&quot;</span>, <span class="st">&quot;30011990 080000&quot;</span>, <span class="st">&quot;17-03-2000 203000&quot;</span>))</a>
+<a class="sourceLine" id="cb374-2" data-line-number="2">datas_brasil</a></code></pre></div>
 <pre><code>## [1] &quot;2019-12-01 13:51:15 UTC&quot; &quot;2018-11-20 00:00:00 UTC&quot; &quot;1990-01-30 08:00:00 UTC&quot; &quot;2000-03-17 20:30:00 UTC&quot;</code></pre>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" data-line-number="1"><span class="co"># extrair componentes da data:</span></a>
-<a class="sourceLine" id="cb382-2" data-line-number="2"><span class="co"># ano</span></a>
-<a class="sourceLine" id="cb382-3" data-line-number="3"><span class="kw">year</span>(datas_brasil)</a></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb376-1" data-line-number="1"><span class="co"># extrair componentes da data:</span></a>
+<a class="sourceLine" id="cb376-2" data-line-number="2"><span class="co"># ano</span></a>
+<a class="sourceLine" id="cb376-3" data-line-number="3"><span class="kw">year</span>(datas_brasil)</a></code></pre></div>
 <pre><code>## [1] 2019 2018 1990 2000</code></pre>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" data-line-number="1"><span class="co"># mes</span></a>
-<a class="sourceLine" id="cb384-2" data-line-number="2"><span class="kw">month</span>(datas_brasil)</a></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb378-1" data-line-number="1"><span class="co"># mes</span></a>
+<a class="sourceLine" id="cb378-2" data-line-number="2"><span class="kw">month</span>(datas_brasil)</a></code></pre></div>
 <pre><code>## [1] 12 11  1  3</code></pre>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" data-line-number="1"><span class="co"># dia</span></a>
-<a class="sourceLine" id="cb386-2" data-line-number="2"><span class="kw">day</span>(datas_brasil)</a></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb380-1" data-line-number="1"><span class="co"># dia</span></a>
+<a class="sourceLine" id="cb380-2" data-line-number="2"><span class="kw">day</span>(datas_brasil)</a></code></pre></div>
 <pre><code>## [1]  1 20 30 17</code></pre>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb388-1" data-line-number="1"><span class="co"># semana do ano</span></a>
-<a class="sourceLine" id="cb388-2" data-line-number="2"><span class="kw">week</span>(datas_brasil)</a></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" data-line-number="1"><span class="co"># semana do ano</span></a>
+<a class="sourceLine" id="cb382-2" data-line-number="2"><span class="kw">week</span>(datas_brasil)</a></code></pre></div>
 <pre><code>## [1] 48 47  5 11</code></pre>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" data-line-number="1"><span class="co"># dia da semana</span></a>
-<a class="sourceLine" id="cb390-2" data-line-number="2"><span class="kw">wday</span>(datas_brasil, <span class="dt">label =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" data-line-number="1"><span class="co"># dia da semana</span></a>
+<a class="sourceLine" id="cb384-2" data-line-number="2"><span class="kw">wday</span>(datas_brasil, <span class="dt">label =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## [1] dom ter ter sex
 ## Levels: dom &lt; seg &lt; ter &lt; qua &lt; qui &lt; sex &lt; sáb</code></pre>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" data-line-number="1"><span class="co"># trimestre</span></a>
-<a class="sourceLine" id="cb392-2" data-line-number="2"><span class="kw">quarter</span>(datas_brasil)</a></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" data-line-number="1"><span class="co"># trimestre</span></a>
+<a class="sourceLine" id="cb386-2" data-line-number="2"><span class="kw">quarter</span>(datas_brasil)</a></code></pre></div>
 <pre><code>## [1] 4 4 1 1</code></pre>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" data-line-number="1"><span class="co"># hora</span></a>
-<a class="sourceLine" id="cb394-2" data-line-number="2"><span class="kw">hour</span>(datas_brasil)</a></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb388-1" data-line-number="1"><span class="co"># hora</span></a>
+<a class="sourceLine" id="cb388-2" data-line-number="2"><span class="kw">hour</span>(datas_brasil)</a></code></pre></div>
 <pre><code>## [1] 13  0  8 20</code></pre>
 </div>
 <div id="operações-matemáticas-com-datas" class="section level2">
@@ -497,55 +491,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><strong>Adicionar uma quantidade N de dias/meses/anos/etc em uma data</strong>:</li>
 </ul>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb396-1" data-line-number="1"><span class="co"># adicionar 1 semana nas datas</span></a>
-<a class="sourceLine" id="cb396-2" data-line-number="2">datas_brasil <span class="op">+</span><span class="st"> </span><span class="kw">ddays</span>(<span class="dv">7</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" data-line-number="1"><span class="co"># adicionar 1 semana nas datas</span></a>
+<a class="sourceLine" id="cb390-2" data-line-number="2">datas_brasil <span class="op">+</span><span class="st"> </span><span class="kw">ddays</span>(<span class="dv">7</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2019-12-08 13:51:15 UTC&quot; &quot;2018-11-27 00:00:00 UTC&quot; &quot;1990-02-06 08:00:00 UTC&quot; &quot;2000-03-24 20:30:00 UTC&quot;</code></pre>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" data-line-number="1"><span class="co"># adicionar 3 meses</span></a>
-<a class="sourceLine" id="cb398-2" data-line-number="2">datas_brasil <span class="op">+</span><span class="st"> </span><span class="kw">ddays</span>(<span class="dv">90</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" data-line-number="1"><span class="co"># adicionar 3 meses</span></a>
+<a class="sourceLine" id="cb392-2" data-line-number="2">datas_brasil <span class="op">+</span><span class="st"> </span><span class="kw">ddays</span>(<span class="dv">90</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2020-02-29 13:51:15 UTC&quot; &quot;2019-02-18 00:00:00 UTC&quot; &quot;1990-04-30 08:00:00 UTC&quot; &quot;2000-06-15 20:30:00 UTC&quot;</code></pre>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb400-1" data-line-number="1"><span class="co"># adicionar 1 ano</span></a>
-<a class="sourceLine" id="cb400-2" data-line-number="2">datas_brasil <span class="op">+</span><span class="st"> </span><span class="kw">dyears</span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" data-line-number="1"><span class="co"># adicionar 1 ano</span></a>
+<a class="sourceLine" id="cb394-2" data-line-number="2">datas_brasil <span class="op">+</span><span class="st"> </span><span class="kw">dyears</span>(<span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2020-11-30 19:51:15 UTC&quot; &quot;2019-11-20 06:00:00 UTC&quot; &quot;1991-01-30 14:00:00 UTC&quot; &quot;2001-03-18 02:30:00 UTC&quot;</code></pre>
 <ul>
 <li><strong>Calcular a diferença de tempo entre duas datas</strong>:</li>
 </ul>
 <p>No R, subtrair datas segue a mesma sintaxe de subtrair números:</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb402-1" data-line-number="1">data1 &lt;-<span class="st"> </span><span class="kw">dmy_hms</span>(<span class="st">&quot;01/09/1993 20:00:00&quot;</span>)</a>
-<a class="sourceLine" id="cb402-2" data-line-number="2">data2 &lt;-<span class="st"> </span><span class="kw">dmy_hms</span>(<span class="st">&quot;24-06-2018 17:00:00&quot;</span>)</a>
-<a class="sourceLine" id="cb402-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb402-4" data-line-number="4">dif &lt;-<span class="st"> </span>data2 <span class="op">-</span><span class="st"> </span>data1</a>
-<a class="sourceLine" id="cb402-5" data-line-number="5">dif</a></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb396-1" data-line-number="1">data1 &lt;-<span class="st"> </span><span class="kw">dmy_hms</span>(<span class="st">&quot;01/09/1993 20:00:00&quot;</span>)</a>
+<a class="sourceLine" id="cb396-2" data-line-number="2">data2 &lt;-<span class="st"> </span><span class="kw">dmy_hms</span>(<span class="st">&quot;24-06-2018 17:00:00&quot;</span>)</a>
+<a class="sourceLine" id="cb396-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb396-4" data-line-number="4">dif &lt;-<span class="st"> </span>data2 <span class="op">-</span><span class="st"> </span>data1</a>
+<a class="sourceLine" id="cb396-5" data-line-number="5">dif</a></code></pre></div>
 <pre><code>## Time difference of 9061.875 days</code></pre>
 <p>Por padrão, o R retorna a diferença em dias, mas em um objeto de classe <code>difftime</code>.</p>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb404-1" data-line-number="1"><span class="kw">class</span>(dif)</a></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" data-line-number="1"><span class="kw">class</span>(dif)</a></code></pre></div>
 <pre><code>## [1] &quot;difftime&quot;</code></pre>
 <p>Recomenda-se então converter o output para a classe <code>numeric</code>:</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb406-1" data-line-number="1"><span class="kw">as.numeric</span>(dif)</a></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb400-1" data-line-number="1"><span class="kw">as.numeric</span>(dif)</a></code></pre></div>
 <pre><code>## [1] 9061.875</code></pre>
 <p>Caso se deseje calcular essa diferença em outras unidades de tempo, como meses ou semanas, basta fazer a divisão correspondente:</p>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb408-1" data-line-number="1"><span class="co"># conveter para semanas</span></a>
-<a class="sourceLine" id="cb408-2" data-line-number="2"><span class="kw">as.numeric</span>(dif) <span class="op">/</span><span class="st"> </span><span class="dv">7</span></a></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb402-1" data-line-number="1"><span class="co"># conveter para semanas</span></a>
+<a class="sourceLine" id="cb402-2" data-line-number="2"><span class="kw">as.numeric</span>(dif) <span class="op">/</span><span class="st"> </span><span class="dv">7</span></a></code></pre></div>
 <pre><code>## [1] 1294.554</code></pre>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb410-1" data-line-number="1"><span class="co"># converter para meses</span></a>
-<a class="sourceLine" id="cb410-2" data-line-number="2"><span class="kw">as.numeric</span>(dif) <span class="op">/</span><span class="st"> </span><span class="dv">30</span></a></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb404-1" data-line-number="1"><span class="co"># converter para meses</span></a>
+<a class="sourceLine" id="cb404-2" data-line-number="2"><span class="kw">as.numeric</span>(dif) <span class="op">/</span><span class="st"> </span><span class="dv">30</span></a></code></pre></div>
 <pre><code>## [1] 302.0625</code></pre>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb412-1" data-line-number="1"><span class="co"># converter para anos</span></a>
-<a class="sourceLine" id="cb412-2" data-line-number="2"><span class="kw">as.numeric</span>(dif) <span class="op">/</span><span class="st"> </span><span class="dv">365</span></a></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb406-1" data-line-number="1"><span class="co"># converter para anos</span></a>
+<a class="sourceLine" id="cb406-2" data-line-number="2"><span class="kw">as.numeric</span>(dif) <span class="op">/</span><span class="st"> </span><span class="dv">365</span></a></code></pre></div>
 <pre><code>## [1] 24.82705</code></pre>
 <ul>
 <li><strong>Arredondar datas</strong>:</li>
 </ul>
 <p>Para arredondar uma data, por exemplo, retornar o primeiro ou último dia da semana/mês/trimestre/etc de uma data de referência, usa-se as funções <code>ceiling_date()</code> (arredondar para cima) e <code>floor_date()</code> (para baixo):</p>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb414-1" data-line-number="1"><span class="co"># retornar a primeira data da semana:</span></a>
-<a class="sourceLine" id="cb414-2" data-line-number="2"><span class="kw">floor_date</span>(datas_brasil, <span class="st">&quot;week&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb408-1" data-line-number="1"><span class="co"># retornar a primeira data da semana:</span></a>
+<a class="sourceLine" id="cb408-2" data-line-number="2"><span class="kw">floor_date</span>(datas_brasil, <span class="st">&quot;week&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2019-12-01 UTC&quot; &quot;2018-11-18 UTC&quot; &quot;1990-01-28 UTC&quot; &quot;2000-03-12 UTC&quot;</code></pre>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb416-1" data-line-number="1"><span class="co"># retornar a ultima data do mês</span></a>
-<a class="sourceLine" id="cb416-2" data-line-number="2"><span class="co"># por padrao, ceiling_date retorna a primeira data do próximo mês,</span></a>
-<a class="sourceLine" id="cb416-3" data-line-number="3"><span class="co"># por isso é necessario subtrair o resultado por 1</span></a>
-<a class="sourceLine" id="cb416-4" data-line-number="4"><span class="kw">ceiling_date</span>(datas_brasil, <span class="st">&quot;month&quot;</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb410-1" data-line-number="1"><span class="co"># retornar a ultima data do mês</span></a>
+<a class="sourceLine" id="cb410-2" data-line-number="2"><span class="co"># por padrao, ceiling_date retorna a primeira data do próximo mês,</span></a>
+<a class="sourceLine" id="cb410-3" data-line-number="3"><span class="co"># por isso é necessario subtrair o resultado por 1</span></a>
+<a class="sourceLine" id="cb410-4" data-line-number="4"><span class="kw">ceiling_date</span>(datas_brasil, <span class="st">&quot;month&quot;</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
 <pre><code>## [1] &quot;2019-12-31 23:59:59 UTC&quot; &quot;2018-11-30 23:59:59 UTC&quot; &quot;1990-01-31 23:59:59 UTC&quot; &quot;2000-03-31 23:59:59 UTC&quot;</code></pre>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb418-1" data-line-number="1"><span class="co"># arredondar usando a hora como referencia</span></a>
-<a class="sourceLine" id="cb418-2" data-line-number="2"><span class="kw">floor_date</span>(datas_brasil, <span class="st">&quot;hour&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb412-1" data-line-number="1"><span class="co"># arredondar usando a hora como referencia</span></a>
+<a class="sourceLine" id="cb412-2" data-line-number="2"><span class="kw">floor_date</span>(datas_brasil, <span class="st">&quot;hour&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;2019-12-01 13:00:00 UTC&quot; &quot;2018-11-20 00:00:00 UTC&quot; &quot;1990-01-30 08:00:00 UTC&quot; &quot;2000-03-17 20:00:00 UTC&quot;</code></pre>
 
 </div>

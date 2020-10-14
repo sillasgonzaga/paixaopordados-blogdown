@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6 Juntando dados | Ciência de Dados com R - Introdução</title>
   <meta name="description" content="Aprendendo a programar com R" />
-  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6 Juntando dados | Ciência de Dados com R - Introdução" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,6 @@
 <meta name="author" content="Saulo Guerra, Paulo Felipe de Oliveira, Robert McDonnell e Sillas Gonzaga" />
 
 
-<meta name="date" content="2020-07-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,7 +49,7 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
@@ -411,17 +410,17 @@ Figura 6.2: Cruzamento de tabelas
 <div id="união-de-dados-union" class="section level2">
 <h2><span class="header-section-number">6.1</span> União de dados (Union)</h2>
 <p>A união de dados é mais intuitiva. Basta ter a mesma quantidade de campos e que estes estejam “alinhados”. A função mais usada para isso é o famoso <code>rbind()</code> (Row Bind). Caso os campos tenham exatamente os mesmos nomes e tipo, o <code>rbind()</code> consegue fazer a união perfeitamente.</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" data-line-number="1">dados2016 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2016</span>, <span class="dv">2016</span>, <span class="dv">2016</span>), </a>
-<a class="sourceLine" id="cb226-2" data-line-number="2">                        <span class="dt">valor =</span> <span class="kw">c</span>(<span class="dv">938</span>, <span class="dv">113</span>, <span class="dv">1748</span>), </a>
-<a class="sourceLine" id="cb226-3" data-line-number="3">                        <span class="dt">produto =</span> <span class="kw">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>))</a>
-<a class="sourceLine" id="cb226-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb226-5" data-line-number="5">dados2017 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">valor =</span> <span class="kw">c</span>(<span class="dv">8400</span>, <span class="dv">837</span>, <span class="dv">10983</span>), </a>
-<a class="sourceLine" id="cb226-6" data-line-number="6">                        <span class="dt">produto =</span> <span class="kw">c</span>(<span class="st">&#39;H&#39;</span>, <span class="st">&#39;Z&#39;</span>, <span class="st">&#39;X&#39;</span>),</a>
-<a class="sourceLine" id="cb226-7" data-line-number="7">                        <span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2017</span>, <span class="dv">2017</span>, <span class="dv">2017</span>))</a>
-<a class="sourceLine" id="cb226-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb226-9" data-line-number="9">dados.finais &lt;-<span class="st"> </span><span class="kw">rbind</span>(dados2016, dados2017)</a>
-<a class="sourceLine" id="cb226-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb226-11" data-line-number="11">dados.finais</a></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" data-line-number="1">dados2016 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2016</span>, <span class="dv">2016</span>, <span class="dv">2016</span>), </a>
+<a class="sourceLine" id="cb223-2" data-line-number="2">                        <span class="dt">valor =</span> <span class="kw">c</span>(<span class="dv">938</span>, <span class="dv">113</span>, <span class="dv">1748</span>), </a>
+<a class="sourceLine" id="cb223-3" data-line-number="3">                        <span class="dt">produto =</span> <span class="kw">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>))</a>
+<a class="sourceLine" id="cb223-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb223-5" data-line-number="5">dados2017 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">valor =</span> <span class="kw">c</span>(<span class="dv">8400</span>, <span class="dv">837</span>, <span class="dv">10983</span>), </a>
+<a class="sourceLine" id="cb223-6" data-line-number="6">                        <span class="dt">produto =</span> <span class="kw">c</span>(<span class="st">&#39;H&#39;</span>, <span class="st">&#39;Z&#39;</span>, <span class="st">&#39;X&#39;</span>),</a>
+<a class="sourceLine" id="cb223-7" data-line-number="7">                        <span class="dt">ano =</span> <span class="kw">c</span>(<span class="dv">2017</span>, <span class="dv">2017</span>, <span class="dv">2017</span>))</a>
+<a class="sourceLine" id="cb223-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb223-9" data-line-number="9">dados.finais &lt;-<span class="st"> </span><span class="kw">rbind</span>(dados2016, dados2017)</a>
+<a class="sourceLine" id="cb223-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb223-11" data-line-number="11">dados.finais</a></code></pre></div>
 <pre><code>##    ano valor produto
 ## 1 2016   938       A
 ## 2 2016   113       B
@@ -452,51 +451,51 @@ Figura 6.3: Cruzamento de tabelas
 </div>
 <p>A tabela final, após o cruzamento, conterá as linhas com as chaves que estiverem em AMBOS os conjuntos de dados. As linhas com chaves que não estão em ambos serão descartadas. Esta característica torna o inner join muito útil para fazer-se filtros.</p>
 <p>Vamos utilizar dados já disponíveis no <code>dplyr</code> para testar os joins:</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" data-line-number="1">band_members</a></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" data-line-number="1">band_members</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 2
 ##   name  band   
 ##   &lt;chr&gt; &lt;chr&gt;  
 ## 1 Mick  Stones 
 ## 2 John  Beatles
 ## 3 Paul  Beatles</code></pre>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" data-line-number="1">band_instruments</a></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" data-line-number="1">band_instruments</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 2
 ##   name  plays 
 ##   &lt;chr&gt; &lt;chr&gt; 
 ## 1 John  guitar
 ## 2 Paul  bass  
 ## 3 Keith guitar</code></pre>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" data-line-number="1"><span class="kw">str</span>(band_members)</a></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" data-line-number="1"><span class="kw">str</span>(band_members)</a></code></pre></div>
 <pre><code>## tibble [3 × 2] (S3: tbl_df/tbl/data.frame)
 ##  $ name: chr [1:3] &quot;Mick&quot; &quot;John&quot; &quot;Paul&quot;
 ##  $ band: chr [1:3] &quot;Stones&quot; &quot;Beatles&quot; &quot;Beatles&quot;</code></pre>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" data-line-number="1"><span class="kw">str</span>(band_instruments)</a></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" data-line-number="1"><span class="kw">str</span>(band_instruments)</a></code></pre></div>
 <pre><code>## tibble [3 × 2] (S3: tbl_df/tbl/data.frame)
 ##  $ name : chr [1:3] &quot;John&quot; &quot;Paul&quot; &quot;Keith&quot;
 ##  $ plays: chr [1:3] &quot;guitar&quot; &quot;bass&quot; &quot;guitar&quot;</code></pre>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" data-line-number="1"><span class="co">#vamos juntar os dois conjuntos com um join</span></a>
-<a class="sourceLine" id="cb236-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb236-3" data-line-number="3">band_members <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(band_instruments) </a></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" data-line-number="1"><span class="co">#vamos juntar os dois conjuntos com um join</span></a>
+<a class="sourceLine" id="cb233-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb233-3" data-line-number="3">band_members <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(band_instruments) </a></code></pre></div>
 <pre><code>## # A tibble: 2 x 3
 ##   name  band    plays 
 ##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
 ## 1 John  Beatles guitar
 ## 2 Paul  Beatles bass</code></pre>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" data-line-number="1"><span class="co">#o dplyr &quot;adivinhou&quot; a coluna chave pelo nome</span></a></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1"><span class="co">#o dplyr &quot;adivinhou&quot; a coluna chave pelo nome</span></a></code></pre></div>
 <p>Repare que, nesse caso, a chave é a coluna <code>name</code>. Repare também que os dois conjuntos têm três registros. Então, por que o resultado final só tem dois registros? A resposta é simples: porque o comportamento do join é justamente retornar apenas as linhas em que as chaves coincidiram (efeito de filtro).</p>
 <p>Vamos fazer o mesmo experimento com <code>band_intruments2</code>:</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1">band_instruments2</a></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" data-line-number="1">band_instruments2</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 2
 ##   artist plays 
 ##   &lt;chr&gt;  &lt;chr&gt; 
 ## 1 John   guitar
 ## 2 Paul   bass  
 ## 3 Keith  guitar</code></pre>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" data-line-number="1"><span class="kw">str</span>(band_instruments2) <span class="co">#o nome da coluna é diferente</span></a></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" data-line-number="1"><span class="kw">str</span>(band_instruments2) <span class="co">#o nome da coluna é diferente</span></a></code></pre></div>
 <pre><code>## tibble [3 × 2] (S3: tbl_df/tbl/data.frame)
 ##  $ artist: chr [1:3] &quot;John&quot; &quot;Paul&quot; &quot;Keith&quot;
 ##  $ plays : chr [1:3] &quot;guitar&quot; &quot;bass&quot; &quot;guitar&quot;</code></pre>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1">band_members <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(band_instruments2, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;name&#39;</span> =<span class="st"> &#39;artist&#39;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" data-line-number="1">band_members <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(band_instruments2, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;name&#39;</span> =<span class="st"> &#39;artist&#39;</span>))</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 3
 ##   name  band    plays 
 ##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
@@ -504,10 +503,10 @@ Figura 6.3: Cruzamento de tabelas
 ## 2 Paul  Beatles bass</code></pre>
 <p>Repare que, dessa vez, tivemos que especificar qual a coluna chave para que o join aconteça.</p>
 <p>Mais um exemplo:</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1">empregados &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;dados/Employees.csv&#39;</span>)</a>
-<a class="sourceLine" id="cb245-2" data-line-number="2">departamentos &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;dados/Departments.csv&#39;</span>)</a>
-<a class="sourceLine" id="cb245-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb245-4" data-line-number="4"><span class="kw">str</span>(empregados)</a></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" data-line-number="1">empregados &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;dados/Employees.csv&#39;</span>)</a>
+<a class="sourceLine" id="cb242-2" data-line-number="2">departamentos &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;dados/Departments.csv&#39;</span>)</a>
+<a class="sourceLine" id="cb242-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb242-4" data-line-number="4"><span class="kw">str</span>(empregados)</a></code></pre></div>
 <pre><code>## tibble [6 × 4] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ Employee    : num [1:6] 1 2 3 4 5 6
 ##  $ EmployeeName: chr [1:6] &quot;Alice&quot; &quot;Bob&quot; &quot;Carla&quot; &quot;Daniel&quot; ...
@@ -520,7 +519,7 @@ Figura 6.3: Cruzamento de tabelas
 ##   ..   Department = col_double(),
 ##   ..   Salary = col_double()
 ##   .. )</code></pre>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1"><span class="kw">str</span>(departamentos)</a></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" data-line-number="1"><span class="kw">str</span>(departamentos)</a></code></pre></div>
 <pre><code>## tibble [4 × 3] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ Department    : num [1:4] 11 12 13 14
 ##  $ DepartmentName: chr [1:4] &quot;Production&quot; &quot;Sales&quot; &quot;Marketing&quot; &quot;Research&quot;
@@ -531,7 +530,7 @@ Figura 6.3: Cruzamento de tabelas
 ##   ..   DepartmentName = col_character(),
 ##   ..   Manager = col_double()
 ##   .. )</code></pre>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1">empregados</a></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" data-line-number="1">empregados</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   Employee EmployeeName Department Salary
 ##      &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt;
@@ -541,7 +540,7 @@ Figura 6.3: Cruzamento de tabelas
 ## 4        4 Daniel               12   1000
 ## 5        5 Evelyn               13    800
 ## 6        6 Ferdinand            21    700</code></pre>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1">departamentos</a></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1">departamentos</a></code></pre></div>
 <pre><code>## # A tibble: 4 x 3
 ##   Department DepartmentName Manager
 ##        &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;
@@ -549,10 +548,10 @@ Figura 6.3: Cruzamento de tabelas
 ## 2         12 Sales                4
 ## 3         13 Marketing            5
 ## 4         14 Research            NA</code></pre>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1">final &lt;-<span class="st"> </span>empregados <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb253-2" data-line-number="2"><span class="st">  </span><span class="kw">inner_join</span>(departamentos, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;Employee&#39;</span> =<span class="st"> &#39;Manager&#39;</span>))</a>
-<a class="sourceLine" id="cb253-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb253-4" data-line-number="4">final</a></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1">final &lt;-<span class="st"> </span>empregados <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb250-2" data-line-number="2"><span class="st">  </span><span class="kw">inner_join</span>(departamentos, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;Employee&#39;</span> =<span class="st"> &#39;Manager&#39;</span>))</a>
+<a class="sourceLine" id="cb250-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb250-4" data-line-number="4">final</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 6
 ##   Employee EmployeeName Department.x Salary Department.y DepartmentName
 ##      &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;  &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;         
@@ -565,14 +564,14 @@ Figura 6.3: Cruzamento de tabelas
 <div id="left-outer-join" class="section level3">
 <h3><span class="header-section-number">6.2.2</span> Left Outer Join</h3>
 <p>Chama-se <strong>LEFT</strong> outer join pois todos os registros do “conjunto à esquerda” estarão presentes no resultado final, além dos registros à direita que coincidirem na chave. Podemos usar no caso a seguir:</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" data-line-number="1">band_members <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(band_instruments2, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;name&#39;</span> =<span class="st"> &#39;artist&#39;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1">band_members <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">left_join</span>(band_instruments2, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;name&#39;</span> =<span class="st"> &#39;artist&#39;</span>))</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   name  band    plays 
 ##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
 ## 1 Mick  Stones  &lt;NA&gt;  
 ## 2 John  Beatles guitar
 ## 3 Paul  Beatles bass</code></pre>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1">band_instruments2</a></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1">band_instruments2</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 2
 ##   artist plays 
 ##   &lt;chr&gt;  &lt;chr&gt; 
@@ -587,10 +586,10 @@ Figura 6.4: Cruzamento de tabelas
 </p>
 </div>
 <p>Repare que a “posição” das tabelas faz diferença. No caso da nossa manipulação de exmeplo, aplicamos o left join pois a tabela que queríamos preservar estava “à esquerda” na manipulação.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1">final2 &lt;-<span class="st"> </span>empregados <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb259-2" data-line-number="2"><span class="st">  </span><span class="kw">left_join</span>(departamentos, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;Employee&#39;</span> =<span class="st"> &#39;Manager&#39;</span>))</a>
-<a class="sourceLine" id="cb259-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb259-4" data-line-number="4">final2</a></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1">final2 &lt;-<span class="st"> </span>empregados <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb256-2" data-line-number="2"><span class="st">  </span><span class="kw">left_join</span>(departamentos, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;Employee&#39;</span> =<span class="st"> &#39;Manager&#39;</span>))</a>
+<a class="sourceLine" id="cb256-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb256-4" data-line-number="4">final2</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 6
 ##   Employee EmployeeName Department.x Salary Department.y DepartmentName
 ##      &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;  &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;         
@@ -604,10 +603,10 @@ Figura 6.4: Cruzamento de tabelas
 <div id="right-outer-join" class="section level3">
 <h3><span class="header-section-number">6.2.3</span> Right Outer Join</h3>
 <p>O princípio é EXATAMENTE o mesmo do left join. A única diferença é a permanência dos registros do conjunto à direita. Podemos chegar ao mesmo resultado anterior apenas mudando os data frames de posição na manipulação.</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1">final3 &lt;-<span class="st"> </span>departamentos <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb261-2" data-line-number="2"><span class="st">  </span><span class="kw">right_join</span>(empregados, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;Manager&#39;</span>=<span class="st">&#39;Employee&#39;</span>))</a>
-<a class="sourceLine" id="cb261-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb261-4" data-line-number="4">final3</a></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1">final3 &lt;-<span class="st"> </span>departamentos <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb258-2" data-line-number="2"><span class="st">  </span><span class="kw">right_join</span>(empregados, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;Manager&#39;</span>=<span class="st">&#39;Employee&#39;</span>))</a>
+<a class="sourceLine" id="cb258-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb258-4" data-line-number="4">final3</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 6
 ##   Department.x DepartmentName Manager EmployeeName Department.y Salary
 ##          &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;  &lt;dbl&gt;
@@ -617,7 +616,7 @@ Figura 6.4: Cruzamento de tabelas
 ## 4           NA &lt;NA&gt;                 2 Bob                    11    600
 ## 5           NA &lt;NA&gt;                 3 Carla                  12    900
 ## 6           NA &lt;NA&gt;                 6 Ferdinand              21    700</code></pre>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1">final2</a></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1">final2</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 6
 ##   Employee EmployeeName Department.x Salary Department.y DepartmentName
 ##      &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;  &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;         
@@ -632,7 +631,7 @@ Figura 6.4: Cruzamento de tabelas
 <div id="full-outer-join" class="section level3">
 <h3><span class="header-section-number">6.2.4</span> Full Outer Join</h3>
 <p>Existem, ainda, as situações em que é necessário preservar todos os registros de ambos os conjuntos de dados. O full join tem essa característica. Nenhum dos conjuntos de dados perderá registros no resultado final, isto é, quando as chaves forem iguais, todos os campos estarão preenchidos. Quando não houver ocorrência das chaves em ambos os lados, será informado <code>NA</code> em qualquer um deles.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1">band_members <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">full_join</span>(band_instruments2, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;name&#39;</span> =<span class="st"> &#39;artist&#39;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1">band_members <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">full_join</span>(band_instruments2, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;name&#39;</span> =<span class="st"> &#39;artist&#39;</span>))</a></code></pre></div>
 <pre><code>## # A tibble: 4 x 3
 ##   name  band    plays 
 ##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
@@ -648,10 +647,10 @@ Figura 6.4: Cruzamento de tabelas
 Figura 6.5: Cruzamento de tabelas
 </p>
 </div>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" data-line-number="1">final4 &lt;-<span class="st"> </span>departamentos <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb267-2" data-line-number="2"><span class="st">  </span><span class="kw">full_join</span>(empregados, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;Manager&#39;</span>=<span class="st">&#39;Employee&#39;</span>))</a>
-<a class="sourceLine" id="cb267-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb267-4" data-line-number="4">final4</a></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1">final4 &lt;-<span class="st"> </span>departamentos <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb264-2" data-line-number="2"><span class="st">  </span><span class="kw">full_join</span>(empregados, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;Manager&#39;</span>=<span class="st">&#39;Employee&#39;</span>))</a>
+<a class="sourceLine" id="cb264-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb264-4" data-line-number="4">final4</a></code></pre></div>
 <pre><code>## # A tibble: 7 x 6
 ##   Department.x DepartmentName Manager EmployeeName Department.y Salary
 ##          &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;  &lt;dbl&gt;
@@ -689,34 +688,34 @@ Figura 6.5: Cruzamento de tabelas
 <ol start="2" style="list-style-type: decimal">
 <li>Utilizando os dataframes abaixo, chegue no resultado a seguir:</li>
 </ol>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" data-line-number="1">participantes &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb271-2" data-line-number="2">  <span class="dt">Nome =</span> <span class="kw">c</span>(<span class="st">&#39;Carlos&#39;</span>, <span class="st">&#39;Maurício&#39;</span>, <span class="st">&#39;Ana Maria&#39;</span>, <span class="st">&#39;Rebeca&#39;</span>, <span class="st">&#39;Patrícia&#39;</span>),</a>
-<a class="sourceLine" id="cb271-3" data-line-number="3">  <span class="dt">Estado =</span> <span class="kw">c</span>(<span class="st">&#39;Brasília&#39;</span>, <span class="st">&#39;Minas Gerais&#39;</span>, <span class="st">&#39;Goiás&#39;</span>, <span class="st">&#39;São Paulo&#39;</span>, <span class="st">&#39;Ceará&#39;</span>),</a>
-<a class="sourceLine" id="cb271-4" data-line-number="4">  <span class="dt">Idade =</span> <span class="kw">c</span>(<span class="dv">23</span>, <span class="dv">24</span>, <span class="dv">22</span>, <span class="dv">29</span>, <span class="dv">28</span>)</a>
-<a class="sourceLine" id="cb271-5" data-line-number="5">)</a>
-<a class="sourceLine" id="cb271-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb271-7" data-line-number="7">aprovados &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb271-8" data-line-number="8">  <span class="dt">Nome =</span> <span class="kw">c</span>(<span class="st">&#39;Carlos&#39;</span>, <span class="st">&#39;Patrícia&#39;</span>),</a>
-<a class="sourceLine" id="cb271-9" data-line-number="9">  <span class="dt">Pontuacao =</span> <span class="kw">c</span>(<span class="dv">61</span>, <span class="dv">62</span>)</a>
-<a class="sourceLine" id="cb271-10" data-line-number="10">)</a>
-<a class="sourceLine" id="cb271-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb271-12" data-line-number="12">eliminados &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb271-13" data-line-number="13">  <span class="dt">Nome =</span> <span class="kw">c</span>(<span class="st">&#39;Maurício&#39;</span>, <span class="st">&#39;Ana Maria&#39;</span>, <span class="st">&#39;Rebeca&#39;</span>),</a>
-<a class="sourceLine" id="cb271-14" data-line-number="14">  <span class="dt">Pontuacao =</span> <span class="kw">c</span>(<span class="dv">49</span>, <span class="dv">48</span>, <span class="dv">48</span>)</a>
-<a class="sourceLine" id="cb271-15" data-line-number="15">)</a>
-<a class="sourceLine" id="cb271-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb271-17" data-line-number="17">participantes</a></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1">participantes &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb268-2" data-line-number="2">  <span class="dt">Nome =</span> <span class="kw">c</span>(<span class="st">&#39;Carlos&#39;</span>, <span class="st">&#39;Maurício&#39;</span>, <span class="st">&#39;Ana Maria&#39;</span>, <span class="st">&#39;Rebeca&#39;</span>, <span class="st">&#39;Patrícia&#39;</span>),</a>
+<a class="sourceLine" id="cb268-3" data-line-number="3">  <span class="dt">Estado =</span> <span class="kw">c</span>(<span class="st">&#39;Brasília&#39;</span>, <span class="st">&#39;Minas Gerais&#39;</span>, <span class="st">&#39;Goiás&#39;</span>, <span class="st">&#39;São Paulo&#39;</span>, <span class="st">&#39;Ceará&#39;</span>),</a>
+<a class="sourceLine" id="cb268-4" data-line-number="4">  <span class="dt">Idade =</span> <span class="kw">c</span>(<span class="dv">23</span>, <span class="dv">24</span>, <span class="dv">22</span>, <span class="dv">29</span>, <span class="dv">28</span>)</a>
+<a class="sourceLine" id="cb268-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb268-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb268-7" data-line-number="7">aprovados &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb268-8" data-line-number="8">  <span class="dt">Nome =</span> <span class="kw">c</span>(<span class="st">&#39;Carlos&#39;</span>, <span class="st">&#39;Patrícia&#39;</span>),</a>
+<a class="sourceLine" id="cb268-9" data-line-number="9">  <span class="dt">Pontuacao =</span> <span class="kw">c</span>(<span class="dv">61</span>, <span class="dv">62</span>)</a>
+<a class="sourceLine" id="cb268-10" data-line-number="10">)</a>
+<a class="sourceLine" id="cb268-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb268-12" data-line-number="12">eliminados &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb268-13" data-line-number="13">  <span class="dt">Nome =</span> <span class="kw">c</span>(<span class="st">&#39;Maurício&#39;</span>, <span class="st">&#39;Ana Maria&#39;</span>, <span class="st">&#39;Rebeca&#39;</span>),</a>
+<a class="sourceLine" id="cb268-14" data-line-number="14">  <span class="dt">Pontuacao =</span> <span class="kw">c</span>(<span class="dv">49</span>, <span class="dv">48</span>, <span class="dv">48</span>)</a>
+<a class="sourceLine" id="cb268-15" data-line-number="15">)</a>
+<a class="sourceLine" id="cb268-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb268-17" data-line-number="17">participantes</a></code></pre></div>
 <pre><code>##        Nome       Estado Idade
 ## 1    Carlos     Brasília    23
 ## 2  Maurício Minas Gerais    24
 ## 3 Ana Maria        Goiás    22
 ## 4    Rebeca    São Paulo    29
 ## 5  Patrícia        Ceará    28</code></pre>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" data-line-number="1">aprovados</a></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" data-line-number="1">aprovados</a></code></pre></div>
 <pre><code>##       Nome Pontuacao
 ## 1   Carlos        61
 ## 2 Patrícia        62</code></pre>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1">eliminados</a></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" data-line-number="1">eliminados</a></code></pre></div>
 <pre><code>##        Nome Pontuacao
 ## 1  Maurício        49
 ## 2 Ana Maria        48

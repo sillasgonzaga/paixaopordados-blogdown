@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>15 Modelos | Ciência de Dados com R - Introdução</title>
   <meta name="description" content="Aprendendo a programar com R" />
-  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="15 Modelos | Ciência de Dados com R - Introdução" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,6 @@
 <meta name="author" content="Saulo Guerra, Paulo Felipe de Oliveira, Robert McDonnell e Sillas Gonzaga" />
 
 
-<meta name="date" content="2020-07-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,7 +49,7 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
@@ -409,14 +408,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + ... + \beta_k x_{ki} + \epsilon_i, ~~ i = 1, ..., N,\]</span>
 onde <span class="math inline">\(y\)</span> é a variável dependente, <span class="math inline">\(x_{k}\)</span> é a k-ésima variável explicativa, <span class="math inline">\(\beta_k\)</span> é o parâmetro estimado para k-ésima variável e <span class="math inline">\(\epsilon\)</span> é o termo de erro.</p>
 <p>A função <code>lm()</code> estima esse modelo pelo método denominado de mínimos quadrados ordinários (MQO). Antes de exemplificarmos o uso da função, vamos falar sobre a representação simbólica do modelo, ou seja, como especificar o modelo no R. Em geral, o modelo terá argumentos <code>x</code> e <code>y</code>, em que o usuário passa os dados nesses argumentos ou terá a estrutura de fórmula. Por ser o método menos usado no modelo linear, detalharemos a estrutura de fórmula. Na função <code>lm()</code>, é obrigatório passar-se um objeto da classe fórmula, ou algum objeto que possa ser convertido para uma fórmula. Por exemplo: para o modelo linear com duas variáveis (<span class="math inline">\(y\)</span> e <span class="math inline">\(x\)</span>) e uma constante, a fórmula correspondente é:</p>
-<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb684-1" data-line-number="1">f &lt;-<span class="st"> &#39;y ~ x&#39;</span></a>
-<a class="sourceLine" id="cb684-2" data-line-number="2"><span class="kw">class</span>(f)</a></code></pre></div>
+<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb678-1" data-line-number="1">f &lt;-<span class="st"> &#39;y ~ x&#39;</span></a>
+<a class="sourceLine" id="cb678-2" data-line-number="2"><span class="kw">class</span>(f)</a></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb686-1" data-line-number="1"><span class="kw">class</span>(<span class="kw">as.formula</span>(f))</a></code></pre></div>
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb680-1" data-line-number="1"><span class="kw">class</span>(<span class="kw">as.formula</span>(f))</a></code></pre></div>
 <pre><code>## [1] &quot;formula&quot;</code></pre>
 <p>Para mostrarmos as possibilidades de uso da fórmula de especificação do modelo, utilizaremos a base <code>mtcars</code>. Esta base traz o consumo de gasolina (<code>mpg</code>) e algumas outras características do veículo. Detalharemos cada variável explicativa conforme elas são usadas. No entanto, você pode olhar o help dessa base: <code>?mtcars</code>. Para iniciarmos, utilizaremos a variável <code>mpg</code> (miles per galon) e a variável <code>hp</code> (Gross horsepower).</p>
-<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb688-1" data-line-number="1"><span class="kw">data</span>(mtcars)</a>
-<a class="sourceLine" id="cb688-2" data-line-number="2"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp, <span class="dt">data =</span> mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb682-1" data-line-number="1"><span class="kw">data</span>(mtcars)</a>
+<a class="sourceLine" id="cb682-2" data-line-number="2"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp, <span class="dt">data =</span> mtcars)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = mpg ~ hp, data = mtcars)
@@ -425,16 +424,16 @@ onde <span class="math inline">\(y\)</span> é a variável dependente, <span cla
 ## (Intercept)           hp  
 ##    30.09886     -0.06823</code></pre>
 <p>Note que não houve especificação de uma constante. Automaticamente, o R inclui a constante. Você pode inclui-la explicitamente ou retirá-la:</p>
-<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb690-1" data-line-number="1"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb690-2" data-line-number="2"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span><span class="dv">0</span>, <span class="dt">data =</span> mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb684-1" data-line-number="1"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb684-2" data-line-number="2"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span><span class="dv">0</span>, <span class="dt">data =</span> mtcars)</a></code></pre></div>
 <p>Já temos uma pista de como incluir mais variáveis: basta “adicioná-las” com o símbolo <code>+</code>. Isto é, vamos incluir a variável <code>am</code> - Transmission (0 = automatic, 1 = manual) - no modelo:</p>
-<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb691-1" data-line-number="1"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span>am, <span class="dt">data =</span> mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb685-1" data-line-number="1"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span>am, <span class="dt">data =</span> mtcars)</a></code></pre></div>
 <p>Se quiséssemos incluir todas as variáveis explicativas:</p>
-<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb692-1" data-line-number="1"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb686-1" data-line-number="1"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> mtcars)</a></code></pre></div>
 <p>Interações:</p>
-<div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb693-1" data-line-number="1"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>hp<span class="op">:</span>am, <span class="dt">data =</span> mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb687-1" data-line-number="1"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>hp<span class="op">:</span>am, <span class="dt">data =</span> mtcars)</a></code></pre></div>
 <p>Transformações:</p>
-<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb694-1" data-line-number="1"><span class="kw">lm</span>(<span class="kw">log</span>(mpg) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(hp) <span class="op">+</span><span class="st"> </span>am, <span class="dt">data =</span> mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb688-1" data-line-number="1"><span class="kw">lm</span>(<span class="kw">log</span>(mpg) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(hp) <span class="op">+</span><span class="st"> </span>am, <span class="dt">data =</span> mtcars)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = log(mpg) ~ log(hp) + am, data = mtcars)
@@ -443,7 +442,7 @@ onde <span class="math inline">\(y\)</span> é a variável dependente, <span cla
 ## (Intercept)      log(hp)           am  
 ##      5.1196      -0.4591       0.1954</code></pre>
 <p>No entanto, algumas transformações podem se confundir com símbolos quem são usados na fórmula. No exemplo abaixo, abstraia os dados e foque no efeito resultante da fórmula:</p>
-<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb696-1" data-line-number="1"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>(am <span class="op">+</span><span class="st"> </span>hp)<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>hp<span class="op">^</span><span class="dv">2</span>, <span class="dt">data =</span> mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb690-1" data-line-number="1"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>(am <span class="op">+</span><span class="st"> </span>hp)<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>hp<span class="op">^</span><span class="dv">2</span>, <span class="dt">data =</span> mtcars)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = mpg ~ (am + hp)^2 + hp^2, data = mtcars)
@@ -452,7 +451,7 @@ onde <span class="math inline">\(y\)</span> é a variável dependente, <span cla
 ## (Intercept)           am           hp        am:hp  
 ##  26.6248479    5.2176534   -0.0591370    0.0004029</code></pre>
 <p><code>(am + hp)^2</code>, em termos simbólicos, retorna <code>am + hp + am*hp</code> e <code>hp^2</code> retorna <code>hp</code>. No caso em que um símbolo não pode ser usado diretamente, este deve ser usado dentro da função <code>I()</code>:</p>
-<div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb698-1" data-line-number="1"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(hp<span class="op">^</span><span class="dv">2</span>), <span class="dt">data =</span> mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb692-1" data-line-number="1"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(hp<span class="op">^</span><span class="dv">2</span>), <span class="dt">data =</span> mtcars)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = mpg ~ hp + I(hp^2), data = mtcars)
@@ -461,24 +460,24 @@ onde <span class="math inline">\(y\)</span> é a variável dependente, <span cla
 ## (Intercept)           hp      I(hp^2)  
 ##  40.4091172   -0.2133083    0.0004208</code></pre>
 <p>Variáveis categóricas são convertidas automaticamente para dummies. Por exemplo, vamos adicionar uma variável fictícia chamada <code>cat</code>, que receberá valores <code>a</code>, <code>b</code> e <code>c</code> ao data.frame <code>mtcars</code>:</p>
-<div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb700-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb700-2" data-line-number="2">mtcars &lt;-<span class="st"> </span><span class="kw">mutate</span>(mtcars,</a>
-<a class="sourceLine" id="cb700-3" data-line-number="3">                 <span class="dt">cat =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>),</a>
-<a class="sourceLine" id="cb700-4" data-line-number="4">                 <span class="dt">size =</span> <span class="kw">nrow</span>(mtcars), <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb700-5" data-line-number="5"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span>cat, <span class="dt">data =</span> mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb694-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb694-2" data-line-number="2">mtcars &lt;-<span class="st"> </span><span class="kw">mutate</span>(mtcars,</a>
+<a class="sourceLine" id="cb694-3" data-line-number="3">                 <span class="dt">cat =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>),</a>
+<a class="sourceLine" id="cb694-4" data-line-number="4">                 <span class="dt">size =</span> <span class="kw">nrow</span>(mtcars), <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb694-5" data-line-number="5"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span>cat, <span class="dt">data =</span> mtcars)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = mpg ~ hp + cat, data = mtcars)
 ## 
 ## Coefficients:
 ## (Intercept)           hp         catb         catc  
-##    29.54197     -0.06645     -0.90406      1.85067</code></pre>
+##     30.1724      -0.0687       0.4361      -0.3180</code></pre>
 <p>Falta agora discutir os principais argumentos da função <code>lm()</code>:</p>
-<div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb702-1" data-line-number="1"><span class="kw">lm</span>(formula, data, subset, weights, na.action,</a>
-<a class="sourceLine" id="cb702-2" data-line-number="2">   <span class="dt">method =</span> <span class="st">&quot;qr&quot;</span>, <span class="dt">model =</span> <span class="ot">TRUE</span>, <span class="dt">x =</span> <span class="ot">FALSE</span>, <span class="dt">y =</span> <span class="ot">FALSE</span>, <span class="dt">qr =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb702-3" data-line-number="3">   <span class="dt">singular.ok =</span> <span class="ot">TRUE</span>, <span class="dt">contrasts =</span> <span class="ot">NULL</span>, offset, ...)</a></code></pre></div>
+<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb696-1" data-line-number="1"><span class="kw">lm</span>(formula, data, subset, weights, na.action,</a>
+<a class="sourceLine" id="cb696-2" data-line-number="2">   <span class="dt">method =</span> <span class="st">&quot;qr&quot;</span>, <span class="dt">model =</span> <span class="ot">TRUE</span>, <span class="dt">x =</span> <span class="ot">FALSE</span>, <span class="dt">y =</span> <span class="ot">FALSE</span>, <span class="dt">qr =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb696-3" data-line-number="3">   <span class="dt">singular.ok =</span> <span class="ot">TRUE</span>, <span class="dt">contrasts =</span> <span class="ot">NULL</span>, offset, ...)</a></code></pre></div>
 <p>O argumento <code>formula</code> já foi discutido anteriormente. É neste argumento que o modelo é especificado. O argumento <code>data</code> recebe (opcionalmente) um data.frame com os dados. O parâmetro data é opcional, porque você pode passar diretamente os vetores de dados. Por exemplo:</p>
-<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb703-1" data-line-number="1"><span class="kw">lm</span>(<span class="kw">log</span>(mtcars<span class="op">$</span>mpg) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(mtcars<span class="op">$</span>hp))</a></code></pre></div>
+<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb697-1" data-line-number="1"><span class="kw">lm</span>(<span class="kw">log</span>(mtcars<span class="op">$</span>mpg) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(mtcars<span class="op">$</span>hp))</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = log(mtcars$mpg) ~ log(mtcars$hp))
@@ -487,7 +486,7 @@ onde <span class="math inline">\(y\)</span> é a variável dependente, <span cla
 ##    (Intercept)  log(mtcars$hp)  
 ##         5.5454         -0.5301</code></pre>
 <p>Continuando, há possibilidade de estimar-se o modelo para um subconjunto dos dados, sendo necessário informar um vetor que selecione as observações que entrarão na estimação, no argumento <code>subset</code>. No exemplo que estamos utilizando, suponha que você queira estimar o modelo apenas para os carros automáticos:</p>
-<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb705-1" data-line-number="1"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp, <span class="dt">data =</span> mtcars, <span class="dt">subset =</span> (am <span class="op">==</span><span class="st"> </span><span class="dv">0</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb699-1" data-line-number="1"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp, <span class="dt">data =</span> mtcars, <span class="dt">subset =</span> (am <span class="op">==</span><span class="st"> </span><span class="dv">0</span>))</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = mpg ~ hp, data = mtcars, subset = (am == 0))
@@ -495,7 +494,7 @@ onde <span class="math inline">\(y\)</span> é a variável dependente, <span cla
 ## Coefficients:
 ## (Intercept)           hp  
 ##    26.62485     -0.05914</code></pre>
-<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb707-1" data-line-number="1"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp, <span class="dt">data =</span> mtcars, <span class="dt">subset =</span> (am <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb701-1" data-line-number="1"><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp, <span class="dt">data =</span> mtcars, <span class="dt">subset =</span> (am <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = mpg ~ hp, data = mtcars, subset = (am == 1))
@@ -505,7 +504,7 @@ onde <span class="math inline">\(y\)</span> é a variável dependente, <span cla
 ##    31.84250     -0.05873</code></pre>
 <p>Há também a possibilidade de utilizar-se um vetor de pesos no argumento <code>weight</code> para a estimação de mínimos quadrados ordinários.</p>
 <p>Para ver-se um sumário dos resultados da estimação, utiliza-se a função <code>summary()</code>:</p>
-<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb709-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp, <span class="dt">data =</span> mtcars))</a></code></pre></div>
+<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb703-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp, <span class="dt">data =</span> mtcars))</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = mpg ~ hp, data = mtcars)
@@ -527,24 +526,24 @@ onde <span class="math inline">\(y\)</span> é a variável dependente, <span cla
 <div id="acessando-os-resultados" class="section level4">
 <h4><span class="header-section-number">15.1.1.1</span> Acessando os resultados</h4>
 <p>Além do resumo, é possível acessar uma série de objetos gerados pela função <code>lm()</code>, como coeficientes, resíduos, valores preditos (dentro do conjunto de estimação) etc. Primeiro, vamos listar esses elementos:</p>
-<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb711-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp, <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb711-2" data-line-number="2"><span class="kw">is.list</span>(fit)</a></code></pre></div>
+<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb705-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp, <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb705-2" data-line-number="2"><span class="kw">is.list</span>(fit)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb713-1" data-line-number="1"><span class="kw">ls</span>(fit)</a></code></pre></div>
-<pre><code>##  [1] &quot;assign&quot;        &quot;call&quot;          &quot;coefficients&quot;  &quot;df.residual&quot;   &quot;effects&quot;       &quot;fitted.values&quot;
-##  [7] &quot;model&quot;         &quot;qr&quot;            &quot;rank&quot;          &quot;residuals&quot;     &quot;terms&quot;         &quot;xlevels&quot;</code></pre>
+<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb707-1" data-line-number="1"><span class="kw">ls</span>(fit)</a></code></pre></div>
+<pre><code>##  [1] &quot;assign&quot;        &quot;call&quot;          &quot;coefficients&quot;  &quot;df.residual&quot;   &quot;effects&quot;       &quot;fitted.values&quot; &quot;model&quot;        
+##  [8] &quot;qr&quot;            &quot;rank&quot;          &quot;residuals&quot;     &quot;terms&quot;         &quot;xlevels&quot;</code></pre>
 <p>Como se trata de uma lista, podemos acessar os objetos usando o <code>$</code>.</p>
-<div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb715-1" data-line-number="1">fit<span class="op">$</span>coefficients</a></code></pre></div>
+<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb709-1" data-line-number="1">fit<span class="op">$</span>coefficients</a></code></pre></div>
 <pre><code>## (Intercept)          hp 
 ## 30.09886054 -0.06822828</code></pre>
-<div class="sourceCode" id="cb717"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb717-1" data-line-number="1">fit<span class="op">$</span>residuals[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb711-1" data-line-number="1">fit<span class="op">$</span>residuals[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
 <pre><code>##          1          2          3          4          5          6          7          8          9         10 
 ## -1.5937500 -1.5937500 -0.9536307 -1.1937500  0.5410881 -4.8348913  0.9170676 -1.4687073 -0.8171741 -2.5067823</code></pre>
 <p>Também existem funções para se acessar esses resultados:</p>
-<div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb719-1" data-line-number="1"><span class="kw">coefficients</span>(fit)</a></code></pre></div>
+<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb713-1" data-line-number="1"><span class="kw">coefficients</span>(fit)</a></code></pre></div>
 <pre><code>## (Intercept)          hp 
 ## 30.09886054 -0.06822828</code></pre>
-<div class="sourceCode" id="cb721"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb721-1" data-line-number="1"><span class="kw">residuals</span>(fit)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb715-1" data-line-number="1"><span class="kw">residuals</span>(fit)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>##          1          2          3          4          5 
 ## -1.5937500 -1.5937500 -0.9536307 -1.1937500  0.5410881</code></pre>
 </div>
@@ -552,25 +551,25 @@ onde <span class="math inline">\(y\)</span> é a variável dependente, <span cla
 <h4><span class="header-section-number">15.1.1.2</span> Predições</h4>
 <p>No R, para realizar-se predições, utiliza-se a função <code>predict()</code>, que é uma função genérica. Isso significa que os seus argumentos e os valores retornados dependem da classe do objeto que estamos passando. No caso de um objeto da classe <code>lm</code>, é suficiente passar o próprio objeto.</p>
 <p>Abaixo está um exemplo do seu uso:</p>
-<div class="sourceCode" id="cb723"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb723-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">13034</span>) <span class="co"># para replicação</span></a>
-<a class="sourceLine" id="cb723-2" data-line-number="2"><span class="co"># 70% dos dados</span></a>
-<a class="sourceLine" id="cb723-3" data-line-number="3">idx &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">nrow</span>(mtcars), <span class="dt">size =</span> <span class="fl">0.7</span><span class="op">*</span><span class="kw">nrow</span>(mtcars), <span class="dt">replace =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb723-4" data-line-number="4">train &lt;-<span class="st"> </span>mtcars[idx, ]</a>
-<a class="sourceLine" id="cb723-5" data-line-number="5">test &lt;-<span class="st"> </span>mtcars[<span class="op">-</span>idx, ]</a>
-<a class="sourceLine" id="cb723-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb723-7" data-line-number="7"><span class="co"># 2 Modelos</span></a>
-<a class="sourceLine" id="cb723-8" data-line-number="8">fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp, <span class="dt">data =</span> train)</a>
-<a class="sourceLine" id="cb723-9" data-line-number="9">fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>disp, <span class="dt">data =</span> train)</a>
-<a class="sourceLine" id="cb723-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb723-11" data-line-number="11"><span class="co"># Predições</span></a>
-<a class="sourceLine" id="cb723-12" data-line-number="12">pred1 &lt;-<span class="st"> </span><span class="kw">predict</span>(fit1, <span class="dt">newdata =</span> test[,<span class="op">-</span><span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb723-13" data-line-number="13">pred2 &lt;-<span class="st"> </span><span class="kw">predict</span>(fit2, <span class="dt">newdata =</span> test[,<span class="op">-</span><span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb723-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb723-15" data-line-number="15"><span class="co"># Comparando Root Mean Square Errors</span></a>
-<a class="sourceLine" id="cb723-16" data-line-number="16"><span class="kw">library</span>(ModelMetrics)</a>
-<a class="sourceLine" id="cb723-17" data-line-number="17"><span class="kw">rmse</span>(pred1, test[, <span class="st">&quot;mpg&quot;</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb717"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb717-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">13034</span>) <span class="co"># para replicação</span></a>
+<a class="sourceLine" id="cb717-2" data-line-number="2"><span class="co"># 70% dos dados</span></a>
+<a class="sourceLine" id="cb717-3" data-line-number="3">idx &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">nrow</span>(mtcars), <span class="dt">size =</span> <span class="fl">0.7</span><span class="op">*</span><span class="kw">nrow</span>(mtcars), <span class="dt">replace =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb717-4" data-line-number="4">train &lt;-<span class="st"> </span>mtcars[idx, ]</a>
+<a class="sourceLine" id="cb717-5" data-line-number="5">test &lt;-<span class="st"> </span>mtcars[<span class="op">-</span>idx, ]</a>
+<a class="sourceLine" id="cb717-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb717-7" data-line-number="7"><span class="co"># 2 Modelos</span></a>
+<a class="sourceLine" id="cb717-8" data-line-number="8">fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp, <span class="dt">data =</span> train)</a>
+<a class="sourceLine" id="cb717-9" data-line-number="9">fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span>am <span class="op">+</span><span class="st"> </span>disp, <span class="dt">data =</span> train)</a>
+<a class="sourceLine" id="cb717-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb717-11" data-line-number="11"><span class="co"># Predições</span></a>
+<a class="sourceLine" id="cb717-12" data-line-number="12">pred1 &lt;-<span class="st"> </span><span class="kw">predict</span>(fit1, <span class="dt">newdata =</span> test[,<span class="op">-</span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb717-13" data-line-number="13">pred2 &lt;-<span class="st"> </span><span class="kw">predict</span>(fit2, <span class="dt">newdata =</span> test[,<span class="op">-</span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb717-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb717-15" data-line-number="15"><span class="co"># Comparando Root Mean Square Errors</span></a>
+<a class="sourceLine" id="cb717-16" data-line-number="16"><span class="kw">library</span>(ModelMetrics)</a>
+<a class="sourceLine" id="cb717-17" data-line-number="17"><span class="kw">rmse</span>(pred1, test[, <span class="st">&quot;mpg&quot;</span>])</a></code></pre></div>
 <pre><code>## [1] 4.958482</code></pre>
-<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb725-1" data-line-number="1"><span class="kw">rmse</span>(pred2, test[, <span class="st">&quot;mpg&quot;</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb719-1" data-line-number="1"><span class="kw">rmse</span>(pred2, test[, <span class="st">&quot;mpg&quot;</span>])</a></code></pre></div>
 <pre><code>## [1] 3.568993</code></pre>
 </div>
 </div>
@@ -585,9 +584,9 @@ onde <span class="math inline">\(y\)</span> é a variável dependente, <span cla
 <p><span class="math display">\[ p(y = 1|X) = \frac{e^{\beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + ... + \beta_k x_{ki}}}{1 + e^{\beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + ... + \beta_k x_{ki}}}\]</span></p>
 <p>Um detalhe importante sobre a regressão logística é que este modelo se enquadra na classe de modelos lineares generalizados (generalized linear models - glm). Logo, este modelo pode ser estimado a partir da função <code>glm()</code>, escolhendo a família binomial no argumento <code>family</code>.</p>
 <p>O exemplo a seguir vem do livro <a href="http://www-bcf.usc.edu/~gareth/ISL/">An Introduction to Statistical Learning with Application in R</a>. Utilizaremos o pacote <code>ISLR</code> e o conjunto de dados <code>Smarket</code> (<code>?Smarket</code>). Essa base traz informações sobre as variações do índice S&amp;P 500 entre 2001 e 2005. Este índice é composto por 500 ativos negociados na NYSE ou Nasdaq.</p>
-<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb727-1" data-line-number="1"><span class="kw">library</span>(ISLR)</a>
-<a class="sourceLine" id="cb727-2" data-line-number="2"><span class="kw">data</span>(<span class="st">&quot;Smarket&quot;</span>)</a>
-<a class="sourceLine" id="cb727-3" data-line-number="3"><span class="kw">head</span>(Smarket)</a></code></pre></div>
+<div class="sourceCode" id="cb721"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb721-1" data-line-number="1"><span class="kw">library</span>(ISLR)</a>
+<a class="sourceLine" id="cb721-2" data-line-number="2"><span class="kw">data</span>(<span class="st">&quot;Smarket&quot;</span>)</a>
+<a class="sourceLine" id="cb721-3" data-line-number="3"><span class="kw">head</span>(Smarket)</a></code></pre></div>
 <pre><code>##   Year   Lag1   Lag2   Lag3   Lag4   Lag5 Volume  Today Direction
 ## 1 2001  0.381 -0.192 -2.624 -1.055  5.010 1.1913  0.959        Up
 ## 2 2001  0.959  0.381 -0.192 -2.624 -1.055 1.2965  1.032        Up
@@ -596,15 +595,15 @@ onde <span class="math inline">\(y\)</span> é a variável dependente, <span cla
 ## 5 2001  0.614 -0.623  1.032  0.959  0.381 1.2057  0.213        Up
 ## 6 2001  0.213  0.614 -0.623  1.032  0.959 1.3491  1.392        Up</code></pre>
 <p>A base consiste em nove variáveis. A variável de interesse é <code>Direction</code> e outras cinco variáveis serão usadas como variáveis explicativas ou preditores. Inicialmente, separaremos nossos dados em treino e teste. Como trata-se de um problema de série temporal, utilizaremos a variável <code>Year</code> para separar os dados.</p>
-<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb729-1" data-line-number="1">train &lt;-<span class="st"> </span>Smarket <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb729-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(Year <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2004</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb729-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>Year)</a>
-<a class="sourceLine" id="cb729-4" data-line-number="4">test &lt;-<span class="st"> </span>Smarket <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb729-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(Year <span class="op">==</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb729-6" data-line-number="6"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>Year)</a></code></pre></div>
+<div class="sourceCode" id="cb723"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb723-1" data-line-number="1">train &lt;-<span class="st"> </span>Smarket <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb723-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(Year <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2004</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb723-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>Year)</a>
+<a class="sourceLine" id="cb723-4" data-line-number="4">test &lt;-<span class="st"> </span>Smarket <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb723-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(Year <span class="op">==</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb723-6" data-line-number="6"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>Year)</a></code></pre></div>
 <p>Agora vamos estimar o modelo:</p>
-<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb730-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">glm</span>(Direction <span class="op">~</span><span class="st"> </span>. <span class="op">-</span>Today, <span class="dt">data =</span> train, <span class="dt">family =</span> <span class="kw">binomial</span>())</a>
-<a class="sourceLine" id="cb730-2" data-line-number="2"><span class="kw">summary</span>(fit)</a></code></pre></div>
+<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb724-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">glm</span>(Direction <span class="op">~</span><span class="st"> </span>. <span class="op">-</span>Today, <span class="dt">data =</span> train, <span class="dt">family =</span> <span class="kw">binomial</span>())</a>
+<a class="sourceLine" id="cb724-2" data-line-number="2"><span class="kw">summary</span>(fit)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = Direction ~ . - Today, family = binomial(), data = train)
@@ -631,42 +630,42 @@ onde <span class="math inline">\(y\)</span> é a variável dependente, <span cla
 ## 
 ## Number of Fisher Scoring iterations: 3</code></pre>
 <p>As predições são realizadas com a função <code>predict()</code>, mas com o detalhe de que temos que escolher o tipo de predição. O default, <code>link</code>, passará o logit. Isto é, o valor da predição linear. Já <code>response</code> estimará a probabilidade da observação do evento de interesse. Por fim, <code>terms</code> retorna uma matriz com a predição linear para cada variável explicativa. O nosso interesse é na probabilidade do mercado ter subido, logo, usaremos o tipo <code>response</code> e transformaremos a probabilidade em <code>Up</code> e <code>Down</code>.</p>
-<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb732-1" data-line-number="1">pred &lt;-<span class="st"> </span><span class="kw">predict</span>(fit, test, <span class="dt">type =</span> <span class="st">&#39;response&#39;</span>)</a>
-<a class="sourceLine" id="cb732-2" data-line-number="2">pred &lt;-<span class="st"> </span><span class="kw">ifelse</span>(pred <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;Up&quot;</span>, <span class="st">&quot;Down&quot;</span>)</a>
-<a class="sourceLine" id="cb732-3" data-line-number="3">pred &lt;-<span class="st"> </span><span class="kw">factor</span>(pred, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Down&quot;</span>, <span class="st">&quot;Up&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb726-1" data-line-number="1">pred &lt;-<span class="st"> </span><span class="kw">predict</span>(fit, test, <span class="dt">type =</span> <span class="st">&#39;response&#39;</span>)</a>
+<a class="sourceLine" id="cb726-2" data-line-number="2">pred &lt;-<span class="st"> </span><span class="kw">ifelse</span>(pred <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;Up&quot;</span>, <span class="st">&quot;Down&quot;</span>)</a>
+<a class="sourceLine" id="cb726-3" data-line-number="3">pred &lt;-<span class="st"> </span><span class="kw">factor</span>(pred, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Down&quot;</span>, <span class="st">&quot;Up&quot;</span>))</a></code></pre></div>
 <p>Abaixo avaliamos o erro de classificação, que é de, aproximadamente, 52%. Ou seja, pior do que um chute aleatório.</p>
-<div class="sourceCode" id="cb733"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb733-1" data-line-number="1"><span class="co"># Taxa de erro</span></a>
-<a class="sourceLine" id="cb733-2" data-line-number="2"><span class="kw">ce</span>(test<span class="op">$</span>Direction, pred)</a></code></pre></div>
+<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb727-1" data-line-number="1"><span class="co"># Taxa de erro</span></a>
+<a class="sourceLine" id="cb727-2" data-line-number="2"><span class="kw">ce</span>(test<span class="op">$</span>Direction, pred)</a></code></pre></div>
 <pre><code>## [1] 0.5198413</code></pre>
 <p>Os autores, então, sugerem estimar-se o modelo com apenas duas variáveis.</p>
-<div class="sourceCode" id="cb735"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb735-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">glm</span>(Direction <span class="op">~</span><span class="st"> </span>Lag1 <span class="op">+</span><span class="st"> </span>Lag2, <span class="dt">data =</span> train, <span class="dt">family =</span> <span class="kw">binomial</span>())</a>
-<a class="sourceLine" id="cb735-2" data-line-number="2">pred &lt;-<span class="st"> </span><span class="kw">predict</span>(fit, test, <span class="dt">type =</span> <span class="st">&#39;response&#39;</span>)</a>
-<a class="sourceLine" id="cb735-3" data-line-number="3">pred &lt;-<span class="st"> </span><span class="kw">ifelse</span>(pred <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;Up&quot;</span>, <span class="st">&quot;Down&quot;</span>)</a>
-<a class="sourceLine" id="cb735-4" data-line-number="4">pred &lt;-<span class="st"> </span><span class="kw">factor</span>(pred, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Down&quot;</span>, <span class="st">&quot;Up&quot;</span>))</a>
-<a class="sourceLine" id="cb735-5" data-line-number="5"><span class="co"># Taxa de erro</span></a>
-<a class="sourceLine" id="cb735-6" data-line-number="6"><span class="kw">ce</span>(test<span class="op">$</span>Direction, pred)</a></code></pre></div>
+<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb729-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">glm</span>(Direction <span class="op">~</span><span class="st"> </span>Lag1 <span class="op">+</span><span class="st"> </span>Lag2, <span class="dt">data =</span> train, <span class="dt">family =</span> <span class="kw">binomial</span>())</a>
+<a class="sourceLine" id="cb729-2" data-line-number="2">pred &lt;-<span class="st"> </span><span class="kw">predict</span>(fit, test, <span class="dt">type =</span> <span class="st">&#39;response&#39;</span>)</a>
+<a class="sourceLine" id="cb729-3" data-line-number="3">pred &lt;-<span class="st"> </span><span class="kw">ifelse</span>(pred <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;Up&quot;</span>, <span class="st">&quot;Down&quot;</span>)</a>
+<a class="sourceLine" id="cb729-4" data-line-number="4">pred &lt;-<span class="st"> </span><span class="kw">factor</span>(pred, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Down&quot;</span>, <span class="st">&quot;Up&quot;</span>))</a>
+<a class="sourceLine" id="cb729-5" data-line-number="5"><span class="co"># Taxa de erro</span></a>
+<a class="sourceLine" id="cb729-6" data-line-number="6"><span class="kw">ce</span>(test<span class="op">$</span>Direction, pred)</a></code></pre></div>
 <pre><code>## [1] 0.4404762</code></pre>
 <p>Nesse caso, o modelo acertaria 56% das vezes.</p>
 </div>
 <div id="classificação-com-modelos-baseados-em-árvores" class="section level3">
 <h3><span class="header-section-number">15.1.3</span> Classificação com modelos baseados em árvores</h3>
 <p>Uma das limitações da regressão logística é que esse método não vai funcionar bem quando não for possível separar as classes linearmente, como no exemplo abaixo:</p>
-<div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb737-1" data-line-number="1"><span class="co">#### atencao: nao precisam se preocupar em reproduzir o codigo abaixo</span></a>
-<a class="sourceLine" id="cb737-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb737-3" data-line-number="3"><span class="co"># criar matriz de dados aleatorios</span></a>
-<a class="sourceLine" id="cb737-4" data-line-number="4">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">5000</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">3</span>), <span class="dt">ncol  =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.data.frame</span>()</a>
-<a class="sourceLine" id="cb737-5" data-line-number="5"><span class="co"># criar elipse que circunda 25% dos pontos</span></a>
-<a class="sourceLine" id="cb737-6" data-line-number="6">el &lt;-<span class="st"> </span>car<span class="op">::</span><span class="kw">dataEllipse</span>(mat[, <span class="dv">1</span>],</a>
-<a class="sourceLine" id="cb737-7" data-line-number="7">                       mat[, <span class="dv">2</span>],</a>
-<a class="sourceLine" id="cb737-8" data-line-number="8">                       <span class="dt">levels =</span> <span class="fl">0.25</span>,</a>
-<a class="sourceLine" id="cb737-9" data-line-number="9">                       <span class="dt">draw =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb737-10" data-line-number="10"><span class="co"># determinar se um ponto da matriz está dentro da elipse</span></a>
-<a class="sourceLine" id="cb737-11" data-line-number="11">mat<span class="op">$</span>ta_dentro &lt;-<span class="st"> </span>sp<span class="op">::</span><span class="kw">point.in.polygon</span>(mat[,<span class="dv">1</span>], mat[,<span class="dv">2</span>], el[,<span class="dv">1</span>], el[,<span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb737-12" data-line-number="12">mat<span class="op">$</span>ta_dentro &lt;-<span class="st"> </span><span class="kw">as.factor</span>(mat<span class="op">$</span>ta_dentro)</a>
-<a class="sourceLine" id="cb737-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb737-14" data-line-number="14"><span class="co"># construir grafico de pontos, colorindo a elipse</span></a>
-<a class="sourceLine" id="cb737-15" data-line-number="15"><span class="kw">ggplot</span>(mat, <span class="kw">aes</span>(<span class="dt">x =</span> V1, <span class="dt">y =</span> V2, <span class="dt">color =</span> ta_dentro)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb737-16" data-line-number="16"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb731"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb731-1" data-line-number="1"><span class="co">#### atencao: nao precisam se preocupar em reproduzir o codigo abaixo</span></a>
+<a class="sourceLine" id="cb731-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb731-3" data-line-number="3"><span class="co"># criar matriz de dados aleatorios</span></a>
+<a class="sourceLine" id="cb731-4" data-line-number="4">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">5000</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">3</span>), <span class="dt">ncol  =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.data.frame</span>()</a>
+<a class="sourceLine" id="cb731-5" data-line-number="5"><span class="co"># criar elipse que circunda 25% dos pontos</span></a>
+<a class="sourceLine" id="cb731-6" data-line-number="6">el &lt;-<span class="st"> </span>car<span class="op">::</span><span class="kw">dataEllipse</span>(mat[, <span class="dv">1</span>],</a>
+<a class="sourceLine" id="cb731-7" data-line-number="7">                       mat[, <span class="dv">2</span>],</a>
+<a class="sourceLine" id="cb731-8" data-line-number="8">                       <span class="dt">levels =</span> <span class="fl">0.25</span>,</a>
+<a class="sourceLine" id="cb731-9" data-line-number="9">                       <span class="dt">draw =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb731-10" data-line-number="10"><span class="co"># determinar se um ponto da matriz está dentro da elipse</span></a>
+<a class="sourceLine" id="cb731-11" data-line-number="11">mat<span class="op">$</span>ta_dentro &lt;-<span class="st"> </span>sp<span class="op">::</span><span class="kw">point.in.polygon</span>(mat[,<span class="dv">1</span>], mat[,<span class="dv">2</span>], el[,<span class="dv">1</span>], el[,<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb731-12" data-line-number="12">mat<span class="op">$</span>ta_dentro &lt;-<span class="st"> </span><span class="kw">as.factor</span>(mat<span class="op">$</span>ta_dentro)</a>
+<a class="sourceLine" id="cb731-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb731-14" data-line-number="14"><span class="co"># construir grafico de pontos, colorindo a elipse</span></a>
+<a class="sourceLine" id="cb731-15" data-line-number="15"><span class="kw">ggplot</span>(mat, <span class="kw">aes</span>(<span class="dt">x =</span> V1, <span class="dt">y =</span> V2, <span class="dt">color =</span> ta_dentro)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb731-16" data-line-number="16"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="cdr-intro_files/figure-html/15-modelos-27-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Algoritmos baseados em Decision Trees tentam achar maneiras de criar subsets ou subgrupos do universo dos dados, onde cada subgrupo pertence a um <em>node</em>. O objetivo do modelo é criar <em>nodes</em> onde haja uma distinção clara entre as classes previstas de forma que possa a cada <em>node</em> a probabilidade de um indivíduo pertencer a uma classe. O gráfico abaixo é um exemplo simples e didática de uma árvore de decisão:</p>
 <div class="figure" style="text-align: center"><span id="fig:15-modelos-28"></span>
@@ -689,39 +688,39 @@ Figura 15.1: Fonte: <a href="https://machinelearningmastery.com/classification-a
 <p>Como dataset de demonstração para a árvore de decisão, usaremos um bem interessante: Tentaremos entender o que leva um empregado a pedir ou não demissão de sua empresa. Entrem <a href="https://www.kaggle.com/vjchoudhary7/hr-analytics-case-study">neste link</a>, loguem no Kaggle e baixem o dataset para a mesma pasta de trabalho que estão usando no R.</p>
 <p>O código abaixo mostra como importar e consolidar todos os datasets em um só dataframe:</p>
 <p>Vejamos como ficou nosso conjunto de dados:</p>
-<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb738-1" data-line-number="1"><span class="kw">glimpse</span>(rh)</a></code></pre></div>
+<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb732-1" data-line-number="1"><span class="kw">glimpse</span>(rh)</a></code></pre></div>
 <pre><code>## Rows: 4,300
 ## Columns: 30
-## $ Age                     &lt;dbl&gt; 51, 31, 32, 38, 32, 46, 28, 29, 31, 25, 45, 55, 47, 28, 37, 21, 37, 35, 38, …
-## $ Attrition               &lt;fct&gt; No, Yes, No, No, No, No, Yes, No, No, No, No, No, Yes, No, No, No, No, No, N…
-## $ BusinessTravel          &lt;fct&gt; Travel_Rarely, Travel_Frequently, Travel_Frequently, Non-Travel, Travel_Rare…
-## $ Department              &lt;fct&gt; Sales, Research &amp; Development, Research &amp; Development, Research &amp; Developmen…
-## $ DistanceFromHome        &lt;dbl&gt; 6, 10, 17, 2, 10, 8, 11, 18, 1, 7, 17, 14, 1, 1, 1, 3, 1, 7, 8, 1, 8, 11, 16…
-## $ Education               &lt;dbl&gt; 2, 1, 4, 5, 1, 3, 2, 3, 3, 4, 2, 4, 1, 3, 3, 2, 3, 4, 3, 4, 4, 4, 4, 4, 3, 1…
-## $ EducationField          &lt;fct&gt; Life Sciences, Life Sciences, Other, Life Sciences, Medical, Life Sciences, …
-## $ EmployeeCount           &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
-## $ EmployeeID              &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 2…
-## $ Gender                  &lt;fct&gt; Female, Female, Male, Male, Male, Female, Male, Male, Male, Female, Male, Fe…
-## $ JobLevel                &lt;dbl&gt; 1, 1, 4, 3, 1, 4, 2, 2, 3, 4, 2, 1, 1, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 1, 1, 1…
-## $ JobRole                 &lt;fct&gt; Healthcare Representative, Research Scientist, Sales Executive, Human Resour…
-## $ MaritalStatus           &lt;fct&gt; Married, Single, Married, Married, Single, Married, Single, Married, Married…
-## $ MonthlyIncome           &lt;dbl&gt; 131160, 41890, 193280, 83210, 23420, 40710, 58130, 31430, 20440, 134640, 799…
-## $ NumCompaniesWorked      &lt;dbl&gt; 1, 0, 1, 3, 4, 3, 2, 2, 0, 1, 0, 0, 1, 1, 4, 1, 2, 7, 1, 1, 3, 3, 1, 3, 1, 1…
-## $ Over18                  &lt;fct&gt; Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y…
-## $ PercentSalaryHike       &lt;dbl&gt; 11, 23, 15, 11, 12, 13, 20, 22, 21, 13, 13, 17, 11, 14, 11, 12, 13, 16, 11, …
-## $ StandardHours           &lt;dbl&gt; 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8…
-## $ StockOptionLevel        &lt;dbl&gt; 0, 1, 3, 3, 2, 0, 1, 3, 0, 1, 2, 0, 2, 0, 0, 3, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0…
-## $ TotalWorkingYears       &lt;dbl&gt; 1, 6, 5, 13, 9, 28, 5, 10, 10, 6, 21, 37, 10, 5, 7, 3, 15, 10, 8, 6, 28, 21,…
-## $ TrainingTimesLastYear   &lt;dbl&gt; 6, 3, 2, 5, 2, 5, 2, 2, 2, 2, 2, 2, 4, 2, 2, 3, 2, 5, 5, 3, 2, 2, 2, 2, 3, 2…
-## $ YearsAtCompany          &lt;dbl&gt; 1, 5, 5, 8, 6, 7, 0, 0, 9, 6, 20, 36, 10, 5, 5, 3, 5, 7, 8, 6, 10, 5, 10, 10…
-## $ YearsSinceLastPromotion &lt;dbl&gt; 0, 1, 0, 7, 0, 7, 0, 0, 7, 1, 4, 4, 9, 0, 0, 1, 0, 6, 7, 1, 1, 1, 0, 0, 3, 5…
-## $ YearsWithCurrManager    &lt;dbl&gt; 0, 4, 3, 5, 4, 7, 0, 0, 8, 5, 10, 13, 9, 4, 1, 0, 2, 2, 7, 4, 6, 3, 9, 8, 3,…
-## $ EnvironmentSatisfaction &lt;dbl&gt; 3, 3, 2, 4, 4, 3, 1, 1, 2, 2, 3, 4, 1, 4, 3, 4, 1, 2, 1, 3, 1, 3, 2, 2, 1, 4…
-## $ JobSatisfaction         &lt;dbl&gt; 4, 2, 2, 4, 1, 2, 3, 2, 4, 1, 4, 1, 2, 4, 4, 3, 4, 2, 1, 2, 2, 3, 4, 4, 1, 4…
-## $ WorkLifeBalance         &lt;dbl&gt; 2, 4, 1, 3, 3, 2, 1, 3, 3, 3, 3, 3, 2, 2, 4, 4, 3, 2, 3, 1, 2, 2, 2, 3, 3, 3…
-## $ JobInvolvement          &lt;dbl&gt; 3, 2, 3, 2, 3, 3, 3, 3, 3, 3, 2, 3, 2, 3, 3, 2, 3, 2, 3, 3, 2, 3, 3, 3, 3, 3…
-## $ PerformanceRating       &lt;dbl&gt; 3, 4, 3, 3, 3, 3, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 3, 3, 3, 4, 3…
-## $ tempo_medio_trabalho    &lt;dbl&gt; 7.373651, 7.718969, 7.013240, 7.193678, 8.006175, 10.796096, 6.923570, 6.725…</code></pre>
+## $ Age                     &lt;dbl&gt; 51, 31, 32, 38, 32, 46, 28, 29, 31, 25, 45, 55, 47, 28, 37, 21, 37, 35, 38, 26, 50, 53, 29, …
+## $ Attrition               &lt;fct&gt; No, Yes, No, No, No, No, Yes, No, No, No, No, No, Yes, No, No, No, No, No, No, No, No, No, N…
+## $ BusinessTravel          &lt;fct&gt; Travel_Rarely, Travel_Frequently, Travel_Frequently, Non-Travel, Travel_Rarely, Travel_Rarel…
+## $ Department              &lt;fct&gt; Sales, Research &amp; Development, Research &amp; Development, Research &amp; Development, Research &amp; De…
+## $ DistanceFromHome        &lt;dbl&gt; 6, 10, 17, 2, 10, 8, 11, 18, 1, 7, 17, 14, 1, 1, 1, 3, 1, 7, 8, 1, 8, 11, 16, 1, 9, 5, 1, 2,…
+## $ Education               &lt;dbl&gt; 2, 1, 4, 5, 1, 3, 2, 3, 3, 4, 2, 4, 1, 3, 3, 2, 3, 4, 3, 4, 4, 4, 4, 4, 3, 1, 2, 3, 3, 3, 1,…
+## $ EducationField          &lt;fct&gt; Life Sciences, Life Sciences, Other, Life Sciences, Medical, Life Sciences, Medical, Life Sc…
+## $ EmployeeCount           &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+## $ EmployeeID              &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 25, 26, 27, 2…
+## $ Gender                  &lt;fct&gt; Female, Female, Male, Male, Male, Female, Male, Male, Male, Female, Male, Female, Male, Male…
+## $ JobLevel                &lt;dbl&gt; 1, 1, 4, 3, 1, 4, 2, 2, 3, 4, 2, 1, 1, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 1, 1, 1, 2, 1, 3, 1, 2,…
+## $ JobRole                 &lt;fct&gt; Healthcare Representative, Research Scientist, Sales Executive, Human Resources, Sales Execu…
+## $ MaritalStatus           &lt;fct&gt; Married, Single, Married, Married, Single, Married, Single, Married, Married, Divorced, Marr…
+## $ MonthlyIncome           &lt;dbl&gt; 131160, 41890, 193280, 83210, 23420, 40710, 58130, 31430, 20440, 134640, 79910, 55380, 57620…
+## $ NumCompaniesWorked      &lt;dbl&gt; 1, 0, 1, 3, 4, 3, 2, 2, 0, 1, 0, 0, 1, 1, 4, 1, 2, 7, 1, 1, 3, 3, 1, 3, 1, 1, 3, 9, 2, 1, 9,…
+## $ Over18                  &lt;fct&gt; Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y,…
+## $ PercentSalaryHike       &lt;dbl&gt; 11, 23, 15, 11, 12, 13, 20, 22, 21, 13, 13, 17, 11, 14, 11, 12, 13, 16, 11, 18, 23, 11, 11, …
+## $ StandardHours           &lt;dbl&gt; 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,…
+## $ StockOptionLevel        &lt;dbl&gt; 0, 1, 3, 3, 2, 0, 1, 3, 0, 1, 2, 0, 2, 0, 0, 3, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0,…
+## $ TotalWorkingYears       &lt;dbl&gt; 1, 6, 5, 13, 9, 28, 5, 10, 10, 6, 21, 37, 10, 5, 7, 3, 15, 10, 8, 6, 28, 21, 10, 12, 5, 17, …
+## $ TrainingTimesLastYear   &lt;dbl&gt; 6, 3, 2, 5, 2, 5, 2, 2, 2, 2, 2, 2, 4, 2, 2, 3, 2, 5, 5, 3, 2, 2, 2, 2, 3, 2, 2, 3, 5, 6, 2,…
+## $ YearsAtCompany          &lt;dbl&gt; 1, 5, 5, 8, 6, 7, 0, 0, 9, 6, 20, 36, 10, 5, 5, 3, 5, 7, 8, 6, 10, 5, 10, 10, 5, 17, 1, 2, 3…
+## $ YearsSinceLastPromotion &lt;dbl&gt; 0, 1, 0, 7, 0, 7, 0, 0, 7, 1, 4, 4, 9, 0, 0, 1, 0, 6, 7, 1, 1, 1, 0, 0, 3, 5, 0, 1, 0, 0, 1,…
+## $ YearsWithCurrManager    &lt;dbl&gt; 0, 4, 3, 5, 4, 7, 0, 0, 8, 5, 10, 13, 9, 4, 1, 0, 2, 2, 7, 4, 6, 3, 9, 8, 3, 7, 0, 2, 2, 2, …
+## $ EnvironmentSatisfaction &lt;dbl&gt; 3, 3, 2, 4, 4, 3, 1, 1, 2, 2, 3, 4, 1, 4, 3, 4, 1, 2, 1, 3, 1, 3, 2, 2, 1, 4, 4, 4, 1, 4, 3,…
+## $ JobSatisfaction         &lt;dbl&gt; 4, 2, 2, 4, 1, 2, 3, 2, 4, 1, 4, 1, 2, 4, 4, 3, 4, 2, 1, 2, 2, 3, 4, 4, 1, 4, 3, 4, 2, 4, 1,…
+## $ WorkLifeBalance         &lt;dbl&gt; 2, 4, 1, 3, 3, 2, 1, 3, 3, 3, 3, 3, 2, 2, 4, 4, 3, 2, 3, 1, 2, 2, 2, 3, 3, 3, 1, 3, 3, 3, 3,…
+## $ JobInvolvement          &lt;dbl&gt; 3, 2, 3, 2, 3, 3, 3, 3, 3, 3, 2, 3, 2, 3, 3, 2, 3, 2, 3, 3, 2, 3, 3, 3, 3, 3, 2, 2, 2, 2, 3,…
+## $ PerformanceRating       &lt;dbl&gt; 3, 4, 3, 3, 3, 3, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 3, 3, 3, 4, 3, 3, 3, 3, 3, 3,…
+## $ tempo_medio_trabalho    &lt;dbl&gt; 7.373651, 7.718969, 7.013240, 7.193678, 8.006175, 10.796096, 6.923570, 6.725621, 7.236499, 7…</code></pre>
 <div class="warning">
 <p><strong>Exercícios: </strong><br />
 - Conheça melhor nossa variável Resposta. Qual o % da base que saiu da empresa (<code>Attrition</code> = Yes). Baseado nessa informação, qual o pior modelo aceitável?<br />
@@ -733,46 +732,46 @@ Figura 15.1: Fonte: <a href="https://machinelearningmastery.com/classification-a
 <div id="criação-do-modelo" class="section level4">
 <h4><span class="header-section-number">15.1.3.2</span> Criação do modelo</h4>
 <p>Conforme já comentamos, uma etapa essencial de um projeto de modelagem é criar uma separação de conjuntos de treino e teste.</p>
-<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb740-1" data-line-number="1"><span class="co">### separacao de conjuntos de treino e teste</span></a>
-<a class="sourceLine" id="cb740-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb740-3" data-line-number="3"><span class="co"># salvar em um objeto o tamanho vertical do dataframe</span></a>
-<a class="sourceLine" id="cb740-4" data-line-number="4">n =<span class="st"> </span><span class="kw">nrow</span>(rh)</a>
-<a class="sourceLine" id="cb740-5" data-line-number="5"><span class="co"># sortear aleatoriamente 70% das linhas do dataframe para compor</span></a>
-<a class="sourceLine" id="cb740-6" data-line-number="6"><span class="co"># o conjunto de treino</span></a>
-<a class="sourceLine" id="cb740-7" data-line-number="7">ind_treino &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span>n, <span class="dt">size =</span> n <span class="op">*</span><span class="st"> </span><span class="fl">0.7</span>)</a>
-<a class="sourceLine" id="cb740-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb740-9" data-line-number="9"><span class="co"># criar conjunto de treino</span></a>
-<a class="sourceLine" id="cb740-10" data-line-number="10">rh_treino &lt;-<span class="st"> </span>rh[ind_treino, ]</a>
-<a class="sourceLine" id="cb740-11" data-line-number="11"><span class="co"># criar conjunto de teste a partir da exclusao das linhas do conjunto de treino</span></a>
-<a class="sourceLine" id="cb740-12" data-line-number="12">rh_teste &lt;-<span class="st"> </span>rh[<span class="op">-</span>ind_treino, ]</a></code></pre></div>
+<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb734-1" data-line-number="1"><span class="co">### separacao de conjuntos de treino e teste</span></a>
+<a class="sourceLine" id="cb734-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb734-3" data-line-number="3"><span class="co"># salvar em um objeto o tamanho vertical do dataframe</span></a>
+<a class="sourceLine" id="cb734-4" data-line-number="4">n =<span class="st"> </span><span class="kw">nrow</span>(rh)</a>
+<a class="sourceLine" id="cb734-5" data-line-number="5"><span class="co"># sortear aleatoriamente 70% das linhas do dataframe para compor</span></a>
+<a class="sourceLine" id="cb734-6" data-line-number="6"><span class="co"># o conjunto de treino</span></a>
+<a class="sourceLine" id="cb734-7" data-line-number="7">ind_treino &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span>n, <span class="dt">size =</span> n <span class="op">*</span><span class="st"> </span><span class="fl">0.7</span>)</a>
+<a class="sourceLine" id="cb734-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb734-9" data-line-number="9"><span class="co"># criar conjunto de treino</span></a>
+<a class="sourceLine" id="cb734-10" data-line-number="10">rh_treino &lt;-<span class="st"> </span>rh[ind_treino, ]</a>
+<a class="sourceLine" id="cb734-11" data-line-number="11"><span class="co"># criar conjunto de teste a partir da exclusao das linhas do conjunto de treino</span></a>
+<a class="sourceLine" id="cb734-12" data-line-number="12">rh_teste &lt;-<span class="st"> </span>rh[<span class="op">-</span>ind_treino, ]</a></code></pre></div>
 <p>A sintaxe para criar um modelo de Decision Tree no R é bem simples, sendo a mesma da Regressão. A única diferença é que a função usada é <code>rpart</code>:</p>
-<div class="sourceCode" id="cb741"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb741-1" data-line-number="1"><span class="co"># construcao do modelo</span></a>
-<a class="sourceLine" id="cb741-2" data-line-number="2">mod_arvore &lt;-<span class="st"> </span><span class="kw">rpart</span>(Attrition <span class="op">~</span><span class="st"> </span>. <span class="op">-</span><span class="st"> </span>EmployeeID, <span class="dt">data =</span> rh_treino)</a>
-<a class="sourceLine" id="cb741-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb741-4" data-line-number="4"><span class="co"># visualizar o modelo</span></a>
-<a class="sourceLine" id="cb741-5" data-line-number="5">rpart.plot<span class="op">::</span><span class="kw">prp</span>(mod_arvore, <span class="dt">type =</span> <span class="dv">4</span>, <span class="dt">extra =</span> <span class="dv">6</span>, <span class="dt">fallen.leaves =</span> <span class="ot">FALSE</span>, <span class="dt">varlen =</span> <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb741-6" data-line-number="6">                <span class="dt">faclen =</span> <span class="dv">0</span>, <span class="dt">box.palette =</span> <span class="st">&quot;auto&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb735"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb735-1" data-line-number="1"><span class="co"># construcao do modelo</span></a>
+<a class="sourceLine" id="cb735-2" data-line-number="2">mod_arvore &lt;-<span class="st"> </span><span class="kw">rpart</span>(Attrition <span class="op">~</span><span class="st"> </span>. <span class="op">-</span><span class="st"> </span>EmployeeID, <span class="dt">data =</span> rh_treino)</a>
+<a class="sourceLine" id="cb735-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb735-4" data-line-number="4"><span class="co"># visualizar o modelo</span></a>
+<a class="sourceLine" id="cb735-5" data-line-number="5">rpart.plot<span class="op">::</span><span class="kw">prp</span>(mod_arvore, <span class="dt">type =</span> <span class="dv">4</span>, <span class="dt">extra =</span> <span class="dv">6</span>, <span class="dt">fallen.leaves =</span> <span class="ot">FALSE</span>, <span class="dt">varlen =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb735-6" data-line-number="6">                <span class="dt">faclen =</span> <span class="dv">0</span>, <span class="dt">box.palette =</span> <span class="st">&quot;auto&quot;</span>)</a></code></pre></div>
 <p><img src="cdr-intro_files/figure-html/15-modelos-36-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>A árvore ficou meio grande, não? Uma boa alternativa nesse caso é salvar o gráfico da árvore em um pdf no computador:</p>
-<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb742-1" data-line-number="1"><span class="co"># inicializar pdf em branco</span></a>
-<a class="sourceLine" id="cb742-2" data-line-number="2"><span class="kw">pdf</span>(<span class="st">&quot;minha_primeira_arvore.pdf&quot;</span>)</a>
-<a class="sourceLine" id="cb742-3" data-line-number="3"><span class="co"># preencher pdf com o grafico da arvore</span></a>
-<a class="sourceLine" id="cb742-4" data-line-number="4">rpart.plot<span class="op">::</span><span class="kw">prp</span>(mod_arvore, <span class="dt">type =</span> <span class="dv">4</span>, <span class="dt">extra =</span> <span class="dv">6</span>, <span class="dt">fallen.leaves =</span> <span class="ot">FALSE</span>, <span class="dt">varlen =</span> <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb742-5" data-line-number="5">                <span class="dt">faclen =</span> <span class="dv">0</span>, <span class="dt">box.palette =</span> <span class="st">&quot;auto&quot;</span>)</a>
-<a class="sourceLine" id="cb742-6" data-line-number="6"><span class="co"># destravar a sessao para o pdf ser salvo</span></a>
-<a class="sourceLine" id="cb742-7" data-line-number="7"><span class="kw">dev.off</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb736-1" data-line-number="1"><span class="co"># inicializar pdf em branco</span></a>
+<a class="sourceLine" id="cb736-2" data-line-number="2"><span class="kw">pdf</span>(<span class="st">&quot;minha_primeira_arvore.pdf&quot;</span>)</a>
+<a class="sourceLine" id="cb736-3" data-line-number="3"><span class="co"># preencher pdf com o grafico da arvore</span></a>
+<a class="sourceLine" id="cb736-4" data-line-number="4">rpart.plot<span class="op">::</span><span class="kw">prp</span>(mod_arvore, <span class="dt">type =</span> <span class="dv">4</span>, <span class="dt">extra =</span> <span class="dv">6</span>, <span class="dt">fallen.leaves =</span> <span class="ot">FALSE</span>, <span class="dt">varlen =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb736-5" data-line-number="5">                <span class="dt">faclen =</span> <span class="dv">0</span>, <span class="dt">box.palette =</span> <span class="st">&quot;auto&quot;</span>)</a>
+<a class="sourceLine" id="cb736-6" data-line-number="6"><span class="co"># destravar a sessao para o pdf ser salvo</span></a>
+<a class="sourceLine" id="cb736-7" data-line-number="7"><span class="kw">dev.off</span>()</a></code></pre></div>
 </div>
 <div id="avaliação-do-desempenho-preditivo-de-um-modelo-de-classificação" class="section level4">
 <h4><span class="header-section-number">15.1.3.3</span> Avaliação do desempenho preditivo de um modelo de classificação:</h4>
 <p>Vamos avaliar a acurácia do modelo:</p>
-<div class="sourceCode" id="cb743"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb743-1" data-line-number="1"><span class="co"># criar vetor com previsoes</span></a>
-<a class="sourceLine" id="cb743-2" data-line-number="2">ycast &lt;-<span class="st"> </span><span class="kw">predict</span>(mod_arvore, <span class="dt">newdata =</span> rh_teste, <span class="dt">type =</span> <span class="st">&quot;class&quot;</span>)</a>
-<a class="sourceLine" id="cb743-3" data-line-number="3">yreal &lt;-<span class="st"> </span>rh_teste<span class="op">$</span>Attrition</a>
-<a class="sourceLine" id="cb743-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb743-5" data-line-number="5">caret<span class="op">::</span><span class="kw">confusionMatrix</span>(<span class="dt">data =</span> ycast, </a>
-<a class="sourceLine" id="cb743-6" data-line-number="6">                       <span class="dt">reference =</span> yreal, </a>
-<a class="sourceLine" id="cb743-7" data-line-number="7">                       <span class="dt">positive =</span> <span class="st">&quot;Yes&quot;</span>,</a>
-<a class="sourceLine" id="cb743-8" data-line-number="8">                       <span class="dt">mode =</span> <span class="st">&quot;everything&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb737-1" data-line-number="1"><span class="co"># criar vetor com previsoes</span></a>
+<a class="sourceLine" id="cb737-2" data-line-number="2">ycast &lt;-<span class="st"> </span><span class="kw">predict</span>(mod_arvore, <span class="dt">newdata =</span> rh_teste, <span class="dt">type =</span> <span class="st">&quot;class&quot;</span>)</a>
+<a class="sourceLine" id="cb737-3" data-line-number="3">yreal &lt;-<span class="st"> </span>rh_teste<span class="op">$</span>Attrition</a>
+<a class="sourceLine" id="cb737-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb737-5" data-line-number="5">caret<span class="op">::</span><span class="kw">confusionMatrix</span>(<span class="dt">data =</span> ycast, </a>
+<a class="sourceLine" id="cb737-6" data-line-number="6">                       <span class="dt">reference =</span> yreal, </a>
+<a class="sourceLine" id="cb737-7" data-line-number="7">                       <span class="dt">positive =</span> <span class="st">&quot;Yes&quot;</span>,</a>
+<a class="sourceLine" id="cb737-8" data-line-number="8">                       <span class="dt">mode =</span> <span class="st">&quot;everything&quot;</span>)</a></code></pre></div>
 <pre><code>## Confusion Matrix and Statistics
 ## 
 ##           Reference
@@ -818,14 +817,14 @@ Figura 15.1: Fonte: <a href="https://machinelearningmastery.com/classification-a
 <h4><span class="header-section-number">15.1.3.4</span> Random Forest</h4>
 <p>O algoritmo de árvore de decisão, apesar de simples, serviu como base para modelos de árvores mais avançados, generalizáveis e flexíveis. Um deles é o Random Forest, que cria um número <span class="math inline">\(N\)</span> de árvores a partir de uma amostragem de um número <span class="math inline">\(p2 &lt; p1\)</span> de colunas, onde <span class="math inline">\(p1\)</span> é a quantidade total de colunas no conjunto de dados. Os dois livros referenciados são ótimas referências sobre esse algoritmo.</p>
 <p>Criar um modelo de Random Forest no R também é muito fácil.</p>
-<div class="sourceCode" id="cb745"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb745-1" data-line-number="1"><span class="co"># construir modelo</span></a>
-<a class="sourceLine" id="cb745-2" data-line-number="2">mod_rf &lt;-<span class="st"> </span>randomForest<span class="op">::</span><span class="kw">randomForest</span>(Attrition <span class="op">~</span><span class="st"> </span>. <span class="op">-</span><span class="st"> </span>EmployeeID,</a>
-<a class="sourceLine" id="cb745-3" data-line-number="3">                                     <span class="dt">data =</span> rh_treino,</a>
-<a class="sourceLine" id="cb745-4" data-line-number="4">                                     <span class="dt">importance =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb745-5" data-line-number="5"><span class="co"># obter previsoes a partir do modelo</span></a>
-<a class="sourceLine" id="cb745-6" data-line-number="6">yhat_rf &lt;-<span class="st"> </span><span class="kw">predict</span>(mod_rf, <span class="dt">newdata =</span> rh_teste, <span class="dt">type =</span> <span class="st">&quot;class&quot;</span>)</a>
-<a class="sourceLine" id="cb745-7" data-line-number="7"><span class="co"># obter matriz de confusao</span></a>
-<a class="sourceLine" id="cb745-8" data-line-number="8">caret<span class="op">::</span><span class="kw">confusionMatrix</span>(<span class="dt">data =</span> yhat_rf, <span class="dt">reference =</span> yreal)</a></code></pre></div>
+<div class="sourceCode" id="cb739"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb739-1" data-line-number="1"><span class="co"># construir modelo</span></a>
+<a class="sourceLine" id="cb739-2" data-line-number="2">mod_rf &lt;-<span class="st"> </span>randomForest<span class="op">::</span><span class="kw">randomForest</span>(Attrition <span class="op">~</span><span class="st"> </span>. <span class="op">-</span><span class="st"> </span>EmployeeID,</a>
+<a class="sourceLine" id="cb739-3" data-line-number="3">                                     <span class="dt">data =</span> rh_treino,</a>
+<a class="sourceLine" id="cb739-4" data-line-number="4">                                     <span class="dt">importance =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb739-5" data-line-number="5"><span class="co"># obter previsoes a partir do modelo</span></a>
+<a class="sourceLine" id="cb739-6" data-line-number="6">yhat_rf &lt;-<span class="st"> </span><span class="kw">predict</span>(mod_rf, <span class="dt">newdata =</span> rh_teste, <span class="dt">type =</span> <span class="st">&quot;class&quot;</span>)</a>
+<a class="sourceLine" id="cb739-7" data-line-number="7"><span class="co"># obter matriz de confusao</span></a>
+<a class="sourceLine" id="cb739-8" data-line-number="8">caret<span class="op">::</span><span class="kw">confusionMatrix</span>(<span class="dt">data =</span> yhat_rf, <span class="dt">reference =</span> yreal)</a></code></pre></div>
 <pre><code>## Confusion Matrix and Statistics
 ## 
 ##           Reference
@@ -854,15 +853,15 @@ Figura 15.1: Fonte: <a href="https://machinelearningmastery.com/classification-a
 ##        &#39;Positive&#39; Class : No              
 ## </code></pre>
 <p>Um recurso muito interessante do modelo Random Forest é o cálculo da importância de cada variável, que é medido com base no impacto de realizar permutações de cada variável explanatória usada no modelo sobre alguma métrica de acurácia. O gráfico abaixo mostra que a maior perda de perfomance preditiva ocorre quando a variável de tempo no trabalho é permutada aleatoriamente:</p>
-<div class="sourceCode" id="cb747"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb747-1" data-line-number="1"><span class="kw">varImpPlot</span>(mod_rf,</a>
-<a class="sourceLine" id="cb747-2" data-line-number="2">           <span class="co"># especificar que a medida de importancia é a perda media de acuracia</span></a>
-<a class="sourceLine" id="cb747-3" data-line-number="3">           <span class="dt">type =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb747-4" data-line-number="4">           <span class="dt">main =</span> <span class="st">&quot;Importância de cada variável explan. no modelo de RF&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb741"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb741-1" data-line-number="1"><span class="kw">varImpPlot</span>(mod_rf,</a>
+<a class="sourceLine" id="cb741-2" data-line-number="2">           <span class="co"># especificar que a medida de importancia é a perda media de acuracia</span></a>
+<a class="sourceLine" id="cb741-3" data-line-number="3">           <span class="dt">type =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb741-4" data-line-number="4">           <span class="dt">main =</span> <span class="st">&quot;Importância de cada variável explan. no modelo de RF&quot;</span>)</a></code></pre></div>
 <p><img src="cdr-intro_files/figure-html/15-modelos-40-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>O modelo Random Forest também pode ser usado de maneira probabilística, ou seja, mudando o output para a probabilidade de ele ser sim:</p>
-<div class="sourceCode" id="cb748"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb748-1" data-line-number="1">yhat_rf_prob &lt;-<span class="st"> </span><span class="kw">predict</span>(mod_rf, <span class="dt">newdata =</span> rh_teste, <span class="dt">type =</span> <span class="st">&quot;prob&quot;</span>)</a>
-<a class="sourceLine" id="cb748-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb748-3" data-line-number="3"><span class="kw">head</span>(yhat_rf_prob)</a></code></pre></div>
+<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb742-1" data-line-number="1">yhat_rf_prob &lt;-<span class="st"> </span><span class="kw">predict</span>(mod_rf, <span class="dt">newdata =</span> rh_teste, <span class="dt">type =</span> <span class="st">&quot;prob&quot;</span>)</a>
+<a class="sourceLine" id="cb742-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb742-3" data-line-number="3"><span class="kw">head</span>(yhat_rf_prob)</a></code></pre></div>
 <pre><code>##      No   Yes
 ## 1 0.970 0.030
 ## 2 0.990 0.010
@@ -882,17 +881,17 @@ Figura 15.1: Fonte: <a href="https://machinelearningmastery.com/classification-a
 <li><p>Compute a raiz do erro quadrático médio (rmse). (<code>ModelMetrics::rmse()</code>).</p></li>
 <li><p>Inclua outras variáveis e cheque o que acontece com o <code>rmse</code>.</p></li>
 </ol>
-<div class="sourceCode" id="cb750"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb750-1" data-line-number="1"><span class="kw">library</span>(ISLR)</a>
-<a class="sourceLine" id="cb750-2" data-line-number="2"><span class="kw">library</span>(ModelMetrics)</a>
-<a class="sourceLine" id="cb750-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb750-4" data-line-number="4">idx &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">nrow</span>(Wage), <span class="fl">0.7</span> <span class="op">*</span><span class="st"> </span><span class="kw">nrow</span>(Wage))</a>
-<a class="sourceLine" id="cb750-5" data-line-number="5">train &lt;-<span class="st"> </span>Wage[idx, ]</a>
-<a class="sourceLine" id="cb750-6" data-line-number="6">test &lt;-<span class="st"> </span>Wage[idx, ]</a>
-<a class="sourceLine" id="cb750-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb750-8" data-line-number="8">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(logwage <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>education <span class="op">+</span><span class="st"> </span>maritl <span class="op">+</span><span class="st"> </span>health_ins, <span class="dt">data =</span> train)</a>
-<a class="sourceLine" id="cb750-9" data-line-number="9">pred &lt;-<span class="st"> </span><span class="kw">predict</span>(fit, test)</a>
-<a class="sourceLine" id="cb750-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb750-11" data-line-number="11"><span class="kw">rmse</span>(<span class="dt">actual =</span> test<span class="op">$</span>logwage, <span class="dt">predicted =</span> pred)</a></code></pre></div>
+<div class="sourceCode" id="cb744"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb744-1" data-line-number="1"><span class="kw">library</span>(ISLR)</a>
+<a class="sourceLine" id="cb744-2" data-line-number="2"><span class="kw">library</span>(ModelMetrics)</a>
+<a class="sourceLine" id="cb744-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb744-4" data-line-number="4">idx &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">nrow</span>(Wage), <span class="fl">0.7</span> <span class="op">*</span><span class="st"> </span><span class="kw">nrow</span>(Wage))</a>
+<a class="sourceLine" id="cb744-5" data-line-number="5">train &lt;-<span class="st"> </span>Wage[idx, ]</a>
+<a class="sourceLine" id="cb744-6" data-line-number="6">test &lt;-<span class="st"> </span>Wage[idx, ]</a>
+<a class="sourceLine" id="cb744-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb744-8" data-line-number="8">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(logwage <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>education <span class="op">+</span><span class="st"> </span>maritl <span class="op">+</span><span class="st"> </span>health_ins, <span class="dt">data =</span> train)</a>
+<a class="sourceLine" id="cb744-9" data-line-number="9">pred &lt;-<span class="st"> </span><span class="kw">predict</span>(fit, test)</a>
+<a class="sourceLine" id="cb744-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb744-11" data-line-number="11"><span class="kw">rmse</span>(<span class="dt">actual =</span> test<span class="op">$</span>logwage, <span class="dt">predicted =</span> pred)</a></code></pre></div>
 <pre><code>## [1] 0.2777082</code></pre>
 
 </div>

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9 Escrevendo dados | Ciência de Dados com R - Introdução</title>
   <meta name="description" content="Aprendendo a programar com R" />
-  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9 Escrevendo dados | Ciência de Dados com R - Introdução" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,6 @@
 <meta name="author" content="Saulo Guerra, Paulo Felipe de Oliveira, Robert McDonnell e Sillas Gonzaga" />
 
 
-<meta name="date" content="2020-07-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,7 +49,7 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
@@ -400,29 +399,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">9.1</span> Escrevendo csv</h2>
 <p>O formato mais básico e mais utilizado, mundialmente, para envio e recebimento de dados entre instituições é o <code>csv</code>. Escrever um arquivo de dados em csv é muito simples. Dentre as opções, recomenda-se usar as funções de escrever dados do pacote <code>readr</code>.</p>
 <p>A diferença as funções <code>read_csv()</code> ou <code>write_csv()</code> e <code>read_csv2()</code> e <code>write_csv2()</code> é que as primeiras usam vírgula como delimitador de colunas e ponto como separador de decimais, já as duas últimas usam ponto e vírgula e vírgula, respectivamente.</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" data-line-number="1"><span class="kw">data</span>(iris)</a>
-<a class="sourceLine" id="cb420-2" data-line-number="2">readr<span class="op">::</span><span class="kw">write_csv</span>(iris, <span class="st">&quot;iris.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb420-3" data-line-number="3">readr<span class="op">::</span><span class="kw">write_csv2</span>(iris, <span class="st">&quot;iris2.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb414-1" data-line-number="1"><span class="kw">data</span>(iris)</a>
+<a class="sourceLine" id="cb414-2" data-line-number="2">readr<span class="op">::</span><span class="kw">write_csv</span>(iris, <span class="st">&quot;iris.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb414-3" data-line-number="3">readr<span class="op">::</span><span class="kw">write_csv2</span>(iris, <span class="st">&quot;iris2.csv&quot;</span>)</a></code></pre></div>
 </div>
 <div id="rds" class="section level2">
 <h2><span class="header-section-number">9.2</span> Rds</h2>
 <p>Objetos <code>rds</code> são arquivos próprios do R e servem para salvar em arquivo local qualquer tipo de estrutura de dados, mantendo sempre todas as propriedades do objeto original. Arquivos rds podem ser salvos com a função <code>write_rds()</code>, do pacote <code>readr</code>. Para importar um arquivo rds, basta usar <code>readr::read_rds()</code>.</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb421-1" data-line-number="1">participantes &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
-<a class="sourceLine" id="cb421-2" data-line-number="2">  <span class="dt">Nome =</span> <span class="kw">c</span>(<span class="st">&#39;Carlos&#39;</span>, <span class="st">&#39;Maurício&#39;</span>, <span class="st">&#39;Ana Maria&#39;</span>, <span class="st">&#39;Rebeca&#39;</span>, <span class="st">&#39;Patrícia&#39;</span>),</a>
-<a class="sourceLine" id="cb421-3" data-line-number="3">  <span class="dt">Estado =</span> <span class="kw">c</span>(<span class="st">&#39;Brasília&#39;</span>, <span class="st">&#39;Minas Gerais&#39;</span>, <span class="st">&#39;Goiás&#39;</span>, <span class="st">&#39;São Paulo&#39;</span>, <span class="st">&#39;Ceará&#39;</span>),</a>
-<a class="sourceLine" id="cb421-4" data-line-number="4">  <span class="dt">Idade =</span> <span class="kw">c</span>(<span class="dv">23</span>, <span class="dv">24</span>, <span class="dv">22</span>, <span class="dv">29</span>, <span class="dv">28</span>)</a>
-<a class="sourceLine" id="cb421-5" data-line-number="5">)</a>
-<a class="sourceLine" id="cb421-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb421-7" data-line-number="7">readr<span class="op">::</span><span class="kw">write_rds</span>(participantes, <span class="st">&quot;participantes.rds&quot;</span>)</a>
-<a class="sourceLine" id="cb421-8" data-line-number="8"><span class="co"># salvando um vetor</span></a>
-<a class="sourceLine" id="cb421-9" data-line-number="9">meu_vetor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb421-10" data-line-number="10"><span class="kw">write_rds</span>(meu_vetor, <span class="st">&quot;vetor.rds&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" data-line-number="1">participantes &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb415-2" data-line-number="2">  <span class="dt">Nome =</span> <span class="kw">c</span>(<span class="st">&#39;Carlos&#39;</span>, <span class="st">&#39;Maurício&#39;</span>, <span class="st">&#39;Ana Maria&#39;</span>, <span class="st">&#39;Rebeca&#39;</span>, <span class="st">&#39;Patrícia&#39;</span>),</a>
+<a class="sourceLine" id="cb415-3" data-line-number="3">  <span class="dt">Estado =</span> <span class="kw">c</span>(<span class="st">&#39;Brasília&#39;</span>, <span class="st">&#39;Minas Gerais&#39;</span>, <span class="st">&#39;Goiás&#39;</span>, <span class="st">&#39;São Paulo&#39;</span>, <span class="st">&#39;Ceará&#39;</span>),</a>
+<a class="sourceLine" id="cb415-4" data-line-number="4">  <span class="dt">Idade =</span> <span class="kw">c</span>(<span class="dv">23</span>, <span class="dv">24</span>, <span class="dv">22</span>, <span class="dv">29</span>, <span class="dv">28</span>)</a>
+<a class="sourceLine" id="cb415-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb415-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb415-7" data-line-number="7">readr<span class="op">::</span><span class="kw">write_rds</span>(participantes, <span class="st">&quot;participantes.rds&quot;</span>)</a>
+<a class="sourceLine" id="cb415-8" data-line-number="8"><span class="co"># salvando um vetor</span></a>
+<a class="sourceLine" id="cb415-9" data-line-number="9">meu_vetor &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb415-10" data-line-number="10"><span class="kw">write_rds</span>(meu_vetor, <span class="st">&quot;vetor.rds&quot;</span>)</a></code></pre></div>
 </div>
 <div id="escrevendo-outros-tipos-de-arquivos" class="section level2">
 <h2><span class="header-section-number">9.3</span> Escrevendo outros tipos de arquivos</h2>
 <p>Outra forma bastante importante de escrever dados é em planilhas: o famoso Excel. Recomendamos o conhecimento do pacote <code>openxlsx</code>. É um pacote que lê e escreve arquivos Excel sem nenhuma dependência de Java, que pode acabar dando muita dor de cabeça para manter e normalmente consome bastante memória. Para Windows, o <code>openxlsx</code> precisa do <code>Rtools</code>: <a href="https://cran.r-project.org/bin/windows/Rtools/" class="uri">https://cran.r-project.org/bin/windows/Rtools/</a>. Recomendamos a experiência com este pacote, pois com ele é possível a criação de planilhas bem acabadas, com cores e formatações complexas.</p>
 <p>Um outro pacote para escrever arquivos em Excel, mais simples que o <code>openxlsx</code>, é o <code>writexl</code>:</p>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" data-line-number="1">writexl<span class="op">::</span><span class="kw">write_xlsx</span>(iris, <span class="st">&quot;iris.xlsx&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb416-1" data-line-number="1">writexl<span class="op">::</span><span class="kw">write_xlsx</span>(iris, <span class="st">&quot;iris.xlsx&quot;</span>)</a></code></pre></div>
 <p>Outra forma de escrita de dados é utilizando o RMarkdown, mas este formato merece um capítulo específico para detalhar seu uso.</p>
 </div>
 <div id="exercícios-5" class="section level2">
