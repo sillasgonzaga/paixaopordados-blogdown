@@ -52,10 +52,8 @@ trabalhando-com-colunas-de-um-data.frame
 pacote-dplyr
 verbetes-do-dplyr-e-o-operador
 select
-filter
 mutate
 group-by-e-summarise
-arrange
 exercícios-2
 parte-1
 parte-2

@@ -24,6 +24,7 @@
 <meta name="author" content="Saulo Guerra, Paulo Felipe de Oliveira, Robert McDonnell e Sillas Gonzaga" />
 
 
+<meta name="date" content="2021-07-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +32,7 @@
   
   
 
-<link rel="next" href="introdução.html"/>
+<link rel="next" href="sobre-os-autores.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,8 +50,9 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.2/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
@@ -66,10 +68,10 @@
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
 <link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
 <link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
 <script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
@@ -87,9 +89,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -98,14 +100,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -114,9 +118,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -167,6 +171,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a></li>
+<li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html"><i class="fa fa-check"></i>Sobre os autores</a></li>
+<li class="chapter" data-level="" data-path="download.html"><a href="download.html"><i class="fa fa-check"></i>Download</a></li>
 <li class="chapter" data-level="1" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i><b>1</b> Introdução</a><ul>
 <li class="chapter" data-level="1.1" data-path="introdução.html"><a href="introdução.html#o-que-é-ciência-de-dados"><i class="fa fa-check"></i><b>1.1</b> O que é Ciência de Dados?</a></li>
 <li class="chapter" data-level="1.2" data-path="introdução.html"><a href="introdução.html#workflow-da-ciência-de-dados"><i class="fa fa-check"></i><b>1.2</b> Workflow da Ciência de Dados</a></li>
@@ -215,10 +221,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#pacote-dplyr"><i class="fa fa-check"></i><b>4.4</b> Pacote dplyr</a><ul>
 <li class="chapter" data-level="4.4.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#verbetes-do-dplyr-e-o-operador"><i class="fa fa-check"></i><b>4.4.1</b> Verbetes do dplyr e o operador <code>%&gt;%</code></a></li>
 <li class="chapter" data-level="4.4.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#select"><i class="fa fa-check"></i><b>4.4.2</b> Select</a></li>
-<li class="chapter" data-level="4.4.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#filter"><i class="fa fa-check"></i><b>4.4.3</b> Filter</a></li>
-<li class="chapter" data-level="4.4.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#mutate"><i class="fa fa-check"></i><b>4.4.4</b> Mutate</a></li>
-<li class="chapter" data-level="4.4.5" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#group-by-e-summarise"><i class="fa fa-check"></i><b>4.4.5</b> Group By e Summarise</a></li>
-<li class="chapter" data-level="4.4.6" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#arrange"><i class="fa fa-check"></i><b>4.4.6</b> Arrange</a></li>
+<li class="chapter" data-level="4.4.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#mutate"><i class="fa fa-check"></i><b>4.4.3</b> Mutate</a></li>
+<li class="chapter" data-level="4.4.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#group-by-e-summarise"><i class="fa fa-check"></i><b>4.4.4</b> Group By e Summarise</a></li>
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#exercícios-2"><i class="fa fa-check"></i><b>4.5</b> Exercícios</a><ul>
 <li class="chapter" data-level="4.5.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#parte-1"><i class="fa fa-check"></i><b>4.5.1</b> Parte 1</a></li>
@@ -394,13 +398,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Ciência de Dados com R - Introdução</h1>
 <p class="author"><em>Saulo Guerra, Paulo Felipe de Oliveira, Robert McDonnell e Sillas Gonzaga</em></p>
-<p class="date"><em>13/10/2020</em></p>
+<p class="date"><em>07/02/2021</em></p>
 </div>
 <div id="prefácio" class="section level1 unnumbered">
 <h1>Prefácio</h1>
-<p>Este livro foi criado por Saulo Guerra, Paulo Felipe e Sillas Gonzaga para o curso Introdução à Ciência de Dados com R, oferecido pelo IBPAD. Para a construção deste livro, foi utilizado o Bookdown. Em alguns trechos, este livro foi baseado no material produzido por Robert McDonnell.</p>
-<p><img src="imagens/logo.png" width="100%" style="display: block; margin: auto;" /></p>
-
+<p>Campo em crescimento exponencial, Ciência de Dados tem se tornado uma área apaixonante para entusiastas das mais diversas áreas. Estatísticos contribuem com sólida teoria de análise de dados enquanto cientistas e engenheiros da computação contribuem com novas capacidades e possibilidades computacionais. Assim, pesquisadores(as) da biologia, psicologia, direito, economia, comunicação, sociologia e diversas outras áreas podem usufruir desse conjunto de técnicas (algumas nem tão novas) para aprimorar e desenvolver suas pesquisas. E a linguagem R é uma das principais linguagens de programação utilizadas para isso.</p>
+<p>O seu caráter aberto e a construção pela comunidade científica fez com que o R ultrapassasse a marca de dez mil pacotes, conjunto de códigos com funções específicas que facilitam a vida de todo mundo. Todos gratuitos.</p>
+<p>Mas mais importante de tudo isso, é um recado simples e direto: R é para você também. Este livro (ebook em bookdown) consolida o que nossos professores vieram ensinando em nosso curso introdutório de R nos últimos anos. Foi construído com a nossa experiência didática em dezenas de turmas em todo o Brasil com bons exemplos e será constantemente melhorado com a opinião e sugestões dos nossos alunos.</p>
+<p>Espero que a leitura e principalmente a prática sejam proveitosas.</p>
+<p>Boa jornada.</p>
+<p>Max Stabile CEO - IBPAD</p>
 </div>
             </section>
 
@@ -408,7 +415,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 
-<a href="introdução.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="sobre-os-autores.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

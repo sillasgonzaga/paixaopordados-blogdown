@@ -24,6 +24,7 @@
 <meta name="author" content="Saulo Guerra, Paulo Felipe de Oliveira, Robert McDonnell e Sillas Gonzaga" />
 
 
+<meta name="date" content="2021-07-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -49,8 +50,9 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.2/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
@@ -66,10 +68,10 @@
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
 <link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
 <link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
 <script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
@@ -87,9 +89,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -98,14 +100,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -114,9 +118,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -167,6 +171,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a></li>
+<li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html"><i class="fa fa-check"></i>Sobre os autores</a></li>
+<li class="chapter" data-level="" data-path="download.html"><a href="download.html"><i class="fa fa-check"></i>Download</a></li>
 <li class="chapter" data-level="1" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i><b>1</b> Introdução</a><ul>
 <li class="chapter" data-level="1.1" data-path="introdução.html"><a href="introdução.html#o-que-é-ciência-de-dados"><i class="fa fa-check"></i><b>1.1</b> O que é Ciência de Dados?</a></li>
 <li class="chapter" data-level="1.2" data-path="introdução.html"><a href="introdução.html#workflow-da-ciência-de-dados"><i class="fa fa-check"></i><b>1.2</b> Workflow da Ciência de Dados</a></li>
@@ -215,10 +221,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#pacote-dplyr"><i class="fa fa-check"></i><b>4.4</b> Pacote dplyr</a><ul>
 <li class="chapter" data-level="4.4.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#verbetes-do-dplyr-e-o-operador"><i class="fa fa-check"></i><b>4.4.1</b> Verbetes do dplyr e o operador <code>%&gt;%</code></a></li>
 <li class="chapter" data-level="4.4.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#select"><i class="fa fa-check"></i><b>4.4.2</b> Select</a></li>
-<li class="chapter" data-level="4.4.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#filter"><i class="fa fa-check"></i><b>4.4.3</b> Filter</a></li>
-<li class="chapter" data-level="4.4.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#mutate"><i class="fa fa-check"></i><b>4.4.4</b> Mutate</a></li>
-<li class="chapter" data-level="4.4.5" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#group-by-e-summarise"><i class="fa fa-check"></i><b>4.4.5</b> Group By e Summarise</a></li>
-<li class="chapter" data-level="4.4.6" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#arrange"><i class="fa fa-check"></i><b>4.4.6</b> Arrange</a></li>
+<li class="chapter" data-level="4.4.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#mutate"><i class="fa fa-check"></i><b>4.4.3</b> Mutate</a></li>
+<li class="chapter" data-level="4.4.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#group-by-e-summarise"><i class="fa fa-check"></i><b>4.4.4</b> Group By e Summarise</a></li>
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#exercícios-2"><i class="fa fa-check"></i><b>4.5</b> Exercícios</a><ul>
 <li class="chapter" data-level="4.5.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#parte-1"><i class="fa fa-check"></i><b>4.5.1</b> Parte 1</a></li>
@@ -399,14 +403,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.1</span> API</h2>
 <p>API é uma forma de comunicação de dados mais apropriada para as trocas de informações entre softwares. Normalmente APIs trocam dados em formato hierárquico. Os dois formatos hierárquicos mais comuns são Javascript Object Notation (JSON) e eXtensible Markup Language (XML).</p>
 <p>Para obter-se e utilizar-se dados de API em R recomendamos a utilização do pacote <code>jsonlite</code>.</p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" data-line-number="1"><span class="kw">library</span>(jsonlite)</a></code></pre></div>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="obtendo-dados.html#cb423-1"></a><span class="kw">library</span>(jsonlite)</span></code></pre></div>
 <p>A seguir apresentaremos alguns exemplos de APIs e seu uso. Existem diversas APIs e formas de consumi-las, portanto não iremos exaurir nesse texto todas as possibilidades de uso de APIs. O principal aqui é entender-se APIs como uma fonte rica de dados que pode ser explorada em suas análises.</p>
 <p>No exemplo a seguir utilizamos a API do github (portal para repositórios) e veremos quais os repositórios do Hadley Wickham:</p>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb418-1" data-line-number="1">hadley.rep &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&quot;https://api.github.com/users/hadley/repos&quot;</span>)</a>
-<a class="sourceLine" id="cb418-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb418-3" data-line-number="3"><span class="kw">dim</span>(hadley.rep)</a></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="obtendo-dados.html#cb424-1"></a>hadley.rep &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&quot;https://api.github.com/users/hadley/repos&quot;</span>)</span>
+<span id="cb424-2"><a href="obtendo-dados.html#cb424-2"></a></span>
+<span id="cb424-3"><a href="obtendo-dados.html#cb424-3"></a><span class="kw">dim</span>(hadley.rep)</span></code></pre></div>
 <pre><code>## [1] 30 73</code></pre>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" data-line-number="1"><span class="kw">head</span>(hadley.rep[,<span class="kw">c</span>(<span class="st">&#39;name&#39;</span>, <span class="st">&#39;description&#39;</span>)], <span class="dv">15</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="obtendo-dados.html#cb426-1"></a><span class="kw">head</span>(hadley.rep[,<span class="kw">c</span>(<span class="st">&#39;name&#39;</span>, <span class="st">&#39;description&#39;</span>)], <span class="dv">15</span>)</span></code></pre></div>
 <pre><code>##                     name
 ## 1  15-state-of-the-union
 ## 2      15-student-papers
@@ -440,23 +444,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 14                                                                                                                                                                                                                                                                                                                                                                                                                Book chapter for beautiful data
 ## 15                                                                                                                                                                                                                                                                                                                                                                                                                        Bechmarking tools for R</code></pre>
 <p>Outro exemplo de API muito interessante é o portal de dados abertos da Câmara dos Deputados. Eles possuem diversas APIs para consultar os dados do processo legislativo. Veja o exemplo a seguir, que resgata as proposições utilizando API:</p>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" data-line-number="1">proposicoes &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&quot;https://dadosabertos.camara.leg.br/api/v2/proposicoes&quot;</span>)</a>
-<a class="sourceLine" id="cb422-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb422-3" data-line-number="3"><span class="kw">head</span>(proposicoes<span class="op">$</span>dados <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(siglaTipo, numero, ano, ementa))</a></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="obtendo-dados.html#cb428-1"></a>proposicoes &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&quot;https://dadosabertos.camara.leg.br/api/v2/proposicoes&quot;</span>)</span>
+<span id="cb428-2"><a href="obtendo-dados.html#cb428-2"></a></span>
+<span id="cb428-3"><a href="obtendo-dados.html#cb428-3"></a><span class="kw">head</span>(proposicoes<span class="op">$</span>dados <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(siglaTipo, numero, ano, ementa))</span></code></pre></div>
 <pre><code>##   siglaTipo numero  ano
-## 1        PL   3009 2000
-## 2        PL   4363 2001
-## 3        PL   6699 2002
-## 4        PL    839 2003
-## 5        PL   6229 2005
-## 6        PL    411 2007
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ementa
-## 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Revoga o caput do art. 83 da Lei nº 9.430, de 27 de dezembro de 1996.
-## 2                                                                                                                                                                                                                                                                                              Estabelece normas gerais de organização, efetivos, material bélico, garantias, convocação e mobilização das polícias militares e corpos de bombeiros militares dos Estados, do Distrito Federal e dos Territórios, e dá outras providências.
-## 3                                                                                                                                                                                                                                                                                                                                                                                                                                                                           Modifica dispositivo do Código Penal, e dá outras providências.
-## 4                                                                                                                                                                                                                                                                                                                                                                                                                                                                          Estabelece critérios para a abertura de novos cursos de Direito.
-## 5 Altera o § 7º do art. 6º da Lei nº 11.101, de 9 de fevereiro de 2005, que &quot;Regula a recuperação judicial, a extrajudicial e a falência do empresário e da sociedade empresária&quot;, para submeter todos os créditos tributários à recuperação judicial.  NOVA EMENTA: Altera as Leis nºs 11.101, de 9 de fevereiro de 2005, 10.522, de 19 de julho de 2002, e 8.929, de 22 de agosto de 1994, para atualizar a legislação referente à recuperação judicial, à recuperação extrajudicial e à falência do empresário e da sociedade empresária
-## 6                                                                                                                                                                                                                                                                                                                                                       Estabelece normas gerais para a simplificação do procedimento de registro de empresários e pessoas jurídicas no âmbito da União, dos Estados, do Distrito Federal e dos Municípios.</code></pre>
+## 1        PL   1952 2003
+## 2       REQ   3071 2005
+## 3       PEC    262 2008
+## 4       PEC     45 2011
+## 5        PL   4703 2012
+## 6        PL   5028 2019
+##                                                                                                                                                                                                                                                                                                                                                                                                         ementa
+## 1                                                                                                                                                                                                                                                                                                     Dispõe sobre a elevação para dezoito por cento a alíquota da CSLL devida pelas instituições financeiras.
+## 2                                                        Requer que seja suspenso o contrato firmado entre a empresa SMP&amp;B e Câmara dos Deputados, por conta das denúncias contra o proprietário da empresa, determinando ainda a urgente apuração, através do órgão auxiliar Tribunal de Contas da União, de possíveis irregularidades cometidas pela empresa na gestão de Marcos Valério Fernandes de Souza.
+## 3                                                                                                                                                                                                                                                                                                                                         Altera dispositivos relativos aos Tribunais e ao Ministério Público.
+## 4 Revoga as alíneas a, b e e, do inciso III e o inciso XI do art. 52, e altera a redação do § 2º do art. 73, do inciso XIV do art. 84, do art. 94, do parágrafo único do art. 101, do parágrafo único do art. 104, do § 2º do art. 103-B, do caput do art. 111-A, do caput do art. 115, do art. 119, e do §1º do art. 120, dos §§ 1º e 2º do art. 128, do caput e § 6º do art. 130-A, da Constituição Federal.
+## 5                                                                            Altera o inciso XIV do art. 6º da Lei nº 7.713, de 22 de dezembro de 1988, que &quot;altera a legislação do imposto de renda e dá outras providências&quot;, para inserir o lúpus entre as doenças cujos portadores são beneficiados com a isenção do imposto de renda sobre os proventos de aposentadoria ou reforma motivada pela doença.
+## 6                                                                    Institui a Política Nacional de Pagamento por Serviços Ambientais e dá outras providências.   NOVA EMENTA: Institui a Política Nacional de Pagamento por Serviços Ambientais; e altera as Leis nºs 8.212, de 24 de julho de 1991, 8.629, de 25 de fevereiro de 1993, e 6.015, de 31 de dezembro de 1973, para adequá-las à nova política.</code></pre>
 <p>Hoje em dia, todas as redes sociais possuem APIs para consumir os dados dos usuários e postagens. Normalmente essas APIs pedem um cadastro anterior (apesar de gratuitas, em sua maior parte). O R possui diversos pacotes para consumir APIs interessantes:</p>
 <ul>
 <li>Quandl: pacote que fornece diversos dados econômicos de diversos países;</li>
@@ -474,19 +478,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>O pacote funciona da seguinte forma: Um string que contem o link é usado como input da função <code>read_html()</code>. A partir daí as funções do pacote <code>rvest</code> podem ser usadas para extrair dados da página. <code>html_table()</code>, por exemplo, extrai dados tabulares da página.</p>
 <p>Algo que torna o Web Scraping muito complexo é que essa tarefa é muito dependente do código-fonte da página. Caso ela sofra mudanças, o código provavelmente não irá mais funcionar. Um exemplo é o que se vê neste post sobre Web Scraping do OLX, que não funciona mais.</p>
 <p>Devido a isso, este material opta por não entrar a fundo no assunto além de mostrar um exemplo superficial abaixo de scraping de uma <a href="https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2018_-_S%C3%A9rie_A#Classifica%C3%A7%C3%A3o">tabela da Wikipedia</a>:</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" data-line-number="1"><span class="kw">library</span>(rvest)</a>
-<a class="sourceLine" id="cb424-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb424-3" data-line-number="3">url &lt;-<span class="st"> &quot;https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2018_-_Série_A&quot;</span> <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb424-4" data-line-number="4"><span class="st">  </span><span class="kw">read_html</span>()</a>
-<a class="sourceLine" id="cb424-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb424-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb424-7" data-line-number="7">tb &lt;-<span class="st"> </span><span class="kw">html_table</span>(url, <span class="dt">fill =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb424-8" data-line-number="8">tb &lt;-<span class="st"> </span>tb[[<span class="dv">6</span>]]</a>
-<a class="sourceLine" id="cb424-9" data-line-number="9">tb <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb424-10" data-line-number="10"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb424-11" data-line-number="11"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">SG =</span> <span class="kw">ifelse</span>(<span class="kw">str_detect</span>(SG,<span class="st">&quot;</span><span class="ch">\\</span><span class="st">+&quot;</span>),</a>
-<a class="sourceLine" id="cb424-12" data-line-number="12">                    readr<span class="op">::</span><span class="kw">parse_number</span>(SG),</a>
-<a class="sourceLine" id="cb424-13" data-line-number="13">                    <span class="dv">-1</span> <span class="op">*</span><span class="st"> </span>readr<span class="op">::</span><span class="kw">parse_number</span>(SG)))</a></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="obtendo-dados.html#cb430-1"></a><span class="kw">library</span>(rvest)</span>
+<span id="cb430-2"><a href="obtendo-dados.html#cb430-2"></a></span>
+<span id="cb430-3"><a href="obtendo-dados.html#cb430-3"></a>url &lt;-<span class="st"> &quot;https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2018_-_Série_A&quot;</span> <span class="op">%&gt;%</span></span>
+<span id="cb430-4"><a href="obtendo-dados.html#cb430-4"></a><span class="st">  </span><span class="kw">read_html</span>()</span>
+<span id="cb430-5"><a href="obtendo-dados.html#cb430-5"></a></span>
+<span id="cb430-6"><a href="obtendo-dados.html#cb430-6"></a></span>
+<span id="cb430-7"><a href="obtendo-dados.html#cb430-7"></a>tb &lt;-<span class="st"> </span><span class="kw">html_table</span>(url, <span class="dt">fill =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb430-8"><a href="obtendo-dados.html#cb430-8"></a>tb &lt;-<span class="st"> </span>tb[[<span class="dv">6</span>]]</span>
+<span id="cb430-9"><a href="obtendo-dados.html#cb430-9"></a>tb <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb430-10"><a href="obtendo-dados.html#cb430-10"></a><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb430-11"><a href="obtendo-dados.html#cb430-11"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">SG =</span> <span class="kw">ifelse</span>(<span class="kw">str_detect</span>(SG,<span class="st">&quot;</span><span class="ch">\\</span><span class="st">+&quot;</span>),</span>
+<span id="cb430-12"><a href="obtendo-dados.html#cb430-12"></a>                    readr<span class="op">::</span><span class="kw">parse_number</span>(SG),</span>
+<span id="cb430-13"><a href="obtendo-dados.html#cb430-13"></a>                    <span class="dv">-1</span> <span class="op">*</span><span class="st"> </span>readr<span class="op">::</span><span class="kw">parse_number</span>(SG)))</span></code></pre></div>
 
 </div>
 </div>
