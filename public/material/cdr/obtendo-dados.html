@@ -24,7 +24,6 @@
 <meta name="author" content="Saulo Guerra, Paulo Felipe de Oliveira, Robert McDonnell e Sillas Gonzaga" />
 
 
-<meta name="date" content="2021-07-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -403,14 +402,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.1</span> API</h2>
 <p>API é uma forma de comunicação de dados mais apropriada para as trocas de informações entre softwares. Normalmente APIs trocam dados em formato hierárquico. Os dois formatos hierárquicos mais comuns são Javascript Object Notation (JSON) e eXtensible Markup Language (XML).</p>
 <p>Para obter-se e utilizar-se dados de API em R recomendamos a utilização do pacote <code>jsonlite</code>.</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="obtendo-dados.html#cb423-1"></a><span class="kw">library</span>(jsonlite)</span></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="obtendo-dados.html#cb420-1"></a><span class="kw">library</span>(jsonlite)</span></code></pre></div>
 <p>A seguir apresentaremos alguns exemplos de APIs e seu uso. Existem diversas APIs e formas de consumi-las, portanto não iremos exaurir nesse texto todas as possibilidades de uso de APIs. O principal aqui é entender-se APIs como uma fonte rica de dados que pode ser explorada em suas análises.</p>
 <p>No exemplo a seguir utilizamos a API do github (portal para repositórios) e veremos quais os repositórios do Hadley Wickham:</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="obtendo-dados.html#cb424-1"></a>hadley.rep &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&quot;https://api.github.com/users/hadley/repos&quot;</span>)</span>
-<span id="cb424-2"><a href="obtendo-dados.html#cb424-2"></a></span>
-<span id="cb424-3"><a href="obtendo-dados.html#cb424-3"></a><span class="kw">dim</span>(hadley.rep)</span></code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="obtendo-dados.html#cb421-1"></a>hadley.rep &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&quot;https://api.github.com/users/hadley/repos&quot;</span>)</span>
+<span id="cb421-2"><a href="obtendo-dados.html#cb421-2"></a></span>
+<span id="cb421-3"><a href="obtendo-dados.html#cb421-3"></a><span class="kw">dim</span>(hadley.rep)</span></code></pre></div>
 <pre><code>## [1] 30 73</code></pre>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="obtendo-dados.html#cb426-1"></a><span class="kw">head</span>(hadley.rep[,<span class="kw">c</span>(<span class="st">&#39;name&#39;</span>, <span class="st">&#39;description&#39;</span>)], <span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="obtendo-dados.html#cb423-1"></a><span class="kw">head</span>(hadley.rep[,<span class="kw">c</span>(<span class="st">&#39;name&#39;</span>, <span class="st">&#39;description&#39;</span>)], <span class="dv">15</span>)</span></code></pre></div>
 <pre><code>##                     name
 ## 1  15-state-of-the-union
 ## 2      15-student-papers
@@ -444,23 +443,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 14                                                                                                                                                                                                                                                                                                                                                                                                                Book chapter for beautiful data
 ## 15                                                                                                                                                                                                                                                                                                                                                                                                                        Bechmarking tools for R</code></pre>
 <p>Outro exemplo de API muito interessante é o portal de dados abertos da Câmara dos Deputados. Eles possuem diversas APIs para consultar os dados do processo legislativo. Veja o exemplo a seguir, que resgata as proposições utilizando API:</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="obtendo-dados.html#cb428-1"></a>proposicoes &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&quot;https://dadosabertos.camara.leg.br/api/v2/proposicoes&quot;</span>)</span>
-<span id="cb428-2"><a href="obtendo-dados.html#cb428-2"></a></span>
-<span id="cb428-3"><a href="obtendo-dados.html#cb428-3"></a><span class="kw">head</span>(proposicoes<span class="op">$</span>dados <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(siglaTipo, numero, ano, ementa))</span></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="obtendo-dados.html#cb425-1"></a>proposicoes &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&quot;https://dadosabertos.camara.leg.br/api/v2/proposicoes&quot;</span>)</span>
+<span id="cb425-2"><a href="obtendo-dados.html#cb425-2"></a></span>
+<span id="cb425-3"><a href="obtendo-dados.html#cb425-3"></a><span class="kw">head</span>(proposicoes<span class="op">$</span>dados <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(siglaTipo, numero, ano, ementa))</span></code></pre></div>
 <pre><code>##   siglaTipo numero  ano
-## 1        PL   1952 2003
-## 2       REQ   3071 2005
-## 3       PEC    262 2008
-## 4       PEC     45 2011
-## 5        PL   4703 2012
-## 6        PL   5028 2019
-##                                                                                                                                                                                                                                                                                                                                                                                                         ementa
-## 1                                                                                                                                                                                                                                                                                                     Dispõe sobre a elevação para dezoito por cento a alíquota da CSLL devida pelas instituições financeiras.
-## 2                                                        Requer que seja suspenso o contrato firmado entre a empresa SMP&amp;B e Câmara dos Deputados, por conta das denúncias contra o proprietário da empresa, determinando ainda a urgente apuração, através do órgão auxiliar Tribunal de Contas da União, de possíveis irregularidades cometidas pela empresa na gestão de Marcos Valério Fernandes de Souza.
-## 3                                                                                                                                                                                                                                                                                                                                         Altera dispositivos relativos aos Tribunais e ao Ministério Público.
-## 4 Revoga as alíneas a, b e e, do inciso III e o inciso XI do art. 52, e altera a redação do § 2º do art. 73, do inciso XIV do art. 84, do art. 94, do parágrafo único do art. 101, do parágrafo único do art. 104, do § 2º do art. 103-B, do caput do art. 111-A, do caput do art. 115, do art. 119, e do §1º do art. 120, dos §§ 1º e 2º do art. 128, do caput e § 6º do art. 130-A, da Constituição Federal.
-## 5                                                                            Altera o inciso XIV do art. 6º da Lei nº 7.713, de 22 de dezembro de 1988, que &quot;altera a legislação do imposto de renda e dá outras providências&quot;, para inserir o lúpus entre as doenças cujos portadores são beneficiados com a isenção do imposto de renda sobre os proventos de aposentadoria ou reforma motivada pela doença.
-## 6                                                                    Institui a Política Nacional de Pagamento por Serviços Ambientais e dá outras providências.   NOVA EMENTA: Institui a Política Nacional de Pagamento por Serviços Ambientais; e altera as Leis nºs 8.212, de 24 de julho de 1991, 8.629, de 25 de fevereiro de 1993, e 6.015, de 31 de dezembro de 1973, para adequá-las à nova política.</code></pre>
+## 1        PL   2295 2000
+## 2       PLP    200 1989
+## 3       PDC   2894 2003
+## 4        PL   1952 2003
+## 5        PL   4016 2004
+## 6       REQ   3071 2005
+##                                                                                                                                                                                                                                                                                                                                                  ementa
+## 1                                                                                                                                                                                                                                                              Dispõe sobre a jornada de trabalho dos Enfermeiros, Técnicos e Auxiliares de Enfermagem.
+## 2                                                                                                                                                                                                                                          Dispõe sobre os requisitos para o exercício dos cargos de diretoria e presidência do Banco Central do Brasil
+## 3                                                                                                                     Aprova o ato que autoriza a Associação Comunitária de Comunicação de Barretos  a executar, pelo prazo de três anos, sem direito de exclusividade, serviço de radiodifusão comunitária na cidade de Barretos, Estado de São Paulo.
+## 4                                                                                                                                                                                                                                              Dispõe sobre a elevação para dezoito por cento a alíquota da CSLL devida pelas instituições financeiras.
+## 5                                                                                      Altera os arts. 19 e 320 da Lei nº 9.503, de 23 de setembro de 1997, que instituiu o Código de Trânsito Brasileiro, e o arts. 4º e 6º da Lei nº 9.602, de 21 de janeiro de 1998, para dispor sobre a destinação dos recursos arrecadados com multas de trânsito.
+## 6 Requer que seja suspenso o contrato firmado entre a empresa SMP&amp;B e Câmara dos Deputados, por conta das denúncias contra o proprietário da empresa, determinando ainda a urgente apuração, através do órgão auxiliar Tribunal de Contas da União, de possíveis irregularidades cometidas pela empresa na gestão de Marcos Valério Fernandes de Souza.</code></pre>
 <p>Hoje em dia, todas as redes sociais possuem APIs para consumir os dados dos usuários e postagens. Normalmente essas APIs pedem um cadastro anterior (apesar de gratuitas, em sua maior parte). O R possui diversos pacotes para consumir APIs interessantes:</p>
 <ul>
 <li>Quandl: pacote que fornece diversos dados econômicos de diversos países;</li>
@@ -478,19 +477,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>O pacote funciona da seguinte forma: Um string que contem o link é usado como input da função <code>read_html()</code>. A partir daí as funções do pacote <code>rvest</code> podem ser usadas para extrair dados da página. <code>html_table()</code>, por exemplo, extrai dados tabulares da página.</p>
 <p>Algo que torna o Web Scraping muito complexo é que essa tarefa é muito dependente do código-fonte da página. Caso ela sofra mudanças, o código provavelmente não irá mais funcionar. Um exemplo é o que se vê neste post sobre Web Scraping do OLX, que não funciona mais.</p>
 <p>Devido a isso, este material opta por não entrar a fundo no assunto além de mostrar um exemplo superficial abaixo de scraping de uma <a href="https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2018_-_S%C3%A9rie_A#Classifica%C3%A7%C3%A3o">tabela da Wikipedia</a>:</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="obtendo-dados.html#cb430-1"></a><span class="kw">library</span>(rvest)</span>
-<span id="cb430-2"><a href="obtendo-dados.html#cb430-2"></a></span>
-<span id="cb430-3"><a href="obtendo-dados.html#cb430-3"></a>url &lt;-<span class="st"> &quot;https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2018_-_Série_A&quot;</span> <span class="op">%&gt;%</span></span>
-<span id="cb430-4"><a href="obtendo-dados.html#cb430-4"></a><span class="st">  </span><span class="kw">read_html</span>()</span>
-<span id="cb430-5"><a href="obtendo-dados.html#cb430-5"></a></span>
-<span id="cb430-6"><a href="obtendo-dados.html#cb430-6"></a></span>
-<span id="cb430-7"><a href="obtendo-dados.html#cb430-7"></a>tb &lt;-<span class="st"> </span><span class="kw">html_table</span>(url, <span class="dt">fill =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb430-8"><a href="obtendo-dados.html#cb430-8"></a>tb &lt;-<span class="st"> </span>tb[[<span class="dv">6</span>]]</span>
-<span id="cb430-9"><a href="obtendo-dados.html#cb430-9"></a>tb <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb430-10"><a href="obtendo-dados.html#cb430-10"></a><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb430-11"><a href="obtendo-dados.html#cb430-11"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">SG =</span> <span class="kw">ifelse</span>(<span class="kw">str_detect</span>(SG,<span class="st">&quot;</span><span class="ch">\\</span><span class="st">+&quot;</span>),</span>
-<span id="cb430-12"><a href="obtendo-dados.html#cb430-12"></a>                    readr<span class="op">::</span><span class="kw">parse_number</span>(SG),</span>
-<span id="cb430-13"><a href="obtendo-dados.html#cb430-13"></a>                    <span class="dv">-1</span> <span class="op">*</span><span class="st"> </span>readr<span class="op">::</span><span class="kw">parse_number</span>(SG)))</span></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="obtendo-dados.html#cb427-1"></a><span class="kw">library</span>(rvest)</span>
+<span id="cb427-2"><a href="obtendo-dados.html#cb427-2"></a></span>
+<span id="cb427-3"><a href="obtendo-dados.html#cb427-3"></a>url &lt;-<span class="st"> &quot;https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_2018_-_Série_A&quot;</span> <span class="op">%&gt;%</span></span>
+<span id="cb427-4"><a href="obtendo-dados.html#cb427-4"></a><span class="st">  </span><span class="kw">read_html</span>()</span>
+<span id="cb427-5"><a href="obtendo-dados.html#cb427-5"></a></span>
+<span id="cb427-6"><a href="obtendo-dados.html#cb427-6"></a></span>
+<span id="cb427-7"><a href="obtendo-dados.html#cb427-7"></a>tb &lt;-<span class="st"> </span><span class="kw">html_table</span>(url, <span class="dt">fill =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb427-8"><a href="obtendo-dados.html#cb427-8"></a>tb &lt;-<span class="st"> </span>tb[[<span class="dv">6</span>]]</span>
+<span id="cb427-9"><a href="obtendo-dados.html#cb427-9"></a>tb <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb427-10"><a href="obtendo-dados.html#cb427-10"></a><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb427-11"><a href="obtendo-dados.html#cb427-11"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">SG =</span> <span class="kw">ifelse</span>(<span class="kw">str_detect</span>(SG,<span class="st">&quot;</span><span class="ch">\\</span><span class="st">+&quot;</span>),</span>
+<span id="cb427-12"><a href="obtendo-dados.html#cb427-12"></a>                    readr<span class="op">::</span><span class="kw">parse_number</span>(SG),</span>
+<span id="cb427-13"><a href="obtendo-dados.html#cb427-13"></a>                    <span class="dv">-1</span> <span class="op">*</span><span class="st"> </span>readr<span class="op">::</span><span class="kw">parse_number</span>(SG)))</span></code></pre></div>
 
 </div>
 </div>

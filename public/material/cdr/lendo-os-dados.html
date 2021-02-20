@@ -24,7 +24,6 @@
 <meta name="author" content="Saulo Guerra, Paulo Felipe de Oliveira, Robert McDonnell e Sillas Gonzaga" />
 
 
-<meta name="date" content="2021-07-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -419,17 +418,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="definindo-o-local-dos-dados" class="section level2">
 <h2><span class="header-section-number">3.2</span> Definindo o Local dos Dados</h2>
 <p>O R sempre trabalha com o conceito de <em>Working direcotry</em>, ou seja, uma pasta de trabalho onde vai “ler” e “escrever” os dados. Para verificar qual o diretório que o R está “olhando”, utilize o seguinte comando:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="lendo-os-dados.html#cb20-1"></a><span class="kw">getwd</span>() <span class="co">#Get Working Directory</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="lendo-os-dados.html#cb17-1"></a><span class="kw">getwd</span>() <span class="co">#Get Working Directory</span></span></code></pre></div>
 <p>Para informar ao R em qual pasta ele deve ler os arquivos, utilizamos o comando <em>set working directory</em>, que muda o diretório padrão do R para leitura e escrita:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="lendo-os-dados.html#cb21-1"></a><span class="kw">setwd</span>(<span class="st">&#39;D:/caminho/do/arquivo/arquivo.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="lendo-os-dados.html#cb18-1"></a><span class="kw">setwd</span>(<span class="st">&#39;D:/caminho/do/arquivo/arquivo.csv&#39;</span>)</span></code></pre></div>
 </div>
 <div id="pacote-para-leitura-dos-dados" class="section level2">
 <h2><span class="header-section-number">3.3</span> Pacote para leitura dos dados</h2>
 <p>O R base possui funções para a leitura dos principais tipos de arquivos. Um outro pacote específico, e muito bom para isso, é o <code>readr</code>. O Tidyverse inclui o carregamento do pacote <code>readr</code>.</p>
 <p>Diversos tipos de arquivos são lidos pelo R: Comma-Separated Values (csv), Excel, arquivos separados por delimitadores, colunas de tamanho fixo etc. Talvez o tipo de arquivo (estruturado) mais comum hoje em dia, e mais simples de trabalhar, seja o csv. Começaremos a importar dados com arquivos csv.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="lendo-os-dados.html#cb22-1"></a><span class="kw">library</span>(tidyverse) <span class="co"># já carrega o readr</span></span>
-<span id="cb22-2"><a href="lendo-os-dados.html#cb22-2"></a><span class="co">#ou</span></span>
-<span id="cb22-3"><a href="lendo-os-dados.html#cb22-3"></a><span class="kw">library</span>(readr)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="lendo-os-dados.html#cb19-1"></a><span class="kw">library</span>(tidyverse) <span class="co"># já carrega o readr</span></span>
+<span id="cb19-2"><a href="lendo-os-dados.html#cb19-2"></a><span class="co">#ou</span></span>
+<span id="cb19-3"><a href="lendo-os-dados.html#cb19-3"></a><span class="kw">library</span>(readr)</span></code></pre></div>
 <p>Vamos importar um csv chamado <code>Ano-2020.csv.zip</code>, que corresponde ao dataset de <a href="https://dadosabertos.camara.leg.br/swagger/api.html#staticfile">despesas pela Cota para Exercício da Atividade Parlamentar</a>. Caso o arquivo esteja em seu working directory (<code>getwd()</code>), basta passar apenas o nome do arquivo para a função, caso contrário será necessário informar todo o caminho até a pasta do arquivo. Usamos o read_csv() para fazer isso.</p>
 <pre><code>## Warning: 39 parsing failures.
 ##   row            col           expected  actual                 file
@@ -440,9 +439,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 21835 vlrRestituicao 1/0/T/F/TRUE/FALSE 36.45   &#39;dados/Ano-2020.csv&#39;
 ## ..... .............. .................. ....... ....................
 ## See problems(...) for more details.</code></pre>
-<p>Esse comando carrega o conteúdo do arquivo <code>senado.csv</code> para o objeto (variável) senado. Após o carregamento, começaremos a investigar o conteúdo desse objeto: os dados.</p>
+<p>Esse comando carrega o conteúdo do arquivo <code>Ano-2020.csv</code> para o objeto (variável) <code>df</code>. Após o carregamento, começaremos a investigar o conteúdo desse objeto: os dados.</p>
 <p>O <code>head</code> e o <code>tail</code> são funções para ver a “cabeça” e o “rabo” dos seus dados, ou seja, o começo e o fim das amostras. É muito importante sempre observar a “aparência” dos dados após o carregamento. Essa observação ajuda a identificar erros básicos no carregamento, possibilitando ajustes o quanto antes, impedindo que esses erros se propaguem. Repare que na primeira linha temos os nomes das colunas e, em seguida, os registros.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="lendo-os-dados.html#cb24-1"></a><span class="kw">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="lendo-os-dados.html#cb21-1"></a><span class="kw">head</span>(df)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 31
 ##   txNomeParlament…   cpf ideCadastro nuCarteiraParla… nuLegislatura sgUF  sgPartido
 ##   &lt;chr&gt;            &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    
@@ -459,7 +458,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   numParcela &lt;dbl&gt;, txtPassageiro &lt;chr&gt;, txtTrecho &lt;chr&gt;, numLote &lt;dbl&gt;,
 ## #   numRessarcimento &lt;dbl&gt;, vlrRestituicao &lt;lgl&gt;, nuDeputadoId &lt;dbl&gt;, ideDocumento &lt;dbl&gt;,
 ## #   urlDocumento &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="lendo-os-dados.html#cb26-1"></a><span class="kw">tail</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="lendo-os-dados.html#cb23-1"></a><span class="kw">tail</span>(df)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 31
 ##   txNomeParlament…     cpf ideCadastro nuCarteiraParla… nuLegislatura sgUF  sgPartido
 ##   &lt;chr&gt;              &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    
@@ -478,109 +477,149 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   urlDocumento &lt;chr&gt;</code></pre>
 <p>Outros comandos muito importantes para começar a investigar os dados são o <code>str()</code>, o <code>class()</code> e o <code>summary()</code>.</p>
 <p>Para verificar o tipo do objeto, ou seja, sua classe, utilize:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="lendo-os-dados.html#cb28-1"></a><span class="kw">class</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="lendo-os-dados.html#cb25-1"></a><span class="kw">class</span>(df)</span></code></pre></div>
 <pre><code>## [1] &quot;spec_tbl_df&quot; &quot;tbl_df&quot;      &quot;tbl&quot;         &quot;data.frame&quot;</code></pre>
 <p>Já para verificar a estrutura do objeto, ou seja, seus campos (quando aplicável), insira:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="lendo-os-dados.html#cb30-1"></a><span class="kw">glimpse</span>(df) <span class="co">#STRucture</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="lendo-os-dados.html#cb27-1"></a><span class="kw">glimpse</span>(df) <span class="co">#STRucture</span></span></code></pre></div>
 <pre><code>## Rows: 144,367
 ## Columns: 31
-## $ txNomeParlamentar         &lt;chr&gt; &quot;LIDERANÇA DO DEMOCRATAS&quot;, &quot;LIDERANÇA DO DEMOCRATAS&quot;, &quot;…
-## $ cpf                       &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-## $ ideCadastro               &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-## $ nuCarteiraParlamentar     &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-## $ nuLegislatura             &lt;dbl&gt; 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2…
-## $ sgUF                      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-## $ sgPartido                 &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-## $ codLegislatura            &lt;dbl&gt; 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56,…
-## $ numSubCota                &lt;dbl&gt; 4, 4, 4, 4, 5, 5, 5, 5, 12, 12, 12, 13, 13, 13, 13, 13,…
-## $ txtDescricao              &lt;chr&gt; &quot;CONSULTORIAS, PESQUISAS E TRABALHOS TÉCNICOS.&quot;, &quot;CONSU…
-## $ numEspecificacaoSubCota   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-## $ txtDescricaoEspecificacao &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-## $ txtFornecedor             &lt;chr&gt; &quot;LINEAR COMUNICACAO LTDA - EPP&quot;, &quot;LINEAR COMUNICACAO LT…
-## $ txtCNPJCPF                &lt;chr&gt; &quot;109.472.430/0019-5&quot;, &quot;109.472.430/0019-5&quot;, &quot;109.472.43…
-## $ txtNumero                 &lt;chr&gt; &quot;2737&quot;, &quot;2764&quot;, &quot;2809&quot;, &quot;2908&quot;, &quot;2786&quot;, &quot;2833&quot;, &quot;2856&quot;,…
-## $ indTipoDocumento          &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 1, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1…
-## $ datEmissao                &lt;dttm&gt; 2020-04-27 00:00:00, 2020-05-27 00:00:00, 2020-07-27 0…
-## $ vlrDocumento              &lt;chr&gt; &quot;1527.28&quot;, &quot;1527.28&quot;, &quot;1527.28&quot;, &quot;1527.28&quot;, &quot;1527.28&quot;, …
-## $ vlrGlosa                  &lt;chr&gt; &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, …
-## $ vlrLiquido                &lt;chr&gt; &quot;1527.28&quot;, &quot;1527.28&quot;, &quot;1527.28&quot;, &quot;1527.28&quot;, &quot;1527.28&quot;, …
-## $ numMes                    &lt;dbl&gt; 4, 5, 7, 11, 6, 8, 9, 12, 2, 3, 10, 7, 12, 9, 7, 7, 12,…
-## $ numAno                    &lt;dbl&gt; 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2…
-## $ numParcela                &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-## $ txtPassageiro             &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-## $ txtTrecho                 &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-## $ numLote                   &lt;dbl&gt; 1693866, 1698547, 1709149, 1730495, 1703569, 1714269, 1…
-## $ numRessarcimento          &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-## $ vlrRestituicao            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-## $ nuDeputadoId              &lt;dbl&gt; 2713, 2713, 2713, 2713, 2713, 2713, 2713, 2713, 2713, 2…
-## $ ideDocumento              &lt;dbl&gt; 7050172, 7058437, 7078508, 7123566, 7067718, 7088718, 7…
-## $ urlDocumento              &lt;chr&gt; &quot;http://camara.leg.br/cota-parlamentar/nota-fiscal-elet…</code></pre>
+## $ txNomeParlamentar         &lt;chr&gt; &quot;LIDERANÇA DO DEMOCRATAS&quot;, &quot;LIDERANÇA DO DEMOCRATAS&quot;, &quot;L…
+## $ cpf                       &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ ideCadastro               &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ nuCarteiraParlamentar     &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ nuLegislatura             &lt;dbl&gt; 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 20…
+## $ sgUF                      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ sgPartido                 &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ codLegislatura            &lt;dbl&gt; 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, …
+## $ numSubCota                &lt;dbl&gt; 4, 4, 4, 4, 5, 5, 5, 5, 12, 12, 12, 13, 13, 13, 13, 13, …
+## $ txtDescricao              &lt;chr&gt; &quot;CONSULTORIAS, PESQUISAS E TRABALHOS TÉCNICOS.&quot;, &quot;CONSUL…
+## $ numEspecificacaoSubCota   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+## $ txtDescricaoEspecificacao &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ txtFornecedor             &lt;chr&gt; &quot;LINEAR COMUNICACAO LTDA - EPP&quot;, &quot;LINEAR COMUNICACAO LTD…
+## $ txtCNPJCPF                &lt;chr&gt; &quot;109.472.430/0019-5&quot;, &quot;109.472.430/0019-5&quot;, &quot;109.472.430…
+## $ txtNumero                 &lt;chr&gt; &quot;2737&quot;, &quot;2764&quot;, &quot;2809&quot;, &quot;2908&quot;, &quot;2786&quot;, &quot;2833&quot;, &quot;2856&quot;, …
+## $ indTipoDocumento          &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 1, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1,…
+## $ datEmissao                &lt;dttm&gt; 2020-04-27 00:00:00, 2020-05-27 00:00:00, 2020-07-27 00…
+## $ vlrDocumento              &lt;chr&gt; &quot;1527.28&quot;, &quot;1527.28&quot;, &quot;1527.28&quot;, &quot;1527.28&quot;, &quot;1527.28&quot;, &quot;…
+## $ vlrGlosa                  &lt;chr&gt; &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;…
+## $ vlrLiquido                &lt;chr&gt; &quot;1527.28&quot;, &quot;1527.28&quot;, &quot;1527.28&quot;, &quot;1527.28&quot;, &quot;1527.28&quot;, &quot;…
+## $ numMes                    &lt;dbl&gt; 4, 5, 7, 11, 6, 8, 9, 12, 2, 3, 10, 7, 12, 9, 7, 7, 12, …
+## $ numAno                    &lt;dbl&gt; 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 20…
+## $ numParcela                &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+## $ txtPassageiro             &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ txtTrecho                 &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ numLote                   &lt;dbl&gt; 1693866, 1698547, 1709149, 1730495, 1703569, 1714269, 17…
+## $ numRessarcimento          &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ vlrRestituicao            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ nuDeputadoId              &lt;dbl&gt; 2713, 2713, 2713, 2713, 2713, 2713, 2713, 2713, 2713, 27…
+## $ ideDocumento              &lt;dbl&gt; 7050172, 7058437, 7078508, 7123566, 7067718, 7088718, 71…
+## $ urlDocumento              &lt;chr&gt; &quot;http://camara.leg.br/cota-parlamentar/nota-fiscal-eletr…</code></pre>
 <p>Para verificar estatísticas básicas do objeto (média, mediana, quantis, mínimo, máximo etc.), quando aplicáveis:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="lendo-os-dados.html#cb32-1"></a><span class="kw">summary</span>(df)</span></code></pre></div>
-<pre><code>##  txNomeParlamentar       cpf             ideCadastro     nuCarteiraParlamentar
-##  Length:144367      Min.   :1.609e+06   Min.   : 62881   Min.   :  1          
-##  Class :character   1st Qu.:6.630e+09   1st Qu.:143084   1st Qu.:165          
-##  Mode  :character   Median :2.194e+10   Median :178966   Median :297          
-##                     Mean   :3.220e+10   Mean   :168038   Mean   :292          
-##                     3rd Qu.:5.143e+10   3rd Qu.:204455   3rd Qu.:429          
-##                     Max.   :9.990e+10   Max.   :214694   Max.   :566          
-##                     NA&#39;s   :391         NA&#39;s   :390      NA&#39;s   :390          
-##  nuLegislatura      sgUF            sgPartido         codLegislatura   numSubCota   
-##  Min.   :2019   Length:144367      Length:144367      Min.   :56     Min.   :  1.0  
-##  1st Qu.:2019   Class :character   Class :character   1st Qu.:56     1st Qu.:  3.0  
-##  Median :2019   Mode  :character   Mode  :character   Median :56     Median :  5.0  
-##  Mean   :2019                                         Mean   :56     Mean   :116.3  
-##  3rd Qu.:2019                                         3rd Qu.:56     3rd Qu.: 14.0  
-##  Max.   :2019                                         Max.   :56     Max.   :999.0  
-##                                                                                     
-##  txtDescricao       numEspecificacaoSubCota txtDescricaoEspecificacao txtFornecedor     
-##  Length:144367      Min.   :0.0000          Length:144367             Length:144367     
-##  Class :character   1st Qu.:0.0000          Class :character          Class :character  
-##  Mode  :character   Median :0.0000          Mode  :character          Mode  :character  
-##                     Mean   :0.2819                                                      
-##                     3rd Qu.:1.0000                                                      
-##                     Max.   :4.0000                                                      
-##                                                                                         
-##   txtCNPJCPF         txtNumero         indTipoDocumento   datEmissao                 
-##  Length:144367      Length:144367      Min.   :0.000    Min.   :2019-11-25 00:00:00  
-##  Class :character   Class :character   1st Qu.:0.000    1st Qu.:2020-03-04 00:00:00  
-##  Mode  :character   Mode  :character   Median :0.000    Median :2020-06-23 00:00:00  
-##                                        Mean   :1.009    Mean   :2020-06-21 23:00:20  
-##                                        3rd Qu.:1.000    3rd Qu.:2020-10-01 00:00:00  
-##                                        Max.   :4.000    Max.   :2021-02-03 00:00:00  
-##                                                         NA&#39;s   :5892                 
-##  vlrDocumento         vlrGlosa          vlrLiquido            numMes           numAno    
-##  Length:144367      Length:144367      Length:144367      Min.   : 1.000   Min.   :2020  
-##  Class :character   Class :character   Class :character   1st Qu.: 3.000   1st Qu.:2020  
-##  Mode  :character   Mode  :character   Mode  :character   Median : 6.000   Median :2020  
-##                                                           Mean   : 6.128   Mean   :2020  
-##                                                           3rd Qu.: 9.000   3rd Qu.:2020  
-##                                                           Max.   :12.000   Max.   :2020  
-##                                                                                          
-##    numParcela       txtPassageiro       txtTrecho            numLote       
-##  Min.   :0.000000   Length:144367      Length:144367      Min.   :      0  
-##  1st Qu.:0.000000   Class :character   Class :character   1st Qu.:1673118  
-##  Median :0.000000   Mode  :character   Mode  :character   Median :1697973  
-##  Mean   :0.000194                                         Mean   :1355186  
-##  3rd Qu.:0.000000                                         3rd Qu.:1719478  
-##  Max.   :1.000000                                         Max.   :1743675  
-##                                                                            
-##  numRessarcimento vlrRestituicao  nuDeputadoId   ideDocumento     urlDocumento      
-##  Min.   :0        Mode:logical   Min.   :  74   Min.   :      0   Length:144367     
-##  1st Qu.:0        NA&#39;s:144367    1st Qu.:2301   1st Qu.:7007282   Class :character  
-##  Median :0                       Median :3195   Median :7057354   Mode  :character  
-##  Mean   :0                       Mean   :2776   Mean   :5782888                     
-##  3rd Qu.:0                       3rd Qu.:3323   3rd Qu.:7099364                     
-##  Max.   :0                       Max.   :3473   Max.   :7150790                     
-##  NA&#39;s   :114672</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="lendo-os-dados.html#cb29-1"></a><span class="kw">summary</span>(df)</span></code></pre></div>
+<pre><code>##  txNomeParlamentar       cpf             ideCadastro    
+##  Length:144367      Min.   :1.609e+06   Min.   : 62881  
+##  Class :character   1st Qu.:6.630e+09   1st Qu.:143084  
+##  Mode  :character   Median :2.194e+10   Median :178966  
+##                     Mean   :3.220e+10   Mean   :168038  
+##                     3rd Qu.:5.143e+10   3rd Qu.:204455  
+##                     Max.   :9.990e+10   Max.   :214694  
+##                     NA&#39;s   :391         NA&#39;s   :390     
+##  nuCarteiraParlamentar nuLegislatura      sgUF          
+##  Min.   :  1           Min.   :2019   Length:144367     
+##  1st Qu.:165           1st Qu.:2019   Class :character  
+##  Median :297           Median :2019   Mode  :character  
+##  Mean   :292           Mean   :2019                     
+##  3rd Qu.:429           3rd Qu.:2019                     
+##  Max.   :566           Max.   :2019                     
+##  NA&#39;s   :390                                            
+##   sgPartido         codLegislatura   numSubCota   
+##  Length:144367      Min.   :56     Min.   :  1.0  
+##  Class :character   1st Qu.:56     1st Qu.:  3.0  
+##  Mode  :character   Median :56     Median :  5.0  
+##                     Mean   :56     Mean   :116.3  
+##                     3rd Qu.:56     3rd Qu.: 14.0  
+##                     Max.   :56     Max.   :999.0  
+##                                                   
+##  txtDescricao       numEspecificacaoSubCota
+##  Length:144367      Min.   :0.0000         
+##  Class :character   1st Qu.:0.0000         
+##  Mode  :character   Median :0.0000         
+##                     Mean   :0.2819         
+##                     3rd Qu.:1.0000         
+##                     Max.   :4.0000         
+##                                            
+##  txtDescricaoEspecificacao txtFornecedor     
+##  Length:144367             Length:144367     
+##  Class :character          Class :character  
+##  Mode  :character          Mode  :character  
+##                                              
+##                                              
+##                                              
+##                                              
+##   txtCNPJCPF         txtNumero         indTipoDocumento
+##  Length:144367      Length:144367      Min.   :0.000   
+##  Class :character   Class :character   1st Qu.:0.000   
+##  Mode  :character   Mode  :character   Median :0.000   
+##                                        Mean   :1.009   
+##                                        3rd Qu.:1.000   
+##                                        Max.   :4.000   
+##                                                        
+##    datEmissao                  vlrDocumento      
+##  Min.   :2019-11-25 00:00:00   Length:144367     
+##  1st Qu.:2020-03-04 00:00:00   Class :character  
+##  Median :2020-06-23 00:00:00   Mode  :character  
+##  Mean   :2020-06-21 23:00:20                     
+##  3rd Qu.:2020-10-01 00:00:00                     
+##  Max.   :2021-02-03 00:00:00                     
+##  NA&#39;s   :5892                                    
+##    vlrGlosa          vlrLiquido            numMes      
+##  Length:144367      Length:144367      Min.   : 1.000  
+##  Class :character   Class :character   1st Qu.: 3.000  
+##  Mode  :character   Mode  :character   Median : 6.000  
+##                                        Mean   : 6.128  
+##                                        3rd Qu.: 9.000  
+##                                        Max.   :12.000  
+##                                                        
+##      numAno       numParcela       txtPassageiro     
+##  Min.   :2020   Min.   :0.000000   Length:144367     
+##  1st Qu.:2020   1st Qu.:0.000000   Class :character  
+##  Median :2020   Median :0.000000   Mode  :character  
+##  Mean   :2020   Mean   :0.000194                     
+##  3rd Qu.:2020   3rd Qu.:0.000000                     
+##  Max.   :2020   Max.   :1.000000                     
+##                                                      
+##   txtTrecho            numLote        numRessarcimento
+##  Length:144367      Min.   :      0   Min.   :0       
+##  Class :character   1st Qu.:1673118   1st Qu.:0       
+##  Mode  :character   Median :1697973   Median :0       
+##                     Mean   :1355186   Mean   :0       
+##                     3rd Qu.:1719478   3rd Qu.:0       
+##                     Max.   :1743675   Max.   :0       
+##                                       NA&#39;s   :114672  
+##  vlrRestituicao  nuDeputadoId   ideDocumento    
+##  Mode:logical   Min.   :  74   Min.   :      0  
+##  NA&#39;s:144367    1st Qu.:2301   1st Qu.:7007282  
+##                 Median :3195   Median :7057354  
+##                 Mean   :2776   Mean   :5782888  
+##                 3rd Qu.:3323   3rd Qu.:7099364  
+##                 Max.   :3473   Max.   :7150790  
+##                                                 
+##  urlDocumento      
+##  Length:144367     
+##  Class :character  
+##  Mode  :character  
+##                    
+##                    
+##                    
+## </code></pre>
 <p>Acontece que nem sempre o separador será o <code>;</code>, típico do csv. Nesse caso será necessário usar o <code>read_delim()</code>, onde você pode informar qualquer tipo de separador. Outro tipo de arquivo bastante comum é o de colunas com tamanho fixo (fixed width), também conhecido como colunas posicionais. Nesse caso, será necessário usar o <code>read_fwf()</code> informando o tamanho de cada coluna.</p>
 <p>Exemplo:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="lendo-os-dados.html#cb34-1"></a><span class="co">#lendo arquivo com delimitador #</span></span>
-<span id="cb34-2"><a href="lendo-os-dados.html#cb34-2"></a><span class="kw">read_delim</span>(<span class="st">&#39;caminho/do/arquivo/arquivo_separado_por#.txt&#39;</span>, <span class="dt">delim =</span> <span class="st">&#39;#&#39;</span>)</span>
-<span id="cb34-3"><a href="lendo-os-dados.html#cb34-3"></a></span>
-<span id="cb34-4"><a href="lendo-os-dados.html#cb34-4"></a><span class="co">#lendo arquivo de coluna fixa</span></span>
-<span id="cb34-5"><a href="lendo-os-dados.html#cb34-5"></a><span class="co">#coluna 1 de tamanho 5, coluna 2 de tamanho 2 e coluna 3 de tamanho 10</span></span>
-<span id="cb34-6"><a href="lendo-os-dados.html#cb34-6"></a><span class="kw">read_fwf</span>(<span class="st">&#39;caminho/do/arquivo/arquivo_posicional.txt&#39;</span>, <span class="dt">col_positions =</span> <span class="kw">fwf_widths</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">10</span>), <span class="kw">c</span>(<span class="st">&quot;col1&quot;</span>, <span class="st">&quot;col2&quot;</span>, <span class="st">&quot;col3&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="lendo-os-dados.html#cb31-1"></a><span class="co">#lendo arquivo com delimitador #</span></span>
+<span id="cb31-2"><a href="lendo-os-dados.html#cb31-2"></a><span class="kw">read_delim</span>(<span class="st">&#39;caminho/do/arquivo/arquivo_separado_por#.txt&#39;</span>, <span class="dt">delim =</span> <span class="st">&#39;#&#39;</span>)</span>
+<span id="cb31-3"><a href="lendo-os-dados.html#cb31-3"></a></span>
+<span id="cb31-4"><a href="lendo-os-dados.html#cb31-4"></a><span class="co">#lendo arquivo de coluna fixa</span></span>
+<span id="cb31-5"><a href="lendo-os-dados.html#cb31-5"></a><span class="co">#coluna 1 de tamanho 5, coluna 2 de tamanho 2 e coluna 3 de tamanho 10</span></span>
+<span id="cb31-6"><a href="lendo-os-dados.html#cb31-6"></a><span class="kw">read_fwf</span>(<span class="st">&#39;caminho/do/arquivo/arquivo_posicional.txt&#39;</span>, <span class="dt">col_positions =</span> <span class="kw">fwf_widths</span>(<span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">10</span>), <span class="kw">c</span>(<span class="st">&quot;col1&quot;</span>, <span class="st">&quot;col2&quot;</span>, <span class="st">&quot;col3&quot;</span>)))</span></code></pre></div>
 <p>No capítulo a seguir exploraremos melhor os tipos de objetos mais comuns no R.</p>
 <div class="rmdtip">
 <p>

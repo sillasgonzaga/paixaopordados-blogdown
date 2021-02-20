@@ -24,7 +24,6 @@
 <meta name="author" content="Saulo Guerra, Paulo Felipe de Oliveira, Robert McDonnell e Sillas Gonzaga" />
 
 
-<meta name="date" content="2021-07-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -399,103 +398,100 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">8</span> Trabalhando com datas</h1>
 <p>Datas são um caso a parte no R. Existe uma própria classe para objetos desse tipo, chamada <code>Date</code>, com D maiúsculo. O R lida com datas no formato AAAA-MM-DD (Ano, Mês e Dia).</p>
 <p>Abaixo, definimos um vetor com datas</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="trabalhando-com-datas.html#cb353-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2014-07-15&quot;</span>, <span class="st">&quot;2018/03/20&quot;</span>, <span class="st">&quot;2019-12-31&quot;</span>, <span class="st">&quot;20170511&quot;</span>)</span>
-<span id="cb353-2"><a href="trabalhando-com-datas.html#cb353-2"></a><span class="kw">as.Date</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="trabalhando-com-datas.html#cb350-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2014-07-15&quot;</span>, <span class="st">&quot;2018/03/20&quot;</span>, <span class="st">&quot;2019-12-31&quot;</span>, <span class="st">&quot;20170511&quot;</span>)</span>
+<span id="cb350-2"><a href="trabalhando-com-datas.html#cb350-2"></a><span class="kw">as.Date</span>(x)</span></code></pre></div>
 <pre><code>## [1] &quot;2014-07-15&quot; NA           &quot;2019-12-31&quot; NA</code></pre>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="trabalhando-com-datas.html#cb355-1"></a><span class="kw">class</span>(<span class="kw">as.Date</span>(x))</span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="trabalhando-com-datas.html#cb352-1"></a><span class="kw">class</span>(<span class="kw">as.Date</span>(x))</span></code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
 <p>Perceba que o R nativamente não aceita qualquer separador entre o ano, o mês e o dia, apenas o traço. O pacote <code>lubridate</code>, que faz parte da família <code>tidyverse</code>, possui uma versão mais generalizável para isso:</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="trabalhando-com-datas.html#cb357-1"></a><span class="kw">library</span>(lubridate)</span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="trabalhando-com-datas.html#cb354-1"></a><span class="kw">library</span>(lubridate)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;lubridate&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     date, intersect, setdiff, union</code></pre>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="trabalhando-com-datas.html#cb360-1"></a>lubridate<span class="op">::</span><span class="kw">as_date</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="trabalhando-com-datas.html#cb357-1"></a>lubridate<span class="op">::</span><span class="kw">as_date</span>(x)</span></code></pre></div>
 <pre><code>## [1] &quot;2014-07-15&quot; &quot;2018-03-20&quot; &quot;2019-12-31&quot; &quot;2017-05-11&quot;</code></pre>
 <p>A propósito, dominar o pacote <code>lubridate</code>, que possui funções muito simples de usar, é a única coisa necessária para saber lidar com datas no R. Por isso, este capítulo se dedica a mostrar as principais funções do pacote.</p>
 <div id="gerar-um-vetor-sequencial-de-datas" class="section level2">
 <h2><span class="header-section-number">8.1</span> Gerar um vetor sequencial de datas</h2>
 <p>Essa tarefa é feita usando uma função nativa do R chamada <code>seq.Date()</code>, que possui quatro argumentos principais, sendo que três deles precisam ser especificados.</p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="trabalhando-com-datas.html#cb362-1"></a><span class="kw">args</span>(seq.Date)</span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="trabalhando-com-datas.html#cb359-1"></a><span class="kw">args</span>(seq.Date)</span></code></pre></div>
 <pre><code>## function (from, to, by, length.out = NULL, along.with = NULL, 
 ##     ...) 
 ## NULL</code></pre>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="trabalhando-com-datas.html#cb364-1"></a><span class="co"># gerar vetor de datas separadas por mes</span></span>
-<span id="cb364-2"><a href="trabalhando-com-datas.html#cb364-2"></a><span class="kw">seq.Date</span>(<span class="dt">from =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-01&quot;</span>),</span>
-<span id="cb364-3"><a href="trabalhando-com-datas.html#cb364-3"></a>         <span class="dt">to =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-12-01&quot;</span>),</span>
-<span id="cb364-4"><a href="trabalhando-com-datas.html#cb364-4"></a>         <span class="dt">by =</span> <span class="st">&quot;1 month&quot;</span>)</span></code></pre></div>
-<pre><code>##  [1] &quot;2020-01-01&quot; &quot;2020-02-01&quot; &quot;2020-03-01&quot; &quot;2020-04-01&quot; &quot;2020-05-01&quot; &quot;2020-06-01&quot;
-##  [7] &quot;2020-07-01&quot; &quot;2020-08-01&quot; &quot;2020-09-01&quot; &quot;2020-10-01&quot; &quot;2020-11-01&quot; &quot;2020-12-01&quot;</code></pre>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="trabalhando-com-datas.html#cb366-1"></a><span class="co"># gerar vetor de datas separadas por dia</span></span>
-<span id="cb366-2"><a href="trabalhando-com-datas.html#cb366-2"></a><span class="kw">seq.Date</span>(<span class="dt">from =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-01&quot;</span>),</span>
-<span id="cb366-3"><a href="trabalhando-com-datas.html#cb366-3"></a>         <span class="dt">to =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-20&quot;</span>),</span>
-<span id="cb366-4"><a href="trabalhando-com-datas.html#cb366-4"></a>         <span class="dt">by =</span> <span class="st">&quot;1 day&quot;</span>)</span></code></pre></div>
-<pre><code>##  [1] &quot;2020-01-01&quot; &quot;2020-01-02&quot; &quot;2020-01-03&quot; &quot;2020-01-04&quot; &quot;2020-01-05&quot; &quot;2020-01-06&quot;
-##  [7] &quot;2020-01-07&quot; &quot;2020-01-08&quot; &quot;2020-01-09&quot; &quot;2020-01-10&quot; &quot;2020-01-11&quot; &quot;2020-01-12&quot;
-## [13] &quot;2020-01-13&quot; &quot;2020-01-14&quot; &quot;2020-01-15&quot; &quot;2020-01-16&quot; &quot;2020-01-17&quot; &quot;2020-01-18&quot;
-## [19] &quot;2020-01-19&quot; &quot;2020-01-20&quot;</code></pre>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="trabalhando-com-datas.html#cb368-1"></a><span class="co"># gerar vetor de datas separadas por 3 dias</span></span>
-<span id="cb368-2"><a href="trabalhando-com-datas.html#cb368-2"></a><span class="kw">seq.Date</span>(<span class="dt">from =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-01&quot;</span>),</span>
-<span id="cb368-3"><a href="trabalhando-com-datas.html#cb368-3"></a>         <span class="dt">to =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-20&quot;</span>),</span>
-<span id="cb368-4"><a href="trabalhando-com-datas.html#cb368-4"></a>         <span class="dt">by =</span> <span class="st">&quot;3 day&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;2020-01-01&quot; &quot;2020-01-04&quot; &quot;2020-01-07&quot; &quot;2020-01-10&quot; &quot;2020-01-13&quot; &quot;2020-01-16&quot;
-## [7] &quot;2020-01-19&quot;</code></pre>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="trabalhando-com-datas.html#cb370-1"></a><span class="co"># gerar um vetor de 7 semanas separados por 1 semana</span></span>
-<span id="cb370-2"><a href="trabalhando-com-datas.html#cb370-2"></a><span class="kw">seq.Date</span>(<span class="dt">from =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-01&quot;</span>),</span>
-<span id="cb370-3"><a href="trabalhando-com-datas.html#cb370-3"></a>         <span class="dt">length.out =</span> <span class="dv">7</span>,</span>
-<span id="cb370-4"><a href="trabalhando-com-datas.html#cb370-4"></a>         <span class="dt">by =</span> <span class="st">&quot;1 week&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;2020-01-01&quot; &quot;2020-01-08&quot; &quot;2020-01-15&quot; &quot;2020-01-22&quot; &quot;2020-01-29&quot; &quot;2020-02-05&quot;
-## [7] &quot;2020-02-12&quot;</code></pre>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="trabalhando-com-datas.html#cb361-1"></a><span class="co"># gerar vetor de datas separadas por mes</span></span>
+<span id="cb361-2"><a href="trabalhando-com-datas.html#cb361-2"></a><span class="kw">seq.Date</span>(<span class="dt">from =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-01&quot;</span>),</span>
+<span id="cb361-3"><a href="trabalhando-com-datas.html#cb361-3"></a>         <span class="dt">to =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-12-01&quot;</span>),</span>
+<span id="cb361-4"><a href="trabalhando-com-datas.html#cb361-4"></a>         <span class="dt">by =</span> <span class="st">&quot;1 month&quot;</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;2020-01-01&quot; &quot;2020-02-01&quot; &quot;2020-03-01&quot; &quot;2020-04-01&quot; &quot;2020-05-01&quot; &quot;2020-06-01&quot; &quot;2020-07-01&quot;
+##  [8] &quot;2020-08-01&quot; &quot;2020-09-01&quot; &quot;2020-10-01&quot; &quot;2020-11-01&quot; &quot;2020-12-01&quot;</code></pre>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="trabalhando-com-datas.html#cb363-1"></a><span class="co"># gerar vetor de datas separadas por dia</span></span>
+<span id="cb363-2"><a href="trabalhando-com-datas.html#cb363-2"></a><span class="kw">seq.Date</span>(<span class="dt">from =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-01&quot;</span>),</span>
+<span id="cb363-3"><a href="trabalhando-com-datas.html#cb363-3"></a>         <span class="dt">to =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-20&quot;</span>),</span>
+<span id="cb363-4"><a href="trabalhando-com-datas.html#cb363-4"></a>         <span class="dt">by =</span> <span class="st">&quot;1 day&quot;</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;2020-01-01&quot; &quot;2020-01-02&quot; &quot;2020-01-03&quot; &quot;2020-01-04&quot; &quot;2020-01-05&quot; &quot;2020-01-06&quot; &quot;2020-01-07&quot;
+##  [8] &quot;2020-01-08&quot; &quot;2020-01-09&quot; &quot;2020-01-10&quot; &quot;2020-01-11&quot; &quot;2020-01-12&quot; &quot;2020-01-13&quot; &quot;2020-01-14&quot;
+## [15] &quot;2020-01-15&quot; &quot;2020-01-16&quot; &quot;2020-01-17&quot; &quot;2020-01-18&quot; &quot;2020-01-19&quot; &quot;2020-01-20&quot;</code></pre>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="trabalhando-com-datas.html#cb365-1"></a><span class="co"># gerar vetor de datas separadas por 3 dias</span></span>
+<span id="cb365-2"><a href="trabalhando-com-datas.html#cb365-2"></a><span class="kw">seq.Date</span>(<span class="dt">from =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-01&quot;</span>),</span>
+<span id="cb365-3"><a href="trabalhando-com-datas.html#cb365-3"></a>         <span class="dt">to =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-20&quot;</span>),</span>
+<span id="cb365-4"><a href="trabalhando-com-datas.html#cb365-4"></a>         <span class="dt">by =</span> <span class="st">&quot;3 day&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2020-01-01&quot; &quot;2020-01-04&quot; &quot;2020-01-07&quot; &quot;2020-01-10&quot; &quot;2020-01-13&quot; &quot;2020-01-16&quot; &quot;2020-01-19&quot;</code></pre>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="trabalhando-com-datas.html#cb367-1"></a><span class="co"># gerar um vetor de 7 semanas separados por 1 semana</span></span>
+<span id="cb367-2"><a href="trabalhando-com-datas.html#cb367-2"></a><span class="kw">seq.Date</span>(<span class="dt">from =</span> <span class="kw">as_date</span>(<span class="st">&quot;2020-01-01&quot;</span>),</span>
+<span id="cb367-3"><a href="trabalhando-com-datas.html#cb367-3"></a>         <span class="dt">length.out =</span> <span class="dv">7</span>,</span>
+<span id="cb367-4"><a href="trabalhando-com-datas.html#cb367-4"></a>         <span class="dt">by =</span> <span class="st">&quot;1 week&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2020-01-01&quot; &quot;2020-01-08&quot; &quot;2020-01-15&quot; &quot;2020-01-22&quot; &quot;2020-01-29&quot; &quot;2020-02-05&quot; &quot;2020-02-12&quot;</code></pre>
 </div>
 <div id="parsear-datas-e-horários" class="section level2">
 <h2><span class="header-section-number">8.2</span> ‘Parsear’ datas e horários</h2>
 <p>Para fazer o R converter (ou parsear na linguagem de programação) um string em data, basta usar as funções correspondentes do lubridate.</p>
 <p>Por exemplo, no vetor de exemplo <code>x</code>, definido acima, as datas já estavam definidas no formato correto: AAAA-MM-DD. Aqui no Brasil usamos outro formato: DD/MM/AAAA. O <code>lubridate</code> possui uma função pronta para essa situação:</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="trabalhando-com-datas.html#cb372-1"></a><span class="co"># observer como usamos diferentes separadores</span></span>
-<span id="cb372-2"><a href="trabalhando-com-datas.html#cb372-2"></a>datas_brasil &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;01/12/2019&quot;</span>, <span class="st">&quot;20/11/2018&quot;</span>, <span class="st">&quot;30011990&quot;</span>, <span class="st">&quot;17-03-2000&quot;</span>)</span>
-<span id="cb372-3"><a href="trabalhando-com-datas.html#cb372-3"></a><span class="co"># parseando o vetor acima para Data</span></span>
-<span id="cb372-4"><a href="trabalhando-com-datas.html#cb372-4"></a><span class="kw">dmy</span>(datas_brasil)</span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="trabalhando-com-datas.html#cb369-1"></a><span class="co"># observer como usamos diferentes separadores</span></span>
+<span id="cb369-2"><a href="trabalhando-com-datas.html#cb369-2"></a>datas_brasil &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;01/12/2019&quot;</span>, <span class="st">&quot;20/11/2018&quot;</span>, <span class="st">&quot;30011990&quot;</span>, <span class="st">&quot;17-03-2000&quot;</span>)</span>
+<span id="cb369-3"><a href="trabalhando-com-datas.html#cb369-3"></a><span class="co"># parseando o vetor acima para Data</span></span>
+<span id="cb369-4"><a href="trabalhando-com-datas.html#cb369-4"></a><span class="kw">dmy</span>(datas_brasil)</span></code></pre></div>
 <pre><code>## [1] &quot;2019-12-01&quot; &quot;2018-11-20&quot; &quot;1990-01-30&quot; &quot;2000-03-17&quot;</code></pre>
 <p>Caso o vetor também contenha dados de horário, basta incluir o sufixo referente a hora, minuto e segundo:</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="trabalhando-com-datas.html#cb374-1"></a><span class="kw">dmy_hms</span>(<span class="st">&quot;30-09-2019 14:51:39&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="trabalhando-com-datas.html#cb371-1"></a><span class="kw">dmy_hms</span>(<span class="st">&quot;30-09-2019 14:51:39&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2019-09-30 14:51:39 UTC&quot;</code></pre>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="trabalhando-com-datas.html#cb376-1"></a><span class="co"># sem o segundo</span></span>
-<span id="cb376-2"><a href="trabalhando-com-datas.html#cb376-2"></a><span class="kw">dmy_hm</span>(<span class="st">&quot;30-09-2019 14:15&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="trabalhando-com-datas.html#cb373-1"></a><span class="co"># sem o segundo</span></span>
+<span id="cb373-2"><a href="trabalhando-com-datas.html#cb373-2"></a><span class="kw">dmy_hm</span>(<span class="st">&quot;30-09-2019 14:15&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2019-09-30 14:15:00 UTC&quot;</code></pre>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="trabalhando-com-datas.html#cb378-1"></a><span class="co"># apenas a hora</span></span>
-<span id="cb378-2"><a href="trabalhando-com-datas.html#cb378-2"></a><span class="kw">dmy_h</span>(<span class="st">&quot;30-09-2019 15&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="trabalhando-com-datas.html#cb375-1"></a><span class="co"># apenas a hora</span></span>
+<span id="cb375-2"><a href="trabalhando-com-datas.html#cb375-2"></a><span class="kw">dmy_h</span>(<span class="st">&quot;30-09-2019 15&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2019-09-30 15:00:00 UTC&quot;</code></pre>
 </div>
 <div id="extrair-componentes-de-uma-data" class="section level2">
 <h2><span class="header-section-number">8.3</span> Extrair componentes de uma data</h2>
 <p>É possível extrair qualquer tipo de componente de uma data ou de um vetor de datas com o lubridate. Veja alguns exemplos:</p>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="trabalhando-com-datas.html#cb380-1"></a>datas_brasil &lt;-<span class="st"> </span><span class="kw">dmy_hms</span>(<span class="kw">c</span>(<span class="st">&quot;01/12/2019 13:51:15&quot;</span>, <span class="st">&quot;20/11/2018 00:00:00&quot;</span>, <span class="st">&quot;30011990 080000&quot;</span>, <span class="st">&quot;17-03-2000 203000&quot;</span>))</span>
-<span id="cb380-2"><a href="trabalhando-com-datas.html#cb380-2"></a>datas_brasil</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="trabalhando-com-datas.html#cb377-1"></a>datas_brasil &lt;-<span class="st"> </span><span class="kw">dmy_hms</span>(<span class="kw">c</span>(<span class="st">&quot;01/12/2019 13:51:15&quot;</span>, <span class="st">&quot;20/11/2018 00:00:00&quot;</span>, <span class="st">&quot;30011990 080000&quot;</span>, <span class="st">&quot;17-03-2000 203000&quot;</span>))</span>
+<span id="cb377-2"><a href="trabalhando-com-datas.html#cb377-2"></a>datas_brasil</span></code></pre></div>
 <pre><code>## [1] &quot;2019-12-01 13:51:15 UTC&quot; &quot;2018-11-20 00:00:00 UTC&quot; &quot;1990-01-30 08:00:00 UTC&quot;
 ## [4] &quot;2000-03-17 20:30:00 UTC&quot;</code></pre>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="trabalhando-com-datas.html#cb382-1"></a><span class="co"># extrair componentes da data:</span></span>
-<span id="cb382-2"><a href="trabalhando-com-datas.html#cb382-2"></a><span class="co"># ano</span></span>
-<span id="cb382-3"><a href="trabalhando-com-datas.html#cb382-3"></a><span class="kw">year</span>(datas_brasil)</span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="trabalhando-com-datas.html#cb379-1"></a><span class="co"># extrair componentes da data:</span></span>
+<span id="cb379-2"><a href="trabalhando-com-datas.html#cb379-2"></a><span class="co"># ano</span></span>
+<span id="cb379-3"><a href="trabalhando-com-datas.html#cb379-3"></a><span class="kw">year</span>(datas_brasil)</span></code></pre></div>
 <pre><code>## [1] 2019 2018 1990 2000</code></pre>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="trabalhando-com-datas.html#cb384-1"></a><span class="co"># mes</span></span>
-<span id="cb384-2"><a href="trabalhando-com-datas.html#cb384-2"></a><span class="kw">month</span>(datas_brasil)</span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="trabalhando-com-datas.html#cb381-1"></a><span class="co"># mes</span></span>
+<span id="cb381-2"><a href="trabalhando-com-datas.html#cb381-2"></a><span class="kw">month</span>(datas_brasil)</span></code></pre></div>
 <pre><code>## [1] 12 11  1  3</code></pre>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="trabalhando-com-datas.html#cb386-1"></a><span class="co"># dia</span></span>
-<span id="cb386-2"><a href="trabalhando-com-datas.html#cb386-2"></a><span class="kw">day</span>(datas_brasil)</span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="trabalhando-com-datas.html#cb383-1"></a><span class="co"># dia</span></span>
+<span id="cb383-2"><a href="trabalhando-com-datas.html#cb383-2"></a><span class="kw">day</span>(datas_brasil)</span></code></pre></div>
 <pre><code>## [1]  1 20 30 17</code></pre>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="trabalhando-com-datas.html#cb388-1"></a><span class="co"># semana do ano</span></span>
-<span id="cb388-2"><a href="trabalhando-com-datas.html#cb388-2"></a><span class="kw">week</span>(datas_brasil)</span></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="trabalhando-com-datas.html#cb385-1"></a><span class="co"># semana do ano</span></span>
+<span id="cb385-2"><a href="trabalhando-com-datas.html#cb385-2"></a><span class="kw">week</span>(datas_brasil)</span></code></pre></div>
 <pre><code>## [1] 48 47  5 11</code></pre>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="trabalhando-com-datas.html#cb390-1"></a><span class="co"># dia da semana</span></span>
-<span id="cb390-2"><a href="trabalhando-com-datas.html#cb390-2"></a><span class="kw">wday</span>(datas_brasil, <span class="dt">label =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="trabalhando-com-datas.html#cb387-1"></a><span class="co"># dia da semana</span></span>
+<span id="cb387-2"><a href="trabalhando-com-datas.html#cb387-2"></a><span class="kw">wday</span>(datas_brasil, <span class="dt">label =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] dom ter ter sex
 ## Levels: dom &lt; seg &lt; ter &lt; qua &lt; qui &lt; sex &lt; sáb</code></pre>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="trabalhando-com-datas.html#cb392-1"></a><span class="co"># trimestre</span></span>
-<span id="cb392-2"><a href="trabalhando-com-datas.html#cb392-2"></a><span class="kw">quarter</span>(datas_brasil)</span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="trabalhando-com-datas.html#cb389-1"></a><span class="co"># trimestre</span></span>
+<span id="cb389-2"><a href="trabalhando-com-datas.html#cb389-2"></a><span class="kw">quarter</span>(datas_brasil)</span></code></pre></div>
 <pre><code>## [1] 4 4 1 1</code></pre>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="trabalhando-com-datas.html#cb394-1"></a><span class="co"># hora</span></span>
-<span id="cb394-2"><a href="trabalhando-com-datas.html#cb394-2"></a><span class="kw">hour</span>(datas_brasil)</span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="trabalhando-com-datas.html#cb391-1"></a><span class="co"># hora</span></span>
+<span id="cb391-2"><a href="trabalhando-com-datas.html#cb391-2"></a><span class="kw">hour</span>(datas_brasil)</span></code></pre></div>
 <pre><code>## [1] 13  0  8 20</code></pre>
 </div>
 <div id="operações-matemáticas-com-datas" class="section level2">
@@ -504,59 +500,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><strong>Adicionar uma quantidade N de dias/meses/anos/etc em uma data</strong>:</li>
 </ul>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="trabalhando-com-datas.html#cb396-1"></a><span class="co"># adicionar 1 semana nas datas</span></span>
-<span id="cb396-2"><a href="trabalhando-com-datas.html#cb396-2"></a>datas_brasil <span class="op">+</span><span class="st"> </span><span class="kw">ddays</span>(<span class="dv">7</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="trabalhando-com-datas.html#cb393-1"></a><span class="co"># adicionar 1 semana nas datas</span></span>
+<span id="cb393-2"><a href="trabalhando-com-datas.html#cb393-2"></a>datas_brasil <span class="op">+</span><span class="st"> </span><span class="kw">ddays</span>(<span class="dv">7</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2019-12-08 13:51:15 UTC&quot; &quot;2018-11-27 00:00:00 UTC&quot; &quot;1990-02-06 08:00:00 UTC&quot;
 ## [4] &quot;2000-03-24 20:30:00 UTC&quot;</code></pre>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="trabalhando-com-datas.html#cb398-1"></a><span class="co"># adicionar 3 meses</span></span>
-<span id="cb398-2"><a href="trabalhando-com-datas.html#cb398-2"></a>datas_brasil <span class="op">+</span><span class="st"> </span><span class="kw">ddays</span>(<span class="dv">90</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="trabalhando-com-datas.html#cb395-1"></a><span class="co"># adicionar 3 meses</span></span>
+<span id="cb395-2"><a href="trabalhando-com-datas.html#cb395-2"></a>datas_brasil <span class="op">+</span><span class="st"> </span><span class="kw">ddays</span>(<span class="dv">90</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2020-02-29 13:51:15 UTC&quot; &quot;2019-02-18 00:00:00 UTC&quot; &quot;1990-04-30 08:00:00 UTC&quot;
 ## [4] &quot;2000-06-15 20:30:00 UTC&quot;</code></pre>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="trabalhando-com-datas.html#cb400-1"></a><span class="co"># adicionar 1 ano</span></span>
-<span id="cb400-2"><a href="trabalhando-com-datas.html#cb400-2"></a>datas_brasil <span class="op">+</span><span class="st"> </span><span class="kw">dyears</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="trabalhando-com-datas.html#cb397-1"></a><span class="co"># adicionar 1 ano</span></span>
+<span id="cb397-2"><a href="trabalhando-com-datas.html#cb397-2"></a>datas_brasil <span class="op">+</span><span class="st"> </span><span class="kw">dyears</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2020-11-30 19:51:15 UTC&quot; &quot;2019-11-20 06:00:00 UTC&quot; &quot;1991-01-30 14:00:00 UTC&quot;
 ## [4] &quot;2001-03-18 02:30:00 UTC&quot;</code></pre>
 <ul>
 <li><strong>Calcular a diferença de tempo entre duas datas</strong>:</li>
 </ul>
 <p>No R, subtrair datas segue a mesma sintaxe de subtrair números:</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="trabalhando-com-datas.html#cb402-1"></a>data1 &lt;-<span class="st"> </span><span class="kw">dmy_hms</span>(<span class="st">&quot;01/09/1993 20:00:00&quot;</span>)</span>
-<span id="cb402-2"><a href="trabalhando-com-datas.html#cb402-2"></a>data2 &lt;-<span class="st"> </span><span class="kw">dmy_hms</span>(<span class="st">&quot;24-06-2018 17:00:00&quot;</span>)</span>
-<span id="cb402-3"><a href="trabalhando-com-datas.html#cb402-3"></a></span>
-<span id="cb402-4"><a href="trabalhando-com-datas.html#cb402-4"></a>dif &lt;-<span class="st"> </span>data2 <span class="op">-</span><span class="st"> </span>data1</span>
-<span id="cb402-5"><a href="trabalhando-com-datas.html#cb402-5"></a>dif</span></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="trabalhando-com-datas.html#cb399-1"></a>data1 &lt;-<span class="st"> </span><span class="kw">dmy_hms</span>(<span class="st">&quot;01/09/1993 20:00:00&quot;</span>)</span>
+<span id="cb399-2"><a href="trabalhando-com-datas.html#cb399-2"></a>data2 &lt;-<span class="st"> </span><span class="kw">dmy_hms</span>(<span class="st">&quot;24-06-2018 17:00:00&quot;</span>)</span>
+<span id="cb399-3"><a href="trabalhando-com-datas.html#cb399-3"></a></span>
+<span id="cb399-4"><a href="trabalhando-com-datas.html#cb399-4"></a>dif &lt;-<span class="st"> </span>data2 <span class="op">-</span><span class="st"> </span>data1</span>
+<span id="cb399-5"><a href="trabalhando-com-datas.html#cb399-5"></a>dif</span></code></pre></div>
 <pre><code>## Time difference of 9061.875 days</code></pre>
 <p>Por padrão, o R retorna a diferença em dias, mas em um objeto de classe <code>difftime</code>.</p>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="trabalhando-com-datas.html#cb404-1"></a><span class="kw">class</span>(dif)</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="trabalhando-com-datas.html#cb401-1"></a><span class="kw">class</span>(dif)</span></code></pre></div>
 <pre><code>## [1] &quot;difftime&quot;</code></pre>
 <p>Recomenda-se então converter o output para a classe <code>numeric</code>:</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="trabalhando-com-datas.html#cb406-1"></a><span class="kw">as.numeric</span>(dif)</span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="trabalhando-com-datas.html#cb403-1"></a><span class="kw">as.numeric</span>(dif)</span></code></pre></div>
 <pre><code>## [1] 9061.875</code></pre>
 <p>Caso se deseje calcular essa diferença em outras unidades de tempo, como meses ou semanas, basta fazer a divisão correspondente:</p>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="trabalhando-com-datas.html#cb408-1"></a><span class="co"># conveter para semanas</span></span>
-<span id="cb408-2"><a href="trabalhando-com-datas.html#cb408-2"></a><span class="kw">as.numeric</span>(dif) <span class="op">/</span><span class="st"> </span><span class="dv">7</span></span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="trabalhando-com-datas.html#cb405-1"></a><span class="co"># conveter para semanas</span></span>
+<span id="cb405-2"><a href="trabalhando-com-datas.html#cb405-2"></a><span class="kw">as.numeric</span>(dif) <span class="op">/</span><span class="st"> </span><span class="dv">7</span></span></code></pre></div>
 <pre><code>## [1] 1294.554</code></pre>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="trabalhando-com-datas.html#cb410-1"></a><span class="co"># converter para meses</span></span>
-<span id="cb410-2"><a href="trabalhando-com-datas.html#cb410-2"></a><span class="kw">as.numeric</span>(dif) <span class="op">/</span><span class="st"> </span><span class="dv">30</span></span></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="trabalhando-com-datas.html#cb407-1"></a><span class="co"># converter para meses</span></span>
+<span id="cb407-2"><a href="trabalhando-com-datas.html#cb407-2"></a><span class="kw">as.numeric</span>(dif) <span class="op">/</span><span class="st"> </span><span class="dv">30</span></span></code></pre></div>
 <pre><code>## [1] 302.0625</code></pre>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="trabalhando-com-datas.html#cb412-1"></a><span class="co"># converter para anos</span></span>
-<span id="cb412-2"><a href="trabalhando-com-datas.html#cb412-2"></a><span class="kw">as.numeric</span>(dif) <span class="op">/</span><span class="st"> </span><span class="dv">365</span></span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="trabalhando-com-datas.html#cb409-1"></a><span class="co"># converter para anos</span></span>
+<span id="cb409-2"><a href="trabalhando-com-datas.html#cb409-2"></a><span class="kw">as.numeric</span>(dif) <span class="op">/</span><span class="st"> </span><span class="dv">365</span></span></code></pre></div>
 <pre><code>## [1] 24.82705</code></pre>
 <ul>
 <li><strong>Arredondar datas</strong>:</li>
 </ul>
 <p>Para arredondar uma data, por exemplo, retornar o primeiro ou último dia da semana/mês/trimestre/etc de uma data de referência, usa-se as funções <code>ceiling_date()</code> (arredondar para cima) e <code>floor_date()</code> (para baixo):</p>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="trabalhando-com-datas.html#cb414-1"></a><span class="co"># retornar a primeira data da semana:</span></span>
-<span id="cb414-2"><a href="trabalhando-com-datas.html#cb414-2"></a><span class="kw">floor_date</span>(datas_brasil, <span class="st">&quot;week&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="trabalhando-com-datas.html#cb411-1"></a><span class="co"># retornar a primeira data da semana:</span></span>
+<span id="cb411-2"><a href="trabalhando-com-datas.html#cb411-2"></a><span class="kw">floor_date</span>(datas_brasil, <span class="st">&quot;week&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2019-12-01 UTC&quot; &quot;2018-11-18 UTC&quot; &quot;1990-01-28 UTC&quot; &quot;2000-03-12 UTC&quot;</code></pre>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="trabalhando-com-datas.html#cb416-1"></a><span class="co"># retornar a ultima data do mês</span></span>
-<span id="cb416-2"><a href="trabalhando-com-datas.html#cb416-2"></a><span class="co"># por padrao, ceiling_date retorna a primeira data do próximo mês,</span></span>
-<span id="cb416-3"><a href="trabalhando-com-datas.html#cb416-3"></a><span class="co"># por isso é necessario subtrair o resultado por 1</span></span>
-<span id="cb416-4"><a href="trabalhando-com-datas.html#cb416-4"></a><span class="kw">ceiling_date</span>(datas_brasil, <span class="st">&quot;month&quot;</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="trabalhando-com-datas.html#cb413-1"></a><span class="co"># retornar a ultima data do mês</span></span>
+<span id="cb413-2"><a href="trabalhando-com-datas.html#cb413-2"></a><span class="co"># por padrao, ceiling_date retorna a primeira data do próximo mês,</span></span>
+<span id="cb413-3"><a href="trabalhando-com-datas.html#cb413-3"></a><span class="co"># por isso é necessario subtrair o resultado por 1</span></span>
+<span id="cb413-4"><a href="trabalhando-com-datas.html#cb413-4"></a><span class="kw">ceiling_date</span>(datas_brasil, <span class="st">&quot;month&quot;</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] &quot;2019-12-31 23:59:59 UTC&quot; &quot;2018-11-30 23:59:59 UTC&quot; &quot;1990-01-31 23:59:59 UTC&quot;
 ## [4] &quot;2000-03-31 23:59:59 UTC&quot;</code></pre>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="trabalhando-com-datas.html#cb418-1"></a><span class="co"># arredondar usando a hora como referencia</span></span>
-<span id="cb418-2"><a href="trabalhando-com-datas.html#cb418-2"></a><span class="kw">floor_date</span>(datas_brasil, <span class="st">&quot;hour&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="trabalhando-com-datas.html#cb415-1"></a><span class="co"># arredondar usando a hora como referencia</span></span>
+<span id="cb415-2"><a href="trabalhando-com-datas.html#cb415-2"></a><span class="kw">floor_date</span>(datas_brasil, <span class="st">&quot;hour&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2019-12-01 13:00:00 UTC&quot; &quot;2018-11-20 00:00:00 UTC&quot; &quot;1990-01-30 08:00:00 UTC&quot;
 ## [4] &quot;2000-03-17 20:00:00 UTC&quot;</code></pre>
 

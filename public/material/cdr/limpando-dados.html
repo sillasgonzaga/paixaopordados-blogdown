@@ -24,7 +24,6 @@
 <meta name="author" content="Saulo Guerra, Paulo Felipe de Oliveira, Robert McDonnell e Sillas Gonzaga" />
 
 
-<meta name="date" content="2021-07-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -421,8 +420,8 @@ Figura 5.2: Tabela long
 <p>Na contramão da limpeza de dados, você provavelmente terá o problema contrário ao final da sua análise. Supondo que você organizou seus dados perfeitamente, conseguiu executar os modelos que gostaria, gerou diversos gráficos interessantes e está satisfeito com o resultado, você ainda precisará entregar relatórios finais da sua análise em forma de tabelas sumarizadas e explicativas, de modo que os interessados possam entender facilmente, apenas com uma rápida análise visual. Neste caso, que tipo de tabela seria melhor produzir? Provavelmente, quem for ler seus relatórios entenderá mais rapidamente as tabelas mais próximas do primeiro exemplo mostrado.</p>
 <p>É importante aprender a estruturar e desestruturar tabelas de todas as formas possíveis.</p>
 <p>Para exemplificar, veja algumas tabelas disponíveis no pacote <code>tidyverse</code>, ilustrando os diferentes tipos de organização nos formatos wide e long. Todas as tabelas possuem os mesmos dados e informações:</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="limpando-dados.html#cb198-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="limpando-dados.html#cb199-1"></a>table1</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="limpando-dados.html#cb195-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="limpando-dados.html#cb196-1"></a>table1</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -432,7 +431,7 @@ Figura 5.2: Tabela long
 ## 4 Brazil       2000  80488  174504898
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="limpando-dados.html#cb201-1"></a>table2</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="limpando-dados.html#cb198-1"></a>table2</span></code></pre></div>
 <pre><code>## # A tibble: 12 x 4
 ##    country      year type            count
 ##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
@@ -448,7 +447,7 @@ Figura 5.2: Tabela long
 ## 10 China        1999 population 1272915272
 ## 11 China        2000 cases          213766
 ## 12 China        2000 population 1280428583</code></pre>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="limpando-dados.html#cb203-1"></a>table3</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="limpando-dados.html#cb200-1"></a>table3</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   country      year rate             
 ## * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
@@ -458,21 +457,21 @@ Figura 5.2: Tabela long
 ## 4 Brazil       2000 80488/174504898  
 ## 5 China        1999 212258/1272915272
 ## 6 China        2000 213766/1280428583</code></pre>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="limpando-dados.html#cb205-1"></a>table4a</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="limpando-dados.html#cb202-1"></a>table4a</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   country     `1999` `2000`
 ## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
 ## 1 Afghanistan    745   2666
 ## 2 Brazil       37737  80488
 ## 3 China       212258 213766</code></pre>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="limpando-dados.html#cb207-1"></a>table4b</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="limpando-dados.html#cb204-1"></a>table4b</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   country         `1999`     `2000`
 ## * &lt;chr&gt;            &lt;int&gt;      &lt;int&gt;
 ## 1 Afghanistan   19987071   20595360
 ## 2 Brazil       172006362  174504898
 ## 3 China       1272915272 1280428583</code></pre>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="limpando-dados.html#cb209-1"></a>table5</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="limpando-dados.html#cb206-1"></a>table5</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country     century year  rate             
 ## * &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            
@@ -487,9 +486,9 @@ Figura 5.2: Tabela long
 <h2><span class="header-section-number">5.2</span> Pacote tidyr</h2>
 <p>Apesar de existirem diversas possibilidades de situações que necessitem de limpeza de dados, a conjugação de três pacotes consegue resolver a grande maioria dos casos: <code>dplyr</code>, <code>tidyr</code>, <code>stringr</code>.</p>
 <p>O pacote <code>tidyr</code> é mais um dos pacotes criados por Hadley Wickham. Este fato, por si só, já traz algumas vantagens: ele se integra perfeitamente com o <code>dplyr</code>, usando o conector <code>%&gt;%</code>, e tem a sintaxe de suas funções bastante intuitiva.</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="limpando-dados.html#cb211-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyr&quot;</span>)</span>
-<span id="cb211-2"><a href="limpando-dados.html#cb211-2"></a><span class="kw">library</span>(tidyr)</span>
-<span id="cb211-3"><a href="limpando-dados.html#cb211-3"></a>?tidyr</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="limpando-dados.html#cb208-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyr&quot;</span>)</span>
+<span id="cb208-2"><a href="limpando-dados.html#cb208-2"></a><span class="kw">library</span>(tidyr)</span>
+<span id="cb208-3"><a href="limpando-dados.html#cb208-3"></a>?tidyr</span></code></pre></div>
 <p>O <code>tidyr</code> também tem suas funções organizadas em pequenos verbetes, onde cada um representa uma tarefa para organizar os dados. Os verbetes básicos que abordaremos são os seguintes:</p>
 <ul>
 <li><code>pivot_longer()</code><br />
@@ -517,7 +516,7 @@ Figura 5.3: Tabela long
 <h3><span class="header-section-number">5.2.1</span> pivot_longer()</h3>
 <p>A função <code>pivot_longer()</code>, antiga <code>gather()</code>, serve para agrupar duas ou mais colunas e seus respectivos valores (conteúdos) em pares. Assim, o resultado após o agrupamento é sempre duas colunas. A primeira delas possui observações cujos valores chave eram as colunas antigas e a segunda possui os valores respectivos relacionados com as colunas antigas. Na prática, a função gather diminui o número de colunas e aumenta o número de linhas de nossa base de dados.</p>
 <p>Usaremos dados disponíveis no R base para exemplificar:</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="limpando-dados.html#cb212-1"></a>relig_income </span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="limpando-dados.html#cb209-1"></a>relig_income </span></code></pre></div>
 <pre><code>## # A tibble: 18 x 11
 ##    religion `&lt;$10k` `$10-20k` `$20-30k` `$30-40k` `$40-50k` `$50-75k` `$75-100k` `$100-150k`
 ##    &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
@@ -541,14 +540,14 @@ Figura 5.3: Tabela long
 ## 18 Unaffil…     217       299       374       365       341       528        407         321
 ## # … with 2 more variables: `&gt;150k` &lt;dbl&gt;, `Don&#39;t know/refused` &lt;dbl&gt;</code></pre>
 <p>Para transformar a tabela acima do formato wide para o long, usamos a função:</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="limpando-dados.html#cb214-1"></a>relig_income <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb214-2"><a href="limpando-dados.html#cb214-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(</span>
-<span id="cb214-3"><a href="limpando-dados.html#cb214-3"></a>    <span class="co"># o argumento cols controla quais colunas serão (ou não serão) transformadas</span></span>
-<span id="cb214-4"><a href="limpando-dados.html#cb214-4"></a>    <span class="dt">cols =</span> <span class="op">-</span>religion,</span>
-<span id="cb214-5"><a href="limpando-dados.html#cb214-5"></a>    <span class="co">#names_to controla o nome da nova coluna que irá receber os nomes das colunas transpostas</span></span>
-<span id="cb214-6"><a href="limpando-dados.html#cb214-6"></a>    <span class="dt">names_to =</span> <span class="st">&quot;renda&quot;</span>,</span>
-<span id="cb214-7"><a href="limpando-dados.html#cb214-7"></a>    <span class="co"># values_to controla o nome da nova coluna que irá recebebr os valores das colunas transpostas </span></span>
-<span id="cb214-8"><a href="limpando-dados.html#cb214-8"></a>    <span class="dt">values_to =</span> <span class="st">&quot;quantidade&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="limpando-dados.html#cb211-1"></a>relig_income <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb211-2"><a href="limpando-dados.html#cb211-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(</span>
+<span id="cb211-3"><a href="limpando-dados.html#cb211-3"></a>    <span class="co"># o argumento cols controla quais colunas serão (ou não serão) transformadas</span></span>
+<span id="cb211-4"><a href="limpando-dados.html#cb211-4"></a>    <span class="dt">cols =</span> <span class="op">-</span>religion,</span>
+<span id="cb211-5"><a href="limpando-dados.html#cb211-5"></a>    <span class="co">#names_to controla o nome da nova coluna que irá receber os nomes das colunas transpostas</span></span>
+<span id="cb211-6"><a href="limpando-dados.html#cb211-6"></a>    <span class="dt">names_to =</span> <span class="st">&quot;renda&quot;</span>,</span>
+<span id="cb211-7"><a href="limpando-dados.html#cb211-7"></a>    <span class="co"># values_to controla o nome da nova coluna que irá recebebr os valores das colunas transpostas </span></span>
+<span id="cb211-8"><a href="limpando-dados.html#cb211-8"></a>    <span class="dt">values_to =</span> <span class="st">&quot;quantidade&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 180 x 3
 ##    religion renda              quantidade
 ##    &lt;chr&gt;    &lt;chr&gt;                   &lt;dbl&gt;
@@ -572,7 +571,7 @@ Figura 5.3: Tabela long
 <div id="pivot_wider" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> pivot_wider()</h3>
 <p>É a operação antagônica do <code>pivot_longer()</code>. Ela espalha os valores de duas colunas em diversos campos para cada registro: os valores de uma coluna viram o nome das novas colunas, e os valores de outra viram valores de cada registro nas novas colunas. O output tem mais colunas e menos linhas.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="limpando-dados.html#cb216-1"></a>us_rent_income</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="limpando-dados.html#cb213-1"></a>us_rent_income</span></code></pre></div>
 <pre><code>## # A tibble: 104 x 5
 ##    GEOID NAME       variable estimate   moe
 ##    &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;
@@ -587,13 +586,13 @@ Figura 5.3: Tabela long
 ##  9 06    California income      29454   109
 ## 10 06    California rent         1358     3
 ## # … with 94 more rows</code></pre>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="limpando-dados.html#cb218-1"></a>us_rent_income <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb218-2"><a href="limpando-dados.html#cb218-2"></a><span class="st">  </span><span class="kw">pivot_wider</span>(</span>
-<span id="cb218-3"><a href="limpando-dados.html#cb218-3"></a>    <span class="co">#names_from controla de qual coluna serão criados os nomes das novas colunas</span></span>
-<span id="cb218-4"><a href="limpando-dados.html#cb218-4"></a>    <span class="dt">names_from =</span> variable,</span>
-<span id="cb218-5"><a href="limpando-dados.html#cb218-5"></a>    <span class="co"># values_from controla as colunas cujos valores serão os valores das novas colunas</span></span>
-<span id="cb218-6"><a href="limpando-dados.html#cb218-6"></a>    <span class="dt">values_from =</span> <span class="kw">c</span>(estimate, moe)</span>
-<span id="cb218-7"><a href="limpando-dados.html#cb218-7"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="limpando-dados.html#cb215-1"></a>us_rent_income <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb215-2"><a href="limpando-dados.html#cb215-2"></a><span class="st">  </span><span class="kw">pivot_wider</span>(</span>
+<span id="cb215-3"><a href="limpando-dados.html#cb215-3"></a>    <span class="co">#names_from controla de qual coluna serão criados os nomes das novas colunas</span></span>
+<span id="cb215-4"><a href="limpando-dados.html#cb215-4"></a>    <span class="dt">names_from =</span> variable,</span>
+<span id="cb215-5"><a href="limpando-dados.html#cb215-5"></a>    <span class="co"># values_from controla as colunas cujos valores serão os valores das novas colunas</span></span>
+<span id="cb215-6"><a href="limpando-dados.html#cb215-6"></a>    <span class="dt">values_from =</span> <span class="kw">c</span>(estimate, moe)</span>
+<span id="cb215-7"><a href="limpando-dados.html#cb215-7"></a>  )</span></code></pre></div>
 <pre><code>## # A tibble: 52 x 6
 ##    GEOID NAME                 estimate_income estimate_rent moe_income moe_rent
 ##    &lt;chr&gt; &lt;chr&gt;                          &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
@@ -618,10 +617,10 @@ Figura 5.3: Tabela long
 <h3><span class="header-section-number">5.2.3</span> separate</h3>
 <p>O <code>separate()</code> é usado para separar duas variáveis que estão em uma mesma coluna. Lembre-se: cada coluna deve ser apenas uma única variável! É muito normal virem variáveis juntas em uma única coluna, mas nem sempre isso é prejudicial, cabe avaliar quando vale a pena separá-las.</p>
 <p>Usaremos o exemplo da <code>table3</code> para investigar:</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="limpando-dados.html#cb220-1"></a>table3.wide &lt;-<span class="st"> </span>table3 <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb220-2"><a href="limpando-dados.html#cb220-2"></a><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep=</span><span class="st">&#39;/&#39;</span>)</span>
-<span id="cb220-3"><a href="limpando-dados.html#cb220-3"></a></span>
-<span id="cb220-4"><a href="limpando-dados.html#cb220-4"></a><span class="kw">head</span>(table3.wide)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="limpando-dados.html#cb217-1"></a>table3.wide &lt;-<span class="st"> </span>table3 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb217-2"><a href="limpando-dados.html#cb217-2"></a><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep=</span><span class="st">&#39;/&#39;</span>)</span>
+<span id="cb217-3"><a href="limpando-dados.html#cb217-3"></a></span>
+<span id="cb217-4"><a href="limpando-dados.html#cb217-4"></a><span class="kw">head</span>(table3.wide)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year cases  population
 ##   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     
@@ -640,17 +639,17 @@ Figura 5.3: Tabela long
 <div id="unite" class="section level3">
 <h3><span class="header-section-number">5.2.4</span> unite</h3>
 <p>A operação <code>unite()</code> é o oposto da <code>separate()</code>, ela pega duas colunas (variáveis) e transforma em uma só. É muito utilizada para montar relatórios finais ou tabelas para análise visual. Aproveitemos o exemplo em <code>table2</code> para montarmos uma tabela final comparando a “case” e “population” de cada país, em cada ano.</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="limpando-dados.html#cb222-1"></a>table2.relatorio &lt;-<span class="st"> </span>table2 <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb222-2"><a href="limpando-dados.html#cb222-2"></a><span class="st">  </span><span class="kw">unite</span>(type_year, type, year) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb222-3"><a href="limpando-dados.html#cb222-3"></a><span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> type_year, <span class="dt">value =</span> count, <span class="dt">sep =</span> <span class="st">&#39;_&#39;</span>)</span>
-<span id="cb222-4"><a href="limpando-dados.html#cb222-4"></a>  </span>
-<span id="cb222-5"><a href="limpando-dados.html#cb222-5"></a>table2.relatorio</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="limpando-dados.html#cb219-1"></a>table2.relatorio &lt;-<span class="st"> </span>table2 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb219-2"><a href="limpando-dados.html#cb219-2"></a><span class="st">  </span><span class="kw">unite</span>(type_year, type, year) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb219-3"><a href="limpando-dados.html#cb219-3"></a><span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> type_year, <span class="dt">value =</span> count, <span class="dt">sep =</span> <span class="st">&#39;_&#39;</span>)</span>
+<span id="cb219-4"><a href="limpando-dados.html#cb219-4"></a>  </span>
+<span id="cb219-5"><a href="limpando-dados.html#cb219-5"></a>table2.relatorio</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 5
-##   country   type_year_cases_1… type_year_cases_2… type_year_population… type_year_populatio…
-##   &lt;chr&gt;                  &lt;int&gt;              &lt;int&gt;                 &lt;int&gt;                &lt;int&gt;
-## 1 Afghanis…                745               2666              19987071             20595360
-## 2 Brazil                 37737              80488             172006362            174504898
-## 3 China                 212258             213766            1272915272           1280428583</code></pre>
+##   country    type_year_cases_19… type_year_cases_2… type_year_population_… type_year_population_…
+##   &lt;chr&gt;                    &lt;int&gt;              &lt;int&gt;                  &lt;int&gt;                  &lt;int&gt;
+## 1 Afghanist…                 745               2666               19987071               20595360
+## 2 Brazil                   37737              80488              172006362              174504898
+## 3 China                   212258             213766             1272915272             1280428583</code></pre>
 <div class="rmdtip">
 <p>
 <strong>Referências:</strong> <a href="https://tidyr.tidyverse.org/reference/unite.html">Documentação da função <code>unite</code></a>
@@ -661,12 +660,12 @@ Figura 5.3: Tabela long
 <div id="separate_rows" class="section level3">
 <h3><span class="header-section-number">5.2.5</span> separate_rows</h3>
 <p>Do mesmo modo que <code>separate()</code> quebra uma coluna em várias, <code>separate_rows()</code> quebra uma linha em várias de acordo com um separador. Essa função é muito útil para lidar com dados sujos. Observe o exemplo:</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="limpando-dados.html#cb224-1"></a><span class="co"># criar dataframe de exemplo</span></span>
-<span id="cb224-2"><a href="limpando-dados.html#cb224-2"></a>exemplo &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">grupo =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>,<span class="st">&quot;b&quot;</span>),</span>
-<span id="cb224-3"><a href="limpando-dados.html#cb224-3"></a>                  <span class="dt">y =</span> <span class="kw">c</span>(<span class="st">&quot;1, 2&quot;</span>, <span class="st">&quot;3;4&quot;</span>, <span class="st">&quot;1,2,3&quot;</span>, <span class="st">&quot;4&quot;</span>))</span>
-<span id="cb224-4"><a href="limpando-dados.html#cb224-4"></a></span>
-<span id="cb224-5"><a href="limpando-dados.html#cb224-5"></a>exemplo <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb224-6"><a href="limpando-dados.html#cb224-6"></a><span class="st">  </span><span class="kw">separate_rows</span>(y, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="limpando-dados.html#cb221-1"></a><span class="co"># criar dataframe de exemplo</span></span>
+<span id="cb221-2"><a href="limpando-dados.html#cb221-2"></a>exemplo &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">grupo =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>,<span class="st">&quot;b&quot;</span>),</span>
+<span id="cb221-3"><a href="limpando-dados.html#cb221-3"></a>                  <span class="dt">y =</span> <span class="kw">c</span>(<span class="st">&quot;1, 2&quot;</span>, <span class="st">&quot;3;4&quot;</span>, <span class="st">&quot;1,2,3&quot;</span>, <span class="st">&quot;4&quot;</span>))</span>
+<span id="cb221-4"><a href="limpando-dados.html#cb221-4"></a></span>
+<span id="cb221-5"><a href="limpando-dados.html#cb221-5"></a>exemplo <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb221-6"><a href="limpando-dados.html#cb221-6"></a><span class="st">  </span><span class="kw">separate_rows</span>(y, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 7 x 2
 ##   grupo y    
 ##   &lt;chr&gt; &lt;chr&gt;
