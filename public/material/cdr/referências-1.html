@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>17 Referências | Ciência de Dados com R - Introdução</title>
   <meta name="description" content="Aprendendo a programar com R" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="17 Referências | Ciência de Dados com R - Introdução" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,8 @@
   
 <link rel="prev" href="revisão-titanic.html"/>
 
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,14 +50,15 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.2.2/plotly.js"></script>
+<script src="libs/plotly-binding-4.9.4.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
 <link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
 <script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
 <script src="libs/dygraphs-1.1.1/shapes.js"></script>
@@ -88,18 +90,18 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -119,7 +121,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -152,6 +154,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -172,7 +197,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a></li>
 <li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html"><i class="fa fa-check"></i>Sobre os autores</a></li>
 <li class="chapter" data-level="" data-path="download.html"><a href="download.html"><i class="fa fa-check"></i>Download</a></li>
-<li class="chapter" data-level="1" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i><b>1</b> Introdução</a><ul>
+<li class="chapter" data-level="1" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i><b>1</b> Introdução</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="introdução.html"><a href="introdução.html#o-que-é-ciência-de-dados"><i class="fa fa-check"></i><b>1.1</b> O que é Ciência de Dados?</a></li>
 <li class="chapter" data-level="1.2" data-path="introdução.html"><a href="introdução.html#workflow-da-ciência-de-dados"><i class="fa fa-check"></i><b>1.2</b> Workflow da Ciência de Dados</a></li>
 <li class="chapter" data-level="1.3" data-path="introdução.html"><a href="introdução.html#linguagens-para-ciência-de-dados"><i class="fa fa-check"></i><b>1.3</b> Linguagens para Ciência de dados</a></li>
@@ -181,9 +207,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.6" data-path="introdução.html"><a href="introdução.html#buscando-ajuda"><i class="fa fa-check"></i><b>1.6</b> Buscando Ajuda</a></li>
 <li class="chapter" data-level="1.7" data-path="introdução.html"><a href="introdução.html#exercícios"><i class="fa fa-check"></i><b>1.7</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html"><i class="fa fa-check"></i><b>2</b> Conceitos Básicos</a><ul>
+<li class="chapter" data-level="2" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html"><i class="fa fa-check"></i><b>2</b> Conceitos Básicos</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#console"><i class="fa fa-check"></i><b>2.1</b> Console</a></li>
-<li class="chapter" data-level="2.2" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#scripts"><i class="fa fa-check"></i><b>2.2</b> Scripts</a><ul>
+<li class="chapter" data-level="2.2" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#scripts"><i class="fa fa-check"></i><b>2.2</b> Scripts</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#salvando-scripts"><i class="fa fa-check"></i><b>2.2.1</b> Salvando Scripts</a></li>
 <li class="chapter" data-level="2.2.2" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#comentários-de-código"><i class="fa fa-check"></i><b>2.2.2</b> Comentários de Código</a></li>
 </ul></li>
@@ -194,8 +222,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#tidyverse"><i class="fa fa-check"></i><b>2.7</b> Tidyverse</a></li>
 <li class="chapter" data-level="2.8" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#exercícios-1"><i class="fa fa-check"></i><b>2.8</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html"><i class="fa fa-check"></i><b>3</b> Lendo os dados</a><ul>
-<li class="chapter" data-level="3.1" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#tipos-de-estrutura-dos-dados"><i class="fa fa-check"></i><b>3.1</b> Tipos de Estrutura dos Dados</a><ul>
+<li class="chapter" data-level="3" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html"><i class="fa fa-check"></i><b>3</b> Lendo os dados</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#tipos-de-estrutura-dos-dados"><i class="fa fa-check"></i><b>3.1</b> Tipos de Estrutura dos Dados</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#dados-estruturados"><i class="fa fa-check"></i><b>3.1.1</b> Dados Estruturados</a></li>
 <li class="chapter" data-level="3.1.2" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#dados-não-estruturados"><i class="fa fa-check"></i><b>3.1.2</b> Dados Não Estruturados</a></li>
 <li class="chapter" data-level="3.1.3" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#dados-semiestruturados"><i class="fa fa-check"></i><b>3.1.3</b> Dados Semiestruturados</a></li>
@@ -203,34 +233,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#definindo-o-local-dos-dados"><i class="fa fa-check"></i><b>3.2</b> Definindo o Local dos Dados</a></li>
 <li class="chapter" data-level="3.3" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#pacote-para-leitura-dos-dados"><i class="fa fa-check"></i><b>3.3</b> Pacote para leitura dos dados</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html"><i class="fa fa-check"></i><b>4</b> Manipulando os dados</a><ul>
-<li class="chapter" data-level="4.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#tipos-de-variáveis-e-colunas"><i class="fa fa-check"></i><b>4.1</b> Tipos de Variáveis e Colunas</a><ul>
+<li class="chapter" data-level="4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html"><i class="fa fa-check"></i><b>4</b> Manipulando os dados</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#tipos-de-variáveis-e-colunas"><i class="fa fa-check"></i><b>4.1</b> Tipos de Variáveis e Colunas</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#conversões-de-tipos-de-variáveis"><i class="fa fa-check"></i><b>4.1.1</b> Conversões de tipos de variáveis</a></li>
 <li class="chapter" data-level="4.1.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#outros-tipos-de-variáveis"><i class="fa fa-check"></i><b>4.1.2</b> Outros tipos de variáveis</a></li>
 <li class="chapter" data-level="4.1.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#valores-faltantes-e-o-na"><i class="fa fa-check"></i><b>4.1.3</b> Valores faltantes e o ‘NA’</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#estruturas-de-controle-de-fluxo"><i class="fa fa-check"></i><b>4.2</b> Estruturas de Controle de Fluxo</a><ul>
+<li class="chapter" data-level="4.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#estruturas-de-controle-de-fluxo"><i class="fa fa-check"></i><b>4.2</b> Estruturas de Controle de Fluxo</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#if-e-else"><i class="fa fa-check"></i><b>4.2.1</b> If e Else</a></li>
 <li class="chapter" data-level="4.2.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#loops"><i class="fa fa-check"></i><b>4.2.2</b> Loops</a></li>
 <li class="chapter" data-level="4.2.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#funções-1"><i class="fa fa-check"></i><b>4.2.3</b> Funções</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#manipulações-com-r-base"><i class="fa fa-check"></i><b>4.3</b> Manipulações com R base</a><ul>
+<li class="chapter" data-level="4.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#manipulações-com-r-base"><i class="fa fa-check"></i><b>4.3</b> Manipulações com R base</a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#trabalhando-com-colunas-de-um-data.frame"><i class="fa fa-check"></i><b>4.3.1</b> Trabalhando com colunas de um data.frame</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#pacote-dplyr"><i class="fa fa-check"></i><b>4.4</b> Pacote dplyr</a><ul>
+<li class="chapter" data-level="4.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#pacote-dplyr"><i class="fa fa-check"></i><b>4.4</b> Pacote dplyr</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#verbetes-do-dplyr-e-o-operador"><i class="fa fa-check"></i><b>4.4.1</b> Verbetes do dplyr e o operador <code>%&gt;%</code></a></li>
 <li class="chapter" data-level="4.4.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#select"><i class="fa fa-check"></i><b>4.4.2</b> Select</a></li>
 <li class="chapter" data-level="4.4.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#mutate"><i class="fa fa-check"></i><b>4.4.3</b> Mutate</a></li>
-<li class="chapter" data-level="4.4.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#group-by-e-summarise"><i class="fa fa-check"></i><b>4.4.4</b> Group By e Summarise</a></li>
+<li class="chapter" data-level="4.4.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#filter"><i class="fa fa-check"></i><b>4.4.4</b> Filter</a></li>
+<li class="chapter" data-level="4.4.5" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#group-by-e-summarise"><i class="fa fa-check"></i><b>4.4.5</b> Group By e Summarise</a></li>
+<li class="chapter" data-level="4.4.6" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#arrange"><i class="fa fa-check"></i><b>4.4.6</b> Arrange</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#exercícios-2"><i class="fa fa-check"></i><b>4.5</b> Exercícios</a><ul>
+<li class="chapter" data-level="4.5" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#exercícios-2"><i class="fa fa-check"></i><b>4.5</b> Exercícios</a>
+<ul>
 <li class="chapter" data-level="4.5.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#parte-1"><i class="fa fa-check"></i><b>4.5.1</b> Parte 1</a></li>
 <li class="chapter" data-level="4.5.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#parte-2"><i class="fa fa-check"></i><b>4.5.2</b> Parte 2</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="limpando-dados.html"><a href="limpando-dados.html"><i class="fa fa-check"></i><b>5</b> Limpando dados</a><ul>
+<li class="chapter" data-level="5" data-path="limpando-dados.html"><a href="limpando-dados.html"><i class="fa fa-check"></i><b>5</b> Limpando dados</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="limpando-dados.html"><a href="limpando-dados.html#o-formato-ideal-dos-dados"><i class="fa fa-check"></i><b>5.1</b> O formato “ideal” dos dados</a></li>
-<li class="chapter" data-level="5.2" data-path="limpando-dados.html"><a href="limpando-dados.html#pacote-tidyr"><i class="fa fa-check"></i><b>5.2</b> Pacote tidyr</a><ul>
+<li class="chapter" data-level="5.2" data-path="limpando-dados.html"><a href="limpando-dados.html#pacote-tidyr"><i class="fa fa-check"></i><b>5.2</b> Pacote tidyr</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="limpando-dados.html"><a href="limpando-dados.html#pivot_longer"><i class="fa fa-check"></i><b>5.2.1</b> pivot_longer()</a></li>
 <li class="chapter" data-level="5.2.2" data-path="limpando-dados.html"><a href="limpando-dados.html#pivot_wider"><i class="fa fa-check"></i><b>5.2.2</b> pivot_wider()</a></li>
 <li class="chapter" data-level="5.2.3" data-path="limpando-dados.html"><a href="limpando-dados.html#separate"><i class="fa fa-check"></i><b>5.2.3</b> separate</a></li>
@@ -239,9 +279,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="limpando-dados.html"><a href="limpando-dados.html#exercicios"><i class="fa fa-check"></i><b>5.3</b> Exercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="juntando-dados.html"><a href="juntando-dados.html"><i class="fa fa-check"></i><b>6</b> Juntando dados</a><ul>
+<li class="chapter" data-level="6" data-path="juntando-dados.html"><a href="juntando-dados.html"><i class="fa fa-check"></i><b>6</b> Juntando dados</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="juntando-dados.html"><a href="juntando-dados.html#união-de-dados-union"><i class="fa fa-check"></i><b>6.1</b> União de dados (Union)</a></li>
-<li class="chapter" data-level="6.2" data-path="juntando-dados.html"><a href="juntando-dados.html#cruzamento-de-dados-join"><i class="fa fa-check"></i><b>6.2</b> Cruzamento de Dados (Join)</a><ul>
+<li class="chapter" data-level="6.2" data-path="juntando-dados.html"><a href="juntando-dados.html#cruzamento-de-dados-join"><i class="fa fa-check"></i><b>6.2</b> Cruzamento de Dados (Join)</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="juntando-dados.html"><a href="juntando-dados.html#inner-join-ou-apenas-join"><i class="fa fa-check"></i><b>6.2.1</b> Inner Join (ou apenas Join)</a></li>
 <li class="chapter" data-level="6.2.2" data-path="juntando-dados.html"><a href="juntando-dados.html#left-outer-join"><i class="fa fa-check"></i><b>6.2.2</b> Left Outer Join</a></li>
 <li class="chapter" data-level="6.2.3" data-path="juntando-dados.html"><a href="juntando-dados.html#right-outer-join"><i class="fa fa-check"></i><b>6.2.3</b> Right Outer Join</a></li>
@@ -250,8 +292,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3" data-path="juntando-dados.html"><a href="juntando-dados.html#exercícios-3"><i class="fa fa-check"></i><b>6.3</b> Exercícios</a></li>
 <li class="chapter" data-level="6.4" data-path="juntando-dados.html"><a href="juntando-dados.html#exercícios-gerais-do-tidyverse"><i class="fa fa-check"></i><b>6.4</b> Exercícios gerais do Tidyverse</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html"><i class="fa fa-check"></i><b>7</b> Dados em strings (texto)</a><ul>
-<li class="chapter" data-level="7.1" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#pacote-stringr"><i class="fa fa-check"></i><b>7.1</b> Pacote stringr</a><ul>
+<li class="chapter" data-level="7" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html"><i class="fa fa-check"></i><b>7</b> Dados em strings (texto)</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#pacote-stringr"><i class="fa fa-check"></i><b>7.1</b> Pacote stringr</a>
+<ul>
 <li class="chapter" data-level="7.1.1" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#extrair-parte-de-uma-string"><i class="fa fa-check"></i><b>7.1.1</b> Extrair parte de uma string</a></li>
 <li class="chapter" data-level="7.1.2" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#substituir-caracteres-em-um-string"><i class="fa fa-check"></i><b>7.1.2</b> Substituir caracteres em um string</a></li>
 <li class="chapter" data-level="7.1.3" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#buscar-correspondências-em-um-string"><i class="fa fa-check"></i><b>7.1.3</b> Buscar correspondências em um string</a></li>
@@ -261,35 +305,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#regex"><i class="fa fa-check"></i><b>7.2</b> Regex</a></li>
 <li class="chapter" data-level="7.3" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#exercícios-4"><i class="fa fa-check"></i><b>7.3</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html"><i class="fa fa-check"></i><b>8</b> Trabalhando com datas</a><ul>
+<li class="chapter" data-level="8" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html"><i class="fa fa-check"></i><b>8</b> Trabalhando com datas</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html#gerar-um-vetor-sequencial-de-datas"><i class="fa fa-check"></i><b>8.1</b> Gerar um vetor sequencial de datas</a></li>
 <li class="chapter" data-level="8.2" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html#parsear-datas-e-horários"><i class="fa fa-check"></i><b>8.2</b> ‘Parsear’ datas e horários</a></li>
 <li class="chapter" data-level="8.3" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html#extrair-componentes-de-uma-data"><i class="fa fa-check"></i><b>8.3</b> Extrair componentes de uma data</a></li>
 <li class="chapter" data-level="8.4" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html#operações-matemáticas-com-datas"><i class="fa fa-check"></i><b>8.4</b> Operações matemáticas com datas</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html"><i class="fa fa-check"></i><b>9</b> Escrevendo dados</a><ul>
+<li class="chapter" data-level="9" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html"><i class="fa fa-check"></i><b>9</b> Escrevendo dados</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html#escrevendo-csv"><i class="fa fa-check"></i><b>9.1</b> Escrevendo csv</a></li>
 <li class="chapter" data-level="9.2" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html#rds"><i class="fa fa-check"></i><b>9.2</b> Rds</a></li>
 <li class="chapter" data-level="9.3" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html#escrevendo-outros-tipos-de-arquivos"><i class="fa fa-check"></i><b>9.3</b> Escrevendo outros tipos de arquivos</a></li>
 <li class="chapter" data-level="9.4" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html#exercícios-5"><i class="fa fa-check"></i><b>9.4</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="obtendo-dados.html"><a href="obtendo-dados.html"><i class="fa fa-check"></i><b>10</b> Obtendo dados</a><ul>
+<li class="chapter" data-level="10" data-path="obtendo-dados.html"><a href="obtendo-dados.html"><i class="fa fa-check"></i><b>10</b> Obtendo dados</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="obtendo-dados.html"><a href="obtendo-dados.html#api"><i class="fa fa-check"></i><b>10.1</b> API</a></li>
 <li class="chapter" data-level="10.2" data-path="obtendo-dados.html"><a href="obtendo-dados.html#web-scrapping"><i class="fa fa-check"></i><b>10.2</b> Web Scrapping</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html"><i class="fa fa-check"></i><b>11</b> Estruturas complexas de dados</a><ul>
+<li class="chapter" data-level="11" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html"><i class="fa fa-check"></i><b>11</b> Estruturas complexas de dados</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#introdução-a-listas"><i class="fa fa-check"></i><b>11.1</b> Introdução a listas</a></li>
-<li class="chapter" data-level="11.2" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#introdução-ao-pacote-purrr"><i class="fa fa-check"></i><b>11.2</b> Introdução ao pacote purrr</a><ul>
+<li class="chapter" data-level="11.2" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#introdução-ao-pacote-purrr"><i class="fa fa-check"></i><b>11.2</b> Introdução ao pacote purrr</a>
+<ul>
 <li class="chapter" data-level="11.2.1" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#map"><i class="fa fa-check"></i><b>11.2.1</b> <code>map()</code></a></li>
 <li class="chapter" data-level="11.2.2" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#funções-derivadas-de-map"><i class="fa fa-check"></i><b>11.2.2</b> Funções derivadas de <code>map()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#ideia-de-projeto-aplicando-uma-série-de-funções-a-uma-lista-de-arquivos"><i class="fa fa-check"></i><b>11.3</b> Ideia de projeto: Aplicando uma série de funções a uma lista de arquivos</a></li>
 <li class="chapter" data-level="11.4" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#referências"><i class="fa fa-check"></i><b>11.4</b> Referências</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>12</b> Visualizações de dados (ggplot2)</a><ul>
+<li class="chapter" data-level="12" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>12</b> Visualizações de dados (ggplot2)</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="ggplot2.html"><a href="ggplot2.html#dataset-do-módulo"><i class="fa fa-check"></i><b>12.1</b> Dataset do módulo</a></li>
 <li class="chapter" data-level="12.2" data-path="ggplot2.html"><a href="ggplot2.html#mapeamento-estético"><i class="fa fa-check"></i><b>12.2</b> Mapeamento Estético</a></li>
-<li class="chapter" data-level="12.3" data-path="ggplot2.html"><a href="ggplot2.html#objetos-geométricos-e-tipos-de-gráficos"><i class="fa fa-check"></i><b>12.3</b> Objetos geométricos e tipos de gráficos</a><ul>
+<li class="chapter" data-level="12.3" data-path="ggplot2.html"><a href="ggplot2.html#objetos-geométricos-e-tipos-de-gráficos"><i class="fa fa-check"></i><b>12.3</b> Objetos geométricos e tipos de gráficos</a>
+<ul>
 <li class="chapter" data-level="12.3.1" data-path="ggplot2.html"><a href="ggplot2.html#escolhendo-o-tipo-de-gráfico"><i class="fa fa-check"></i><b>12.3.1</b> Escolhendo o tipo de gráfico</a></li>
 <li class="chapter" data-level="12.3.2" data-path="ggplot2.html"><a href="ggplot2.html#gráfico-de-dispersão-geom_point"><i class="fa fa-check"></i><b>12.3.2</b> Gráfico de Dispersão (<code>geom_point()</code>)</a></li>
 <li class="chapter" data-level="12.3.3" data-path="ggplot2.html"><a href="ggplot2.html#gráficos-de-bolhas"><i class="fa fa-check"></i><b>12.3.3</b> Gráficos de Bolhas</a></li>
@@ -302,72 +353,86 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.3.10" data-path="ggplot2.html"><a href="ggplot2.html#cleveland-dot-plot"><i class="fa fa-check"></i><b>12.3.10</b> Cleveland Dot Plot</a></li>
 <li class="chapter" data-level="12.3.11" data-path="ggplot2.html"><a href="ggplot2.html#mapas-de-calor"><i class="fa fa-check"></i><b>12.3.11</b> Mapas de calor</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="ggplot2.html"><a href="ggplot2.html#escalas"><i class="fa fa-check"></i><b>12.4</b> Escalas</a><ul>
+<li class="chapter" data-level="12.4" data-path="ggplot2.html"><a href="ggplot2.html#escalas"><i class="fa fa-check"></i><b>12.4</b> Escalas</a>
+<ul>
 <li class="chapter" data-level="12.4.1" data-path="ggplot2.html"><a href="ggplot2.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>12.4.1</b> Tipos de Variáveis</a></li>
 <li class="chapter" data-level="12.4.2" data-path="ggplot2.html"><a href="ggplot2.html#eixos"><i class="fa fa-check"></i><b>12.4.2</b> Eixos</a></li>
 <li class="chapter" data-level="12.4.3" data-path="ggplot2.html"><a href="ggplot2.html#escalas-de-cores-color-e-preenchimento-fill"><i class="fa fa-check"></i><b>12.4.3</b> Escalas de Cores (color) e Preenchimento (fill)</a></li>
 </ul></li>
 <li class="chapter" data-level="12.5" data-path="ggplot2.html"><a href="ggplot2.html#subplots-facet"><i class="fa fa-check"></i><b>12.5</b> Subplots (facet)</a></li>
-<li class="chapter" data-level="12.6" data-path="ggplot2.html"><a href="ggplot2.html#temas"><i class="fa fa-check"></i><b>12.6</b> Temas</a><ul>
+<li class="chapter" data-level="12.6" data-path="ggplot2.html"><a href="ggplot2.html#temas"><i class="fa fa-check"></i><b>12.6</b> Temas</a>
+<ul>
 <li class="chapter" data-level="12.6.1" data-path="ggplot2.html"><a href="ggplot2.html#temas-disponíveis-no-ggplot2"><i class="fa fa-check"></i><b>12.6.1</b> Temas disponíveis no ggplot2</a></li>
 <li class="chapter" data-level="12.6.2" data-path="ggplot2.html"><a href="ggplot2.html#temas-no-pacote-ggthemes"><i class="fa fa-check"></i><b>12.6.2</b> Temas no pacote ggthemes</a></li>
-<li class="chapter" data-level="12.6.3" data-path="ggplot2.html"><a href="ggplot2.html#hrbrthemes"><i class="fa fa-check"></i><b>12.6.3</b> hrbrthemes</a></li>
-<li class="chapter" data-level="12.6.4" data-path="ggplot2.html"><a href="ggplot2.html#setando-o-tema-globalmente"><i class="fa fa-check"></i><b>12.6.4</b> Setando o tema globalmente</a></li>
+<li class="chapter" data-level="12.6.3" data-path="ggplot2.html"><a href="ggplot2.html#setando-o-tema-globalmente"><i class="fa fa-check"></i><b>12.6.3</b> Setando o tema globalmente</a></li>
 </ul></li>
 <li class="chapter" data-level="12.7" data-path="ggplot2.html"><a href="ggplot2.html#legendas"><i class="fa fa-check"></i><b>12.7</b> Legendas</a></li>
-<li class="chapter" data-level="12.8" data-path="ggplot2.html"><a href="ggplot2.html#mapas-plotando-polígonos"><i class="fa fa-check"></i><b>12.8</b> Mapas: plotando polígonos</a><ul>
+<li class="chapter" data-level="12.8" data-path="ggplot2.html"><a href="ggplot2.html#mapas-plotando-polígonos"><i class="fa fa-check"></i><b>12.8</b> Mapas: plotando polígonos</a>
+<ul>
 <li class="chapter" data-level="12.8.1" data-path="ggplot2.html"><a href="ggplot2.html#projeto-plotando-indicadores-socioeconômicos-em-um-mapa."><i class="fa fa-check"></i><b>12.8.1</b> Projeto: plotando indicadores socioeconômicos em um mapa.</a></li>
 </ul></li>
 <li class="chapter" data-level="12.9" data-path="ggplot2.html"><a href="ggplot2.html#salvando-gráficos"><i class="fa fa-check"></i><b>12.9</b> Salvando Gráficos</a></li>
-<li class="chapter" data-level="12.10" data-path="ggplot2.html"><a href="ggplot2.html#extensões-do-ggplot2"><i class="fa fa-check"></i><b>12.10</b> Extensões do ggplot2</a><ul>
+<li class="chapter" data-level="12.10" data-path="ggplot2.html"><a href="ggplot2.html#extensões-do-ggplot2"><i class="fa fa-check"></i><b>12.10</b> Extensões do ggplot2</a>
+<ul>
 <li class="chapter" data-level="12.10.1" data-path="ggplot2.html"><a href="ggplot2.html#ggrepel"><i class="fa fa-check"></i><b>12.10.1</b> ggrepel</a></li>
 <li class="chapter" data-level="12.10.2" data-path="ggplot2.html"><a href="ggplot2.html#gganimate"><i class="fa fa-check"></i><b>12.10.2</b> gganimate</a></li>
 </ul></li>
-<li class="chapter" data-level="12.11" data-path="ggplot2.html"><a href="ggplot2.html#exercícios-6"><i class="fa fa-check"></i><b>12.11</b> Exercícios</a><ul>
+<li class="chapter" data-level="12.11" data-path="ggplot2.html"><a href="ggplot2.html#exercícios-6"><i class="fa fa-check"></i><b>12.11</b> Exercícios</a>
+<ul>
 <li class="chapter" data-level="12.11.1" data-path="ggplot2.html"><a href="ggplot2.html#parte-1-1"><i class="fa fa-check"></i><b>12.11.1</b> Parte 1</a></li>
 <li class="chapter" data-level="12.11.2" data-path="ggplot2.html"><a href="ggplot2.html#parte-2-1"><i class="fa fa-check"></i><b>12.11.2</b> Parte 2</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="htmlwidgets.html"><a href="htmlwidgets.html"><i class="fa fa-check"></i><b>13</b> Visualizações Interativas</a><ul>
+<li class="chapter" data-level="13" data-path="htmlwidgets.html"><a href="htmlwidgets.html"><i class="fa fa-check"></i><b>13</b> Visualizações Interativas</a>
+<ul>
 <li class="chapter" data-level="13.1" data-path="htmlwidgets.html"><a href="htmlwidgets.html#introdução-1"><i class="fa fa-check"></i><b>13.1</b> Introdução</a></li>
 <li class="chapter" data-level="13.2" data-path="htmlwidgets.html"><a href="htmlwidgets.html#plotly"><i class="fa fa-check"></i><b>13.2</b> Plotly</a></li>
 <li class="chapter" data-level="13.3" data-path="htmlwidgets.html"><a href="htmlwidgets.html#dygraphs"><i class="fa fa-check"></i><b>13.3</b> dygraphs</a></li>
-<li class="chapter" data-level="13.4" data-path="htmlwidgets.html"><a href="htmlwidgets.html#leaflet"><i class="fa fa-check"></i><b>13.4</b> Leaflet</a><ul>
+<li class="chapter" data-level="13.4" data-path="htmlwidgets.html"><a href="htmlwidgets.html#leaflet"><i class="fa fa-check"></i><b>13.4</b> Leaflet</a>
+<ul>
 <li class="chapter" data-level="13.4.1" data-path="htmlwidgets.html"><a href="htmlwidgets.html#primeiro-exemplo"><i class="fa fa-check"></i><b>13.4.1</b> Primeiro exemplo</a></li>
 <li class="chapter" data-level="13.4.2" data-path="htmlwidgets.html"><a href="htmlwidgets.html#marcadores"><i class="fa fa-check"></i><b>13.4.2</b> Marcadores</a></li>
 <li class="chapter" data-level="13.4.3" data-path="htmlwidgets.html"><a href="htmlwidgets.html#polígonos"><i class="fa fa-check"></i><b>13.4.3</b> Polígonos</a></li>
 </ul></li>
 <li class="chapter" data-level="13.5" data-path="htmlwidgets.html"><a href="htmlwidgets.html#exercícios-7"><i class="fa fa-check"></i><b>13.5</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>14</b> RMarkdown</a><ul>
+<li class="chapter" data-level="14" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>14</b> RMarkdown</a>
+<ul>
 <li class="chapter" data-level="14.1" data-path="rmarkdown.html"><a href="rmarkdown.html#usos-do-rmarkdown"><i class="fa fa-check"></i><b>14.1</b> Usos do RMarkdown</a></li>
 <li class="chapter" data-level="14.2" data-path="rmarkdown.html"><a href="rmarkdown.html#estrutura-de-um-rmarkdown"><i class="fa fa-check"></i><b>14.2</b> Estrutura de um RMarkdown</a></li>
 <li class="chapter" data-level="14.3" data-path="rmarkdown.html"><a href="rmarkdown.html#renderizando-um-documento"><i class="fa fa-check"></i><b>14.3</b> Renderizando um documento</a></li>
 <li class="chapter" data-level="14.4" data-path="rmarkdown.html"><a href="rmarkdown.html#sintaxe"><i class="fa fa-check"></i><b>14.4</b> Sintaxe</a></li>
-<li class="chapter" data-level="14.5" data-path="rmarkdown.html"><a href="rmarkdown.html#opções-de-chunk"><i class="fa fa-check"></i><b>14.5</b> Opções de Chunk</a></li>
-<li class="chapter" data-level="14.6" data-path="rmarkdown.html"><a href="rmarkdown.html#principais-formatos"><i class="fa fa-check"></i><b>14.6</b> Principais Formatos</a><ul>
-<li class="chapter" data-level="14.6.1" data-path="rmarkdown.html"><a href="rmarkdown.html#html"><i class="fa fa-check"></i><b>14.6.1</b> HTML</a></li>
-<li class="chapter" data-level="14.6.2" data-path="rmarkdown.html"><a href="rmarkdown.html#pdf"><i class="fa fa-check"></i><b>14.6.2</b> PDF</a></li>
-<li class="chapter" data-level="14.6.3" data-path="rmarkdown.html"><a href="rmarkdown.html#word"><i class="fa fa-check"></i><b>14.6.3</b> Word</a></li>
+<li class="chapter" data-level="14.5" data-path="rmarkdown.html"><a href="rmarkdown.html#section"><i class="fa fa-check"></i><b>14.5</b> ***</a></li>
+<li class="chapter" data-level="14.6" data-path="rmarkdown.html"><a href="rmarkdown.html#opções-de-chunk"><i class="fa fa-check"></i><b>14.6</b> Opções de Chunk</a></li>
+<li class="chapter" data-level="14.7" data-path="rmarkdown.html"><a href="rmarkdown.html#principais-formatos"><i class="fa fa-check"></i><b>14.7</b> Principais Formatos</a>
+<ul>
+<li class="chapter" data-level="14.7.1" data-path="rmarkdown.html"><a href="rmarkdown.html#html"><i class="fa fa-check"></i><b>14.7.1</b> HTML</a></li>
+<li class="chapter" data-level="14.7.2" data-path="rmarkdown.html"><a href="rmarkdown.html#pdf"><i class="fa fa-check"></i><b>14.7.2</b> PDF</a></li>
+<li class="chapter" data-level="14.7.3" data-path="rmarkdown.html"><a href="rmarkdown.html#word"><i class="fa fa-check"></i><b>14.7.3</b> Word</a></li>
 </ul></li>
-<li class="chapter" data-level="14.7" data-path="rmarkdown.html"><a href="rmarkdown.html#excercícios"><i class="fa fa-check"></i><b>14.7</b> Excercícios</a></li>
+<li class="chapter" data-level="14.8" data-path="rmarkdown.html"><a href="rmarkdown.html#excercícios"><i class="fa fa-check"></i><b>14.8</b> Excercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="modelos.html"><a href="modelos.html"><i class="fa fa-check"></i><b>15</b> Modelos</a><ul>
-<li class="chapter" data-level="15.1" data-path="modelos.html"><a href="modelos.html#modelo-linear"><i class="fa fa-check"></i><b>15.1</b> Modelo Linear</a><ul>
+<li class="chapter" data-level="15" data-path="modelos.html"><a href="modelos.html"><i class="fa fa-check"></i><b>15</b> Modelos</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="modelos.html"><a href="modelos.html#modelo-linear"><i class="fa fa-check"></i><b>15.1</b> Modelo Linear</a>
+<ul>
 <li class="chapter" data-level="15.1.1" data-path="modelos.html"><a href="modelos.html#regressão"><i class="fa fa-check"></i><b>15.1.1</b> Regressão</a></li>
 <li class="chapter" data-level="15.1.2" data-path="modelos.html"><a href="modelos.html#classificação"><i class="fa fa-check"></i><b>15.1.2</b> Classificação</a></li>
 <li class="chapter" data-level="15.1.3" data-path="modelos.html"><a href="modelos.html#classificação-com-modelos-baseados-em-árvores"><i class="fa fa-check"></i><b>15.1.3</b> Classificação com modelos baseados em árvores</a></li>
 </ul></li>
 <li class="chapter" data-level="15.2" data-path="modelos.html"><a href="modelos.html#exercícios-8"><i class="fa fa-check"></i><b>15.2</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="revisão-titanic.html"><a href="revisão-titanic.html"><i class="fa fa-check"></i><b>16</b> Revisão - Titanic</a><ul>
+<li class="chapter" data-level="16" data-path="revisão-titanic.html"><a href="revisão-titanic.html"><i class="fa fa-check"></i><b>16</b> Revisão - Titanic</a>
+<ul>
 <li class="chapter" data-level="16.1" data-path="revisão-titanic.html"><a href="revisão-titanic.html#objetivo"><i class="fa fa-check"></i><b>16.1</b> Objetivo</a></li>
 <li class="chapter" data-level="16.2" data-path="revisão-titanic.html"><a href="revisão-titanic.html#carregando-os-dados"><i class="fa fa-check"></i><b>16.2</b> Carregando os Dados</a></li>
-<li class="chapter" data-level="16.3" data-path="revisão-titanic.html"><a href="revisão-titanic.html#manipulando-os-dados-1"><i class="fa fa-check"></i><b>16.3</b> Manipulando os dados</a><ul>
+<li class="chapter" data-level="16.3" data-path="revisão-titanic.html"><a href="revisão-titanic.html#manipulando-os-dados-1"><i class="fa fa-check"></i><b>16.3</b> Manipulando os dados</a>
+<ul>
 <li class="chapter" data-level="16.3.1" data-path="revisão-titanic.html"><a href="revisão-titanic.html#variável-survived"><i class="fa fa-check"></i><b>16.3.1</b> Variável Survived</a></li>
 <li class="chapter" data-level="16.3.2" data-path="revisão-titanic.html"><a href="revisão-titanic.html#variável-name"><i class="fa fa-check"></i><b>16.3.2</b> Variável Name</a></li>
 </ul></li>
-<li class="chapter" data-level="16.4" data-path="revisão-titanic.html"><a href="revisão-titanic.html#idade"><i class="fa fa-check"></i><b>16.4</b> Idade</a><ul>
+<li class="chapter" data-level="16.4" data-path="revisão-titanic.html"><a href="revisão-titanic.html#idade"><i class="fa fa-check"></i><b>16.4</b> Idade</a>
+<ul>
 <li class="chapter" data-level="16.4.1" data-path="revisão-titanic.html"><a href="revisão-titanic.html#exercício"><i class="fa fa-check"></i><b>16.4.1</b> Exercício</a></li>
 </ul></li>
 <li class="chapter" data-level="16.5" data-path="revisão-titanic.html"><a href="revisão-titanic.html#visualizações"><i class="fa fa-check"></i><b>16.5</b> Visualizações</a></li>
@@ -394,13 +459,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="referências-1" class="section level1">
+<div id="referências-1" class="section level1" number="17">
 <h1><span class="header-section-number">17</span> Referências</h1>
 <p>Informações de sistema:</p>
-<div class="sourceCode" id="cb765"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb765-1"><a href="referências-1.html#cb765-1"></a>sessioninfo<span class="op">::</span><span class="kw">session_info</span>()</span></code></pre></div>
-<pre><code>## ─ Session info ────────────────────────────────────────────────────────────────────────────────
+<div class="sourceCode" id="cb753"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb753-1"><a href="referências-1.html#cb753-1" aria-hidden="true" tabindex="-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
+<pre><code>## ─ Session info ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  setting  value                       
-##  version  R version 4.0.4 (2021-02-15)
+##  version  R version 4.1.1 (2021-08-10)
 ##  os       Ubuntu 20.04.2 LTS          
 ##  system   x86_64, linux-gnu           
 ##  ui       RStudio                     
@@ -408,165 +473,163 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  collate  en_US.UTF-8                 
 ##  ctype    pt_BR.UTF-8                 
 ##  tz       America/Sao_Paulo           
-##  date     2021-02-20                  
+##  date     2021-09-29                  
 ## 
-## ─ Packages ────────────────────────────────────────────────────────────────────────────────────
+## ─ Packages ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  package         * version    date       lib source                                     
-##  abind             1.4-5      2016-07-21 [1] CRAN (R 4.0.3)                             
-##  assertthat        0.2.1      2019-03-21 [1] CRAN (R 4.0.3)                             
-##  backports         1.2.1      2020-12-09 [1] CRAN (R 4.0.3)                             
-##  bitops            1.0-6      2013-08-17 [1] CRAN (R 4.0.3)                             
-##  bookdown          0.21       2020-10-13 [1] CRAN (R 4.0.3)                             
-##  brmap           * 0.1.0      2021-01-27 [1] Github (italocegatta/brmap@6295356)        
-##  broom             0.7.3      2020-12-16 [1] CRAN (R 4.0.3)                             
-##  car               3.0-10     2020-09-29 [1] CRAN (R 4.0.3)                             
-##  carData           3.0-4      2020-05-22 [1] CRAN (R 4.0.3)                             
-##  caret             6.0-86     2020-03-20 [1] CRAN (R 4.0.3)                             
-##  cellranger        1.1.0      2016-07-27 [1] CRAN (R 4.0.3)                             
-##  choroplethrMaps * 1.0.1      2017-01-31 [1] CRAN (R 4.0.3)                             
-##  class             7.3-18     2021-01-24 [4] CRAN (R 4.0.3)                             
-##  classInt          0.4-3      2020-04-07 [1] CRAN (R 4.0.3)                             
-##  cli               2.2.0      2020-11-20 [1] CRAN (R 4.0.3)                             
+##  abind             1.4-5      2016-07-21 [1] CRAN (R 4.1.1)                             
+##  assertthat        0.2.1      2019-03-21 [1] CRAN (R 4.1.0)                             
+##  backports         1.2.1      2020-12-09 [1] CRAN (R 4.1.0)                             
+##  bitops            1.0-7      2021-04-24 [1] CRAN (R 4.1.1)                             
+##  bookdown          0.22       2021-04-22 [1] CRAN (R 4.1.0)                             
+##  brmap           * 0.1.0      2021-09-22 [1] Github (italocegatta/brmap@6295356)        
+##  broom             0.7.9      2021-07-27 [1] CRAN (R 4.1.1)                             
+##  bslib             0.2.5.1    2021-05-18 [1] CRAN (R 4.1.0)                             
+##  car               3.0-11     2021-06-27 [1] CRAN (R 4.1.1)                             
+##  carData           3.0-4      2020-05-22 [1] CRAN (R 4.1.1)                             
+##  caret             6.0-88     2021-05-15 [1] CRAN (R 4.1.1)                             
+##  cellranger        1.1.0      2016-07-27 [1] CRAN (R 4.1.0)                             
+##  choroplethrMaps * 1.0.1      2017-01-31 [1] CRAN (R 4.1.1)                             
+##  class             7.3-19     2021-05-03 [4] CRAN (R 4.0.5)                             
+##  classInt          0.4-3      2020-04-07 [1] CRAN (R 4.1.1)                             
+##  cli               3.0.1      2021-07-17 [1] CRAN (R 4.1.1)                             
 ##  codetools         0.2-18     2020-11-04 [4] CRAN (R 4.0.3)                             
-##  colorspace        2.0-0      2020-11-11 [1] CRAN (R 4.0.3)                             
-##  countrycode     * 1.2.0      2020-05-22 [1] CRAN (R 4.0.3)                             
-##  crayon            1.3.4      2017-09-16 [1] CRAN (R 4.0.3)                             
-##  crosstalk         1.1.0.1    2020-03-13 [1] CRAN (R 4.0.3)                             
-##  curl              4.3        2019-12-02 [1] CRAN (R 4.0.3)                             
-##  data.table        1.13.6     2020-12-30 [1] CRAN (R 4.0.3)                             
-##  DBI               1.1.1      2021-01-15 [1] CRAN (R 4.0.3)                             
-##  dbplyr            2.0.0      2020-11-03 [1] CRAN (R 4.0.3)                             
-##  digest            0.6.27     2020-10-24 [1] CRAN (R 4.0.3)                             
-##  dplyr           * 1.0.2      2020-08-18 [1] CRAN (R 4.0.3)                             
-##  dygraphs        * 1.1.1.6    2018-07-11 [1] CRAN (R 4.0.3)                             
-##  e1071             1.7-4      2020-10-14 [1] CRAN (R 4.0.3)                             
-##  ellipsis          0.3.1      2020-05-15 [1] CRAN (R 4.0.3)                             
-##  evaluate          0.14       2019-05-28 [1] CRAN (R 4.0.3)                             
-##  extrafont         0.17       2014-12-08 [1] CRAN (R 4.0.3)                             
-##  extrafontdb       1.0        2012-06-11 [1] CRAN (R 4.0.3)                             
-##  fansi             0.4.2      2021-01-15 [1] CRAN (R 4.0.3)                             
-##  farver            2.0.3      2020-01-16 [1] CRAN (R 4.0.3)                             
-##  forcats         * 0.5.0      2020-03-01 [1] CRAN (R 4.0.3)                             
-##  foreach           1.5.1      2020-10-15 [1] CRAN (R 4.0.3)                             
+##  colorspace        2.0-1      2021-05-04 [1] CRAN (R 4.1.0)                             
+##  countrycode     * 1.3.0      2021-07-15 [1] CRAN (R 4.1.1)                             
+##  crayon            1.4.1      2021-02-08 [1] CRAN (R 4.1.0)                             
+##  crosstalk         1.1.1      2021-01-12 [1] CRAN (R 4.1.0)                             
+##  curl              4.3.2      2021-06-23 [1] CRAN (R 4.1.0)                             
+##  data.table        1.14.0     2021-02-21 [1] CRAN (R 4.1.0)                             
+##  DBI               1.1.1      2021-01-15 [1] CRAN (R 4.1.0)                             
+##  dbplyr            2.1.1      2021-04-06 [1] CRAN (R 4.1.0)                             
+##  digest            0.6.27     2020-10-24 [1] CRAN (R 4.1.0)                             
+##  dplyr           * 1.0.7      2021-06-18 [1] CRAN (R 4.1.0)                             
+##  dygraphs        * 1.1.1.6    2018-07-11 [1] CRAN (R 4.1.1)                             
+##  e1071             1.7-9      2021-09-16 [1] CRAN (R 4.1.1)                             
+##  ellipsis          0.3.2      2021-04-29 [1] CRAN (R 4.1.0)                             
+##  evaluate          0.14       2019-05-28 [1] CRAN (R 4.1.0)                             
+##  fansi             0.5.0      2021-05-25 [1] CRAN (R 4.1.0)                             
+##  farver            2.1.0      2021-02-28 [1] CRAN (R 4.1.0)                             
+##  fastmap           1.1.0      2021-01-25 [1] CRAN (R 4.1.0)                             
+##  forcats         * 0.5.1      2021-01-27 [1] CRAN (R 4.1.0)                             
+##  foreach           1.5.1      2020-10-15 [1] CRAN (R 4.1.0)                             
 ##  foreign           0.8-81     2020-12-22 [4] CRAN (R 4.0.3)                             
-##  fs                1.5.0      2020-07-31 [1] CRAN (R 4.0.3)                             
-##  gapminder       * 0.3.0      2017-10-31 [1] CRAN (R 4.0.3)                             
-##  gdtools           0.2.3      2021-01-06 [1] CRAN (R 4.0.3)                             
-##  generics          0.1.0      2020-10-31 [1] CRAN (R 4.0.3)                             
-##  geobr           * 1.4        2020-10-04 [1] CRAN (R 4.0.3)                             
-##  ggfittext         0.9.0      2020-06-14 [1] CRAN (R 4.0.3)                             
-##  ggmap           * 3.0.0      2019-02-05 [1] CRAN (R 4.0.3)                             
-##  ggplot2         * 3.3.2      2020-06-19 [1] CRAN (R 4.0.3)                             
-##  ggrepel         * 0.9.0      2020-12-16 [1] CRAN (R 4.0.3)                             
-##  ggthemes        * 4.2.4      2021-01-20 [1] CRAN (R 4.0.3)                             
-##  glue              1.4.2      2020-08-27 [1] CRAN (R 4.0.3)                             
-##  gower             0.2.2      2020-06-23 [1] CRAN (R 4.0.3)                             
-##  gridExtra         2.3        2017-09-09 [1] CRAN (R 4.0.3)                             
-##  gtable            0.3.0      2019-03-25 [1] CRAN (R 4.0.3)                             
-##  haven             2.3.1      2020-06-01 [1] CRAN (R 4.0.3)                             
-##  highr             0.8        2019-03-20 [1] CRAN (R 4.0.3)                             
-##  hms               0.5.3      2020-01-08 [1] CRAN (R 4.0.3)                             
-##  hrbrthemes      * 0.8.0      2020-03-06 [1] CRAN (R 4.0.3)                             
-##  htmltools         0.5.0      2020-06-16 [1] CRAN (R 4.0.3)                             
-##  htmlwidgets       1.5.3      2020-12-10 [1] CRAN (R 4.0.3)                             
-##  httr              1.4.2      2020-07-20 [1] CRAN (R 4.0.3)                             
-##  ipred             0.9-9      2019-04-28 [1] CRAN (R 4.0.3)                             
-##  ISLR            * 1.2        2017-10-20 [1] CRAN (R 4.0.3)                             
-##  iterators         1.0.13     2020-10-15 [1] CRAN (R 4.0.3)                             
-##  janitor         * 2.0.1      2020-04-12 [1] CRAN (R 4.0.3)                             
-##  jpeg              0.1-8.1    2019-10-24 [1] CRAN (R 4.0.3)                             
-##  jsonlite        * 1.7.2      2020-12-09 [1] CRAN (R 4.0.3)                             
-##  KernSmooth        2.23-18    2020-10-29 [4] CRAN (R 4.0.3)                             
-##  knitr             1.30       2020-09-22 [1] CRAN (R 4.0.3)                             
-##  labeling          0.4.2      2020-10-20 [1] CRAN (R 4.0.3)                             
-##  lattice           0.20-41    2020-04-02 [4] CRAN (R 4.0.0)                             
-##  lava              1.6.8.1    2020-11-04 [1] CRAN (R 4.0.3)                             
-##  lazyeval          0.2.2      2019-03-15 [1] CRAN (R 4.0.3)                             
-##  leaflet         * 2.0.4.1    2021-01-07 [1] CRAN (R 4.0.3)                             
-##  lifecycle         0.2.0      2020-03-06 [1] CRAN (R 4.0.3)                             
-##  literaturaBR    * 0.0.3002   2021-01-27 [1] Github (sillasgonzaga/literaturaBR@2ac23fa)
-##  lubridate       * 1.7.9.2    2020-11-13 [1] CRAN (R 4.0.3)                             
-##  magrittr          2.0.1      2020-11-17 [1] CRAN (R 4.0.3)                             
-##  MASS              7.3-53.1   2021-02-12 [4] CRAN (R 4.0.3)                             
-##  Matrix            1.3-2      2021-01-06 [4] CRAN (R 4.0.3)                             
-##  mgcv              1.8-33     2020-08-27 [4] CRAN (R 4.0.2)                             
-##  ModelMetrics    * 1.2.2.2    2020-03-17 [1] CRAN (R 4.0.3)                             
-##  modelr            0.1.8      2020-05-19 [1] CRAN (R 4.0.3)                             
-##  munsell           0.5.0      2018-06-12 [1] CRAN (R 4.0.3)                             
+##  fs                1.5.0      2020-07-31 [1] CRAN (R 4.1.0)                             
+##  gapminder       * 0.3.0      2017-10-31 [1] CRAN (R 4.1.1)                             
+##  generics          0.1.0      2020-10-31 [1] CRAN (R 4.1.0)                             
+##  geobr           * 1.6.4      2021-07-22 [1] CRAN (R 4.1.1)                             
+##  ggmap           * 3.0.0      2019-02-05 [1] CRAN (R 4.1.1)                             
+##  ggplot2         * 3.3.4      2021-06-16 [1] CRAN (R 4.1.0)                             
+##  ggrepel         * 0.9.1      2021-01-15 [1] CRAN (R 4.1.1)                             
+##  ggthemes        * 4.2.4      2021-01-20 [1] CRAN (R 4.1.1)                             
+##  glue              1.4.2      2020-08-27 [1] CRAN (R 4.1.0)                             
+##  gower             0.2.2      2020-06-23 [1] CRAN (R 4.1.0)                             
+##  gridExtra         2.3        2017-09-09 [1] CRAN (R 4.1.1)                             
+##  gtable            0.3.0      2019-03-25 [1] CRAN (R 4.1.0)                             
+##  haven             2.4.1      2021-04-23 [1] CRAN (R 4.1.0)                             
+##  highr             0.9        2021-04-16 [1] CRAN (R 4.1.0)                             
+##  hms               1.1.0      2021-05-17 [1] CRAN (R 4.1.0)                             
+##  htmltools         0.5.2      2021-08-25 [1] CRAN (R 4.1.1)                             
+##  htmlwidgets       1.5.3      2020-12-10 [1] CRAN (R 4.1.0)                             
+##  httr              1.4.2      2020-07-20 [1] CRAN (R 4.1.0)                             
+##  ipred             0.9-11     2021-03-12 [1] CRAN (R 4.1.0)                             
+##  ISLR            * 1.4        2021-09-15 [1] CRAN (R 4.1.1)                             
+##  iterators         1.0.13     2020-10-15 [1] CRAN (R 4.1.0)                             
+##  janitor         * 2.1.0      2021-01-05 [1] CRAN (R 4.1.0)                             
+##  jpeg              0.1-9      2021-07-24 [1] CRAN (R 4.1.1)                             
+##  jquerylib         0.1.4      2021-04-26 [1] CRAN (R 4.1.0)                             
+##  jsonlite        * 1.7.2      2020-12-09 [1] CRAN (R 4.1.1)                             
+##  KernSmooth        2.23-20    2021-05-03 [4] CRAN (R 4.0.5)                             
+##  knitr             1.34       2021-09-09 [1] CRAN (R 4.1.1)                             
+##  labeling          0.4.2      2020-10-20 [1] CRAN (R 4.1.0)                             
+##  lattice           0.20-44    2021-05-02 [4] CRAN (R 4.1.0)                             
+##  lava              1.6.9      2021-03-11 [1] CRAN (R 4.1.0)                             
+##  lazyeval          0.2.2      2019-03-15 [1] CRAN (R 4.1.0)                             
+##  leaflet         * 2.0.4.1    2021-01-07 [1] CRAN (R 4.1.1)                             
+##  lifecycle         1.0.0      2021-02-15 [1] CRAN (R 4.1.0)                             
+##  literaturaBR    * 0.0.3002   2021-09-22 [1] Github (sillasgonzaga/literaturaBR@2ac23fa)
+##  lubridate       * 1.7.10     2021-02-26 [1] CRAN (R 4.1.0)                             
+##  magrittr          2.0.1      2020-11-17 [1] CRAN (R 4.1.0)                             
+##  MASS              7.3-54     2021-05-03 [4] CRAN (R 4.0.5)                             
+##  Matrix            1.3-4      2021-06-01 [4] CRAN (R 4.1.0)                             
+##  mgcv              1.8-36     2021-06-01 [4] CRAN (R 4.1.0)                             
+##  ModelMetrics    * 1.2.2.2    2020-03-17 [1] CRAN (R 4.1.1)                             
+##  modelr            0.1.8      2020-05-19 [1] CRAN (R 4.1.0)                             
+##  munsell           0.5.0      2018-06-12 [1] CRAN (R 4.1.0)                             
 ##  nlme              3.1-152    2021-02-04 [4] CRAN (R 4.0.3)                             
-##  nnet              7.3-15     2021-01-24 [4] CRAN (R 4.0.3)                             
-##  nycflights13    * 1.0.1      2019-09-16 [1] CRAN (R 4.0.3)                             
-##  openxlsx          4.2.3      2020-10-27 [1] CRAN (R 4.0.3)                             
-##  patchwork       * 1.1.1      2020-12-17 [1] CRAN (R 4.0.3)                             
-##  pillar            1.4.7      2020-11-20 [1] CRAN (R 4.0.3)                             
-##  pkgconfig         2.0.3      2019-09-22 [1] CRAN (R 4.0.3)                             
-##  plotly          * 4.9.2.2    2020-12-19 [1] CRAN (R 4.0.3)                             
-##  plyr              1.8.6      2020-03-03 [1] CRAN (R 4.0.3)                             
-##  png               0.1-7      2013-12-03 [1] CRAN (R 4.0.3)                             
-##  pROC              1.17.0.1   2021-01-13 [1] CRAN (R 4.0.3)                             
-##  prodlim           2019.11.13 2019-11-17 [1] CRAN (R 4.0.3)                             
-##  purrr           * 0.3.4      2020-04-17 [1] CRAN (R 4.0.3)                             
-##  R6                2.5.0      2020-10-28 [1] CRAN (R 4.0.3)                             
-##  randomForest    * 4.6-14     2018-03-25 [1] CRAN (R 4.0.3)                             
-##  rbcb            * 0.1.6      2021-01-27 [1] Github (wilsonfreitas/rbcb@653a874)        
-##  RColorBrewer    * 1.1-2      2014-12-07 [1] CRAN (R 4.0.3)                             
-##  Rcpp              1.0.6      2021-01-15 [1] CRAN (R 4.0.3)                             
-##  readr           * 1.4.0      2020-10-05 [1] CRAN (R 4.0.3)                             
-##  readxl          * 1.3.1      2019-03-13 [1] CRAN (R 4.0.3)                             
-##  recipes           0.1.15     2020-11-11 [1] CRAN (R 4.0.3)                             
-##  reprex            0.3.0      2019-05-16 [1] CRAN (R 4.0.3)                             
-##  reshape2          1.4.4      2020-04-09 [1] CRAN (R 4.0.3)                             
-##  RgoogleMaps       1.4.5.3    2020-02-12 [1] CRAN (R 4.0.3)                             
-##  rio               0.5.16     2018-11-26 [1] CRAN (R 4.0.3)                             
-##  rjson             0.2.20     2018-06-08 [1] CRAN (R 4.0.3)                             
-##  RJSONIO           1.3-1.4    2020-01-15 [1] CRAN (R 4.0.3)                             
-##  rlang             0.4.10     2020-12-30 [1] CRAN (R 4.0.3)                             
-##  rmarkdown         2.6        2020-12-14 [1] CRAN (R 4.0.3)                             
-##  rpart           * 4.1-15     2019-04-12 [1] CRAN (R 4.0.3)                             
-##  rpart.plot      * 3.0.9      2020-09-17 [1] CRAN (R 4.0.3)                             
-##  rstudioapi        0.13       2020-11-12 [1] CRAN (R 4.0.3)                             
-##  Rttf2pt1          1.3.8      2020-01-10 [1] CRAN (R 4.0.3)                             
-##  rvest             0.3.6      2020-07-25 [1] CRAN (R 4.0.3)                             
-##  scales            1.1.1      2020-05-11 [1] CRAN (R 4.0.3)                             
-##  sessioninfo       1.1.1      2018-11-05 [1] CRAN (R 4.0.3)                             
-##  sf              * 0.9-7      2021-01-06 [1] CRAN (R 4.0.3)                             
-##  snakecase         0.11.0     2019-05-25 [1] CRAN (R 4.0.3)                             
-##  sp                1.4-5      2021-01-10 [1] CRAN (R 4.0.3)                             
-##  stringi           1.5.3      2020-09-09 [1] CRAN (R 4.0.3)                             
-##  stringr         * 1.4.0      2019-02-10 [1] CRAN (R 4.0.3)                             
-##  survival          3.2-7      2020-09-28 [4] CRAN (R 4.0.2)                             
-##  systemfonts       0.3.2      2020-09-29 [1] CRAN (R 4.0.3)                             
-##  tibble          * 3.0.5      2021-01-15 [1] CRAN (R 4.0.3)                             
-##  tidyr           * 1.1.2      2020-08-27 [1] CRAN (R 4.0.3)                             
-##  tidyselect        1.1.0      2020-05-11 [1] CRAN (R 4.0.3)                             
-##  tidyverse       * 1.3.0      2019-11-21 [1] CRAN (R 4.0.3)                             
-##  timeDate          3043.102   2018-02-21 [1] CRAN (R 4.0.3)                             
-##  tinytex           0.28       2020-12-14 [1] CRAN (R 4.0.3)                             
-##  titanic         * 0.1.0      2015-08-31 [1] CRAN (R 4.0.3)                             
-##  treemapify      * 2.5.5      2021-01-08 [1] CRAN (R 4.0.3)                             
-##  units             0.6-7      2020-06-13 [1] CRAN (R 4.0.3)                             
-##  utf8              1.1.4      2018-05-24 [1] CRAN (R 4.0.3)                             
-##  vctrs             0.3.6      2020-12-17 [1] CRAN (R 4.0.3)                             
-##  viridis           0.5.1      2018-03-29 [1] CRAN (R 4.0.3)                             
-##  viridisLite       0.3.0      2018-02-01 [1] CRAN (R 4.0.3)                             
-##  WDI             * 2.7.2      2021-01-22 [1] CRAN (R 4.0.3)                             
-##  withr             2.3.0      2020-09-22 [1] CRAN (R 4.0.3)                             
-##  wpp2019         * 1.1-1      2020-01-31 [1] CRAN (R 4.0.3)                             
-##  xfun              0.20       2021-01-06 [1] CRAN (R 4.0.3)                             
-##  xml2              1.3.2      2020-04-23 [1] CRAN (R 4.0.3)                             
-##  xts             * 0.12.1     2020-09-09 [1] CRAN (R 4.0.3)                             
-##  yaml              2.2.1      2020-02-01 [1] CRAN (R 4.0.3)                             
-##  zip               2.1.1      2020-08-27 [1] CRAN (R 4.0.3)                             
-##  zoo             * 1.8-8      2020-05-02 [1] CRAN (R 4.0.3)                             
+##  nnet              7.3-16     2021-05-03 [4] CRAN (R 4.0.5)                             
+##  nycflights13    * 1.0.2      2021-04-12 [1] CRAN (R 4.1.1)                             
+##  openxlsx          4.2.4      2021-06-16 [1] CRAN (R 4.1.1)                             
+##  patchwork       * 1.1.1      2020-12-17 [1] CRAN (R 4.1.0)                             
+##  pillar            1.6.2      2021-07-29 [1] CRAN (R 4.1.1)                             
+##  pkgconfig         2.0.3      2019-09-22 [1] CRAN (R 4.1.0)                             
+##  plotly          * 4.9.4.1    2021-06-18 [1] CRAN (R 4.1.1)                             
+##  plyr              1.8.6      2020-03-03 [1] CRAN (R 4.1.0)                             
+##  png               0.1-7      2013-12-03 [1] CRAN (R 4.1.0)                             
+##  pROC              1.17.0.1   2021-01-13 [1] CRAN (R 4.1.0)                             
+##  prodlim           2019.11.13 2019-11-17 [1] CRAN (R 4.1.0)                             
+##  proxy             0.4-26     2021-06-07 [1] CRAN (R 4.1.0)                             
+##  purrr           * 0.3.4      2020-04-17 [1] CRAN (R 4.1.0)                             
+##  R6                2.5.1      2021-08-19 [1] CRAN (R 4.1.1)                             
+##  randomForest    * 4.6-14     2018-03-25 [1] CRAN (R 4.1.1)                             
+##  rbcb            * 0.1.6      2021-09-22 [1] Github (wilsonfreitas/rbcb@e22c515)        
+##  RColorBrewer    * 1.1-2      2014-12-07 [1] CRAN (R 4.1.1)                             
+##  Rcpp              1.0.7      2021-07-07 [1] CRAN (R 4.1.1)                             
+##  readr           * 1.4.0      2020-10-05 [1] CRAN (R 4.1.0)                             
+##  readxl          * 1.3.1      2019-03-13 [1] CRAN (R 4.1.1)                             
+##  recipes           0.1.16     2021-04-16 [1] CRAN (R 4.1.0)                             
+##  reprex            2.0.0      2021-04-02 [1] CRAN (R 4.1.0)                             
+##  reshape2          1.4.4      2020-04-09 [1] CRAN (R 4.1.0)                             
+##  RgoogleMaps       1.4.5.3    2020-02-12 [1] CRAN (R 4.1.1)                             
+##  rio               0.5.27     2021-06-21 [1] CRAN (R 4.1.1)                             
+##  rjson             0.2.20     2018-06-08 [1] CRAN (R 4.1.1)                             
+##  RJSONIO           1.3-1.6    2021-09-16 [1] CRAN (R 4.1.1)                             
+##  rlang             0.4.11     2021-04-30 [1] CRAN (R 4.1.0)                             
+##  rmarkdown         2.9        2021-06-15 [1] CRAN (R 4.1.0)                             
+##  rpart           * 4.1-15     2019-04-12 [4] CRAN (R 4.0.0)                             
+##  rpart.plot      * 3.1.0      2021-07-24 [1] CRAN (R 4.1.1)                             
+##  rstudioapi        0.13       2020-11-12 [1] CRAN (R 4.1.0)                             
+##  rvest             1.0.0      2021-03-09 [1] CRAN (R 4.1.0)                             
+##  s2                1.0.6      2021-06-17 [1] CRAN (R 4.1.1)                             
+##  sass              0.4.0      2021-05-12 [1] CRAN (R 4.1.0)                             
+##  scales            1.1.1      2020-05-11 [1] CRAN (R 4.1.1)                             
+##  sessioninfo       1.1.1      2018-11-05 [1] CRAN (R 4.1.1)                             
+##  sf              * 1.0-2      2021-07-26 [1] CRAN (R 4.1.1)                             
+##  snakecase         0.11.0     2019-05-25 [1] CRAN (R 4.1.0)                             
+##  sp                1.4-5      2021-01-10 [1] CRAN (R 4.1.1)                             
+##  stringi           1.6.2      2021-05-17 [1] CRAN (R 4.1.0)                             
+##  stringr         * 1.4.0      2019-02-10 [1] CRAN (R 4.1.0)                             
+##  survival          3.2-11     2021-04-26 [4] CRAN (R 4.0.5)                             
+##  tibble          * 3.1.4      2021-08-25 [1] CRAN (R 4.1.1)                             
+##  tidyr           * 1.1.3      2021-03-03 [1] CRAN (R 4.1.0)                             
+##  tidyselect        1.1.1      2021-04-30 [1] CRAN (R 4.1.0)                             
+##  tidyverse       * 1.3.1      2021-04-15 [1] CRAN (R 4.1.0)                             
+##  timeDate          3043.102   2018-02-21 [1] CRAN (R 4.1.0)                             
+##  titanic         * 0.1.0      2015-08-31 [1] CRAN (R 4.1.1)                             
+##  units             0.7-2      2021-06-08 [1] CRAN (R 4.1.1)                             
+##  utf8              1.2.2      2021-07-24 [1] CRAN (R 4.1.1)                             
+##  vctrs             0.3.8      2021-04-29 [1] CRAN (R 4.1.0)                             
+##  viridis           0.6.1      2021-05-11 [1] CRAN (R 4.1.1)                             
+##  viridisLite       0.4.0      2021-04-13 [1] CRAN (R 4.1.0)                             
+##  WDI             * 2.7.4      2021-04-06 [1] CRAN (R 4.1.1)                             
+##  withr             2.4.2      2021-04-18 [1] CRAN (R 4.1.0)                             
+##  wk                0.5.0      2021-07-13 [1] CRAN (R 4.1.1)                             
+##  wpp2019         * 1.1-1      2020-01-31 [1] CRAN (R 4.1.1)                             
+##  xfun              0.24       2021-06-15 [1] CRAN (R 4.1.0)                             
+##  xml2              1.3.2      2020-04-23 [1] CRAN (R 4.1.0)                             
+##  xts             * 0.12.1     2020-09-09 [1] CRAN (R 4.1.1)                             
+##  yaml              2.2.1      2020-02-01 [1] CRAN (R 4.1.0)                             
+##  zip               2.2.0      2021-05-31 [1] CRAN (R 4.1.1)                             
+##  zoo             * 1.8-9      2021-03-09 [1] CRAN (R 4.1.0)                             
 ## 
-## [1] /home/sillas/R/x86_64-pc-linux-gnu-library/4.0
+## [1] /home/sillas/R/x86_64-pc-linux-gnu-library/4.1
 ## [2] /usr/local/lib/R/site-library
 ## [3] /usr/lib/R/site-library
 ## [4] /usr/lib/R/library</code></pre>
 
-<div id="refs" class="references">
-<div>
-<p>Hadley Wickham, Garrett Grolemund. 2017. <em>R for Data Science</em>. <a href="http://r4ds.had.co.nz/">http://r4ds.had.co.nz/</a>.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div class="csl-entry">
+Hadley Wickham, Garrett Grolemund. 2017. <em>R for Data Science</em>. <a href="http://r4ds.had.co.nz/">http://r4ds.had.co.nz/</a>.
 </div>
 </div>
 </div>
@@ -599,6 +662,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

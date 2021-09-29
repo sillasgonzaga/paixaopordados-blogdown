@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>14 RMarkdown | Ciência de Dados com R - Introdução</title>
   <meta name="description" content="Aprendendo a programar com R" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="14 RMarkdown | Ciência de Dados com R - Introdução" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,8 @@
   
 <link rel="prev" href="htmlwidgets.html"/>
 <link rel="next" href="modelos.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,14 +50,15 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.2.2/plotly.js"></script>
+<script src="libs/plotly-binding-4.9.4.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
 <link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
 <script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
 <script src="libs/dygraphs-1.1.1/shapes.js"></script>
@@ -88,18 +90,18 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -119,7 +121,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -152,6 +154,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -172,7 +197,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a></li>
 <li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html"><i class="fa fa-check"></i>Sobre os autores</a></li>
 <li class="chapter" data-level="" data-path="download.html"><a href="download.html"><i class="fa fa-check"></i>Download</a></li>
-<li class="chapter" data-level="1" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i><b>1</b> Introdução</a><ul>
+<li class="chapter" data-level="1" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i><b>1</b> Introdução</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="introdução.html"><a href="introdução.html#o-que-é-ciência-de-dados"><i class="fa fa-check"></i><b>1.1</b> O que é Ciência de Dados?</a></li>
 <li class="chapter" data-level="1.2" data-path="introdução.html"><a href="introdução.html#workflow-da-ciência-de-dados"><i class="fa fa-check"></i><b>1.2</b> Workflow da Ciência de Dados</a></li>
 <li class="chapter" data-level="1.3" data-path="introdução.html"><a href="introdução.html#linguagens-para-ciência-de-dados"><i class="fa fa-check"></i><b>1.3</b> Linguagens para Ciência de dados</a></li>
@@ -181,9 +207,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.6" data-path="introdução.html"><a href="introdução.html#buscando-ajuda"><i class="fa fa-check"></i><b>1.6</b> Buscando Ajuda</a></li>
 <li class="chapter" data-level="1.7" data-path="introdução.html"><a href="introdução.html#exercícios"><i class="fa fa-check"></i><b>1.7</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html"><i class="fa fa-check"></i><b>2</b> Conceitos Básicos</a><ul>
+<li class="chapter" data-level="2" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html"><i class="fa fa-check"></i><b>2</b> Conceitos Básicos</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#console"><i class="fa fa-check"></i><b>2.1</b> Console</a></li>
-<li class="chapter" data-level="2.2" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#scripts"><i class="fa fa-check"></i><b>2.2</b> Scripts</a><ul>
+<li class="chapter" data-level="2.2" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#scripts"><i class="fa fa-check"></i><b>2.2</b> Scripts</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#salvando-scripts"><i class="fa fa-check"></i><b>2.2.1</b> Salvando Scripts</a></li>
 <li class="chapter" data-level="2.2.2" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#comentários-de-código"><i class="fa fa-check"></i><b>2.2.2</b> Comentários de Código</a></li>
 </ul></li>
@@ -194,8 +222,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#tidyverse"><i class="fa fa-check"></i><b>2.7</b> Tidyverse</a></li>
 <li class="chapter" data-level="2.8" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#exercícios-1"><i class="fa fa-check"></i><b>2.8</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html"><i class="fa fa-check"></i><b>3</b> Lendo os dados</a><ul>
-<li class="chapter" data-level="3.1" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#tipos-de-estrutura-dos-dados"><i class="fa fa-check"></i><b>3.1</b> Tipos de Estrutura dos Dados</a><ul>
+<li class="chapter" data-level="3" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html"><i class="fa fa-check"></i><b>3</b> Lendo os dados</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#tipos-de-estrutura-dos-dados"><i class="fa fa-check"></i><b>3.1</b> Tipos de Estrutura dos Dados</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#dados-estruturados"><i class="fa fa-check"></i><b>3.1.1</b> Dados Estruturados</a></li>
 <li class="chapter" data-level="3.1.2" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#dados-não-estruturados"><i class="fa fa-check"></i><b>3.1.2</b> Dados Não Estruturados</a></li>
 <li class="chapter" data-level="3.1.3" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#dados-semiestruturados"><i class="fa fa-check"></i><b>3.1.3</b> Dados Semiestruturados</a></li>
@@ -203,34 +233,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#definindo-o-local-dos-dados"><i class="fa fa-check"></i><b>3.2</b> Definindo o Local dos Dados</a></li>
 <li class="chapter" data-level="3.3" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#pacote-para-leitura-dos-dados"><i class="fa fa-check"></i><b>3.3</b> Pacote para leitura dos dados</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html"><i class="fa fa-check"></i><b>4</b> Manipulando os dados</a><ul>
-<li class="chapter" data-level="4.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#tipos-de-variáveis-e-colunas"><i class="fa fa-check"></i><b>4.1</b> Tipos de Variáveis e Colunas</a><ul>
+<li class="chapter" data-level="4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html"><i class="fa fa-check"></i><b>4</b> Manipulando os dados</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#tipos-de-variáveis-e-colunas"><i class="fa fa-check"></i><b>4.1</b> Tipos de Variáveis e Colunas</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#conversões-de-tipos-de-variáveis"><i class="fa fa-check"></i><b>4.1.1</b> Conversões de tipos de variáveis</a></li>
 <li class="chapter" data-level="4.1.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#outros-tipos-de-variáveis"><i class="fa fa-check"></i><b>4.1.2</b> Outros tipos de variáveis</a></li>
 <li class="chapter" data-level="4.1.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#valores-faltantes-e-o-na"><i class="fa fa-check"></i><b>4.1.3</b> Valores faltantes e o ‘NA’</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#estruturas-de-controle-de-fluxo"><i class="fa fa-check"></i><b>4.2</b> Estruturas de Controle de Fluxo</a><ul>
+<li class="chapter" data-level="4.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#estruturas-de-controle-de-fluxo"><i class="fa fa-check"></i><b>4.2</b> Estruturas de Controle de Fluxo</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#if-e-else"><i class="fa fa-check"></i><b>4.2.1</b> If e Else</a></li>
 <li class="chapter" data-level="4.2.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#loops"><i class="fa fa-check"></i><b>4.2.2</b> Loops</a></li>
 <li class="chapter" data-level="4.2.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#funções-1"><i class="fa fa-check"></i><b>4.2.3</b> Funções</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#manipulações-com-r-base"><i class="fa fa-check"></i><b>4.3</b> Manipulações com R base</a><ul>
+<li class="chapter" data-level="4.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#manipulações-com-r-base"><i class="fa fa-check"></i><b>4.3</b> Manipulações com R base</a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#trabalhando-com-colunas-de-um-data.frame"><i class="fa fa-check"></i><b>4.3.1</b> Trabalhando com colunas de um data.frame</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#pacote-dplyr"><i class="fa fa-check"></i><b>4.4</b> Pacote dplyr</a><ul>
+<li class="chapter" data-level="4.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#pacote-dplyr"><i class="fa fa-check"></i><b>4.4</b> Pacote dplyr</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#verbetes-do-dplyr-e-o-operador"><i class="fa fa-check"></i><b>4.4.1</b> Verbetes do dplyr e o operador <code>%&gt;%</code></a></li>
 <li class="chapter" data-level="4.4.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#select"><i class="fa fa-check"></i><b>4.4.2</b> Select</a></li>
 <li class="chapter" data-level="4.4.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#mutate"><i class="fa fa-check"></i><b>4.4.3</b> Mutate</a></li>
-<li class="chapter" data-level="4.4.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#group-by-e-summarise"><i class="fa fa-check"></i><b>4.4.4</b> Group By e Summarise</a></li>
+<li class="chapter" data-level="4.4.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#filter"><i class="fa fa-check"></i><b>4.4.4</b> Filter</a></li>
+<li class="chapter" data-level="4.4.5" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#group-by-e-summarise"><i class="fa fa-check"></i><b>4.4.5</b> Group By e Summarise</a></li>
+<li class="chapter" data-level="4.4.6" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#arrange"><i class="fa fa-check"></i><b>4.4.6</b> Arrange</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#exercícios-2"><i class="fa fa-check"></i><b>4.5</b> Exercícios</a><ul>
+<li class="chapter" data-level="4.5" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#exercícios-2"><i class="fa fa-check"></i><b>4.5</b> Exercícios</a>
+<ul>
 <li class="chapter" data-level="4.5.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#parte-1"><i class="fa fa-check"></i><b>4.5.1</b> Parte 1</a></li>
 <li class="chapter" data-level="4.5.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#parte-2"><i class="fa fa-check"></i><b>4.5.2</b> Parte 2</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="limpando-dados.html"><a href="limpando-dados.html"><i class="fa fa-check"></i><b>5</b> Limpando dados</a><ul>
+<li class="chapter" data-level="5" data-path="limpando-dados.html"><a href="limpando-dados.html"><i class="fa fa-check"></i><b>5</b> Limpando dados</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="limpando-dados.html"><a href="limpando-dados.html#o-formato-ideal-dos-dados"><i class="fa fa-check"></i><b>5.1</b> O formato “ideal” dos dados</a></li>
-<li class="chapter" data-level="5.2" data-path="limpando-dados.html"><a href="limpando-dados.html#pacote-tidyr"><i class="fa fa-check"></i><b>5.2</b> Pacote tidyr</a><ul>
+<li class="chapter" data-level="5.2" data-path="limpando-dados.html"><a href="limpando-dados.html#pacote-tidyr"><i class="fa fa-check"></i><b>5.2</b> Pacote tidyr</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="limpando-dados.html"><a href="limpando-dados.html#pivot_longer"><i class="fa fa-check"></i><b>5.2.1</b> pivot_longer()</a></li>
 <li class="chapter" data-level="5.2.2" data-path="limpando-dados.html"><a href="limpando-dados.html#pivot_wider"><i class="fa fa-check"></i><b>5.2.2</b> pivot_wider()</a></li>
 <li class="chapter" data-level="5.2.3" data-path="limpando-dados.html"><a href="limpando-dados.html#separate"><i class="fa fa-check"></i><b>5.2.3</b> separate</a></li>
@@ -239,9 +279,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="limpando-dados.html"><a href="limpando-dados.html#exercicios"><i class="fa fa-check"></i><b>5.3</b> Exercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="juntando-dados.html"><a href="juntando-dados.html"><i class="fa fa-check"></i><b>6</b> Juntando dados</a><ul>
+<li class="chapter" data-level="6" data-path="juntando-dados.html"><a href="juntando-dados.html"><i class="fa fa-check"></i><b>6</b> Juntando dados</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="juntando-dados.html"><a href="juntando-dados.html#união-de-dados-union"><i class="fa fa-check"></i><b>6.1</b> União de dados (Union)</a></li>
-<li class="chapter" data-level="6.2" data-path="juntando-dados.html"><a href="juntando-dados.html#cruzamento-de-dados-join"><i class="fa fa-check"></i><b>6.2</b> Cruzamento de Dados (Join)</a><ul>
+<li class="chapter" data-level="6.2" data-path="juntando-dados.html"><a href="juntando-dados.html#cruzamento-de-dados-join"><i class="fa fa-check"></i><b>6.2</b> Cruzamento de Dados (Join)</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="juntando-dados.html"><a href="juntando-dados.html#inner-join-ou-apenas-join"><i class="fa fa-check"></i><b>6.2.1</b> Inner Join (ou apenas Join)</a></li>
 <li class="chapter" data-level="6.2.2" data-path="juntando-dados.html"><a href="juntando-dados.html#left-outer-join"><i class="fa fa-check"></i><b>6.2.2</b> Left Outer Join</a></li>
 <li class="chapter" data-level="6.2.3" data-path="juntando-dados.html"><a href="juntando-dados.html#right-outer-join"><i class="fa fa-check"></i><b>6.2.3</b> Right Outer Join</a></li>
@@ -250,8 +292,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3" data-path="juntando-dados.html"><a href="juntando-dados.html#exercícios-3"><i class="fa fa-check"></i><b>6.3</b> Exercícios</a></li>
 <li class="chapter" data-level="6.4" data-path="juntando-dados.html"><a href="juntando-dados.html#exercícios-gerais-do-tidyverse"><i class="fa fa-check"></i><b>6.4</b> Exercícios gerais do Tidyverse</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html"><i class="fa fa-check"></i><b>7</b> Dados em strings (texto)</a><ul>
-<li class="chapter" data-level="7.1" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#pacote-stringr"><i class="fa fa-check"></i><b>7.1</b> Pacote stringr</a><ul>
+<li class="chapter" data-level="7" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html"><i class="fa fa-check"></i><b>7</b> Dados em strings (texto)</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#pacote-stringr"><i class="fa fa-check"></i><b>7.1</b> Pacote stringr</a>
+<ul>
 <li class="chapter" data-level="7.1.1" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#extrair-parte-de-uma-string"><i class="fa fa-check"></i><b>7.1.1</b> Extrair parte de uma string</a></li>
 <li class="chapter" data-level="7.1.2" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#substituir-caracteres-em-um-string"><i class="fa fa-check"></i><b>7.1.2</b> Substituir caracteres em um string</a></li>
 <li class="chapter" data-level="7.1.3" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#buscar-correspondências-em-um-string"><i class="fa fa-check"></i><b>7.1.3</b> Buscar correspondências em um string</a></li>
@@ -261,35 +305,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#regex"><i class="fa fa-check"></i><b>7.2</b> Regex</a></li>
 <li class="chapter" data-level="7.3" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#exercícios-4"><i class="fa fa-check"></i><b>7.3</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html"><i class="fa fa-check"></i><b>8</b> Trabalhando com datas</a><ul>
+<li class="chapter" data-level="8" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html"><i class="fa fa-check"></i><b>8</b> Trabalhando com datas</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html#gerar-um-vetor-sequencial-de-datas"><i class="fa fa-check"></i><b>8.1</b> Gerar um vetor sequencial de datas</a></li>
 <li class="chapter" data-level="8.2" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html#parsear-datas-e-horários"><i class="fa fa-check"></i><b>8.2</b> ‘Parsear’ datas e horários</a></li>
 <li class="chapter" data-level="8.3" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html#extrair-componentes-de-uma-data"><i class="fa fa-check"></i><b>8.3</b> Extrair componentes de uma data</a></li>
 <li class="chapter" data-level="8.4" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html#operações-matemáticas-com-datas"><i class="fa fa-check"></i><b>8.4</b> Operações matemáticas com datas</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html"><i class="fa fa-check"></i><b>9</b> Escrevendo dados</a><ul>
+<li class="chapter" data-level="9" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html"><i class="fa fa-check"></i><b>9</b> Escrevendo dados</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html#escrevendo-csv"><i class="fa fa-check"></i><b>9.1</b> Escrevendo csv</a></li>
 <li class="chapter" data-level="9.2" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html#rds"><i class="fa fa-check"></i><b>9.2</b> Rds</a></li>
 <li class="chapter" data-level="9.3" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html#escrevendo-outros-tipos-de-arquivos"><i class="fa fa-check"></i><b>9.3</b> Escrevendo outros tipos de arquivos</a></li>
 <li class="chapter" data-level="9.4" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html#exercícios-5"><i class="fa fa-check"></i><b>9.4</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="obtendo-dados.html"><a href="obtendo-dados.html"><i class="fa fa-check"></i><b>10</b> Obtendo dados</a><ul>
+<li class="chapter" data-level="10" data-path="obtendo-dados.html"><a href="obtendo-dados.html"><i class="fa fa-check"></i><b>10</b> Obtendo dados</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="obtendo-dados.html"><a href="obtendo-dados.html#api"><i class="fa fa-check"></i><b>10.1</b> API</a></li>
 <li class="chapter" data-level="10.2" data-path="obtendo-dados.html"><a href="obtendo-dados.html#web-scrapping"><i class="fa fa-check"></i><b>10.2</b> Web Scrapping</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html"><i class="fa fa-check"></i><b>11</b> Estruturas complexas de dados</a><ul>
+<li class="chapter" data-level="11" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html"><i class="fa fa-check"></i><b>11</b> Estruturas complexas de dados</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#introdução-a-listas"><i class="fa fa-check"></i><b>11.1</b> Introdução a listas</a></li>
-<li class="chapter" data-level="11.2" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#introdução-ao-pacote-purrr"><i class="fa fa-check"></i><b>11.2</b> Introdução ao pacote purrr</a><ul>
+<li class="chapter" data-level="11.2" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#introdução-ao-pacote-purrr"><i class="fa fa-check"></i><b>11.2</b> Introdução ao pacote purrr</a>
+<ul>
 <li class="chapter" data-level="11.2.1" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#map"><i class="fa fa-check"></i><b>11.2.1</b> <code>map()</code></a></li>
 <li class="chapter" data-level="11.2.2" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#funções-derivadas-de-map"><i class="fa fa-check"></i><b>11.2.2</b> Funções derivadas de <code>map()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#ideia-de-projeto-aplicando-uma-série-de-funções-a-uma-lista-de-arquivos"><i class="fa fa-check"></i><b>11.3</b> Ideia de projeto: Aplicando uma série de funções a uma lista de arquivos</a></li>
 <li class="chapter" data-level="11.4" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#referências"><i class="fa fa-check"></i><b>11.4</b> Referências</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>12</b> Visualizações de dados (ggplot2)</a><ul>
+<li class="chapter" data-level="12" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>12</b> Visualizações de dados (ggplot2)</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="ggplot2.html"><a href="ggplot2.html#dataset-do-módulo"><i class="fa fa-check"></i><b>12.1</b> Dataset do módulo</a></li>
 <li class="chapter" data-level="12.2" data-path="ggplot2.html"><a href="ggplot2.html#mapeamento-estético"><i class="fa fa-check"></i><b>12.2</b> Mapeamento Estético</a></li>
-<li class="chapter" data-level="12.3" data-path="ggplot2.html"><a href="ggplot2.html#objetos-geométricos-e-tipos-de-gráficos"><i class="fa fa-check"></i><b>12.3</b> Objetos geométricos e tipos de gráficos</a><ul>
+<li class="chapter" data-level="12.3" data-path="ggplot2.html"><a href="ggplot2.html#objetos-geométricos-e-tipos-de-gráficos"><i class="fa fa-check"></i><b>12.3</b> Objetos geométricos e tipos de gráficos</a>
+<ul>
 <li class="chapter" data-level="12.3.1" data-path="ggplot2.html"><a href="ggplot2.html#escolhendo-o-tipo-de-gráfico"><i class="fa fa-check"></i><b>12.3.1</b> Escolhendo o tipo de gráfico</a></li>
 <li class="chapter" data-level="12.3.2" data-path="ggplot2.html"><a href="ggplot2.html#gráfico-de-dispersão-geom_point"><i class="fa fa-check"></i><b>12.3.2</b> Gráfico de Dispersão (<code>geom_point()</code>)</a></li>
 <li class="chapter" data-level="12.3.3" data-path="ggplot2.html"><a href="ggplot2.html#gráficos-de-bolhas"><i class="fa fa-check"></i><b>12.3.3</b> Gráficos de Bolhas</a></li>
@@ -302,72 +353,86 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.3.10" data-path="ggplot2.html"><a href="ggplot2.html#cleveland-dot-plot"><i class="fa fa-check"></i><b>12.3.10</b> Cleveland Dot Plot</a></li>
 <li class="chapter" data-level="12.3.11" data-path="ggplot2.html"><a href="ggplot2.html#mapas-de-calor"><i class="fa fa-check"></i><b>12.3.11</b> Mapas de calor</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="ggplot2.html"><a href="ggplot2.html#escalas"><i class="fa fa-check"></i><b>12.4</b> Escalas</a><ul>
+<li class="chapter" data-level="12.4" data-path="ggplot2.html"><a href="ggplot2.html#escalas"><i class="fa fa-check"></i><b>12.4</b> Escalas</a>
+<ul>
 <li class="chapter" data-level="12.4.1" data-path="ggplot2.html"><a href="ggplot2.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>12.4.1</b> Tipos de Variáveis</a></li>
 <li class="chapter" data-level="12.4.2" data-path="ggplot2.html"><a href="ggplot2.html#eixos"><i class="fa fa-check"></i><b>12.4.2</b> Eixos</a></li>
 <li class="chapter" data-level="12.4.3" data-path="ggplot2.html"><a href="ggplot2.html#escalas-de-cores-color-e-preenchimento-fill"><i class="fa fa-check"></i><b>12.4.3</b> Escalas de Cores (color) e Preenchimento (fill)</a></li>
 </ul></li>
 <li class="chapter" data-level="12.5" data-path="ggplot2.html"><a href="ggplot2.html#subplots-facet"><i class="fa fa-check"></i><b>12.5</b> Subplots (facet)</a></li>
-<li class="chapter" data-level="12.6" data-path="ggplot2.html"><a href="ggplot2.html#temas"><i class="fa fa-check"></i><b>12.6</b> Temas</a><ul>
+<li class="chapter" data-level="12.6" data-path="ggplot2.html"><a href="ggplot2.html#temas"><i class="fa fa-check"></i><b>12.6</b> Temas</a>
+<ul>
 <li class="chapter" data-level="12.6.1" data-path="ggplot2.html"><a href="ggplot2.html#temas-disponíveis-no-ggplot2"><i class="fa fa-check"></i><b>12.6.1</b> Temas disponíveis no ggplot2</a></li>
 <li class="chapter" data-level="12.6.2" data-path="ggplot2.html"><a href="ggplot2.html#temas-no-pacote-ggthemes"><i class="fa fa-check"></i><b>12.6.2</b> Temas no pacote ggthemes</a></li>
-<li class="chapter" data-level="12.6.3" data-path="ggplot2.html"><a href="ggplot2.html#hrbrthemes"><i class="fa fa-check"></i><b>12.6.3</b> hrbrthemes</a></li>
-<li class="chapter" data-level="12.6.4" data-path="ggplot2.html"><a href="ggplot2.html#setando-o-tema-globalmente"><i class="fa fa-check"></i><b>12.6.4</b> Setando o tema globalmente</a></li>
+<li class="chapter" data-level="12.6.3" data-path="ggplot2.html"><a href="ggplot2.html#setando-o-tema-globalmente"><i class="fa fa-check"></i><b>12.6.3</b> Setando o tema globalmente</a></li>
 </ul></li>
 <li class="chapter" data-level="12.7" data-path="ggplot2.html"><a href="ggplot2.html#legendas"><i class="fa fa-check"></i><b>12.7</b> Legendas</a></li>
-<li class="chapter" data-level="12.8" data-path="ggplot2.html"><a href="ggplot2.html#mapas-plotando-polígonos"><i class="fa fa-check"></i><b>12.8</b> Mapas: plotando polígonos</a><ul>
+<li class="chapter" data-level="12.8" data-path="ggplot2.html"><a href="ggplot2.html#mapas-plotando-polígonos"><i class="fa fa-check"></i><b>12.8</b> Mapas: plotando polígonos</a>
+<ul>
 <li class="chapter" data-level="12.8.1" data-path="ggplot2.html"><a href="ggplot2.html#projeto-plotando-indicadores-socioeconômicos-em-um-mapa."><i class="fa fa-check"></i><b>12.8.1</b> Projeto: plotando indicadores socioeconômicos em um mapa.</a></li>
 </ul></li>
 <li class="chapter" data-level="12.9" data-path="ggplot2.html"><a href="ggplot2.html#salvando-gráficos"><i class="fa fa-check"></i><b>12.9</b> Salvando Gráficos</a></li>
-<li class="chapter" data-level="12.10" data-path="ggplot2.html"><a href="ggplot2.html#extensões-do-ggplot2"><i class="fa fa-check"></i><b>12.10</b> Extensões do ggplot2</a><ul>
+<li class="chapter" data-level="12.10" data-path="ggplot2.html"><a href="ggplot2.html#extensões-do-ggplot2"><i class="fa fa-check"></i><b>12.10</b> Extensões do ggplot2</a>
+<ul>
 <li class="chapter" data-level="12.10.1" data-path="ggplot2.html"><a href="ggplot2.html#ggrepel"><i class="fa fa-check"></i><b>12.10.1</b> ggrepel</a></li>
 <li class="chapter" data-level="12.10.2" data-path="ggplot2.html"><a href="ggplot2.html#gganimate"><i class="fa fa-check"></i><b>12.10.2</b> gganimate</a></li>
 </ul></li>
-<li class="chapter" data-level="12.11" data-path="ggplot2.html"><a href="ggplot2.html#exercícios-6"><i class="fa fa-check"></i><b>12.11</b> Exercícios</a><ul>
+<li class="chapter" data-level="12.11" data-path="ggplot2.html"><a href="ggplot2.html#exercícios-6"><i class="fa fa-check"></i><b>12.11</b> Exercícios</a>
+<ul>
 <li class="chapter" data-level="12.11.1" data-path="ggplot2.html"><a href="ggplot2.html#parte-1-1"><i class="fa fa-check"></i><b>12.11.1</b> Parte 1</a></li>
 <li class="chapter" data-level="12.11.2" data-path="ggplot2.html"><a href="ggplot2.html#parte-2-1"><i class="fa fa-check"></i><b>12.11.2</b> Parte 2</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="htmlwidgets.html"><a href="htmlwidgets.html"><i class="fa fa-check"></i><b>13</b> Visualizações Interativas</a><ul>
+<li class="chapter" data-level="13" data-path="htmlwidgets.html"><a href="htmlwidgets.html"><i class="fa fa-check"></i><b>13</b> Visualizações Interativas</a>
+<ul>
 <li class="chapter" data-level="13.1" data-path="htmlwidgets.html"><a href="htmlwidgets.html#introdução-1"><i class="fa fa-check"></i><b>13.1</b> Introdução</a></li>
 <li class="chapter" data-level="13.2" data-path="htmlwidgets.html"><a href="htmlwidgets.html#plotly"><i class="fa fa-check"></i><b>13.2</b> Plotly</a></li>
 <li class="chapter" data-level="13.3" data-path="htmlwidgets.html"><a href="htmlwidgets.html#dygraphs"><i class="fa fa-check"></i><b>13.3</b> dygraphs</a></li>
-<li class="chapter" data-level="13.4" data-path="htmlwidgets.html"><a href="htmlwidgets.html#leaflet"><i class="fa fa-check"></i><b>13.4</b> Leaflet</a><ul>
+<li class="chapter" data-level="13.4" data-path="htmlwidgets.html"><a href="htmlwidgets.html#leaflet"><i class="fa fa-check"></i><b>13.4</b> Leaflet</a>
+<ul>
 <li class="chapter" data-level="13.4.1" data-path="htmlwidgets.html"><a href="htmlwidgets.html#primeiro-exemplo"><i class="fa fa-check"></i><b>13.4.1</b> Primeiro exemplo</a></li>
 <li class="chapter" data-level="13.4.2" data-path="htmlwidgets.html"><a href="htmlwidgets.html#marcadores"><i class="fa fa-check"></i><b>13.4.2</b> Marcadores</a></li>
 <li class="chapter" data-level="13.4.3" data-path="htmlwidgets.html"><a href="htmlwidgets.html#polígonos"><i class="fa fa-check"></i><b>13.4.3</b> Polígonos</a></li>
 </ul></li>
 <li class="chapter" data-level="13.5" data-path="htmlwidgets.html"><a href="htmlwidgets.html#exercícios-7"><i class="fa fa-check"></i><b>13.5</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>14</b> RMarkdown</a><ul>
+<li class="chapter" data-level="14" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>14</b> RMarkdown</a>
+<ul>
 <li class="chapter" data-level="14.1" data-path="rmarkdown.html"><a href="rmarkdown.html#usos-do-rmarkdown"><i class="fa fa-check"></i><b>14.1</b> Usos do RMarkdown</a></li>
 <li class="chapter" data-level="14.2" data-path="rmarkdown.html"><a href="rmarkdown.html#estrutura-de-um-rmarkdown"><i class="fa fa-check"></i><b>14.2</b> Estrutura de um RMarkdown</a></li>
 <li class="chapter" data-level="14.3" data-path="rmarkdown.html"><a href="rmarkdown.html#renderizando-um-documento"><i class="fa fa-check"></i><b>14.3</b> Renderizando um documento</a></li>
 <li class="chapter" data-level="14.4" data-path="rmarkdown.html"><a href="rmarkdown.html#sintaxe"><i class="fa fa-check"></i><b>14.4</b> Sintaxe</a></li>
-<li class="chapter" data-level="14.5" data-path="rmarkdown.html"><a href="rmarkdown.html#opções-de-chunk"><i class="fa fa-check"></i><b>14.5</b> Opções de Chunk</a></li>
-<li class="chapter" data-level="14.6" data-path="rmarkdown.html"><a href="rmarkdown.html#principais-formatos"><i class="fa fa-check"></i><b>14.6</b> Principais Formatos</a><ul>
-<li class="chapter" data-level="14.6.1" data-path="rmarkdown.html"><a href="rmarkdown.html#html"><i class="fa fa-check"></i><b>14.6.1</b> HTML</a></li>
-<li class="chapter" data-level="14.6.2" data-path="rmarkdown.html"><a href="rmarkdown.html#pdf"><i class="fa fa-check"></i><b>14.6.2</b> PDF</a></li>
-<li class="chapter" data-level="14.6.3" data-path="rmarkdown.html"><a href="rmarkdown.html#word"><i class="fa fa-check"></i><b>14.6.3</b> Word</a></li>
+<li class="chapter" data-level="14.5" data-path="rmarkdown.html"><a href="rmarkdown.html#section"><i class="fa fa-check"></i><b>14.5</b> ***</a></li>
+<li class="chapter" data-level="14.6" data-path="rmarkdown.html"><a href="rmarkdown.html#opções-de-chunk"><i class="fa fa-check"></i><b>14.6</b> Opções de Chunk</a></li>
+<li class="chapter" data-level="14.7" data-path="rmarkdown.html"><a href="rmarkdown.html#principais-formatos"><i class="fa fa-check"></i><b>14.7</b> Principais Formatos</a>
+<ul>
+<li class="chapter" data-level="14.7.1" data-path="rmarkdown.html"><a href="rmarkdown.html#html"><i class="fa fa-check"></i><b>14.7.1</b> HTML</a></li>
+<li class="chapter" data-level="14.7.2" data-path="rmarkdown.html"><a href="rmarkdown.html#pdf"><i class="fa fa-check"></i><b>14.7.2</b> PDF</a></li>
+<li class="chapter" data-level="14.7.3" data-path="rmarkdown.html"><a href="rmarkdown.html#word"><i class="fa fa-check"></i><b>14.7.3</b> Word</a></li>
 </ul></li>
-<li class="chapter" data-level="14.7" data-path="rmarkdown.html"><a href="rmarkdown.html#excercícios"><i class="fa fa-check"></i><b>14.7</b> Excercícios</a></li>
+<li class="chapter" data-level="14.8" data-path="rmarkdown.html"><a href="rmarkdown.html#excercícios"><i class="fa fa-check"></i><b>14.8</b> Excercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="modelos.html"><a href="modelos.html"><i class="fa fa-check"></i><b>15</b> Modelos</a><ul>
-<li class="chapter" data-level="15.1" data-path="modelos.html"><a href="modelos.html#modelo-linear"><i class="fa fa-check"></i><b>15.1</b> Modelo Linear</a><ul>
+<li class="chapter" data-level="15" data-path="modelos.html"><a href="modelos.html"><i class="fa fa-check"></i><b>15</b> Modelos</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="modelos.html"><a href="modelos.html#modelo-linear"><i class="fa fa-check"></i><b>15.1</b> Modelo Linear</a>
+<ul>
 <li class="chapter" data-level="15.1.1" data-path="modelos.html"><a href="modelos.html#regressão"><i class="fa fa-check"></i><b>15.1.1</b> Regressão</a></li>
 <li class="chapter" data-level="15.1.2" data-path="modelos.html"><a href="modelos.html#classificação"><i class="fa fa-check"></i><b>15.1.2</b> Classificação</a></li>
 <li class="chapter" data-level="15.1.3" data-path="modelos.html"><a href="modelos.html#classificação-com-modelos-baseados-em-árvores"><i class="fa fa-check"></i><b>15.1.3</b> Classificação com modelos baseados em árvores</a></li>
 </ul></li>
 <li class="chapter" data-level="15.2" data-path="modelos.html"><a href="modelos.html#exercícios-8"><i class="fa fa-check"></i><b>15.2</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="revisão-titanic.html"><a href="revisão-titanic.html"><i class="fa fa-check"></i><b>16</b> Revisão - Titanic</a><ul>
+<li class="chapter" data-level="16" data-path="revisão-titanic.html"><a href="revisão-titanic.html"><i class="fa fa-check"></i><b>16</b> Revisão - Titanic</a>
+<ul>
 <li class="chapter" data-level="16.1" data-path="revisão-titanic.html"><a href="revisão-titanic.html#objetivo"><i class="fa fa-check"></i><b>16.1</b> Objetivo</a></li>
 <li class="chapter" data-level="16.2" data-path="revisão-titanic.html"><a href="revisão-titanic.html#carregando-os-dados"><i class="fa fa-check"></i><b>16.2</b> Carregando os Dados</a></li>
-<li class="chapter" data-level="16.3" data-path="revisão-titanic.html"><a href="revisão-titanic.html#manipulando-os-dados-1"><i class="fa fa-check"></i><b>16.3</b> Manipulando os dados</a><ul>
+<li class="chapter" data-level="16.3" data-path="revisão-titanic.html"><a href="revisão-titanic.html#manipulando-os-dados-1"><i class="fa fa-check"></i><b>16.3</b> Manipulando os dados</a>
+<ul>
 <li class="chapter" data-level="16.3.1" data-path="revisão-titanic.html"><a href="revisão-titanic.html#variável-survived"><i class="fa fa-check"></i><b>16.3.1</b> Variável Survived</a></li>
 <li class="chapter" data-level="16.3.2" data-path="revisão-titanic.html"><a href="revisão-titanic.html#variável-name"><i class="fa fa-check"></i><b>16.3.2</b> Variável Name</a></li>
 </ul></li>
-<li class="chapter" data-level="16.4" data-path="revisão-titanic.html"><a href="revisão-titanic.html#idade"><i class="fa fa-check"></i><b>16.4</b> Idade</a><ul>
+<li class="chapter" data-level="16.4" data-path="revisão-titanic.html"><a href="revisão-titanic.html#idade"><i class="fa fa-check"></i><b>16.4</b> Idade</a>
+<ul>
 <li class="chapter" data-level="16.4.1" data-path="revisão-titanic.html"><a href="revisão-titanic.html#exercício"><i class="fa fa-check"></i><b>16.4.1</b> Exercício</a></li>
 </ul></li>
 <li class="chapter" data-level="16.5" data-path="revisão-titanic.html"><a href="revisão-titanic.html#visualizações"><i class="fa fa-check"></i><b>16.5</b> Visualizações</a></li>
@@ -394,7 +459,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rmarkdown" class="section level1">
+<div id="rmarkdown" class="section level1" number="14">
 <h1><span class="header-section-number">14</span> RMarkdown</h1>
 <p>Antes de falarmos sobre o que é RMarkdown, é interessante discutirmos sobre o Markdown.</p>
 <p>Markdown é uma linguagem de marcação, ou seja, não é uma linguagem de programação. Linguagens de marcação dizem como algo deve ser entendido, mas não têm capacidade de processamento e execução de funções. Por exemplo, HTML é uma linguagem de marcação. Ela apenas diz como uma página web está estruturada, mas não executa nenhum processamento. O Markdown, da mesma forma, apenas informa como um documento está estruturado.</p>
@@ -405,7 +470,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="caption">Processo - RMarkdow</p>
 </div>
 <p>Acesse <a href="http://rmarkdown.rstudio.com/formats.html">este link</a> para ver os tipos de formatos disponíveis no RMarkdown. É possível gerar documentos no formato Word, pdf formatados para revistas científicas, apresentações, dashboards etc.</p>
-<div id="usos-do-rmarkdown" class="section level2">
+<div id="usos-do-rmarkdown" class="section level2" number="14.1">
 <h2><span class="header-section-number">14.1</span> Usos do RMarkdown</h2>
 <p>A seção anterior já deu algumas dicas sobre a utilidade do RMarkdown. Aqui elaboraremos um pouco mais sua funcionalidade.</p>
 <ol style="list-style-type: decimal">
@@ -415,7 +480,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong>Relatórios parametrizados</strong>. O RMarkdown facilita a criação de relatórios, inclusive dashboards, em que a estrutura é padrão, mas os dados dependem de um parâmetro. Por exemplo, relatórios de balança comercial por unidade da federação (UF). No caso, a UF seria um parâmetro que variaria de relatório para relatório.</p></li>
 </ol>
 </div>
-<div id="estrutura-de-um-rmarkdown" class="section level2">
+<div id="estrutura-de-um-rmarkdown" class="section level2" number="14.2">
 <h2><span class="header-section-number">14.2</span> Estrutura de um RMarkdown</h2>
 <pre><code>---
 title: &quot;Primeiro Exemplo para o Curso de R&quot;
@@ -463,7 +528,7 @@ A média de x é `r mean(x)`.</code></pre>
 <pre><code>---
 title: &quot;Primeiro Exemplo para o Curso de R&quot;
 author: &quot;Paulo&quot;
-date: &quot;20 de fevereiro de 2021&quot;
+date: &quot;29 de setembro de 2021&quot;
 output:
   html_document: default
   pdf_document:
@@ -482,14 +547,14 @@ lang: pt-br
 <p><img src="images/texto_rmarkdown.png" /></p>
 <p>Na figura acima, é mostrado como o texto se mistura com o código de markdown. Esse código markdown, quando convertido, gerará a formatação desejada. Na próxima seção, detalharemos o que cada marcação faz.</p>
 </div>
-<div id="renderizando-um-documento" class="section level2">
+<div id="renderizando-um-documento" class="section level2" number="14.3">
 <h2><span class="header-section-number">14.3</span> Renderizando um documento</h2>
 <p>Há duas formas de se renderizar um documento <code>.Rmd</code>. A primeira é via função <code>render()</code> do pacote <code>rmarkdown</code>.</p>
-<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="rmarkdown.html#cb663-1"></a><span class="kw">render</span>(input, <span class="dt">output_format =</span> <span class="ot">NULL</span>, <span class="dt">output_file =</span> <span class="ot">NULL</span>, <span class="dt">output_dir =</span> <span class="ot">NULL</span>,</span>
-<span id="cb663-2"><a href="rmarkdown.html#cb663-2"></a>       <span class="dt">output_options =</span> <span class="ot">NULL</span>, <span class="dt">intermediates_dir =</span> <span class="ot">NULL</span>,</span>
-<span id="cb663-3"><a href="rmarkdown.html#cb663-3"></a>       <span class="dt">runtime =</span> <span class="kw">c</span>(<span class="st">&quot;auto&quot;</span>, <span class="st">&quot;static&quot;</span>, <span class="st">&quot;shiny&quot;</span>),</span>
-<span id="cb663-4"><a href="rmarkdown.html#cb663-4"></a>       <span class="dt">clean =</span> <span class="ot">TRUE</span>, <span class="dt">params =</span> <span class="ot">NULL</span>, <span class="dt">knit_meta =</span> <span class="ot">NULL</span>, <span class="dt">envir =</span> <span class="kw">parent.frame</span>(),</span>
-<span id="cb663-5"><a href="rmarkdown.html#cb663-5"></a>       <span class="dt">run_pandoc =</span> <span class="ot">TRUE</span>, <span class="dt">quiet =</span> <span class="ot">FALSE</span>, <span class="dt">encoding =</span> <span class="kw">getOption</span>(<span class="st">&quot;encoding&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="rmarkdown.html#cb651-1" aria-hidden="true" tabindex="-1"></a><span class="fu">render</span>(input, <span class="at">output_format =</span> <span class="cn">NULL</span>, <span class="at">output_file =</span> <span class="cn">NULL</span>, <span class="at">output_dir =</span> <span class="cn">NULL</span>,</span>
+<span id="cb651-2"><a href="rmarkdown.html#cb651-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">output_options =</span> <span class="cn">NULL</span>, <span class="at">intermediates_dir =</span> <span class="cn">NULL</span>,</span>
+<span id="cb651-3"><a href="rmarkdown.html#cb651-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">runtime =</span> <span class="fu">c</span>(<span class="st">&quot;auto&quot;</span>, <span class="st">&quot;static&quot;</span>, <span class="st">&quot;shiny&quot;</span>),</span>
+<span id="cb651-4"><a href="rmarkdown.html#cb651-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">clean =</span> <span class="cn">TRUE</span>, <span class="at">params =</span> <span class="cn">NULL</span>, <span class="at">knit_meta =</span> <span class="cn">NULL</span>, <span class="at">envir =</span> <span class="fu">parent.frame</span>(),</span>
+<span id="cb651-5"><a href="rmarkdown.html#cb651-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">run_pandoc =</span> <span class="cn">TRUE</span>, <span class="at">quiet =</span> <span class="cn">FALSE</span>, <span class="at">encoding =</span> <span class="fu">getOption</span>(<span class="st">&quot;encoding&quot;</span>))</span></code></pre></div>
 <p>Veja no help a função de cada argumento. Essa função é especialmente importante quando a renderização de um RMarkdown está inserida dentro de uma rotina. Por exemplo, pode-se usar a função <code>render()</code> dentro de um loop para criar-se vários pdf’s a partir de um relatório parametrizado.</p>
 <p>A outra opção é usando o botão <code>knit</code>, disponível na interface do RStudio.</p>
 <div class="figure">
@@ -497,7 +562,7 @@ lang: pt-br
 <p class="caption">Botão Knit</p>
 </div>
 </div>
-<div id="sintaxe" class="section level2">
+<div id="sintaxe" class="section level2" number="14.4">
 <h2><span class="header-section-number">14.4</span> Sintaxe</h2>
 <p>Abaixo estão os principais elementos de sintaxe do RMarkdown. Vários são autoexplicativos. Para alguns, faremos alguns comentários:</p>
 <ul>
@@ -618,9 +683,9 @@ I want the contents of this cell to fit into one line   Word1 Word2
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="rmarkdown.html#cb675-1"></a>x &lt;-<span class="st"> </span>letters[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</span>
-<span id="cb675-2"><a href="rmarkdown.html#cb675-2"></a>y &lt;-<span class="st"> </span>LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</span>
-<span id="cb675-3"><a href="rmarkdown.html#cb675-3"></a>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">data.frame</span>(x, y), <span class="dt">align =</span> <span class="st">&#39;cc&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="rmarkdown.html#cb663-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb663-2"><a href="rmarkdown.html#cb663-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb663-3"><a href="rmarkdown.html#cb663-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">data.frame</span>(x, y), <span class="at">align =</span> <span class="st">&#39;cc&#39;</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -653,8 +718,9 @@ I want the contents of this cell to fit into one line   Word1 Word2
 </ul>
 <pre><code>***
 ---</code></pre>
-<hr />
-<hr />
+</div>
+<div id="section" class="section level2" number="14.5">
+<h2><span class="header-section-number">14.5</span> ***</h2>
 <ul>
 <li><strong>Equação</strong>:</li>
 </ul>
@@ -666,8 +732,8 @@ I want the contents of this cell to fit into one line   Word1 Word2
 <pre><code>Modelo linear simples: $$y_i = \alpha + \beta x_i + e_i$$</code></pre>
 <p>Modelo linear simples: <span class="math display">\[y_i = \alpha + \beta x_i + e_i\]</span></p>
 </div>
-<div id="opções-de-chunk" class="section level2">
-<h2><span class="header-section-number">14.5</span> Opções de Chunk</h2>
+<div id="opções-de-chunk" class="section level2" number="14.6">
+<h2><span class="header-section-number">14.6</span> Opções de Chunk</h2>
 <p>Os chunks de códigos (<code>{r, ...}</code>) que possuem uma série de opções. Elencaremos aqui as principais. Para a lista completa, veja <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">este link</a>.</p>
 <table>
 <colgroup>
@@ -741,10 +807,10 @@ I want the contents of this cell to fit into one line   Word1 Word2
 </tbody>
 </table>
 </div>
-<div id="principais-formatos" class="section level2">
-<h2><span class="header-section-number">14.6</span> Principais Formatos</h2>
-<div id="html" class="section level3">
-<h3><span class="header-section-number">14.6.1</span> HTML</h3>
+<div id="principais-formatos" class="section level2" number="14.7">
+<h2><span class="header-section-number">14.7</span> Principais Formatos</h2>
+<div id="html" class="section level3" number="14.7.1">
+<h3><span class="header-section-number">14.7.1</span> HTML</h3>
 <p>A HTML é a linguagem de marcação para construção de páginas web. Assim, se criarmos um documento e escolhermos como opção de output <code>html_document</code>, o resultado será uma página a ser aberta em browsers. Outros formatos do markdown, como <em>flexdashboard</em> e <em>ioslides</em>, também geram páginas html. Cada tipo de formato tem um conjunto de aspectos específicos. Abaixo listamos os principais para html:</p>
 <ul>
 <li><p>A aparência e o estilo são definidos por um arquivo no formato <a href="https://pt.wikipedia.org/wiki/Cascading_Style_Sheets"><code>css</code></a>. Isso impõe uma dificuldade adicional para a formatação do documento. O Rmarkdown fornece alguns temas e pacotes que também podem fornecer documentos com alguma formatação de estilo (<a href="https://www.r-bloggers.com/creating-pretty-documents-with-the-prettydoc-package/">ver prettydoc</a>);</p></li>
@@ -766,8 +832,8 @@ I want the contents of this cell to fit into one line   Word1 Word2
 <p class="caption">Exemplo de formato HTML</p>
 </div>
 </div>
-<div id="pdf" class="section level3">
-<h3><span class="header-section-number">14.6.2</span> PDF</h3>
+<div id="pdf" class="section level3" number="14.7.2">
+<h3><span class="header-section-number">14.7.2</span> PDF</h3>
 <p>Para a criação de PDFs pelo RMarkdown, utiliza-se o LaTeX (pronuncia-se: <em>Lah-tech</em> or <em>Lay-tech</em>), que é um sistema de preparação de documentos muito utilizado pela comunidade científica. Inicialmente, o RMarkdown abstrai para o usuário a necessidade de saber-se essa linguagem. No entanto, como no HTML, se você quiser avançar na estrutura do documento e nos estilos será necessário aprender esta linguagem, pelo menos o suficiente para resolver o seu problema.</p>
 <p>Entre as vantagens do LaTeX estão:</p>
 <ul>
@@ -789,12 +855,12 @@ I want the contents of this cell to fit into one line   Word1 Word2
 \end{document}
 </code></pre>
 <p>Basicamente, o código acima define a classe do documento como artigo, o título, o nome do autor e a data para o dia em que o documento for compilado. Depois, inicia-se o documento, criando o título (inclui título, autor e data), definindo uma quebra de página e a seção introdução.</p>
-<div id="instalações-necessárias" class="section level4">
-<h4><span class="header-section-number">14.6.2.1</span> Instalações necessárias</h4>
+<div id="instalações-necessárias" class="section level4" number="14.7.2.1">
+<h4><span class="header-section-number">14.7.2.1</span> Instalações necessárias</h4>
 <p>Para criar documentos PDF no RMarkdown é preciso ter uma instalação <strong>TeX</strong> disponível. Para isso, é preciso baixar uma distribuição compatível com o seu sistema operacional. <a href="https://www.latex-project.org/get/">Nesta página</a> estão listadas as distribuições disponíveis por sistema operacional. No Windows é comum usar a distribuição MiKTeX.</p>
 </div>
-<div id="exemplo" class="section level4">
-<h4><span class="header-section-number">14.6.2.2</span> Exemplo</h4>
+<div id="exemplo" class="section level4" number="14.7.2.2">
+<h4><span class="header-section-number">14.7.2.2</span> Exemplo</h4>
 <p>Como no HTML, mostraremos primeiramente o código em RMarkdown:</p>
 <div class="figure">
 <img src="images/exemplo_pdf_rmdcode.png" alt="" />
@@ -812,8 +878,8 @@ I want the contents of this cell to fit into one line   Word1 Word2
 </div>
 </div>
 </div>
-<div id="word" class="section level3">
-<h3><span class="header-section-number">14.6.3</span> Word</h3>
+<div id="word" class="section level3" number="14.7.3">
+<h3><span class="header-section-number">14.7.3</span> Word</h3>
 <p>A geração de word segue a geração dos demais formatos. No entanto, templates apenas funcionam para definir estilos que serão usados no documento. Atualmente, devido a limitações do conversor (pandoc), é difícil ter-se total acesso à formatação do documento.</p>
 <div class="figure">
 <img src="images/exemplo_word_rmdcode.png" alt="" />
@@ -821,8 +887,8 @@ I want the contents of this cell to fit into one line   Word1 Word2
 </div>
 </div>
 </div>
-<div id="excercícios" class="section level2">
-<h2><span class="header-section-number">14.7</span> Excercícios</h2>
+<div id="excercícios" class="section level2" number="14.8">
+<h2><span class="header-section-number">14.8</span> Excercícios</h2>
 <ol style="list-style-type: decimal">
 <li><p>Crie um RMarkdown com o formato HTML para output. Neste documento, faça um mini tutorial sobre algum pacote que você aprendeu no curso ou outro pacote que você tenha conhecido. Crie as seções adequadamente e, se for o caso, crie tabelas.</p></li>
 <li><p>Crie um novo RMarkdown e explique o processo de criação de um gráfico usando o ggplot2. O ideal é criar um novo gráfico, mas fique livre para utilizar algum exemplo deste material.</p></li>
@@ -831,10 +897,10 @@ I want the contents of this cell to fit into one line   Word1 Word2
 <li><p>Crie um vetor com cinco códigos de países. A partir deste vetor, utilize a função render para criar um arquivo para cada país.</p></li>
 </ol>
 
-<div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb681-1"><a href="rmarkdown.html#cb681-1"></a><span class="kw">library</span>(rpart)</span>
-<span id="cb681-2"><a href="rmarkdown.html#cb681-2"></a><span class="kw">library</span>(randomForest)</span>
-<span id="cb681-3"><a href="rmarkdown.html#cb681-3"></a><span class="kw">library</span>(ModelMetrics)</span>
-<span id="cb681-4"><a href="rmarkdown.html#cb681-4"></a><span class="kw">library</span>(rpart.plot)</span></code></pre></div>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="rmarkdown.html#cb669-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart)</span>
+<span id="cb669-2"><a href="rmarkdown.html#cb669-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomForest) </span>
+<span id="cb669-3"><a href="rmarkdown.html#cb669-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ModelMetrics)</span>
+<span id="cb669-4"><a href="rmarkdown.html#cb669-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart.plot)</span></code></pre></div>
 </div>
 </div>
             </section>
@@ -866,6 +932,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

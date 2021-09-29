@@ -53,7 +53,9 @@ pacote-dplyr
 verbetes-do-dplyr-e-o-operador
 select
 mutate
+filter
 group-by-e-summarise
+arrange
 exercícios-2
 parte-1
 parte-2
@@ -130,7 +132,6 @@ subplots-facet
 temas
 temas-disponíveis-no-ggplot2
 temas-no-pacote-ggthemes
-hrbrthemes
 setando-o-tema-globalmente
 legendas
 mapas-plotando-polígonos
@@ -156,6 +157,7 @@ usos-do-rmarkdown
 estrutura-de-um-rmarkdown
 renderizando-um-documento
 sintaxe
+section
 opções-de-chunk
 principais-formatos
 html

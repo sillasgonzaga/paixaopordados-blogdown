@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7 Dados em strings (texto) | Ciência de Dados com R - Introdução</title>
   <meta name="description" content="Aprendendo a programar com R" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7 Dados em strings (texto) | Ciência de Dados com R - Introdução" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,8 @@
   
 <link rel="prev" href="juntando-dados.html"/>
 <link rel="next" href="trabalhando-com-datas.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,14 +50,15 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.2.2/plotly.js"></script>
+<script src="libs/plotly-binding-4.9.4.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
 <link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
 <script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
 <script src="libs/dygraphs-1.1.1/shapes.js"></script>
@@ -88,18 +90,18 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -119,7 +121,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -152,6 +154,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -172,7 +197,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a></li>
 <li class="chapter" data-level="" data-path="sobre-os-autores.html"><a href="sobre-os-autores.html"><i class="fa fa-check"></i>Sobre os autores</a></li>
 <li class="chapter" data-level="" data-path="download.html"><a href="download.html"><i class="fa fa-check"></i>Download</a></li>
-<li class="chapter" data-level="1" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i><b>1</b> Introdução</a><ul>
+<li class="chapter" data-level="1" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i><b>1</b> Introdução</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="introdução.html"><a href="introdução.html#o-que-é-ciência-de-dados"><i class="fa fa-check"></i><b>1.1</b> O que é Ciência de Dados?</a></li>
 <li class="chapter" data-level="1.2" data-path="introdução.html"><a href="introdução.html#workflow-da-ciência-de-dados"><i class="fa fa-check"></i><b>1.2</b> Workflow da Ciência de Dados</a></li>
 <li class="chapter" data-level="1.3" data-path="introdução.html"><a href="introdução.html#linguagens-para-ciência-de-dados"><i class="fa fa-check"></i><b>1.3</b> Linguagens para Ciência de dados</a></li>
@@ -181,9 +207,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.6" data-path="introdução.html"><a href="introdução.html#buscando-ajuda"><i class="fa fa-check"></i><b>1.6</b> Buscando Ajuda</a></li>
 <li class="chapter" data-level="1.7" data-path="introdução.html"><a href="introdução.html#exercícios"><i class="fa fa-check"></i><b>1.7</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html"><i class="fa fa-check"></i><b>2</b> Conceitos Básicos</a><ul>
+<li class="chapter" data-level="2" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html"><i class="fa fa-check"></i><b>2</b> Conceitos Básicos</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#console"><i class="fa fa-check"></i><b>2.1</b> Console</a></li>
-<li class="chapter" data-level="2.2" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#scripts"><i class="fa fa-check"></i><b>2.2</b> Scripts</a><ul>
+<li class="chapter" data-level="2.2" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#scripts"><i class="fa fa-check"></i><b>2.2</b> Scripts</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#salvando-scripts"><i class="fa fa-check"></i><b>2.2.1</b> Salvando Scripts</a></li>
 <li class="chapter" data-level="2.2.2" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#comentários-de-código"><i class="fa fa-check"></i><b>2.2.2</b> Comentários de Código</a></li>
 </ul></li>
@@ -194,8 +222,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#tidyverse"><i class="fa fa-check"></i><b>2.7</b> Tidyverse</a></li>
 <li class="chapter" data-level="2.8" data-path="conceitos-básicos.html"><a href="conceitos-básicos.html#exercícios-1"><i class="fa fa-check"></i><b>2.8</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html"><i class="fa fa-check"></i><b>3</b> Lendo os dados</a><ul>
-<li class="chapter" data-level="3.1" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#tipos-de-estrutura-dos-dados"><i class="fa fa-check"></i><b>3.1</b> Tipos de Estrutura dos Dados</a><ul>
+<li class="chapter" data-level="3" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html"><i class="fa fa-check"></i><b>3</b> Lendo os dados</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#tipos-de-estrutura-dos-dados"><i class="fa fa-check"></i><b>3.1</b> Tipos de Estrutura dos Dados</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#dados-estruturados"><i class="fa fa-check"></i><b>3.1.1</b> Dados Estruturados</a></li>
 <li class="chapter" data-level="3.1.2" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#dados-não-estruturados"><i class="fa fa-check"></i><b>3.1.2</b> Dados Não Estruturados</a></li>
 <li class="chapter" data-level="3.1.3" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#dados-semiestruturados"><i class="fa fa-check"></i><b>3.1.3</b> Dados Semiestruturados</a></li>
@@ -203,34 +233,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#definindo-o-local-dos-dados"><i class="fa fa-check"></i><b>3.2</b> Definindo o Local dos Dados</a></li>
 <li class="chapter" data-level="3.3" data-path="lendo-os-dados.html"><a href="lendo-os-dados.html#pacote-para-leitura-dos-dados"><i class="fa fa-check"></i><b>3.3</b> Pacote para leitura dos dados</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html"><i class="fa fa-check"></i><b>4</b> Manipulando os dados</a><ul>
-<li class="chapter" data-level="4.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#tipos-de-variáveis-e-colunas"><i class="fa fa-check"></i><b>4.1</b> Tipos de Variáveis e Colunas</a><ul>
+<li class="chapter" data-level="4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html"><i class="fa fa-check"></i><b>4</b> Manipulando os dados</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#tipos-de-variáveis-e-colunas"><i class="fa fa-check"></i><b>4.1</b> Tipos de Variáveis e Colunas</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#conversões-de-tipos-de-variáveis"><i class="fa fa-check"></i><b>4.1.1</b> Conversões de tipos de variáveis</a></li>
 <li class="chapter" data-level="4.1.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#outros-tipos-de-variáveis"><i class="fa fa-check"></i><b>4.1.2</b> Outros tipos de variáveis</a></li>
 <li class="chapter" data-level="4.1.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#valores-faltantes-e-o-na"><i class="fa fa-check"></i><b>4.1.3</b> Valores faltantes e o ‘NA’</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#estruturas-de-controle-de-fluxo"><i class="fa fa-check"></i><b>4.2</b> Estruturas de Controle de Fluxo</a><ul>
+<li class="chapter" data-level="4.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#estruturas-de-controle-de-fluxo"><i class="fa fa-check"></i><b>4.2</b> Estruturas de Controle de Fluxo</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#if-e-else"><i class="fa fa-check"></i><b>4.2.1</b> If e Else</a></li>
 <li class="chapter" data-level="4.2.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#loops"><i class="fa fa-check"></i><b>4.2.2</b> Loops</a></li>
 <li class="chapter" data-level="4.2.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#funções-1"><i class="fa fa-check"></i><b>4.2.3</b> Funções</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#manipulações-com-r-base"><i class="fa fa-check"></i><b>4.3</b> Manipulações com R base</a><ul>
+<li class="chapter" data-level="4.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#manipulações-com-r-base"><i class="fa fa-check"></i><b>4.3</b> Manipulações com R base</a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#trabalhando-com-colunas-de-um-data.frame"><i class="fa fa-check"></i><b>4.3.1</b> Trabalhando com colunas de um data.frame</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#pacote-dplyr"><i class="fa fa-check"></i><b>4.4</b> Pacote dplyr</a><ul>
+<li class="chapter" data-level="4.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#pacote-dplyr"><i class="fa fa-check"></i><b>4.4</b> Pacote dplyr</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#verbetes-do-dplyr-e-o-operador"><i class="fa fa-check"></i><b>4.4.1</b> Verbetes do dplyr e o operador <code>%&gt;%</code></a></li>
 <li class="chapter" data-level="4.4.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#select"><i class="fa fa-check"></i><b>4.4.2</b> Select</a></li>
 <li class="chapter" data-level="4.4.3" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#mutate"><i class="fa fa-check"></i><b>4.4.3</b> Mutate</a></li>
-<li class="chapter" data-level="4.4.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#group-by-e-summarise"><i class="fa fa-check"></i><b>4.4.4</b> Group By e Summarise</a></li>
+<li class="chapter" data-level="4.4.4" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#filter"><i class="fa fa-check"></i><b>4.4.4</b> Filter</a></li>
+<li class="chapter" data-level="4.4.5" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#group-by-e-summarise"><i class="fa fa-check"></i><b>4.4.5</b> Group By e Summarise</a></li>
+<li class="chapter" data-level="4.4.6" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#arrange"><i class="fa fa-check"></i><b>4.4.6</b> Arrange</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#exercícios-2"><i class="fa fa-check"></i><b>4.5</b> Exercícios</a><ul>
+<li class="chapter" data-level="4.5" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#exercícios-2"><i class="fa fa-check"></i><b>4.5</b> Exercícios</a>
+<ul>
 <li class="chapter" data-level="4.5.1" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#parte-1"><i class="fa fa-check"></i><b>4.5.1</b> Parte 1</a></li>
 <li class="chapter" data-level="4.5.2" data-path="manipulando-os-dados.html"><a href="manipulando-os-dados.html#parte-2"><i class="fa fa-check"></i><b>4.5.2</b> Parte 2</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="limpando-dados.html"><a href="limpando-dados.html"><i class="fa fa-check"></i><b>5</b> Limpando dados</a><ul>
+<li class="chapter" data-level="5" data-path="limpando-dados.html"><a href="limpando-dados.html"><i class="fa fa-check"></i><b>5</b> Limpando dados</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="limpando-dados.html"><a href="limpando-dados.html#o-formato-ideal-dos-dados"><i class="fa fa-check"></i><b>5.1</b> O formato “ideal” dos dados</a></li>
-<li class="chapter" data-level="5.2" data-path="limpando-dados.html"><a href="limpando-dados.html#pacote-tidyr"><i class="fa fa-check"></i><b>5.2</b> Pacote tidyr</a><ul>
+<li class="chapter" data-level="5.2" data-path="limpando-dados.html"><a href="limpando-dados.html#pacote-tidyr"><i class="fa fa-check"></i><b>5.2</b> Pacote tidyr</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="limpando-dados.html"><a href="limpando-dados.html#pivot_longer"><i class="fa fa-check"></i><b>5.2.1</b> pivot_longer()</a></li>
 <li class="chapter" data-level="5.2.2" data-path="limpando-dados.html"><a href="limpando-dados.html#pivot_wider"><i class="fa fa-check"></i><b>5.2.2</b> pivot_wider()</a></li>
 <li class="chapter" data-level="5.2.3" data-path="limpando-dados.html"><a href="limpando-dados.html#separate"><i class="fa fa-check"></i><b>5.2.3</b> separate</a></li>
@@ -239,9 +279,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="limpando-dados.html"><a href="limpando-dados.html#exercicios"><i class="fa fa-check"></i><b>5.3</b> Exercicios</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="juntando-dados.html"><a href="juntando-dados.html"><i class="fa fa-check"></i><b>6</b> Juntando dados</a><ul>
+<li class="chapter" data-level="6" data-path="juntando-dados.html"><a href="juntando-dados.html"><i class="fa fa-check"></i><b>6</b> Juntando dados</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="juntando-dados.html"><a href="juntando-dados.html#união-de-dados-union"><i class="fa fa-check"></i><b>6.1</b> União de dados (Union)</a></li>
-<li class="chapter" data-level="6.2" data-path="juntando-dados.html"><a href="juntando-dados.html#cruzamento-de-dados-join"><i class="fa fa-check"></i><b>6.2</b> Cruzamento de Dados (Join)</a><ul>
+<li class="chapter" data-level="6.2" data-path="juntando-dados.html"><a href="juntando-dados.html#cruzamento-de-dados-join"><i class="fa fa-check"></i><b>6.2</b> Cruzamento de Dados (Join)</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="juntando-dados.html"><a href="juntando-dados.html#inner-join-ou-apenas-join"><i class="fa fa-check"></i><b>6.2.1</b> Inner Join (ou apenas Join)</a></li>
 <li class="chapter" data-level="6.2.2" data-path="juntando-dados.html"><a href="juntando-dados.html#left-outer-join"><i class="fa fa-check"></i><b>6.2.2</b> Left Outer Join</a></li>
 <li class="chapter" data-level="6.2.3" data-path="juntando-dados.html"><a href="juntando-dados.html#right-outer-join"><i class="fa fa-check"></i><b>6.2.3</b> Right Outer Join</a></li>
@@ -250,8 +292,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3" data-path="juntando-dados.html"><a href="juntando-dados.html#exercícios-3"><i class="fa fa-check"></i><b>6.3</b> Exercícios</a></li>
 <li class="chapter" data-level="6.4" data-path="juntando-dados.html"><a href="juntando-dados.html#exercícios-gerais-do-tidyverse"><i class="fa fa-check"></i><b>6.4</b> Exercícios gerais do Tidyverse</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html"><i class="fa fa-check"></i><b>7</b> Dados em strings (texto)</a><ul>
-<li class="chapter" data-level="7.1" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#pacote-stringr"><i class="fa fa-check"></i><b>7.1</b> Pacote stringr</a><ul>
+<li class="chapter" data-level="7" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html"><i class="fa fa-check"></i><b>7</b> Dados em strings (texto)</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#pacote-stringr"><i class="fa fa-check"></i><b>7.1</b> Pacote stringr</a>
+<ul>
 <li class="chapter" data-level="7.1.1" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#extrair-parte-de-uma-string"><i class="fa fa-check"></i><b>7.1.1</b> Extrair parte de uma string</a></li>
 <li class="chapter" data-level="7.1.2" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#substituir-caracteres-em-um-string"><i class="fa fa-check"></i><b>7.1.2</b> Substituir caracteres em um string</a></li>
 <li class="chapter" data-level="7.1.3" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#buscar-correspondências-em-um-string"><i class="fa fa-check"></i><b>7.1.3</b> Buscar correspondências em um string</a></li>
@@ -261,35 +305,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#regex"><i class="fa fa-check"></i><b>7.2</b> Regex</a></li>
 <li class="chapter" data-level="7.3" data-path="dados-em-strings-texto.html"><a href="dados-em-strings-texto.html#exercícios-4"><i class="fa fa-check"></i><b>7.3</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html"><i class="fa fa-check"></i><b>8</b> Trabalhando com datas</a><ul>
+<li class="chapter" data-level="8" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html"><i class="fa fa-check"></i><b>8</b> Trabalhando com datas</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html#gerar-um-vetor-sequencial-de-datas"><i class="fa fa-check"></i><b>8.1</b> Gerar um vetor sequencial de datas</a></li>
 <li class="chapter" data-level="8.2" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html#parsear-datas-e-horários"><i class="fa fa-check"></i><b>8.2</b> ‘Parsear’ datas e horários</a></li>
 <li class="chapter" data-level="8.3" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html#extrair-componentes-de-uma-data"><i class="fa fa-check"></i><b>8.3</b> Extrair componentes de uma data</a></li>
 <li class="chapter" data-level="8.4" data-path="trabalhando-com-datas.html"><a href="trabalhando-com-datas.html#operações-matemáticas-com-datas"><i class="fa fa-check"></i><b>8.4</b> Operações matemáticas com datas</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html"><i class="fa fa-check"></i><b>9</b> Escrevendo dados</a><ul>
+<li class="chapter" data-level="9" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html"><i class="fa fa-check"></i><b>9</b> Escrevendo dados</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html#escrevendo-csv"><i class="fa fa-check"></i><b>9.1</b> Escrevendo csv</a></li>
 <li class="chapter" data-level="9.2" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html#rds"><i class="fa fa-check"></i><b>9.2</b> Rds</a></li>
 <li class="chapter" data-level="9.3" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html#escrevendo-outros-tipos-de-arquivos"><i class="fa fa-check"></i><b>9.3</b> Escrevendo outros tipos de arquivos</a></li>
 <li class="chapter" data-level="9.4" data-path="escrevendo-dados.html"><a href="escrevendo-dados.html#exercícios-5"><i class="fa fa-check"></i><b>9.4</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="obtendo-dados.html"><a href="obtendo-dados.html"><i class="fa fa-check"></i><b>10</b> Obtendo dados</a><ul>
+<li class="chapter" data-level="10" data-path="obtendo-dados.html"><a href="obtendo-dados.html"><i class="fa fa-check"></i><b>10</b> Obtendo dados</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="obtendo-dados.html"><a href="obtendo-dados.html#api"><i class="fa fa-check"></i><b>10.1</b> API</a></li>
 <li class="chapter" data-level="10.2" data-path="obtendo-dados.html"><a href="obtendo-dados.html#web-scrapping"><i class="fa fa-check"></i><b>10.2</b> Web Scrapping</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html"><i class="fa fa-check"></i><b>11</b> Estruturas complexas de dados</a><ul>
+<li class="chapter" data-level="11" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html"><i class="fa fa-check"></i><b>11</b> Estruturas complexas de dados</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#introdução-a-listas"><i class="fa fa-check"></i><b>11.1</b> Introdução a listas</a></li>
-<li class="chapter" data-level="11.2" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#introdução-ao-pacote-purrr"><i class="fa fa-check"></i><b>11.2</b> Introdução ao pacote purrr</a><ul>
+<li class="chapter" data-level="11.2" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#introdução-ao-pacote-purrr"><i class="fa fa-check"></i><b>11.2</b> Introdução ao pacote purrr</a>
+<ul>
 <li class="chapter" data-level="11.2.1" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#map"><i class="fa fa-check"></i><b>11.2.1</b> <code>map()</code></a></li>
 <li class="chapter" data-level="11.2.2" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#funções-derivadas-de-map"><i class="fa fa-check"></i><b>11.2.2</b> Funções derivadas de <code>map()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#ideia-de-projeto-aplicando-uma-série-de-funções-a-uma-lista-de-arquivos"><i class="fa fa-check"></i><b>11.3</b> Ideia de projeto: Aplicando uma série de funções a uma lista de arquivos</a></li>
 <li class="chapter" data-level="11.4" data-path="estruturas-complexas-de-dados.html"><a href="estruturas-complexas-de-dados.html#referências"><i class="fa fa-check"></i><b>11.4</b> Referências</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>12</b> Visualizações de dados (ggplot2)</a><ul>
+<li class="chapter" data-level="12" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>12</b> Visualizações de dados (ggplot2)</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="ggplot2.html"><a href="ggplot2.html#dataset-do-módulo"><i class="fa fa-check"></i><b>12.1</b> Dataset do módulo</a></li>
 <li class="chapter" data-level="12.2" data-path="ggplot2.html"><a href="ggplot2.html#mapeamento-estético"><i class="fa fa-check"></i><b>12.2</b> Mapeamento Estético</a></li>
-<li class="chapter" data-level="12.3" data-path="ggplot2.html"><a href="ggplot2.html#objetos-geométricos-e-tipos-de-gráficos"><i class="fa fa-check"></i><b>12.3</b> Objetos geométricos e tipos de gráficos</a><ul>
+<li class="chapter" data-level="12.3" data-path="ggplot2.html"><a href="ggplot2.html#objetos-geométricos-e-tipos-de-gráficos"><i class="fa fa-check"></i><b>12.3</b> Objetos geométricos e tipos de gráficos</a>
+<ul>
 <li class="chapter" data-level="12.3.1" data-path="ggplot2.html"><a href="ggplot2.html#escolhendo-o-tipo-de-gráfico"><i class="fa fa-check"></i><b>12.3.1</b> Escolhendo o tipo de gráfico</a></li>
 <li class="chapter" data-level="12.3.2" data-path="ggplot2.html"><a href="ggplot2.html#gráfico-de-dispersão-geom_point"><i class="fa fa-check"></i><b>12.3.2</b> Gráfico de Dispersão (<code>geom_point()</code>)</a></li>
 <li class="chapter" data-level="12.3.3" data-path="ggplot2.html"><a href="ggplot2.html#gráficos-de-bolhas"><i class="fa fa-check"></i><b>12.3.3</b> Gráficos de Bolhas</a></li>
@@ -302,72 +353,86 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.3.10" data-path="ggplot2.html"><a href="ggplot2.html#cleveland-dot-plot"><i class="fa fa-check"></i><b>12.3.10</b> Cleveland Dot Plot</a></li>
 <li class="chapter" data-level="12.3.11" data-path="ggplot2.html"><a href="ggplot2.html#mapas-de-calor"><i class="fa fa-check"></i><b>12.3.11</b> Mapas de calor</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="ggplot2.html"><a href="ggplot2.html#escalas"><i class="fa fa-check"></i><b>12.4</b> Escalas</a><ul>
+<li class="chapter" data-level="12.4" data-path="ggplot2.html"><a href="ggplot2.html#escalas"><i class="fa fa-check"></i><b>12.4</b> Escalas</a>
+<ul>
 <li class="chapter" data-level="12.4.1" data-path="ggplot2.html"><a href="ggplot2.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>12.4.1</b> Tipos de Variáveis</a></li>
 <li class="chapter" data-level="12.4.2" data-path="ggplot2.html"><a href="ggplot2.html#eixos"><i class="fa fa-check"></i><b>12.4.2</b> Eixos</a></li>
 <li class="chapter" data-level="12.4.3" data-path="ggplot2.html"><a href="ggplot2.html#escalas-de-cores-color-e-preenchimento-fill"><i class="fa fa-check"></i><b>12.4.3</b> Escalas de Cores (color) e Preenchimento (fill)</a></li>
 </ul></li>
 <li class="chapter" data-level="12.5" data-path="ggplot2.html"><a href="ggplot2.html#subplots-facet"><i class="fa fa-check"></i><b>12.5</b> Subplots (facet)</a></li>
-<li class="chapter" data-level="12.6" data-path="ggplot2.html"><a href="ggplot2.html#temas"><i class="fa fa-check"></i><b>12.6</b> Temas</a><ul>
+<li class="chapter" data-level="12.6" data-path="ggplot2.html"><a href="ggplot2.html#temas"><i class="fa fa-check"></i><b>12.6</b> Temas</a>
+<ul>
 <li class="chapter" data-level="12.6.1" data-path="ggplot2.html"><a href="ggplot2.html#temas-disponíveis-no-ggplot2"><i class="fa fa-check"></i><b>12.6.1</b> Temas disponíveis no ggplot2</a></li>
 <li class="chapter" data-level="12.6.2" data-path="ggplot2.html"><a href="ggplot2.html#temas-no-pacote-ggthemes"><i class="fa fa-check"></i><b>12.6.2</b> Temas no pacote ggthemes</a></li>
-<li class="chapter" data-level="12.6.3" data-path="ggplot2.html"><a href="ggplot2.html#hrbrthemes"><i class="fa fa-check"></i><b>12.6.3</b> hrbrthemes</a></li>
-<li class="chapter" data-level="12.6.4" data-path="ggplot2.html"><a href="ggplot2.html#setando-o-tema-globalmente"><i class="fa fa-check"></i><b>12.6.4</b> Setando o tema globalmente</a></li>
+<li class="chapter" data-level="12.6.3" data-path="ggplot2.html"><a href="ggplot2.html#setando-o-tema-globalmente"><i class="fa fa-check"></i><b>12.6.3</b> Setando o tema globalmente</a></li>
 </ul></li>
 <li class="chapter" data-level="12.7" data-path="ggplot2.html"><a href="ggplot2.html#legendas"><i class="fa fa-check"></i><b>12.7</b> Legendas</a></li>
-<li class="chapter" data-level="12.8" data-path="ggplot2.html"><a href="ggplot2.html#mapas-plotando-polígonos"><i class="fa fa-check"></i><b>12.8</b> Mapas: plotando polígonos</a><ul>
+<li class="chapter" data-level="12.8" data-path="ggplot2.html"><a href="ggplot2.html#mapas-plotando-polígonos"><i class="fa fa-check"></i><b>12.8</b> Mapas: plotando polígonos</a>
+<ul>
 <li class="chapter" data-level="12.8.1" data-path="ggplot2.html"><a href="ggplot2.html#projeto-plotando-indicadores-socioeconômicos-em-um-mapa."><i class="fa fa-check"></i><b>12.8.1</b> Projeto: plotando indicadores socioeconômicos em um mapa.</a></li>
 </ul></li>
 <li class="chapter" data-level="12.9" data-path="ggplot2.html"><a href="ggplot2.html#salvando-gráficos"><i class="fa fa-check"></i><b>12.9</b> Salvando Gráficos</a></li>
-<li class="chapter" data-level="12.10" data-path="ggplot2.html"><a href="ggplot2.html#extensões-do-ggplot2"><i class="fa fa-check"></i><b>12.10</b> Extensões do ggplot2</a><ul>
+<li class="chapter" data-level="12.10" data-path="ggplot2.html"><a href="ggplot2.html#extensões-do-ggplot2"><i class="fa fa-check"></i><b>12.10</b> Extensões do ggplot2</a>
+<ul>
 <li class="chapter" data-level="12.10.1" data-path="ggplot2.html"><a href="ggplot2.html#ggrepel"><i class="fa fa-check"></i><b>12.10.1</b> ggrepel</a></li>
 <li class="chapter" data-level="12.10.2" data-path="ggplot2.html"><a href="ggplot2.html#gganimate"><i class="fa fa-check"></i><b>12.10.2</b> gganimate</a></li>
 </ul></li>
-<li class="chapter" data-level="12.11" data-path="ggplot2.html"><a href="ggplot2.html#exercícios-6"><i class="fa fa-check"></i><b>12.11</b> Exercícios</a><ul>
+<li class="chapter" data-level="12.11" data-path="ggplot2.html"><a href="ggplot2.html#exercícios-6"><i class="fa fa-check"></i><b>12.11</b> Exercícios</a>
+<ul>
 <li class="chapter" data-level="12.11.1" data-path="ggplot2.html"><a href="ggplot2.html#parte-1-1"><i class="fa fa-check"></i><b>12.11.1</b> Parte 1</a></li>
 <li class="chapter" data-level="12.11.2" data-path="ggplot2.html"><a href="ggplot2.html#parte-2-1"><i class="fa fa-check"></i><b>12.11.2</b> Parte 2</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="htmlwidgets.html"><a href="htmlwidgets.html"><i class="fa fa-check"></i><b>13</b> Visualizações Interativas</a><ul>
+<li class="chapter" data-level="13" data-path="htmlwidgets.html"><a href="htmlwidgets.html"><i class="fa fa-check"></i><b>13</b> Visualizações Interativas</a>
+<ul>
 <li class="chapter" data-level="13.1" data-path="htmlwidgets.html"><a href="htmlwidgets.html#introdução-1"><i class="fa fa-check"></i><b>13.1</b> Introdução</a></li>
 <li class="chapter" data-level="13.2" data-path="htmlwidgets.html"><a href="htmlwidgets.html#plotly"><i class="fa fa-check"></i><b>13.2</b> Plotly</a></li>
 <li class="chapter" data-level="13.3" data-path="htmlwidgets.html"><a href="htmlwidgets.html#dygraphs"><i class="fa fa-check"></i><b>13.3</b> dygraphs</a></li>
-<li class="chapter" data-level="13.4" data-path="htmlwidgets.html"><a href="htmlwidgets.html#leaflet"><i class="fa fa-check"></i><b>13.4</b> Leaflet</a><ul>
+<li class="chapter" data-level="13.4" data-path="htmlwidgets.html"><a href="htmlwidgets.html#leaflet"><i class="fa fa-check"></i><b>13.4</b> Leaflet</a>
+<ul>
 <li class="chapter" data-level="13.4.1" data-path="htmlwidgets.html"><a href="htmlwidgets.html#primeiro-exemplo"><i class="fa fa-check"></i><b>13.4.1</b> Primeiro exemplo</a></li>
 <li class="chapter" data-level="13.4.2" data-path="htmlwidgets.html"><a href="htmlwidgets.html#marcadores"><i class="fa fa-check"></i><b>13.4.2</b> Marcadores</a></li>
 <li class="chapter" data-level="13.4.3" data-path="htmlwidgets.html"><a href="htmlwidgets.html#polígonos"><i class="fa fa-check"></i><b>13.4.3</b> Polígonos</a></li>
 </ul></li>
 <li class="chapter" data-level="13.5" data-path="htmlwidgets.html"><a href="htmlwidgets.html#exercícios-7"><i class="fa fa-check"></i><b>13.5</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>14</b> RMarkdown</a><ul>
+<li class="chapter" data-level="14" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>14</b> RMarkdown</a>
+<ul>
 <li class="chapter" data-level="14.1" data-path="rmarkdown.html"><a href="rmarkdown.html#usos-do-rmarkdown"><i class="fa fa-check"></i><b>14.1</b> Usos do RMarkdown</a></li>
 <li class="chapter" data-level="14.2" data-path="rmarkdown.html"><a href="rmarkdown.html#estrutura-de-um-rmarkdown"><i class="fa fa-check"></i><b>14.2</b> Estrutura de um RMarkdown</a></li>
 <li class="chapter" data-level="14.3" data-path="rmarkdown.html"><a href="rmarkdown.html#renderizando-um-documento"><i class="fa fa-check"></i><b>14.3</b> Renderizando um documento</a></li>
 <li class="chapter" data-level="14.4" data-path="rmarkdown.html"><a href="rmarkdown.html#sintaxe"><i class="fa fa-check"></i><b>14.4</b> Sintaxe</a></li>
-<li class="chapter" data-level="14.5" data-path="rmarkdown.html"><a href="rmarkdown.html#opções-de-chunk"><i class="fa fa-check"></i><b>14.5</b> Opções de Chunk</a></li>
-<li class="chapter" data-level="14.6" data-path="rmarkdown.html"><a href="rmarkdown.html#principais-formatos"><i class="fa fa-check"></i><b>14.6</b> Principais Formatos</a><ul>
-<li class="chapter" data-level="14.6.1" data-path="rmarkdown.html"><a href="rmarkdown.html#html"><i class="fa fa-check"></i><b>14.6.1</b> HTML</a></li>
-<li class="chapter" data-level="14.6.2" data-path="rmarkdown.html"><a href="rmarkdown.html#pdf"><i class="fa fa-check"></i><b>14.6.2</b> PDF</a></li>
-<li class="chapter" data-level="14.6.3" data-path="rmarkdown.html"><a href="rmarkdown.html#word"><i class="fa fa-check"></i><b>14.6.3</b> Word</a></li>
+<li class="chapter" data-level="14.5" data-path="rmarkdown.html"><a href="rmarkdown.html#section"><i class="fa fa-check"></i><b>14.5</b> ***</a></li>
+<li class="chapter" data-level="14.6" data-path="rmarkdown.html"><a href="rmarkdown.html#opções-de-chunk"><i class="fa fa-check"></i><b>14.6</b> Opções de Chunk</a></li>
+<li class="chapter" data-level="14.7" data-path="rmarkdown.html"><a href="rmarkdown.html#principais-formatos"><i class="fa fa-check"></i><b>14.7</b> Principais Formatos</a>
+<ul>
+<li class="chapter" data-level="14.7.1" data-path="rmarkdown.html"><a href="rmarkdown.html#html"><i class="fa fa-check"></i><b>14.7.1</b> HTML</a></li>
+<li class="chapter" data-level="14.7.2" data-path="rmarkdown.html"><a href="rmarkdown.html#pdf"><i class="fa fa-check"></i><b>14.7.2</b> PDF</a></li>
+<li class="chapter" data-level="14.7.3" data-path="rmarkdown.html"><a href="rmarkdown.html#word"><i class="fa fa-check"></i><b>14.7.3</b> Word</a></li>
 </ul></li>
-<li class="chapter" data-level="14.7" data-path="rmarkdown.html"><a href="rmarkdown.html#excercícios"><i class="fa fa-check"></i><b>14.7</b> Excercícios</a></li>
+<li class="chapter" data-level="14.8" data-path="rmarkdown.html"><a href="rmarkdown.html#excercícios"><i class="fa fa-check"></i><b>14.8</b> Excercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="modelos.html"><a href="modelos.html"><i class="fa fa-check"></i><b>15</b> Modelos</a><ul>
-<li class="chapter" data-level="15.1" data-path="modelos.html"><a href="modelos.html#modelo-linear"><i class="fa fa-check"></i><b>15.1</b> Modelo Linear</a><ul>
+<li class="chapter" data-level="15" data-path="modelos.html"><a href="modelos.html"><i class="fa fa-check"></i><b>15</b> Modelos</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="modelos.html"><a href="modelos.html#modelo-linear"><i class="fa fa-check"></i><b>15.1</b> Modelo Linear</a>
+<ul>
 <li class="chapter" data-level="15.1.1" data-path="modelos.html"><a href="modelos.html#regressão"><i class="fa fa-check"></i><b>15.1.1</b> Regressão</a></li>
 <li class="chapter" data-level="15.1.2" data-path="modelos.html"><a href="modelos.html#classificação"><i class="fa fa-check"></i><b>15.1.2</b> Classificação</a></li>
 <li class="chapter" data-level="15.1.3" data-path="modelos.html"><a href="modelos.html#classificação-com-modelos-baseados-em-árvores"><i class="fa fa-check"></i><b>15.1.3</b> Classificação com modelos baseados em árvores</a></li>
 </ul></li>
 <li class="chapter" data-level="15.2" data-path="modelos.html"><a href="modelos.html#exercícios-8"><i class="fa fa-check"></i><b>15.2</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="revisão-titanic.html"><a href="revisão-titanic.html"><i class="fa fa-check"></i><b>16</b> Revisão - Titanic</a><ul>
+<li class="chapter" data-level="16" data-path="revisão-titanic.html"><a href="revisão-titanic.html"><i class="fa fa-check"></i><b>16</b> Revisão - Titanic</a>
+<ul>
 <li class="chapter" data-level="16.1" data-path="revisão-titanic.html"><a href="revisão-titanic.html#objetivo"><i class="fa fa-check"></i><b>16.1</b> Objetivo</a></li>
 <li class="chapter" data-level="16.2" data-path="revisão-titanic.html"><a href="revisão-titanic.html#carregando-os-dados"><i class="fa fa-check"></i><b>16.2</b> Carregando os Dados</a></li>
-<li class="chapter" data-level="16.3" data-path="revisão-titanic.html"><a href="revisão-titanic.html#manipulando-os-dados-1"><i class="fa fa-check"></i><b>16.3</b> Manipulando os dados</a><ul>
+<li class="chapter" data-level="16.3" data-path="revisão-titanic.html"><a href="revisão-titanic.html#manipulando-os-dados-1"><i class="fa fa-check"></i><b>16.3</b> Manipulando os dados</a>
+<ul>
 <li class="chapter" data-level="16.3.1" data-path="revisão-titanic.html"><a href="revisão-titanic.html#variável-survived"><i class="fa fa-check"></i><b>16.3.1</b> Variável Survived</a></li>
 <li class="chapter" data-level="16.3.2" data-path="revisão-titanic.html"><a href="revisão-titanic.html#variável-name"><i class="fa fa-check"></i><b>16.3.2</b> Variável Name</a></li>
 </ul></li>
-<li class="chapter" data-level="16.4" data-path="revisão-titanic.html"><a href="revisão-titanic.html#idade"><i class="fa fa-check"></i><b>16.4</b> Idade</a><ul>
+<li class="chapter" data-level="16.4" data-path="revisão-titanic.html"><a href="revisão-titanic.html#idade"><i class="fa fa-check"></i><b>16.4</b> Idade</a>
+<ul>
 <li class="chapter" data-level="16.4.1" data-path="revisão-titanic.html"><a href="revisão-titanic.html#exercício"><i class="fa fa-check"></i><b>16.4.1</b> Exercício</a></li>
 </ul></li>
 <li class="chapter" data-level="16.5" data-path="revisão-titanic.html"><a href="revisão-titanic.html#visualizações"><i class="fa fa-check"></i><b>16.5</b> Visualizações</a></li>
@@ -394,49 +459,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dados-em-strings-texto" class="section level1">
+<div id="dados-em-strings-texto" class="section level1" number="7">
 <h1><span class="header-section-number">7</span> Dados em strings (texto)</h1>
 <p>Neste capítulo, usaremos estes pacotes:</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="dados-em-strings-texto.html#cb275-1"></a><span class="kw">library</span>(stringr)</span>
-<span id="cb275-2"><a href="dados-em-strings-texto.html#cb275-2"></a><span class="kw">library</span>(literaturaBR) <span class="co"># remotes::install_github(&quot;sillasgonzaga/literaturaBR&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="dados-em-strings-texto.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb272-2"><a href="dados-em-strings-texto.html#cb272-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(literaturaBR) <span class="co"># remotes::install_github(&quot;sillasgonzaga/literaturaBR&quot;)</span></span></code></pre></div>
 <p>Manipulação de texto também é algo importante em ciência de dados, pois nem tudo são números, existem variáveis categóricas que são baseadas em texto. Mais uma vez, esse tipo de manipulação depende do tipo de arquivo que você receber.</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="dados-em-strings-texto.html#cb276-1"></a>a &lt;-<span class="st"> &#39;texto 1&#39;</span></span>
-<span id="cb276-2"><a href="dados-em-strings-texto.html#cb276-2"></a>b &lt;-<span class="st"> &#39;texto 2&#39;</span></span>
-<span id="cb276-3"><a href="dados-em-strings-texto.html#cb276-3"></a>c &lt;-<span class="st"> &#39;texto 3&#39;</span></span>
-<span id="cb276-4"><a href="dados-em-strings-texto.html#cb276-4"></a><span class="kw">paste</span>(a, b, c)</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="dados-em-strings-texto.html#cb273-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="st">&#39;texto 1&#39;</span></span>
+<span id="cb273-2"><a href="dados-em-strings-texto.html#cb273-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="st">&#39;texto 2&#39;</span></span>
+<span id="cb273-3"><a href="dados-em-strings-texto.html#cb273-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="st">&#39;texto 3&#39;</span></span>
+<span id="cb273-4"><a href="dados-em-strings-texto.html#cb273-4" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(a, b, c)</span></code></pre></div>
 <pre><code>## [1] &quot;texto 1 texto 2 texto 3&quot;</code></pre>
 <p>O <code>paste()</code> é a função mais básica para manipulação de textos usando o R base. Ela concatena todas as variáveis textuais que você informar. Existe um parâmetro extra (<code>sep</code>) cujo valor padrão é espaço <code></code>.</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="dados-em-strings-texto.html#cb278-1"></a><span class="kw">paste</span>(a, b, c, <span class="dt">sep =</span> <span class="st">&#39;-&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="dados-em-strings-texto.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(a, b, c, <span class="at">sep =</span> <span class="st">&#39;-&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;texto 1-texto 2-texto 3&quot;</code></pre>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="dados-em-strings-texto.html#cb280-1"></a><span class="kw">paste</span>(a, b, c, <span class="dt">sep =</span> <span class="st">&#39;;&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="dados-em-strings-texto.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(a, b, c, <span class="at">sep =</span> <span class="st">&#39;;&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;texto 1;texto 2;texto 3&quot;</code></pre>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="dados-em-strings-texto.html#cb282-1"></a><span class="kw">paste</span>(a, b, c, <span class="dt">sep =</span> <span class="st">&#39;---%---&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="dados-em-strings-texto.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(a, b, c, <span class="at">sep =</span> <span class="st">&#39;---%---&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;texto 1---%---texto 2---%---texto 3&quot;</code></pre>
-<div id="pacote-stringr" class="section level2">
+<div id="pacote-stringr" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Pacote stringr</h2>
 <p>Texto no R é sempre do tipo <code>character</code>. No universo da computação, também se referem a texto como <code>string</code>. E é daí que vem o nome desse pacote, também criado por Hadley Wickham. Por acaso, este pacote não está incluído no <code>tidyverse</code>.</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="dados-em-strings-texto.html#cb284-1"></a><span class="kw">library</span>(stringr)</span>
-<span id="cb284-2"><a href="dados-em-strings-texto.html#cb284-2"></a>?stringr</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="dados-em-strings-texto.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb281-2"><a href="dados-em-strings-texto.html#cb281-2" aria-hidden="true" tabindex="-1"></a>?stringr</span></code></pre></div>
 <div class="rmdtip">
 <p>
 <strong>Referências:</strong> <a href="https://stringr.tidyverse.org/index.html">Site do pacote <code>stringr</code></a>
 </p>
 </div>
-<div id="extrair-parte-de-uma-string" class="section level3">
+<div id="extrair-parte-de-uma-string" class="section level3" number="7.1.1">
 <h3><span class="header-section-number">7.1.1</span> Extrair parte de uma string</h3>
 <p>Começaremos pela função <code>str_sub()</code>, que extrai apenas parte de um texto.</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="dados-em-strings-texto.html#cb285-1"></a>cnae.texto &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;10 Fabricação de produtos alimentícios&#39;</span>, <span class="st">&#39;11 Fabricação de bebidas&#39;</span>,</span>
-<span id="cb285-2"><a href="dados-em-strings-texto.html#cb285-2"></a>                <span class="st">&#39;12 Fabricação de produtos do fumo&#39;</span>, <span class="st">&#39;13 Fabricação de produtos têxteis&#39;,</span></span>
-<span id="cb285-3"><a href="dados-em-strings-texto.html#cb285-3"></a><span class="st">                &#39;</span><span class="dv">14</span> Confecção de artigos do vestuário e acessórios&#39;,</span>
-<span id="cb285-4"><a href="dados-em-strings-texto.html#cb285-4"></a>                <span class="st">&#39;15 Preparação de couros e fabricação de artefatos de couro, artigos para viagem e calçados&#39;</span>,</span>
-<span id="cb285-5"><a href="dados-em-strings-texto.html#cb285-5"></a>                <span class="st">&#39;16 Fabricação de produtos de madeira&#39;</span>,</span>
-<span id="cb285-6"><a href="dados-em-strings-texto.html#cb285-6"></a>                <span class="st">&#39;17 Fabricação de celulose, papel e produtos de papel&#39;</span>)</span>
-<span id="cb285-7"><a href="dados-em-strings-texto.html#cb285-7"></a>cnae &lt;-<span class="st"> </span><span class="kw">str_sub</span>(cnae.texto, <span class="dv">0</span>, <span class="dv">2</span>)</span>
-<span id="cb285-8"><a href="dados-em-strings-texto.html#cb285-8"></a>texto &lt;-<span class="st"> </span><span class="kw">str_sub</span>(cnae.texto, <span class="dv">4</span>)</span>
-<span id="cb285-9"><a href="dados-em-strings-texto.html#cb285-9"></a></span>
-<span id="cb285-10"><a href="dados-em-strings-texto.html#cb285-10"></a>cnae</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="dados-em-strings-texto.html#cb282-1" aria-hidden="true" tabindex="-1"></a>cnae.texto <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;10 Fabricação de produtos alimentícios&#39;</span>, <span class="st">&#39;11 Fabricação de bebidas&#39;</span>,</span>
+<span id="cb282-2"><a href="dados-em-strings-texto.html#cb282-2" aria-hidden="true" tabindex="-1"></a>                <span class="st">&#39;12 Fabricação de produtos do fumo&#39;</span>, <span class="st">&#39;13 Fabricação de produtos têxteis&#39;</span>,</span>
+<span id="cb282-3"><a href="dados-em-strings-texto.html#cb282-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">&#39;14 Confecção de artigos do vestuário e acessórios&#39;</span>,</span>
+<span id="cb282-4"><a href="dados-em-strings-texto.html#cb282-4" aria-hidden="true" tabindex="-1"></a>                <span class="st">&#39;15 Preparação de couros e fabricação de artefatos de couro, artigos para viagem e calçados&#39;</span>,</span>
+<span id="cb282-5"><a href="dados-em-strings-texto.html#cb282-5" aria-hidden="true" tabindex="-1"></a>                <span class="st">&#39;16 Fabricação de produtos de madeira&#39;</span>,</span>
+<span id="cb282-6"><a href="dados-em-strings-texto.html#cb282-6" aria-hidden="true" tabindex="-1"></a>                <span class="st">&#39;17 Fabricação de celulose, papel e produtos de papel&#39;</span>)</span>
+<span id="cb282-7"><a href="dados-em-strings-texto.html#cb282-7" aria-hidden="true" tabindex="-1"></a>cnae <span class="ot">&lt;-</span> <span class="fu">str_sub</span>(cnae.texto, <span class="dv">0</span>, <span class="dv">2</span>)</span>
+<span id="cb282-8"><a href="dados-em-strings-texto.html#cb282-8" aria-hidden="true" tabindex="-1"></a>texto <span class="ot">&lt;-</span> <span class="fu">str_sub</span>(cnae.texto, <span class="dv">4</span>)</span>
+<span id="cb282-9"><a href="dados-em-strings-texto.html#cb282-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb282-10"><a href="dados-em-strings-texto.html#cb282-10" aria-hidden="true" tabindex="-1"></a>cnae</span></code></pre></div>
 <pre><code>## [1] &quot;10&quot; &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;14&quot; &quot;15&quot; &quot;16&quot; &quot;17&quot;</code></pre>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="dados-em-strings-texto.html#cb287-1"></a>texto</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="dados-em-strings-texto.html#cb284-1" aria-hidden="true" tabindex="-1"></a>texto</span></code></pre></div>
 <pre><code>## [1] &quot;Fabricação de produtos alimentícios&quot;                                                    
 ## [2] &quot;Fabricação de bebidas&quot;                                                                  
 ## [3] &quot;Fabricação de produtos do fumo&quot;                                                         
@@ -451,23 +516,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </p>
 </div>
 </div>
-<div id="substituir-caracteres-em-um-string" class="section level3">
+<div id="substituir-caracteres-em-um-string" class="section level3" number="7.1.2">
 <h3><span class="header-section-number">7.1.2</span> Substituir caracteres em um string</h3>
 <p>Temos também a função <code>str_replace()</code> e <code>str_replace_all()</code>, que substituem determinados caracteres por outros. Tal como no exemplo a seguir:</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="dados-em-strings-texto.html#cb289-1"></a>telefones &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;9931-9572&#39;</span>, <span class="st">&#39;8591-5772&#39;</span>, <span class="st">&#39;8562-1923&#39;</span>)</span>
-<span id="cb289-2"><a href="dados-em-strings-texto.html#cb289-2"></a><span class="kw">str_replace</span>(telefones, <span class="st">&#39;-&#39;</span>, <span class="st">&#39;&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="dados-em-strings-texto.html#cb286-1" aria-hidden="true" tabindex="-1"></a>telefones <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;9931-9572&#39;</span>, <span class="st">&#39;8591-5772&#39;</span>, <span class="st">&#39;8562-1923&#39;</span>)</span>
+<span id="cb286-2"><a href="dados-em-strings-texto.html#cb286-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace</span>(telefones, <span class="st">&#39;-&#39;</span>, <span class="st">&#39;&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;99319572&quot; &quot;85915772&quot; &quot;85621923&quot;</code></pre>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="dados-em-strings-texto.html#cb291-1"></a>cnpj &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;19.702.231/9999-98&#39;</span>, <span class="st">&#39;19.498.482/9999-05&#39;</span>, <span class="st">&#39;19.499.583/9999-50&#39;</span>, <span class="st">&#39;19.500.999/9999-46&#39;</span>, <span class="st">&#39;19.501.139/9999-90&#39;</span>)</span>
-<span id="cb291-2"><a href="dados-em-strings-texto.html#cb291-2"></a><span class="kw">str_replace_all</span>(cnpj, <span class="st">&#39;</span><span class="ch">\\</span><span class="st">.|/|-&#39;</span>, <span class="st">&#39;&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="dados-em-strings-texto.html#cb288-1" aria-hidden="true" tabindex="-1"></a>cnpj <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;19.702.231/9999-98&#39;</span>, <span class="st">&#39;19.498.482/9999-05&#39;</span>, <span class="st">&#39;19.499.583/9999-50&#39;</span>, <span class="st">&#39;19.500.999/9999-46&#39;</span>, <span class="st">&#39;19.501.139/9999-90&#39;</span>)</span>
+<span id="cb288-2"><a href="dados-em-strings-texto.html#cb288-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(cnpj, <span class="st">&#39;</span><span class="sc">\\</span><span class="st">.|/|-&#39;</span>, <span class="st">&#39;&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;19702231999998&quot; &quot;19498482999905&quot; &quot;19499583999950&quot; &quot;19500999999946&quot; &quot;19501139999990&quot;</code></pre>
 <p>O que são esses símbolos no segundo exemplo? São símbolos especiais utilizados em funções textuais para reconhecimento de padrão. Esses símbolos são conhecidos como <strong>Expressões Regulares</strong> ou o famoso <strong>Regex</strong>, que veremos logo a seguir.</p>
 <p>Uma função mais generalizada que <code>str_replace()</code> é a <code>str_glue()</code>:</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="dados-em-strings-texto.html#cb293-1"></a>meu_nome &lt;-<span class="st"> &quot;Fulano&quot;</span></span>
-<span id="cb293-2"><a href="dados-em-strings-texto.html#cb293-2"></a></span>
-<span id="cb293-3"><a href="dados-em-strings-texto.html#cb293-3"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Prazer, sou o {meu_nome}&quot;</span>)</span>
-<span id="cb293-4"><a href="dados-em-strings-texto.html#cb293-4"></a><span class="kw">print</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="dados-em-strings-texto.html#cb290-1" aria-hidden="true" tabindex="-1"></a>meu_nome <span class="ot">&lt;-</span> <span class="st">&quot;Fulano&quot;</span></span>
+<span id="cb290-2"><a href="dados-em-strings-texto.html#cb290-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb290-3"><a href="dados-em-strings-texto.html#cb290-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Prazer, sou o {meu_nome}&quot;</span>)</span>
+<span id="cb290-4"><a href="dados-em-strings-texto.html#cb290-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(x)</span></code></pre></div>
 <pre><code>## [1] &quot;Prazer, sou o {meu_nome}&quot;</code></pre>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="dados-em-strings-texto.html#cb295-1"></a><span class="kw">str_glue</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="dados-em-strings-texto.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_glue</span>(x)</span></code></pre></div>
 <pre><code>## Prazer, sou o Fulano</code></pre>
 <div class="rmdtip">
 <p>
@@ -475,23 +540,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </p>
 </div>
 </div>
-<div id="buscar-correspondências-em-um-string" class="section level3">
+<div id="buscar-correspondências-em-um-string" class="section level3" number="7.1.3">
 <h3><span class="header-section-number">7.1.3</span> Buscar correspondências em um string</h3>
 <p>A função <code>str_count()</code> pode ser usada para esse objetivo:</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="dados-em-strings-texto.html#cb297-1"></a><span class="kw">str_count</span>(telefones, <span class="st">&quot;7&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="dados-em-strings-texto.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_count</span>(telefones, <span class="st">&quot;7&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 1 2 0</code></pre>
 <p>Para saber se um string contem um determinado padrão, basta usar <code>str_detect()</code>:</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="dados-em-strings-texto.html#cb299-1"></a><span class="kw">str_detect</span>(telefones, <span class="st">&quot;7&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="dados-em-strings-texto.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(telefones, <span class="st">&quot;7&quot;</span>)</span></code></pre></div>
 <pre><code>## [1]  TRUE  TRUE FALSE</code></pre>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="dados-em-strings-texto.html#cb301-1"></a><span class="co"># isso é equivalente a </span></span>
-<span id="cb301-2"><a href="dados-em-strings-texto.html#cb301-2"></a><span class="kw">str_count</span>(telefones, <span class="st">&quot;7&quot;</span>) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span></span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="dados-em-strings-texto.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="co"># isso é equivalente a </span></span>
+<span id="cb298-2"><a href="dados-em-strings-texto.html#cb298-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_count</span>(telefones, <span class="st">&quot;7&quot;</span>) <span class="sc">&gt;</span> <span class="dv">0</span></span></code></pre></div>
 <pre><code>## [1]  TRUE  TRUE FALSE</code></pre>
 <p>Para correspondências mais específicas, como no início ou no final, pode-se usar as funções <code>str_starts()</code> e <code>str_ends()</code>:</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="dados-em-strings-texto.html#cb303-1"></a>telefones</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="dados-em-strings-texto.html#cb300-1" aria-hidden="true" tabindex="-1"></a>telefones</span></code></pre></div>
 <pre><code>## [1] &quot;9931-9572&quot; &quot;8591-5772&quot; &quot;8562-1923&quot;</code></pre>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="dados-em-strings-texto.html#cb305-1"></a><span class="kw">str_starts</span>(telefones, <span class="st">&quot;9&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="dados-em-strings-texto.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_starts</span>(telefones, <span class="st">&quot;9&quot;</span>)</span></code></pre></div>
 <pre><code>## [1]  TRUE FALSE FALSE</code></pre>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="dados-em-strings-texto.html#cb307-1"></a><span class="kw">str_ends</span>(telefones, <span class="st">&quot;0&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="dados-em-strings-texto.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_ends</span>(telefones, <span class="st">&quot;0&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] FALSE FALSE FALSE</code></pre>
 <div class="rmdtip">
 <p>
@@ -499,13 +564,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </p>
 </div>
 </div>
-<div id="complementar-uma-string" class="section level3">
+<div id="complementar-uma-string" class="section level3" number="7.1.4">
 <h3><span class="header-section-number">7.1.4</span> Complementar uma string</h3>
 <p>Isso é essencialmente útil para transformar números em string sem perder a ordem alfabética. <code>str_pad()</code> adicionar um determinado character no início (ou no final, isso pode ser especificado pelo usuário) até que um string atinja uma determinada quantidade de caracteres.</p>
 <p>Por exemplo, sabe-se que um CPF, contando apenas os algarismos, contem 11 caracteres. Contudo, o que fazer quando você recebe um dado numérico, sem zeros a esquerda? Veja o exemplo abaixo:</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="dados-em-strings-texto.html#cb309-1"></a>cpfs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1234</span>, <span class="dv">01833827570</span>, <span class="dv">45614814570</span>, <span class="dv">4</span>, <span class="dv">4000001111</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="dados-em-strings-texto.html#cb306-1" aria-hidden="true" tabindex="-1"></a>cpfs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1234</span>, <span class="dv">01833827570</span>, <span class="dv">45614814570</span>, <span class="dv">4</span>, <span class="dv">4000001111</span>)</span></code></pre></div>
 <p>Basta usar a função <code>str_pad()</code> para complementar a string acrescentando zeros a esquerda até cada string conter 11 caracteres:</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="dados-em-strings-texto.html#cb310-1"></a><span class="kw">str_pad</span>(cpfs, <span class="dt">width =</span> <span class="dv">11</span>, <span class="dt">pad =</span> <span class="st">&quot;0&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="dados-em-strings-texto.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_pad</span>(cpfs, <span class="at">width =</span> <span class="dv">11</span>, <span class="at">pad =</span> <span class="st">&quot;0&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;00000001234&quot; &quot;01833827570&quot; &quot;45614814570&quot; &quot;00000000004&quot; &quot;04000001111&quot;</code></pre>
 <p>Veja que o terceiro elemento do vetor, que já continha 11 caracteres, não foi alterado.</p>
 <div class="rmdtip">
@@ -514,32 +579,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </p>
 </div>
 </div>
-<div id="remover-espaços-em-branco-desnecessários" class="section level3">
+<div id="remover-espaços-em-branco-desnecessários" class="section level3" number="7.1.5">
 <h3><span class="header-section-number">7.1.5</span> Remover espaços em branco desnecessários</h3>
 <p>Quando se lida com texto, é comum recebermos dados com excesso de espaço em branco, como nestes exemplos:</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="dados-em-strings-texto.html#cb312-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;      inicio&quot;</span>, <span class="st">&quot;final      &quot;</span>, <span class="st">&quot;      ambos      &quot;</span>, <span class="st">&quot;    no       meio        &quot;</span>)</span>
-<span id="cb312-2"><a href="dados-em-strings-texto.html#cb312-2"></a>x</span></code></pre></div>
-<pre><code>## [1] &quot;      inicio&quot;              &quot;final      &quot;               &quot;      ambos      &quot;        
-## [4] &quot;    no       meio        &quot;</code></pre>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="dados-em-strings-texto.html#cb314-1"></a><span class="co"># conferindo o tamanho dos strings</span></span>
-<span id="cb314-2"><a href="dados-em-strings-texto.html#cb314-2"></a><span class="kw">str_length</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="dados-em-strings-texto.html#cb309-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;      inicio&quot;</span>, <span class="st">&quot;final      &quot;</span>, <span class="st">&quot;      ambos      &quot;</span>, <span class="st">&quot;    no       meio        &quot;</span>)</span>
+<span id="cb309-2"><a href="dados-em-strings-texto.html#cb309-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>## [1] &quot;      inicio&quot;              &quot;final      &quot;               &quot;      ambos      &quot;         &quot;    no       meio        &quot;</code></pre>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="dados-em-strings-texto.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="co"># conferindo o tamanho dos strings</span></span>
+<span id="cb311-2"><a href="dados-em-strings-texto.html#cb311-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_length</span>(x)</span></code></pre></div>
 <pre><code>## [1] 12 11 17 25</code></pre>
 <p>Para isso, existe a função <code>str_trim()</code>, que remove espaços em branco seguidos no início e no final do string:</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="dados-em-strings-texto.html#cb316-1"></a>x2 &lt;-<span class="kw">str_trim</span>(x)</span>
-<span id="cb316-2"><a href="dados-em-strings-texto.html#cb316-2"></a>x2</span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="dados-em-strings-texto.html#cb313-1" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span><span class="fu">str_trim</span>(x)</span>
+<span id="cb313-2"><a href="dados-em-strings-texto.html#cb313-2" aria-hidden="true" tabindex="-1"></a>x2</span></code></pre></div>
 <pre><code>## [1] &quot;inicio&quot;        &quot;final&quot;         &quot;ambos&quot;         &quot;no       meio&quot;</code></pre>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="dados-em-strings-texto.html#cb318-1"></a><span class="co"># conferindo o tamanho do vetor limp</span></span>
-<span id="cb318-2"><a href="dados-em-strings-texto.html#cb318-2"></a><span class="kw">str_length</span>(x2)</span></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="dados-em-strings-texto.html#cb315-1" aria-hidden="true" tabindex="-1"></a><span class="co"># conferindo o tamanho do vetor limp</span></span>
+<span id="cb315-2"><a href="dados-em-strings-texto.html#cb315-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_length</span>(x2)</span></code></pre></div>
 <pre><code>## [1]  6  5  5 13</code></pre>
 <p>A função não limpou os espaços em branco seguidos no último elemento. Para isso, você pode usar uma função mais generalizada, chamada <code>str_squish()</code>:</p>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="dados-em-strings-texto.html#cb320-1"></a>x2b &lt;-<span class="st"> </span><span class="kw">str_squish</span>(x)</span>
-<span id="cb320-2"><a href="dados-em-strings-texto.html#cb320-2"></a>x2b</span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="dados-em-strings-texto.html#cb317-1" aria-hidden="true" tabindex="-1"></a>x2b <span class="ot">&lt;-</span> <span class="fu">str_squish</span>(x)</span>
+<span id="cb317-2"><a href="dados-em-strings-texto.html#cb317-2" aria-hidden="true" tabindex="-1"></a>x2b</span></code></pre></div>
 <pre><code>## [1] &quot;inicio&quot;  &quot;final&quot;   &quot;ambos&quot;   &quot;no meio&quot;</code></pre>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="dados-em-strings-texto.html#cb322-1"></a><span class="kw">str_length</span>(x2b)</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="dados-em-strings-texto.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_length</span>(x2b)</span></code></pre></div>
 <pre><code>## [1] 6 5 5 7</code></pre>
 </div>
 </div>
-<div id="regex" class="section level2">
+<div id="regex" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> Regex</h2>
 <p>Trata-se de um assunto bastante complexo e avançado. Não é fácil dominar regex e provavelmente você vai precisar sempre consultar e experimentar a montagem dos padrões de regex. Infelizmente não é possível aprender regex rápido e de um jeito fácil, só existe o jeito difícil: errando muito, com muita prática e experiências reais.</p>
 <p>A seguir, uma lista dos principais mecanismos de regex:</p>
@@ -598,56 +662,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Vamos então aplicar as regex acima em um conjunto de strings:</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="dados-em-strings-texto.html#cb324-1"></a>textos &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Fulano&quot;</span>, <span class="st">&quot;fulano&quot;</span>, <span class="st">&quot;abcdeF&quot;</span>, <span class="st">&quot;01584&quot;</span>, </span>
-<span id="cb324-2"><a href="dados-em-strings-texto.html#cb324-2"></a>            <span class="st">&quot;abc456&quot;</span>, <span class="st">&quot;123def&quot;</span>, <span class="st">&quot;OI&quot;</span>, <span class="st">&quot;meuemail@gmail.com&quot;</span>,</span>
-<span id="cb324-3"><a href="dados-em-strings-texto.html#cb324-3"></a>            <span class="st">&quot;www.google.com&quot;</span>, <span class="st">&quot;Meu nome é Fulano&quot;</span>)</span>
-<span id="cb324-4"><a href="dados-em-strings-texto.html#cb324-4"></a></span>
-<span id="cb324-5"><a href="dados-em-strings-texto.html#cb324-5"></a><span class="co"># detectar strings que contem F maiusculo</span></span>
-<span id="cb324-6"><a href="dados-em-strings-texto.html#cb324-6"></a><span class="kw">str_detect</span>(textos, <span class="st">&quot;F&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="dados-em-strings-texto.html#cb321-1" aria-hidden="true" tabindex="-1"></a>textos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Fulano&quot;</span>, <span class="st">&quot;fulano&quot;</span>, <span class="st">&quot;abcdeF&quot;</span>, <span class="st">&quot;01584&quot;</span>, </span>
+<span id="cb321-2"><a href="dados-em-strings-texto.html#cb321-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;abc456&quot;</span>, <span class="st">&quot;123def&quot;</span>, <span class="st">&quot;OI&quot;</span>, <span class="st">&quot;meuemail@gmail.com&quot;</span>,</span>
+<span id="cb321-3"><a href="dados-em-strings-texto.html#cb321-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;www.google.com&quot;</span>, <span class="st">&quot;Meu nome é Fulano&quot;</span>)</span>
+<span id="cb321-4"><a href="dados-em-strings-texto.html#cb321-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb321-5"><a href="dados-em-strings-texto.html#cb321-5" aria-hidden="true" tabindex="-1"></a><span class="co"># detectar strings que contem F maiusculo</span></span>
+<span id="cb321-6"><a href="dados-em-strings-texto.html#cb321-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(textos, <span class="st">&quot;F&quot;</span>)</span></code></pre></div>
 <pre><code>##  [1]  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE</code></pre>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="dados-em-strings-texto.html#cb326-1"></a><span class="co"># detectar strings que começam com F maiúsculo</span></span>
-<span id="cb326-2"><a href="dados-em-strings-texto.html#cb326-2"></a><span class="kw">str_detect</span>(textos, <span class="st">&quot;^F&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="dados-em-strings-texto.html#cb323-1" aria-hidden="true" tabindex="-1"></a><span class="co"># detectar strings que começam com F maiúsculo</span></span>
+<span id="cb323-2"><a href="dados-em-strings-texto.html#cb323-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(textos, <span class="st">&quot;^F&quot;</span>)</span></code></pre></div>
 <pre><code>##  [1]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="dados-em-strings-texto.html#cb328-1"></a><span class="co"># detectar strings que começam com F, independente se maiúsculo ou minúsculo</span></span>
-<span id="cb328-2"><a href="dados-em-strings-texto.html#cb328-2"></a><span class="kw">str_detect</span>(textos, <span class="kw">regex</span>(<span class="st">&quot;^F&quot;</span>, <span class="dt">ignore_case =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="dados-em-strings-texto.html#cb325-1" aria-hidden="true" tabindex="-1"></a><span class="co"># detectar strings que começam com F, independente se maiúsculo ou minúsculo</span></span>
+<span id="cb325-2"><a href="dados-em-strings-texto.html#cb325-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(textos, <span class="fu">regex</span>(<span class="st">&quot;^F&quot;</span>, <span class="at">ignore_case =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>##  [1]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
 <p><code>str_subset()</code> é uma generalização de <code>str_detect()</code> que filtra os elementos em que <code>str_detect()</code> retorna <code>TRUE</code>:</p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="dados-em-strings-texto.html#cb330-1"></a><span class="co"># filtrar strings que terminam com o</span></span>
-<span id="cb330-2"><a href="dados-em-strings-texto.html#cb330-2"></a><span class="kw">str_subset</span>(textos, <span class="st">&quot;o$&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="dados-em-strings-texto.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filtrar strings que terminam com o</span></span>
+<span id="cb327-2"><a href="dados-em-strings-texto.html#cb327-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(textos, <span class="st">&quot;o$&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Fulano&quot;            &quot;fulano&quot;            &quot;Meu nome é Fulano&quot;</code></pre>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="dados-em-strings-texto.html#cb332-1"></a><span class="co"># strings que contem um algarismo</span></span>
-<span id="cb332-2"><a href="dados-em-strings-texto.html#cb332-2"></a><span class="kw">str_subset</span>(textos, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">d&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="dados-em-strings-texto.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="co"># strings que contem um algarismo</span></span>
+<span id="cb329-2"><a href="dados-em-strings-texto.html#cb329-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(textos, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;01584&quot;  &quot;abc456&quot; &quot;123def&quot;</code></pre>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="dados-em-strings-texto.html#cb334-1"></a><span class="kw">str_subset</span>(textos, <span class="st">&quot;[0-9]&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="dados-em-strings-texto.html#cb331-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(textos, <span class="st">&quot;[0-9]&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;01584&quot;  &quot;abc456&quot; &quot;123def&quot;</code></pre>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="dados-em-strings-texto.html#cb336-1"></a><span class="co"># strings que terminam com um algarismo</span></span>
-<span id="cb336-2"><a href="dados-em-strings-texto.html#cb336-2"></a><span class="kw">str_subset</span>(textos, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">d$&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="dados-em-strings-texto.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="co"># strings que terminam com um algarismo</span></span>
+<span id="cb333-2"><a href="dados-em-strings-texto.html#cb333-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(textos, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d$&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;01584&quot;  &quot;abc456&quot;</code></pre>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="dados-em-strings-texto.html#cb338-1"></a><span class="co"># strings que nao contem algarismo</span></span>
-<span id="cb338-2"><a href="dados-em-strings-texto.html#cb338-2"></a><span class="kw">str_subset</span>(textos, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">d&quot;</span>, <span class="dt">negate =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;Fulano&quot;             &quot;fulano&quot;             &quot;abcdeF&quot;             &quot;OI&quot;                
-## [5] &quot;meuemail@gmail.com&quot; &quot;www.google.com&quot;     &quot;Meu nome é Fulano&quot;</code></pre>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="dados-em-strings-texto.html#cb340-1"></a><span class="co"># strings que contem um ponto</span></span>
-<span id="cb340-2"><a href="dados-em-strings-texto.html#cb340-2"></a><span class="kw">str_subset</span>(textos, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="dados-em-strings-texto.html#cb335-1" aria-hidden="true" tabindex="-1"></a><span class="co"># strings que nao contem algarismo</span></span>
+<span id="cb335-2"><a href="dados-em-strings-texto.html#cb335-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(textos, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d&quot;</span>, <span class="at">negate =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Fulano&quot;             &quot;fulano&quot;             &quot;abcdeF&quot;             &quot;OI&quot;                 &quot;meuemail@gmail.com&quot; &quot;www.google.com&quot;    
+## [7] &quot;Meu nome é Fulano&quot;</code></pre>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="dados-em-strings-texto.html#cb337-1" aria-hidden="true" tabindex="-1"></a><span class="co"># strings que contem um ponto</span></span>
+<span id="cb337-2"><a href="dados-em-strings-texto.html#cb337-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(textos, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;meuemail@gmail.com&quot; &quot;www.google.com&quot;</code></pre>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="dados-em-strings-texto.html#cb342-1"></a><span class="co"># strings que contem um espaço</span></span>
-<span id="cb342-2"><a href="dados-em-strings-texto.html#cb342-2"></a><span class="kw">str_subset</span>(textos, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">s&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="dados-em-strings-texto.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="co"># strings que contem um espaço</span></span>
+<span id="cb339-2"><a href="dados-em-strings-texto.html#cb339-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(textos, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">s&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Meu nome é Fulano&quot;</code></pre>
 <p>A seguir, alguns bons sites para aprender mais sobre regex. É um assunto interessante e bastante utilizado para tratamento textual.</p>
 <p><a href="http://turing.com.br/material/regex/introducao.html" class="uri">http://turing.com.br/material/regex/introducao.html</a></p>
 <p><a href="https://regexone.com/" class="uri">https://regexone.com/</a></p>
 </div>
-<div id="exercícios-4" class="section level2">
+<div id="exercícios-4" class="section level2" number="7.3">
 <h2><span class="header-section-number">7.3</span> Exercícios</h2>
 <ol style="list-style-type: decimal">
 <li>Utilizando o dataframe abaixo, obtenha o resultado a seguir: <code>Dica: separate(), str_replace_all(), str_trim(), str_sub()</code></li>
 </ol>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="dados-em-strings-texto.html#cb344-1"></a>cadastros &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb344-2"><a href="dados-em-strings-texto.html#cb344-2"></a>  <span class="dt">email =</span> <span class="kw">c</span>(<span class="st">&#39;joaodasilva@gmail.com&#39;</span>, <span class="st">&#39;rafael@hotmail.com&#39;</span>, <span class="st">&#39;maria@uol.com.br&#39;</span>, <span class="st">&#39;juliana.morais@outlook.com&#39;</span>),</span>
-<span id="cb344-3"><a href="dados-em-strings-texto.html#cb344-3"></a>  <span class="dt">telefone =</span> <span class="kw">c</span>(<span class="st">&#39;(61)99831-9482&#39;</span>, <span class="st">&#39;32 8976 2913&#39;</span>, <span class="st">&#39;62-9661-1234&#39;</span>, <span class="st">&#39;15-40192.5812&#39;</span>)</span>
-<span id="cb344-4"><a href="dados-em-strings-texto.html#cb344-4"></a>)</span>
-<span id="cb344-5"><a href="dados-em-strings-texto.html#cb344-5"></a></span>
-<span id="cb344-6"><a href="dados-em-strings-texto.html#cb344-6"></a>cadastros</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="dados-em-strings-texto.html#cb341-1" aria-hidden="true" tabindex="-1"></a>cadastros <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb341-2"><a href="dados-em-strings-texto.html#cb341-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">email =</span> <span class="fu">c</span>(<span class="st">&#39;joaodasilva@gmail.com&#39;</span>, <span class="st">&#39;rafael@hotmail.com&#39;</span>, <span class="st">&#39;maria@uol.com.br&#39;</span>, <span class="st">&#39;juliana.morais@outlook.com&#39;</span>),</span>
+<span id="cb341-3"><a href="dados-em-strings-texto.html#cb341-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">telefone =</span> <span class="fu">c</span>(<span class="st">&#39;(61)99831-9482&#39;</span>, <span class="st">&#39;32 8976 2913&#39;</span>, <span class="st">&#39;62-9661-1234&#39;</span>, <span class="st">&#39;15-40192.5812&#39;</span>)</span>
+<span id="cb341-4"><a href="dados-em-strings-texto.html#cb341-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb341-5"><a href="dados-em-strings-texto.html#cb341-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb341-6"><a href="dados-em-strings-texto.html#cb341-6" aria-hidden="true" tabindex="-1"></a>cadastros</span></code></pre></div>
 <pre><code>##                        email       telefone
 ## 1      joaodasilva@gmail.com (61)99831-9482
 ## 2         rafael@hotmail.com   32 8976 2913
@@ -661,25 +725,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="2" style="list-style-type: decimal">
 <li>Baixe o pacote <code>literaturaBR</code>. Como ele não está no CRAN, é necessário usar outra função:</li>
 </ol>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="dados-em-strings-texto.html#cb347-1"></a>remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;sillasgonzaga/literaturaBR&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="dados-em-strings-texto.html#cb344-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;sillasgonzaga/literaturaBR&quot;</span>)</span></code></pre></div>
 <p>Importe o dataframe com os livros:</p>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="dados-em-strings-texto.html#cb348-1"></a><span class="kw">library</span>(literaturaBR)</span>
-<span id="cb348-2"><a href="dados-em-strings-texto.html#cb348-2"></a>df_livros &lt;-<span class="st"> </span>literaturaBR<span class="op">::</span><span class="kw">load_all_books</span>()</span>
-<span id="cb348-3"><a href="dados-em-strings-texto.html#cb348-3"></a><span class="kw">head</span>(df_livros)</span></code></pre></div>
-<pre><code>##               book_name chapter_name                                          url
-## alienista.1 O Alienista   Capítulo I https://pt.wikisource.org/wiki/O_Alienista/I
-## alienista.2 O Alienista   Capítulo I https://pt.wikisource.org/wiki/O_Alienista/I
-## alienista.3 O Alienista   Capítulo I https://pt.wikisource.org/wiki/O_Alienista/I
-## alienista.4 O Alienista   Capítulo I https://pt.wikisource.org/wiki/O_Alienista/I
-## alienista.5 O Alienista   Capítulo I https://pt.wikisource.org/wiki/O_Alienista/I
-## alienista.6 O Alienista   Capítulo I https://pt.wikisource.org/wiki/O_Alienista/I
-##             paragraph_number
-## alienista.1                1
-## alienista.2                2
-## alienista.3                3
-## alienista.4                4
-## alienista.5                5
-## alienista.6                6
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="dados-em-strings-texto.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(literaturaBR)</span>
+<span id="cb345-2"><a href="dados-em-strings-texto.html#cb345-2" aria-hidden="true" tabindex="-1"></a>df_livros <span class="ot">&lt;-</span> literaturaBR<span class="sc">::</span><span class="fu">load_all_books</span>()</span>
+<span id="cb345-3"><a href="dados-em-strings-texto.html#cb345-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_livros)</span></code></pre></div>
+<pre><code>##               book_name chapter_name                                          url paragraph_number
+## alienista.1 O Alienista   Capítulo I https://pt.wikisource.org/wiki/O_Alienista/I                1
+## alienista.2 O Alienista   Capítulo I https://pt.wikisource.org/wiki/O_Alienista/I                2
+## alienista.3 O Alienista   Capítulo I https://pt.wikisource.org/wiki/O_Alienista/I                3
+## alienista.4 O Alienista   Capítulo I https://pt.wikisource.org/wiki/O_Alienista/I                4
+## alienista.5 O Alienista   Capítulo I https://pt.wikisource.org/wiki/O_Alienista/I                5
+## alienista.6 O Alienista   Capítulo I https://pt.wikisource.org/wiki/O_Alienista/I                6
 ##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       text
 ## alienista.1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             As crônicas da vila de Itaguaí dizem que em tempos remotos vivera ali um certo médico, o Dr. Simão Bacamarte, filho da nobreza da terra e o maior dos médicos do Brasil, de Portugal e das Espanhas. Estudara em Coimbra e Pádua. Aos trinta e quatro anos regressou ao Brasil, não podendo el-rei alcançar dele que ficasse em Coimbra, regendo a universidade, ou em Lisboa, expedindo os negócios da monarquia.
 ## alienista.2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        —A ciência, disse ele a Sua Majestade, é o meu emprego único; Itaguaí é o meu universo.
@@ -724,6 +781,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
